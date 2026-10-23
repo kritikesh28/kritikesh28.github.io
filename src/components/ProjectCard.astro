@@ -1,0 +1,17 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props { project: CollectionEntry<'projects'> }
+const { project } = Astro.props;
+const { title, summary, status, tags, image, imageAlt } = project.data;
+const statusLabel = { live: 'Live', 'in-progress': 'In progress', planned: 'Coming soon' }[status];
+const href = `/portfolio/${project.id}/`;
+---
+
+<article class="card">
+  {image && <a href={href}><img src={image} alt={imageAlt ?? ''} loading="lazy" /></a>}
+  <p><span class={`chip ${status}`}>{statusLabel}</span></p>
+  <h3><a href={href}>{title}</a></h3>
+  <p class="muted">{summary}</p>
+  <p>{tags.map((t) => <span class="chip">{t}</span>)}</p>
+</article>

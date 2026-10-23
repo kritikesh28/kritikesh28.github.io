@@ -1,0 +1,81 @@
+---
+import { CATEGORIES } from '../site.config';
+// The six blog themes orbit one centre: one curiosity, many threads.
+const C = 280;
+const R = 196;
+const colors = ['#8f7be8', '#2f9a83', '#d9962f', '#d9603f', '#c56b9c', '#4f8fd8'];
+const nodes = CATEGORIES.map((c, i) => {
+  const a = (i / CATEGORIES.length) * Math.PI * 2 - Math.PI / 2;
+  return { ...c, x: +(C + R * Math.cos(a)).toFixed(1), y: +(C + R * Math.sin(a)).toFixed(1), color: colors[i] };
+});
+---
+
+<div class="orbit-wrap">
+  <svg class="orbit" viewBox="0 0 560 560" role="group" aria-label="Six blog themes around one curiosity">
+    <circle cx={C} cy={C} r={R} class="track" />
+    <circle cx={C} cy={C} r={R - 70} class="track inner" />
+    <g class="ring">
+      {nodes.map((n) => <line x1={C} y1={C} x2={n.x} y2={n.y} class="thread" stroke={n.color} />)}
+      {nodes.map((n) => (
+        <a href={`/blog/category/${n.slug}/`} class="node" data-label={n.label} data-blurb={n.blurb} aria-label={`${n.label}: ${n.blurb}`}>
+          <g transform={`translate(${n.x} ${n.y})`}>
+            <g class="upright">
+              <circle r="46" class="halo" fill={n.color} />
+              <circle r="38" class="dot" fill={n.color} />
+              <text y="5" text-anchor="middle" class="label">{n.short}</text>
+            </g>
+          </g>
+        </a>
+      ))}
+    </g>
+    <a href="/start/" class="centre" aria-label="Start here">
+      <circle cx={C} cy={C} r="62" class="sun" />
+      <text x={C} y={C - 4} text-anchor="middle" class="centre-big">Start</text>
+      <text x={C} y={C + 18} text-anchor="middle" class="centre-small">here</text>
+    </a>
+  </svg>
+  <p class="caption" aria-live="polite">Hover or tap a thread to see where it leads.</p>
+</div>
+
+<style>
+  .orbit-wrap { display: grid; justify-items: center; gap: 0.5rem; }
+  .orbit { width: min(100%, 520px); height: auto; overflow: visible; }
+  .track { fill: none; stroke: var(--line); stroke-width: 1.5; stroke-dasharray: 2 8; }
+  .track.inner { stroke-dasharray: 1 10; }
+  .ring { transform-box: view-box; transform-origin: 280px 280px; animation: spin 90s linear infinite; }
+  .upright { transform-box: fill-box; transform-origin: center; animation: spin 90s linear infinite reverse; }
+  .orbit:hover .ring, .orbit:hover .upright, .orbit:focus-within .ring, .orbit:focus-within .upright { animation-play-state: paused; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .thread { stroke-width: 1.6; stroke-dasharray: 4 6; opacity: 0.55; animation: flow 3s linear infinite; }
+  @keyframes flow { to { stroke-dashoffset: -20; } }
+  .halo { opacity: 0.16; transition: opacity 0.3s, transform 0.3s; transform-box: fill-box; transform-origin: center; }
+  .dot { transition: transform 0.3s; transform-box: fill-box; transform-origin: center; }
+  .label { fill: #fff; font-family: var(--font-sans); font-weight: 600; font-size: 15px; pointer-events: none; }
+  .node:hover .halo, .node:focus .halo { opacity: 0.35; transform: scale(1.25); }
+  .node:hover .dot, .node:focus .dot { transform: scale(1.1); }
+  .node:focus { outline: none; }
+  .sun { fill: var(--ink); transition: transform 0.3s; transform-box: fill-box; transform-origin: center; }
+  .centre:hover .sun, .centre:focus .sun { transform: scale(1.08); }
+  .centre-big { fill: var(--bg); font-family: var(--font-serif); font-weight: 600; font-size: 22px; }
+  .centre-small { fill: var(--bg); font-family: var(--font-sans); font-size: 13px; opacity: 0.8; }
+  .caption { min-height: 3em; text-align: center; max-width: 34rem; color: var(--ink-soft); margin: 0; }
+  .caption :global(strong) { color: var(--ink); }
+  @media (prefers-reduced-motion: reduce) {
+    .ring, .upright, .thread { animation: none; }
+  }
+</style>
+
+<script>
+  const caption = document.querySelector<HTMLElement>('.orbit-wrap .caption');
+  document.querySelectorAll<SVGAElement>('.orbit .node').forEach((n) => {
+    const show = () => {
+      if (!caption) return;
+      caption.replaceChildren();
+      const s = document.createElement('strong');
+      s.textContent = n.dataset.label ?? '';
+      caption.append(s, ` · ${n.dataset.blurb ?? ''}`);
+    };
+    n.addEventListener('pointerenter', show);
+    n.addEventListener('focus', show);
+  });
+</script>

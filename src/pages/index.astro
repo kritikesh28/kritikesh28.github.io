@@ -1,0 +1,163 @@
+---
+import Base from '../layouts/Base.astro';
+import PostCard from '../components/PostCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Starfield from '../components/Starfield.astro';
+import InfinityFlight from '../components/InfinityFlight.astro';
+import CuriosityOrbit from '../components/CuriosityOrbit.astro';
+import LiveDemo from '../components/LiveDemo.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Wordmark from '../components/Wordmark.astro';
+import { SITE, SOCIALS } from '../site.config';
+import { getPosts, getProjects } from '../lib';
+
+const posts = (await getPosts()).slice(0, 3);
+const projects = (await getProjects()).slice(0, 3);
+const lines = [
+  'I build with data and AI.',
+  'I map the Earth in QGIS.',
+  'I explain ideas from the basics up.',
+  'I stay curious, without end.',
+];
+---
+
+<Base type="profile">
+  <section class="hero">
+    <Starfield />
+    <div class="banner">
+      <img src="/images/banner-cosmic.webp" alt="On a night sky, scattered triangles gather into a yantra ringed by subject symbols, threads run into a glowing neural network, and two sparrows fly around an infinity loop." width="1584" height="396" fetchpriority="high" />
+    </div>
+    <div class="wrap grid">
+      <div class="text">
+        <img class="photo" src="/images/kritikesh.jpg" alt="Kritikesh Rajpurohit" width="128" height="128" />
+        <h1>{SITE.name}</h1>
+        <p class="typed" data-lines={JSON.stringify(lines)}><span class="t">{lines[0]}</span><span class="caret" aria-hidden="true"></span></p>
+        <p class="sub">Geology and Geography graduate, now learning applied and agentic AI at IIIT Bangalore. Teaching what I learn as <Wordmark />.</p>
+        <p class="actions">
+          <a class="btn glow" href="/start/">Start here</a>
+          <a class="btn ghost light" href="/portfolio/">See my work</a>
+          <a class="btn ghost light" href="#live">Try the live map</a>
+        </p>
+        <p class="profiles">
+          {SOCIALS.map((s) => <a href={s.href} rel="me noopener noreferrer" target="_blank">{s.label}</a>)}
+        </p>
+      </div>
+      <div class="art">
+        <InfinityFlight />
+        <p class="motto">{SITE.motto}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section reveal">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Explore</p>
+        <h2>Pick a thread</h2>
+        <p class="muted">I follow curiosity across six themes. Each one is a section of the blog, and they all meet in the middle.</p>
+        <p><a href="/blog/">All posts →</a></p>
+      </div>
+      <CuriosityOrbit />
+    </div>
+  </section>
+
+  <section id="live" class="wrap section reveal">
+    <p class="eyebrow">Live project</p>
+    <h2>Where New York takes a taxi, hour by hour</h2>
+    <LiveDemo />
+  </section>
+
+  <section class="wrap section reveal">
+    <p class="eyebrow">Portfolio</p>
+    <h2>Projects</h2>
+    <div class="grid3">{projects.map((p) => <ProjectCard project={p} />)}</div>
+    <p><a href="/portfolio/">All projects →</a></p>
+  </section>
+
+  <section class="wrap section reveal">
+    <p class="eyebrow">{SITE.blogBrand}</p>
+    <h2>Latest from the blog</h2>
+    {posts.length > 0
+      ? <div class="grid3">{posts.map((post) => <PostCard post={post} />)}</div>
+      : <p class="muted">The first posts are being written. Meanwhile, tap the two sparrows in the corner for a curious fact.</p>}
+  </section>
+
+  <div class="wrap"><CtaBand /></div>
+</Base>
+
+<script>
+  const el = document.querySelector<HTMLElement>('.typed');
+  const out = el?.querySelector<HTMLElement>('.t');
+  if (el && out && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const lines: string[] = JSON.parse(el.dataset.lines ?? '[]');
+    let li = 0;
+    let ci = lines[0].length;
+    let deleting = true;
+    const step = () => {
+      const line = lines[li];
+      if (deleting) {
+        ci--;
+        if (ci <= 0) { deleting = false; li = (li + 1) % lines.length; }
+      } else {
+        ci++;
+        if (ci >= lines[li].length) { deleting = true; out.textContent = lines[li]; return void setTimeout(step, 2200); }
+      }
+      out.textContent = (deleting ? line : lines[li]).slice(0, Math.max(ci, 0));
+      setTimeout(step, deleting ? 28 : 55);
+    };
+    setTimeout(step, 2600);
+  }
+
+  // Stars drift slightly with the mouse
+  const hero = document.querySelector<HTMLElement>('.hero');
+  if (hero && matchMedia('(hover: hover) and (prefers-reduced-motion: no-preference)').matches) {
+    const far = hero.querySelector<SVGGElement>('.layer.far');
+    const near = hero.querySelector<SVGGElement>('.layer.near');
+    hero.addEventListener('pointermove', (e) => {
+      const r = hero.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      if (far) far.style.transform = `translate(${x * -8}px, ${y * -6}px)`;
+      if (near) near.style.transform = `translate(${x * -20}px, ${y * -14}px)`;
+    });
+  }
+</script>
+
+<style>
+  .hero {
+    position: relative; overflow: hidden; margin-top: -2rem; padding-bottom: 3rem;
+    background: radial-gradient(1200px 500px at 70% 110%, #3a2a63 0%, transparent 60%), linear-gradient(180deg, #1d1636 0%, #251b45 100%);
+    color: #eeeaf8;
+  }
+  .banner { position: relative; }
+  .banner img { width: 100%; max-height: 320px; object-fit: cover; object-position: 40% center; mask-image: linear-gradient(180deg, #000 75%, transparent); }
+  .grid { position: relative; display: grid; grid-template-columns: 1.15fr 1fr; gap: 2rem; align-items: center; }
+  .photo { width: 128px; height: 128px; border-radius: 50%; border: 4px solid #251b45; box-shadow: 0 0 0 2px #8f7be8, 0 10px 30px rgb(0 0 0 / 0.4); margin-top: -64px; margin-bottom: 0.8rem; transition: transform 0.4s; }
+  .photo:hover { transform: rotate(-4deg) scale(1.04); }
+  h1 { color: #fff; margin-bottom: 0.3rem; }
+  .typed { font-family: var(--font-serif); font-size: clamp(1.2rem, 2.4vw, 1.5rem); min-height: 1.6em; margin: 0 0 0.8rem; color: #ffd9a8; }
+  .caret { display: inline-block; width: 2px; height: 1.1em; margin-left: 3px; vertical-align: -0.15em; background: #ffd9a8; animation: caret 1s steps(1) infinite; }
+  @keyframes caret { 50% { opacity: 0; } }
+  .sub { color: #c9c2e4; max-width: 36rem; }
+  .sub :global(.wordmark) { color: #fff; }
+  .actions { display: flex; gap: 0.7rem; flex-wrap: wrap; margin: 1.3rem 0 1rem; }
+  .btn.glow { background: linear-gradient(90deg, #8f7be8, #f0906f); border: 0; color: #fff; box-shadow: 0 8px 26px rgb(240 144 111 / 0.35); }
+  .btn.ghost.light { color: #eeeaf8; border-color: rgb(238 234 248 / 0.45); }
+  .btn.ghost.light:hover { background: rgb(255 255 255 / 0.08); color: #fff; }
+  .profiles { display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.9rem; margin: 0; }
+  .profiles a { color: #c9c2e4; }
+  .profiles a:hover { color: #fff; }
+  .art { text-align: center; }
+  .motto { font-family: var(--font-serif); font-style: italic; color: #c9c2e4; margin-top: 0.4rem; }
+  .section { margin-top: 4rem; }
+  .split { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 2rem; align-items: center; }
+  .grid3 { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  @media (max-width: 860px) {
+    .grid, .split { grid-template-columns: 1fr; }
+    .art { margin-top: 0.5rem; }
+  }
+  @media (max-width: 600px) {
+    .banner img { height: 130px; object-position: 30% center; }
+  }
+  @media (prefers-reduced-motion: reduce) { .caret { animation: none; } }
+</style>

@@ -1,0 +1,29 @@
+---
+// One band at the end of pages that routes each kind of visitor to the right next step.
+---
+
+<section class="cta reveal">
+  <div class="wrap inner">
+    <div>
+      <h2>Hiring, learning, or just curious?</h2>
+      <p class="muted">Tell me which, and your message lands in the right pile.</p>
+    </div>
+    <div class="paths">
+      <a class="btn" href="/contact/?intent=hiring">I'm hiring</a>
+      <a class="btn ghost" href="/contact/?intent=collab">Let's build something</a>
+      <a class="btn ghost" href="/contact/?intent=learning">I want to learn</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta { margin-top: 3.5rem; }
+  .inner {
+    display: flex; flex-wrap: wrap; gap: 1.2rem 2rem; align-items: center; justify-content: space-between;
+    padding: 1.8rem; border-radius: 22px; border: 1px solid var(--line);
+    background: linear-gradient(120deg, var(--lavender), var(--blush), var(--peach));
+  }
+  h2 { margin: 0 0 0.3rem; }
+  p { margin: 0; }
+  .paths { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+</style>

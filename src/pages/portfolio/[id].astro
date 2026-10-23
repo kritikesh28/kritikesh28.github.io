@@ -1,0 +1,59 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import LiveDemo from '../../components/LiveDemo.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { SITE } from '../../site.config';
+import { getProjects } from '../../lib';
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  return projects.map((project) => ({ params: { id: project.id }, props: { project } }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const { title, summary, date, tags, links, image, imageAlt, status, demo, aiAssisted } = project.data;
+const statusLabel = { live: 'Live', 'in-progress': 'In progress', planned: 'Coming soon' }[status];
+const code = links.find((l) => l.href.includes('github.com'));
+const schema = [
+  {
+    '@type': code ? 'SoftwareSourceCode' : 'CreativeWork',
+    name: title,
+    description: summary,
+    dateCreated: date.toISOString().slice(0, 10),
+    author: { '@id': new URL('/#person', Astro.site).href },
+    url: new URL(`/portfolio/${project.id}/`, Astro.site).href,
+    ...(image && { image: new URL(image, Astro.site).href }),
+    ...(code && { codeRepository: code.href, programmingLanguage: 'Python' }),
+    keywords: tags.join(', '),
+  },
+];
+---
+
+<Base title={title} description={summary} image={image} {schema}>
+  <article class="wrap">
+    <div class="prose">
+      <p class="small muted"><a href="/portfolio/">← Portfolio</a></p>
+      <h1>{title}</h1>
+      <p class="muted">{summary}</p>
+      <p><span class={`chip ${status}`}>{statusLabel}</span> <span class="small muted"><FormattedDate date={date} /></span></p>
+      <p>{tags.map((t) => <span class="chip">{t}</span>)}</p>
+      {aiAssisted && <p class="note small">Built by {SITE.name}, with help from an AI assistant (Claude) for the clean-up and write-up.</p>}
+      {links.length > 0 && <p class="links">{links.map((l) => <a class="btn ghost" href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a>)}</p>}
+    </div>
+    {demo && <div class="demo-wrap reveal"><h2>Try it</h2><LiveDemo /></div>}
+    <div class="prose">
+      {image && !demo && <img src={image} alt={imageAlt ?? ''} />}
+      <Content />
+    </div>
+    <CtaBand />
+  </article>
+</Base>
+
+<style>
+  .links { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .note { border-left: 3px solid var(--gold); padding: 0.3rem 0.8rem; color: var(--ink-soft); background: color-mix(in srgb, var(--gold) 8%, transparent); border-radius: 0 8px 8px 0; }
+  .demo-wrap { margin: 2rem 0; }
+</style>

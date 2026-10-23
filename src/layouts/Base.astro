@@ -1,0 +1,205 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/lora';
+import '../styles/global.css';
+import { SITE, NAV, SOCIALS } from '../site.config';
+import Seo, { type Props as SeoProps } from '../components/Seo.astro';
+import Wordmark from '../components/Wordmark.astro';
+import Mascot from '../components/Mascot.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: SeoProps['type'];
+  published?: Date;
+  updated?: Date;
+  noindex?: boolean;
+  schema?: Record<string, unknown>[];
+}
+
+const {
+  title,
+  description = SITE.description,
+  image = '/images/banner-cosmic.webp',
+  type,
+  published,
+  updated,
+  noindex,
+  schema,
+} = Astro.props;
+const pageTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} · ${SITE.blogBrand}`;
+const path = Astro.url.pathname;
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#1d1636" />
+    <script is:inline src="/theme-init.js"></script>
+    <Seo title={pageTitle} {description} {image} {type} {published} {updated} {noindex} {schema} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title={`${SITE.blogBrand} blog`} href="/rss.xml" />
+  </head>
+  <body>
+    <div class="progress" aria-hidden="true"></div>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="wrap bar">
+        <a class="brand" href="/">
+          <img src="/favicon.svg" alt="" width="32" height="32" />
+          <span>{SITE.name}</span>
+        </a>
+        <nav aria-label="Main">
+          <ul>
+            {NAV.map((item) => (
+              <li>
+                <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <button class="theme" type="button" aria-label="Switch light or dark theme" title="Light / dark">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z" fill="currentColor" /></svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap foot">
+        <div>
+          <strong>{SITE.name}</strong>
+          <span class="muted"> · <a class="wm" href="/blog/"><Wordmark /></a></span>
+          <p class="muted small">{SITE.motto}</p>
+        </div>
+        <ul class="socials">
+          {SOCIALS.map((s) => <li><a href={s.href} rel="me noopener noreferrer" target="_blank">{s.label}</a></li>)}
+          <li><a href="/start/">Start here</a></li>
+          <li><a href="/now/">Now</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
+      </div>
+      <div class="wrap trust small muted">
+        <span>Secure HTTPS</span><span>No ads</span><span>No tracking cookies</span>
+        <a href="/privacy/">Privacy</a><a href="/security.txt">Security contact</a>
+        <button class="bring" type="button">Bring back the sparrows</button>
+      </div>
+      <p class="wrap muted small">© {new Date().getFullYear()} {SITE.name}. Words and images are mine unless credited.</p>
+    </footer>
+
+    <Mascot />
+
+    {SITE.goatcounterCode && (
+      <script
+        is:inline
+        async
+        data-goatcounter={`https://${SITE.goatcounterCode}.goatcounter.com/count`}
+        src="https://gc.zgo.at/count.js"
+      ></script>
+    )}
+  </body>
+</html>
+
+<script>
+  const root = document.documentElement;
+
+  // Light / dark toggle
+  document.querySelector('.theme')?.addEventListener('click', () => {
+    const dark = root.dataset.theme
+      ? root.dataset.theme === 'dark'
+      : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+    try { localStorage.setItem('theme', root.dataset.theme); } catch {}
+  });
+
+  // Bring hidden sparrows back
+  document.querySelector('.bring')?.addEventListener('click', () => {
+    try { localStorage.removeItem('sparrows'); } catch {}
+    document.querySelector('.mascot')?.classList.remove('gone');
+  });
+
+  // Reading progress bar
+  const bar = document.querySelector<HTMLElement>('.progress');
+  const onScroll = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    if (bar) bar.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+  };
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Gentle reveal as sections scroll into view
+  const io = new IntersectionObserver(
+    (entries) => entries.forEach((e) => e.isIntersecting && (e.target.classList.add('in'), io.unobserve(e.target))),
+    { rootMargin: '0px 0px -8% 0px' },
+  );
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  // Soft 3D tilt on cards (mouse only)
+  if (matchMedia('(hover: hover) and (prefers-reduced-motion: no-preference)').matches) {
+    document.querySelectorAll<HTMLElement>('.card').forEach((card) => {
+      card.addEventListener('pointermove', (ev) => {
+        const r = card.getBoundingClientRect();
+        const x = (ev.clientX - r.left) / r.width - 0.5;
+        const y = (ev.clientY - r.top) / r.height - 0.5;
+        card.style.transform = `perspective(700px) rotateX(${(-y * 4).toFixed(2)}deg) rotateY(${(x * 5).toFixed(2)}deg) translateY(-3px)`;
+        card.style.setProperty('--mx', `${(x + 0.5) * 100}%`);
+        card.style.setProperty('--my', `${(y + 0.5) * 100}%`);
+      });
+      card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+    });
+  }
+</script>
+
+<style>
+  .progress {
+    position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 50; transform-origin: 0 50%; transform: scaleX(0);
+    background: linear-gradient(90deg, #8f7be8, var(--coral), var(--gold));
+  }
+  .skip { position: absolute; left: -999px; }
+  .skip:focus { left: 16px; top: 8px; background: var(--surface); padding: 0.4rem 0.8rem; z-index: 60; }
+  .site-header {
+    position: sticky; top: 0; z-index: 30;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: blur(10px) saturate(1.4);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar { display: flex; align-items: center; gap: 1rem; min-height: 64px; flex-wrap: wrap; }
+  .brand { display: flex; align-items: center; gap: 0.6rem; color: var(--ink); text-decoration: none; font-family: var(--font-serif); font-weight: 600; font-size: 1.1rem; }
+  .brand img { transition: transform 0.4s; }
+  .brand:hover img { transform: rotate(-12deg) scale(1.08); }
+  nav { margin-left: auto; }
+  nav ul { list-style: none; display: flex; gap: 0.2rem; margin: 0; padding: 0; flex-wrap: wrap; }
+  nav a { display: block; padding: 0.35rem 0.75rem; border-radius: 999px; color: var(--ink-soft); text-decoration: none; font-size: 0.95rem; transition: background 0.2s, color 0.2s; }
+  nav a:hover { color: var(--ink); background: var(--accent-soft); }
+  nav a[aria-current='page'] { color: var(--ink); background: var(--accent-soft); font-weight: 600; }
+  .theme { display: grid; place-items: center; background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 999px; width: 36px; height: 36px; cursor: pointer; transition: transform 0.4s; }
+  .theme:hover { transform: rotate(-25deg); }
+  .theme svg { width: 18px; height: 18px; }
+  @media (max-width: 720px) {
+    .bar { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+    nav { order: 3; width: 100%; margin-left: 0; }
+    nav ul { gap: 0; overflow-x: auto; flex-wrap: nowrap; }
+    .theme { margin-left: auto; }
+  }
+  .site-footer {
+    border-top: 1px solid var(--line); padding: 2rem 0 1.5rem;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--lavender) 70%, var(--bg)), color-mix(in srgb, var(--blush) 70%, var(--bg)), color-mix(in srgb, var(--peach) 70%, var(--bg)));
+  }
+  .foot { display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+  .foot p { margin: 0.3rem 0 0; }
+  .wm { color: inherit; text-decoration: none; }
+  .socials { list-style: none; display: flex; gap: 1rem; flex-wrap: wrap; padding: 0; margin: 0; }
+  .trust { display: flex; gap: 0.4rem 1.1rem; flex-wrap: wrap; align-items: center; margin-top: 1.2rem; }
+  .trust span::before { content: '✓ '; color: var(--teal); font-weight: 600; }
+  .bring { background: none; border: 0; padding: 0; color: var(--accent); font: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+</style>

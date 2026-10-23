@@ -1,0 +1,39 @@
+---
+// The NYC taxi demand explorer, served from this site, with links to the Hugging Face Space and the code.
+interface Props { height?: number }
+const { height = 760 } = Astro.props;
+---
+
+<figure class="demo">
+  <div class="frame">
+    <div class="chrome" aria-hidden="true"><span></span><span></span><span></span><em>NYC Taxi Demand Explorer · live</em></div>
+    <iframe
+      src="/demos/nyc-taxi/"
+      title="NYC Taxi Demand Explorer: pick a weekday and hour to see where taxi pickups happen"
+      loading="lazy"
+      height={height}
+      referrerpolicy="strict-origin-when-cross-origin"
+    ></iframe>
+  </div>
+  <figcaption>
+    <span class="muted small">Pick a weekday and an hour; the map shows where New York taxi pickups happen. Built from about 1.8 million trips.</span>
+    <span class="links">
+      <a class="btn ghost" href="https://huggingface.co/spaces/kritikesh28/nyc-taxi-demand-explorer" target="_blank" rel="noopener noreferrer">Open on Hugging Face</a>
+      <a class="btn ghost" href="https://github.com/kritikesh28/nyc-taxi-2023-eda" target="_blank" rel="noopener noreferrer">Code on GitHub</a>
+    </span>
+  </figcaption>
+</figure>
+
+<style>
+  .demo { margin: 0; }
+  .frame { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--surface); box-shadow: 0 18px 50px rgb(42 35 80 / 0.14); }
+  .chrome { display: flex; align-items: center; gap: 6px; padding: 10px 14px; border-bottom: 1px solid var(--line); background: var(--accent-soft); }
+  .chrome span { width: 10px; height: 10px; border-radius: 50%; background: #f0906f; }
+  .chrome span:nth-child(2) { background: #e0b45e; }
+  .chrome span:nth-child(3) { background: #6cc9b0; }
+  .chrome em { font-style: normal; font-size: 0.8rem; color: var(--ink-soft); margin-left: 8px; }
+  iframe { display: block; width: 100%; border: 0; background: #fff; }
+  figcaption { display: flex; flex-wrap: wrap; gap: 0.8rem 1.5rem; align-items: center; justify-content: space-between; margin-top: 0.9rem; }
+  .links { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  @media (max-width: 600px) { iframe { height: 980px; } }
+</style>

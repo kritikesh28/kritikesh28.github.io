@@ -1,0 +1,147 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE, SOCIALS } from '../site.config';
+
+const intents = [
+  { id: 'hiring', label: "I'm hiring", hint: 'Role, team and timeline help me reply properly. My resume is one click away.' },
+  { id: 'collab', label: 'Collaboration', hint: 'What would we build or research together, and by when?' },
+  { id: 'learning', label: 'Learning or a topic', hint: 'Which topic should I explain? Your level helps me pitch it right.' },
+  { id: 'hello', label: 'Just saying hi', hint: 'Always welcome. Tell me what brought you here.' },
+];
+---
+
+<Base title="Contact" description="Write to Kritikesh Rajpurohit about a role, a collaboration or a topic to learn.">
+  <div class="wrap narrow">
+    <p class="eyebrow">Contact</p>
+    <h1>Let's talk</h1>
+    <p class="muted">Choose why you're writing, so your message lands in the right pile. I read every message myself.</p>
+
+    <form class="form" id="contact" action={SITE.formspreeUrl || undefined} method="POST" data-endpoint={SITE.formspreeUrl} data-email={SITE.email}>
+      <fieldset class="intents">
+        <legend>I'm writing about</legend>
+        {intents.map((it, i) => (
+          <label class="intent">
+            <input type="radio" name="intent" value={it.id} data-hint={it.hint} checked={i === 0} />
+            <span>{it.label}</span>
+          </label>
+        ))}
+      </fieldset>
+      <p class="hint muted small" aria-live="polite">{intents[0].hint}</p>
+
+      <div class="two">
+        <label>Your name <input name="name" required autocomplete="name" maxlength="120" /></label>
+        <label>Your email <input type="email" name="email" required autocomplete="email" maxlength="200" /></label>
+      </div>
+      <label><span>Organisation or link <span class="muted small">(optional)</span></span><input name="organisation" maxlength="200" autocomplete="organization" /></label>
+      <label>Message <textarea name="message" rows="6" required maxlength="5000"></textarea></label>
+
+      <input type="hidden" name="source" />
+      <input type="hidden" name="_subject" value="Website message" />
+      <label class="trap" aria-hidden="true">Leave this empty <input name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+
+      <p class="row">
+        <button class="btn" type="submit">Send message</button>
+        <span class="status small" role="status" aria-live="polite"></span>
+      </p>
+      {!SITE.formspreeUrl && <p class="muted small">Sending opens your email app with the message filled in.</p>}
+    </form>
+
+    <div class="done card" hidden>
+      <h2>Thank you, message received.</h2>
+      <p class="muted">I'll reply to the email you gave. Meanwhile:</p>
+      <p class="go">
+        <a class="btn ghost" href="/portfolio/">See my projects</a>
+        <a class="btn ghost" href="/blog/">Read the blog</a>
+        <a class="btn ghost" href={SOCIALS[0].href} target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+      </p>
+    </div>
+
+    <section class="other">
+      <h2>Other ways</h2>
+      <p>
+        <a class="chip" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+        {SOCIALS.map((s) => <a class="chip" href={s.href} rel="me noopener noreferrer" target="_blank">{s.label}</a>)}
+      </p>
+      {SITE.calUrl && <p><a class="btn ghost" href={SITE.calUrl} target="_blank" rel="noopener noreferrer">Book a 20-minute call</a></p>}
+      <p class="muted small">Hiring? <a href={SITE.resumePdf}>Download my resume (PDF)</a>.</p>
+      <p class="muted small">To check this site is really mine, each profile above links back here. Your details are only used to reply; see <a href="/privacy/">Privacy</a>.</p>
+    </section>
+  </div>
+</Base>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('#contact');
+  if (form) {
+    const hint = form.querySelector<HTMLElement>('.hint');
+    const status = form.querySelector<HTMLElement>('.status');
+    const subject = form.querySelector<HTMLInputElement>('[name=_subject]')!;
+    const radios = [...form.querySelectorAll<HTMLInputElement>('[name=intent]')];
+
+    // Where did this visitor come from? (e.g. ?utm_source=linkedin), remembered for this visit only
+    let source = '';
+    try {
+      const p = new URLSearchParams(location.search);
+      source = p.get('utm_source') || sessionStorage.getItem('source') || '';
+      if (!source && document.referrer && !document.referrer.startsWith(location.origin)) source = new URL(document.referrer).hostname;
+      if (source) sessionStorage.setItem('source', source);
+    } catch {}
+    form.querySelector<HTMLInputElement>('[name=source]')!.value = source || 'direct';
+
+    const pick = (id: string) => {
+      const r = radios.find((x) => x.value === id) ?? radios[0];
+      r.checked = true;
+      if (hint) hint.textContent = r.dataset.hint ?? '';
+      subject.value = `Website: ${r.parentElement?.textContent?.trim()}`;
+    };
+    radios.forEach((r) => r.addEventListener('change', () => pick(r.value)));
+    pick(new URLSearchParams(location.search).get('intent') ?? 'hiring');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if ((form.elements.namedItem('_gotcha') as HTMLInputElement).value) return;
+      const data = new FormData(form);
+      const endpoint = form.dataset.endpoint;
+      if (!endpoint) {
+        const body = `${data.get('message')}\n\n${data.get('name')}\n${data.get('organisation') || ''}\n(via website, ${data.get('intent')}, source: ${data.get('source')})`;
+        location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(String(data.get('_subject')))}&body=${encodeURIComponent(body)}`;
+        return;
+      }
+      if (status) status.textContent = 'Sending…';
+      try {
+        const res = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+        if (!res.ok) throw new Error(String(res.status));
+        form.hidden = true;
+        document.querySelector<HTMLElement>('.done')!.hidden = false;
+      } catch {
+        if (status) status.textContent = 'That did not go through. Please email me directly instead.';
+      }
+    });
+  }
+</script>
+
+<style>
+  .form { display: grid; gap: 1rem; margin-top: 1.5rem; }
+  .form label { display: grid; gap: 0.3rem; font-weight: 600; font-size: 0.95rem; }
+  .form input, .form textarea {
+    font: inherit; font-weight: 400; padding: 0.65rem 0.85rem; border-radius: 12px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink); transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .form input:focus, .form textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent); }
+  .two { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 560px) { .two { grid-template-columns: 1fr; } }
+  .intents { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .intents legend { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.5rem; }
+  .form .intent { display: block; font-weight: 500; }
+  .intent input { position: absolute; opacity: 0; pointer-events: none; }
+  .intent span { display: inline-block; padding: 0.45rem 0.9rem; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; transition: all 0.2s; }
+  .intent input:checked + span { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+  .intent input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .hint { margin: -0.3rem 0 0; }
+  .trap { position: absolute; left: -9999px; }
+  .row { display: flex; align-items: center; gap: 1rem; margin: 0; }
+  .row .btn { cursor: pointer; }
+  .done { margin-top: 1.5rem; }
+  .done h2 { margin: 0; }
+  .go { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .other { margin-top: 2.5rem; }
+</style>

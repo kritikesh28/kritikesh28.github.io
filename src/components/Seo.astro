@@ -1,0 +1,73 @@
+---
+import { SITE, SOCIALS } from '../site.config';
+
+export interface Props {
+  title: string;
+  description: string;
+  image: string;
+  type?: 'website' | 'article' | 'profile';
+  published?: Date;
+  updated?: Date;
+  noindex?: boolean;
+  schema?: Record<string, unknown>[];
+}
+
+const { title, description, image, type = 'website', published, updated, noindex = false, schema = [] } = Astro.props;
+const site = Astro.site!;
+const canonical = new URL(Astro.url.pathname, site);
+const ogImage = new URL(image, site);
+const personId = new URL('/#person', site).href;
+
+const graph = [
+  {
+    '@type': 'WebSite',
+    '@id': new URL('/#website', site).href,
+    url: site.href,
+    name: `${SITE.name} · ${SITE.blogBrand}`,
+    description: SITE.description,
+    inLanguage: 'en',
+    publisher: { '@id': personId },
+  },
+  {
+    '@type': 'Person',
+    '@id': personId,
+    name: SITE.name,
+    url: site.href,
+    image: new URL('/images/kritikesh.jpg', site).href,
+    jobTitle: SITE.jobTitle,
+    email: `mailto:${SITE.email}`,
+    address: { '@type': 'PostalAddress', addressLocality: 'Rawatbhata', addressRegion: 'Rajasthan', addressCountry: 'IN' },
+    alumniOf: [
+      { '@type': 'CollegeOrUniversity', name: 'Hansraj College, University of Delhi' },
+      { '@type': 'CollegeOrUniversity', name: 'Indira Gandhi National Open University (IGNOU)' },
+    ],
+    knowsAbout: ['Applied AI', 'Machine learning', 'Data analysis', 'Python', 'QGIS', 'Geography', 'Geology', 'Teaching'],
+    knowsLanguage: ['English', 'Hindi'],
+    sameAs: SOCIALS.map((s) => s.href),
+  },
+  ...schema,
+];
+const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
+<meta name="author" content={SITE.name} />
+<meta property="og:site_name" content={`${SITE.name} · ${SITE.blogBrand}`} />
+<meta property="og:type" content={type} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:locale" content="en_IN" />
+{published && <meta property="article:published_time" content={published.toISOString()} />}
+{updated && <meta property="article:modified_time" content={updated.toISOString()} />}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+{SITE.googleSiteVerification && <meta name="google-site-verification" content={SITE.googleSiteVerification} />}
+{SITE.bingSiteVerification && <meta name="msvalidate.01" content={SITE.bingSiteVerification} />}
+<script type="application/ld+json" is:inline set:html={jsonLd} />

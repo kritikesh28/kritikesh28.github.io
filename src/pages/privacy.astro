@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../site.config';
+---
+
+<Base title="Privacy and security" description="What this site collects (very little), and how it is kept safe.">
+  <article class="wrap prose">
+    <h1>Privacy and security</h1>
+    <p class="muted">Last reviewed October 2026.</p>
+
+    <h2>The short version</h2>
+    <ul>
+      <li>No ads, no tracking cookies, no data sold or shared.</li>
+      <li>Every page is served over HTTPS (the padlock in your browser).</li>
+      <li>Fonts are served from this site itself, so your visit isn't reported to a font company.</li>
+    </ul>
+
+    <h2>What is collected, and why</h2>
+    <ul>
+      <li><strong>Messages you send</strong> through the contact form go to my email inbox{SITE.formspreeUrl && ' through Formspree, a form service'}. I use them only to reply.</li>
+      <li><strong>Visitor counts</strong>{SITE.goatcounterCode ? ' are measured with GoatCounter, which uses no cookies and does not identify you.' : ' are not collected at the moment. If I add them, I will use a cookie-free tool and update this page.'}</li>
+      <li><strong>Comments</strong>{SITE.giscus.repo ? ' use Giscus, which stores them as GitHub Discussions; you sign in with your own GitHub account.' : ' are not enabled yet.'}</li>
+      <li>Your light or dark theme choice, and whether you hid the sparrows, are saved only in your own browser.</li>
+    </ul>
+
+    <h2>Security</h2>
+    <ul>
+      <li>The site is static: there is no login, database or payment on it, which leaves very little to attack.</li>
+      <li>A strict content security policy lets the browser load scripts only from this site and a short list of named services.</li>
+      <li>Found a security problem? Please email <a href={`mailto:${SITE.email}?subject=Security`}>{SITE.email}</a>. See also <a href="/security.txt">security.txt</a>.</li>
+    </ul>
+
+    <h2>Honesty notes</h2>
+    <ul>
+      <li>Posts and pages written with help from an AI tool say so at the top.</li>
+      <li>If I get a fact wrong, I correct it and note the change with the date.</li>
+    </ul>
+  </article>
+</Base>

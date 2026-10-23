@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getProjects } from '../../lib';
+
+const projects = await getProjects();
+---
+
+<Base title="Portfolio" description="Data, AI and GIS projects by Kritikesh Rajpurohit.">
+  <div class="wrap">
+    <h1>Portfolio</h1>
+    <p class="muted narrow">Projects in data, applied AI and maps. Each one has its code or a demo, and says honestly what is finished and what is still being built.</p>
+    <div class="grid">{projects.map((p) => <ProjectCard project={p} />)}</div>
+  </div>
+</Base>

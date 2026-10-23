@@ -1,0 +1,53 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import Wordmark from '../../components/Wordmark.astro';
+import { SITE, CATEGORIES } from '../../site.config';
+import { getPosts, slugify } from '../../lib';
+
+const posts = await getPosts();
+const tagCounts = new Map<string, number>();
+for (const p of posts) for (const t of p.data.tags) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
+const tags = [...tagCounts].sort((a, b) => b[1] - a[1]);
+---
+
+<Base title="Blog" description={`${SITE.blogBrand}: explainers and notes on AI, geography, exams, ideas and life.`}>
+  <div class="blog-hero">
+    <img src="/images/sparrows.webp" alt="Two sparrows in flight, wings spread, against a soft blue and green background." width="1600" height="900" />
+  </div>
+  <div class="wrap">
+    <h1><Wordmark /></h1>
+    <p class="motto">Two o's, two sparrows: curiosity is better shared.</p>
+    <p class="muted narrow">The blog. Explainers that start from the basics and climb. Pick a theme, or read the newest first.</p>
+
+    <div class="cats">
+      {CATEGORIES.map((c) => (
+        <a class="cat" href={`/blog/category/${c.slug}/`}>
+          <strong>{c.label}</strong>
+          <span class="small muted">{c.blurb}</span>
+        </a>
+      ))}
+    </div>
+
+    <h2>Newest posts</h2>
+    {posts.length > 0
+      ? <div class="grid">{posts.map((post) => <PostCard post={post} />)}</div>
+      : <p class="muted">The first posts are on their way.</p>}
+
+    {tags.length > 0 && (
+      <>
+        <h2>All tags</h2>
+        <p>{tags.map(([t, n]) => <a class="chip" href={`/blog/tag/${slugify(t)}/`}>{t} ({n})</a>)}</p>
+      </>
+    )}
+  </div>
+</Base>
+
+<style>
+  .motto { font-family: var(--font-serif); font-style: italic; font-size: 1.15rem; margin: 0 0 0.6rem; }
+  .blog-hero { margin-top: -2rem; margin-bottom: 1.5rem; }
+  .blog-hero img { width: 100%; height: clamp(160px, 28vw, 320px); object-fit: cover; object-position: center 50%; }
+  .cats { display: grid; gap: 0.8rem; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); margin-top: 1.5rem; }
+  .cat { display: flex; flex-direction: column; gap: 0.2rem; padding: 0.9rem 1rem; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); text-decoration: none; color: var(--ink); }
+  .cat:hover { border-color: var(--accent); color: var(--ink); }
+</style>

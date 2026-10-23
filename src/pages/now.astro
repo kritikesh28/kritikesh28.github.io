@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../site.config';
+import CtaBand from '../components/CtaBand.astro';
+---
+
+<Base title="Now" description="What Kritikesh Rajpurohit is working on right now.">
+  <article class="wrap prose">
+    <h1>Now</h1>
+    <p class="muted">What I'm working on at the moment. Updated October 2026.</p>
+
+    <ul>
+      <li>Studying applied and agentic AI at IIIT Bangalore, and building projects as I go. Finished ones are in the <a href="/portfolio/">portfolio</a>.</li>
+      <li>Writing a research paper on water poverty in the Bhil tribal region of Banswara, Rajasthan.</li>
+      <li>Starting {SITE.blogBrand}, a blog of explainers that begin from the basics and climb.</li>
+    </ul>
+
+    <h2>Why this site exists</h2>
+    <p>
+      I want my work to be easy to find and easy to check. Projects live here under my own name; teaching and stories
+      live here under {SITE.blogBrand}. Every other platform I use points back to this site.
+    </p>
+    <CtaBand />
+  </article>
+</Base>

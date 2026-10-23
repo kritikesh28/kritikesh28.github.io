@@ -1,0 +1,89 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE, SOCIALS } from '../site.config';
+import CtaBand from '../components/CtaBand.astro';
+
+const schema = [{ '@type': 'ProfilePage', mainEntity: { '@id': new URL('/#person', Astro.site).href }, url: new URL('/about/', Astro.site).href }];
+---
+
+<Base title="About" description="About Kritikesh Rajpurohit: geology and geography graduate learning applied AI." type="profile" {schema}>
+  <article class="wrap prose">
+    <img class="photo" src="/images/kritikesh.jpg" alt="Kritikesh Rajpurohit" width="160" height="160" />
+    <h1>About me</h1>
+    <p class="lead">
+      I'm Kritikesh Rajpurohit, from {SITE.location}. I studied the Earth, I teach what I learn,
+      and I'm now building a career in applied AI.
+    </p>
+
+    <aside class="facts card">
+      <h2>Quick facts</h2>
+      <dl>
+        <dt>Name</dt><dd>{SITE.name}</dd>
+        <dt>Based in</dt><dd>{SITE.location}</dd>
+        <dt>Studying</dt><dd>Applied AI and Agentic AI (EPGP), IIIT Bangalore, 2026 to 2027</dd>
+        <dt>Degrees</dt><dd>M.Sc. Geography (IGNOU); B.Sc. (Hons.) Geology (Hansraj College, University of Delhi)</dd>
+        <dt>Works with</dt><dd>Python, pandas, QGIS, research and teaching</dd>
+        <dt>Writes as</dt><dd>{SITE.blogBrand} (two o's on purpose)</dd>
+      </dl>
+    </aside>
+
+    <h2>What I'm doing now</h2>
+    <ul>
+      <li>Executive Post Graduate Programme in Applied AI and Agentic AI, IIIT Bangalore (online with upGrad), July 2026 to March 2027.</li>
+      <li>Building portfolio projects in data analysis and AI. The first, an analysis of New York taxi demand, is in my <a href="/portfolio/">portfolio</a>.</li>
+      <li>Writing a research paper on water poverty in the Bhil tribal region of Banswara, Rajasthan, which includes interviews with residents.</li>
+    </ul>
+
+    <h2>Education</h2>
+    <table>
+      <thead><tr><th>Programme</th><th>Where</th><th>Years</th></tr></thead>
+      <tbody>
+        <tr><td>EPGP, Applied AI and Agentic AI</td><td>IIIT Bangalore (via upGrad)</td><td>2026 to 2027</td></tr>
+        <tr><td>M.Sc. Geography</td><td>IGNOU</td><td>2023 to 2026</td></tr>
+        <tr><td>B.Sc. (Hons.) Geology</td><td>Hansraj College, University of Delhi</td><td>2018 to 2021</td></tr>
+      </tbody>
+    </table>
+    <p>My M.Sc. dissertation was <em>Tribal Poverty in Southern Rajasthan: A Case Study on Bhil Tribes</em>.</p>
+
+    <h2>Skills, honestly rated</h2>
+    <ul>
+      <li><strong>Working:</strong> QGIS mapping (georeferencing; maps of India and Rajasthan down to village level; watershed, river and peak maps), research and field questionnaires, prompt and AI workflow design.</li>
+      <li><strong>Basic:</strong> Python (NumPy, pandas, Matplotlib), SQL, Excel, satellite and terrain data (Landsat, Sentinel, DEM, NDVI).</li>
+      <li><strong>Languages:</strong> English and Hindi.</li>
+    </ul>
+
+    <h2>Teaching and exam preparation</h2>
+    <p>
+      Since 2018 I have prepared for the UPSC and RAS civil services exams alongside my degrees, and I qualified
+      UGC-NET Geography for PhD admission. Over the same years I have tutored students for competitive exams.
+      I teach from the prerequisites up: fill in the background first, then climb step by step. That method is
+      what this site's blog, {SITE.blogBrand}, is built on.
+    </p>
+
+    <h2>Outside work</h2>
+    <ul>
+      <li><strong>Ideas:</strong> philosophy and psychology, and how they link with mathematics, physics, chemistry and biology. I read across genres, especially self-help.</li>
+      <li><strong>Stories and screen:</strong> story writing, film-making, sketching and painting; films of every genre.</li>
+      <li><strong>Practice:</strong> Vedic chanting, flute and Rajasthani safa tying.</li>
+      <li><strong>Hands-on:</strong> badminton, gardening and cooking.</li>
+    </ul>
+
+    <h2>Find and verify me</h2>
+    <p>These are my only official profiles. Each one links back to this site, so you can confirm they are really me.</p>
+    <p>{SOCIALS.map((s) => <a class="chip" href={s.href} rel="me noopener noreferrer" target="_blank">{s.label} ✓</a>)}</p>
+    {SITE.resumePdf && <p><a class="btn" href={SITE.resumePdf}>Download my resume (PDF)</a></p>}
+    <p><a href="/contact/">Get in touch →</a></p>
+    <CtaBand />
+  </article>
+</Base>
+
+<style>
+  .lead { font-family: var(--font-serif); font-size: 1.2rem; }
+  .facts { margin: 1.5rem 0; }
+  .facts h2 { margin: 0 0 0.4rem; font-size: 1.1rem; }
+  .facts dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 1rem; margin: 0; font-size: 0.95rem; }
+  .facts dt { font-weight: 600; color: var(--ink-soft); }
+  .facts dd { margin: 0; }
+  @media (max-width: 520px) { .facts dl { grid-template-columns: 1fr; } .facts dd { margin-bottom: 0.4rem; } }
+  .photo { width: 160px; height: 160px; border-radius: 50%; margin: 0 0 1rem; }
+</style>

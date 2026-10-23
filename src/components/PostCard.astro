@@ -1,0 +1,18 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { categoryLabel } from '../site.config';
+import FormattedDate from './FormattedDate.astro';
+
+interface Props { post: CollectionEntry<'blog'> }
+const { post } = Astro.props;
+---
+
+<article class="card">
+  <p class="small muted">
+    <FormattedDate date={post.data.date} /> ·
+    <a href={`/blog/category/${post.data.category}/`}>{categoryLabel(post.data.category)}</a>
+    {post.data.lang === 'hi' && <span> · हिन्दी</span>}
+  </p>
+  <h3><a href={`/blog/${post.id}/`}>{post.data.title}</a></h3>
+  <p class="muted">{post.data.description}</p>
+</article>

@@ -1,0 +1,42 @@
+---
+// A small hand-drawn sparrow. "him" has the darker cap; "her" is softer and lighter.
+interface Props {
+  variant?: 'him' | 'her';
+  flying?: boolean;
+  class?: string;
+}
+const { variant = 'him', flying = false, class: cls } = Astro.props;
+const body = variant === 'him' ? '#b07e52' : '#c49b74';
+const dark = variant === 'him' ? '#7f5536' : '#9c7553';
+const cap = variant === 'him' ? '#6f6a73' : '#b48a63';
+---
+
+<svg class:list={['sparrow', variant, { flying }, cls]} viewBox="0 0 100 82" aria-hidden="true">
+  <polygon points="6,44 32,38 33,54" fill={dark} />
+  <ellipse cx="50" cy="50" rx="30" ry="22" fill={body} />
+  <ellipse cx="56" cy="58" rx="21" ry="13" fill="#f4e8d6" />
+  <circle cx="72" cy="33" r="17" fill={body} />
+  <path d="M57 30 Q62 15 78 17 Q87 19 88 27 Q74 22 57 30 Z" fill={cap} />
+  <ellipse cx="76" cy="38" rx="9" ry="7" fill="#f4e8d6" />
+  <ellipse cx="74" cy="42" rx="5" ry="3.2" fill="#f2aaa0" opacity="0.75" />
+  <g class="eye"><circle cx="79" cy="31" r="3.6" fill="#2a2350" /><circle cx="80.3" cy="29.8" r="1.2" fill="#fff" /></g>
+  <polygon points="87,31 97,34.5 87,38" fill="#e8913a" />
+  <g class="wing">
+    <path d="M30 42 Q50 28 68 44 Q52 62 30 52 Z" fill={dark} />
+    <path d="M38 44 Q50 38 60 46 M36 49 Q48 44 58 51" stroke="#d9b38c" stroke-width="2" fill="none" stroke-linecap="round" />
+  </g>
+  {!flying && <path d="M47 70 L45 79 M57 70 L57 79" stroke="#e8913a" stroke-width="2.6" stroke-linecap="round" />}
+</svg>
+
+<style>
+  .sparrow { overflow: visible; }
+  .sparrow .eye { transform-box: fill-box; transform-origin: center; animation: blink 5s infinite; }
+  .sparrow.her .eye { animation-delay: 1.3s; }
+  .sparrow .wing { transform-box: fill-box; transform-origin: 20% 30%; }
+  .sparrow.flying .wing { animation: flap 0.32s ease-in-out infinite alternate; }
+  @keyframes blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(0.1); } }
+  @keyframes flap { from { transform: rotate(-38deg) scaleY(0.9); } to { transform: rotate(14deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    .sparrow .eye, .sparrow.flying .wing { animation: none; }
+  }
+</style>
