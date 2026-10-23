@@ -3,15 +3,16 @@
 interface Props {
   variant?: 'him' | 'her';
   flying?: boolean;
+  running?: boolean;
   class?: string;
 }
-const { variant = 'him', flying = false, class: cls } = Astro.props;
+const { variant = 'him', flying = false, running = false, class: cls } = Astro.props;
 const body = variant === 'him' ? '#b07e52' : '#c49b74';
 const dark = variant === 'him' ? '#7f5536' : '#9c7553';
 const cap = variant === 'him' ? '#6f6a73' : '#b48a63';
 ---
 
-<svg class:list={['sparrow', variant, { flying }, cls]} viewBox="0 0 100 82" aria-hidden="true">
+<svg class:list={['sparrow', variant, { flying, running }, cls]} viewBox="0 0 100 82" aria-hidden="true">
   <polygon points="6,44 32,38 33,54" fill={dark} />
   <ellipse cx="50" cy="50" rx="30" ry="22" fill={body} />
   <ellipse cx="56" cy="58" rx="21" ry="13" fill="#f4e8d6" />
@@ -25,7 +26,13 @@ const cap = variant === 'him' ? '#6f6a73' : '#b48a63';
     <path d="M30 42 Q50 28 68 44 Q52 62 30 52 Z" fill={dark} />
     <path d="M38 44 Q50 38 60 46 M36 49 Q48 44 58 51" stroke="#d9b38c" stroke-width="2" fill="none" stroke-linecap="round" />
   </g>
-  {!flying && <path d="M47 70 L45 79 M57 70 L57 79" stroke="#e8913a" stroke-width="2.6" stroke-linecap="round" />}
+  {!flying && !running && <path d="M47 70 L45 79 M57 70 L57 79" stroke="#e8913a" stroke-width="2.6" stroke-linecap="round" />}
+  {running && (
+    <g stroke="#e8913a" stroke-width="2.6" stroke-linecap="round" fill="none">
+      <path class="leg l1" d="M47 68 L46 79 L50 80" />
+      <path class="leg l2" d="M57 68 L57 79 L61 80" />
+    </g>
+  )}
 </svg>
 
 <style>
@@ -34,9 +41,17 @@ const cap = variant === 'him' ? '#6f6a73' : '#b48a63';
   .sparrow.her .eye { animation-delay: 1.3s; }
   .sparrow .wing { transform-box: fill-box; transform-origin: 20% 30%; }
   .sparrow.flying .wing { animation: flap 0.32s ease-in-out infinite alternate; }
+  .sparrow.running { animation: bob 0.2s ease-in-out infinite alternate; }
+  .sparrow.running .wing { animation: wiggle 0.26s ease-in-out infinite alternate; }
+  .sparrow .leg { transform-box: fill-box; transform-origin: 50% 0; }
+  .sparrow.running .l1 { animation: stride 0.4s ease-in-out infinite alternate; }
+  .sparrow.running .l2 { animation: stride 0.4s ease-in-out -0.2s infinite alternate; }
+  @keyframes bob { to { transform: translateY(-2px); } }
+  @keyframes wiggle { from { transform: rotate(-24deg); } to { transform: rotate(6deg); } }
+  @keyframes stride { from { transform: rotate(-32deg); } to { transform: rotate(32deg); } }
   @keyframes blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(0.1); } }
   @keyframes flap { from { transform: rotate(-38deg) scaleY(0.9); } to { transform: rotate(14deg); } }
   @media (prefers-reduced-motion: reduce) {
-    .sparrow .eye, .sparrow.flying .wing { animation: none; }
+    .sparrow .eye, .sparrow.flying .wing, .sparrow.running, .sparrow.running .wing, .sparrow.running .leg { animation: none; }
   }
 </style>

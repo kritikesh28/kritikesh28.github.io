@@ -45,8 +45,11 @@ const tags = [...tagCounts].sort((a, b) => b[1] - a[1]);
 
 <style>
   .motto { font-family: var(--font-serif); font-style: italic; font-size: 1.15rem; margin: 0 0 0.6rem; }
-  .blog-hero { margin-top: -2rem; margin-bottom: 1.5rem; }
-  .blog-hero img { width: 100%; height: clamp(160px, 28vw, 320px); object-fit: cover; object-position: center 50%; }
+  /* The whole photo always shows: it sits centred at its own shape, and a blurred copy fills the sides on wide screens. */
+  .blog-hero { position: relative; overflow: hidden; margin-top: -2rem; margin-bottom: 1.5rem; background: #2f4a3c; }
+  .blog-hero::before { content: ''; position: absolute; inset: -30px; background: url('/images/sparrows.webp') center / cover; filter: blur(28px) saturate(1.1); opacity: 0.85; }
+  .blog-hero img { position: relative; display: block; width: auto; max-width: 100%; height: auto; max-height: 440px; margin: 0 auto; aspect-ratio: 16 / 9; }
+  @media (min-width: 800px) { .blog-hero img { mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); } }
   .cats { display: grid; gap: 0.8rem; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); margin-top: 1.5rem; }
   .cat { display: flex; flex-direction: column; gap: 0.2rem; padding: 0.9rem 1rem; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); text-decoration: none; color: var(--ink); }
   .cat:hover { border-color: var(--accent); color: var(--ink); }

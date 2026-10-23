@@ -1,64 +1,36 @@
 ---
 import Sparrow from './Sparrow.astro';
-// Two sparrows fly the infinity loop from the banner, forever, one half a loop behind the other.
+// A small infinity "engine": two sparrows run in place and their steps keep the loop turning.
+// One stands on top of the left loop, the other inside the bottom of the right loop.
 const loop = 'M180 90 C 228 22, 336 22, 336 90 C 336 158, 228 158, 180 90 C 132 22, 24 22, 24 90 C 24 158, 132 158, 180 90 Z';
 ---
 
-<div class="flight">
-  <svg viewBox="0 0 360 180" role="img" aria-label="Two sparrows flying around an infinity loop">
+<div class="engine">
+  <svg viewBox="0 -20 360 200" role="img" aria-label="Two sparrows running on an infinity loop and keeping it turning">
     <defs>
       <radialGradient id="glow">
         <stop offset="0" stop-color="#ffd59a" stop-opacity="0.9" />
         <stop offset="1" stop-color="#ffd59a" stop-opacity="0" />
       </radialGradient>
     </defs>
-    <circle cx="180" cy="90" r="26" fill="url(#glow)" class="core" />
+    <circle cx="180" cy="90" r="22" fill="url(#glow)" class="core" />
     <path class="trail" d={loop} />
-    <g class="flyer f1"><g class="flip"><g transform="translate(-31 -26)"><Sparrow variant="her" flying class="fly-svg" /></g></g></g>
-    <g class="flyer f2"><g class="flip"><g transform="translate(-31 -26)"><Sparrow variant="him" flying class="fly-svg" /></g></g></g>
+    <g transform="translate(56 -1) scale(0.52)"><Sparrow variant="him" running class="runner" /></g>
+    <g transform="translate(249 100) scale(0.52)"><Sparrow variant="her" running class="runner" /></g>
   </svg>
 </div>
 
 <style>
-  .flight { width: 100%; max-width: 440px; margin: 0 auto; }
-  .flight svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .engine svg { display: block; width: 100%; height: auto; overflow: visible; }
   .trail {
-    fill: none; stroke: #f0906f; stroke-width: 3.2; stroke-linecap: round;
-    stroke-dasharray: 9 7 2.5 7; animation: march 6s linear infinite; opacity: 0.85;
+    fill: none; stroke: #f6a27f; stroke-width: 6; stroke-linecap: round;
+    stroke-dasharray: 12 10 3 10; animation: turn 2.6s linear infinite;
   }
-  @keyframes march { to { stroke-dashoffset: -102; } }
-  .core { animation: pulse 4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-  @keyframes pulse { 50% { transform: scale(1.25); opacity: 0.7; } }
-  .flyer :global(.fly-svg) { width: 62px; height: 51px; }
-  .f1 { transform: translate(300px, 40px); }
-  .f2 { transform: translate(60px, 140px); }
+  @keyframes turn { to { stroke-dashoffset: -70; } }
+  .core { animation: pulse 3s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  @keyframes pulse { 50% { transform: scale(1.3); opacity: 0.6; } }
+  .engine :global(.runner) { width: 100px; height: 82px; }
   @media (prefers-reduced-motion: reduce) {
     .trail, .core { animation: none; }
   }
 </style>
-
-<script>
-  const path = document.querySelector<SVGPathElement>('.flight .trail');
-  const flyers = [...document.querySelectorAll<SVGGElement>('.flight .flyer')];
-  if (path && flyers.length && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const len = path.getTotalLength();
-    const lap = 9000; // milliseconds for one full loop
-    const place = (el: SVGGElement, d: number) => {
-      const p = path.getPointAtLength(d % len);
-      const q = path.getPointAtLength((d + 2) % len);
-      const dx = q.x - p.x;
-      const dy = q.y - p.y;
-      const facing = dx >= 0 ? 1 : -1;
-      const tilt = Math.max(-35, Math.min(35, (Math.atan2(dy, Math.abs(dx)) * 180) / Math.PI));
-      el.style.transform = `translate(${p.x}px, ${p.y}px)`;
-      (el.firstElementChild as SVGGElement).style.transform = `scale(${facing}, 1) rotate(${tilt}deg)`;
-    };
-    const tick = (t: number) => {
-      const d = ((t % lap) / lap) * len;
-      place(flyers[0], d);
-      place(flyers[1], d + len / 2);
-      requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  }
-</script>

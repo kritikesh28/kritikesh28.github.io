@@ -25,7 +25,8 @@ const lines = [
   <section class="hero">
     <Starfield />
     <div class="banner">
-      <img src="/images/banner-cosmic.webp" alt="On a night sky, scattered triangles gather into a yantra ringed by subject symbols, threads run into a glowing neural network, and two sparrows fly around an infinity loop." width="1584" height="396" fetchpriority="high" />
+      <img src="/images/banner-cosmic.webp" alt="On a night sky, scattered triangles gather into a yantra ringed by subject symbols, and threads run into a glowing neural network." width="1584" height="396" fetchpriority="high" />
+      <div class="engine-spot"><InfinityFlight /></div>
     </div>
     <div class="wrap grid">
       <div class="text">
@@ -41,9 +42,6 @@ const lines = [
         <p class="profiles">
           {SOCIALS.map((s) => <a href={s.href} rel="me noopener noreferrer" target="_blank">{s.label}</a>)}
         </p>
-      </div>
-      <div class="art">
-        <InfinityFlight />
         <p class="motto">{SITE.motto}</p>
       </div>
     </div>
@@ -129,9 +127,12 @@ const lines = [
     background: radial-gradient(1200px 500px at 70% 110%, #3a2a63 0%, transparent 60%), linear-gradient(180deg, #1d1636 0%, #251b45 100%);
     color: #eeeaf8;
   }
-  .banner { position: relative; }
-  .banner img { width: 100%; max-height: 320px; object-fit: cover; object-position: 40% center; mask-image: linear-gradient(180deg, #000 75%, transparent); }
-  .grid { position: relative; display: grid; grid-template-columns: 1.15fr 1fr; gap: 2rem; align-items: center; }
+  /* The banner keeps its own shape so the small infinity engine stays on the same spot of the sky at every width. */
+  .banner { position: relative; max-width: 1600px; margin: 0 auto; }
+  .banner img { display: block; width: 100%; height: auto; mask-image: linear-gradient(180deg, #000 75%, transparent); }
+  .engine-spot { position: absolute; left: 83.8%; top: 35.4%; width: max(14.5%, 104px); transform: translate(-50%, -55%); }
+  .grid { position: relative; display: block; }
+  .text { max-width: 44rem; }
   .photo { width: 128px; height: 128px; border-radius: 50%; border: 4px solid #251b45; box-shadow: 0 0 0 2px #8f7be8, 0 10px 30px rgb(0 0 0 / 0.4); margin-top: -64px; margin-bottom: 0.8rem; transition: transform 0.4s; }
   .photo:hover { transform: rotate(-4deg) scale(1.04); }
   h1 { color: #fff; margin-bottom: 0.3rem; }
@@ -147,17 +148,15 @@ const lines = [
   .profiles { display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.9rem; margin: 0; }
   .profiles a { color: #c9c2e4; }
   .profiles a:hover { color: #fff; }
-  .art { text-align: center; }
-  .motto { font-family: var(--font-serif); font-style: italic; color: #c9c2e4; margin-top: 0.4rem; }
+  .motto { font-family: var(--font-serif); font-style: italic; color: #c9c2e4; margin: 1.1rem 0 0; }
   .section { margin-top: 4rem; }
   .split { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 2rem; align-items: center; }
   .grid3 { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
   @media (max-width: 860px) {
-    .grid, .split { grid-template-columns: 1fr; }
-    .art { margin-top: 0.5rem; }
+    .split { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
-    .banner img { height: 130px; object-position: 30% center; }
+    .photo { width: 104px; height: 104px; margin-top: -40px; }
   }
   @media (prefers-reduced-motion: reduce) { .caret { animation: none; } }
 </style>
