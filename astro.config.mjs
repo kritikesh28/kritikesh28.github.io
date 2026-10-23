@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 // When you buy a domain, change `site` to it (for example 'https://curioussparoows.com')
 // and add the domain to public/CNAME. See UPLOAD_STEPS.md.
 export default defineConfig({
-  site: 'https://kritikesh28.github.io',
+  site: 'https://curioussparoows.com',
   integrations: [sitemap({ filter: (page) => !page.includes('/thanks/') })],
   security: {
     // Content Security Policy: the browser only runs scripts and loads content from the sources listed here.
