@@ -13,7 +13,7 @@ export const SITE = {
   location: 'Rawatbhata, Rajasthan (near Kota), India',
   email: 'kritikesh2000@gmail.com',
   // Free form at formspree.io; paste its URL here. Until then the contact form opens the visitor's email app.
-  formspreeUrl: '',
+  formspreeUrl: 'https://formspree.io/f/myeezyqv',
   // A booking page such as 'https://cal.com/kritikesh/20min'. Leave empty to hide the "Book a call" button.
   calUrl: '',
   // Newsletter form action from buttondown.com, e.g. 'https://buttondown.com/api/emails/embed-subscribe/curioussparoows'
