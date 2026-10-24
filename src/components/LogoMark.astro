@@ -1,0 +1,37 @@
+---
+// Curious Sparoows mark: two sparrows on one branch inside a ring.
+// Ring and branch use currentColor so the mark follows light and dark themes.
+interface Props { size?: number; class?: string; title?: string }
+const { size = 44, class: cls, title } = Astro.props;
+---
+
+<svg class:list={['logo-mark', cls]} width={size} height={size} viewBox="0 0 120 120" role={title ? 'img' : undefined} aria-hidden={title ? undefined : 'true'}>
+  {title && <title>{title}</title>}
+  <path d="M30 100 A46 46 0 1 1 90 100" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" />
+  <path d="M6 94 C30 84 64 83 114 90" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+  <path d="M20 90 q-6 8 -15 8 q4 -9 15 -8 Z M100 88 q5 -9 15 -10 q-3 10 -15 10 Z M88 87 q2 9 -4 15 q-4 -9 4 -15 Z" fill="#7d9a6a" />
+  <g transform="translate(10 46) scale(0.5)">
+    <polygon points="6,44 32,38 33,54" fill="#7f5536" />
+    <ellipse cx="50" cy="50" rx="30" ry="22" fill="#b07e52" />
+    <ellipse cx="56" cy="58" rx="21" ry="13" fill="#f4e8d6" />
+    <circle cx="72" cy="33" r="17" fill="#b07e52" />
+    <path d="M57 30 Q62 15 78 17 Q87 19 88 27 Q74 22 57 30 Z" fill="#6f6a73" />
+    <ellipse cx="76" cy="38" rx="9" ry="7" fill="#f4e8d6" />
+    <circle cx="79" cy="31" r="3.8" fill="#2a2350" />
+    <polygon points="87,31 97,34.5 87,38" fill="#e8913a" />
+    <path d="M30 42 Q50 28 68 44 Q52 62 30 52 Z" fill="#7f5536" />
+    <path d="M47 70 L45 80 M57 70 L57 80" stroke="#e8913a" stroke-width="3.5" stroke-linecap="round" />
+  </g>
+  <g transform="translate(110 46) scale(-0.5 0.5)">
+    <polygon points="6,44 32,38 33,54" fill="#9c7553" />
+    <ellipse cx="50" cy="50" rx="30" ry="22" fill="#c49b74" />
+    <ellipse cx="56" cy="58" rx="21" ry="13" fill="#f4e8d6" />
+    <circle cx="72" cy="33" r="17" fill="#c49b74" />
+    <path d="M57 30 Q62 15 78 17 Q87 19 88 27 Q74 22 57 30 Z" fill="#b48a63" />
+    <ellipse cx="76" cy="38" rx="9" ry="7" fill="#f4e8d6" />
+    <circle cx="79" cy="31" r="3.8" fill="#2a2350" />
+    <polygon points="87,31 97,34.5 87,38" fill="#e8913a" />
+    <path d="M30 42 Q50 28 68 44 Q52 62 30 52 Z" fill="#9c7553" />
+    <path d="M47 70 L45 80 M57 70 L57 80" stroke="#e8913a" stroke-width="3.5" stroke-linecap="round" />
+  </g>
+</svg>

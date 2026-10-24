@@ -1,4 +1,5 @@
 ---
+import LogoMark from '../components/LogoMark.astro';
 import '@fontsource-variable/inter';
 import '@fontsource-variable/lora';
 import '../styles/global.css';
@@ -53,7 +54,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
     <header class="site-header">
       <div class="wrap bar">
         <a class="brand" href="/">
-          <img src="/favicon.svg" alt="" width="32" height="32" />
+          <LogoMark size={44} />
           <span>{SITE.name}</span>
         </a>
         <nav aria-label="Main">
@@ -175,8 +176,8 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
   }
   .bar { display: flex; align-items: center; gap: 1rem; min-height: 64px; flex-wrap: wrap; }
   .brand { display: flex; align-items: center; gap: 0.6rem; color: var(--ink); text-decoration: none; font-family: var(--font-serif); font-weight: 600; font-size: 1.1rem; }
-  .brand img { transition: transform 0.4s; }
-  .brand:hover img { transform: rotate(-12deg) scale(1.08); }
+  .brand :global(.logo-mark) { flex: none; transition: transform 0.4s; }
+  .brand:hover :global(.logo-mark) { transform: rotate(-6deg) scale(1.06); }
   nav { margin-left: auto; }
   nav ul { list-style: none; display: flex; gap: 0.2rem; margin: 0; padding: 0; flex-wrap: wrap; }
   nav a { display: block; padding: 0.35rem 0.75rem; border-radius: 999px; color: var(--ink-soft); text-decoration: none; font-size: 0.95rem; transition: background 0.2s, color 0.2s; }
