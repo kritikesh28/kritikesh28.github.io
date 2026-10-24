@@ -8,7 +8,7 @@ export const SITE = {
   motto: "Two o's, two sparrows: curiosity is better shared.",
   tagline: 'Curious, without end. Notes on AI, the Earth and everything in between.',
   description:
-    'Kritikesh Rajpurohit: applied AI and data projects, QGIS maps, and Curious Sparoows explainers that start from the basics.',
+    'Curious Sparoows: explainers on AI, geography and ideas that start from the basics, with applied AI and data projects and QGIS maps by Kritikesh Rajpurohit.',
   jobTitle: 'Applied AI learner, geographer and teacher',
   location: 'Rawatbhata, Rajasthan (near Kota), India',
   email: 'hello@curioussparoows.com',
