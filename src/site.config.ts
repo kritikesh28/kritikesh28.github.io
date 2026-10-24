@@ -24,7 +24,7 @@ export const SITE = {
   // Comments: fill these from giscus.app after enabling Discussions on the repo (see UPLOAD_STEPS.md)
   giscus: { repo: '', repoId: '', category: 'Announcements', categoryId: '' },
   // Search engine ownership checks: paste only the content="..." value each tool gives you
-  googleSiteVerification: '',
+  googleSiteVerification: 'nPlIXiEQqkySyR-eDcXyhy2FiriMLtYYU2ZWRR5z8BE',
   bingSiteVerification: '',
 };
 
