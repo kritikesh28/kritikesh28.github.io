@@ -55,7 +55,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
       <div class="wrap bar">
         <a class="brand" href="/">
           <LogoMark height={40} />
-          <span>{SITE.name}</span>
+          <span class="brand-name">{SITE.blogBrand}</span>
         </a>
         <nav aria-label="Main">
           <ul>
@@ -176,6 +176,9 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
   }
   .bar { display: flex; align-items: center; gap: 1rem; min-height: 64px; flex-wrap: wrap; }
   .brand { display: flex; align-items: center; gap: 0.6rem; color: var(--ink); text-decoration: none; font-family: var(--font-serif); font-weight: 600; font-size: 1.1rem; }
+  .brand-name { font-size: 1.45rem; font-weight: 600; letter-spacing: 0.01em; line-height: 1; color: #3b2a1e; }
+  :global([data-theme="dark"]) .brand-name { color: #d9bb7a; }
+  @media (prefers-color-scheme: dark) { :global(:root:not([data-theme="light"])) .brand-name { color: #d9bb7a; } }
   .brand :global(.logo-mark) { flex: none; color: #3b2a1e; transition: transform 0.4s; }
   :global([data-theme="dark"]) .brand :global(.logo-mark) { color: #d9bb7a; }
   @media (prefers-color-scheme: dark) { :global(:root:not([data-theme="light"])) .brand :global(.logo-mark) { color: #d9bb7a; } }
