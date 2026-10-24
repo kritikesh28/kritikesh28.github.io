@@ -54,7 +54,9 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
       <div class="wrap bar">
         <a class="brand" href="/">
           <LogoMark height={40} />
-          <span class="brand-name">{SITE.blogBrand}</span>
+          <span class="sr-only">{SITE.blogBrand}</span>
+          {/* the double o is drawn as one infinity sign, in the text colour */}
+          <span class="brand-name" aria-hidden="true">Curious Spar<svg class="oo" viewBox="0 0 100 40"><path d="M96.0 20.0 L95.5 24.6 L94.0 28.8 L91.6 32.4 L88.7 35.2 L85.4 37.2 L81.9 38.3 L78.4 38.7 L74.9 38.4 L71.7 37.6 L68.6 36.4 L65.8 34.9 L63.1 33.1 L60.7 31.1 L58.4 29.0 L56.2 26.8 L54.1 24.6 L52.0 22.3 L50.0 20.0 L48.0 17.7 L45.9 15.4 L43.8 13.2 L41.6 11.0 L39.3 8.9 L36.9 6.9 L34.2 5.1 L31.4 3.6 L28.3 2.4 L25.1 1.6 L21.6 1.3 L18.1 1.7 L14.6 2.8 L11.3 4.8 L8.4 7.6 L6.0 11.2 L4.5 15.4 L4.0 20.0 L4.5 24.6 L6.0 28.8 L8.4 32.4 L11.3 35.2 L14.6 37.2 L18.1 38.3 L21.6 38.7 L25.1 38.4 L28.3 37.6 L31.4 36.4 L34.2 34.9 L36.9 33.1 L39.3 31.1 L41.6 29.0 L43.8 26.8 L45.9 24.6 L48.0 22.3 L50.0 20.0 L52.0 17.7 L54.1 15.4 L56.2 13.2 L58.4 11.0 L60.7 8.9 L63.1 6.9 L65.8 5.1 L68.6 3.6 L71.7 2.4 L74.9 1.6 L78.4 1.3 L81.9 1.7 L85.4 2.8 L88.7 4.8 L91.6 7.6 L94.0 11.2 L95.5 15.4 L96.0 20.0Z" /></svg>ws</span>
         </a>
         <nav aria-label="Main">
           <ul>
@@ -175,6 +177,8 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
   .bar { display: flex; align-items: center; gap: 1rem; min-height: 64px; flex-wrap: wrap; }
   .brand { display: flex; align-items: center; gap: 0.6rem; color: var(--ink); text-decoration: none; font-family: var(--font-serif); font-weight: 600; font-size: 1.1rem; }
   .brand-name { font-size: 1.45rem; font-weight: 600; letter-spacing: 0.01em; line-height: 1; color: #3b2a1e; }
+  .brand-name .oo { display: inline-block; width: 1.02em; height: 0.43em; margin: 0 0.02em; vertical-align: 0; overflow: visible; }
+  .brand-name .oo path { fill: none; stroke: currentColor; stroke-width: 9; stroke-linejoin: round; }
   :global([data-theme="dark"]) .brand-name { color: #d9bb7a; }
   @media (prefers-color-scheme: dark) { :global(:root:not([data-theme="light"])) .brand-name { color: #d9bb7a; } }
   .brand :global(.logo-mark) { flex: none; color: #3b2a1e; transition: transform 0.4s; }
