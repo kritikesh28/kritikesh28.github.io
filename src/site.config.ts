@@ -20,7 +20,7 @@ export const SITE = {
   newsletterAction: '',
   resumePdf: '/Kritikesh_Rajpurohit_Resume.pdf',
   // Visitor stats: after signing up at goatcounter.com, put your code here (for example 'kritikesh')
-  goatcounterCode: '',
+  goatcounterCode: 'curioussparoows',
   // Comments: fill these from giscus.app after enabling Discussions on the repo (see UPLOAD_STEPS.md)
   giscus: { repo: '', repoId: '', category: 'Announcements', categoryId: '' },
   // Search engine ownership checks: paste only the content="..." value each tool gives you
