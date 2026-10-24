@@ -11,7 +11,7 @@ export const SITE = {
     'Kritikesh Rajpurohit: applied AI and data projects, QGIS maps, and Curious Sparoows explainers that start from the basics.',
   jobTitle: 'Applied AI learner, geographer and teacher',
   location: 'Rawatbhata, Rajasthan (near Kota), India',
-  email: 'kritikesh2000@gmail.com',
+  email: 'hello@curioussparoows.com',
   // Free form at formspree.io; paste its URL here. Until then the contact form opens the visitor's email app.
   formspreeUrl: 'https://formspree.io/f/myeezyqv',
   // A booking page such as 'https://cal.com/kritikesh/20min'. Leave empty to hide the "Book a call" button.
