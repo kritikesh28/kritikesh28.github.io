@@ -23,7 +23,8 @@ const graph = [
     '@type': 'WebSite',
     '@id': new URL('/#website', site).href,
     url: site.href,
-    name: `${SITE.name} · ${SITE.blogBrand}`,
+    name: SITE.blogBrand,
+    alternateName: ['curioussparoows.com'],
     description: SITE.description,
     inLanguage: 'en',
     publisher: { '@id': personId },
@@ -55,7 +56,7 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
 <link rel="canonical" href={canonical} />
 <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
 <meta name="author" content={SITE.name} />
-<meta property="og:site_name" content={`${SITE.name} · ${SITE.blogBrand}`} />
+<meta property="og:site_name" content={SITE.blogBrand} />
 <meta property="og:type" content={type} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />

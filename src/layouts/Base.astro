@@ -28,7 +28,7 @@ const {
   noindex,
   schema,
 } = Astro.props;
-const pageTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} · ${SITE.blogBrand}`;
+const pageTitle = title ? `${title} | ${SITE.blogBrand}` : SITE.blogBrand;
 const path = Astro.url.pathname;
 const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
 ---
@@ -43,7 +43,11 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
     <meta name="theme-color" content="#1d1636" />
     <script is:inline src="/theme-init.js"></script>
     <Seo title={pageTitle} {description} {image} {type} {published} {updated} {noindex} {schema} />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
+    <link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternate" type="application/rss+xml" title={`${SITE.blogBrand} blog`} href="/rss.xml" />
   </head>
