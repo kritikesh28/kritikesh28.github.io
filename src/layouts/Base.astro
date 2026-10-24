@@ -6,7 +6,6 @@ import '../styles/global.css';
 import { SITE, NAV, SOCIALS } from '../site.config';
 import Seo, { type Props as SeoProps } from '../components/Seo.astro';
 import Wordmark from '../components/Wordmark.astro';
-import Mascot from '../components/Mascot.astro';
 
 interface Props {
   title?: string;
@@ -98,7 +97,6 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
       <p class="wrap muted small">© {new Date().getFullYear()} {SITE.name}. Words and images are mine unless credited.</p>
     </footer>
 
-    <Mascot />
 
     {SITE.goatcounterCode && (
       <script

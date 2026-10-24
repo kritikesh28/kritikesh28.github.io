@@ -14,6 +14,13 @@ const schema = [{ '@type': 'ProfilePage', mainEntity: { '@id': new URL('/#person
       I'm Kritikesh Rajpurohit, from {SITE.location}. I studied the Earth, I teach what I learn,
       and I'm now building a career in applied AI.
     </p>
+    <ul class="what">
+      <li>I build with data and AI.</li>
+      <li>I map the Earth in QGIS.</li>
+      <li>I explain ideas from the basics up.</li>
+      <li>I stay curious, without end.</li>
+    </ul>
+    <p class="motto">{SITE.motto}</p>
 
     <aside class="facts card">
       <h2>Quick facts</h2>
@@ -78,6 +85,9 @@ const schema = [{ '@type': 'ProfilePage', mainEntity: { '@id': new URL('/#person
 </Base>
 
 <style>
+  .what { list-style: none; padding: 0; margin: 1rem 0 0.4rem; display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; font-family: var(--font-serif); color: var(--ink); }
+  .what li::before { content: "·"; margin-right: 0.45rem; color: var(--accent); }
+  .motto { font-family: var(--font-serif); font-style: italic; color: var(--ink-soft); }
   .lead { font-family: var(--font-serif); font-size: 1.2rem; }
   .facts { margin: 1.5rem 0; }
   .facts h2 { margin: 0 0 0.4rem; font-size: 1.1rem; }
