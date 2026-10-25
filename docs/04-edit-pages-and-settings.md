@@ -11,13 +11,13 @@ Change only the text **inside the quotes**. Keep every quote mark, comma and bra
 | To change... | Edit this line |
 | --- | --- |
 | Name in the header | `name:` |
-| Blog name or motto | `blogBrand:`, `motto:` |
+| Brand name (Curious Sparoows) or motto | `blogBrand:`, `motto:` |
 | Tagline and Google description | `tagline:`, `description:` |
 | Job title, location, email | `jobTitle:`, `location:`, `email:` |
 | Résumé file | Upload the new PDF to `public/`, then change `resumePdf:` |
 | Social links | The `SOCIALS` list: add a line like `{ label: 'YouTube', href: 'https://...' },` |
 | Top menu | The `NAV` list |
-| Blog categories | The `CATEGORIES` list. A new line needs a `slug` (lowercase-with-hyphens), `label`, `short` and `blurb`. **Never remove a category that posts still use**, or the build fails. |
+| Subjects (the library's trees) | The `CATEGORIES` list. Each one is a tree in the library; its branches and short courses are in `src/library.config.ts` (see [13](13-add-to-the-library.md)). Also add the new slug to `BRANCHES` there, and a colour line `.t-<slug>` in `src/styles/global.css`. A new line needs a `slug` (lowercase-with-hyphens), `label`, `short` and `blurb`. **Never remove a category that posts still use**, or the build fails. |
 | Fun facts shown by the sparrows | The `CURIOUS_FACTS` list |
 
 ## Text pages

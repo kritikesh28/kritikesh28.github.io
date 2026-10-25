@@ -37,8 +37,8 @@ const projects = (await getProjects()).slice(0, 3);
       <div>
         <p class="eyebrow">Explore</p>
         <h2>Pick a thread</h2>
-        <p class="muted">I follow curiosity across six themes. Each one is a section of the blog, and they all meet in the middle.</p>
-        <p><a href="/blog/">All posts →</a></p>
+        <p class="muted">Six trees grow in one forest. Each subject is a tree in the library, and they all meet in the middle.</p>
+        <p><a href="/library/">Open the library →</a></p>
       </div>
       <CuriosityOrbit />
     </div>
@@ -58,8 +58,8 @@ const projects = (await getProjects()).slice(0, 3);
   </section>
 
   <section class="wrap section reveal">
-    <p class="eyebrow">{SITE.blogBrand}</p>
-    <h2>Latest from the blog</h2>
+    <p class="eyebrow">{SITE.blogBrand} Library</p>
+    <h2>Latest long reads</h2>
     {posts.length > 0
       ? <div class="grid3">{posts.map((post) => <PostCard post={post} />)}</div>
       : <p class="muted">The first posts are being written.</p>}

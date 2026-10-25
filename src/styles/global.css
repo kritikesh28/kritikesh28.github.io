@@ -145,3 +145,25 @@ html { scroll-behavior: smooth; }
 [hidden] { display: none !important; }
 
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* Each library tree has its own colour (used by tree pages, cards and watermarks) */
+.t-geography-earth { --tree: #2f8f7a; }
+.t-ai-ml { --tree: #7a62d6; }
+.t-exam-prep { --tree: #c4862b; }
+.t-mind-ideas { --tree: #c0628f; }
+.t-stories-films { --tree: #d0603f; }
+.t-life-skills { --tree: #4f8a3a; }
+:root[data-theme='dark'] .t-geography-earth { --tree: #6cc9b0; }
+:root[data-theme='dark'] .t-ai-ml { --tree: #b9a3f2; }
+:root[data-theme='dark'] .t-exam-prep { --tree: #e0b45e; }
+:root[data-theme='dark'] .t-mind-ideas { --tree: #e79bc0; }
+:root[data-theme='dark'] .t-stories-films { --tree: #f08e70; }
+:root[data-theme='dark'] .t-life-skills { --tree: #9ccf84; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .t-geography-earth { --tree: #6cc9b0; }
+  :root:not([data-theme='light']) .t-ai-ml { --tree: #b9a3f2; }
+  :root:not([data-theme='light']) .t-exam-prep { --tree: #e0b45e; }
+  :root:not([data-theme='light']) .t-mind-ideas { --tree: #e79bc0; }
+  :root:not([data-theme='light']) .t-stories-films { --tree: #f08e70; }
+  :root:not([data-theme='light']) .t-life-skills { --tree: #9ccf84; }
+}

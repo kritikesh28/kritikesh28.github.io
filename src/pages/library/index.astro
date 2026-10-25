@@ -2,13 +2,18 @@
 // The Forest: the whole library on one page.
 import Base from '../../layouts/Base.astro';
 import QuestionCard from '../../components/QuestionCard.astro';
+import SearchBox from '../../components/SearchBox.astro';
 import ProgressMeter from '../../components/ProgressMeter.astro';
+import LevelIcon from '../../components/LevelIcon.astro';
+import TreeMotif from '../../components/TreeMotif.astro';
 import { SITE } from '../../site.config';
 import { TREES, LEVELS, BUILD_STATUS } from '../../library.config';
-import { getLibraryPages } from '../../lib';
+import { getLibraryPages, getPosts } from '../../lib';
 
 const pages = await getLibraryPages();
 const leafCount = (twig: string) => pages.filter((p) => p.id.startsWith(`${twig}/`) && p.data.kind === 'leaf').length;
+const posts = await getPosts();
+const readCount = (tree: string) => posts.filter((p) => p.data.category === tree).length;
 const statusLabel = { live: 'Read now', next: 'Being written', planned: 'Planned' } as const;
 const buildLabel = { live: 'Live', 'in-progress': 'In progress', planned: 'Not started' } as const;
 const schema = [
@@ -27,11 +32,7 @@ const schema = [
       <p class="eyebrow">{SITE.blogBrand} Library</p>
       <h1>An open library for curious minds</h1>
       <p class="lede">Every page answers one real question in about two minutes, starting from zero. Follow a path from the first page, or jump straight to the question on your mind.</p>
-      <form class="find" action="/search/" method="get" role="search">
-        <label class="sr-only" for="lib-q">Ask the library</label>
-        <input id="lib-q" name="q" type="search" placeholder="Ask anything, e.g. why is space dark?" autocomplete="off" />
-        <button class="btn" type="submit">Search</button>
-      </form>
+      <div class="find"><SearchBox id="lib-q" /></div>
     </div>
     <QuestionCard />
   </section>
@@ -42,7 +43,8 @@ const schema = [
     <ol class="levels">
       {LEVELS.map((l) => (
         <li>
-          <span class="icon" aria-hidden="true">{l.icon}</span>
+          <LevelIcon level={l.name} size={150} class="lv-wm" />
+          <LevelIcon level={l.name} size={44} class="lv-icon" />
           <strong>{l.name}</strong>
           <span>{l.means}</span>
           <span class="small muted">Like {l.like}. e.g. <em>{l.example}</em></span>
@@ -53,39 +55,33 @@ const schema = [
 
   <section class="wrap block">
     <p class="eyebrow">Explore</p>
-    <h2>The trees</h2>
+    <h2>Six trees, one forest</h2>
     <div class="trees">
-      {TREES.map((tree) => (
-        <article class="tree" id={tree.slug}>
-          <h3>{tree.title}</h3>
-          <p class="small muted">{tree.blurb}</p>
-          {tree.branches.map((branch) => (
-            <div class="branch">
-              <p class="branch-name">🌿 {branch.title}</p>
-              <ul>
-                {branch.twigs.map((twig) => (
-                  <li class:list={['twig', twig.status]}>
-                    {twig.status === 'live' ? (
-                      <a href={`/library/${twig.slug}/`}>
-                        <strong>{twig.title}</strong>
-                        <span class="small">{twig.question}</span>
-                        <span class="small muted">{leafCount(twig.slug)} Leaves · {statusLabel[twig.status]} →</span>
-                        <ProgressMeter twig={twig.slug} total={leafCount(twig.slug)} />
-                      </a>
-                    ) : (
-                      <div>
-                        <strong>{twig.title}</strong>
-                        <span class="small">{twig.question}</span>
-                        <span class="tag small">{statusLabel[twig.status]}, not written yet</span>
-                      </div>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </article>
-      ))}
+      {TREES.map((tree) => {
+        const twigs = tree.branches.flatMap((b) => b.twigs);
+        const live = twigs.filter((t) => t.status === 'live');
+        const reads = readCount(tree.slug);
+        return (
+          <article class={`tree t-${tree.slug}`} id={tree.slug}>
+            <TreeMotif tree={tree.slug} class="wm" />
+            <a class="tree-link" href={`/library/${tree.slug}/`}>
+              <span class="tree-top"><LevelIcon level="Tree" size={30} /><span class="small">{live.length > 0 ? `${live.length} short course${live.length > 1 ? 's' : ''}` : 'Growing'}{reads > 0 && ` · ${reads} long read${reads > 1 ? 's' : ''}`}</span></span>
+              <h3>{tree.title}</h3>
+              <p class="small">{tree.blurb}</p>
+            </a>
+            <ul>
+              {twigs.slice(0, 3).map((twig) => (
+                <li class:list={['twig', twig.status]}>
+                  {twig.status === 'live'
+                    ? <a href={`/library/${twig.slug}/`}><strong>{twig.title}</strong><span class="small">{leafCount(twig.slug)} Leaves · Read now →</span><ProgressMeter twig={twig.slug} total={leafCount(twig.slug)} /></a>
+                    : <div><strong>{twig.title}</strong><span class="tag small">{statusLabel[twig.status]}, not written yet</span></div>}
+                </li>
+              ))}
+            </ul>
+            <a class="tree-more small" href={`/library/${tree.slug}/`}>Open {tree.title} →</a>
+          </article>
+        );
+      })}
     </div>
   </section>
 
@@ -113,35 +109,38 @@ const schema = [
 <style>
   .hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 2.5rem; align-items: center; margin-top: 1rem; }
   .lede { font-size: 1.15rem; color: var(--ink-soft); max-width: 36rem; }
-  .find { display: flex; gap: 0.5rem; margin-top: 1.4rem; max-width: 34rem; }
-  .find input { flex: 1; min-width: 0; padding: 0.7rem 1rem; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; }
-  .find input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .find { margin-top: 1.4rem; max-width: 34rem; }
   .block { margin-top: 4rem; }
-  .levels { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.8rem; counter-reset: lv; }
-  .levels li { position: relative; display: grid; gap: 0.2rem; padding: 1rem; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); }
-  .levels li:not(:last-child)::after { content: '›'; position: absolute; right: -0.65rem; top: 50%; transform: translateY(-50%); color: var(--ink-soft); font-size: 1.2rem; }
-  .levels .icon { font-size: 1.5rem; }
+  .levels { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.8rem; }
+  .levels li { position: relative; overflow: hidden; display: grid; gap: 0.2rem; align-content: start; padding: 1rem; border-radius: var(--radius); background: linear-gradient(160deg, var(--surface), color-mix(in srgb, var(--teal) 7%, var(--surface))); border: 1px solid var(--line); }
+  .levels :global(.lv-wm) { position: absolute; right: -34px; bottom: -36px; color: var(--teal); opacity: 0.1; }
+  .levels :global(.lv-icon) { color: #8a6a3b; margin-bottom: 0.3rem; }
+  :global([data-theme='dark']) .levels :global(.lv-icon) { color: #e0b45e; }
+  @media (prefers-color-scheme: dark) { :global(:root:not([data-theme='light'])) .levels :global(.lv-icon) { color: #e0b45e; } }
+  .levels li > * { position: relative; }
   .trees { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); margin-top: 1rem; }
-  .tree { --tree: #2f9a83; }
-  .tree:nth-child(3n + 2) { --tree: #8f7be8; }
-  .tree:nth-child(3n) { --tree: #c56b9c; }
-  .tree { padding: 1.2rem; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--tree); scroll-margin-top: 80px; }
-  .tree h3 { margin: 0 0 0.2rem; font-size: 1.3rem; }
-  .tree > p { margin: 0 0 0.8rem; }
-  .branch-name { margin: 0.6rem 0 0.4rem; font-weight: 600; font-size: 0.95rem; }
-  .branch ul { list-style: none; padding: 0 0 0 0.8rem; margin: 0; border-left: 2px solid color-mix(in srgb, var(--tree) 40%, transparent); display: grid; gap: 0.5rem; }
-  .twig > a, .twig > div { display: grid; gap: 0.2rem; padding: 0.7rem 0.8rem; border-radius: 12px; text-decoration: none; color: var(--ink); }
-  .twig.live > a { background: color-mix(in srgb, var(--tree) 10%, var(--surface)); border: 1px solid color-mix(in srgb, var(--tree) 35%, transparent); transition: transform 0.2s; }
-  .twig.live > a:hover { transform: translateX(3px); color: var(--ink); }
-  .twig:not(.live) > div { opacity: 0.75; border: 1px dashed var(--line); }
+  .tree { position: relative; overflow: hidden; isolation: isolate; display: flex; flex-direction: column; padding: 1.3rem; border-radius: 20px; border: 1px solid color-mix(in srgb, var(--tree) 30%, var(--line)); background: linear-gradient(165deg, color-mix(in srgb, var(--tree) 13%, var(--surface)) 0%, var(--surface) 55%); scroll-margin-top: 80px; transition: transform 0.25s, box-shadow 0.25s; }
+  .tree:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -22px color-mix(in srgb, var(--tree) 70%, transparent); }
+  .tree :global(.wm) { position: absolute; z-index: -1; right: -18px; bottom: -10px; width: 240px; height: auto; color: var(--tree); opacity: 0.14; transition: opacity 0.3s, transform 0.6s; }
+  .tree:hover :global(.wm) { opacity: 0.22; transform: scale(1.04) rotate(-1deg); }
+  .tree-link { text-decoration: none; color: var(--ink); }
+  .tree-link:hover { color: var(--ink); }
+  .tree-top { display: flex; align-items: center; justify-content: space-between; color: var(--tree); font-weight: 600; }
+  .tree h3 { margin: 0.5rem 0 0.2rem; font-size: 1.35rem; }
+  .tree-link p { margin: 0 0 0.8rem; color: var(--ink-soft); }
+  .tree ul { list-style: none; padding: 0; margin: 0 0 0.8rem; display: grid; gap: 0.5rem; }
+  .twig > a, .twig > div { display: grid; gap: 0.2rem; padding: 0.7rem 0.8rem; border-radius: 12px; text-decoration: none; color: var(--ink); background: color-mix(in srgb, var(--surface) 82%, transparent); backdrop-filter: blur(2px); }
+  .twig.live > a { border: 1px solid color-mix(in srgb, var(--tree) 40%, transparent); }
+  .twig.live > a:hover { color: var(--ink); border-color: var(--tree); }
+  .twig:not(.live) > div { border: 1px dashed var(--line); }
   .tag { justify-self: start; padding: 0.1rem 0.5rem; border-radius: 999px; background: var(--accent-soft); color: var(--ink-soft); }
+  .tree-more { margin-top: auto; font-weight: 600; color: var(--tree); text-decoration: none; }
   .build { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: 0.6rem; max-width: 760px; }
   .build li { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.1rem 0.8rem; align-items: baseline; padding: 0.8rem 1rem; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); }
   .build .chip { grid-row: span 2; justify-self: start; margin: 0; }
   @media (max-width: 900px) {
     .hero { grid-template-columns: minmax(0, 1fr); }
     .levels { grid-template-columns: 1fr; }
-    .levels li:not(:last-child)::after { content: '↓'; right: 50%; top: auto; bottom: -0.95rem; transform: none; }
     .build li { grid-template-columns: 1fr; }
     .build .chip { grid-row: auto; }
   }

@@ -18,7 +18,13 @@ The library lives at **curioussparoows.com/library/**. This guide covers every t
 
 | What | File |
 | --- | --- |
-| Trees, branches, twigs, and the "What is growing" list | `src/library.config.ts` |
+| The six trees (subjects): names and descriptions | `CATEGORIES` in `src/site.config.ts` |
+| Branches and twigs of each tree, and the "What is growing" list | `BRANCHES` and `BUILD_STATUS` in `src/library.config.ts` |
+| Long reads (full articles) | `src/content/blog/` (guide [02](02-write-and-publish-a-post.md)); they show on the tree named by their `category` |
+| Tree colours | the `.t-<tree>` lines at the end of `src/styles/global.css` |
+| Level icons (sparrow line drawings) | `src/components/LevelIcon.astro` |
+| Tree watermarks (botanical drawings) | `src/components/TreeMotif.astro` |
+| Search logic, synonyms and suggestions | `src/scripts/search-engine.ts`; the box with suggestions is `src/components/SearchBox.astro` |
 | The pages of a twig (one folder per twig) | `src/content/library/<twig>/` |
 | A twig's front page (Gateway) | `src/content/library/<twig>/gateway.md` |
 | A twig's last page (Recap) | `src/content/library/<twig>/recap.md` |
@@ -26,8 +32,12 @@ The library lives at **curioussparoows.com/library/**. This guide covers every t
 | Curious questions (the dark card) | `src/data/curious-questions.ts` |
 | Template for a new Leaf | `LEAF_TEMPLATE.md` (in the main folder) |
 
-Pages built automatically for every twig, with nothing to do by hand:
+Pages built automatically, with nothing to do by hand:
 
+- `/library/`: the Forest, with all six trees
+- `/library/<tree>/`: a tree page with its branches, short courses and long reads (for example `/library/geography-earth/`)
+- `/library/read/<file-name>/`: each long read
+- `/library/tag/<tag>/`: long reads with that tag
 - `/library/<twig>/`: the Gateway with outcomes, the path of Leaves and the reader's progress
 - `/library/<twig>/<leaf>/`: each Leaf with its short answer, Next button, guide panel and progress dots
 - `/library/<twig>/all/`: the Full Journey, every Leaf on one page (hidden from Google, so it does not compete with the Leaves)
@@ -76,7 +86,11 @@ Quality check before publishing (from [VISION.md](VISION.md)):
 
 ## C. Add a tree or a branch
 
-In `src/library.config.ts`, copy an existing tree block `{ slug: ..., title: ..., blurb: ..., branches: [...] }` and change the words. A tree needs at least one branch, and a branch needs at least one twig (it can be `planned`). Tree colours rotate automatically.
+The trees are the subjects in `CATEGORIES` (`src/site.config.ts`); the home-page wheel, the library and the long reads all use this one list.
+
+- **New branch:** in `src/library.config.ts`, find the tree in `BRANCHES` and copy a branch block `{ slug: ..., title: ..., twigs: [...] }`. A branch needs at least one twig (it can be `planned`).
+- **New tree:** add a line to `CATEGORIES` (see [04](04-edit-pages-and-settings.md)), then add the same slug to `BRANCHES` with at least one branch, and add a colour line `.t-<slug> { --tree: #colour; }` (plus a dark-mode colour) at the end of `src/styles/global.css`. To give it its own watermark, add a drawing for the slug in `src/components/TreeMotif.astro`; without one the card simply has no watermark.
+- A tree slug and a twig slug must never be the same, because both live at `/library/<slug>/`.
 
 ## D. Add a curious question
 
@@ -102,7 +116,13 @@ When a reader reaches the end of a Leaf, the browser remembers it (in its own st
 
 ## G. How search works
 
-`/search-index.json` is rebuilt on every publish from all library pages, posts, projects and curious questions. The search page ranks results by title, keywords, description and text, accepts spelling mistakes, and when nothing matches well it shows the closest pages with an honest note and a link to suggest the question. To make a page easier to find, add the words people use to its `keywords`. To teach search that two words mean the same, add them to `SYN` near the top of the script in `src/pages/search.astro`.
+`/search-index.json` is rebuilt on every publish from all library pages, posts, projects and curious questions. The search page ranks results by title, keywords, description and text, accepts spelling mistakes, and when nothing matches well it shows the closest pages with an honest note and a link to suggest the question. To make a page easier to find, add the words people use to its `keywords`. To teach search that two words mean the same (including Hindi words such as brahmand → universe), add them to `SYN` near the top of `src/scripts/search-engine.ts`.
+
+While typing, every search box suggests up to six real pages, offers "Did you mean …?" when a word looks misspelt (it compares against words used on the site), and ends with "See all results". Arrow keys move through suggestions, Enter opens one, Escape closes the list.
+
+## H. Old blog links
+
+The blog became the library in October 2026. Pages under `src/pages/blog/` only forward visitors: `/blog/` → `/library/`, `/blog/<post>/` → `/library/read/<post>/`, `/blog/category/<subject>/` → `/library/<subject>/`, `/blog/tag/<tag>/` → `/library/tag/<tag>/`. Keep them, so old shared links never break.
 
 ## If something breaks
 

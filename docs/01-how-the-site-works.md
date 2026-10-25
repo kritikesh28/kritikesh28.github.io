@@ -4,7 +4,7 @@
 
 ## The journey of a change
 
-1. A file in the GitHub repository is added or changed (for example a new blog post).
+1. A file in the GitHub repository is added or changed (for example a new library page).
 2. The change is saved ("committed") to the `main` branch, either directly or by merging a pull request.
 3. GitHub notices and runs the **"Deploy site to GitHub Pages"** job (see the **Actions** tab of the repository). It turns the files into web pages. This takes about 1 to 2 minutes.
 4. The new pages go live at <https://curioussparoows.com>.
@@ -40,7 +40,7 @@ kritikesh28.github.io/
 │   ├── library.config.ts    ← library trees, branches, twigs, "What is growing" list
 │   ├── data/curious-questions.ts ← questions for the curious question card
 │   ├── content/
-│   │   ├── blog/            ← one .md file per blog post
+│   │   ├── blog/            ← one .md file per long read (shown in the library at /library/read/...)
 │   │   ├── library/         ← one folder per library twig (course); see guide 13
 │   │   └── projects/        ← one .md file per portfolio project
 │   ├── pages/               ← the pages (about, now, contact, privacy...)

@@ -35,8 +35,9 @@ Give it this context first, then the task:
 
 ```
 I run curioussparoows.com, an Astro website hosted on GitHub Pages from the
-repository github.com/kritikesh28/kritikesh28.github.io. Blog posts are Markdown
-files in src/content/blog/ with front matter: title, description, date (YYYY-MM-DD),
+repository github.com/kritikesh28/kritikesh28.github.io. Long reads are Markdown
+files in src/content/blog/ (shown at /library/read/); short library pages live in
+src/content/library/ (see docs/13-add-to-the-library.md); with front matter: title, description, date (YYYY-MM-DD),
 category (ai-ml, geography-earth, exam-prep, mind-ideas, stories-films,
 life-skills), tags, lang (en|hi), draft, aiAssisted. Follow docs/VISION.md and
 docs/10-working-with-ai.md. Task: ...

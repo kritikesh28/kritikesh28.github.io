@@ -2,7 +2,7 @@
 
 [Back to the handbook](README.md)
 
-The blog is growing into an **open library for curious minds**: every subject broken into short, connected pages, from the most basic question up to expert depth. The full blueprint is a Claude Doc, "Curious Sparoows Library: blueprint". This page is the summary you can rely on without it.
+The blog has become an **open library for curious minds** (October 2026: the word "blog" is gone from the site; old /blog/ links forward to the library): every subject broken into short, connected pages, from the most basic question up to expert depth. The full blueprint is a Claude Doc, "Curious Sparoows Library: blueprint". This page is the summary you can rely on without it.
 
 ## Page types for each unit (for example "Universe")
 

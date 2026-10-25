@@ -1,0 +1,113 @@
+---
+// A search box that suggests real pages while you type (arrow keys + Enter, or tap).
+// Pressing Enter without picking a suggestion opens the full results on /search/.
+interface Props { id?: string; placeholder?: string; autofocus?: boolean; label?: string }
+const { id = 'q', placeholder = 'Ask anything, e.g. why is space dark?', autofocus = false, label = 'Search the library' } = Astro.props;
+---
+
+<form class="sbox" action="/search/" method="get" role="search" data-sbox>
+  <label class="sr-only" for={id}>{label}</label>
+  <div class="field">
+    <input
+      id={id}
+      name="q"
+      type="search"
+      {placeholder}
+      autocomplete="off"
+      spellcheck="true"
+      autofocus={autofocus}
+      role="combobox"
+      aria-autocomplete="list"
+      aria-expanded="false"
+      aria-controls={`${id}-list`}
+    />
+    <ul class="suggest" id={`${id}-list`} role="listbox" aria-label="Suggestions" hidden></ul>
+  </div>
+  <button class="btn" type="submit">Search</button>
+</form>
+
+<script>
+  import { loadIndex, suggest, didYouMean, type Item } from '../scripts/search-engine';
+
+  document.querySelectorAll<HTMLFormElement>('[data-sbox]').forEach((form) => {
+    const input = form.querySelector<HTMLInputElement>('input')!;
+    const list = form.querySelector<HTMLUListElement>('.suggest')!;
+    let options: { el: HTMLLIElement; go: () => void }[] = [];
+    let active = -1;
+    let timer: number | undefined;
+
+    const close = () => {
+      list.hidden = true;
+      input.setAttribute('aria-expanded', 'false');
+      input.removeAttribute('aria-activedescendant');
+      active = -1;
+    };
+    const highlight = (i: number) => {
+      options.forEach((o, j) => o.el.setAttribute('aria-selected', String(j === i)));
+      active = i;
+      if (i >= 0) input.setAttribute('aria-activedescendant', options[i].el.id);
+      else input.removeAttribute('aria-activedescendant');
+    };
+    const option = (main: string, sub: string, go: () => void, cls = '') => {
+      const li = document.createElement('li');
+      li.id = `${list.id}-${options.length}`;
+      li.setAttribute('role', 'option');
+      li.className = cls;
+      const a = document.createElement('span'); a.className = 'main'; a.textContent = main;
+      const b = document.createElement('span'); b.className = 'sub'; b.textContent = sub;
+      li.append(a, b);
+      li.addEventListener('mousedown', (e) => { e.preventDefault(); go(); });
+      list.append(li);
+      options.push({ el: li, go });
+    };
+    const openItem = (item: Item) => { location.href = item.u || `/search/?q=${encodeURIComponent(item.t)}`; };
+    const searchFor = (q: string) => { location.href = `/search/?q=${encodeURIComponent(q)}`; };
+
+    const render = async () => {
+      const q = input.value;
+      await loadIndex();
+      if (q !== input.value) return;
+      list.replaceChildren();
+      options = [];
+      active = -1;
+      if (q.trim().length < 2) return close();
+      const fix = didYouMean(q);
+      if (fix) option(`Did you mean “${fix}”?`, 'Search for this instead', () => searchFor(fix), 'fix');
+      suggest(fix ?? q).forEach((item) => option(item.t, item.k, () => openItem(item)));
+      option(`See all results for “${q}”`, 'Full search', () => searchFor(q), 'all');
+      list.hidden = false;
+      input.setAttribute('aria-expanded', 'true');
+    };
+
+    input.addEventListener('focus', () => { loadIndex(); });
+    input.addEventListener('input', () => { clearTimeout(timer); timer = window.setTimeout(render, 90); });
+    input.addEventListener('keydown', (e) => {
+      if (list.hidden) return;
+      if (e.key === 'ArrowDown') { e.preventDefault(); highlight((active + 1) % options.length); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); highlight(active <= 0 ? options.length - 1 : active - 1); }
+      else if (e.key === 'Enter' && active >= 0) { e.preventDefault(); options[active].go(); }
+      else if (e.key === 'Escape') close();
+    });
+    input.addEventListener('blur', () => window.setTimeout(close, 120));
+    form.addEventListener('submit', close);
+  });
+</script>
+
+<style>
+  .sbox { display: flex; gap: 0.5rem; width: 100%; }
+  .field { position: relative; flex: 1; min-width: 0; }
+  .field input { width: 100%; padding: 0.75rem 1.1rem; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; font-size: 1.02rem; }
+  .field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .field input[aria-expanded='true'] { border-radius: 22px 22px 0 0; }
+  .suggest {
+    position: absolute; z-index: 40; left: 0; right: 0; top: 100%; margin: 0; padding: 0.35rem; list-style: none;
+    background: var(--surface); border: 1px solid var(--line); border-top: 0; border-radius: 0 0 18px 18px;
+    box-shadow: 0 18px 40px -18px rgb(42 35 80 / 0.45); max-height: 60vh; overflow-y: auto;
+  }
+  .suggest :global(li) { display: grid; gap: 0.05rem; padding: 0.55rem 0.8rem; border-radius: 12px; cursor: pointer; }
+  .suggest :global(li[aria-selected='true']), .suggest :global(li:hover) { background: var(--accent-soft); }
+  .suggest :global(.main) { font-weight: 600; line-height: 1.35; }
+  .suggest :global(.sub) { font-size: 0.78rem; color: var(--ink-soft); }
+  .suggest :global(li.fix .main) { color: var(--coral); }
+  .suggest :global(li.all .main) { color: var(--accent); font-weight: 500; }
+</style>
