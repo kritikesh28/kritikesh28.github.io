@@ -7,6 +7,7 @@ import '@fontsource/cormorant-garamond/latin-500-italic.css';
 import { SITE, NAV, SOCIALS } from '../site.config';
 import Seo, { type Props as SeoProps } from '../components/Seo.astro';
 import Wordmark from '../components/Wordmark.astro';
+import SparrowSeal from '../components/SparrowSeal.astro';
 
 interface Props {
   title?: string;
@@ -81,6 +82,10 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
     <main id="main">
       <slot />
     </main>
+
+    {/* brand signature: a faint two-sparrows watermark behind every page, and the living seal in the corner */}
+    <div class="sig-wm" aria-hidden="true"><LogoMark height={400} /></div>
+    <SparrowSeal />
 
     <footer class="site-footer">
       <div class="wrap foot">
@@ -215,6 +220,15 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
     .site-header nav ul { gap: 0; overflow-x: auto; flex-wrap: nowrap; }
     .theme { margin-left: auto; }
   }
+  .sig-wm {
+    position: fixed; right: -9vw; bottom: -6vh; z-index: -1; width: min(58vw, 760px); pointer-events: none;
+    color: #3b2a1e; opacity: 0.045;
+  }
+  .sig-wm :global(svg) { display: block; width: 100%; height: auto; }
+  :global([data-theme="dark"]) .sig-wm { color: #d9bb7a; opacity: 0.05; }
+  @media (prefers-color-scheme: dark) { :global(:root:not([data-theme="light"])) .sig-wm { color: #d9bb7a; opacity: 0.05; } }
+  @media (max-width: 760px) { .sig-wm { width: 92vw; right: -18vw; bottom: -4vh; opacity: 0.035; } }
+  @media print { .sig-wm { display: none; } }
   /* footer: the poster's night sky, quiet type, three short columns */
   .site-footer {
     margin-top: 4rem; color: rgb(246 231 200 / 0.72);
