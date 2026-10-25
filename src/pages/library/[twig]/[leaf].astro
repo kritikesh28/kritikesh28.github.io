@@ -1,0 +1,187 @@
+---
+// One Leaf: one question, about two minutes. Also renders the twig's recap page.
+import { render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import LibraryGuide from '../../../components/LibraryGuide.astro';
+import LibraryCrumbs from '../../../components/LibraryCrumbs.astro';
+import ProgressMeter from '../../../components/ProgressMeter.astro';
+import { SITE } from '../../../site.config';
+import { findTwig } from '../../../library.config';
+import { getLibraryPages, getTwigPages, splitLibraryId, libraryUrl, readMinutes } from '../../../lib';
+
+export async function getStaticPaths() {
+  const pages = (await getLibraryPages()).filter((p) => p.data.kind !== 'gateway');
+  return pages.map((page) => ({ params: { twig: splitLibraryId(page.id).twig, leaf: splitLibraryId(page.id).slug }, props: { page } }));
+}
+
+const { page } = Astro.props;
+const { twig } = splitLibraryId(page.id);
+const { Content } = await render(page);
+const { title, description, answer, nextHook, kind, date, updated, aiAssisted, keywords } = page.data;
+const twigInfo = findTwig(twig)?.twig;
+const all = await getTwigPages(twig);
+const leaves = all.filter((p) => p.data.kind === 'leaf');
+const recap = all.find((p) => p.data.kind === 'recap');
+const index = leaves.findIndex((p) => p.id === page.id);
+const isRecap = kind === 'recap';
+const prev = isRecap ? leaves.at(-1) : leaves[index - 1];
+const next = isRecap ? undefined : leaves[index + 1];
+const url = new URL(libraryUrl(page.id, kind), Astro.site).href;
+const gatewayUrl = `/library/${twig}/`;
+
+const schema: Record<string, unknown>[] = [
+  {
+    '@type': 'LearningResource',
+    name: title,
+    headline: title,
+    description,
+    url,
+    datePublished: date.toISOString(),
+    dateModified: (updated ?? date).toISOString(),
+    inLanguage: 'en',
+    learningResourceType: isRecap ? 'Summary' : 'Lesson',
+    educationalLevel: 'Beginner',
+    keywords: keywords.join(', '),
+    timeRequired: `PT${readMinutes(page.body)}M`,
+    isPartOf: { '@type': 'Course', name: twigInfo?.title, url: new URL(gatewayUrl, Astro.site).href },
+    author: { '@id': new URL('/#person', Astro.site).href },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Library', item: new URL('/library/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: twigInfo?.title, item: new URL(gatewayUrl, Astro.site).href },
+      { '@type': 'ListItem', position: 3, name: title, item: url },
+    ],
+  },
+];
+// The short answer doubles as a question-and-answer snippet for search engines
+if (answer) schema.push({ '@type': 'FAQPage', mainEntity: [{ '@type': 'Question', name: title, acceptedAnswer: { '@type': 'Answer', text: answer } }] });
+---
+
+<Base {title} {description} type="article" published={date} {updated} {schema}>
+  <div class="wrap leaf-layout">
+    <article class="leaf">
+      <LibraryCrumbs {twig} current={isRecap ? 'Recap' : `Leaf ${index + 1}`} />
+      {!isRecap && (
+        <ol class="dots" aria-label={`Leaf ${index + 1} of ${leaves.length}`}>
+          {leaves.map((l, i) => (
+            <li data-leaf-id={l.id} class:list={{ now: i === index }}>
+              <a href={libraryUrl(l.id, 'leaf')} title={`${i + 1}. ${l.data.title}`}><span class="sr-only">{i + 1}. {l.data.title}</span></a>
+            </li>
+          ))}
+        </ol>
+      )}
+      <p class="eyebrow">{isRecap ? 'Recap' : `Leaf ${index + 1} of ${leaves.length}`} · {readMinutes(page.body)} min read</p>
+      <h1>{title}</h1>
+      {answer && (
+        <div class="answer">
+          <p class="eyebrow">Short answer</p>
+          <p>{answer}</p>
+        </div>
+      )}
+      <div class="prose body"><Content /></div>
+
+      {isRecap && (
+        <section class="quiz">
+          <h2>Test yourself: all {leaves.length} questions</h2>
+          <p class="muted small">Try to answer each one in your head, then tap to check.</p>
+          {leaves.map((l, i) => (
+            <details>
+              <summary><span class="n">{i + 1}</span>{l.data.title}</summary>
+              <p>{l.data.answer} <a href={libraryUrl(l.id, 'leaf')}>Read Leaf {i + 1}</a></p>
+            </details>
+          ))}
+        </section>
+      )}
+
+      {aiAssisted && <p class="note small">Written by {SITE.name} with help from an AI assistant, and checked by me. Spotted a mistake? <a href="/contact/">Tell me</a> and I will fix it openly.</p>}
+
+      <div class="end" data-leaf-end={page.id}>
+        {next && (
+          <a class="next" href={libraryUrl(next.id, 'leaf')} rel="next">
+            {nextHook && <span class="hook">{nextHook}</span>}
+            <span class="next-label">Next · Leaf {index + 2}</span>
+            <strong>{next.data.title} <span aria-hidden="true">→</span></strong>
+          </a>
+        )}
+        {!next && !isRecap && recap && (
+          <a class="next" href={libraryUrl(recap.id, 'recap')} rel="next">
+            <span class="hook">You have reached the end of {twigInfo?.title}. One page pulls it all together.</span>
+            <span class="next-label">Last step</span>
+            <strong>Recap and quick quiz <span aria-hidden="true">→</span></strong>
+          </a>
+        )}
+        {isRecap && (
+          <div class="finish">
+            <p class="eyebrow">You finished {twigInfo?.title}</p>
+            <ProgressMeter {twig} total={leaves.length} />
+            <p>What next? Keep exploring the <a href="/library/">library</a>, <a href="/search/">search for a question</a>, or start again from the <a href={gatewayUrl}>beginning</a>.</p>
+          </div>
+        )}
+        <p class="side-links small">
+          {prev && <a href={libraryUrl(prev.id, 'leaf')} rel="prev">← {isRecap ? `Leaf ${leaves.length}` : `Leaf ${index}`}</a>}
+          <a href={gatewayUrl}>Course map</a>
+          <a href={`${gatewayUrl}all/`}>Read all on one page</a>
+        </p>
+      </div>
+    </article>
+
+    <aside class="side">
+      <div class="sticky">
+        <LibraryGuide here="Leaf" />
+        <div class="side-progress">
+          <p class="small"><strong>{twigInfo?.title}</strong></p>
+          <ProgressMeter {twig} total={leaves.length} />
+        </div>
+      </div>
+    </aside>
+  </div>
+</Base>
+
+<script>
+  import { paintProgress, watchLeafEnds } from '../../../scripts/library-progress';
+  paintProgress();
+  watchLeafEnds();
+</script>
+
+<style>
+  .leaf-layout { display: grid; grid-template-columns: minmax(0, 720px) 280px; gap: 3rem; justify-content: center; }
+  .side .sticky { position: sticky; top: 84px; display: grid; gap: 1rem; }
+  .side-progress { padding: 0 0.3rem; }
+  .side-progress p { margin: 0 0 0.4rem; }
+  .dots { list-style: none; display: flex; gap: 5px; padding: 0; margin: 0 0 1rem; }
+  .dots li { flex: 1; }
+  .dots a { display: block; height: 6px; border-radius: 999px; background: var(--line); transition: background 0.3s; }
+  .dots li.done a { background: color-mix(in srgb, var(--teal) 70%, transparent); }
+  .dots li.now a { background: var(--accent); }
+  .dots a:hover { background: var(--coral); }
+  h1 { margin-top: 0.2rem; }
+  .answer { margin: 1.2rem 0 1.4rem; padding: 1rem 1.2rem; border-radius: var(--radius); background: linear-gradient(135deg, var(--accent-soft), color-mix(in srgb, var(--teal) 10%, var(--surface))); border: 1px solid var(--line); }
+  .answer .eyebrow { margin: 0 0 0.3rem; color: var(--accent); }
+  .answer p:last-child { margin: 0; font-size: 1.08rem; line-height: 1.6; }
+  .body :global(h2) { font-size: 1.3rem; margin-top: 1.8rem; }
+  .end { margin-top: 2.4rem; }
+  .next {
+    display: grid; gap: 0.3rem; padding: 1.3rem 1.4rem; border-radius: 18px; text-decoration: none; color: #f6e7c8;
+    background: radial-gradient(120% 140% at 85% 0%, #3a2b6a 0%, #1d1838 60%, #120f24 100%);
+    box-shadow: 0 18px 40px -20px rgb(18 15 36 / 0.7); transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .next:hover { transform: translateY(-3px); color: #fff3dc; box-shadow: 0 24px 48px -20px rgb(18 15 36 / 0.8); }
+  .hook { font-style: italic; color: rgb(246 231 200 / 0.85); }
+  .next-label { font: 600 0.72rem/1 var(--font-sans); letter-spacing: 0.2em; text-transform: uppercase; color: #e8c584; margin-top: 0.4rem; }
+  .next strong { font: 600 1.35rem/1.3 var(--font-serif); color: #fff6e6; }
+  .side-links { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 1rem; }
+  .quiz details { border: 1px solid var(--line); border-radius: 12px; padding: 0.7rem 0.9rem; margin: 0.5rem 0; background: var(--surface); }
+  .quiz summary { cursor: pointer; font-weight: 600; display: flex; gap: 0.6rem; }
+  .quiz .n { flex: none; display: grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-size: 0.85rem; }
+  .quiz details p { margin: 0.6rem 0 0.2rem; }
+  .finish { padding: 1.2rem; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); }
+  .finish .eyebrow { margin-top: 0; }
+  .note { border-left: 3px solid var(--gold); padding: 0.3rem 0.8rem; color: var(--ink-soft); background: color-mix(in srgb, var(--gold) 8%, transparent); border-radius: 0 8px 8px 0; margin-top: 2rem; }
+  @media (max-width: 980px) {
+    .leaf-layout { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+    .side { order: 2; }
+    .side .sticky { position: static; }
+  }
+</style>

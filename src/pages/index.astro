@@ -6,6 +6,7 @@ import PosterHero from '../components/PosterHero.astro';
 import CuriosityOrbit from '../components/CuriosityOrbit.astro';
 import LiveDemo from '../components/LiveDemo.astro';
 import CtaBand from '../components/CtaBand.astro';
+import QuestionCard from '../components/QuestionCard.astro';
 import { SITE } from '../site.config';
 import { getPosts, getProjects } from '../lib';
 
@@ -15,6 +16,21 @@ const projects = (await getProjects()).slice(0, 3);
 
 <Base type="profile">
   <PosterHero />
+
+  <section id="library" class="wrap section reveal">
+    <div class="lib">
+      <div>
+        <p class="eyebrow">New · The Library</p>
+        <h2>Learn something real in two minutes</h2>
+        <p class="muted">Short, question-led pages that start from zero. The first course follows the Universe from its first second to the atoms in your body, in 12 small steps.</p>
+        <p class="lib-links">
+          <a class="btn" href="/library/the-universe/">Start The Universe →</a>
+          <a class="btn ghost" href="/library/">Browse the library</a>
+        </p>
+      </div>
+      <QuestionCard />
+    </div>
+  </section>
 
   <section id="explore" class="wrap section reveal">
     <div class="split">
@@ -55,8 +71,10 @@ const projects = (await getProjects()).slice(0, 3);
 <style>
   .section { margin-top: 4rem; }
   .split { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 2rem; align-items: center; }
+  .lib { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2.5rem; align-items: center; }
+  .lib-links { display: flex; flex-wrap: wrap; gap: 0.6rem; }
   .grid3 { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
   @media (max-width: 860px) {
-    .split { grid-template-columns: 1fr; }
+    .split, .lib { grid-template-columns: minmax(0, 1fr); }
   }
 </style>

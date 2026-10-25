@@ -1,0 +1,59 @@
+---
+// The Full Journey: every Leaf of a twig on one page, for readers who prefer one long read.
+// noindex, because each Leaf already has its own page in search results.
+import { render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import LibraryCrumbs from '../../../components/LibraryCrumbs.astro';
+import ProgressMeter from '../../../components/ProgressMeter.astro';
+import { getLibraryPages, getTwigPages, splitLibraryId, libraryUrl } from '../../../lib';
+
+export async function getStaticPaths() {
+  const gateways = (await getLibraryPages()).filter((p) => p.data.kind === 'gateway');
+  return gateways.map((g) => ({ params: { twig: splitLibraryId(g.id).twig }, props: { gateway: g } }));
+}
+
+const { gateway } = Astro.props;
+const { twig } = splitLibraryId(gateway.id);
+const all = await getTwigPages(twig);
+const leaves = await Promise.all(all.filter((p) => p.data.kind === 'leaf').map(async (l) => ({ l, Content: (await render(l)).Content })));
+const recap = all.find((p) => p.data.kind === 'recap');
+---
+
+<Base title={`${gateway.data.title}: the full journey`} description={gateway.data.description} noindex>
+  <div class="wrap journey">
+    <LibraryCrumbs {twig} current="All on one page" />
+    <p class="eyebrow">The full journey · all {leaves.length} Leaves on one page</p>
+    <h1>{gateway.data.title}</h1>
+    <ProgressMeter {twig} total={leaves.length} />
+    <nav class="toc" aria-label="Contents">
+      <ol>{leaves.map(({ l }, i) => <li><a href={`#leaf-${i + 1}`}>{l.data.title}</a></li>)}</ol>
+    </nav>
+    {leaves.map(({ l, Content }, i) => (
+      <section id={`leaf-${i + 1}`} class="part">
+        <p class="eyebrow">Leaf {i + 1} · <a href={libraryUrl(l.id, 'leaf')}>open as its own page</a></p>
+        <h2>{l.data.title}</h2>
+        {l.data.answer && <p class="answer"><strong>Short answer:</strong> {l.data.answer}</p>}
+        <div class="prose body"><Content /></div>
+        <span data-leaf-end={l.id}></span>
+      </section>
+    ))}
+    {recap && <p class="end"><a class="btn" href={libraryUrl(recap.id, 'recap')}>Finish with the recap and quiz →</a></p>}
+  </div>
+</Base>
+
+<script>
+  import { paintProgress, watchLeafEnds } from '../../../scripts/library-progress';
+  paintProgress();
+  watchLeafEnds();
+</script>
+
+<style>
+  .journey { max-width: 760px; }
+  .toc { margin: 1.4rem 0 2rem; padding: 1rem 1.2rem; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); }
+  .toc ol { margin: 0; padding-left: 1.3rem; display: grid; gap: 0.2rem; }
+  .part { padding-top: 1rem; margin-top: 2rem; border-top: 1px solid var(--line); scroll-margin-top: 80px; }
+  .part > h2 { font-size: 1.7rem; margin-top: 0.3rem; }
+  .body :global(h2) { font-size: 1.2rem; }
+  .answer { padding: 0.8rem 1rem; border-radius: 12px; background: var(--accent-soft); }
+  .end { margin-top: 2.5rem; }
+</style>

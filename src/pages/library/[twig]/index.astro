@@ -1,0 +1,121 @@
+---
+// The Gateway: the twig's front door. Says what you will learn, how long it takes, and lets you choose how to read.
+import { render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import LibraryGuide from '../../../components/LibraryGuide.astro';
+import LibraryCrumbs from '../../../components/LibraryCrumbs.astro';
+import ProgressMeter from '../../../components/ProgressMeter.astro';
+import { findTwig } from '../../../library.config';
+import { getLibraryPages, getTwigPages, splitLibraryId, libraryUrl, readMinutes } from '../../../lib';
+
+export async function getStaticPaths() {
+  const gateways = (await getLibraryPages()).filter((p) => p.data.kind === 'gateway');
+  return gateways.map((gateway) => ({ params: { twig: splitLibraryId(gateway.id).twig }, props: { gateway } }));
+}
+
+const { gateway } = Astro.props;
+const { twig } = splitLibraryId(gateway.id);
+const { Content } = await render(gateway);
+const { title, description, outcomes, date, updated } = gateway.data;
+const twigInfo = findTwig(twig)?.twig;
+const all = await getTwigPages(twig);
+const leaves = all.filter((p) => p.data.kind === 'leaf');
+const recap = all.find((p) => p.data.kind === 'recap');
+const minutes = leaves.reduce((m, l) => m + readMinutes(l.body), 0);
+const leafList = leaves.map((l) => ({ id: l.id, url: libraryUrl(l.id, 'leaf'), title: l.data.title }));
+const url = new URL(`/library/${twig}/`, Astro.site).href;
+const schema = [
+  {
+    '@type': 'Course',
+    name: title,
+    description,
+    url,
+    inLanguage: 'en',
+    isAccessibleForFree: true,
+    educationalLevel: 'Beginner',
+    teaches: outcomes,
+    timeRequired: `PT${minutes}M`,
+    provider: { '@id': new URL('/#person', Astro.site).href },
+    hasPart: leaves.map((l) => ({ '@type': 'LearningResource', name: l.data.title, url: new URL(libraryUrl(l.id, 'leaf'), Astro.site).href })),
+  },
+];
+---
+
+<Base {title} {description} published={date} {updated} {schema}>
+  <div class="wrap gate-layout">
+    <div>
+      <LibraryCrumbs {twig} />
+      <p class="eyebrow">Twig · {leaves.length} short pages · about {minutes} minutes in all · free, no sign-up</p>
+      <h1>{title}</h1>
+      <p class="big-q">{twigInfo?.question}</p>
+      <div class="prose"><Content /></div>
+
+      {outcomes.length > 0 && (
+        <div class="outcomes">
+          <h2>By the end, you will be able to</h2>
+          <ul>{outcomes.map((o) => <li>{o}</li>)}</ul>
+        </div>
+      )}
+
+      <div class="choose">
+        <a class="btn start" href={leafList[0]?.url} data-continue-twig={twig} data-leaves={JSON.stringify(leafList)}>
+          <span data-label>Start with Leaf 1</span> <span aria-hidden="true">→</span>
+        </a>
+        <a class="btn ghost" href={`/library/${twig}/all/`}>Read it all on one page</a>
+        {recap && <a class="btn ghost" href={libraryUrl(recap.id, 'recap')}>Just the recap</a>}
+      </div>
+      <ProgressMeter {twig} total={leaves.length} />
+
+      <h2>The path</h2>
+      <ol class="path">
+        {leaves.map((l, i) => (
+          <li data-leaf-id={l.id}>
+            <a href={libraryUrl(l.id, 'leaf')}>
+              <span class="num">{i + 1}</span>
+              <span class="q">{l.data.title}</span>
+              <span class="small muted mins">{readMinutes(l.body)} min</span>
+            </a>
+          </li>
+        ))}
+        {recap && (
+          <li class="recap">
+            <a href={libraryUrl(recap.id, 'recap')}>
+              <span class="num">✓</span>
+              <span class="q">Recap and quick quiz</span>
+              <span class="small muted mins">{readMinutes(recap.body)} min</span>
+            </a>
+          </li>
+        )}
+      </ol>
+    </div>
+    <aside class="side"><div class="sticky"><LibraryGuide here="Twig" /></div></aside>
+  </div>
+</Base>
+
+<script>
+  import { paintProgress } from '../../../scripts/library-progress';
+  paintProgress();
+</script>
+
+<style>
+  .gate-layout { display: grid; grid-template-columns: minmax(0, 720px) 280px; gap: 3rem; justify-content: center; }
+  .side .sticky { position: sticky; top: 84px; }
+  .big-q { font: italic 500 1.5rem/1.4 'Cormorant Garamond', Georgia, serif; color: var(--accent); margin: 0 0 1rem; }
+  .outcomes { margin: 1.6rem 0; padding: 1.1rem 1.3rem; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); }
+  .outcomes h2 { margin: 0 0 0.6rem; font-size: 1.15rem; }
+  .outcomes ul { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.3rem; }
+  .choose { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.6rem 0 1rem; }
+  .path { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
+  .path a { display: flex; align-items: center; gap: 0.9rem; padding: 0.75rem 1rem; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+  .path a:hover { border-color: var(--accent); transform: translateX(3px); }
+  .num { flex: none; display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-weight: 600; font-size: 0.9rem; }
+  .path li.done .num { background: var(--teal); color: #fff; }
+  .path li.done .num { font-size: 0; }
+  .path li.done .num::after { content: '✓'; font-size: 0.95rem; }
+  .q { flex: 1; font-weight: 500; }
+  .mins { flex: none; }
+  @media (max-width: 980px) {
+    .gate-layout { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+    .side .sticky { position: static; }
+  }
+</style>

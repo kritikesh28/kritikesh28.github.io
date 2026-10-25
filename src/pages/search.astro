@@ -1,0 +1,174 @@
+---
+// Site search. It always shows something useful: exact matches first, then the closest pages,
+// and an honest note when the library does not cover a question yet.
+import Base from '../layouts/Base.astro';
+import QuestionCard from '../components/QuestionCard.astro';
+---
+
+<Base title="Search the library" description="Search every page, course and curious question on Curious Sparoows. You always get the closest answers we have.">
+  <div class="wrap search-page">
+    <p class="eyebrow">Search</p>
+    <h1>What are you curious about?</h1>
+    <form class="find" action="/search/" method="get" role="search" data-form>
+      <label class="sr-only" for="q">Search the site</label>
+      <input id="q" name="q" type="search" placeholder="Try: what is dark matter, age of universe, big bang" autocomplete="off" autofocus />
+      <button class="btn" type="submit">Search</button>
+    </form>
+    <p class="small muted" data-status aria-live="polite">Type a question or a few words. Spelling mistakes are fine.</p>
+    <ol class="results" data-results></ol>
+    <div class="nothing" data-nothing hidden>
+      <p>This library is still young and may not cover that yet. <a data-suggest href="/contact/">Suggest it as a question</a> and I will consider writing it.</p>
+    </div>
+    <noscript><p>Search needs JavaScript. You can still browse everything from the <a href="/library/">library</a> or the <a href="/blog/">blog</a>.</p></noscript>
+    <div class="aside"><QuestionCard compact /></div>
+  </div>
+</Base>
+
+<script>
+  type Item = { t: string; d: string; u: string; k: string; w: string; b: string };
+  const STOP = new Set('a an the is are was were be of to in on at for and or what why how who when where which does do did it its can i you we me my this that with from by as into about'.split(' '));
+  // Words people use for the same idea
+  const SYN: Record<string, string[]> = {
+    bigbang: ['big', 'bang'], cmb: ['cosmic', 'microwave', 'background'], ai: ['artificial', 'intelligence', 'ai'],
+    ml: ['machine', 'learning'], earth: ['earth', 'planet'], cosmos: ['universe'], space: ['space', 'universe'],
+    old: ['age', 'old'], age: ['age', 'old'], begin: ['beginning', 'begin', 'origin', 'start'], end: ['end', 'fate'],
+    stars: ['star', 'stars'], galaxy: ['galaxy', 'galaxies'], atom: ['atom', 'atoms', 'elements'],
+  };
+  const norm = (s: string) => s.toLowerCase().normalize('NFKD').replace(/[^\p{L}\p{N}\s]/gu, ' ');
+  const words = (s: string) => norm(s).split(/\s+/).filter((w) => w && !STOP.has(w));
+  const stem = (w: string) => w.replace(/(ies)$/, 'y').replace(/(es|s)$/, '');
+  const lev = (a: string, b: string) => {
+    if (Math.abs(a.length - b.length) > 2) return 9;
+    const d = Array.from({ length: b.length + 1 }, (_, i) => i);
+    for (let i = 1; i <= a.length; i++) {
+      let prev = d[0]; d[0] = i;
+      for (let j = 1; j <= b.length; j++) {
+        const tmp = d[j];
+        d[j] = Math.min(d[j] + 1, d[j - 1] + 1, prev + (a[i - 1] === b[j - 1] ? 0 : 1));
+        prev = tmp;
+      }
+    }
+    return d[b.length];
+  };
+  const tri = (s: string) => { const t = new Set<string>(); const x = `  ${norm(s)} `; for (let i = 0; i < x.length - 2; i++) t.add(x.slice(i, i + 3)); return t; };
+
+  let index: { item: Item; fields: [Set<string>, number][]; tris: Set<string> }[] = [];
+
+  function termScore(term: string, set: Set<string>) {
+    const s = stem(term);
+    if (set.has(s)) return 1;
+    let best = 0;
+    for (const w of set) {
+      if (s.length >= 3 && w.startsWith(s)) best = Math.max(best, 0.7);
+      else if (s.length >= 4) {
+        const dist = lev(s, w);
+        if (dist === 1 || (dist === 2 && s.length >= 7)) best = Math.max(best, 0.5);
+      }
+    }
+    return best;
+  }
+
+  function search(q: string) {
+    let terms = words(q);
+    terms = terms.flatMap((t) => SYN[t] ?? [t]);
+    const phrase = norm(q).trim();
+    const scored = index.map(({ item, fields, tris }) => {
+      let score = 0, hits = 0;
+      for (const term of terms) {
+        let best = 0;
+        for (const [set, weight] of fields) best = Math.max(best, termScore(term, set) * weight);
+        if (best > 0) hits++;
+        score += best;
+      }
+      if (terms.length) score *= 0.5 + 0.5 * (hits / terms.length); // reward pages that match more of the words
+      if (phrase.length > 3 && norm(item.t).includes(phrase)) score += 8;
+      // closeness by letter patterns, so even odd spellings find something
+      const qt = tri(q); let common = 0; qt.forEach((t) => tris.has(t) && common++);
+      const sim = qt.size ? common / qt.size : 0;
+      return { item, score, sim };
+    });
+    const exact = scored.filter((s) => s.score > 0.9).sort((a, b) => b.score - a.score || b.sim - a.sim);
+    const close = scored.filter((s) => s.score <= 0.9).sort((a, b) => b.sim + b.score - (a.sim + a.score));
+    return { exact, close: close.slice(0, exact.length ? 4 : 8) };
+  }
+
+  const $ = <T extends HTMLElement>(s: string) => document.querySelector<T>(s)!;
+  const results = $('[data-results]');
+  const status = $('[data-status]');
+  const nothing = $('[data-nothing]');
+  const input = $<HTMLInputElement>('#q');
+
+  function card(item: Item) {
+    const li = document.createElement('li');
+    const inner = document.createElement(item.u ? 'a' : 'div');
+    if (item.u) (inner as HTMLAnchorElement).href = item.u;
+    inner.className = 'hit';
+    const k = document.createElement('span'); k.className = 'kind'; k.textContent = item.k;
+    const t = document.createElement('strong'); t.textContent = item.t;
+    const d = document.createElement('span'); d.className = 'desc'; d.textContent = item.d;
+    inner.append(k, t, d);
+    li.append(inner);
+    return li;
+  }
+  function heading(text: string) {
+    const li = document.createElement('li'); li.className = 'group'; li.textContent = text; return li;
+  }
+
+  function run(q: string) {
+    results.replaceChildren();
+    nothing.hidden = true;
+    if (!q.trim()) { status.textContent = 'Type a question or a few words. Spelling mistakes are fine.'; return; }
+    const { exact, close } = search(q);
+    if (exact.length) {
+      status.textContent = `${exact.length} ${exact.length === 1 ? 'page matches' : 'pages match'} “${q}”, best first.`;
+      exact.forEach((r) => results.append(card(r.item)));
+      if (close.length) { results.append(heading('You might also like')); close.forEach((r) => results.append(card(r.item))); }
+      if (exact.length < 3) nothing.hidden = false;
+    } else {
+      status.textContent = `Nothing covers “${q}” exactly yet, so here are the closest pages.`;
+      close.forEach((r) => results.append(card(r.item)));
+      nothing.hidden = false;
+    }
+    if (!nothing.hidden) {
+      $<HTMLAnchorElement>('[data-suggest]').href = `/contact/?intent=learning&topic=${encodeURIComponent(q)}`;
+    }
+  }
+
+  fetch('/search-index.json').then((r) => r.json()).then((items: Item[]) => {
+    index = items.map((item) => ({
+      item,
+      fields: [[new Set(words(item.t).map(stem)), 6], [new Set(words(item.w).map(stem)), 4], [new Set(words(item.d).map(stem)), 3], [new Set(words(item.b).map(stem)), 1]],
+      tris: tri(`${item.t} ${item.w}`),
+    }));
+    const q = new URLSearchParams(location.search).get('q') ?? '';
+    input.value = q;
+    run(q);
+  }).catch(() => { status.textContent = 'Search could not load. Browse the library instead.'; });
+
+  let timer: number | undefined;
+  input.addEventListener('input', () => {
+    clearTimeout(timer);
+    timer = window.setTimeout(() => {
+      run(input.value);
+      history.replaceState(null, '', input.value ? `?q=${encodeURIComponent(input.value)}` : location.pathname);
+    }, 150);
+  });
+  $('[data-form]').addEventListener('submit', (e) => { e.preventDefault(); run(input.value); });
+</script>
+
+<style>
+  .search-page { max-width: 760px; }
+  .find { display: flex; gap: 0.5rem; margin: 1.2rem 0 0.6rem; }
+  .find input { flex: 1; min-width: 0; padding: 0.8rem 1.1rem; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; font-size: 1.05rem; }
+  .find input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .results { list-style: none; padding: 0; margin: 1rem 0; display: grid; gap: 0.6rem; }
+  .results :global(.hit) { display: grid; gap: 0.2rem; padding: 0.9rem 1.1rem; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+  .results :global(a.hit:hover) { border-color: var(--accent); transform: translateX(3px); }
+  .results :global(.kind) { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+  .results :global(strong) { font-family: var(--font-serif); font-size: 1.1rem; }
+  .results :global(.desc) { color: var(--ink-soft); font-size: 0.95rem; }
+  .results :global(.group) { margin-top: 1rem; font-weight: 600; color: var(--ink-soft); font-size: 0.9rem; }
+  .nothing { padding: 1rem 1.2rem; border-radius: 14px; background: var(--accent-soft); }
+  .nothing p { margin: 0; }
+  .aside { margin-top: 2.5rem; }
+</style>

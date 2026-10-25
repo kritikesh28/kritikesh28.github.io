@@ -21,6 +21,7 @@ This folder explains, step by step, every task needed to keep the website **curi
 | Fix something that broke | [08 · Fix problems](08-fix-problems.md) |
 | Back up the site or restore it from a backup | [09 · Backup and restore](09-backup-and-restore.md) |
 | Get help from Claude or any other AI, and the rules we work by | [10 · Working with AI and our rules](10-working-with-ai.md) |
+| Add a Leaf, a new course (twig), a curious question, or update the library | [13 · Add to the library](13-add-to-the-library.md) |
 | Understand the plan for the blog as an open library | [11 · Library plan](11-library-plan.md) |
 | See what is waiting to be done, and what to do first | [12 · Pending task list](12-task-list.md) |
 | Understand the mission and the ethics everything rests on | [Vision and foundation](VISION.md) |

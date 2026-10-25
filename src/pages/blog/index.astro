@@ -20,6 +20,12 @@ const tags = [...tagCounts].sort((a, b) => b[1] - a[1]);
     <p class="motto">Two o's, two sparrows: curiosity is better shared.</p>
     <p class="muted narrow">The blog. Explainers that start from the basics and climb. Pick a theme, or read the newest first.</p>
 
+    <a class="lib-band" href="/library/">
+      <span class="eyebrow">New · The Library</span>
+      <strong>Prefer short pages? Learn one question at a time.</strong>
+      <span class="small">Two-minute pages with a clear path, a progress tracker and a recap. Start with the Universe →</span>
+    </a>
+
     <div class="cats">
       {CATEGORIES.map((c) => (
         <a class="cat" href={`/blog/category/${c.slug}/`}>
@@ -50,6 +56,10 @@ const tags = [...tagCounts].sort((a, b) => b[1] - a[1]);
   .blog-hero::before { content: ''; position: absolute; inset: -30px; background: url('/images/sparrows.webp') center / cover; filter: blur(28px) saturate(1.1); opacity: 0.85; }
   .blog-hero img { position: relative; display: block; width: auto; max-width: 100%; height: auto; max-height: 440px; margin: 0 auto; aspect-ratio: 16 / 9; }
   @media (min-width: 800px) { .blog-hero img { mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); } }
+  .lib-band { display: grid; gap: 0.2rem; margin-top: 1.4rem; padding: 1rem 1.2rem; border-radius: var(--radius); text-decoration: none; color: #f6e7c8; background: radial-gradient(120% 140% at 85% 0%, #3a2b6a 0%, #1d1838 60%, #120f24 100%); }
+  .lib-band .eyebrow { color: #e8c584; }
+  .lib-band strong { font-family: var(--font-serif); font-size: 1.2rem; color: #fff6e6; }
+  .lib-band:hover { color: #fff3dc; }
   .cats { display: grid; gap: 0.8rem; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); margin-top: 1.5rem; }
   .cat { display: flex; flex-direction: column; gap: 0.2rem; padding: 0.9rem 1rem; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); text-decoration: none; color: var(--ink); }
   .cat:hover { border-color: var(--accent); color: var(--ink); }

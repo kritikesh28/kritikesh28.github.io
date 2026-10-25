@@ -30,8 +30,9 @@ export const SITE = {
 
 export const NAV = [
   { href: '/', label: 'Home' },
-  { href: '/portfolio/', label: 'Portfolio' },
+  { href: '/library/', label: 'Library' },
   { href: '/blog/', label: 'Blog' },
+  { href: '/portfolio/', label: 'Portfolio' },
   { href: '/about/', label: 'About' },
   { href: '/contact/', label: 'Contact' },
 ];

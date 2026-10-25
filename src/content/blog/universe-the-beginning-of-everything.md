@@ -11,6 +11,8 @@ aiAssisted: true
 
 <!-- Written from Kritikesh's "Universe and Space" Q&A notes with AI help. Put any line in your own words before merging. -->
 
+> **Prefer short pages?** This post is also a free 12-part course in the library, one two-minute question at a time, with a recap and quiz: [The Universe, from the first second to you](/library/the-universe/).
+
 Every subject I study, whether rocks, rivers, maps or people, sits inside something bigger. Follow that chain far enough and you reach the Universe. So my first post starts there, at the beginning of everything.
 
 ## What is the Universe?

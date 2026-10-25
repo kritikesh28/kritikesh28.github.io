@@ -2,6 +2,8 @@
 
 [Back to the handbook](README.md)
 
+> Writing a short two-minute library page instead of a blog post? Use [13 · Add to the library](13-add-to-the-library.md).
+
 You need only a web browser and your GitHub login. No installation.
 
 ## A. Write the post

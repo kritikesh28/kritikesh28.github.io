@@ -30,14 +30,18 @@ If step 3 fails, the live site simply stays as it was. Nothing breaks for visito
 kritikesh28.github.io/
 ├── docs/                    ← this handbook
 ├── POST_TEMPLATE.md         ← copy this to start a new post
+├── LEAF_TEMPLATE.md         ← copy this to start a new library Leaf
 ├── public/                  ← files served as they are
 │   ├── images/              ← pictures used on pages and posts
 │   ├── CNAME                ← the domain name (curioussparoows.com)
 │   └── Kritikesh_Rajpurohit_Resume.pdf
 ├── src/
 │   ├── site.config.ts       ← name, tagline, links, menu, categories, services
+│   ├── library.config.ts    ← library trees, branches, twigs, "What is growing" list
+│   ├── data/curious-questions.ts ← questions for the curious question card
 │   ├── content/
 │   │   ├── blog/            ← one .md file per blog post
+│   │   ├── library/         ← one folder per library twig (course); see guide 13
 │   │   └── projects/        ← one .md file per portfolio project
 │   ├── pages/               ← the pages (about, now, contact, privacy...)
 │   ├── components/          ← reusable building blocks (cards, starfield...)
@@ -48,6 +52,6 @@ kritikesh28.github.io/
 └── .github/workflows/deploy.yml ← the automatic publish job
 ```
 
-**Safe to edit any time:** anything in `src/content/`, `public/images/`, `src/site.config.ts`, and the text inside `src/pages/*.astro`.
+**Safe to edit any time:** anything in `src/content/`, `public/images/`, `src/site.config.ts`, `src/library.config.ts`, `src/data/`, and the text inside `src/pages/*.astro`.
 **Edit with care:** `src/components/`, `src/layouts/`, `src/styles/`.
 **Leave alone unless you know why:** `astro.config.mjs`, `package.json`, `package-lock.json`, `.github/`.
