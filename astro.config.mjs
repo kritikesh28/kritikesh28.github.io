@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 // When you buy a domain, change `site` to it (for example 'https://curioussparoows.com')
-// and add the domain to public/CNAME. See UPLOAD_STEPS.md.
+// and add the domain to public/CNAME. See docs/04-edit-pages-and-settings.md.
 export default defineConfig({
   site: 'https://curioussparoows.com',
   integrations: [sitemap({ filter: (page) => !page.includes('/thanks/') })],

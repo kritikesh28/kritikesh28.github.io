@@ -1,6 +1,6 @@
 # kritikesh28.github.io
 
-Personal website of Kritikesh Rajpurohit: Portfolio, the Curious Sparrow blog, About and Contact.
+Personal website of Kritikesh Rajpurohit: Portfolio, the Curious Sparoows blog, About and Contact.
 Built with [Astro](https://astro.build) and published free on GitHub Pages.
 
 - Settings you change most (name, tagline, links, blog categories, contact form): `src/site.config.ts`
@@ -9,3 +9,5 @@ Built with [Astro](https://astro.build) and published free on GitHub Pages.
 - Images: `public/images/`
 
 Every change committed to `main` rebuilds and republishes the site in about two minutes (see the Actions tab).
+
+**Step-by-step guides for every task (writing, publishing, images, settings, fixing problems, backups): see the [handbook in `docs/`](docs/README.md).**

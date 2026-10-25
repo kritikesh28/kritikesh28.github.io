@@ -21,7 +21,7 @@ export const SITE = {
   resumePdf: '/Kritikesh_Rajpurohit_Resume.pdf',
   // Visitor stats: after signing up at goatcounter.com, put your code here (for example 'kritikesh')
   goatcounterCode: 'curioussparoows',
-  // Comments: fill these from giscus.app after enabling Discussions on the repo (see UPLOAD_STEPS.md)
+  // Comments: fill these from giscus.app after enabling Discussions on the repo (see docs/04-edit-pages-and-settings.md)
   giscus: { repo: '', repoId: '', category: 'Announcements', categoryId: '' },
   // Search engine ownership checks: paste only the content="..." value each tool gives you
   googleSiteVerification: 'nPlIXiEQqkySyR-eDcXyhy2FiriMLtYYU2ZWRR5z8BE',
