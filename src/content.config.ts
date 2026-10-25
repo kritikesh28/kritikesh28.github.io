@@ -42,4 +42,29 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { blog, projects };
+// Library pages: one folder per twig in src/content/library/. Guide: docs/13-add-to-the-library.md
+const library = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/library' }),
+  schema: z.object({
+    // A leaf's title is the question it answers, written the way people search for it
+    title: z.string(),
+    description: z.string(),
+    kind: z.enum(['gateway', 'leaf', 'recap']).default('leaf'),
+    // Reading order inside the twig: gateway 0, leaves 1, 2, 3..., recap last
+    order: z.number(),
+    // The answer in one or two sentences, shown at the top so nobody has to hunt for it
+    answer: z.string().optional(),
+    // One honest line that sets up the next leaf's question
+    nextHook: z.string().optional(),
+    // Gateway only: what the reader will be able to do by the end
+    outcomes: z.array(z.string()).default([]),
+    // Words people really search for; they help the site search and search engines
+    keywords: z.array(z.string()).default([]),
+    date: z.coerce.date(),
+    updated: z.coerce.date().optional(),
+    aiAssisted: z.boolean().default(false),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { blog, projects, library };

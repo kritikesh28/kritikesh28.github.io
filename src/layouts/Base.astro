@@ -73,6 +73,9 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
             ))}
           </ul>
         </nav>
+        <a class="theme" href="/search/" aria-label="Search the site" title="Search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2" /><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        </a>
         <button class="theme" type="button" aria-label="Switch light or dark theme" title="Light / dark">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z" fill="currentColor" /></svg>
         </button>
@@ -108,6 +111,8 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
             <h2>Begin</h2>
             <ul>
               <li><a href="/start/">Start here</a></li>
+              <li><a href="/library/the-universe/">The Universe course</a></li>
+              <li><a href="/search/">Search</a></li>
               <li><a href="/now/">What I'm doing now</a></li>
             </ul>
           </div>
@@ -141,7 +146,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
   const root = document.documentElement;
 
   // Light / dark toggle
-  document.querySelector('.theme')?.addEventListener('click', () => {
+  document.querySelector('button.theme')?.addEventListener('click', () => {
     const dark = root.dataset.theme
       ? root.dataset.theme === 'dark'
       : matchMedia('(prefers-color-scheme: dark)').matches;
@@ -215,10 +220,10 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
   .theme:hover { transform: rotate(-25deg); }
   .theme svg { width: 18px; height: 18px; }
   @media (max-width: 720px) {
-    .bar { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+    .bar { padding-top: 0.5rem; padding-bottom: 0.5rem; gap: 0.5rem; }
     nav { order: 3; width: 100%; margin-left: 0; }
     .site-header nav ul { gap: 0; overflow-x: auto; flex-wrap: nowrap; }
-    .theme { margin-left: auto; }
+    a.theme { margin-left: auto; }
   }
   .sig-wm {
     position: fixed; right: -9vw; bottom: -6vh; z-index: -1; width: min(58vw, 760px); pointer-events: none;

@@ -1,12 +1,13 @@
 import type { APIContext } from 'astro';
 import { SITE, SOCIALS, CATEGORIES } from '../site.config';
-import { getPosts, getProjects } from '../lib';
+import { getPosts, getProjects, getLibraryPages, libraryUrl } from '../lib';
 
 // A plain summary for AI assistants (the llms.txt convention), built from the same data as the site.
 export async function GET({ site }: APIContext) {
   const url = (p: string) => new URL(p, site).href;
   const projects = await getProjects();
   const posts = await getPosts();
+  const library = (await getLibraryPages()).filter((p) => p.data.kind !== 'gateway').sort((a, b) => a.id.localeCompare(b.id) || a.data.order - b.data.order);
   const lines = [
     `# ${SITE.name} · ${SITE.blogBrand}`,
     '',
@@ -17,6 +18,7 @@ export async function GET({ site }: APIContext) {
     '## Main pages',
     `- [About](${url('/about/')}): background, skills and interests`,
     `- [Portfolio](${url('/portfolio/')}): data, AI and GIS projects`,
+    `- [Library](${url('/library/')}): short question-led courses; each page answers one question in about two minutes`,
     `- [Blog](${url('/blog/')}): explainers by theme`,
     `- [Now](${url('/now/')}): current work`,
     `- [Contact](${url('/contact/')})`,
@@ -26,6 +28,9 @@ export async function GET({ site }: APIContext) {
     '',
     '## Blog themes',
     ...CATEGORIES.map((c) => `- [${c.label}](${url(`/blog/category/${c.slug}/`)}): ${c.blurb}`),
+    '',
+    '## Library pages',
+    ...library.sort((a, b) => a.data.order - b.data.order).map((p) => `- [${p.data.title}](${url(libraryUrl(p.id, p.data.kind))}): ${p.data.answer ?? p.data.description}`),
     ...(posts.length ? ['', '## Posts', ...posts.map((p) => `- [${p.data.title}](${url(`/blog/${p.id}/`)}): ${p.data.description}`)] : []),
     '',
     '## Profiles',

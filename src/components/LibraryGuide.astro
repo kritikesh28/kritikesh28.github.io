@@ -1,0 +1,45 @@
+---
+// "How this library works": the side panel on library pages.
+import { LEVELS } from '../library.config';
+interface Props { here?: string }
+const { here } = Astro.props;
+---
+
+<details class="guide" data-guide open>
+  <summary>How this library works</summary>
+  <ol class="levels">
+    {LEVELS.map((l) => (
+      <li class:list={{ here: l.name === here }}>
+        <span class="icon" aria-hidden="true">{l.icon}</span>
+        <span><strong>{l.name}</strong> {l.means}. <span class="muted">Like {l.like}.</span></span>
+      </li>
+    ))}
+  </ol>
+  <ul class="promises small">
+    <li>Every page answers its question first. Nothing is held back.</li>
+    <li>Read in order, jump around, or read it all on one page.</li>
+    <li>Your progress is saved only in this browser. No sign-up.</li>
+  </ul>
+</details>
+
+<script>
+  // Open by default on first visit; afterwards it remembers if you closed it.
+  const g = document.querySelector<HTMLDetailsElement>('[data-guide]');
+  if (g) {
+    try {
+      if (localStorage.getItem('cs-guide') === 'closed') g.open = false;
+      g.addEventListener('toggle', () => localStorage.setItem('cs-guide', g.open ? 'open' : 'closed'));
+    } catch {}
+  }
+</script>
+
+<style>
+  .guide { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 0.9rem 1rem; font-size: 0.92rem; }
+  .guide summary { cursor: pointer; font-weight: 600; font-family: var(--font-serif); font-size: 1rem; }
+  .levels { list-style: none; margin: 0.8rem 0 0; padding: 0; display: grid; gap: 0.35rem; }
+  .levels li { display: flex; gap: 0.55rem; align-items: baseline; padding: 0.35rem 0.5rem; border-radius: 10px; line-height: 1.4; }
+  .levels li.here { background: var(--accent-soft); }
+  .levels li.here strong::after { content: ' · you are here'; font-weight: 500; font-size: 0.8em; color: var(--accent); }
+  .icon { flex: none; width: 1.3rem; text-align: center; }
+  .promises { margin: 0.8rem 0 0; padding-left: 1.1rem; color: var(--ink-soft); display: grid; gap: 0.25rem; }
+</style>

@@ -1,0 +1,24 @@
+---
+import { findTwig } from '../library.config';
+interface Props { twig: string; current?: string }
+const { twig, current } = Astro.props;
+const found = findTwig(twig);
+---
+
+<nav class="crumbs small" aria-label="Where you are in the library">
+  <a href="/library/">Library</a>
+  {found && (
+    <>
+      <span aria-hidden="true">›</span><a href={`/library/#${found.tree.slug}`}>{found.tree.title}</a>
+      <span aria-hidden="true">›</span><span>{found.branch.title}</span>
+      <span aria-hidden="true">›</span>{current ? <a href={`/library/${twig}/`}>{found.twig.title}</a> : <span aria-current="page">{found.twig.title}</span>}
+    </>
+  )}
+  {current && <><span aria-hidden="true">›</span><span aria-current="page">{current}</span></>}
+</nav>
+
+<style>
+  .crumbs { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; color: var(--ink-soft); margin-bottom: 0.8rem; }
+  .crumbs a { color: var(--ink-soft); text-decoration: none; }
+  .crumbs a:hover { color: var(--accent); }
+</style>

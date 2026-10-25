@@ -95,6 +95,10 @@ const intents = [
     };
     radios.forEach((r) => r.addEventListener('change', () => pick(r.value)));
     pick(new URLSearchParams(location.search).get('intent') ?? 'hiring');
+    // From the library search: ?intent=learning&topic=... prefills the question
+    const topic = new URLSearchParams(location.search).get('topic');
+    const message = form.querySelector<HTMLTextAreaElement>('[name=message]');
+    if (topic && message && !message.value) message.value = `Please explain: ${topic.slice(0, 200)}`;
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
