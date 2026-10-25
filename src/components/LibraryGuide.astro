@@ -1,6 +1,7 @@
 ---
 // "How this library works": the side panel on library pages.
 import { LEVELS } from '../library.config';
+import LevelIcon from './LevelIcon.astro';
 interface Props { here?: string }
 const { here } = Astro.props;
 ---
@@ -10,7 +11,7 @@ const { here } = Astro.props;
   <ol class="levels">
     {LEVELS.map((l) => (
       <li class:list={{ here: l.name === here }}>
-        <span class="icon" aria-hidden="true">{l.icon}</span>
+        <LevelIcon level={l.name} size={24} class="icon" />
         <span><strong>{l.name}</strong> {l.means}. <span class="muted">Like {l.like}.</span></span>
       </li>
     ))}
@@ -40,6 +41,8 @@ const { here } = Astro.props;
   .levels li { display: flex; gap: 0.55rem; align-items: baseline; padding: 0.35rem 0.5rem; border-radius: 10px; line-height: 1.4; }
   .levels li.here { background: var(--accent-soft); }
   .levels li.here strong::after { content: ' · you are here'; font-weight: 500; font-size: 0.8em; color: var(--accent); }
-  .icon { flex: none; width: 1.3rem; text-align: center; }
+  .levels :global(.icon) { flex: none; align-self: center; color: #8a6a3b; }
+  :global([data-theme='dark']) .levels :global(.icon) { color: #e0b45e; }
+  @media (prefers-color-scheme: dark) { :global(:root:not([data-theme='light'])) .levels :global(.icon) { color: #e0b45e; } }
   .promises { margin: 0.8rem 0 0; padding-left: 1.1rem; color: var(--ink-soft); display: grid; gap: 0.25rem; }
 </style>

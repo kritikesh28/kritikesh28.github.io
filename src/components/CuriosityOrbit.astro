@@ -17,7 +17,7 @@ const nodes = CATEGORIES.map((c, i) => {
     <g class="ring">
       {nodes.map((n) => <line x1={C} y1={C} x2={n.x} y2={n.y} class="thread" stroke={n.color} />)}
       {nodes.map((n) => (
-        <a href={`/blog/category/${n.slug}/`} class="node" data-label={n.label} data-blurb={n.blurb} aria-label={`${n.label}: ${n.blurb}`}>
+        <a href={`/library/${n.slug}/`} class="node" data-label={n.label} data-blurb={n.blurb} aria-label={`${n.label}: ${n.blurb}`}>
           <g transform={`translate(${n.x} ${n.y})`}>
             <g class="upright">
               <circle r="46" class="halo" fill={n.color} />
@@ -28,10 +28,10 @@ const nodes = CATEGORIES.map((c, i) => {
         </a>
       ))}
     </g>
-    <a href="/start/" class="centre" aria-label="Start here">
+    <a href="/library/" class="centre" aria-label="Open the library">
       <circle cx={C} cy={C} r="62" class="sun" />
-      <text x={C} y={C - 4} text-anchor="middle" class="centre-big">Start</text>
-      <text x={C} y={C + 18} text-anchor="middle" class="centre-small">here</text>
+      <text x={C} y={C - 4} text-anchor="middle" class="centre-big">Library</text>
+      <text x={C} y={C + 18} text-anchor="middle" class="centre-small">open</text>
     </a>
   </svg>
   <p class="caption" aria-live="polite">Hover or tap a thread to see where it leads.</p>

@@ -1,0 +1,120 @@
+---
+// One tree (subject): its branches and twigs (short courses), and its long reads.
+import Base from '../layouts/Base.astro';
+import LevelIcon from './LevelIcon.astro';
+import TreeMotif from './TreeMotif.astro';
+import ProgressMeter from './ProgressMeter.astro';
+import PostCard from './PostCard.astro';
+import LibraryGuide from './LibraryGuide.astro';
+import { TREES, type Tree } from '../library.config';
+import { getLibraryPages, getPosts } from '../lib';
+
+interface Props { tree: Tree }
+const { tree } = Astro.props;
+const pages = await getLibraryPages();
+const leafCount = (twig: string) => pages.filter((p) => p.id.startsWith(`${twig}/`) && p.data.kind === 'leaf').length;
+const reads = (await getPosts()).filter((p) => p.data.category === tree.slug);
+const statusLabel = { live: 'Read now', next: 'Being written', planned: 'Planned' } as const;
+const schema = [
+  {
+    '@type': 'CollectionPage',
+    name: `${tree.title} · Curious Sparoows Library`,
+    description: tree.blurb,
+    url: new URL(`/library/${tree.slug}/`, Astro.site).href,
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Library', item: new URL('/library/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: tree.title, item: new URL(`/library/${tree.slug}/`, Astro.site).href },
+    ],
+  },
+];
+---
+
+<Base title={tree.title} description={`${tree.blurb} Short courses and long reads in the Curious Sparoows Library.`} {schema}>
+  <div class={`wrap tree-layout t-${tree.slug}`}>
+    <div>
+      <nav class="crumbs small" aria-label="Where you are in the library"><a href="/library/">Library</a><span aria-hidden="true">›</span><span aria-current="page">{tree.title}</span></nav>
+      <header class="tree-hero">
+        <TreeMotif tree={tree.slug} class="wm" />
+        <p class="eyebrow"><LevelIcon level="Tree" size={22} /> Tree</p>
+        <h1>{tree.title}</h1>
+        <p class="lede">{tree.blurb}</p>
+      </header>
+
+      {tree.branches.map((branch) => (
+        <section class="branch">
+          <h2><LevelIcon level="Branch" size={26} /> {branch.title}</h2>
+          <ul class="twigs">
+            {branch.twigs.map((twig) => (
+              <li class:list={['twig', twig.status]}>
+                {twig.status === 'live' ? (
+                  <a href={`/library/${twig.slug}/`}>
+                    <span class="kind"><LevelIcon level="Twig" size={18} /> Short course · {leafCount(twig.slug)} Leaves</span>
+                    <strong>{twig.title}</strong>
+                    <span>{twig.question}</span>
+                    <ProgressMeter twig={twig.slug} total={leafCount(twig.slug)} />
+                  </a>
+                ) : (
+                  <div>
+                    <span class="kind"><LevelIcon level="Twig" size={18} /> Short course</span>
+                    <strong>{twig.title}</strong>
+                    <span>{twig.question}</span>
+                    <span class="tag small">{statusLabel[twig.status]}, not written yet</span>
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+
+      <section class="branch">
+        <h2>Long reads</h2>
+        <p class="muted small">Longer articles you can read in one sitting.</p>
+        {reads.length > 0
+          ? <div class="grid">{reads.map((post) => <PostCard post={post} />)}</div>
+          : <p class="muted">No long reads here yet. The first ones are being written.</p>}
+      </section>
+
+      <nav class="others" aria-label="Other trees">
+        <p class="eyebrow">Other trees</p>
+        {TREES.filter((t) => t.slug !== tree.slug).map((t) => <a class="chip" href={`/library/${t.slug}/`}>{t.title}</a>)}
+      </nav>
+    </div>
+    <aside class="side"><div class="sticky"><LibraryGuide here="Tree" /></div></aside>
+  </div>
+</Base>
+
+<script>
+  import { paintProgress } from '../scripts/library-progress';
+  paintProgress();
+</script>
+
+<style>
+  .tree-layout { display: grid; grid-template-columns: minmax(0, 760px) 280px; gap: 3rem; justify-content: center; }
+  .side .sticky { position: sticky; top: 84px; }
+  .crumbs { display: flex; gap: 0.4rem; color: var(--ink-soft); margin-bottom: 0.8rem; }
+  .crumbs a { color: var(--ink-soft); text-decoration: none; }
+  .tree-hero { position: relative; overflow: hidden; padding: 1.8rem 1.6rem; border-radius: 22px; border: 1px solid var(--line); background: linear-gradient(135deg, color-mix(in srgb, var(--tree) 12%, var(--surface)), var(--surface)); }
+  .tree-hero :global(.wm) { position: absolute; right: -10px; bottom: -14px; width: 300px; height: auto; color: var(--tree); opacity: 0.16; }
+  .tree-hero .eyebrow { display: flex; align-items: center; gap: 0.4rem; color: var(--tree); }
+  .tree-hero h1 { position: relative; }
+  .lede { position: relative; font-size: 1.12rem; color: var(--ink-soft); max-width: 30rem; margin: 0; }
+  .branch h2 { display: flex; align-items: center; gap: 0.5rem; }
+  .branch h2 :global(.level-icon) { color: var(--tree); }
+  .twigs { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.7rem; }
+  .twig > a, .twig > div { display: grid; gap: 0.25rem; padding: 1rem 1.1rem; border-radius: 14px; text-decoration: none; color: var(--ink); background: var(--surface); border: 1px solid var(--line); }
+  .twig.live > a { border-color: color-mix(in srgb, var(--tree) 40%, var(--line)); transition: transform 0.2s, box-shadow 0.2s; }
+  .twig.live > a:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -16px rgb(42 35 80 / 0.4); color: var(--ink); }
+  .twig strong { font-family: var(--font-serif); font-size: 1.2rem; }
+  .twig:not(.live) > div { border-style: dashed; opacity: 0.8; }
+  .kind { display: flex; align-items: center; gap: 0.35rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tree); }
+  .tag { justify-self: start; padding: 0.1rem 0.5rem; border-radius: 999px; background: var(--accent-soft); color: var(--ink-soft); }
+  .others { margin-top: 3rem; }
+  @media (max-width: 980px) {
+    .tree-layout { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+    .side .sticky { position: static; }
+  }
+</style>

@@ -1,8 +1,10 @@
-# 02 · Write and publish a post
+# 02 · Write and publish a long read
 
 [Back to the handbook](README.md)
 
-> Writing a short two-minute library page instead of a blog post? Use [13 · Add to the library](13-add-to-the-library.md).
+> Since October 2026 the blog is part of the library. A **long read** is a full article you read in one sitting; it appears in the library under its subject tree. Writing a short two-minute page instead? Use [13 · Add to the library](13-add-to-the-library.md).
+>
+> The files still live in `src/content/blog/` (the folder name is only technical; visitors never see the word "blog").
 
 You need only a web browser and your GitHub login. No installation.
 
@@ -12,7 +14,7 @@ You need only a web browser and your GitHub login. No installation.
 2. Open the file **`POST_TEMPLATE.md`** and copy all of its text.
 3. Go to the folder **`src/content/blog`** (click `src`, then `content`, then `blog`).
 4. Click **Add file** › **Create new file**.
-5. In the name box, type the post's web address followed by `.md`, using lowercase words joined by hyphens. Example: `why-is-the-sky-dark-at-night.md`. This becomes `curioussparoows.com/blog/why-is-the-sky-dark-at-night/`.
+5. In the name box, type the post's web address followed by `.md`, using lowercase words joined by hyphens. Example: `why-is-the-sky-dark-at-night.md`. This becomes `curioussparoows.com/library/read/why-is-the-sky-dark-at-night/`. The `category` you choose decides which library tree it appears on.
 6. Paste the template text and fill in the front matter (the part between the two `---` lines):
 
 | Field | What to write | Example |
@@ -30,7 +32,7 @@ You need only a web browser and your GitHub login. No installation.
 7. Below the second `---`, write the post in Markdown:
     - `## Heading` for a section heading
     - `**bold words**`
-    - `[link text](https://example.com)` for a link; `[link text](/blog/other-post/)` for one of your own pages
+    - `[link text](https://example.com)` for a link; `[link text](/library/read/other-post/)` for one of your own pages
     - `- item` for a bullet list, `1. item` for a numbered list
     - A table: rows of `| a | b |`, with `| --- | --- |` under the header row
     - A picture: see [03 · Images](03-images.md)
@@ -47,7 +49,7 @@ You need only a web browser and your GitHub login. No installation.
 
 13. When happy, click **Merge pull request**, then **Confirm merge**.
 14. Click the **Actions** tab. A job called "Deploy site to GitHub Pages" will be running (yellow dot). Wait for a green tick (1 to 2 minutes).
-15. Open `https://curioussparoows.com/blog/` and refresh. Your post is live.
+15. Open `https://curioussparoows.com/library/` and its subject tree, then refresh. Your long read is live.
 
 Red cross instead of a green tick? Go to [08 · Fix problems](08-fix-problems.md).
 

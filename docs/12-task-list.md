@@ -8,7 +8,8 @@ The single list of what is waiting to be done, in the recommended order. When yo
 
 ## Now: quick actions for you
 
-- [ ] **Review and merge the library update** (pull request #5). It already contains the Universe post (#3) and the handbook (#4), so merging #5 publishes all three; #3 and #4 then close by themselves. How: [06 · Pull requests](06-pull-requests.md). 10 minutes to read, 1 minute to merge.
+- [x] **Library update merged** (pull request #5, with #3 and #4), 25 October 2026.
+- [ ] **Review and merge "Blog folds into the library"** (pull request #6): sparrow icons, tree watermarks, six trees, long reads, old links forwarding, search suggestions. How: [06 · Pull requests](06-pull-requests.md).
 - [ ] **Add your own line to each Universe Leaf** (optional but recommended): one sentence from your own experience or notes, so every page carries your voice. How: [13 · Add to the library](13-add-to-the-library.md).
 - [ ] **Upload the first site zip to Drive.** How: [09 · Backup and restore](09-backup-and-restore.md), "Make a fresh backup". 2 minutes.
 - [x] **Confirm the level names.** Forest › Tree › Branch › Twig › Leaf, now in use (25 October 2026).
@@ -31,8 +32,8 @@ Status 25 October 2026: all five are built in pull request #5.
 | # | Task | Who |
 | --- | --- | --- |
 | 6 ✓ | Reading progress tracker (built early, in #5): "You've read 5 of 12 Leaves in Universe", ticks on read pages, a progress ring per Tree. Saved privately in the reader's own browser; no login, no guilt-streaks | Claude |
-| 7 | Home-page explorer (the knowledge tree / curiosity orbit) plus a plain directory for phones | Claude |
-| 8 | Hindi and Hinglish search words (brahmand → Universe); quietly count searches that found little, to know what to write next | Claude |
+| 7 ✓ | Home-page explorer: the curiosity wheel now opens the six library trees (in #6) | Claude |
+| 8 | Hindi and Hinglish search words (started in #6: brahmand, prithvi, tara, akash, bhugol; add more as readers use them); quietly count searches that found little, to know what to write next | Claude |
 | 9 | "How the Earth formed" twig (next after the Universe; listed as "being written" on the library page) | Claude drafts, you finish |
 
 ## Phase 3: Grow

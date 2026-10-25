@@ -9,7 +9,7 @@ const found = findTwig(twig);
   <a href="/library/">Library</a>
   {found && (
     <>
-      <span aria-hidden="true">›</span><a href={`/library/#${found.tree.slug}`}>{found.tree.title}</a>
+      <span aria-hidden="true">›</span><a href={`/library/${found.tree.slug}/`}>{found.tree.title}</a>
       <span aria-hidden="true">›</span><span>{found.branch.title}</span>
       <span aria-hidden="true">›</span>{current ? <a href={`/library/${twig}/`}>{found.twig.title}</a> : <span aria-current="page">{found.twig.title}</span>}
     </>

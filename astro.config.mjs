@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 // and add the domain to public/CNAME. See docs/04-edit-pages-and-settings.md.
 export default defineConfig({
   site: 'https://curioussparoows.com',
-  integrations: [sitemap({ filter: (page) => !page.includes('/thanks/') && !page.endsWith('/all/') })],
+  integrations: [sitemap({ filter: (page) => !page.includes('/thanks/') && !page.endsWith('/all/') && !page.includes('/blog/') })],
   security: {
     // Content Security Policy: the browser only runs scripts and loads content from the sources listed here.
     csp: {

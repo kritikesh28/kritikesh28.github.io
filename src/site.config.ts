@@ -31,7 +31,6 @@ export const SITE = {
 export const NAV = [
   { href: '/', label: 'Home' },
   { href: '/library/', label: 'Library' },
-  { href: '/blog/', label: 'Blog' },
   { href: '/portfolio/', label: 'Portfolio' },
   { href: '/about/', label: 'About' },
   { href: '/contact/', label: 'Contact' },
@@ -43,7 +42,8 @@ export const SOCIALS = [
   { label: 'Hugging Face', href: 'https://huggingface.co/kritikesh28' },
 ];
 
-// Main blog categories. A post picks exactly one; add any number of free tags on top.
+// The six subjects. Each one is a Tree in the library (see src/library.config.ts).
+// A long read (src/content/blog/) picks exactly one; add any number of free tags on top.
 // To add a category, add a line here; the slug becomes its web address.
 export const CATEGORIES = [
   { slug: 'ai-ml', label: 'AI & ML', short: 'AI', blurb: 'Projects, notes and experiments in applied AI and data.' },
