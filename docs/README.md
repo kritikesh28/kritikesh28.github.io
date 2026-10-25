@@ -2,7 +2,9 @@
 
 This folder explains, step by step, every task needed to keep the website **curioussparoows.com** running and growing. It is written so that anyone, with no coding background and no AI help, can follow it.
 
-> **If you only read one thing:** to publish a new blog post, open [02 · Write and publish a post](02-write-and-publish-a-post.md) and follow it from step 1.
+> **Start with [Vision and foundation](VISION.md)**: why this site exists and the ethical rules it never breaks.
+>
+> **If you only read one task guide:** to publish a new blog post, open [02 · Write and publish a post](02-write-and-publish-a-post.md) and follow it from step 1.
 
 ## Which guide do I need?
 
@@ -20,6 +22,8 @@ This folder explains, step by step, every task needed to keep the website **curi
 | Back up the site or restore it from a backup | [09 · Backup and restore](09-backup-and-restore.md) |
 | Get help from Claude or any other AI, and the rules we work by | [10 · Working with AI and our rules](10-working-with-ai.md) |
 | Understand the plan for the blog as an open library | [11 · Library plan](11-library-plan.md) |
+| See what is waiting to be done, and what to do first | [12 · Pending task list](12-task-list.md) |
+| Understand the mission and the ethics everything rests on | [Vision and foundation](VISION.md) |
 
 ## The three golden rules
 
