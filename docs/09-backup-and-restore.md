@@ -7,7 +7,7 @@
 | Copy | Where | What it holds | How it stays current |
 | --- | --- | --- | --- |
 | **Main** | GitHub repository | Every file and every past version | Automatically, with each change |
-| **Backup** | Google Drive › "Digital Ecosystem - Claude Project Files" › **Curious Sparoows Website (backup)** | A zip of the whole site, this handbook as a Google Doc, and the working-methods file | Refreshed after important changes (see below) |
+| **Backup** | Google Drive › "Digital Ecosystem - Claude Project Files" › **Curious Sparoows Website (backup)** | A zip of the whole site, plus Google Doc copies of this handbook, the vision, the task list and the working-methods file | Refreshed after important changes (see below) |
 | **Your computer** (optional) | The folder from [07](07-run-on-your-computer.md) | Every file and its history | Type `git pull` |
 
 ## Make a fresh backup (about 2 minutes)
