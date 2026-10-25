@@ -9,7 +9,7 @@ The single list of what is waiting to be done, in the recommended order. When yo
 ## Now: quick actions for you
 
 - [x] **Library update merged** (pull request #5, with #3 and #4), 25 October 2026.
-- [ ] **Review and merge "Blog folds into the library"** (pull request #6): sparrow icons, tree watermarks, six trees, long reads, old links forwarding, search suggestions. How: [06 · Pull requests](06-pull-requests.md).
+- [x] **Blog folded into the library** (pull request #6): sparrow icons, tree watermarks, six trees, long reads, old links forwarding, search suggestions. Published 25 October 2026.
 - [ ] **Add your own line to each Universe Leaf** (optional but recommended): one sentence from your own experience or notes, so every page carries your voice. How: [13 · Add to the library](13-add-to-the-library.md).
 - [ ] **Upload the first site zip to Drive.** How: [09 · Backup and restore](09-backup-and-restore.md), "Make a fresh backup". 2 minutes.
 - [x] **Confirm the level names.** Forest › Tree › Branch › Twig › Leaf, now in use (25 October 2026).
@@ -35,6 +35,7 @@ Status 25 October 2026: all five are built in pull request #5.
 | 7 ✓ | Home-page explorer: the curiosity wheel now opens the six library trees (in #6) | Claude |
 | 8 | Hindi and Hinglish search words (started in #6: brahmand, prithvi, tara, akash, bhugol; add more as readers use them); quietly count searches that found little, to know what to write next | Claude |
 | 9 | "How the Earth formed" twig (next after the Universe; listed as "being written" on the library page) | Claude drafts, you finish |
+| 9b | A first short course for each of the other five trees, so no tree stays empty for long (start with AI & ML: your strongest recruiter signal) | Claude drafts, you finish |
 
 ## Phase 3: Grow
 
@@ -50,7 +51,7 @@ Your flagship AI project for recruiters: an assistant on the site that answers q
 
 | Stage | When | What | Status |
 | --- | --- | --- | --- |
-| A. Design | During phase 1 | Write its rules (honest, cites sources, never invents), choose the approach (retrieval-augmented generation over the site's pages), list 50 test questions with correct answers | Not started |
+| A. Design | Now | Write its rules (honest, cites sources, never invents), choose the approach (retrieval-augmented generation over the site's pages), list 50 test questions with correct answers | Not started |
 | B. Prototype | During phase 2 | A private version that answers from the Leaves; measure accuracy on the 50 test questions; publish the code and results on GitHub and Hugging Face | Not started |
 | C. Launch | Phase 3 | Live on the site after it passes the tests; a write-up for LinkedIn and the portfolio | Not started |
 
