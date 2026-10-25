@@ -3,6 +3,7 @@ import LogoMark from '../components/LogoMark.astro';
 import '@fontsource-variable/inter';
 import '@fontsource-variable/lora';
 import '../styles/global.css';
+import '@fontsource/cormorant-garamond/latin-500-italic.css';
 import { SITE, NAV, SOCIALS } from '../site.config';
 import Seo, { type Props as SeoProps } from '../components/Seo.astro';
 import Wordmark from '../components/Wordmark.astro';
@@ -51,7 +52,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternate" type="application/rss+xml" title={`${SITE.blogBrand} blog`} href="/rss.xml" />
   </head>
-  <body>
+  <body id="top">
     <div class="progress" aria-hidden="true"></div>
     <a class="skip" href="#main">Skip to content</a>
     <header class="site-header">
@@ -83,24 +84,40 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
 
     <footer class="site-footer">
       <div class="wrap foot">
-        <div>
-          <strong>{SITE.name}</strong>
-          <span class="muted"> · <a class="wm" href="/blog/"><Wordmark /></a></span>
-          <p class="muted small">{SITE.motto}</p>
+        <div class="foot-brand">
+          <a class="foot-logo" href="/" aria-label={`${SITE.blogBrand}, home`}>
+            <LogoMark height={34} />
+            <Wordmark />
+          </a>
+          <p class="foot-motto">{SITE.motto}</p>
+          <a class="foot-mail" href={`mailto:${SITE.email}`}>{SITE.email}</a>
         </div>
-        <ul class="socials">
-          {SOCIALS.map((s) => <li><a href={s.href} rel="me noopener noreferrer" target="_blank">{s.label}</a></li>)}
-          <li><a href="/start/">Start here</a></li>
-          <li><a href="/now/">Now</a></li>
-          <li><a href="/rss.xml">RSS</a></li>
-        </ul>
+        <nav class="foot-cols" aria-label="Footer">
+          <div>
+            <h2>Explore</h2>
+            <ul>
+              {NAV.filter((n) => n.href !== '/').map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+            </ul>
+          </div>
+          <div>
+            <h2>Begin</h2>
+            <ul>
+              <li><a href="/start/">Start here</a></li>
+              <li><a href="/now/">What I'm doing now</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2>Connect</h2>
+            <ul>
+              {SOCIALS.map((s) => <li><a href={s.href} rel="me noopener noreferrer" target="_blank">{s.label}<span class="ext" aria-hidden="true">↗</span></a></li>)}
+            </ul>
+          </div>
+        </nav>
       </div>
-      <div class="wrap trust small muted">
-        <span>Secure HTTPS</span><span>No ads</span><span>No tracking cookies</span>
-        <a href="/privacy/">Privacy</a><a href="/security.txt">Security contact</a>
-        <button class="bring" type="button">Bring back the sparrows</button>
+      <div class="wrap foot-base">
+        <p>© {new Date().getFullYear()} {SITE.name}</p>
+        <p><a href="/privacy/">Privacy</a><a href="#top" class="top">Back to top <span aria-hidden="true">↑</span></a></p>
       </div>
-      <p class="wrap muted small">© {new Date().getFullYear()} {SITE.name}. Words and images are mine unless credited.</p>
     </footer>
 
 
@@ -127,11 +144,6 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
     try { localStorage.setItem('theme', root.dataset.theme); } catch {}
   });
 
-  // Bring hidden sparrows back
-  document.querySelector('.bring')?.addEventListener('click', () => {
-    try { localStorage.removeItem('sparrows'); } catch {}
-    document.querySelector('.mascot')?.classList.remove('gone');
-  });
 
   // Reading progress bar
   const bar = document.querySelector<HTMLElement>('.progress');
@@ -190,28 +202,46 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
   @media (prefers-color-scheme: dark) { :global(:root:not([data-theme="light"])) .brand :global(.logo-mark) { color: #d9bb7a; } }
   .brand:hover :global(.logo-mark) { transform: scale(1.06); }
   nav { margin-left: auto; }
-  nav ul { list-style: none; display: flex; gap: 0.2rem; margin: 0; padding: 0; flex-wrap: wrap; }
-  nav a { display: block; padding: 0.35rem 0.75rem; border-radius: 999px; color: var(--ink-soft); text-decoration: none; font-size: 0.95rem; transition: background 0.2s, color 0.2s; }
-  nav a:hover { color: var(--ink); background: var(--accent-soft); }
-  nav a[aria-current='page'] { color: var(--ink); background: var(--accent-soft); font-weight: 600; }
+  .site-header nav ul { list-style: none; display: flex; gap: 0.2rem; margin: 0; padding: 0; flex-wrap: wrap; }
+  .site-header nav a { display: block; padding: 0.35rem 0.75rem; border-radius: 999px; color: var(--ink-soft); text-decoration: none; font-size: 0.95rem; transition: background 0.2s, color 0.2s; }
+  .site-header nav a:hover { color: var(--ink); background: var(--accent-soft); }
+  .site-header nav a[aria-current='page'] { color: var(--ink); background: var(--accent-soft); font-weight: 600; }
   .theme { display: grid; place-items: center; background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 999px; width: 36px; height: 36px; cursor: pointer; transition: transform 0.4s; }
   .theme:hover { transform: rotate(-25deg); }
   .theme svg { width: 18px; height: 18px; }
   @media (max-width: 720px) {
     .bar { padding-top: 0.5rem; padding-bottom: 0.5rem; }
     nav { order: 3; width: 100%; margin-left: 0; }
-    nav ul { gap: 0; overflow-x: auto; flex-wrap: nowrap; }
+    .site-header nav ul { gap: 0; overflow-x: auto; flex-wrap: nowrap; }
     .theme { margin-left: auto; }
   }
+  /* footer: the poster's night sky, quiet type, three short columns */
   .site-footer {
-    border-top: 1px solid var(--line); padding: 2rem 0 1.5rem;
-    background: linear-gradient(90deg, color-mix(in srgb, var(--lavender) 70%, var(--bg)), color-mix(in srgb, var(--blush) 70%, var(--bg)), color-mix(in srgb, var(--peach) 70%, var(--bg)));
+    margin-top: 4rem; color: rgb(246 231 200 / 0.72);
+    background: radial-gradient(120% 140% at 85% 0%, #2a1f4d 0%, #17132e 55%, #120f24 100%);
+    border-top: 1px solid rgb(242 215 166 / 0.16);
   }
-  .foot { display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
-  .foot p { margin: 0.3rem 0 0; }
-  .wm { color: inherit; text-decoration: none; }
-  .socials { list-style: none; display: flex; gap: 1rem; flex-wrap: wrap; padding: 0; margin: 0; }
-  .trust { display: flex; gap: 0.4rem 1.1rem; flex-wrap: wrap; align-items: center; margin-top: 1.2rem; }
-  .trust span::before { content: '✓ '; color: var(--teal); font-weight: 600; }
-  .bring { background: none; border: 0; padding: 0; color: var(--accent); font: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+  .foot { display: grid; grid-template-columns: minmax(16rem, 1.2fr) 2fr; gap: 3rem; padding-block: 3.6rem 2.6rem; }
+  .foot-logo { display: inline-flex; align-items: center; gap: 0.6rem; color: #f2d7a6; text-decoration: none; font-size: 1.45rem; }
+  .foot-logo :global(.logo-mark) { color: #f2d7a6; }
+  .foot-motto { margin: 1rem 0 1.1rem; max-width: 22rem; font: italic 500 1.2rem/1.45 'Cormorant Garamond', Georgia, serif; color: rgb(246 231 200 / 0.85); }
+  .foot-mail { color: #f2d7a6; font-size: 0.92rem; text-decoration: none; border-bottom: 1px solid rgb(242 215 166 / 0.35); padding-bottom: 1px; }
+  .foot-mail:hover { border-color: #f2d7a6; }
+  .foot-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+  .foot-cols h2 { margin: 0 0 1rem; font: 600 0.72rem/1 var(--font-sans, Inter, sans-serif); letter-spacing: 0.22em; text-transform: uppercase; color: #e8c584; }
+  .foot-cols ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
+  .foot-cols li { margin: 0; padding: 0; }
+  .foot-cols a, .foot-base a { color: rgb(246 231 200 / 0.72); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+  .foot-cols a:hover, .foot-base a:hover, .foot-cols a:focus-visible, .foot-base a:focus-visible { color: #fff3dc; }
+  .ext { font-size: 0.75em; margin-left: 0.3em; opacity: 0.6; }
+  .foot-base {
+    display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; align-items: center;
+    border-top: 1px solid rgb(242 215 166 / 0.12); padding-block: 1.3rem 1.6rem; font-size: 0.85rem; color: rgb(246 231 200 / 0.55);
+  }
+  .foot-base p { margin: 0; display: flex; gap: 1.6rem; }
+  .foot-base a { font-size: 0.85rem; }
+  @media (max-width: 760px) {
+    .foot { grid-template-columns: 1fr; gap: 2.4rem; padding-block-start: 2.8rem; }
+    .foot-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
 </style>
