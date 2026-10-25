@@ -17,7 +17,7 @@
 3. Rename the downloaded file with the date, for example `curioussparoows-site-2026-11-01.zip`.
 4. Open the Drive backup folder and upload it. Keep the last 3 zips and delete older ones.
 
-Do this at least once a month, and after any big change. Claude does it too when working on the site.
+Do this at least once a month, and after any big change. When Claude works on the site it refreshes the handbook and working-methods copies in the same folder; the site zip is uploaded by you.
 
 ## Restore the site from the Drive backup
 
