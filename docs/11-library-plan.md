@@ -30,8 +30,10 @@ Rules: plain words always shown with the tree words in the breadcrumb ("Geograph
 
 ## Build phases
 
-1. **Foundation:** the four page types, Next/Previous buttons, progress bar, search that never says "no match found", first 12 Universe Leaves.
-2. **Explorer** (after the first unit): the Curiosity Orbit on the home page plus a plain directory, Hindi and Hinglish search words, tracking of empty searches.
-3. **Grow** (after about 100 Leaves and a steady weekly rhythm): a map of links between subjects, an AI answer box that uses only the site's own pages, newsletter and quizzes, Hindi Leaves.
+1. **Foundation:** the four page types, Next/Previous buttons, progress bar, the Curious Question card, search that never says "no match found", the "How this library works" panel, first 12 Universe Leaves.
+2. **Explorer** (after the first unit): reading progress tracker (private, in the reader's browser, no guilt-streaks), the knowledge-tree explorer on the home page plus a plain directory, Hindi and Hinglish search words, quiet counting of searches that found little.
+3. **Grow** (after about 100 Leaves and a steady weekly rhythm): a map of links between subjects, newsletter and quizzes, Hindi Leaves.
+
+**Alongside all phases:** the AI Sparrow Assistant, Kritikesh's AI showcase project. Stages: design, prototype, launch. See [12 · Pending task list](12-task-list.md).
 
 _Status on 25 October 2026: plan agreed. The live list of what is pending, in order, is [12 · Pending task list](12-task-list.md)._
