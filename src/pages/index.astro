@@ -17,6 +17,9 @@ const projects = (await getProjects()).slice(0, 3);
 <Base type="profile">
   <PosterHero />
 
+  {/* keep Google's search snippet on the intro above: the demo and card text below should not be quoted */}
+  <div data-nosnippet>
+
   <section id="library" class="wrap section reveal">
     <div class="lib">
       <div>
@@ -66,6 +69,7 @@ const projects = (await getProjects()).slice(0, 3);
   </section>
 
   <div class="wrap"><CtaBand /></div>
+  </div>
 </Base>
 
 <style>

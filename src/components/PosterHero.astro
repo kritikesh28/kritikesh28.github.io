@@ -40,6 +40,7 @@ const SPOTS = [
   </svg>
   <div class="hero-text">
     <h1>Curious Minds. <span>Better Tomorrows.</span></h1>
+    <p class="sub">Explainers on AI, geography and big ideas, from the basics up.</p>
   </div>
   <a class="cue" href="#explore" aria-label="Scroll down">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
@@ -262,6 +263,12 @@ const SPOTS = [
     animation: rise 1.8s cubic-bezier(0.2, 0.7, 0.2, 1) both 0.2s;
   }
   .hero-text h1 span { font-style: italic; }
+  @media (max-width: 640px) { .hero-text .sub { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; } }
+  .hero-text .sub {
+    margin: 0.7rem 0 0; font: 600 clamp(0.62rem, 1vw, 0.82rem)/1.4 var(--font-sans, Inter, sans-serif);
+    letter-spacing: 0.3em; text-transform: uppercase; color: rgb(246 231 200 / 0.78);
+    animation: rise 1.8s cubic-bezier(0.2, 0.7, 0.2, 1) both 0.55s;
+  }
   @keyframes rise { from { opacity: 0; transform: translateY(10px); letter-spacing: 0.06em; } to { opacity: 1; transform: none; } }
 
   /* story points */
@@ -325,6 +332,6 @@ const SPOTS = [
     .cap:has(.title:empty) { display: none; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .cue, .hero-text h1, .hot .halo { animation: none; }
+    .cue, .hero-text h1, .hero-text .sub, .hot .halo { animation: none; }
   }
 </style>
