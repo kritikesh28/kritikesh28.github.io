@@ -15,6 +15,11 @@ The single list of what is waiting to be done, in the recommended order. When yo
 - [x] **Confirm the level names.** Forest › Tree › Branch › Twig › Leaf, now in use (25 October 2026).
 - [ ] **Fill in the domain registrar** in [00 · Accounts and access](00-accounts-and-access.md).
 
+## Exam Prep section
+
+- [ ] **Review and publish Exam Prep** (/exam-prep/): read the intro text, add your own line, then merge the pull request. Guide: 14 · Exam Prep section.
+- [ ] Refresh the data after each sheet update (guide 14).
+
 ## Phase 1: Foundation (build first)
 
 Status 25 October 2026: all five are built in pull request #5.

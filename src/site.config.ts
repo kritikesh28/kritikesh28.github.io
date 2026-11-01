@@ -31,6 +31,7 @@ export const SITE = {
 export const NAV = [
   { href: '/', label: 'Home' },
   { href: '/library/', label: 'Library' },
+  { href: '/exam-prep/', label: 'Exam Prep' },
   { href: '/portfolio/', label: 'Portfolio' },
   { href: '/about/', label: 'About' },
   { href: '/contact/', label: 'Contact' },

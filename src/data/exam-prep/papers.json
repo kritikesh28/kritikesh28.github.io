@@ -1,0 +1,949 @@
+{
+ "papers": [
+  [
+   "RPSC",
+   "RAS/RTS Combined Competitive Exam (Pre)",
+   2016,
+   "G.K. and G.S.",
+   "pyq",
+   178
+  ],
+  [
+   "RPSC",
+   "RAS/RTS Combined Competitive Exam (Pre)",
+   2026,
+   "Scheme & Syllabus (Pre)",
+   "syllabus",
+   0
+  ],
+  [
+   "RPSC",
+   "RAS/RTS Combined Competitive Exam (Mains)",
+   2013,
+   "Paper IV",
+   "pyq",
+   28
+  ],
+  [
+   "RPSC",
+   "RAS/RTS Combined Competitive Exam (Mains)",
+   2021,
+   "Paper I",
+   "pyq",
+   47
+  ],
+  [
+   "RPSC",
+   "RAS/RTS Combined Competitive Exam (Mains)",
+   2021,
+   "Paper II",
+   "pyq",
+   40
+  ],
+  [
+   "RPSC",
+   "RAS/RTS Combined Competitive Exam (Mains)",
+   2021,
+   "Paper III",
+   "pyq",
+   51
+  ],
+  [
+   "RPSC",
+   "RAS/RTS Combined Competitive Exam (Mains)",
+   2021,
+   "Paper IV",
+   "pyq",
+   35
+  ],
+  [
+   "RPSC",
+   "RAS/RTS Combined Competitive Exam (Mains)",
+   2023,
+   "Paper IV",
+   "pyq",
+   70
+  ],
+  [
+   "RPSC",
+   "RAS/RTS Combined Competitive Exam (Mains)",
+   2012,
+   "General Hindi",
+   "pyq",
+   27
+  ],
+  [
+   "RPSC",
+   "RAS/RTS Combined Competitive Exam (Mains)",
+   2012,
+   "General English",
+   "pyq",
+   8
+  ],
+  [
+   "RPSC",
+   "RAS/RTS Combined Competitive Exam (Mains)",
+   2010,
+   "GK and General Science (Compulsory)",
+   "pyq",
+   31
+  ],
+  [
+   "RPSC",
+   "RAS/RTS Combined Competitive Exam (Mains)",
+   2010,
+   "GK of Rajasthan, Society, Art and Culture (Compulsory)",
+   "pyq",
+   33
+  ],
+  [
+   "RPSC",
+   "RAS/RTS Combined Competitive Exam (Mains)",
+   2026,
+   "Scheme & Syllabus (Mains)",
+   "syllabus",
+   0
+  ],
+  [
+   "RPSC",
+   "Sub Inspector / Platoon Commander Comb. Comp. Exam",
+   2021,
+   "GK and GS (14-09-2021)",
+   "pyq",
+   106
+  ],
+  [
+   "RPSC",
+   "Sub Inspector / Platoon Commander Comb. Comp. Exam",
+   2021,
+   "Hindi (13-09-2021)",
+   "pyq",
+   84
+  ],
+  [
+   "RPSC",
+   "School Lecturer (School Education)",
+   2013,
+   "GK",
+   "pyq",
+   90
+  ],
+  [
+   "RPSC",
+   "School Lecturer (School Education)",
+   2015,
+   "GK",
+   "pyq",
+   94
+  ],
+  [
+   "RPSC",
+   "School Lecturer (School Education)",
+   2022,
+   "General Awareness and GS (Group B)",
+   "pyq",
+   71
+  ],
+  [
+   "RPSC",
+   "School Lecturer (School Education)",
+   2022,
+   "General Awareness and GS (Group C)",
+   "pyq",
+   76
+  ],
+  [
+   "RPSC",
+   "School Lecturer (School Education)",
+   2026,
+   "Syllabus Paper I",
+   "syllabus",
+   0
+  ],
+  [
+   "RPSC",
+   "School Lecturer (Special Education)",
+   2026,
+   "Syllabus",
+   "syllabus",
+   0
+  ],
+  [
+   "RPSC",
+   "Senior Teacher Grade II (Secondary Education)",
+   2011,
+   "GK",
+   "pyq",
+   36
+  ],
+  [
+   "RPSC",
+   "Senior Teacher Grade II (Secondary Education)",
+   2013,
+   "GK",
+   "pyq",
+   91
+  ],
+  [
+   "RPSC",
+   "Senior Teacher Grade II (Secondary Education)",
+   2026,
+   "Syllabus",
+   "syllabus",
+   0
+  ],
+  [
+   "RPSC",
+   "Asst. Conservator of Forest and Forest Range Officer",
+   2011,
+   "GK",
+   "pyq",
+   195
+  ],
+  [
+   "RPSC",
+   "Asst. Conservator of Forest and Forest Range Officer",
+   2018,
+   "General Knowledge",
+   "pyq",
+   117
+  ],
+  [
+   "RPSC",
+   "Assistant Agriculture Officer",
+   2018,
+   "Paper I (Gen. Hindi and GK)",
+   "pyq",
+   129
+  ],
+  [
+   "RPSC",
+   "Motor Vehicle Sub Inspector",
+   2011,
+   "GK and Science",
+   "pyq",
+   110
+  ],
+  [
+   "RPSC",
+   "Motor Vehicle Sub Inspector",
+   2013,
+   "GK and Science",
+   "pyq",
+   117
+  ],
+  [
+   "RPSC",
+   "Assistant Engineer (AEN) Comb. Comp. Exam",
+   2018,
+   "Mains General Hindi",
+   "pyq",
+   36
+  ],
+  [
+   "RPSC",
+   "Assistant Prosecution Officer (APO)",
+   2015,
+   "Language: General Hindi and English",
+   "pyq",
+   32
+  ],
+  [
+   "RPSC",
+   "Rajasthan State Eligibility Test (RSET)",
+   2013,
+   "Paper I",
+   "pyq",
+   57
+  ],
+  [
+   "RPSC",
+   "Stenographer Comp. Exam",
+   2011,
+   "GK and Hindi/English",
+   "pyq",
+   138
+  ],
+  [
+   "RPSC",
+   "Clerk Grade II / LDC Comb. Comp. Exam",
+   2012,
+   "Paper I",
+   "pyq",
+   51
+  ],
+  [
+   "RPSC",
+   "Clerk Grade II / LDC Comb. Comp. Exam",
+   2012,
+   "Paper II",
+   "pyq",
+   101
+  ],
+  [
+   "RPSC",
+   "Clerk Grade II / LDC Comb. Comp. Exam",
+   2013,
+   "Paper I",
+   "pyq",
+   99
+  ],
+  [
+   "RPSC",
+   "Clerk Grade II / LDC Comb. Comp. Exam",
+   2013,
+   "GK, Maths and Science",
+   "pyq",
+   54
+  ],
+  [
+   "RSSB",
+   "Jail Prahari",
+   2024,
+   "Question paper",
+   "pyq",
+   73
+  ],
+  [
+   "RSSB",
+   "Surveyor and Mine Foreman (Class II)",
+   2024,
+   "Question paper",
+   "pyq",
+   80
+  ],
+  [
+   "RSSB",
+   "NHM Contractual Posts",
+   2025,
+   "Question paper",
+   "pyq",
+   124
+  ],
+  [
+   "RSSB",
+   "Patwari",
+   2015,
+   "Scheme and syllabus (Pre + Mains)",
+   "syllabus",
+   0
+  ],
+  [
+   "RSSB",
+   "Forester and Forest Guard",
+   2020,
+   "Scheme and Syllabus",
+   "syllabus",
+   0
+  ],
+  [
+   "RSSB",
+   "Village Development Officer (VDO)",
+   2021,
+   "Pre",
+   "syllabus",
+   0
+  ],
+  [
+   "RSSB",
+   "Village Development Officer (VDO)",
+   2024,
+   "Mains scheme and syllabus",
+   "syllabus",
+   0
+  ],
+  [
+   "RSSB",
+   "Assistant Public Relations Officer (APRO)",
+   2021,
+   "Syllabus",
+   "syllabus",
+   0
+  ],
+  [
+   "RSSB",
+   "Hostel Superintendent Grade II (SJED)",
+   2024,
+   "Scheme and Syllabus",
+   "syllabus",
+   0
+  ],
+  [
+   "RSSB",
+   "Motor Vehicle Sub Inspector (RSSB)",
+   2024,
+   "Scheme and Syllabus",
+   "syllabus",
+   0
+  ],
+  [
+   "RSSB",
+   "Animal Attendant (Pashu Parichar)",
+   2024,
+   "Scheme notice",
+   "syllabus",
+   0
+  ],
+  [
+   "RSSB",
+   "Class IV Employees (4th Grade)",
+   2024,
+   "Revised scheme and syllabus",
+   "syllabus",
+   0
+  ],
+  [
+   "RSSB",
+   "CET Graduate Level",
+   2024,
+   "Booklet B23",
+   "pyq",
+   102
+  ],
+  [
+   "RSSB",
+   "CET Graduate Level",
+   2022,
+   "Booklet 131 A",
+   "pyq",
+   80
+  ],
+  [
+   "RSSB",
+   "CET Senior Secondary (12th) Level",
+   2024,
+   "Question paper",
+   "pyq",
+   96
+  ]
+ ],
+ "missing": [
+  [
+   "RPSC",
+   "Assistant Engineer (AEN) Comb. Comp. Exam",
+   2024,
+   "Pre G.K. and G.S. (file over 10 MB)"
+  ],
+  [
+   "RPSC",
+   "Sub Inspector / Platoon Commander Comb. Comp. Exam",
+   2025,
+   "GK and GS 05-04-2026 (file over 10 MB)"
+  ],
+  [
+   "RPSC",
+   "Sub Inspector / Platoon Commander Comb. Comp. Exam",
+   2025,
+   "GK and GS 06-04-2026 (file over 10 MB)"
+  ]
+ ],
+ "exams": [
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RPSC",
+   "bank": "",
+   "name": "RPSC · Assistant Agriculture Officer",
+   "key": "AAO",
+   "alias": "assistant agriculture officer aao",
+   "papers": 1,
+   "years": "2018",
+   "questions": 129,
+   "syllabus": false,
+   "qpp": 150
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RPSC",
+   "bank": "",
+   "name": "RPSC · Assistant Engineer (AEN) Comb. Comp. Exam",
+   "key": "AEN",
+   "alias": "aen assistant engineer",
+   "papers": 1,
+   "years": "2018",
+   "questions": 36,
+   "syllabus": false,
+   "qpp": 120
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RPSC",
+   "bank": "",
+   "name": "RPSC · Assistant Prosecution Officer (APO)",
+   "key": "APO",
+   "alias": "apo assistant prosecution officer",
+   "papers": 1,
+   "years": "2015",
+   "questions": 32,
+   "syllabus": false,
+   "qpp": 100
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RPSC",
+   "bank": "",
+   "name": "RPSC · Asst. Conservator of Forest and Forest Range Officer",
+   "key": "ACF-FRO",
+   "alias": "acf forest range officer rfo ranger",
+   "papers": 2,
+   "years": "2011, 2018",
+   "questions": 312,
+   "syllabus": false,
+   "qpp": 100
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RPSC",
+   "bank": "",
+   "name": "RPSC · Clerk Grade II / LDC Comb. Comp. Exam",
+   "key": "LDC",
+   "alias": "ldc clerk grade ii junior assistant",
+   "papers": 4,
+   "years": "2012, 2013",
+   "questions": 305,
+   "syllabus": false,
+   "qpp": 150
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RPSC",
+   "bank": "",
+   "name": "RPSC · Motor Vehicle Sub Inspector",
+   "key": "MVSI",
+   "alias": "motor vehicle sub inspector mvsi",
+   "papers": 2,
+   "years": "2011, 2013",
+   "questions": 227,
+   "syllabus": false,
+   "qpp": 100
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RPSC",
+   "bank": "",
+   "name": "RPSC · RAS/RTS Combined Competitive Exam (Mains)",
+   "key": "RAS-MAINS",
+   "alias": "ras mains main rts state services",
+   "papers": 10,
+   "years": "2010, 2012, 2013, 2021, 2023",
+   "questions": 370,
+   "syllabus": true,
+   "qpp": 100
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RPSC",
+   "bank": "",
+   "name": "RPSC · RAS/RTS Combined Competitive Exam (Pre)",
+   "key": "RAS-PRE",
+   "alias": "ras pre prelims rajasthan administrative service rts state subordinate services",
+   "papers": 1,
+   "years": "2016",
+   "questions": 178,
+   "syllabus": true,
+   "qpp": 150
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RPSC",
+   "bank": "",
+   "name": "RPSC · Rajasthan State Eligibility Test (RSET)",
+   "key": "RSET",
+   "alias": "rset set eligibility test",
+   "papers": 1,
+   "years": "2013",
+   "questions": 57,
+   "syllabus": false,
+   "qpp": 60
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RPSC",
+   "bank": "",
+   "name": "RPSC · School Lecturer (School Education)",
+   "key": "SCH-LECT",
+   "alias": "school lecturer 1st grade first grade teacher pgt",
+   "papers": 4,
+   "years": "2013, 2015, 2022",
+   "questions": 331,
+   "syllabus": true,
+   "qpp": 150
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RPSC",
+   "bank": "",
+   "name": "RPSC · School Lecturer (Special Education)",
+   "key": "SCH-LECT-SPL",
+   "alias": "school lecturer special education",
+   "papers": 0,
+   "years": "—",
+   "questions": 0,
+   "syllabus": true,
+   "qpp": 150
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RPSC",
+   "bank": "",
+   "name": "RPSC · Senior Teacher Grade II (Secondary Education)",
+   "key": "SR-TEACHER",
+   "alias": "senior teacher 2nd grade second grade",
+   "papers": 2,
+   "years": "2011, 2013",
+   "questions": 127,
+   "syllabus": true,
+   "qpp": 100
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RPSC",
+   "bank": "",
+   "name": "RPSC · Stenographer Comp. Exam",
+   "key": "STENO",
+   "alias": "stenographer steno",
+   "papers": 1,
+   "years": "2011",
+   "questions": 138,
+   "syllabus": false,
+   "qpp": 150
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RPSC",
+   "bank": "",
+   "name": "RPSC · Sub Inspector / Platoon Commander Comb. Comp. Exam",
+   "key": "SI",
+   "alias": "si sub inspector police thanedar platoon commander",
+   "papers": 2,
+   "years": "2021",
+   "questions": 190,
+   "syllabus": false,
+   "qpp": 100
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RSSB",
+   "bank": "",
+   "name": "RSSB · Animal Attendant (Pashu Parichar)",
+   "key": "ANIMAL-ATT",
+   "alias": "animal attendant pashu parichar",
+   "papers": 0,
+   "years": "—",
+   "questions": 0,
+   "syllabus": true,
+   "qpp": 150
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RSSB",
+   "bank": "",
+   "name": "RSSB · Assistant Public Relations Officer (APRO)",
+   "key": "APRO",
+   "alias": "apro assistant public relations officer",
+   "papers": 0,
+   "years": "—",
+   "questions": 0,
+   "syllabus": true,
+   "qpp": 120
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RSSB",
+   "bank": "",
+   "name": "RSSB · CET Graduate Level",
+   "key": "CET-GRAD",
+   "alias": "cet graduate common eligibility test",
+   "papers": 2,
+   "years": "2022, 2024",
+   "questions": 182,
+   "syllabus": false,
+   "qpp": 150
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RSSB",
+   "bank": "",
+   "name": "RSSB · CET Senior Secondary (12th) Level",
+   "key": "CET-12",
+   "alias": "cet 12th senior secondary common eligibility test",
+   "papers": 1,
+   "years": "2024",
+   "questions": 96,
+   "syllabus": false,
+   "qpp": 150
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RSSB",
+   "bank": "",
+   "name": "RSSB · Class IV Employees (4th Grade)",
+   "key": "CLASS-IV",
+   "alias": "class iv 4th grade fourth class peon",
+   "papers": 0,
+   "years": "—",
+   "questions": 0,
+   "syllabus": true,
+   "qpp": 120
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RSSB",
+   "bank": "",
+   "name": "RSSB · Forester and Forest Guard",
+   "key": "FOREST-GUARD",
+   "alias": "forester forest guard vanrakshak vanpal",
+   "papers": 0,
+   "years": "—",
+   "questions": 0,
+   "syllabus": true,
+   "qpp": 100
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RSSB",
+   "bank": "",
+   "name": "RSSB · Hostel Superintendent Grade II (SJED)",
+   "key": "HOSTEL-SUPT",
+   "alias": "hostel superintendent warden",
+   "papers": 0,
+   "years": "—",
+   "questions": 0,
+   "syllabus": true,
+   "qpp": 120
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RSSB",
+   "bank": "",
+   "name": "RSSB · Jail Prahari",
+   "key": "PRAHARI",
+   "alias": "jail prahari jail guard",
+   "papers": 1,
+   "years": "2024",
+   "questions": 73,
+   "syllabus": false,
+   "qpp": 150
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RSSB",
+   "bank": "",
+   "name": "RSSB · Motor Vehicle Sub Inspector (RSSB)",
+   "key": "MVSI-RSSB",
+   "alias": "motor vehicle sub inspector mvsi rssb",
+   "papers": 0,
+   "years": "—",
+   "questions": 0,
+   "syllabus": true,
+   "qpp": 100
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RSSB",
+   "bank": "",
+   "name": "RSSB · NHM Contractual Posts",
+   "key": "NHM",
+   "alias": "nhm national health mission contractual",
+   "papers": 1,
+   "years": "2025",
+   "questions": 124,
+   "syllabus": false,
+   "qpp": 100
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RSSB",
+   "bank": "",
+   "name": "RSSB · Patwari",
+   "key": "PATWARI",
+   "alias": "patwari patwar",
+   "papers": 0,
+   "years": "—",
+   "questions": 0,
+   "syllabus": true,
+   "qpp": 150
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RSSB",
+   "bank": "",
+   "name": "RSSB · Surveyor and Mine Foreman (Class II)",
+   "key": "SURVEYOR",
+   "alias": "surveyor mine foreman",
+   "papers": 1,
+   "years": "2024",
+   "questions": 80,
+   "syllabus": false,
+   "qpp": 120
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RSSB",
+   "bank": "",
+   "name": "RSSB · Village Development Officer (VDO)",
+   "key": "VDO",
+   "alias": "vdo village development officer gram vikas adhikari",
+   "papers": 0,
+   "years": "—",
+   "questions": 0,
+   "syllabus": true,
+   "qpp": 120
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RPSC",
+   "bank": "",
+   "name": "RPSC · All RPSC exams (combined PYQs)",
+   "key": "RPSC-ALL",
+   "alias": "rpsc all combined",
+   "papers": 32,
+   "years": "all",
+   "questions": 2432,
+   "syllabus": false,
+   "qpp": 150
+  },
+  {
+   "gov": "Rajasthan Govt",
+   "agency": "RSSB",
+   "bank": "",
+   "name": "RSSB · All RSSB exams (combined PYQs)",
+   "key": "RSSB-ALL",
+   "alias": "rssb all combined",
+   "papers": 6,
+   "years": "all",
+   "questions": 555,
+   "syllabus": false,
+   "qpp": 150
+  },
+  {
+   "gov": "Central Govt",
+   "agency": "SSC",
+   "bank": "",
+   "name": "SSC (all exams) — all-exam ranking (PYQs not added yet)",
+   "key": "GENERAL",
+   "alias": "ssc ssc (all exams)",
+   "papers": 0,
+   "years": "—",
+   "questions": 0,
+   "syllabus": false,
+   "qpp": 100
+  },
+  {
+   "gov": "Central Govt",
+   "agency": "UPSC",
+   "bank": "",
+   "name": "UPSC (all exams) — all-exam ranking (PYQs not added yet)",
+   "key": "GENERAL",
+   "alias": "upsc upsc (all exams)",
+   "papers": 0,
+   "years": "—",
+   "questions": 0,
+   "syllabus": false,
+   "qpp": 100
+  },
+  {
+   "gov": "Central Govt",
+   "agency": "Railway (RRB)",
+   "bank": "",
+   "name": "Railway RRB (all exams) — all-exam ranking (PYQs not added yet)",
+   "key": "GENERAL",
+   "alias": "railway (rrb) railway rrb (all exams)",
+   "papers": 0,
+   "years": "—",
+   "questions": 0,
+   "syllabus": false,
+   "qpp": 100
+  },
+  {
+   "gov": "Central Govt",
+   "agency": "NTA",
+   "bank": "",
+   "name": "NTA (all exams) — all-exam ranking (PYQs not added yet)",
+   "key": "GENERAL",
+   "alias": "nta nta (all exams)",
+   "papers": 0,
+   "years": "—",
+   "questions": 0,
+   "syllabus": false,
+   "qpp": 100
+  },
+  {
+   "gov": "Central Govt",
+   "agency": "Bank",
+   "bank": "IBPS",
+   "name": "IBPS — all-exam ranking (PYQs not added yet)",
+   "key": "GENERAL",
+   "alias": "bank ibps",
+   "papers": 0,
+   "years": "—",
+   "questions": 0,
+   "syllabus": false,
+   "qpp": 100
+  },
+  {
+   "gov": "Central Govt",
+   "agency": "Bank",
+   "bank": "SBI",
+   "name": "SBI — all-exam ranking (PYQs not added yet)",
+   "key": "GENERAL",
+   "alias": "bank sbi",
+   "papers": 0,
+   "years": "—",
+   "questions": 0,
+   "syllabus": false,
+   "qpp": 100
+  },
+  {
+   "gov": "Central Govt",
+   "agency": "Bank",
+   "bank": "RBI",
+   "name": "RBI — all-exam ranking (PYQs not added yet)",
+   "key": "GENERAL",
+   "alias": "bank rbi",
+   "papers": 0,
+   "years": "—",
+   "questions": 0,
+   "syllabus": false,
+   "qpp": 100
+  },
+  {
+   "gov": "Central Govt",
+   "agency": "Bank",
+   "bank": "NABARD",
+   "name": "NABARD — all-exam ranking (PYQs not added yet)",
+   "key": "GENERAL",
+   "alias": "bank nabard",
+   "papers": 0,
+   "years": "—",
+   "questions": 0,
+   "syllabus": false,
+   "qpp": 100
+  },
+  {
+   "gov": "Central Govt",
+   "agency": "Bank",
+   "bank": "SEBI",
+   "name": "SEBI — all-exam ranking (PYQs not added yet)",
+   "key": "GENERAL",
+   "alias": "bank sebi",
+   "papers": 0,
+   "years": "—",
+   "questions": 0,
+   "syllabus": false,
+   "qpp": 100
+  },
+  {
+   "gov": "Central Govt",
+   "agency": "Bank",
+   "bank": "IRDAI",
+   "name": "IRDAI — all-exam ranking (PYQs not added yet)",
+   "key": "GENERAL",
+   "alias": "bank irdai",
+   "papers": 0,
+   "years": "—",
+   "questions": 0,
+   "syllabus": false,
+   "qpp": 100
+  }
+ ]
+}

@@ -1,0 +1,77 @@
+---
+// How the Exam Guide ranks topics, what it is built from, and its honest limits.
+import ExamLayout from '../../../layouts/ExamLayout.astro';
+import papersJson from '../../../data/exam-prep/papers.json';
+import { STATS, BASE, GUIDE, CI, fmt } from '../../../exam-prep';
+
+const { papers, missing } = papersJson as { papers: [string, string, number, string, string, number][]; missing: [string, string, number, string][] };
+const sorted = [...papers].sort((a, b) => a[0].localeCompare(b[0]) || a[1].localeCompare(b[1]) || a[2] - b[2]);
+const qa: [string, string][] = [
+  ['Where does the list come from?', `From ${STATS.papers} RPSC and RSSB question papers and ${STATS.syllabi} official syllabi. Each scanned paper was read by machine in Hindi and English, every question was matched to a topic in the <a href="${CI}/">Curriculum Index</a>, and the matches were counted. ${fmt(STATS.questions)} questions were matched in all.`],
+  ['How does a topic get ranked?', 'A topic scores higher the more often it was asked in <em>your</em> exam, then in other exams of the same agency (RPSC or RSSB), then in all exams. How much each subject weighs comes from your exam\'s own papers, or from its official syllabus when there are no papers yet.'],
+  ['What does "≈ Qs per paper" mean?', 'Roughly how many questions that topic has brought in one paper of your exam, on average, in the papers we have. It describes the past. It is not a forecast.'],
+  ['How many topics will it suggest?', 'About two focused hours per topic, at 75% efficiency, with the last fifth of your days kept free for revision and mock tests. It never suggests more than the topics that together covered 85% of past questions, so the list stays finishable. You can type your own number instead.'],
+  ['What do the stars mean?', 'Where a topic sits in your exam\'s ranking: ★★★★★ is the top 5%, ★★★★ the next 10%, ★★★ the next 20%, ★★ the next 25%, and ★ the rest.'],
+  ['Can it be wrong?', 'Yes. Machine-reading scanned papers misses some questions and misfiles others, small samples (one or two papers) can swing the ranking, and exam patterns change. Use it to decide where to begin, and keep an eye on your exam\'s current official syllabus.'],
+  ['How does it stay up to date?', 'Both tools are built from two Google Sheets that Kritikesh maintains. When new papers are added or the index changes, the analysis is re-run and these pages are rebuilt from the sheets.'],
+];
+---
+
+<ExamLayout
+  title="How the Exam Guide ranks topics"
+  description="How the Exam Guide turns RPSC and RSSB past papers into a ranked, finishable topic list, what it is built from, and where it can be wrong."
+  section="how"
+  crumbs={[{ href: `${BASE}/`, label: 'Exam Prep' }, { href: `${GUIDE}/`, label: 'Exam Guide' }, { label: 'How it works' }]}
+>
+  <header>
+    <p class="eyebrow">Exam Guide · Open book</p>
+    <h1>How the ranking works</h1>
+    <p class="lede">No secret sauce. Here is exactly what the Exam Guide does, what it is built from, and where it can go wrong.</p>
+  </header>
+
+  <div class="qas">
+    {qa.map(([q, a]) => (
+      <section class="qa">
+        <h2>{q}</h2>
+        <p set:html={a} />
+      </section>
+    ))}
+  </div>
+
+  <h2 id="papers" class="sec">Papers and syllabi analysed</h2>
+  <p class="muted small">{STATS.papers} question papers and {STATS.syllabi} syllabi. The original files are not linked here; you can find official papers and syllabi on the RPSC and RSSB websites.</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Agency</th><th>Exam</th><th>Year</th><th>Paper</th><th>Questions matched</th></tr></thead>
+      <tbody>
+        {sorted.map(([ag, ex, yr, paper, type, n]) => (
+          <tr class:list={[{ syl: type !== 'pyq' }]}>
+            <td>{ag}</td><td>{ex}</td><td>{yr}</td><td>{paper}{type !== 'pyq' && <span class="tag">syllabus</span>}</td><td class="r">{type === 'pyq' ? n : '–'}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  {missing.length > 0 && (
+    <p class="small muted">Not read yet (files too large): {missing.map(([ag, ex, yr, paper]) => `${ag} ${ex} ${yr} (${paper.replace(/\s*\(file over.*\)/, '')})`).join('; ')}.</p>
+  )}
+
+  <p class="back"><a class="btn" href={`${GUIDE}/`}>Back to my exam</a></p>
+</ExamLayout>
+
+<style>
+  h1 { font-size: clamp(2rem, 4.4vw, 2.8rem); }
+  .lede { font-size: 1.1rem; color: var(--ink-soft); max-width: 40rem; }
+  .qas { display: grid; gap: 0.8rem; margin-top: 1.4rem; }
+  .qa { padding: 1rem 1.2rem; border-radius: 18px; border: 1px solid var(--line); background: var(--surface); max-width: 48rem; }
+  .qa h2 { font-size: 1.15rem; margin: 0 0 0.35rem; }
+  .qa p { margin: 0; color: var(--ink-soft); }
+  .sec { margin-top: 2.6rem; scroll-margin-top: 140px; }
+  .tbl { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--surface); }
+  table { font-size: 0.9rem; }
+  th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); background: color-mix(in srgb, var(--tree) 8%, var(--surface)); }
+  .r { text-align: right; font-variant-numeric: tabular-nums; }
+  .syl td { color: var(--ink-soft); }
+  .tag { margin-left: 0.4rem; font-size: 0.7rem; padding: 0.05rem 0.45rem; border-radius: 999px; background: var(--accent-soft); }
+  .back { margin-top: 2rem; }
+</style>
