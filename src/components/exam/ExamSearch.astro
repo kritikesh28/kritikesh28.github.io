@@ -1,0 +1,260 @@
+---
+// The Curriculum Index search: suggestions while typing, filters, "did you mean", and results that
+// always offer something useful. Logic: src/scripts/exam-search.ts
+import { SUBJECTS, fmt, STATS } from '../../exam-prep';
+
+interface Props {
+  subject?: string; // preselect one subject
+  autofocus?: boolean;
+  syncUrl?: boolean; // keep ?q= in the address so a search can be shared
+}
+const { subject, autofocus = false, syncUrl = false } = Astro.props;
+const preset = SUBJECTS.findIndex((s) => s.slug === subject);
+---
+
+<div class="xs" data-xs data-preset={preset} data-sync={syncUrl ? '1' : ''}>
+  <div class="xs-box" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-owns="xs-sugg">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2" /><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+    <label class="sr-only" for="xs-q">Search {fmt(STATS.topics)} topics</label>
+    <input
+      id="xs-q" type="search" autocomplete="off" spellcheck="false" enterkeyhint="search" autofocus={autofocus}
+      placeholder={preset >= 0 ? `Search ${SUBJECTS[preset].name}: try a topic, a name or a date` : 'Search any topic: mughal, monsoon, fundamental rights, संधि…'}
+      aria-autocomplete="list" aria-controls="xs-sugg" data-xs-q
+    />
+    <kbd aria-hidden="true">/</kbd>
+    <ul id="xs-sugg" class="xs-sugg" role="listbox" hidden data-xs-sugg></ul>
+  </div>
+
+  <div class="xs-filters" role="group" aria-label="Filters">
+    <label>
+      <span>Subject</span>
+      <select data-xs-subject>
+        <option value="-1">All 15 subjects</option>
+        {SUBJECTS.map((s, i) => <option value={i} selected={i === preset}>{s.name}</option>)}
+      </select>
+    </label>
+    <label>
+      <span>Depth</span>
+      <select data-xs-level>
+        <option value="9">Every level</option>
+        <option value="1">Major topics only</option>
+        <option value="2">Major topics and topics</option>
+        <option value="3">Down to subtopics</option>
+      </select>
+    </label>
+    <label class="xs-check">
+      <input type="checkbox" data-xs-pyq />
+      <span>Only topics asked in past papers</span>
+    </label>
+  </div>
+
+  <p class="xs-status small" aria-live="polite" data-xs-status>Spelling mistakes are fine. Press Enter to see every match.</p>
+  <p class="xs-dym" hidden data-xs-dym>Did you mean <button type="button" data-xs-dym-btn></button>?</p>
+  <ol class="xs-results" data-xs-results></ol>
+  <button class="btn ghost xs-more" type="button" hidden data-xs-more>Show more</button>
+  <noscript><p class="small">Search needs JavaScript. You can still open every subject from the menu.</p></noscript>
+</div>
+
+<script>
+  import { load, search, didYouMean, highlight, majorTitle, subjects, type Hit } from '../../scripts/exam-search';
+
+  const LEVEL = ['', 'Major topic', 'Topic', 'Subtopic', 'Detail'];
+  const slugId = (id: string) => id.toLowerCase().replaceAll('.', '-');
+  const urlOf = (id: string, s: number) => {
+    const l1 = id.match(/^[A-Z]{3}-\d+/)?.[0] ?? id;
+    return `/exam-prep/curriculum-index/${subjects[s][0]}/${slugId(l1)}/${l1 === id ? '' : '#' + slugId(id)}`;
+  };
+
+  document.querySelectorAll<HTMLElement>('[data-xs]').forEach((root) => {
+    const $ = <T extends HTMLElement>(s: string) => root.querySelector<T>(s)!;
+    const q = $<HTMLInputElement>('[data-xs-q]');
+    const box = $('.xs-box');
+    const sugg = $('[data-xs-sugg]');
+    const subj = $<HTMLSelectElement>('[data-xs-subject]');
+    const lvl = $<HTMLSelectElement>('[data-xs-level]');
+    const pyq = $<HTMLInputElement>('[data-xs-pyq]');
+    const status = $('[data-xs-status]');
+    const dym = $('[data-xs-dym]');
+    const dymBtn = $<HTMLButtonElement>('[data-xs-dym-btn]');
+    const list = $('[data-xs-results]');
+    const more = $<HTMLButtonElement>('[data-xs-more]');
+    const sync = root.dataset.sync === '1';
+    let hits: Hit[] = [];
+    let shown = 0;
+    let active = -1;
+
+    const filters = () => ({ subject: Number(subj.value), maxLevel: Number(lvl.value), pyqOnly: pyq.checked });
+
+    function item(h: Hit, query: string, compact: boolean) {
+      const r = h.row;
+      const a = document.createElement('a');
+      a.href = urlOf(r.id, r.s);
+      a.className = compact ? 'xs-opt' : 'xs-hit';
+      const top = document.createElement('span');
+      top.className = 'xs-meta';
+      top.textContent = `${subjects[r.s][1]} · ${LEVEL[r.lvl] ?? 'Topic'}`;
+      const t = document.createElement('strong');
+      t.innerHTML = highlight(r.t, query);
+      a.append(top, t);
+      if (!compact) {
+        const path = document.createElement('span');
+        path.className = 'xs-path';
+        path.textContent = r.lvl > 1 ? `in ${majorTitle(r.id)}` : 'Open the whole major topic';
+        a.append(path);
+        if (r.q) {
+          const b = document.createElement('span');
+          b.className = 'xs-pyq';
+          b.textContent = `Asked ${r.q}× in past papers`;
+          a.append(b);
+        }
+      }
+      return a;
+    }
+
+    function closeSugg() { sugg.hidden = true; box.setAttribute('aria-expanded', 'false'); active = -1; }
+
+    function suggest() {
+      const query = q.value.trim();
+      if (query.length < 2) return closeSugg();
+      const top = search(query, filters(), 8).hits;
+      sugg.replaceChildren(...top.map((h, i) => {
+        const li = document.createElement('li');
+        li.setAttribute('role', 'option');
+        li.id = `xs-o${i}`;
+        li.append(item(h, query, true));
+        return li;
+      }));
+      if (!top.length) {
+        const li = document.createElement('li');
+        li.className = 'xs-empty';
+        li.textContent = 'Keep typing, or press Enter for the closest topics.';
+        sugg.append(li);
+      }
+      sugg.hidden = false;
+      box.setAttribute('aria-expanded', 'true');
+    }
+
+    function render() {
+      const query = q.value.trim();
+      closeSugg();
+      list.replaceChildren();
+      dym.hidden = true;
+      if (sync) {
+        const u = new URL(location.href);
+        query ? u.searchParams.set('q', query) : u.searchParams.delete('q');
+        history.replaceState(null, '', u);
+      }
+      if (!query) { more.hidden = true; status.textContent = 'Spelling mistakes are fine. Press Enter to see every match.'; return; }
+      const res = search(query, filters());
+      hits = res.hits;
+      const fix = didYouMean(query);
+      if (fix) { dymBtn.textContent = fix; dym.hidden = false; }
+      if (!hits.length) {
+        // never a dead end: loosen the filters, then fall back to the closest spelling
+        const loose = search(fix || query, { subject: -1, maxLevel: 9, pyqOnly: false }).hits;
+        hits = loose;
+        status.textContent = loose.length
+          ? `Nothing matched with these filters, so here are the closest topics in every subject (${loose.length}).`
+          : 'This index does not have that word yet. Try a shorter word, a broader topic, or browse a subject from the menu.';
+      } else {
+        const where = res.subjectHint >= 0 ? ` ${subjects[res.subjectHint][1]} first.` : '';
+        status.textContent = `${hits.length === 400 ? '400+' : hits.length} topics found, best matches first.${where}`;
+      }
+      shown = 0;
+      showMore();
+    }
+
+    function showMore() {
+      const query = q.value.trim();
+      const next = hits.slice(shown, shown + 30);
+      list.append(...next.map((h) => { const li = document.createElement('li'); li.append(item(h, query, false)); return li; }));
+      shown += next.length;
+      more.hidden = shown >= hits.length;
+    }
+
+    let timer = 0;
+    q.addEventListener('focus', () => load(), { once: true });
+    q.addEventListener('input', () => {
+      clearTimeout(timer);
+      timer = window.setTimeout(() => load().then(suggest), 90);
+    });
+    q.addEventListener('keydown', (e) => {
+      const opts = [...sugg.querySelectorAll<HTMLElement>('[role="option"]')];
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        if (sugg.hidden || !opts.length) return;
+        e.preventDefault();
+        active = (active + (e.key === 'ArrowDown' ? 1 : -1) + opts.length) % opts.length;
+        opts.forEach((o, i) => o.setAttribute('aria-selected', String(i === active)));
+        q.setAttribute('aria-activedescendant', opts[active].id);
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (active >= 0 && opts[active]) { opts[active].querySelector('a')?.click(); return; }
+        load().then(render);
+      } else if (e.key === 'Escape') closeSugg();
+    });
+    document.addEventListener('click', (e) => { if (!box.contains(e.target as Node)) closeSugg(); });
+    [subj, lvl, pyq].forEach((el) => el.addEventListener('change', () => { if (q.value.trim()) load().then(render); }));
+    dymBtn.addEventListener('click', () => { q.value = dymBtn.textContent ?? ''; load().then(render); });
+    more.addEventListener('click', showMore);
+
+    // "/" jumps to the search box
+    addEventListener('keydown', (e) => {
+      if (e.key === '/' && !(e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement || e.target instanceof HTMLSelectElement)) {
+        e.preventDefault(); q.focus();
+      }
+    });
+
+    if (sync) {
+      const initial = new URL(location.href).searchParams.get('q');
+      if (initial) { q.value = initial; load().then(render); }
+    }
+  });
+</script>
+
+<style>
+  .xs { --r: 16px; }
+  .xs-box {
+    position: relative; display: flex; align-items: center; gap: 0.6rem; padding: 0.35rem 0.5rem 0.35rem 1rem;
+    border: 1.5px solid color-mix(in srgb, var(--tree) 45%, var(--line)); border-radius: var(--r); background: var(--surface);
+    box-shadow: 0 10px 30px rgb(42 35 80 / 0.08); transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .xs-box:focus-within { border-color: var(--tree); box-shadow: 0 0 0 4px color-mix(in srgb, var(--tree) 18%, transparent), 0 10px 30px rgb(42 35 80 / 0.1); }
+  .xs-box > svg { width: 20px; height: 20px; color: var(--tree); flex: none; }
+  .xs-box input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--ink); font: inherit; font-size: 1.05rem; padding: 0.6rem 0; }
+  .xs-box kbd { font: 600 0.75rem var(--font-sans); color: var(--ink-soft); border: 1px solid var(--line); border-radius: 6px; padding: 0.1rem 0.45rem; }
+  .xs-sugg {
+    position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 25; list-style: none; margin: 0; padding: 0.4rem;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); box-shadow: 0 18px 44px rgb(42 35 80 / 0.18); max-height: 60vh; overflow-y: auto;
+  }
+  .xs-sugg li { margin: 0; }
+  .xs-sugg :global(.xs-opt) { display: block; padding: 0.5rem 0.7rem; border-radius: 10px; color: var(--ink); text-decoration: none; }
+  .xs-sugg :global(.xs-opt:hover), .xs-sugg :global([aria-selected='true'] .xs-opt) { background: color-mix(in srgb, var(--tree) 12%, transparent); }
+  .xs-sugg :global(.xs-opt strong) { display: block; font-weight: 500; line-height: 1.35; }
+  .xs-empty { padding: 0.6rem 0.7rem; color: var(--ink-soft); font-size: 0.9rem; }
+  :global(.xs-meta) { display: block; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+  :global(.xs mark) { background: color-mix(in srgb, var(--gold) 30%, transparent); color: inherit; border-radius: 3px; padding: 0 1px; }
+  .xs-filters { display: flex; flex-wrap: wrap; gap: 0.6rem 1rem; margin: 0.9rem 0 0.2rem; align-items: end; }
+  .xs-filters label { display: flex; flex-direction: column; gap: 0.2rem; font-size: 0.78rem; color: var(--ink-soft); }
+  .xs-filters select {
+    font: inherit; font-size: 0.92rem; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 0.42rem 2rem 0.42rem 0.7rem;
+    appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--ink-soft) 50%), linear-gradient(135deg, var(--ink-soft) 50%, transparent 50%);
+    background-position: calc(100% - 15px) 55%, calc(100% - 10px) 55%; background-size: 5px 5px; background-repeat: no-repeat;
+  }
+  .xs-filters .xs-check { flex-direction: row; align-items: center; gap: 0.45rem; font-size: 0.9rem; color: var(--ink); padding-bottom: 0.45rem; cursor: pointer; }
+  .xs-check input { width: 1.05rem; height: 1.05rem; accent-color: var(--tree); }
+  .xs-status { color: var(--ink-soft); margin: 0.6rem 0 0.4rem; }
+  .xs-dym { margin: 0 0 0.6rem; }
+  .xs-dym button { font: inherit; font-weight: 600; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+  .xs-results { list-style: none; margin: 0.4rem 0 0; padding: 0; display: grid; gap: 0.5rem; }
+  .xs-results li { margin: 0; }
+  .xs-results :global(.xs-hit) {
+    display: grid; gap: 0.15rem; padding: 0.8rem 1rem; border: 1px solid var(--line); border-radius: 14px; background: var(--surface);
+    color: var(--ink); text-decoration: none; transition: border-color 0.2s, transform 0.2s;
+  }
+  .xs-results :global(.xs-hit:hover) { border-color: var(--tree); transform: translateX(3px); }
+  .xs-results :global(.xs-hit strong) { font-weight: 600; line-height: 1.4; }
+  .xs-results :global(.xs-path) { font-size: 0.85rem; color: var(--ink-soft); }
+  .xs-results :global(.xs-pyq) { justify-self: start; margin-top: 0.2rem; font-size: 0.75rem; font-weight: 600; padding: 0.1rem 0.55rem; border-radius: 999px; background: color-mix(in srgb, var(--tree) 18%, transparent); }
+  .xs-more { margin-top: 0.9rem; }
+  @media (max-width: 560px) { .xs-box kbd { display: none; } .xs-filters label { flex: 1 1 45%; } .xs-filters select { width: 100%; } }
+</style>

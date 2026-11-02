@@ -17,7 +17,7 @@ const nodes = CATEGORIES.map((c, i) => {
     <g class="ring">
       {nodes.map((n) => <line x1={C} y1={C} x2={n.x} y2={n.y} class="thread" stroke={n.color} />)}
       {nodes.map((n) => (
-        <a href={`/library/${n.slug}/`} class="node" data-label={n.label} data-blurb={n.blurb} aria-label={`${n.label}: ${n.blurb}`}>
+        <a href={n.slug === 'exam-prep' ? '/exam-prep/' : `/library/${n.slug}/`} class="node" data-label={n.label} data-blurb={n.blurb} aria-label={`${n.label}: ${n.blurb}`}>
           <g transform={`translate(${n.x} ${n.y})`}>
             <g class="upright">
               <circle r="46" class="halo" fill={n.color} />

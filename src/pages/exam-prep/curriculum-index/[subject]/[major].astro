@@ -1,0 +1,168 @@
+---
+// One major topic (Level 1) with everything inside it, as calm nested cards.
+import ExamLayout from '../../../../layouts/ExamLayout.astro';
+import { SUBJECTS, CI, BASE, GUIDE, fmt, partLabel, topicsOf, topicUrl, subjectOf, slugId, type Subject, type Topic } from '../../../../exam-prep';
+
+type Node = Topic & { kids: Node[] };
+export function getStaticPaths() {
+  return SUBJECTS.flatMap((s) => {
+    const all = topicsOf(s.slug);
+    return s.majors.map((m, i) => ({
+      params: { subject: s.slug, major: m.slug },
+      props: { s, i, rows: all.filter((t) => t.l1 === m.id) },
+    }));
+  });
+}
+const { s, i, rows } = Astro.props as { s: Subject; i: number; rows: Topic[] };
+const major = s.majors[i];
+const head = rows.find((r) => r.lvl === 1) ?? ({ id: major.id, lvl: 1, t: major.t, l1: major.id } as Topic);
+// nest the rows by level (they are stored in reading order)
+const root: Node = { ...head, kids: [] };
+const stack: Node[] = [root];
+for (const r of rows) {
+  if (r === head) continue;
+  const node: Node = { ...r, kids: [] };
+  while (stack.length > 1 && stack.at(-1)!.lvl >= r.lvl) stack.pop();
+  stack.at(-1)!.kids.push(node);
+  stack.push(node);
+}
+const prev = s.majors[i - 1];
+const next = s.majors[i + 1];
+const asked = rows.reduce((a, r) => a + (r.lvl <= 2 ? r.q ?? 0 : 0), 0);
+const lastYear = Math.max(0, ...rows.map((r) => r.y ?? 0));
+const count = (n: Node): number => n.kids.reduce((a, k) => a + 1 + count(k), 0);
+const desc = head.d ? head.d.slice(0, 150) : `${major.t}: every topic inside, in order, for competitive exams.`;
+---
+
+<ExamLayout
+  title={`${major.t} · ${s.name}`}
+  description={desc}
+  section="ci"
+  subject={s.slug}
+  major={major.slug}
+  crumbs={[{ href: `${BASE}/`, label: 'Exam Prep' }, { href: `${CI}/`, label: 'Curriculum Index' }, { href: `${CI}/${s.slug}/`, label: s.name }, { label: `${i + 1}. ${major.t}` }]}
+>
+  <header class="m-hero">
+    <p class="eyebrow">{s.name} · {partLabel(major.part)} · Major topic {i + 1} of {s.majors.length}</p>
+    <h1>{major.t}</h1>
+    {head.p && <p class="period">{head.p}</p>}
+    {head.d && <p class="lede">{head.d}</p>}
+    <p class="facts">
+      <span>{fmt(rows.length - 1)} items inside</span>
+      {asked > 0 && <span class="ask">Asked {asked}× in the RPSC/RSSB papers we analysed{lastYear > 0 && `, most recently ${lastYear}`}</span>}
+      <span class="id">{major.id}</span>
+    </p>
+    {head.rel && (
+      <p class="rel">Also look at: {head.rel.map(([id, label]) => <a href={topicUrl(id)}>{subjectOf(id)?.name}: {label || id}</a>)}</p>
+    )}
+  </header>
+
+  {root.kids.length === 0 && <p class="muted">This major topic is one page on its own. Its outline is above.</p>}
+
+  <ol class="tree">
+    {root.kids.map((k, n) => (
+      <li class="l2" id={slugId(k.id)}>
+        <div class="row">
+          <span class="num">{n + 1}</span>
+          <div class="body">
+            <h2>{k.t}</h2>
+            {k.p && <span class="period">{k.p}</span>}
+            {k.d && <p class="d">{k.d}</p>}
+            {(k.q || k.rel) && (
+              <p class="tags">
+                {k.q && <span class="ask">Asked {k.q}×{k.y && ` · last ${k.y}`}</span>}
+                {k.rel?.map(([id, label]) => <a href={topicUrl(id)}>↗ {subjectOf(id)?.name}: {label || id}</a>)}
+              </p>
+            )}
+            {k.kids.length > 0 && (
+              <ul class="l3s">
+                {k.kids.map((c) => (
+                  <li class="l3" id={slugId(c.id)}>
+                    <strong>{c.t}</strong>
+                    {c.p && <span class="period sm">{c.p}</span>}
+                    {c.d && <span class="d sm">{c.d}</span>}
+                    {c.q && <span class="ask sm">Asked {c.q}×</span>}
+                    {c.kids.length > 0 && (
+                      <details class="l4s">
+                        <summary>{count(c)} more point{count(c) === 1 ? '' : 's'}</summary>
+                        <ul>
+                          {c.kids.flatMap((g) => [g, ...g.kids]).map((g) => (
+                            <li id={slugId(g.id)}><span>{g.t}</span>{g.d && <span class="d sm"> · {g.d}</span>}</li>
+                          ))}
+                        </ul>
+                      </details>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      </li>
+    ))}
+  </ol>
+
+  <aside class="guide-nudge">
+    <p><strong>Not sure if this topic matters for your exam?</strong> The Exam Guide ranks every topic by how often it was asked.</p>
+    <a class="btn" href={`${GUIDE}/`}>Find my topics</a>
+  </aside>
+
+  <nav class="pn" aria-label="Next and previous major topics">
+    {prev ? <a href={`${CI}/${s.slug}/${prev.slug}/`} rel="prev"><small>← Previous</small><span>{prev.t}</span></a> : <span></span>}
+    {next ? <a href={`${CI}/${s.slug}/${next.slug}/`} rel="next" class="nx"><small>Next →</small><span>{next.t}</span></a> : <a href={`${CI}/`} class="nx"><small>Done with {s.name} →</small><span>All subjects</span></a>}
+  </nav>
+</ExamLayout>
+
+<script>
+  // Open the folded group that holds a linked point (#com-12-3-4) and show it
+  const open = () => {
+    const el = location.hash && document.getElementById(location.hash.slice(1));
+    if (!el) return;
+    const d = el.closest('details');
+    if (d) d.open = true;
+    el.classList.add('flash');
+    el.scrollIntoView({ block: 'center' });
+  };
+  open();
+  addEventListener('hashchange', open);
+</script>
+
+<style>
+  .m-hero { padding-bottom: 1.4rem; margin-bottom: 1.2rem; border-bottom: 1px solid var(--line); }
+  .m-hero h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); max-width: 46rem; }
+  .lede { font-size: 1.08rem; color: var(--ink-soft); max-width: 44rem; margin: 0.4rem 0 0; }
+  .period { display: inline-block; font-size: 0.82rem; font-weight: 600; color: var(--tree); background: color-mix(in srgb, var(--tree) 12%, transparent); padding: 0.1rem 0.6rem; border-radius: 999px; margin: 0.2rem 0; }
+  .period.sm { font-size: 0.75rem; margin: 0 0 0 0.4rem; }
+  .facts { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; font-size: 0.85rem; color: var(--ink-soft); margin: 0.9rem 0 0; }
+  .facts .ask { color: var(--tree); font-weight: 600; }
+  .facts .id { font-family: ui-monospace, monospace; font-size: 0.78rem; opacity: 0.8; }
+  .rel { font-size: 0.88rem; margin: 0.7rem 0 0; color: var(--ink-soft); display: flex; flex-wrap: wrap; gap: 0.3rem 0.8rem; }
+  .tree { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.8rem; counter-reset: none; }
+  .l2 { margin: 0; scroll-margin-top: 140px; }
+  .row { display: grid; grid-template-columns: 2.2rem 1fr; gap: 0.8rem; padding: 1rem 1.1rem; border-radius: 16px; border: 1px solid var(--line); background: var(--surface); }
+  .num { font: 600 1.1rem var(--font-serif); color: var(--tree); text-align: right; padding-top: 0.1rem; }
+  .body h2 { font-size: 1.12rem; margin: 0; line-height: 1.4; }
+  .d { margin: 0.35rem 0 0; color: var(--ink-soft); font-size: 0.95rem; }
+  .d.sm { display: block; font-size: 0.88rem; margin: 0.15rem 0 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.35rem 0.8rem; margin: 0.5rem 0 0; font-size: 0.82rem; }
+  .tags a { text-decoration: none; }
+  .ask { font-weight: 600; color: var(--tree); }
+  .ask.sm { display: inline-block; font-size: 0.75rem; margin-left: 0.4rem; }
+  .l3s { list-style: none; margin: 0.8rem 0 0; padding: 0 0 0 0.9rem; border-left: 2px solid color-mix(in srgb, var(--tree) 30%, transparent); display: grid; gap: 0.55rem; }
+  .l3 { margin: 0; scroll-margin-top: 140px; }
+  .l3 strong { font-weight: 600; font-size: 0.97rem; }
+  .l4s { margin: 0.3rem 0 0; }
+  .l4s summary { cursor: pointer; font-size: 0.82rem; color: var(--accent); width: fit-content; }
+  .l4s ul { margin: 0.4rem 0 0.2rem; padding-left: 1.1rem; display: grid; gap: 0.25rem; font-size: 0.9rem; }
+  .l4s li { scroll-margin-top: 140px; }
+  :global(.flash) { animation: flash 2.2s ease; border-radius: 8px; }
+  @keyframes flash { 0%, 40% { background: color-mix(in srgb, var(--gold) 28%, transparent); } 100% { background: transparent; } }
+  .guide-nudge { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; margin: 2rem 0 0; padding: 1rem 1.2rem; border-radius: 16px; background: color-mix(in srgb, var(--tree) 10%, var(--surface)); }
+  .guide-nudge p { margin: 0; max-width: 34rem; }
+  .pn { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 1.6rem; }
+  .pn a { display: grid; gap: 0.15rem; padding: 0.8rem 1rem; border-radius: 14px; border: 1px solid var(--line); text-decoration: none; color: var(--ink); background: var(--surface); }
+  .pn a:hover { border-color: var(--tree); }
+  .pn small { color: var(--ink-soft); }
+  .pn .nx { text-align: right; }
+  @media (max-width: 560px) { .row { grid-template-columns: 1.6rem 1fr; padding: 0.9rem; gap: 0.6rem; } .pn { grid-template-columns: 1fr; } .pn .nx { text-align: left; } }
+</style>

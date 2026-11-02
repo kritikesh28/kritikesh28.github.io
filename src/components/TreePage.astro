@@ -43,6 +43,13 @@ const schema = [
         <p class="lede">{tree.blurb}</p>
       </header>
 
+      {tree.slug === 'exam-prep' && (
+        <a class="exam-door" href="/exam-prep/">
+          <strong>Preparing for RPSC, RSSB or another government exam?</strong>
+          <span>Open Exam Prep: the whole syllabus as one searchable map, and a guide that ranks topics by past papers. →</span>
+        </a>
+      )}
+
       {tree.branches.map((branch) => (
         <section class="branch">
           <h2><LevelIcon level="Branch" size={26} /> {branch.title}</h2>
@@ -93,6 +100,9 @@ const schema = [
 </script>
 
 <style>
+  .exam-door { display: grid; gap: 0.2rem; margin: 0 0 1.6rem; padding: 1rem 1.2rem; border-radius: 16px; border: 1px solid var(--tree); background: color-mix(in srgb, var(--tree) 10%, var(--surface)); color: var(--ink); text-decoration: none; }
+  .exam-door span { color: var(--ink-soft); }
+  .exam-door:hover { box-shadow: 0 12px 30px rgb(42 35 80 / 0.12); }
   .tree-layout { display: grid; grid-template-columns: minmax(0, 760px) 280px; gap: 3rem; justify-content: center; }
   .side .sticky { position: sticky; top: 84px; }
   .crumbs { display: flex; gap: 0.4rem; color: var(--ink-soft); margin-bottom: 0.8rem; }

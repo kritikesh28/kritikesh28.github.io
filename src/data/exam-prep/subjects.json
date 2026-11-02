@@ -1,0 +1,7377 @@
+[
+ {
+  "slug": "history",
+  "prefix": "HIS",
+  "name": "History",
+  "blurb": "Indian and world history in strict date order: prehistory to the present, with rulers, events, movements and an exam quick-reference.",
+  "total": 2020,
+  "levels": {
+   "1": 86,
+   "2": 1659,
+   "3": 275
+  },
+  "majors": [
+   {
+    "id": "HIS-01",
+    "slug": "his-01",
+    "t": "Human origins, archaeology and Stone Age classification",
+    "part": "Indian History · PART I — PREHISTORY AND PROTOHISTORY",
+    "n": 18,
+    "q": 0
+   },
+   {
+    "id": "HIS-02",
+    "slug": "his-02",
+    "t": "Harappan / Indus Civilisation: early, mature and late phases",
+    "part": "Indian History · PART I — PREHISTORY AND PROTOHISTORY",
+    "n": 21,
+    "q": 0
+   },
+   {
+    "id": "HIS-03",
+    "slug": "his-03",
+    "t": "Evidence, chronology and historians: how early Indian history is reconstructed",
+    "part": "Indian History · PART I — PREHISTORY AND PROTOHISTORY",
+    "n": 13,
+    "q": 0
+   },
+   {
+    "id": "HIS-04",
+    "slug": "his-04",
+    "t": "Vedic period: Early / Rigvedic and Later Vedic phases",
+    "part": "Indian History · PART II — ANCIENT INDIA",
+    "n": 12,
+    "q": 0
+   },
+   {
+    "id": "HIS-05",
+    "slug": "his-05",
+    "t": "Second urbanisation, Mahajanapadas and the rise of Magadha",
+    "part": "Indian History · PART II — ANCIENT INDIA",
+    "n": 17,
+    "q": 2
+   },
+   {
+    "id": "HIS-06",
+    "slug": "his-06",
+    "t": "Jainism, Buddhism and other heterodox traditions",
+    "part": "Indian History · PART II — ANCIENT INDIA",
+    "n": 16,
+    "q": 1
+   },
+   {
+    "id": "HIS-07",
+    "slug": "his-07",
+    "t": "Mauryan Empire and its transition",
+    "part": "Indian History · PART II — ANCIENT INDIA",
+    "n": 14,
+    "q": 0
+   },
+   {
+    "id": "HIS-08",
+    "slug": "his-08",
+    "t": "Post-Mauryan India: northern and north-western dynasties",
+    "part": "Indian History · PART II — ANCIENT INDIA",
+    "n": 13,
+    "q": 0
+   },
+   {
+    "id": "HIS-09",
+    "slug": "his-09",
+    "t": "Post-Mauryan India: Deccan, Kalinga and Sangam south",
+    "part": "Indian History · PART II — ANCIENT INDIA",
+    "n": 12,
+    "q": 0
+   },
+   {
+    "id": "HIS-10",
+    "slug": "his-10",
+    "t": "Gupta Empire, Vakatakas and classical-era developments",
+    "part": "Indian History · PART II — ANCIENT INDIA",
+    "n": 22,
+    "q": 0
+   },
+   {
+    "id": "HIS-11",
+    "slug": "his-11",
+    "t": "Post-Gupta north India, Kashmir and Himalayan regions",
+    "part": "Indian History · PART III — EARLY MEDIEVAL INDIA",
+    "n": 13,
+    "q": 0
+   },
+   {
+    "id": "HIS-12",
+    "slug": "his-12",
+    "t": "Tripartite struggle and the north/east Indian empires",
+    "part": "Indian History · PART III — EARLY MEDIEVAL INDIA",
+    "n": 18,
+    "q": 0
+   },
+   {
+    "id": "HIS-13",
+    "slug": "his-13",
+    "t": "Deccan and southern kingdoms before and during the Chola high period",
+    "part": "Indian History · PART III — EARLY MEDIEVAL INDIA",
+    "n": 21,
+    "q": 0
+   },
+   {
+    "id": "HIS-14",
+    "slug": "his-14",
+    "t": "North-western incursions, Rajput states and the approach to Sultanate rule",
+    "part": "Indian History · PART III — EARLY MEDIEVAL INDIA",
+    "n": 15,
+    "q": 0
+   },
+   {
+    "id": "HIS-15",
+    "slug": "his-15",
+    "t": "Delhi Sultanate: Mamluk / Slave dynasty (1206–1290)",
+    "part": "Indian History · PART IV — MEDIEVAL AND EARLY MODERN INDIA",
+    "n": 10,
+    "q": 0
+   },
+   {
+    "id": "HIS-16",
+    "slug": "his-16",
+    "t": "Delhi Sultanate: Khalji dynasty (1290–1320)",
+    "part": "Indian History · PART IV — MEDIEVAL AND EARLY MODERN INDIA",
+    "n": 6,
+    "q": 0
+   },
+   {
+    "id": "HIS-17",
+    "slug": "his-17",
+    "t": "Delhi Sultanate: Tughlaq (1320–1414), Sayyid (1414–1451) and Lodi (1451–1526)",
+    "part": "Indian History · PART IV — MEDIEVAL AND EARLY MODERN INDIA",
+    "n": 15,
+    "q": 1
+   },
+   {
+    "id": "HIS-18",
+    "slug": "his-18",
+    "t": "Vijayanagara, Bahmani and Deccan Sultanates",
+    "part": "Indian History · PART IV — MEDIEVAL AND EARLY MODERN INDIA",
+    "n": 16,
+    "q": 0
+   },
+   {
+    "id": "HIS-19",
+    "slug": "his-19",
+    "t": "Mughal Empire and the Sur interregnum",
+    "part": "Indian History · PART IV — MEDIEVAL AND EARLY MODERN INDIA",
+    "n": 34,
+    "q": 3
+   },
+   {
+    "id": "HIS-20",
+    "slug": "his-20",
+    "t": "Maratha power, Sikh polity and regional states",
+    "part": "Indian History · PART IV — MEDIEVAL AND EARLY MODERN INDIA",
+    "n": 32,
+    "q": 0
+   },
+   {
+    "id": "HIS-21",
+    "slug": "his-21",
+    "t": "Bhakti, Sufi, Virashaiva, Nath, Sikh and Christian traditions",
+    "part": "Indian History · PART IV — MEDIEVAL AND EARLY MODERN INDIA",
+    "n": 14,
+    "q": 0
+   },
+   {
+    "id": "HIS-22",
+    "slug": "his-22",
+    "t": "European maritime arrival and trading companies",
+    "part": "Indian History · PART V — MODERN INDIA: EUROPEAN ARRIVAL, COMPANY RULE AND COLONIAL STATE",
+    "n": 19,
+    "q": 0
+   },
+   {
+    "id": "HIS-23",
+    "slug": "his-23",
+    "t": "Decline of Mughal central power and the emergence of successor states",
+    "part": "Indian History · PART V — MODERN INDIA: EUROPEAN ARRIVAL, COMPANY RULE AND COLONIAL STATE",
+    "n": 15,
+    "q": 2
+   },
+   {
+    "id": "HIS-24",
+    "slug": "his-24",
+    "t": "Company expansion: battles, wars, treaties and doctrines",
+    "part": "Indian History · PART V — MODERN INDIA: EUROPEAN ARRIVAL, COMPANY RULE AND COLONIAL STATE",
+    "n": 32,
+    "q": 0
+   },
+   {
+    "id": "HIS-25",
+    "slug": "his-25",
+    "t": "Company-era administration, land systems, law, army and economy",
+    "part": "Indian History · PART V — MODERN INDIA: EUROPEAN ARRIVAL, COMPANY RULE AND COLONIAL STATE",
+    "n": 20,
+    "q": 0
+   },
+   {
+    "id": "HIS-26",
+    "slug": "his-26",
+    "t": "Revolt of 1857 and the change from Company to Crown",
+    "part": "Indian History · PART VI — CROWN RULE, SOCIAL CHANGE AND RESISTANCE",
+    "n": 18,
+    "q": 1
+   },
+   {
+    "id": "HIS-27",
+    "slug": "his-27",
+    "t": "Crown administration, constitutional developments and viceroys",
+    "part": "Indian History · PART VI — CROWN RULE, SOCIAL CHANGE AND RESISTANCE",
+    "n": 23,
+    "q": 3
+   },
+   {
+    "id": "HIS-28",
+    "slug": "his-28",
+    "t": "Socio-religious reform, caste reform and women’s history",
+    "part": "Indian History · PART VI — CROWN RULE, SOCIAL CHANGE AND RESISTANCE",
+    "n": 22,
+    "q": 2
+   },
+   {
+    "id": "HIS-29",
+    "slug": "his-29",
+    "t": "Peasant, tribal, forest, labour and civil resistance",
+    "part": "Indian History · PART VI — CROWN RULE, SOCIAL CHANGE AND RESISTANCE",
+    "n": 28,
+    "q": 0
+   },
+   {
+    "id": "HIS-30",
+    "slug": "his-30",
+    "t": "Early nationalism, public associations and the Moderate phase",
+    "part": "Indian History · PART VII — NATIONALISM, MASS POLITICS AND INDEPENDENCE",
+    "n": 17,
+    "q": 0
+   },
+   {
+    "id": "HIS-31",
+    "slug": "his-31",
+    "t": "Home Rule, Gandhi’s emergence and mass politics (1915–1922)",
+    "part": "Indian History · PART VII — NATIONALISM, MASS POLITICS AND INDEPENDENCE",
+    "n": 17,
+    "q": 3
+   },
+   {
+    "id": "HIS-32",
+    "slug": "his-32",
+    "t": "Swaraj, Civil Disobedience and constitutional negotiations (1925–1939)",
+    "part": "Indian History · PART VII — NATIONALISM, MASS POLITICS AND INDEPENDENCE",
+    "n": 25,
+    "q": 5
+   },
+   {
+    "id": "HIS-33",
+    "slug": "his-33",
+    "t": "Second World War, Quit India, INA and negotiations (1940–1947)",
+    "part": "Indian History · PART VII — NATIONALISM, MASS POLITICS AND INDEPENDENCE",
+    "n": 23,
+    "q": 0
+   },
+   {
+    "id": "HIS-34",
+    "slug": "his-34",
+    "t": "Independence, integration, Constitution and early republic (1947–1964)",
+    "part": "Indian History · PART VIII — INDEPENDENT INDIA: REPUBLIC, STATE-BUILDING AND CONTEMPORARY HISTORY",
+    "n": 22,
+    "q": 2
+   },
+   {
+    "id": "HIS-35",
+    "slug": "his-35",
+    "t": "Political leadership and national milestones: 1964–1991",
+    "part": "Indian History · PART VIII — INDEPENDENT INDIA: REPUBLIC, STATE-BUILDING AND CONTEMPORARY HISTORY",
+    "n": 27,
+    "q": 0
+   },
+   {
+    "id": "HIS-36",
+    "slug": "his-36",
+    "t": "Economic reform, coalition politics, security and social change (1991–2014)",
+    "part": "Indian History · PART VIII — INDEPENDENT INDIA: REPUBLIC, STATE-BUILDING AND CONTEMPORARY HISTORY",
+    "n": 22,
+    "q": 1
+   },
+   {
+    "id": "HIS-37",
+    "slug": "his-37",
+    "t": "India in the twenty-first century: 2014–2026",
+    "part": "Indian History · PART VIII — INDEPENDENT INDIA: REPUBLIC, STATE-BUILDING AND CONTEMPORARY HISTORY",
+    "n": 26,
+    "q": 2
+   },
+   {
+    "id": "HIS-38",
+    "slug": "his-38",
+    "t": "Foreign policy, wars and international relations",
+    "part": "Indian History · PART VIII — INDEPENDENT INDIA: REPUBLIC, STATE-BUILDING AND CONTEMPORARY HISTORY",
+    "n": 22,
+    "q": 3
+   },
+   {
+    "id": "HIS-39",
+    "slug": "his-39",
+    "t": "Political institutions, administration and warfare",
+    "part": "Indian History · PART IX — CROSS-CUTTING TOPIC INDEX",
+    "n": 14,
+    "q": 0
+   },
+   {
+    "id": "HIS-40",
+    "slug": "his-40",
+    "t": "Economy, agrarian relations, trade and technology",
+    "part": "Indian History · PART IX — CROSS-CUTTING TOPIC INDEX",
+    "n": 15,
+    "q": 0
+   },
+   {
+    "id": "HIS-41",
+    "slug": "his-41",
+    "t": "Religion, philosophy, literature and languages",
+    "part": "Indian History · PART IX — CROSS-CUTTING TOPIC INDEX",
+    "n": 16,
+    "q": 0
+   },
+   {
+    "id": "HIS-42",
+    "slug": "his-42",
+    "t": "Art, architecture, sculpture, music, dance and heritage",
+    "part": "Indian History · PART IX — CROSS-CUTTING TOPIC INDEX",
+    "n": 18,
+    "q": 0
+   },
+   {
+    "id": "HIS-43",
+    "slug": "his-43",
+    "t": "Science, mathematics, medicine, education and print",
+    "part": "Indian History · PART IX — CROSS-CUTTING TOPIC INDEX",
+    "n": 24,
+    "q": 1
+   },
+   {
+    "id": "HIS-44",
+    "slug": "his-44",
+    "t": "Education, press, law and constitutional change: quick chronology",
+    "part": "Indian History · PART IX — CROSS-CUTTING TOPIC INDEX",
+    "n": 20,
+    "q": 2
+   },
+   {
+    "id": "HIS-45",
+    "slug": "his-45",
+    "t": "Ancient dynasty succession at a glance",
+    "part": "Indian History · PART X — RULER AND DYNASTY QUICK-REFERENCE INDEX",
+    "n": 20,
+    "q": 0
+   },
+   {
+    "id": "HIS-46",
+    "slug": "his-46",
+    "t": "Sultanate, Vijayanagara, Mughal and regional ruler sequences",
+    "part": "Indian History · PART X — RULER AND DYNASTY QUICK-REFERENCE INDEX",
+    "n": 15,
+    "q": 1
+   },
+   {
+    "id": "HIS-47",
+    "slug": "his-47",
+    "t": "Governors-General, Viceroys, Prime Ministers and constitutional offices",
+    "part": "Indian History · PART X — RULER AND DYNASTY QUICK-REFERENCE INDEX",
+    "n": 22,
+    "q": 11
+   },
+   {
+    "id": "HIS-48",
+    "slug": "his-48",
+    "t": "Prehistory and Harappan checklist",
+    "part": "Indian History · PART XI — EXHAUSTIVE STUDY CHECKLIST BY HISTORICAL PERIOD",
+    "n": 2,
+    "q": 0
+   },
+   {
+    "id": "HIS-49",
+    "slug": "his-49",
+    "t": "Ancient India checklist",
+    "part": "Indian History · PART XI — EXHAUSTIVE STUDY CHECKLIST BY HISTORICAL PERIOD",
+    "n": 5,
+    "q": 0
+   },
+   {
+    "id": "HIS-50",
+    "slug": "his-50",
+    "t": "Early medieval and medieval checklist",
+    "part": "Indian History · PART XI — EXHAUSTIVE STUDY CHECKLIST BY HISTORICAL PERIOD",
+    "n": 3,
+    "q": 0
+   },
+   {
+    "id": "HIS-51",
+    "slug": "his-51",
+    "t": "Modern India and national movement checklist",
+    "part": "Indian History · PART XI — EXHAUSTIVE STUDY CHECKLIST BY HISTORICAL PERIOD",
+    "n": 5,
+    "q": 0
+   },
+   {
+    "id": "HIS-52",
+    "slug": "his-52",
+    "t": "Independent India checklist",
+    "part": "Indian History · PART XI — EXHAUSTIVE STUDY CHECKLIST BY HISTORICAL PERIOD",
+    "n": 4,
+    "q": 0
+   },
+   {
+    "id": "HIS-53",
+    "slug": "his-53",
+    "t": "Deep Time, Human Origins And Prehistory",
+    "part": "World History · PART I — DEEP TIME, HUMAN ORIGINS AND PREHISTORY",
+    "n": 47,
+    "q": 0
+   },
+   {
+    "id": "HIS-54",
+    "slug": "his-54",
+    "t": "First Cities And Bronze Age Civilisations",
+    "part": "World History · PART II — FIRST CITIES AND BRONZE AGE CIVILISATIONS",
+    "n": 50,
+    "q": 0
+   },
+   {
+    "id": "HIS-55",
+    "slug": "his-55",
+    "t": "Iron Age, Axial-Age Thought And The Rise Of Classical States",
+    "part": "World History · PART III — IRON AGE, AXIAL-AGE THOUGHT AND THE RISE OF CLASSICAL STATES",
+    "n": 37,
+    "q": 0
+   },
+   {
+    "id": "HIS-56",
+    "slug": "his-56",
+    "t": "Classical Antiquity And The Great Empires",
+    "part": "World History · PART IV — CLASSICAL ANTIQUITY AND THE GREAT EMPIRES",
+    "n": 59,
+    "q": 0
+   },
+   {
+    "id": "HIS-57",
+    "slug": "his-57",
+    "t": "Late Antiquity And Classical Transformations",
+    "part": "World History · PART V — LATE ANTIQUITY AND CLASSICAL TRANSFORMATIONS",
+    "n": 40,
+    "q": 0
+   },
+   {
+    "id": "HIS-58",
+    "slug": "his-58",
+    "t": "Early Post-Classical Worlds And Expanding Networks",
+    "part": "World History · PART VI — EARLY POST-CLASSICAL WORLDS AND EXPANDING NETWORKS",
+    "n": 40,
+    "q": 1
+   },
+   {
+    "id": "HIS-59",
+    "slug": "his-59",
+    "t": "High Medieval Worlds, Empire And Interregional Exchange",
+    "part": "World History · PART VII — HIGH MEDIEVAL WORLDS, EMPIRE AND INTERREGIONAL EXCHANGE",
+    "n": 55,
+    "q": 0
+   },
+   {
+    "id": "HIS-60",
+    "slug": "his-60",
+    "t": "Early Modern Global Connections",
+    "part": "World History · PART VIII — EARLY MODERN GLOBAL CONNECTIONS",
+    "n": 52,
+    "q": 0
+   },
+   {
+    "id": "HIS-61",
+    "slug": "his-61",
+    "t": "Revolutions, Industrialisation And Imperialism",
+    "part": "World History · PART IX — REVOLUTIONS, INDUSTRIALISATION AND IMPERIALISM",
+    "n": 53,
+    "q": 1
+   },
+   {
+    "id": "HIS-62",
+    "slug": "his-62",
+    "t": "World Wars, Revolutions And Totalitarianism",
+    "part": "World History · PART X — WORLD WARS, REVOLUTIONS AND TOTALITARIANISM",
+    "n": 41,
+    "q": 1
+   },
+   {
+    "id": "HIS-63",
+    "slug": "his-63",
+    "t": "Cold War, Decolonisation And A New International Order",
+    "part": "World History · PART XI — COLD WAR, DECOLONISATION AND A NEW INTERNATIONAL ORDER",
+    "n": 57,
+    "q": 2
+   },
+   {
+    "id": "HIS-64",
+    "slug": "his-64",
+    "t": "Post-Cold War Globalisation And New Conflicts",
+    "part": "World History · PART XII — POST-COLD WAR GLOBALISATION AND NEW CONFLICTS",
+    "n": 42,
+    "q": 3
+   },
+   {
+    "id": "HIS-65",
+    "slug": "his-65",
+    "t": "Contemporary History: Pandemic, Geopolitical Realignment And Ai",
+    "part": "World History · PART XIII — CONTEMPORARY HISTORY: PANDEMIC, GEOPOLITICAL REALIGNMENT AND AI",
+    "n": 28,
+    "q": 1
+   },
+   {
+    "id": "HIS-66",
+    "slug": "his-66",
+    "t": "Ancient Southwest Asia and the Nile",
+    "part": "World History · PART XIV — MAJOR DYNASTIES, STATES AND RULERS: QUICK REFERENCE",
+    "n": 5,
+    "q": 0
+   },
+   {
+    "id": "HIS-67",
+    "slug": "his-67",
+    "t": "Greece, Rome and the Mediterranean",
+    "part": "World History · PART XIV — MAJOR DYNASTIES, STATES AND RULERS: QUICK REFERENCE",
+    "n": 3,
+    "q": 0
+   },
+   {
+    "id": "HIS-68",
+    "slug": "his-68",
+    "t": "South, Central and East Asia",
+    "part": "World History · PART XIV — MAJOR DYNASTIES, STATES AND RULERS: QUICK REFERENCE",
+    "n": 6,
+    "q": 0
+   },
+   {
+    "id": "HIS-69",
+    "slug": "his-69",
+    "t": "Islamic polities, Africa and the Americas",
+    "part": "World History · PART XIV — MAJOR DYNASTIES, STATES AND RULERS: QUICK REFERENCE",
+    "n": 7,
+    "q": 0
+   },
+   {
+    "id": "HIS-70",
+    "slug": "his-70",
+    "t": "Europe, Russia and the Atlantic world",
+    "part": "World History · PART XIV — MAJOR DYNASTIES, STATES AND RULERS: QUICK REFERENCE",
+    "n": 4,
+    "q": 0
+   },
+   {
+    "id": "HIS-71",
+    "slug": "his-71",
+    "t": "China — Ming and Qing succession guides",
+    "part": "World History · PART XIV — MAJOR DYNASTIES, STATES AND RULERS: QUICK REFERENCE",
+    "n": 2,
+    "q": 0
+   },
+   {
+    "id": "HIS-72",
+    "slug": "his-72",
+    "t": "Europe — selected royal succession maps",
+    "part": "World History · PART XIV — MAJOR DYNASTIES, STATES AND RULERS: QUICK REFERENCE",
+    "n": 4,
+    "q": 0
+   },
+   {
+    "id": "HIS-73",
+    "slug": "his-73",
+    "t": "Japan and the shogunal system",
+    "part": "World History · PART XIV — MAJOR DYNASTIES, STATES AND RULERS: QUICK REFERENCE",
+    "n": 1,
+    "q": 0
+   },
+   {
+    "id": "HIS-74",
+    "slug": "his-74",
+    "t": "Major modern political transitions — non-dynastic leadership",
+    "part": "World History · PART XIV — MAJOR DYNASTIES, STATES AND RULERS: QUICK REFERENCE",
+    "n": 2,
+    "q": 0
+   },
+   {
+    "id": "HIS-75",
+    "slug": "his-75",
+    "t": "A. Political systems and state formation",
+    "part": "World History · PART XV — CROSS-TOPIC INDEX FOR SELF-STUDY",
+    "n": 9,
+    "q": 0
+   },
+   {
+    "id": "HIS-76",
+    "slug": "his-76",
+    "t": "B. Economy, labour and exchange",
+    "part": "World History · PART XV — CROSS-TOPIC INDEX FOR SELF-STUDY",
+    "n": 11,
+    "q": 0
+   },
+   {
+    "id": "HIS-77",
+    "slug": "his-77",
+    "t": "C. Religion, philosophy and ethical traditions",
+    "part": "World History · PART XV — CROSS-TOPIC INDEX FOR SELF-STUDY",
+    "n": 6,
+    "q": 0
+   },
+   {
+    "id": "HIS-78",
+    "slug": "his-78",
+    "t": "D. Science, technology, environment and knowledge",
+    "part": "World History · PART XV — CROSS-TOPIC INDEX FOR SELF-STUDY",
+    "n": 6,
+    "q": 0
+   },
+   {
+    "id": "HIS-79",
+    "slug": "his-79",
+    "t": "E. Society, gender, culture and daily life",
+    "part": "World History · PART XV — CROSS-TOPIC INDEX FOR SELF-STUDY",
+    "n": 6,
+    "q": 0
+   },
+   {
+    "id": "HIS-80",
+    "slug": "his-80",
+    "t": "F. Conflict, rights and international institutions",
+    "part": "World History · PART XV — CROSS-TOPIC INDEX FOR SELF-STUDY",
+    "n": 6,
+    "q": 0
+   },
+   {
+    "id": "HIS-81",
+    "slug": "his-81",
+    "t": "Governors-General and Viceroys: Who Did What",
+    "part": "Exam Quick Reference (added to fill gaps)",
+    "n": 122,
+    "q": 21
+   },
+   {
+    "id": "HIS-82",
+    "slug": "his-82",
+    "t": "Indian National Congress Sessions",
+    "part": "Exam Quick Reference (added to fill gaps)",
+    "n": 19,
+    "q": 5
+   },
+   {
+    "id": "HIS-83",
+    "slug": "his-83",
+    "t": "Peasant, Tribal and Civil Rebellions",
+    "part": "Exam Quick Reference (added to fill gaps)",
+    "n": 40,
+    "q": 3
+   },
+   {
+    "id": "HIS-84",
+    "slug": "his-84",
+    "t": "Socio-Religious Reform Movements and Press",
+    "part": "Exam Quick Reference (added to fill gaps)",
+    "n": 50,
+    "q": 5
+   },
+   {
+    "id": "HIS-85",
+    "slug": "his-85",
+    "t": "Personalities of the Freedom Struggle",
+    "part": "Exam Quick Reference (added to fill gaps)",
+    "n": 53,
+    "q": 13
+   },
+   {
+    "id": "HIS-86",
+    "slug": "his-86",
+    "t": "World History Supplement: Themes to Connect",
+    "part": "Exam Quick Reference (added to fill gaps)",
+    "n": 58,
+    "q": 3
+   }
+  ]
+ },
+ {
+  "slug": "geography",
+  "prefix": "GEO",
+  "name": "Geography",
+  "blurb": "Geography framework, physical geography, human geography, Indian geography and map facts for India and the world.",
+  "total": 3705,
+  "levels": {
+   "1": 153,
+   "2": 1784,
+   "3": 1411,
+   "4": 357
+  },
+  "majors": [
+   {
+    "id": "GEO-01",
+    "slug": "geo-01",
+    "t": "Geography: Meaning, Nature, Scope and Ways of Thinking",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 62,
+    "q": 0
+   },
+   {
+    "id": "GEO-02",
+    "slug": "geo-02",
+    "t": "Earth as a Planet: Origin, Age, Structure and Geospatial Framework",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 46,
+    "q": 1
+   },
+   {
+    "id": "GEO-03",
+    "slug": "geo-03",
+    "t": "Lithosphere: Geological Structure, Plate Tectonics and Earth's Movements",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 56,
+    "q": 1
+   },
+   {
+    "id": "GEO-04",
+    "slug": "geo-04",
+    "t": "Rocks, Weathering, Mass Movement and Geomorphic Systems",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 38,
+    "q": 1
+   },
+   {
+    "id": "GEO-05",
+    "slug": "geo-05",
+    "t": "Fluvial Geomorphology, Drainage Systems and River Basins",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 48,
+    "q": 0
+   },
+   {
+    "id": "GEO-06",
+    "slug": "geo-06",
+    "t": "Groundwater, Karst and Hydrogeomorphology",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 26,
+    "q": 0
+   },
+   {
+    "id": "GEO-07",
+    "slug": "geo-07",
+    "t": "Coastal Geomorphology and Marine Processes",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 45,
+    "q": 2
+   },
+   {
+    "id": "GEO-08",
+    "slug": "geo-08",
+    "t": "Aeolian, Desert and Arid-Land Geomorphology",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 33,
+    "q": 1
+   },
+   {
+    "id": "GEO-09",
+    "slug": "geo-09",
+    "t": "Glacial, Periglacial and Cryosphere Geography",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 61,
+    "q": 2
+   },
+   {
+    "id": "GEO-10",
+    "slug": "geo-10",
+    "t": "Atmosphere: Composition, Structure, Energy and Temperature",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 29,
+    "q": 1
+   },
+   {
+    "id": "GEO-11",
+    "slug": "geo-11",
+    "t": "Atmospheric Circulation, Humidity, Precipitation and Weather Systems",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 49,
+    "q": 0
+   },
+   {
+    "id": "GEO-12",
+    "slug": "geo-12",
+    "t": "Climatology, Climate Classification, Monsoon and Climate Change",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 25,
+    "q": 1
+   },
+   {
+    "id": "GEO-13",
+    "slug": "geo-13",
+    "t": "Oceanography: Ocean Basins, Water Properties and Circulation",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 49,
+    "q": 0
+   },
+   {
+    "id": "GEO-14",
+    "slug": "geo-14",
+    "t": "Biosphere, Ecology, Ecosystems and Biogeochemical Cycles",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 43,
+    "q": 2
+   },
+   {
+    "id": "GEO-15",
+    "slug": "geo-15",
+    "t": "Soil Geography and Land Degradation",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 23,
+    "q": 2
+   },
+   {
+    "id": "GEO-16",
+    "slug": "geo-16",
+    "t": "Biogeography: Distribution of Plants, Animals and Biomes",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 15,
+    "q": 0
+   },
+   {
+    "id": "GEO-17",
+    "slug": "geo-17",
+    "t": "Human Geography: People, Places, Space and Environment",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 35,
+    "q": 0
+   },
+   {
+    "id": "GEO-18",
+    "slug": "geo-18",
+    "t": "Cultural, Social and Population Geography",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 46,
+    "q": 0
+   },
+   {
+    "id": "GEO-19",
+    "slug": "geo-19",
+    "t": "Migration, Mobility and Diaspora Geography",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 16,
+    "q": 0
+   },
+   {
+    "id": "GEO-20",
+    "slug": "geo-20",
+    "t": "Economic Geography, Resources and Occupational Systems",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 32,
+    "q": 1
+   },
+   {
+    "id": "GEO-21",
+    "slug": "geo-21",
+    "t": "Agriculture, Rural Livelihoods and Food Systems",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 31,
+    "q": 1
+   },
+   {
+    "id": "GEO-22",
+    "slug": "geo-22",
+    "t": "Minerals, Energy and Manufacturing Geography",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 26,
+    "q": 0
+   },
+   {
+    "id": "GEO-23",
+    "slug": "geo-23",
+    "t": "Development, Human Well-being and Inequality",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 23,
+    "q": 0
+   },
+   {
+    "id": "GEO-24",
+    "slug": "geo-24",
+    "t": "Settlement Geography: Rural Settlements and Urban Systems",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 32,
+    "q": 0
+   },
+   {
+    "id": "GEO-25",
+    "slug": "geo-25",
+    "t": "Regional Geography, Regional Planning and Political Geography",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 37,
+    "q": 2
+   },
+   {
+    "id": "GEO-26",
+    "slug": "geo-26",
+    "t": "Environmental Geography, Conservation and Sustainability",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 11,
+    "q": 3
+   },
+   {
+    "id": "GEO-27",
+    "slug": "geo-27",
+    "t": "Natural Hazards, Disaster Geography and Risk Reduction",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 28,
+    "q": 0
+   },
+   {
+    "id": "GEO-28",
+    "slug": "geo-28",
+    "t": "Transport, Communication, Trade and Tourism Geography",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 33,
+    "q": 0
+   },
+   {
+    "id": "GEO-29",
+    "slug": "geo-29",
+    "t": "World Regional Geography and Comparative Regional Synthesis",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 53,
+    "q": 0
+   },
+   {
+    "id": "GEO-30",
+    "slug": "geo-30",
+    "t": "Geography of India: Integrated National and Regional Framework",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 161,
+    "q": 10
+   },
+   {
+    "id": "GEO-31",
+    "slug": "geo-31",
+    "t": "Cartography, GIS, Remote Sensing, GNSS and Geospatial Data Science",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 35,
+    "q": 0
+   },
+   {
+    "id": "GEO-32",
+    "slug": "geo-32",
+    "t": "Fieldwork, Research Methods, Quantitative Geography and Communication",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 13,
+    "q": 1
+   },
+   {
+    "id": "GEO-33",
+    "slug": "geo-33",
+    "t": "Contemporary and Emerging Geography",
+    "part": "Part 1 — Geography Framework: 33 Core Domains",
+    "n": 14,
+    "q": 0
+   },
+   {
+    "id": "GEO-34",
+    "slug": "geo-34",
+    "t": "Human Geography — 1. Meaning, Definition, Nature and Scope of Human Geography",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 35,
+    "q": 1
+   },
+   {
+    "id": "GEO-35",
+    "slug": "geo-35",
+    "t": "Human Geography — 2. Historical Development and Broad Stages of Human Geography",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 9,
+    "q": 0
+   },
+   {
+    "id": "GEO-36",
+    "slug": "geo-36",
+    "t": "Human Geography — 3. Branches of Human Geography and Links with Other Disciplines",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 42,
+    "q": 1
+   },
+   {
+    "id": "GEO-37",
+    "slug": "geo-37",
+    "t": "Human Geography — 4. Schools of Thought and Theoretical Approaches",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 25,
+    "q": 0
+   },
+   {
+    "id": "GEO-38",
+    "slug": "geo-38",
+    "t": "Human Geography — 5. Human and Environment: Inter-Relationship",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 20,
+    "q": 0
+   },
+   {
+    "id": "GEO-39",
+    "slug": "geo-39",
+    "t": "Human Geography — 6. Human Evolution, Dispersal and the Peopling of the World",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 26,
+    "q": 2
+   },
+   {
+    "id": "GEO-40",
+    "slug": "geo-40",
+    "t": "Human Geography — 7. Human Diversity, Racial Classification, Ethnicity and Racism",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 10,
+    "q": 0
+   },
+   {
+    "id": "GEO-41",
+    "slug": "geo-41",
+    "t": "Human Geography — 8. Tribal and Indigenous Communities: Comparative Geography",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 27,
+    "q": 0
+   },
+   {
+    "id": "GEO-42",
+    "slug": "geo-42",
+    "t": "Human Geography — 9. Culture, Cultural Regions and Cultural Landscapes",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 10,
+    "q": 0
+   },
+   {
+    "id": "GEO-43",
+    "slug": "geo-43",
+    "t": "Human Geography — 10. Language Geography",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 13,
+    "q": 0
+   },
+   {
+    "id": "GEO-44",
+    "slug": "geo-44",
+    "t": "Human Geography — 11. Religion, Customs and Everyday Cultural Life",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 11,
+    "q": 0
+   },
+   {
+    "id": "GEO-45",
+    "slug": "geo-45",
+    "t": "Human Geography — 12. Basic Concepts and Data in Population Geography",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 16,
+    "q": 1
+   },
+   {
+    "id": "GEO-46",
+    "slug": "geo-46",
+    "t": "Human Geography — 13. World Population Distribution, Density and Spatial Patterns",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 22,
+    "q": 0
+   },
+   {
+    "id": "GEO-47",
+    "slug": "geo-47",
+    "t": "Human Geography — 14. Historical Population Growth, Theories and Demographic Transition",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 16,
+    "q": 0
+   },
+   {
+    "id": "GEO-48",
+    "slug": "geo-48",
+    "t": "Human Geography — 15. Components of Population Change: Fertility, Mortality and Natural Increase",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 8,
+    "q": 2
+   },
+   {
+    "id": "GEO-49",
+    "slug": "geo-49",
+    "t": "Human Geography — 16. Population Composition and Characteristics",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 9,
+    "q": 0
+   },
+   {
+    "id": "GEO-50",
+    "slug": "geo-50",
+    "t": "Human Geography — 17. Population Problems, Population Policies and Human Well-being",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 18,
+    "q": 0
+   },
+   {
+    "id": "GEO-51",
+    "slug": "geo-51",
+    "t": "Human Geography — 18. Population Geography of India: Census Patterns and Regional Variation",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 15,
+    "q": 1
+   },
+   {
+    "id": "GEO-52",
+    "slug": "geo-52",
+    "t": "Human Geography — 19. Migration: Meaning, Types, Streams and Spatial Patterns",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 10,
+    "q": 0
+   },
+   {
+    "id": "GEO-53",
+    "slug": "geo-53",
+    "t": "Human Geography — 20. Causes and Theories of Migration",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 15,
+    "q": 0
+   },
+   {
+    "id": "GEO-54",
+    "slug": "geo-54",
+    "t": "Human Geography — 21. Consequences of Migration, Diaspora and the Indian Experience",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 27,
+    "q": 1
+   },
+   {
+    "id": "GEO-55",
+    "slug": "geo-55",
+    "t": "Human Geography — 22. Human Economy and Occupational Structure",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 11,
+    "q": 0
+   },
+   {
+    "id": "GEO-56",
+    "slug": "geo-56",
+    "t": "Human Geography — 23. Natural Resources: Distribution, Utilisation, Production Complexes and Conservation",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 9,
+    "q": 0
+   },
+   {
+    "id": "GEO-57",
+    "slug": "geo-57",
+    "t": "Human Geography — 24. Primary Activities, Agriculture and Major Crops",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 22,
+    "q": 0
+   },
+   {
+    "id": "GEO-58",
+    "slug": "geo-58",
+    "t": "Human Geography — 25. Secondary, Tertiary and Higher-Order Economic Activities",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 26,
+    "q": 0
+   },
+   {
+    "id": "GEO-59",
+    "slug": "geo-59",
+    "t": "Human Geography — 26. Growth, Development and Patterns of Development",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 17,
+    "q": 3
+   },
+   {
+    "id": "GEO-60",
+    "slug": "geo-60",
+    "t": "Human Geography — 27. Development Theories, Models and Regional Patterns",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 21,
+    "q": 1
+   },
+   {
+    "id": "GEO-61",
+    "slug": "geo-61",
+    "t": "Human Geography — 28. Measuring Development: Indicators and Composite Indices",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 22,
+    "q": 0
+   },
+   {
+    "id": "GEO-62",
+    "slug": "geo-62",
+    "t": "Human Geography — 29. Human Development, Poverty and Inequality: India and the World",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 23,
+    "q": 0
+   },
+   {
+    "id": "GEO-63",
+    "slug": "geo-63",
+    "t": "Human Geography — 30. Settlement Geography: Concepts, Origin, Site, Situation and Classification",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 14,
+    "q": 0
+   },
+   {
+    "id": "GEO-64",
+    "slug": "geo-64",
+    "t": "Human Geography — 31. Rural Settlements and Rural Settlement Geography of India",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 12,
+    "q": 0
+   },
+   {
+    "id": "GEO-65",
+    "slug": "geo-65",
+    "t": "Human Geography — 32. Urban Settlements: Origin, Functions, Classification and Morphology",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 9,
+    "q": 0
+   },
+   {
+    "id": "GEO-66",
+    "slug": "geo-66",
+    "t": "Human Geography — 33. Urbanisation: World Patterns and India",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 18,
+    "q": 0
+   },
+   {
+    "id": "GEO-67",
+    "slug": "geo-67",
+    "t": "Human Geography — 34. Regional Planning and Sustainable Development",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 15,
+    "q": 4
+   },
+   {
+    "id": "GEO-68",
+    "slug": "geo-68",
+    "t": "Human Geography — 35. Indian Case Studies: Command-Area and Tribal Development",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 11,
+    "q": 0
+   },
+   {
+    "id": "GEO-69",
+    "slug": "geo-69",
+    "t": "Human Geography — 36. Impact of Human Activities on Environment",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 13,
+    "q": 1
+   },
+   {
+    "id": "GEO-70",
+    "slug": "geo-70",
+    "t": "Human Geography — 37. Transport and Communication Geography",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 28,
+    "q": 0
+   },
+   {
+    "id": "GEO-71",
+    "slug": "geo-71",
+    "t": "Human Geography — 38. International Trade and Global Connections",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 27,
+    "q": 0
+   },
+   {
+    "id": "GEO-72",
+    "slug": "geo-72",
+    "t": "Human Geography — 39. Contemporary Approaches and Emerging Fields",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 32,
+    "q": 0
+   },
+   {
+    "id": "GEO-73",
+    "slug": "geo-73",
+    "t": "Human Geography — 40. Research Methods, Maps and Data Skills for Independent Study",
+    "part": "Part 2 — Human Geography: Detailed Self-Study Index",
+    "n": 26,
+    "q": 0
+   },
+   {
+    "id": "GEO-74",
+    "slug": "geo-74",
+    "t": "Chapter 1: Nature of Physical Geography",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 8,
+    "q": 1
+   },
+   {
+    "id": "GEO-75",
+    "slug": "geo-75",
+    "t": "Chapter 2: Origin of the Earth",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 12,
+    "q": 0
+   },
+   {
+    "id": "GEO-76",
+    "slug": "geo-76",
+    "t": "Chapter 3: Age of the Earth",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 11,
+    "q": 0
+   },
+   {
+    "id": "GEO-77",
+    "slug": "geo-77",
+    "t": "Chapter 4: Structure of the Earth’s Interior",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 8,
+    "q": 0
+   },
+   {
+    "id": "GEO-78",
+    "slug": "geo-78",
+    "t": "Chapter 5: Origin of Continents and Ocean Basins",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 7,
+    "q": 0
+   },
+   {
+    "id": "GEO-79",
+    "slug": "geo-79",
+    "t": "Chapter 6: Theory of Isostasy",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 10,
+    "q": 0
+   },
+   {
+    "id": "GEO-80",
+    "slug": "geo-80",
+    "t": "Chapter 7: Earth’s Movements",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 11,
+    "q": 0
+   },
+   {
+    "id": "GEO-81",
+    "slug": "geo-81",
+    "t": "Chapter 8: Rocks",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 17,
+    "q": 3
+   },
+   {
+    "id": "GEO-82",
+    "slug": "geo-82",
+    "t": "Chapter 9: Vulcanicity and Volcanoes",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 11,
+    "q": 0
+   },
+   {
+    "id": "GEO-83",
+    "slug": "geo-83",
+    "t": "Chapter 10: Earthquakes",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 6,
+    "q": 0
+   },
+   {
+    "id": "GEO-84",
+    "slug": "geo-84",
+    "t": "Chapter 11: Mountain Building",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 13,
+    "q": 1
+   },
+   {
+    "id": "GEO-85",
+    "slug": "geo-85",
+    "t": "Chapter 12: Plateau",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 5,
+    "q": 0
+   },
+   {
+    "id": "GEO-86",
+    "slug": "geo-86",
+    "t": "Chapter 13: Plains",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 8,
+    "q": 0
+   },
+   {
+    "id": "GEO-87",
+    "slug": "geo-87",
+    "t": "Chapter 14: Lakes",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 13,
+    "q": 1
+   },
+   {
+    "id": "GEO-88",
+    "slug": "geo-88",
+    "t": "Chapter 15: Weathering and Mass Movement",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 16,
+    "q": 1
+   },
+   {
+    "id": "GEO-89",
+    "slug": "geo-89",
+    "t": "Chapter 16: Cycle of Erosion, Rejuvenation and Polycyclic Reliefs",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 8,
+    "q": 0
+   },
+   {
+    "id": "GEO-90",
+    "slug": "geo-90",
+    "t": "Chapter 17: Drainage Systems and Patterns",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 25,
+    "q": 0
+   },
+   {
+    "id": "GEO-91",
+    "slug": "geo-91",
+    "t": "Chapter 18: Running Water (River) and Fluvial Landforms",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 32,
+    "q": 0
+   },
+   {
+    "id": "GEO-92",
+    "slug": "geo-92",
+    "t": "Chapter 19: Groundwater and Karst Topography",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 20,
+    "q": 1
+   },
+   {
+    "id": "GEO-93",
+    "slug": "geo-93",
+    "t": "Chapter 20: Sea Waves and Coastal Landforms",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 16,
+    "q": 2
+   },
+   {
+    "id": "GEO-94",
+    "slug": "geo-94",
+    "t": "Chapter 21: Wind and Aeolian Landforms",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 25,
+    "q": 1
+   },
+   {
+    "id": "GEO-95",
+    "slug": "geo-95",
+    "t": "Chapter 22: Glaciers and Glaciated Topography",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 27,
+    "q": 1
+   },
+   {
+    "id": "GEO-96",
+    "slug": "geo-96",
+    "t": "Chapter 23: Periglacial Processes and Landforms",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 20,
+    "q": 0
+   },
+   {
+    "id": "GEO-97",
+    "slug": "geo-97",
+    "t": "Chapter 24: Reliefs of the Ocean Basins",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 10,
+    "q": 0
+   },
+   {
+    "id": "GEO-98",
+    "slug": "geo-98",
+    "t": "Chapter 25: Temperature and Density of Ocean Water",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 8,
+    "q": 0
+   },
+   {
+    "id": "GEO-99",
+    "slug": "geo-99",
+    "t": "Chapter 26: Salinity",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 8,
+    "q": 0
+   },
+   {
+    "id": "GEO-100",
+    "slug": "geo-100",
+    "t": "Chapter 27: Ocean Deposits",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 9,
+    "q": 0
+   },
+   {
+    "id": "GEO-101",
+    "slug": "geo-101",
+    "t": "Chapter 28: Ocean Tides",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 14,
+    "q": 0
+   },
+   {
+    "id": "GEO-102",
+    "slug": "geo-102",
+    "t": "Chapter 29: Ocean Currents",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 11,
+    "q": 3
+   },
+   {
+    "id": "GEO-103",
+    "slug": "geo-103",
+    "t": "Chapter 30: Coral Reefs and Atoll",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 13,
+    "q": 1
+   },
+   {
+    "id": "GEO-104",
+    "slug": "geo-104",
+    "t": "Chapter 31: Marine Resources",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 12,
+    "q": 0
+   },
+   {
+    "id": "GEO-105",
+    "slug": "geo-105",
+    "t": "Chapter 32: Composition and Structure of the Atmosphere",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 11,
+    "q": 0
+   },
+   {
+    "id": "GEO-106",
+    "slug": "geo-106",
+    "t": "Chapter 33: Insolation and Heat Budget",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 7,
+    "q": 0
+   },
+   {
+    "id": "GEO-107",
+    "slug": "geo-107",
+    "t": "Chapter 34: Temperature",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 14,
+    "q": 0
+   },
+   {
+    "id": "GEO-108",
+    "slug": "geo-108",
+    "t": "Chapter 35: Air Pressure and Atmospheric Circulation",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 28,
+    "q": 3
+   },
+   {
+    "id": "GEO-109",
+    "slug": "geo-109",
+    "t": "Chapter 36: Humidity and Precipitation",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 23,
+    "q": 0
+   },
+   {
+    "id": "GEO-110",
+    "slug": "geo-110",
+    "t": "Chapter 37: Air Masses",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 8,
+    "q": 0
+   },
+   {
+    "id": "GEO-111",
+    "slug": "geo-111",
+    "t": "Chapter 38: Frontogenesis, Cyclones and Anticyclones",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 24,
+    "q": 0
+   },
+   {
+    "id": "GEO-112",
+    "slug": "geo-112",
+    "t": "Chapter 39: Classification of Climates and Climatic Types",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 14,
+    "q": 1
+   },
+   {
+    "id": "GEO-113",
+    "slug": "geo-113",
+    "t": "Chapter 40: Biosphere",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 6,
+    "q": 1
+   },
+   {
+    "id": "GEO-114",
+    "slug": "geo-114",
+    "t": "Chapter 41: Ecosystem and Ecology",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 10,
+    "q": 1
+   },
+   {
+    "id": "GEO-115",
+    "slug": "geo-115",
+    "t": "Chapter 42: Biosphere: An Ecosystem",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 12,
+    "q": 0
+   },
+   {
+    "id": "GEO-116",
+    "slug": "geo-116",
+    "t": "Chapter 43: Plant Community",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 10,
+    "q": 0
+   },
+   {
+    "id": "GEO-117",
+    "slug": "geo-117",
+    "t": "Chapter 44: Animal Community",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 6,
+    "q": 0
+   },
+   {
+    "id": "GEO-118",
+    "slug": "geo-118",
+    "t": "Chapter 45: Biomes",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 8,
+    "q": 1
+   },
+   {
+    "id": "GEO-119",
+    "slug": "geo-119",
+    "t": "Chapter 46: Cryogeography: Basic Concepts",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 9,
+    "q": 0
+   },
+   {
+    "id": "GEO-120",
+    "slug": "geo-120",
+    "t": "Chapter 47: Cryosphere: A Frozen Ecosystem",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 8,
+    "q": 0
+   },
+   {
+    "id": "GEO-121",
+    "slug": "geo-121",
+    "t": "Chapter 48: Ice Sheets and Ice Cores",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 12,
+    "q": 0
+   },
+   {
+    "id": "GEO-122",
+    "slug": "geo-122",
+    "t": "Chapter 49: Ice Shelves and Icebergs",
+    "part": "Part 3 — Physical Geography: Detailed Chapter Outline",
+    "n": 25,
+    "q": 0
+   },
+   {
+    "id": "GEO-123",
+    "slug": "geo-123",
+    "t": "Indian Geography — 1. Introduction",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 20,
+    "q": 2
+   },
+   {
+    "id": "GEO-124",
+    "slug": "geo-124",
+    "t": "Indian Geography — 2. Geological Structure",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 9,
+    "q": 0
+   },
+   {
+    "id": "GEO-125",
+    "slug": "geo-125",
+    "t": "Indian Geography — 3. Physiography",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 26,
+    "q": 4
+   },
+   {
+    "id": "GEO-126",
+    "slug": "geo-126",
+    "t": "Indian Geography — 4. Drainage",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 16,
+    "q": 1
+   },
+   {
+    "id": "GEO-127",
+    "slug": "geo-127",
+    "t": "Indian Geography — 5. Climate",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 26,
+    "q": 4
+   },
+   {
+    "id": "GEO-128",
+    "slug": "geo-128",
+    "t": "Indian Geography — 6. Soils",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 10,
+    "q": 1
+   },
+   {
+    "id": "GEO-129",
+    "slug": "geo-129",
+    "t": "Indian Geography — 7. Natural Vegetation and Wildlife",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 22,
+    "q": 3
+   },
+   {
+    "id": "GEO-130",
+    "slug": "geo-130",
+    "t": "Indian Geography — 8. Environment",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 37,
+    "q": 10
+   },
+   {
+    "id": "GEO-131",
+    "slug": "geo-131",
+    "t": "Indian Geography — 9. Natural Hazards and Disasters",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 76,
+    "q": 2
+   },
+   {
+    "id": "GEO-132",
+    "slug": "geo-132",
+    "t": "Indian Geography — 10. Population: General Characteristics",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 27,
+    "q": 4
+   },
+   {
+    "id": "GEO-133",
+    "slug": "geo-133",
+    "t": "Indian Geography — 11. Population Composition",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 27,
+    "q": 5
+   },
+   {
+    "id": "GEO-134",
+    "slug": "geo-134",
+    "t": "Indian Geography — 12. Migration Patterns",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 13,
+    "q": 0
+   },
+   {
+    "id": "GEO-135",
+    "slug": "geo-135",
+    "t": "Indian Geography — 13. Regional Development and Planning",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 29,
+    "q": 2
+   },
+   {
+    "id": "GEO-136",
+    "slug": "geo-136",
+    "t": "Indian Geography — 14. Settlements",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 40,
+    "q": 0
+   },
+   {
+    "id": "GEO-137",
+    "slug": "geo-137",
+    "t": "Indian Geography — 15. Multipurpose Projects",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 15,
+    "q": 3
+   },
+   {
+    "id": "GEO-138",
+    "slug": "geo-138",
+    "t": "Indian Geography — 16. Irrigation",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 18,
+    "q": 3
+   },
+   {
+    "id": "GEO-139",
+    "slug": "geo-139",
+    "t": "Indian Geography — 17. Water Resources",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 20,
+    "q": 5
+   },
+   {
+    "id": "GEO-140",
+    "slug": "geo-140",
+    "t": "Indian Geography — 18. Biotic and Marine Resources",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 26,
+    "q": 8
+   },
+   {
+    "id": "GEO-141",
+    "slug": "geo-141",
+    "t": "Indian Geography — 19. Land Utilization",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 9,
+    "q": 4
+   },
+   {
+    "id": "GEO-142",
+    "slug": "geo-142",
+    "t": "Indian Geography — 20. Agriculture",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 35,
+    "q": 4
+   },
+   {
+    "id": "GEO-143",
+    "slug": "geo-143",
+    "t": "Indian Geography — 21. Green Revolution",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 9,
+    "q": 1
+   },
+   {
+    "id": "GEO-144",
+    "slug": "geo-144",
+    "t": "Indian Geography — 22. Major Crops",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 29,
+    "q": 14
+   },
+   {
+    "id": "GEO-145",
+    "slug": "geo-145",
+    "t": "Indian Geography — 23. Mineral Resources",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 32,
+    "q": 25
+   },
+   {
+    "id": "GEO-146",
+    "slug": "geo-146",
+    "t": "Indian Geography — 24. Energy Resources",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 45,
+    "q": 11
+   },
+   {
+    "id": "GEO-147",
+    "slug": "geo-147",
+    "t": "Indian Geography — 25. Manufacturing Industries",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 47,
+    "q": 11
+   },
+   {
+    "id": "GEO-148",
+    "slug": "geo-148",
+    "t": "Indian Geography — 26. Transport, Communication and Space",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 60,
+    "q": 7
+   },
+   {
+    "id": "GEO-149",
+    "slug": "geo-149",
+    "t": "Indian Geography — 27. Foreign Trade",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 6,
+    "q": 0
+   },
+   {
+    "id": "GEO-150",
+    "slug": "geo-150",
+    "t": "Indian Geography — 28. Tourism",
+    "part": "Part 4 — Indian Geography: Detailed Chapter Outline",
+    "n": 10,
+    "q": 2
+   },
+   {
+    "id": "GEO-151",
+    "slug": "geo-151",
+    "t": "India Map Facts: Protected Areas and Wetlands",
+    "part": "Part 5 — Map-Based and Exam Quick Reference (added to fill gaps)",
+    "n": 36,
+    "q": 3
+   },
+   {
+    "id": "GEO-152",
+    "slug": "geo-152",
+    "t": "India Map Facts: Physical Features",
+    "part": "Part 5 — Map-Based and Exam Quick Reference (added to fill gaps)",
+    "n": 47,
+    "q": 3
+   },
+   {
+    "id": "GEO-153",
+    "slug": "geo-153",
+    "t": "World Map Facts",
+    "part": "Part 5 — Map-Based and Exam Quick Reference (added to fill gaps)",
+    "n": 67,
+    "q": 11
+   }
+  ]
+ },
+ {
+  "slug": "polity",
+  "prefix": "POL",
+  "name": "Polity",
+  "blurb": "The Indian Constitution, government at every level, constitutional bodies, governance, political theory and international relations.",
+  "total": 2030,
+  "levels": {
+   "1": 44,
+   "2": 401,
+   "3": 1483,
+   "4": 102
+  },
+  "majors": [
+   {
+    "id": "POL-01",
+    "slug": "pol-01",
+    "t": "Introduction to Political Science and Polity",
+    "part": "Part 1 — Foundations: State, Politics and Constitutionalism",
+    "n": 47,
+    "q": 0
+   },
+   {
+    "id": "POL-02",
+    "slug": "pol-02",
+    "t": "The State: Elements, Theories and Forms",
+    "part": "Part 1 — Foundations: State, Politics and Constitutionalism",
+    "n": 45,
+    "q": 2
+   },
+   {
+    "id": "POL-03",
+    "slug": "pol-03",
+    "t": "Constitution and Constitutionalism",
+    "part": "Part 1 — Foundations: State, Politics and Constitutionalism",
+    "n": 84,
+    "q": 4
+   },
+   {
+    "id": "POL-04",
+    "slug": "pol-04",
+    "t": "Historical Background: Constitutional Development 1773–1947",
+    "part": "Part 2 — Making of the Indian Constitution",
+    "n": 22,
+    "q": 2
+   },
+   {
+    "id": "POL-05",
+    "slug": "pol-05",
+    "t": "The Constituent Assembly and Making of the Constitution",
+    "part": "Part 2 — Making of the Indian Constitution",
+    "n": 78,
+    "q": 9
+   },
+   {
+    "id": "POL-06",
+    "slug": "pol-06",
+    "t": "Salient Features of the Indian Constitution",
+    "part": "Part 2 — Making of the Indian Constitution",
+    "n": 38,
+    "q": 5
+   },
+   {
+    "id": "POL-07",
+    "slug": "pol-07",
+    "t": "Preamble of the Constitution",
+    "part": "Part 2 — Making of the Indian Constitution",
+    "n": 39,
+    "q": 5
+   },
+   {
+    "id": "POL-08",
+    "slug": "pol-08",
+    "t": "Union and its Territory (Part I, Articles 1–4)",
+    "part": "Part 2 — Making of the Indian Constitution",
+    "n": 54,
+    "q": 14
+   },
+   {
+    "id": "POL-09",
+    "slug": "pol-09",
+    "t": "Citizenship (Part II, Articles 5–11)",
+    "part": "Part 2 — Making of the Indian Constitution",
+    "n": 36,
+    "q": 3
+   },
+   {
+    "id": "POL-10",
+    "slug": "pol-10",
+    "t": "Fundamental Rights (Part III, Articles 12–35)",
+    "part": "Part 3 — Rights, Principles and Duties",
+    "n": 143,
+    "q": 14
+   },
+   {
+    "id": "POL-11",
+    "slug": "pol-11",
+    "t": "Directive Principles of State Policy (Part IV, Articles 36–51)",
+    "part": "Part 3 — Rights, Principles and Duties",
+    "n": 63,
+    "q": 5
+   },
+   {
+    "id": "POL-12",
+    "slug": "pol-12",
+    "t": "Fundamental Duties (Part IVA, Article 51A)",
+    "part": "Part 3 — Rights, Principles and Duties",
+    "n": 26,
+    "q": 3
+   },
+   {
+    "id": "POL-13",
+    "slug": "pol-13",
+    "t": "Amendment of the Constitution (Article 368)",
+    "part": "Part 4 — Amendment and Basic Structure",
+    "n": 35,
+    "q": 1
+   },
+   {
+    "id": "POL-14",
+    "slug": "pol-14",
+    "t": "Basic Structure Doctrine",
+    "part": "Part 4 — Amendment and Basic Structure",
+    "n": 33,
+    "q": 2
+   },
+   {
+    "id": "POL-15",
+    "slug": "pol-15",
+    "t": "Major Constitutional Amendments",
+    "part": "Part 4 — Amendment and Basic Structure",
+    "n": 73,
+    "q": 3
+   },
+   {
+    "id": "POL-16",
+    "slug": "pol-16",
+    "t": "Parliamentary System of Government",
+    "part": "Part 5 — Systems of Government",
+    "n": 33,
+    "q": 0
+   },
+   {
+    "id": "POL-17",
+    "slug": "pol-17",
+    "t": "Federal System",
+    "part": "Part 5 — Systems of Government",
+    "n": 37,
+    "q": 5
+   },
+   {
+    "id": "POL-18",
+    "slug": "pol-18",
+    "t": "Centre–State Relations",
+    "part": "Part 5 — Systems of Government",
+    "n": 48,
+    "q": 7
+   },
+   {
+    "id": "POL-19",
+    "slug": "pol-19",
+    "t": "Inter-State Relations",
+    "part": "Part 5 — Systems of Government",
+    "n": 22,
+    "q": 2
+   },
+   {
+    "id": "POL-20",
+    "slug": "pol-20",
+    "t": "Emergency Provisions (Part XVIII, Articles 352–360)",
+    "part": "Part 5 — Systems of Government",
+    "n": 35,
+    "q": 5
+   },
+   {
+    "id": "POL-21",
+    "slug": "pol-21",
+    "t": "The President",
+    "part": "Part 6 — The Union Government",
+    "n": 39,
+    "q": 7
+   },
+   {
+    "id": "POL-22",
+    "slug": "pol-22",
+    "t": "The Vice-President",
+    "part": "Part 6 — The Union Government",
+    "n": 11,
+    "q": 4
+   },
+   {
+    "id": "POL-23",
+    "slug": "pol-23",
+    "t": "Prime Minister and Council of Ministers",
+    "part": "Part 6 — The Union Government",
+    "n": 30,
+    "q": 5
+   },
+   {
+    "id": "POL-24",
+    "slug": "pol-24",
+    "t": "Parliament",
+    "part": "Part 6 — The Union Government",
+    "n": 93,
+    "q": 20
+   },
+   {
+    "id": "POL-25",
+    "slug": "pol-25",
+    "t": "The Judiciary: Supreme Court",
+    "part": "Part 6 — The Union Government",
+    "n": 57,
+    "q": 4
+   },
+   {
+    "id": "POL-26",
+    "slug": "pol-26",
+    "t": "High Courts and Subordinate Courts",
+    "part": "Part 6 — The Union Government",
+    "n": 34,
+    "q": 1
+   },
+   {
+    "id": "POL-27",
+    "slug": "pol-27",
+    "t": "The Governor and State Executive",
+    "part": "Part 7 — State and Local Government",
+    "n": 32,
+    "q": 11
+   },
+   {
+    "id": "POL-28",
+    "slug": "pol-28",
+    "t": "State Legislature",
+    "part": "Part 7 — State and Local Government",
+    "n": 19,
+    "q": 6
+   },
+   {
+    "id": "POL-29",
+    "slug": "pol-29",
+    "t": "Union Territories and Special Provisions",
+    "part": "Part 7 — State and Local Government",
+    "n": 33,
+    "q": 5
+   },
+   {
+    "id": "POL-30",
+    "slug": "pol-30",
+    "t": "Panchayati Raj",
+    "part": "Part 7 — State and Local Government",
+    "n": 34,
+    "q": 5
+   },
+   {
+    "id": "POL-31",
+    "slug": "pol-31",
+    "t": "Urban Local Bodies (Municipalities)",
+    "part": "Part 7 — State and Local Government",
+    "n": 31,
+    "q": 3
+   },
+   {
+    "id": "POL-32",
+    "slug": "pol-32",
+    "t": "Constitutional Bodies",
+    "part": "Part 8 — Constitutional and Statutory Bodies",
+    "n": 37,
+    "q": 15
+   },
+   {
+    "id": "POL-33",
+    "slug": "pol-33",
+    "t": "Non-Constitutional (Statutory and Executive) Bodies",
+    "part": "Part 8 — Constitutional and Statutory Bodies",
+    "n": 30,
+    "q": 5
+   },
+   {
+    "id": "POL-34",
+    "slug": "pol-34",
+    "t": "Elections and Electoral Reforms",
+    "part": "Part 8 — Constitutional and Statutory Bodies",
+    "n": 42,
+    "q": 2
+   },
+   {
+    "id": "POL-35",
+    "slug": "pol-35",
+    "t": "Political Parties, Pressure Groups and Coalition Politics",
+    "part": "Part 8 — Constitutional and Statutory Bodies",
+    "n": 37,
+    "q": 5
+   },
+   {
+    "id": "POL-36",
+    "slug": "pol-36",
+    "t": "Official Language, Schedules and Other Provisions",
+    "part": "Part 9 — Constitutional Miscellany and Quick Reference",
+    "n": 57,
+    "q": 1
+   },
+   {
+    "id": "POL-37",
+    "slug": "pol-37",
+    "t": "Important Articles of the Constitution — Quick Reference",
+    "part": "Part 9 — Constitutional Miscellany and Quick Reference",
+    "n": 78,
+    "q": 1
+   },
+   {
+    "id": "POL-38",
+    "slug": "pol-38",
+    "t": "Landmark Judgments — Quick Reference",
+    "part": "Part 9 — Constitutional Miscellany and Quick Reference",
+    "n": 27,
+    "q": 2
+   },
+   {
+    "id": "POL-39",
+    "slug": "pol-39",
+    "t": "Governance and Public Administration",
+    "part": "Part 10 — Governance, Public Policy and Rights in Practice",
+    "n": 52,
+    "q": 8
+   },
+   {
+    "id": "POL-40",
+    "slug": "pol-40",
+    "t": "Public Policy and Welfare Schemes",
+    "part": "Part 10 — Governance, Public Policy and Rights in Practice",
+    "n": 41,
+    "q": 1
+   },
+   {
+    "id": "POL-41",
+    "slug": "pol-41",
+    "t": "Constitutional Values, Rights Issues and Contemporary Debates",
+    "part": "Part 10 — Governance, Public Policy and Rights in Practice",
+    "n": 37,
+    "q": 1
+   },
+   {
+    "id": "POL-42",
+    "slug": "pol-42",
+    "t": "Political Theory: Key Concepts",
+    "part": "Part 11 — Political Theory, Comparative Politics and International Relations",
+    "n": 53,
+    "q": 5
+   },
+   {
+    "id": "POL-43",
+    "slug": "pol-43",
+    "t": "Comparative Constitutions and Governments",
+    "part": "Part 11 — Political Theory, Comparative Politics and International Relations",
+    "n": 31,
+    "q": 7
+   },
+   {
+    "id": "POL-44",
+    "slug": "pol-44",
+    "t": "International Relations and India's Foreign Policy",
+    "part": "Part 11 — Political Theory, Comparative Politics and International Relations",
+    "n": 60,
+    "q": 22
+   }
+  ]
+ },
+ {
+  "slug": "economy",
+  "prefix": "ECO",
+  "name": "Economy",
+  "blurb": "Indian economy and the world economy: concepts, institutions, policy, data, planning, banking, trade and current debates.",
+  "total": 3891,
+  "levels": {
+   "1": 102,
+   "2": 635,
+   "3": 3014,
+   "4": 140
+  },
+  "majors": [
+   {
+    "id": "ECO-01",
+    "slug": "eco-01",
+    "t": "Foundations of Economics and the Indian Economy",
+    "part": "Indian Economy",
+    "n": 62,
+    "q": 6
+   },
+   {
+    "id": "ECO-02",
+    "slug": "eco-02",
+    "t": "Historical Evolution of the Indian Economy",
+    "part": "Indian Economy",
+    "n": 53,
+    "q": 4
+   },
+   {
+    "id": "ECO-03",
+    "slug": "eco-03",
+    "t": "National Income, GDP and Economic Measurement",
+    "part": "Indian Economy",
+    "n": 51,
+    "q": 4
+   },
+   {
+    "id": "ECO-04",
+    "slug": "eco-04",
+    "t": "Economic Data Literacy, Statistics and Research Methods",
+    "part": "Indian Economy",
+    "n": 68,
+    "q": 4
+   },
+   {
+    "id": "ECO-05",
+    "slug": "eco-05",
+    "t": "Population, Demography and Human Development",
+    "part": "Indian Economy",
+    "n": 45,
+    "q": 7
+   },
+   {
+    "id": "ECO-06",
+    "slug": "eco-06",
+    "t": "Poverty, Inequality and Social Protection",
+    "part": "Indian Economy",
+    "n": 48,
+    "q": 5
+   },
+   {
+    "id": "ECO-07",
+    "slug": "eco-07",
+    "t": "Agriculture and Allied Sectors",
+    "part": "Indian Economy",
+    "n": 65,
+    "q": 6
+   },
+   {
+    "id": "ECO-08",
+    "slug": "eco-08",
+    "t": "Food Security, Nutrition and Public Distribution",
+    "part": "Indian Economy",
+    "n": 44,
+    "q": 2
+   },
+   {
+    "id": "ECO-09",
+    "slug": "eco-09",
+    "t": "Industry, Manufacturing and Structural Transformation",
+    "part": "Indian Economy",
+    "n": 63,
+    "q": 3
+   },
+   {
+    "id": "ECO-10",
+    "slug": "eco-10",
+    "t": "Services, IT and the Digital Economy",
+    "part": "Indian Economy",
+    "n": 49,
+    "q": 1
+   },
+   {
+    "id": "ECO-11",
+    "slug": "eco-11",
+    "t": "Labour Market, Employment and Wages",
+    "part": "Indian Economy",
+    "n": 57,
+    "q": 4
+   },
+   {
+    "id": "ECO-12",
+    "slug": "eco-12",
+    "t": "Informal Economy, MSMEs and Entrepreneurship",
+    "part": "Indian Economy",
+    "n": 47,
+    "q": 5
+   },
+   {
+    "id": "ECO-13",
+    "slug": "eco-13",
+    "t": "Infrastructure, Logistics and Connectivity",
+    "part": "Indian Economy",
+    "n": 58,
+    "q": 6
+   },
+   {
+    "id": "ECO-14",
+    "slug": "eco-14",
+    "t": "Energy Economy and Resource Security",
+    "part": "Indian Economy",
+    "n": 49,
+    "q": 4
+   },
+   {
+    "id": "ECO-15",
+    "slug": "eco-15",
+    "t": "Money, Banking and Financial Intermediation",
+    "part": "Indian Economy",
+    "n": 54,
+    "q": 3
+   },
+   {
+    "id": "ECO-16",
+    "slug": "eco-16",
+    "t": "Monetary Policy, Inflation and Interest Rates",
+    "part": "Indian Economy",
+    "n": 50,
+    "q": 0
+   },
+   {
+    "id": "ECO-17",
+    "slug": "eco-17",
+    "t": "Public Finance, Taxation and Government Budget",
+    "part": "Indian Economy",
+    "n": 56,
+    "q": 1
+   },
+   {
+    "id": "ECO-18",
+    "slug": "eco-18",
+    "t": "Centre-State Fiscal Relations and Local Government Finance",
+    "part": "Indian Economy",
+    "n": 41,
+    "q": 0
+   },
+   {
+    "id": "ECO-19",
+    "slug": "eco-19",
+    "t": "Planning, Industrial Policy and Economic Reforms",
+    "part": "Indian Economy",
+    "n": 50,
+    "q": 3
+   },
+   {
+    "id": "ECO-20",
+    "slug": "eco-20",
+    "t": "External Sector, Balance of Payments and Exchange Rates",
+    "part": "Indian Economy",
+    "n": 50,
+    "q": 3
+   },
+   {
+    "id": "ECO-21",
+    "slug": "eco-21",
+    "t": "International Trade, Global Value Chains and Trade Policy",
+    "part": "Indian Economy",
+    "n": 56,
+    "q": 1
+   },
+   {
+    "id": "ECO-22",
+    "slug": "eco-22",
+    "t": "Financial Markets, Capital Formation and Investment",
+    "part": "Indian Economy",
+    "n": 49,
+    "q": 1
+   },
+   {
+    "id": "ECO-23",
+    "slug": "eco-23",
+    "t": "Insurance, Pensions and Social Security Finance",
+    "part": "Indian Economy",
+    "n": 38,
+    "q": 0
+   },
+   {
+    "id": "ECO-24",
+    "slug": "eco-24",
+    "t": "Corporate Sector, Competition and Governance",
+    "part": "Indian Economy",
+    "n": 47,
+    "q": 1
+   },
+   {
+    "id": "ECO-25",
+    "slug": "eco-25",
+    "t": "Rural Economy, Land and Rural Non-Farm Work",
+    "part": "Indian Economy",
+    "n": 48,
+    "q": 5
+   },
+   {
+    "id": "ECO-26",
+    "slug": "eco-26",
+    "t": "Urban Economy, Housing and Urbanisation",
+    "part": "Indian Economy",
+    "n": 46,
+    "q": 0
+   },
+   {
+    "id": "ECO-27",
+    "slug": "eco-27",
+    "t": "Education, Skills and the Economics of Human Capital",
+    "part": "Indian Economy",
+    "n": 36,
+    "q": 6
+   },
+   {
+    "id": "ECO-28",
+    "slug": "eco-28",
+    "t": "Health Economics and the Health System",
+    "part": "Indian Economy",
+    "n": 46,
+    "q": 6
+   },
+   {
+    "id": "ECO-29",
+    "slug": "eco-29",
+    "t": "Gender, Care Economy and Inclusive Growth",
+    "part": "Indian Economy",
+    "n": 42,
+    "q": 1
+   },
+   {
+    "id": "ECO-30",
+    "slug": "eco-30",
+    "t": "Caste, Social Groups and Economic Opportunity",
+    "part": "Indian Economy",
+    "n": 37,
+    "q": 0
+   },
+   {
+    "id": "ECO-31",
+    "slug": "eco-31",
+    "t": "Environment, Climate and Green Economy",
+    "part": "Indian Economy",
+    "n": 48,
+    "q": 3
+   },
+   {
+    "id": "ECO-32",
+    "slug": "eco-32",
+    "t": "Science, Technology, Innovation and Productivity",
+    "part": "Indian Economy",
+    "n": 51,
+    "q": 1
+   },
+   {
+    "id": "ECO-33",
+    "slug": "eco-33",
+    "t": "Cooperative Economy and Community Institutions",
+    "part": "Indian Economy",
+    "n": 28,
+    "q": 2
+   },
+   {
+    "id": "ECO-34",
+    "slug": "eco-34",
+    "t": "Financial Inclusion, Digital Payments and Public Digital Infrastructure",
+    "part": "Indian Economy",
+    "n": 45,
+    "q": 0
+   },
+   {
+    "id": "ECO-35",
+    "slug": "eco-35",
+    "t": "Public Enterprises, Privatisation and Asset Monetisation",
+    "part": "Indian Economy",
+    "n": 35,
+    "q": 1
+   },
+   {
+    "id": "ECO-36",
+    "slug": "eco-36",
+    "t": "Regional Development and Inter-State Differences",
+    "part": "Indian Economy",
+    "n": 43,
+    "q": 2
+   },
+   {
+    "id": "ECO-37",
+    "slug": "eco-37",
+    "t": "Social Sector Schemes, Welfare Delivery and Evaluation",
+    "part": "Indian Economy",
+    "n": 48,
+    "q": 1
+   },
+   {
+    "id": "ECO-38",
+    "slug": "eco-38",
+    "t": "Governance, Regulation and Institutions of the Economy",
+    "part": "Indian Economy",
+    "n": 44,
+    "q": 0
+   },
+   {
+    "id": "ECO-39",
+    "slug": "eco-39",
+    "t": "Business Climate, Ease of Doing Business and Formalisation",
+    "part": "Indian Economy",
+    "n": 41,
+    "q": 0
+   },
+   {
+    "id": "ECO-40",
+    "slug": "eco-40",
+    "t": "Tourism, Culture, Creative Economy and Sports",
+    "part": "Indian Economy",
+    "n": 42,
+    "q": 1
+   },
+   {
+    "id": "ECO-41",
+    "slug": "eco-41",
+    "t": "Circular Economy, Waste, Water and Resource Efficiency",
+    "part": "Indian Economy",
+    "n": 39,
+    "q": 2
+   },
+   {
+    "id": "ECO-42",
+    "slug": "eco-42",
+    "t": "Disaster Risk, Economic Resilience and Supply Chains",
+    "part": "Indian Economy",
+    "n": 44,
+    "q": 0
+   },
+   {
+    "id": "ECO-43",
+    "slug": "eco-43",
+    "t": "International Economic Institutions and India in the World Economy",
+    "part": "Indian Economy",
+    "n": 42,
+    "q": 4
+   },
+   {
+    "id": "ECO-44",
+    "slug": "eco-44",
+    "t": "Agricultural Prices, Rural Credit and Farm-Income Risk",
+    "part": "Indian Economy",
+    "n": 41,
+    "q": 0
+   },
+   {
+    "id": "ECO-45",
+    "slug": "eco-45",
+    "t": "Digital, Platform and AI-Enabled Economic Change",
+    "part": "Indian Economy",
+    "n": 43,
+    "q": 0
+   },
+   {
+    "id": "ECO-46",
+    "slug": "eco-46",
+    "t": "Economic Theory, Indian Economic Thinkers and Schools of Thought",
+    "part": "Indian Economy",
+    "n": 44,
+    "q": 0
+   },
+   {
+    "id": "ECO-47",
+    "slug": "eco-47",
+    "t": "Contemporary Economic Issues and Current-Affairs Workflow",
+    "part": "Indian Economy",
+    "n": 47,
+    "q": 0
+   },
+   {
+    "id": "ECO-48",
+    "slug": "eco-48",
+    "t": "Economics Education, Teaching Design and Research Pathways",
+    "part": "Indian Economy",
+    "n": 76,
+    "q": 1
+   },
+   {
+    "id": "ECO-49",
+    "slug": "eco-49",
+    "t": "Public Procurement, Government Markets and State Capacity",
+    "part": "Indian Economy",
+    "n": 28,
+    "q": 1
+   },
+   {
+    "id": "ECO-50",
+    "slug": "eco-50",
+    "t": "Migration, Remittances and Mobility",
+    "part": "Indian Economy",
+    "n": 31,
+    "q": 8
+   },
+   {
+    "id": "ECO-51",
+    "slug": "eco-51",
+    "t": "Tax Administration, Compliance and Behaviour",
+    "part": "Indian Economy",
+    "n": 21,
+    "q": 0
+   },
+   {
+    "id": "ECO-52",
+    "slug": "eco-52",
+    "t": "Housing, Real Estate, Land Markets and Wealth",
+    "part": "Indian Economy",
+    "n": 25,
+    "q": 0
+   },
+   {
+    "id": "ECO-53",
+    "slug": "eco-53",
+    "t": "Public Debt, Sovereign Risk and Fiscal Sustainability",
+    "part": "Indian Economy",
+    "n": 22,
+    "q": 0
+   },
+   {
+    "id": "ECO-54",
+    "slug": "eco-54",
+    "t": "Defence, Space and Strategic-Economy Industries",
+    "part": "Indian Economy",
+    "n": 28,
+    "q": 0
+   },
+   {
+    "id": "ECO-55",
+    "slug": "eco-55",
+    "t": "Ethics, Economic Rights and Consumer Welfare",
+    "part": "Indian Economy",
+    "n": 19,
+    "q": 0
+   },
+   {
+    "id": "ECO-56",
+    "slug": "eco-56",
+    "t": "Foundations: What Is the World Economy?",
+    "part": "World Economy",
+    "n": 32,
+    "q": 0
+   },
+   {
+    "id": "ECO-57",
+    "slug": "eco-57",
+    "t": "Long-Run History of the World Economy",
+    "part": "World Economy",
+    "n": 38,
+    "q": 0
+   },
+   {
+    "id": "ECO-58",
+    "slug": "eco-58",
+    "t": "Economic Systems, Property, Markets and Institutions",
+    "part": "World Economy",
+    "n": 24,
+    "q": 0
+   },
+   {
+    "id": "ECO-59",
+    "slug": "eco-59",
+    "t": "Economic Measurement, National Accounts and Data Standards",
+    "part": "World Economy",
+    "n": 40,
+    "q": 0
+   },
+   {
+    "id": "ECO-60",
+    "slug": "eco-60",
+    "t": "Microeconomics in a Global Context",
+    "part": "World Economy",
+    "n": 28,
+    "q": 0
+   },
+   {
+    "id": "ECO-61",
+    "slug": "eco-61",
+    "t": "Macroeconomics and the Global Aggregate Economy",
+    "part": "World Economy",
+    "n": 31,
+    "q": 0
+   },
+   {
+    "id": "ECO-62",
+    "slug": "eco-62",
+    "t": "Economic Growth, Productivity and Convergence",
+    "part": "World Economy",
+    "n": 26,
+    "q": 0
+   },
+   {
+    "id": "ECO-63",
+    "slug": "eco-63",
+    "t": "Development Economics and Structural Transformation",
+    "part": "World Economy",
+    "n": 28,
+    "q": 0
+   },
+   {
+    "id": "ECO-64",
+    "slug": "eco-64",
+    "t": "Poverty, Inequality, Wealth and Distribution",
+    "part": "World Economy",
+    "n": 34,
+    "q": 2
+   },
+   {
+    "id": "ECO-65",
+    "slug": "eco-65",
+    "t": "Population, Demography, Migration and the Global Labour Supply",
+    "part": "World Economy",
+    "n": 22,
+    "q": 0
+   },
+   {
+    "id": "ECO-66",
+    "slug": "eco-66",
+    "t": "Agriculture, Food Systems and Rural World Economy",
+    "part": "World Economy",
+    "n": 27,
+    "q": 0
+   },
+   {
+    "id": "ECO-67",
+    "slug": "eco-67",
+    "t": "Industry, Manufacturing and Structural Change",
+    "part": "World Economy",
+    "n": 22,
+    "q": 1
+   },
+   {
+    "id": "ECO-68",
+    "slug": "eco-68",
+    "t": "Services, Knowledge Work and Intangible Capital",
+    "part": "World Economy",
+    "n": 21,
+    "q": 1
+   },
+   {
+    "id": "ECO-69",
+    "slug": "eco-69",
+    "t": "International Trade, Comparative Advantage and Trade Policy",
+    "part": "World Economy",
+    "n": 32,
+    "q": 1
+   },
+   {
+    "id": "ECO-70",
+    "slug": "eco-70",
+    "t": "Global Value Chains, Logistics and Supply-Chain Resilience",
+    "part": "World Economy",
+    "n": 25,
+    "q": 0
+   },
+   {
+    "id": "ECO-71",
+    "slug": "eco-71",
+    "t": "Foreign Direct Investment, Multinational Enterprises and Global Firms",
+    "part": "World Economy",
+    "n": 25,
+    "q": 0
+   },
+   {
+    "id": "ECO-72",
+    "slug": "eco-72",
+    "t": "International Finance, Balance of Payments and External Accounts",
+    "part": "World Economy",
+    "n": 35,
+    "q": 1
+   },
+   {
+    "id": "ECO-73",
+    "slug": "eco-73",
+    "t": "Exchange Rates, International Monetary Systems and Reserve Currencies",
+    "part": "World Economy",
+    "n": 28,
+    "q": 0
+   },
+   {
+    "id": "ECO-74",
+    "slug": "eco-74",
+    "t": "Money, Banking and Financial Institutions",
+    "part": "World Economy",
+    "n": 26,
+    "q": 1
+   },
+   {
+    "id": "ECO-75",
+    "slug": "eco-75",
+    "t": "Central Banking and Monetary Policy Across Countries",
+    "part": "World Economy",
+    "n": 23,
+    "q": 1
+   },
+   {
+    "id": "ECO-76",
+    "slug": "eco-76",
+    "t": "Fiscal Policy, Taxation and Public Finance",
+    "part": "World Economy",
+    "n": 31,
+    "q": 0
+   },
+   {
+    "id": "ECO-77",
+    "slug": "eco-77",
+    "t": "Public Debt, Sovereign Finance and Debt Crises",
+    "part": "World Economy",
+    "n": 24,
+    "q": 0
+   },
+   {
+    "id": "ECO-78",
+    "slug": "eco-78",
+    "t": "Capital Markets, Investment and Global Financial Cycles",
+    "part": "World Economy",
+    "n": 22,
+    "q": 0
+   },
+   {
+    "id": "ECO-79",
+    "slug": "eco-79",
+    "t": "Business Cycles, Inflation Shocks and Financial Crises",
+    "part": "World Economy",
+    "n": 24,
+    "q": 0
+   },
+   {
+    "id": "ECO-80",
+    "slug": "eco-80",
+    "t": "Globalization, Deglobalization and Geoeconomics",
+    "part": "World Economy",
+    "n": 23,
+    "q": 0
+   },
+   {
+    "id": "ECO-81",
+    "slug": "eco-81",
+    "t": "Regional Integration, Trade Blocs and Economic Cooperation",
+    "part": "World Economy",
+    "n": 24,
+    "q": 0
+   },
+   {
+    "id": "ECO-82",
+    "slug": "eco-82",
+    "t": "Commodity Markets, Energy and Critical Resources",
+    "part": "World Economy",
+    "n": 22,
+    "q": 0
+   },
+   {
+    "id": "ECO-83",
+    "slug": "eco-83",
+    "t": "Environmental, Climate and Natural-Resource Economics",
+    "part": "World Economy",
+    "n": 23,
+    "q": 2
+   },
+   {
+    "id": "ECO-84",
+    "slug": "eco-84",
+    "t": "Technology, Innovation, AI and Productivity",
+    "part": "World Economy",
+    "n": 23,
+    "q": 0
+   },
+   {
+    "id": "ECO-85",
+    "slug": "eco-85",
+    "t": "Digital Economy, Platforms, Fintech and Data",
+    "part": "World Economy",
+    "n": 24,
+    "q": 0
+   },
+   {
+    "id": "ECO-86",
+    "slug": "eco-86",
+    "t": "Labour Economics, Wages and the Future of Work",
+    "part": "World Economy",
+    "n": 24,
+    "q": 0
+   },
+   {
+    "id": "ECO-87",
+    "slug": "eco-87",
+    "t": "Human Capital: Education, Health and Population Wellbeing",
+    "part": "World Economy",
+    "n": 23,
+    "q": 0
+   },
+   {
+    "id": "ECO-88",
+    "slug": "eco-88",
+    "t": "Urbanization, Housing, Infrastructure and Regional Economies",
+    "part": "World Economy",
+    "n": 22,
+    "q": 0
+   },
+   {
+    "id": "ECO-89",
+    "slug": "eco-89",
+    "t": "Gender, Care, Informality and the Unpaid Economy",
+    "part": "World Economy",
+    "n": 26,
+    "q": 0
+   },
+   {
+    "id": "ECO-90",
+    "slug": "eco-90",
+    "t": "International Development Finance, Aid, Remittances and Philanthropy",
+    "part": "World Economy",
+    "n": 23,
+    "q": 0
+   },
+   {
+    "id": "ECO-91",
+    "slug": "eco-91",
+    "t": "Global Economic Governance and International Institutions",
+    "part": "World Economy",
+    "n": 42,
+    "q": 0
+   },
+   {
+    "id": "ECO-92",
+    "slug": "eco-92",
+    "t": "Comparative World Regions and Income Groups",
+    "part": "World Economy",
+    "n": 38,
+    "q": 0
+   },
+   {
+    "id": "ECO-93",
+    "slug": "eco-93",
+    "t": "Major Economic Powers and Regional Economic Models",
+    "part": "World Economy",
+    "n": 30,
+    "q": 0
+   },
+   {
+    "id": "ECO-94",
+    "slug": "eco-94",
+    "t": "Behavioural, Experimental and Institutional Economics",
+    "part": "World Economy",
+    "n": 22,
+    "q": 2
+   },
+   {
+    "id": "ECO-95",
+    "slug": "eco-95",
+    "t": "Political Economy, Economic Thought and Ideologies",
+    "part": "World Economy",
+    "n": 46,
+    "q": 0
+   },
+   {
+    "id": "ECO-96",
+    "slug": "eco-96",
+    "t": "Economic Research Methods, Econometrics and Data Science",
+    "part": "World Economy",
+    "n": 30,
+    "q": 0
+   },
+   {
+    "id": "ECO-97",
+    "slug": "eco-97",
+    "t": "Forecasting, Scenarios, Risk, Ethics and Future Global Economy",
+    "part": "World Economy",
+    "n": 30,
+    "q": 0
+   },
+   {
+    "id": "ECO-98",
+    "slug": "eco-98",
+    "t": "Planning in India: Five-Year Plans to NITI Aayog",
+    "part": "Exam Quick Reference (added to fill gaps)",
+    "n": 17,
+    "q": 4
+   },
+   {
+    "id": "ECO-99",
+    "slug": "eco-99",
+    "t": "Food Security, PDS and Agricultural Policy",
+    "part": "Exam Quick Reference (added to fill gaps)",
+    "n": 28,
+    "q": 2
+   },
+   {
+    "id": "ECO-100",
+    "slug": "eco-100",
+    "t": "Budget, Taxation and Fiscal Terms — Quick Reference",
+    "part": "Exam Quick Reference (added to fill gaps)",
+    "n": 25,
+    "q": 3
+   },
+   {
+    "id": "ECO-101",
+    "slug": "eco-101",
+    "t": "Reports, Indices and International Organisations",
+    "part": "Exam Quick Reference (added to fill gaps)",
+    "n": 35,
+    "q": 1
+   },
+   {
+    "id": "ECO-102",
+    "slug": "eco-102",
+    "t": "Banking, Money and Financial Markets — Quick Reference",
+    "part": "Exam Quick Reference (added to fill gaps)",
+    "n": 41,
+    "q": 3
+   }
+  ]
+ },
+ {
+  "slug": "art-culture",
+  "prefix": "ART",
+  "name": "Art & Culture",
+  "blurb": "Indian architecture, sculpture, painting, music, dance, theatre, literature, philosophy, festivals, crafts and world art.",
+  "total": 1266,
+  "levels": {
+   "1": 31,
+   "2": 172,
+   "3": 1036,
+   "4": 27
+  },
+  "majors": [
+   {
+    "id": "ART-01",
+    "slug": "art-01",
+    "t": "Understanding Art, Culture and Heritage",
+    "part": "Part 1 — Foundations of Culture and Heritage",
+    "n": 42,
+    "q": 1
+   },
+   {
+    "id": "ART-02",
+    "slug": "art-02",
+    "t": "Prehistoric and Proto-historic Art",
+    "part": "Part 1 — Foundations of Culture and Heritage",
+    "n": 31,
+    "q": 0
+   },
+   {
+    "id": "ART-03",
+    "slug": "art-03",
+    "t": "Mauryan and Post-Mauryan Art and Architecture",
+    "part": "Part 2 — Indian Architecture",
+    "n": 26,
+    "q": 0
+   },
+   {
+    "id": "ART-04",
+    "slug": "art-04",
+    "t": "Gupta and Post-Gupta Architecture",
+    "part": "Part 2 — Indian Architecture",
+    "n": 20,
+    "q": 1
+   },
+   {
+    "id": "ART-05",
+    "slug": "art-05",
+    "t": "Temple Architecture: Nagara, Dravida and Vesara",
+    "part": "Part 2 — Indian Architecture",
+    "n": 54,
+    "q": 1
+   },
+   {
+    "id": "ART-06",
+    "slug": "art-06",
+    "t": "Indo-Islamic Architecture",
+    "part": "Part 2 — Indian Architecture",
+    "n": 28,
+    "q": 2
+   },
+   {
+    "id": "ART-07",
+    "slug": "art-07",
+    "t": "Mughal and Rajput Architecture",
+    "part": "Part 2 — Indian Architecture",
+    "n": 31,
+    "q": 15
+   },
+   {
+    "id": "ART-08",
+    "slug": "art-08",
+    "t": "Colonial and Modern Architecture",
+    "part": "Part 2 — Indian Architecture",
+    "n": 25,
+    "q": 1
+   },
+   {
+    "id": "ART-09",
+    "slug": "art-09",
+    "t": "Indian Sculpture and Bronze Casting",
+    "part": "Part 3 — Sculpture, Painting and Visual Arts",
+    "n": 32,
+    "q": 4
+   },
+   {
+    "id": "ART-10",
+    "slug": "art-10",
+    "t": "Indian Painting: Murals and Classical Traditions",
+    "part": "Part 3 — Sculpture, Painting and Visual Arts",
+    "n": 18,
+    "q": 0
+   },
+   {
+    "id": "ART-11",
+    "slug": "art-11",
+    "t": "Indian Painting: Miniature Schools",
+    "part": "Part 3 — Sculpture, Painting and Visual Arts",
+    "n": 44,
+    "q": 5
+   },
+   {
+    "id": "ART-12",
+    "slug": "art-12",
+    "t": "Folk and Tribal Painting Traditions",
+    "part": "Part 3 — Sculpture, Painting and Visual Arts",
+    "n": 23,
+    "q": 1
+   },
+   {
+    "id": "ART-13",
+    "slug": "art-13",
+    "t": "Modern and Contemporary Indian Art",
+    "part": "Part 3 — Sculpture, Painting and Visual Arts",
+    "n": 31,
+    "q": 3
+   },
+   {
+    "id": "ART-14",
+    "slug": "art-14",
+    "t": "Indian Music: Foundations and Hindustani Music",
+    "part": "Part 4 — Performing Arts",
+    "n": 56,
+    "q": 6
+   },
+   {
+    "id": "ART-15",
+    "slug": "art-15",
+    "t": "Carnatic Music",
+    "part": "Part 4 — Performing Arts",
+    "n": 33,
+    "q": 1
+   },
+   {
+    "id": "ART-16",
+    "slug": "art-16",
+    "t": "Musical Instruments and Folk Music",
+    "part": "Part 4 — Performing Arts",
+    "n": 30,
+    "q": 2
+   },
+   {
+    "id": "ART-17",
+    "slug": "art-17",
+    "t": "Classical Dances of India",
+    "part": "Part 4 — Performing Arts",
+    "n": 54,
+    "q": 8
+   },
+   {
+    "id": "ART-18",
+    "slug": "art-18",
+    "t": "Folk Dances of India by State",
+    "part": "Part 4 — Performing Arts",
+    "n": 49,
+    "q": 17
+   },
+   {
+    "id": "ART-19",
+    "slug": "art-19",
+    "t": "Theatre, Puppetry and Performing Traditions",
+    "part": "Part 4 — Performing Arts",
+    "n": 44,
+    "q": 4
+   },
+   {
+    "id": "ART-20",
+    "slug": "art-20",
+    "t": "Languages and Scripts of India",
+    "part": "Part 5 — Literature, Languages and Thought",
+    "n": 33,
+    "q": 2
+   },
+   {
+    "id": "ART-21",
+    "slug": "art-21",
+    "t": "Sanskrit, Pali and Prakrit Literature",
+    "part": "Part 5 — Literature, Languages and Thought",
+    "n": 45,
+    "q": 2
+   },
+   {
+    "id": "ART-22",
+    "slug": "art-22",
+    "t": "Tamil and Other Regional Literatures",
+    "part": "Part 5 — Literature, Languages and Thought",
+    "n": 79,
+    "q": 3
+   },
+   {
+    "id": "ART-23",
+    "slug": "art-23",
+    "t": "Indian Philosophy and Religious Traditions",
+    "part": "Part 5 — Literature, Languages and Thought",
+    "n": 72,
+    "q": 8
+   },
+   {
+    "id": "ART-24",
+    "slug": "art-24",
+    "t": "Festivals, Fairs and Calendars",
+    "part": "Part 6 — Living Traditions and Material Culture",
+    "n": 48,
+    "q": 1
+   },
+   {
+    "id": "ART-25",
+    "slug": "art-25",
+    "t": "Handicrafts, Textiles and GI Heritage",
+    "part": "Part 6 — Living Traditions and Material Culture",
+    "n": 47,
+    "q": 3
+   },
+   {
+    "id": "ART-26",
+    "slug": "art-26",
+    "t": "Indian Martial Arts, Games and Cuisine",
+    "part": "Part 6 — Living Traditions and Material Culture",
+    "n": 29,
+    "q": 1
+   },
+   {
+    "id": "ART-27",
+    "slug": "art-27",
+    "t": "Science and Technology in Ancient and Medieval India",
+    "part": "Part 7 — Science, Heritage Conservation and Institutions",
+    "n": 27,
+    "q": 1
+   },
+   {
+    "id": "ART-28",
+    "slug": "art-28",
+    "t": "UNESCO World Heritage and Intangible Cultural Heritage of India",
+    "part": "Part 7 — Science, Heritage Conservation and Institutions",
+    "n": 69,
+    "q": 13
+   },
+   {
+    "id": "ART-29",
+    "slug": "art-29",
+    "t": "Cultural Institutions, Conservation and Awards",
+    "part": "Part 7 — Science, Heritage Conservation and Institutions",
+    "n": 31,
+    "q": 7
+   },
+   {
+    "id": "ART-30",
+    "slug": "art-30",
+    "t": "World Art History: An Overview",
+    "part": "Part 8 — World Art and Culture",
+    "n": 57,
+    "q": 3
+   },
+   {
+    "id": "ART-31",
+    "slug": "art-31",
+    "t": "World Music, Dance, Theatre and Literature: An Overview",
+    "part": "Part 8 — World Art and Culture",
+    "n": 27,
+    "q": 2
+   }
+  ]
+ },
+ {
+  "slug": "technology",
+  "prefix": "SNT",
+  "name": "Science & Technology",
+  "blurb": "Science and technology as a whole: history, every scientific field, frontier technologies, India's space and defence programmes.",
+  "total": 3769,
+  "levels": {
+   "1": 39,
+   "2": 610,
+   "3": 3120
+  },
+  "majors": [
+   {
+    "id": "SNT-01",
+    "slug": "snt-01",
+    "t": "Scientific Thinking, Literacy and Measurement",
+    "part": "PART I — FOUNDATIONS AND HISTORIES",
+    "n": 83,
+    "q": 5
+   },
+   {
+    "id": "SNT-02",
+    "slug": "snt-02",
+    "t": "Global History of Science and Technology",
+    "part": "PART I — FOUNDATIONS AND HISTORIES",
+    "n": 88,
+    "q": 3
+   },
+   {
+    "id": "SNT-03",
+    "slug": "snt-03",
+    "t": "History of Science and Technology in India",
+    "part": "PART I — FOUNDATIONS AND HISTORIES",
+    "n": 82,
+    "q": 10
+   },
+   {
+    "id": "SNT-04",
+    "slug": "snt-04",
+    "t": "Mathematics, Statistics and Data Foundations",
+    "part": "PART I — FOUNDATIONS AND HISTORIES",
+    "n": 92,
+    "q": 0
+   },
+   {
+    "id": "SNT-05",
+    "slug": "snt-05",
+    "t": "Physics: Matter, Motion, Energy, Waves and Fields",
+    "part": "PART II — CORE NATURAL SCIENCES",
+    "n": 98,
+    "q": 0
+   },
+   {
+    "id": "SNT-06",
+    "slug": "snt-06",
+    "t": "Chemistry and Chemical Technology",
+    "part": "PART II — CORE NATURAL SCIENCES",
+    "n": 91,
+    "q": 0
+   },
+   {
+    "id": "SNT-07",
+    "slug": "snt-07",
+    "t": "Materials Science, Metallurgy, Semiconductors and Electronics",
+    "part": "PART II — CORE NATURAL SCIENCES",
+    "n": 101,
+    "q": 2
+   },
+   {
+    "id": "SNT-08",
+    "slug": "snt-08",
+    "t": "Biology, Evolution, Life Sciences and Microbiology",
+    "part": "PART II — CORE NATURAL SCIENCES",
+    "n": 95,
+    "q": 4
+   },
+   {
+    "id": "SNT-09",
+    "slug": "snt-09",
+    "t": "Earth Systems, Environment, Climate, Ocean and Disaster Technology",
+    "part": "PART II — CORE NATURAL SCIENCES",
+    "n": 97,
+    "q": 2
+   },
+   {
+    "id": "SNT-10",
+    "slug": "snt-10",
+    "t": "Energy Foundations, Coal, Petroleum, Natural Gas and Hydrocarbons",
+    "part": "PART III — ENERGY AND STRATEGIC SCIENCE",
+    "n": 86,
+    "q": 9
+   },
+   {
+    "id": "SNT-11",
+    "slug": "snt-11",
+    "t": "Renewable Energy, Energy Storage, Hydrogen and Smart Grids",
+    "part": "PART III — ENERGY AND STRATEGIC SCIENCE",
+    "n": 100,
+    "q": 4
+   },
+   {
+    "id": "SNT-12",
+    "slug": "snt-12",
+    "t": "Nuclear Science, Nuclear Energy, Radioactivity and Radiation Applications",
+    "part": "PART III — ENERGY AND STRATEGIC SCIENCE",
+    "n": 98,
+    "q": 0
+   },
+   {
+    "id": "SNT-13",
+    "slug": "snt-13",
+    "t": "Nuclear Safety, Diplomacy, Safeguards and Non-Proliferation",
+    "part": "PART III — ENERGY AND STRATEGIC SCIENCE",
+    "n": 62,
+    "q": 0
+   },
+   {
+    "id": "SNT-14",
+    "slug": "snt-14",
+    "t": "Space Science, Astronomy, Astrophysics and Cosmology",
+    "part": "PART IV — SPACE, COMMUNICATIONS AND COMPUTING",
+    "n": 94,
+    "q": 1
+   },
+   {
+    "id": "SNT-15",
+    "slug": "snt-15",
+    "t": "Space Technology, Satellites, Launch Vehicles and Space Law",
+    "part": "PART IV — SPACE, COMMUNICATIONS AND COMPUTING",
+    "n": 117,
+    "q": 5
+   },
+   {
+    "id": "SNT-16",
+    "slug": "snt-16",
+    "t": "Telecommunications, Radio Spectrum, Optical Networks and Mobile Generations",
+    "part": "PART IV — SPACE, COMMUNICATIONS AND COMPUTING",
+    "n": 112,
+    "q": 1
+   },
+   {
+    "id": "SNT-17",
+    "slug": "snt-17",
+    "t": "Computers, Digital Literacy and School Computer Education",
+    "part": "PART IV — SPACE, COMMUNICATIONS AND COMPUTING",
+    "n": 132,
+    "q": 7
+   },
+   {
+    "id": "SNT-18",
+    "slug": "snt-18",
+    "t": "Computer Architecture, Operating Systems, Programming and Software Systems",
+    "part": "PART IV — SPACE, COMMUNICATIONS AND COMPUTING",
+    "n": 140,
+    "q": 5
+   },
+   {
+    "id": "SNT-19",
+    "slug": "snt-19",
+    "t": "Internet, Networks, Web Architecture and Governance",
+    "part": "PART IV — SPACE, COMMUNICATIONS AND COMPUTING",
+    "n": 108,
+    "q": 0
+   },
+   {
+    "id": "SNT-20",
+    "slug": "snt-20",
+    "t": "Digital Public Infrastructure, E-Governance and India ICT Programmes",
+    "part": "PART IV — SPACE, COMMUNICATIONS AND COMPUTING",
+    "n": 93,
+    "q": 1
+   },
+   {
+    "id": "SNT-21",
+    "slug": "snt-21",
+    "t": "Cloud Computing, Big Data, Supercomputing, IoT and Smart Systems",
+    "part": "PART IV — SPACE, COMMUNICATIONS AND COMPUTING",
+    "n": 101,
+    "q": 2
+   },
+   {
+    "id": "SNT-22",
+    "slug": "snt-22",
+    "t": "Cybersecurity, Cryptography, Privacy and Digital Safety",
+    "part": "PART IV — SPACE, COMMUNICATIONS AND COMPUTING",
+    "n": 108,
+    "q": 6
+   },
+   {
+    "id": "SNT-23",
+    "slug": "snt-23",
+    "t": "Artificial Intelligence, Machine Learning, Robotics and Cyber-Physical Systems",
+    "part": "PART V — FRONTIER AND APPLIED TECHNOLOGIES",
+    "n": 122,
+    "q": 2
+   },
+   {
+    "id": "SNT-24",
+    "slug": "snt-24",
+    "t": "Lasers, Photonics, Superconductivity and Quantum Technologies",
+    "part": "PART V — FRONTIER AND APPLIED TECHNOLOGIES",
+    "n": 97,
+    "q": 2
+   },
+   {
+    "id": "SNT-25",
+    "slug": "snt-25",
+    "t": "Nanotechnology, Nanomaterials, Graphene and Metamaterials",
+    "part": "PART V — FRONTIER AND APPLIED TECHNOLOGIES",
+    "n": 97,
+    "q": 3
+   },
+   {
+    "id": "SNT-26",
+    "slug": "snt-26",
+    "t": "Biotechnology, Genomics, Bioinformatics and Synthetic Biology",
+    "part": "PART V — FRONTIER AND APPLIED TECHNOLOGIES",
+    "n": 110,
+    "q": 7
+   },
+   {
+    "id": "SNT-27",
+    "slug": "snt-27",
+    "t": "Health Science, Diseases, Diagnostics, Medicines and Medical Technology",
+    "part": "PART VI — HEALTH, AGRICULTURE, DEFENCE AND SOCIETY",
+    "n": 129,
+    "q": 9
+   },
+   {
+    "id": "SNT-28",
+    "slug": "snt-28",
+    "t": "Immunology, Vaccines, Infectious Disease and Pandemic Preparedness",
+    "part": "PART VI — HEALTH, AGRICULTURE, DEFENCE AND SOCIETY",
+    "n": 107,
+    "q": 2
+   },
+   {
+    "id": "SNT-29",
+    "slug": "snt-29",
+    "t": "Agriculture, Food Science, Nutrition, Water and Environmental Health",
+    "part": "PART VI — HEALTH, AGRICULTURE, DEFENCE AND SOCIETY",
+    "n": 112,
+    "q": 3
+   },
+   {
+    "id": "SNT-30",
+    "slug": "snt-30",
+    "t": "Defence Technology, Aerospace and Strategic Systems",
+    "part": "PART VI — HEALTH, AGRICULTURE, DEFENCE AND SOCIETY",
+    "n": 118,
+    "q": 6
+   },
+   {
+    "id": "SNT-31",
+    "slug": "snt-31",
+    "t": "Industrial Technology, Manufacturing, Transport and Consumer Devices",
+    "part": "PART VI — HEALTH, AGRICULTURE, DEFENCE AND SOCIETY",
+    "n": 101,
+    "q": 6
+   },
+   {
+    "id": "SNT-32",
+    "slug": "snt-32",
+    "t": "Intellectual Property, Standards, Technology Law and Responsible Innovation",
+    "part": "PART VI — HEALTH, AGRICULTURE, DEFENCE AND SOCIETY",
+    "n": 101,
+    "q": 0
+   },
+   {
+    "id": "SNT-33",
+    "slug": "snt-33",
+    "t": "Science Education, Research Ecosystems, Innovation and Careers",
+    "part": "PART VI — HEALTH, AGRICULTURE, DEFENCE AND SOCIETY",
+    "n": 103,
+    "q": 2
+   },
+   {
+    "id": "SNT-34",
+    "slug": "snt-34",
+    "t": "Interdisciplinary Technologies, Forensics and Human-Machine Systems",
+    "part": "PART VI — HEALTH, AGRICULTURE, DEFENCE AND SOCIETY",
+    "n": 96,
+    "q": 5
+   },
+   {
+    "id": "SNT-35",
+    "slug": "snt-35",
+    "t": "Emerging Frontiers and Future-Oriented Science & Technology",
+    "part": "PART VI — HEALTH, AGRICULTURE, DEFENCE AND SOCIETY",
+    "n": 116,
+    "q": 0
+   },
+   {
+    "id": "SNT-36",
+    "slug": "snt-36",
+    "t": "India's Space Programme — Missions Reference",
+    "part": "PART VII — EXAM-FOCUSED SCIENCE AND TECHNOLOGY AWARENESS (added to fill gaps)",
+    "n": 43,
+    "q": 3
+   },
+   {
+    "id": "SNT-37",
+    "slug": "snt-37",
+    "t": "Defence Technology — Reference",
+    "part": "PART VII — EXAM-FOCUSED SCIENCE AND TECHNOLOGY AWARENESS (added to fill gaps)",
+    "n": 26,
+    "q": 3
+   },
+   {
+    "id": "SNT-38",
+    "slug": "snt-38",
+    "t": "Emerging Technologies — Concepts for Exams",
+    "part": "PART VII — EXAM-FOCUSED SCIENCE AND TECHNOLOGY AWARENESS (added to fill gaps)",
+    "n": 41,
+    "q": 2
+   },
+   {
+    "id": "SNT-39",
+    "slug": "snt-39",
+    "t": "Intellectual Property, Awards and Institutions in Science",
+    "part": "PART VII — EXAM-FOCUSED SCIENCE AND TECHNOLOGY AWARENESS (added to fill gaps)",
+    "n": 33,
+    "q": 7
+   }
+  ]
+ },
+ {
+  "slug": "physics",
+  "prefix": "PHY",
+  "name": "Physics",
+  "blurb": "From measurement and motion to quantum physics, cosmology and applied physics, plus everyday physics for exams.",
+  "total": 1976,
+  "levels": {
+   "1": 43,
+   "2": 195,
+   "3": 800,
+   "4": 938
+  },
+  "majors": [
+   {
+    "id": "PHY-01",
+    "slug": "phy-01",
+    "t": "Physics Foundations, Measurement & Scientific Method",
+    "part": "Core roadmap",
+    "n": 42,
+    "q": 1
+   },
+   {
+    "id": "PHY-02",
+    "slug": "phy-02",
+    "t": "Mathematics for Physics",
+    "part": "Core roadmap",
+    "n": 57,
+    "q": 0
+   },
+   {
+    "id": "PHY-03",
+    "slug": "phy-03",
+    "t": "History of Physics & Global Scientific Traditions",
+    "part": "Core roadmap",
+    "n": 45,
+    "q": 0
+   },
+   {
+    "id": "PHY-04",
+    "slug": "phy-04",
+    "t": "Physical World, States of Matter & Everyday Physics",
+    "part": "Core roadmap",
+    "n": 36,
+    "q": 0
+   },
+   {
+    "id": "PHY-05",
+    "slug": "phy-05",
+    "t": "Kinematics: Describing Motion",
+    "part": "Core roadmap",
+    "n": 41,
+    "q": 2
+   },
+   {
+    "id": "PHY-06",
+    "slug": "phy-06",
+    "t": "Newtonian Dynamics, Forces & Momentum",
+    "part": "Core roadmap",
+    "n": 58,
+    "q": 1
+   },
+   {
+    "id": "PHY-07",
+    "slug": "phy-07",
+    "t": "Work, Energy, Power & Conservation Laws",
+    "part": "Core roadmap",
+    "n": 45,
+    "q": 1
+   },
+   {
+    "id": "PHY-08",
+    "slug": "phy-08",
+    "t": "Rotational Mechanics, Rigid Bodies & Oscillators",
+    "part": "Core roadmap",
+    "n": 41,
+    "q": 0
+   },
+   {
+    "id": "PHY-09",
+    "slug": "phy-09",
+    "t": "Gravitation, Satellites & Orbital Mechanics",
+    "part": "Core roadmap",
+    "n": 51,
+    "q": 0
+   },
+   {
+    "id": "PHY-10",
+    "slug": "phy-10",
+    "t": "Statics, Elasticity, Strength & Properties of Matter",
+    "part": "Core roadmap",
+    "n": 48,
+    "q": 0
+   },
+   {
+    "id": "PHY-11",
+    "slug": "phy-11",
+    "t": "Fluid Mechanics: Hydrostatics, Flow & Aerodynamics",
+    "part": "Core roadmap",
+    "n": 49,
+    "q": 0
+   },
+   {
+    "id": "PHY-12",
+    "slug": "phy-12",
+    "t": "Thermal Physics, Thermodynamics & Heat Transfer",
+    "part": "Core roadmap",
+    "n": 73,
+    "q": 0
+   },
+   {
+    "id": "PHY-13",
+    "slug": "phy-13",
+    "t": "Kinetic Theory, Statistical Mechanics & Complex Systems",
+    "part": "Core roadmap",
+    "n": 52,
+    "q": 0
+   },
+   {
+    "id": "PHY-14",
+    "slug": "phy-14",
+    "t": "Oscillations, Mechanical Waves & Wave Physics",
+    "part": "Core roadmap",
+    "n": 44,
+    "q": 0
+   },
+   {
+    "id": "PHY-15",
+    "slug": "phy-15",
+    "t": "Sound, Acoustics & Ultrasonics",
+    "part": "Core roadmap",
+    "n": 47,
+    "q": 1
+   },
+   {
+    "id": "PHY-16",
+    "slug": "phy-16",
+    "t": "Geometrical Optics & Optical Instruments",
+    "part": "Core roadmap",
+    "n": 51,
+    "q": 3
+   },
+   {
+    "id": "PHY-17",
+    "slug": "phy-17",
+    "t": "Physical Optics, Electromagnetic Light & Lasers",
+    "part": "Core roadmap",
+    "n": 59,
+    "q": 1
+   },
+   {
+    "id": "PHY-18",
+    "slug": "phy-18",
+    "t": "Electrostatics & Electric Fields",
+    "part": "Core roadmap",
+    "n": 47,
+    "q": 2
+   },
+   {
+    "id": "PHY-19",
+    "slug": "phy-19",
+    "t": "Current Electricity, Circuits & Electrical Measurement",
+    "part": "Core roadmap",
+    "n": 48,
+    "q": 4
+   },
+   {
+    "id": "PHY-20",
+    "slug": "phy-20",
+    "t": "Magnetism, Electromagnetic Induction & Maxwell Theory",
+    "part": "Core roadmap",
+    "n": 43,
+    "q": 0
+   },
+   {
+    "id": "PHY-21",
+    "slug": "phy-21",
+    "t": "Electromagnetic Waves, Radio & Antenna Physics",
+    "part": "Core roadmap",
+    "n": 38,
+    "q": 2
+   },
+   {
+    "id": "PHY-22",
+    "slug": "phy-22",
+    "t": "Special Relativity & Spacetime",
+    "part": "Core roadmap",
+    "n": 34,
+    "q": 1
+   },
+   {
+    "id": "PHY-23",
+    "slug": "phy-23",
+    "t": "Quantum Mechanics & Quantum Foundations",
+    "part": "Core roadmap",
+    "n": 56,
+    "q": 0
+   },
+   {
+    "id": "PHY-24",
+    "slug": "phy-24",
+    "t": "Atomic, Molecular & Optical Physics (AMO)",
+    "part": "Core roadmap",
+    "n": 46,
+    "q": 0
+   },
+   {
+    "id": "PHY-25",
+    "slug": "phy-25",
+    "t": "Nuclear Physics, Radioactivity & Radiation",
+    "part": "Core roadmap",
+    "n": 46,
+    "q": 1
+   },
+   {
+    "id": "PHY-26",
+    "slug": "phy-26",
+    "t": "Particle Physics & Quantum Field Theory",
+    "part": "Core roadmap",
+    "n": 44,
+    "q": 0
+   },
+   {
+    "id": "PHY-27",
+    "slug": "phy-27",
+    "t": "Condensed Matter & Solid-State Physics",
+    "part": "Core roadmap",
+    "n": 39,
+    "q": 1
+   },
+   {
+    "id": "PHY-28",
+    "slug": "phy-28",
+    "t": "Semiconductors, Microelectronics & Nanophysics",
+    "part": "Core roadmap",
+    "n": 44,
+    "q": 0
+   },
+   {
+    "id": "PHY-29",
+    "slug": "phy-29",
+    "t": "Plasma Physics, Magnetohydrodynamics & Fusion",
+    "part": "Core roadmap",
+    "n": 30,
+    "q": 0
+   },
+   {
+    "id": "PHY-30",
+    "slug": "phy-30",
+    "t": "Astrophysics & Observational Astronomy",
+    "part": "Core roadmap",
+    "n": 39,
+    "q": 0
+   },
+   {
+    "id": "PHY-31",
+    "slug": "phy-31",
+    "t": "General Relativity, Black Holes, Gravitational Waves & Cosmology",
+    "part": "Core roadmap",
+    "n": 43,
+    "q": 0
+   },
+   {
+    "id": "PHY-32",
+    "slug": "phy-32",
+    "t": "Earth, Planetary & Space Physics",
+    "part": "Core roadmap",
+    "n": 30,
+    "q": 0
+   },
+   {
+    "id": "PHY-33",
+    "slug": "phy-33",
+    "t": "Experimental Physics, Instrumentation & Data Analysis",
+    "part": "Core roadmap",
+    "n": 27,
+    "q": 0
+   },
+   {
+    "id": "PHY-34",
+    "slug": "phy-34",
+    "t": "Computational Physics, Modelling & Scientific Computing",
+    "part": "Core roadmap",
+    "n": 38,
+    "q": 1
+   },
+   {
+    "id": "PHY-35",
+    "slug": "phy-35",
+    "t": "Medical Physics, Biophysics & Physics of Living Systems",
+    "part": "Core roadmap",
+    "n": 25,
+    "q": 0
+   },
+   {
+    "id": "PHY-36",
+    "slug": "phy-36",
+    "t": "Energy, Climate & Environmental Physics",
+    "part": "Core roadmap",
+    "n": 38,
+    "q": 1
+   },
+   {
+    "id": "PHY-37",
+    "slug": "phy-37",
+    "t": "Materials Under Extreme Conditions & High-Energy-Density Physics",
+    "part": "Core roadmap",
+    "n": 33,
+    "q": 0
+   },
+   {
+    "id": "PHY-38",
+    "slug": "phy-38",
+    "t": "Philosophy, Foundations, Ethics & Open Questions",
+    "part": "Core roadmap",
+    "n": 28,
+    "q": 0
+   },
+   {
+    "id": "PHY-39",
+    "slug": "phy-39",
+    "t": "Teaching Physics: Curriculum, Pedagogy & Assessment",
+    "part": "Core roadmap",
+    "n": 96,
+    "q": 0
+   },
+   {
+    "id": "PHY-40",
+    "slug": "phy-40",
+    "t": "Units, Measurements and Instruments — Quick Reference",
+    "part": "Exam-Focused Essentials (added to fill gaps)",
+    "n": 54,
+    "q": 4
+   },
+   {
+    "id": "PHY-41",
+    "slug": "phy-41",
+    "t": "Physics in Everyday Life",
+    "part": "Exam-Focused Essentials (added to fill gaps)",
+    "n": 57,
+    "q": 9
+   },
+   {
+    "id": "PHY-42",
+    "slug": "phy-42",
+    "t": "Inventions, Discoveries and Scientists",
+    "part": "Exam-Focused Essentials (added to fill gaps)",
+    "n": 44,
+    "q": 8
+   },
+   {
+    "id": "PHY-43",
+    "slug": "phy-43",
+    "t": "Space and Astronomy Basics for Exams",
+    "part": "Exam-Focused Essentials (added to fill gaps)",
+    "n": 27,
+    "q": 6
+   }
+  ]
+ },
+ {
+  "slug": "chemistry",
+  "prefix": "CHE",
+  "name": "Chemistry",
+  "blurb": "Matter, atoms, bonding, reactions, organic, inorganic and physical chemistry, and everyday chemistry for exams.",
+  "total": 1914,
+  "levels": {
+   "1": 51,
+   "2": 484,
+   "3": 1379
+  },
+  "majors": [
+   {
+    "id": "CHE-01",
+    "slug": "che-01",
+    "t": "Foundations of Chemistry, Measurement & Scientific Method",
+    "part": "Core roadmap",
+    "n": 41,
+    "q": 1
+   },
+   {
+    "id": "CHE-02",
+    "slug": "che-02",
+    "t": "History, Philosophy & Global Development of Chemistry",
+    "part": "Core roadmap",
+    "n": 52,
+    "q": 0
+   },
+   {
+    "id": "CHE-03",
+    "slug": "che-03",
+    "t": "Mathematics, Units, Graphs & Data for Chemistry",
+    "part": "Core roadmap",
+    "n": 35,
+    "q": 0
+   },
+   {
+    "id": "CHE-04",
+    "slug": "che-04",
+    "t": "Matter, Particles, Atomic Structure & Quantum Ideas",
+    "part": "Core roadmap",
+    "n": 38,
+    "q": 3
+   },
+   {
+    "id": "CHE-05",
+    "slug": "che-05",
+    "t": "Periodic Table, Periodicity & Element Families",
+    "part": "Core roadmap",
+    "n": 39,
+    "q": 1
+   },
+   {
+    "id": "CHE-06",
+    "slug": "che-06",
+    "t": "Chemical Bonding, Molecular Shape & Intermolecular Forces",
+    "part": "Core roadmap",
+    "n": 43,
+    "q": 0
+   },
+   {
+    "id": "CHE-07",
+    "slug": "che-07",
+    "t": "Chemical Formulae, Stoichiometry & Reaction Calculations",
+    "part": "Core roadmap",
+    "n": 28,
+    "q": 0
+   },
+   {
+    "id": "CHE-08",
+    "slug": "che-08",
+    "t": "States of Matter, Gases, Liquids, Solids & Solutions",
+    "part": "Core roadmap",
+    "n": 50,
+    "q": 0
+   },
+   {
+    "id": "CHE-09",
+    "slug": "che-09",
+    "t": "Chemical Thermodynamics & Energetics",
+    "part": "Core roadmap",
+    "n": 38,
+    "q": 1
+   },
+   {
+    "id": "CHE-10",
+    "slug": "che-10",
+    "t": "Chemical Kinetics, Reaction Rates & Mechanisms",
+    "part": "Core roadmap",
+    "n": 49,
+    "q": 3
+   },
+   {
+    "id": "CHE-11",
+    "slug": "che-11",
+    "t": "Chemical Equilibrium & Phase Equilibria",
+    "part": "Core roadmap",
+    "n": 32,
+    "q": 1
+   },
+   {
+    "id": "CHE-12",
+    "slug": "che-12",
+    "t": "Acids, Bases, Buffers & Proton Transfer",
+    "part": "Core roadmap",
+    "n": 32,
+    "q": 0
+   },
+   {
+    "id": "CHE-13",
+    "slug": "che-13",
+    "t": "Redox Chemistry & Electrochemistry",
+    "part": "Core roadmap",
+    "n": 37,
+    "q": 4
+   },
+   {
+    "id": "CHE-14",
+    "slug": "che-14",
+    "t": "Inorganic Chemistry: Main-Group Elements & Compounds",
+    "part": "Core roadmap",
+    "n": 33,
+    "q": 3
+   },
+   {
+    "id": "CHE-15",
+    "slug": "che-15",
+    "t": "Transition-Metal, Coordination & Bioinorganic Chemistry",
+    "part": "Core roadmap",
+    "n": 43,
+    "q": 6
+   },
+   {
+    "id": "CHE-16",
+    "slug": "che-16",
+    "t": "Organometallic Chemistry & Homogeneous Catalysis",
+    "part": "Core roadmap",
+    "n": 43,
+    "q": 0
+   },
+   {
+    "id": "CHE-17",
+    "slug": "che-17",
+    "t": "Organic Chemistry Foundations, Nomenclature & Stereochemistry",
+    "part": "Core roadmap",
+    "n": 47,
+    "q": 0
+   },
+   {
+    "id": "CHE-18",
+    "slug": "che-18",
+    "t": "Hydrocarbons & Petroleum Chemistry",
+    "part": "Core roadmap",
+    "n": 36,
+    "q": 0
+   },
+   {
+    "id": "CHE-19",
+    "slug": "che-19",
+    "t": "Organic Functional Groups & Reaction Families",
+    "part": "Core roadmap",
+    "n": 27,
+    "q": 3
+   },
+   {
+    "id": "CHE-20",
+    "slug": "che-20",
+    "t": "Organic Mechanisms, Reactivity & Physical Organic Chemistry",
+    "part": "Core roadmap",
+    "n": 39,
+    "q": 0
+   },
+   {
+    "id": "CHE-21",
+    "slug": "che-21",
+    "t": "Organic Synthesis, Retrosynthesis & Reaction Planning",
+    "part": "Core roadmap",
+    "n": 36,
+    "q": 1
+   },
+   {
+    "id": "CHE-22",
+    "slug": "che-22",
+    "t": "Spectroscopy & Molecular Structure Elucidation",
+    "part": "Core roadmap",
+    "n": 46,
+    "q": 0
+   },
+   {
+    "id": "CHE-23",
+    "slug": "che-23",
+    "t": "Analytical Chemistry & Quantitative Analysis",
+    "part": "Core roadmap",
+    "n": 38,
+    "q": 1
+   },
+   {
+    "id": "CHE-24",
+    "slug": "che-24",
+    "t": "Chromatography, Separation Science & Electrophoresis",
+    "part": "Core roadmap",
+    "n": 32,
+    "q": 0
+   },
+   {
+    "id": "CHE-25",
+    "slug": "che-25",
+    "t": "Electroanalytical Chemistry & Sensors",
+    "part": "Core roadmap",
+    "n": 37,
+    "q": 0
+   },
+   {
+    "id": "CHE-26",
+    "slug": "che-26",
+    "t": "Physical Chemistry: Solids, Surfaces, Colloids & Interfaces",
+    "part": "Core roadmap",
+    "n": 36,
+    "q": 0
+   },
+   {
+    "id": "CHE-27",
+    "slug": "che-27",
+    "t": "Solid-State, Materials & Crystallographic Chemistry",
+    "part": "Core roadmap",
+    "n": 29,
+    "q": 0
+   },
+   {
+    "id": "CHE-28",
+    "slug": "che-28",
+    "t": "Polymer & Macromolecular Chemistry",
+    "part": "Core roadmap",
+    "n": 30,
+    "q": 1
+   },
+   {
+    "id": "CHE-29",
+    "slug": "che-29",
+    "t": "Nanochemistry & Functional Nanomaterials",
+    "part": "Core roadmap",
+    "n": 24,
+    "q": 0
+   },
+   {
+    "id": "CHE-30",
+    "slug": "che-30",
+    "t": "Biochemistry & Molecular Chemistry of Life",
+    "part": "Core roadmap",
+    "n": 31,
+    "q": 0
+   },
+   {
+    "id": "CHE-31",
+    "slug": "che-31",
+    "t": "Medicinal, Pharmaceutical & Drug Chemistry",
+    "part": "Core roadmap",
+    "n": 27,
+    "q": 0
+   },
+   {
+    "id": "CHE-32",
+    "slug": "che-32",
+    "t": "Environmental Chemistry & Pollution Science",
+    "part": "Core roadmap",
+    "n": 52,
+    "q": 3
+   },
+   {
+    "id": "CHE-33",
+    "slug": "che-33",
+    "t": "Atmospheric Chemistry & Climate Chemistry",
+    "part": "Core roadmap",
+    "n": 40,
+    "q": 1
+   },
+   {
+    "id": "CHE-34",
+    "slug": "che-34",
+    "t": "Geochemistry, Mineral Chemistry & Planetary Chemistry",
+    "part": "Core roadmap",
+    "n": 23,
+    "q": 0
+   },
+   {
+    "id": "CHE-35",
+    "slug": "che-35",
+    "t": "Industrial, Process & Chemical Engineering Chemistry",
+    "part": "Core roadmap",
+    "n": 23,
+    "q": 0
+   },
+   {
+    "id": "CHE-36",
+    "slug": "che-36",
+    "t": "Green Chemistry, Sustainable Chemistry & Circularity",
+    "part": "Core roadmap",
+    "n": 30,
+    "q": 1
+   },
+   {
+    "id": "CHE-37",
+    "slug": "che-37",
+    "t": "Nuclear Chemistry, Radiochemistry & Isotope Science",
+    "part": "Core roadmap",
+    "n": 27,
+    "q": 0
+   },
+   {
+    "id": "CHE-38",
+    "slug": "che-38",
+    "t": "Photochemistry, Photophysics & Solar Chemical Conversion",
+    "part": "Core roadmap",
+    "n": 35,
+    "q": 0
+   },
+   {
+    "id": "CHE-39",
+    "slug": "che-39",
+    "t": "Food, Agricultural & Nutritional Chemistry",
+    "part": "Core roadmap",
+    "n": 29,
+    "q": 2
+   },
+   {
+    "id": "CHE-40",
+    "slug": "che-40",
+    "t": "Forensic Chemistry, Toxicology & Chemical Safety",
+    "part": "Core roadmap",
+    "n": 27,
+    "q": 0
+   },
+   {
+    "id": "CHE-41",
+    "slug": "che-41",
+    "t": "Medicinal Natural Products, Chemical Biology & Chemical Genetics",
+    "part": "Core roadmap",
+    "n": 32,
+    "q": 0
+   },
+   {
+    "id": "CHE-42",
+    "slug": "che-42",
+    "t": "Computational, Theoretical & Quantum Chemistry",
+    "part": "Core roadmap",
+    "n": 50,
+    "q": 0
+   },
+   {
+    "id": "CHE-43",
+    "slug": "che-43",
+    "t": "Cheminformatics, Chemical Data & AI/ML for Chemistry",
+    "part": "Core roadmap",
+    "n": 33,
+    "q": 0
+   },
+   {
+    "id": "CHE-44",
+    "slug": "che-44",
+    "t": "Industrial Materials, Cement, Glass, Ceramics, Dyes & Pigments",
+    "part": "Core roadmap",
+    "n": 25,
+    "q": 0
+   },
+   {
+    "id": "CHE-45",
+    "slug": "che-45",
+    "t": "Chemical Education, Laboratory Practice, Research & Professional Skills",
+    "part": "Core roadmap",
+    "n": 57,
+    "q": 1
+   },
+   {
+    "id": "CHE-46",
+    "slug": "che-46",
+    "t": "Emerging Frontiers & Interdisciplinary Chemistry",
+    "part": "Core roadmap",
+    "n": 48,
+    "q": 0
+   },
+   {
+    "id": "CHE-47",
+    "slug": "che-47",
+    "t": "Chemistry in Everyday Life",
+    "part": "Exam-Focused Essentials (added to fill gaps)",
+    "n": 43,
+    "q": 5
+   },
+   {
+    "id": "CHE-48",
+    "slug": "che-48",
+    "t": "Common Names, Formulas and Compounds",
+    "part": "Exam-Focused Essentials (added to fill gaps)",
+    "n": 44,
+    "q": 20
+   },
+   {
+    "id": "CHE-49",
+    "slug": "che-49",
+    "t": "Metals, Non-metals, Ores and Alloys",
+    "part": "Exam-Focused Essentials (added to fill gaps)",
+    "n": 38,
+    "q": 4
+   },
+   {
+    "id": "CHE-50",
+    "slug": "che-50",
+    "t": "Industrial and Agricultural Chemistry",
+    "part": "Exam-Focused Essentials (added to fill gaps)",
+    "n": 44,
+    "q": 10
+   },
+   {
+    "id": "CHE-51",
+    "slug": "che-51",
+    "t": "Nuclear Chemistry and Radioactivity Essentials",
+    "part": "Exam-Focused Essentials (added to fill gaps)",
+    "n": 15,
+    "q": 6
+   }
+  ]
+ },
+ {
+  "slug": "biology",
+  "prefix": "BIO",
+  "name": "Biology",
+  "blurb": "Cells to ecosystems: molecular biology, genetics, evolution, plants, animals, human body, health and biotechnology.",
+  "total": 1663,
+  "levels": {
+   "1": 53,
+   "2": 508,
+   "3": 1102
+  },
+  "majors": [
+   {
+    "id": "BIO-01",
+    "slug": "bio-01",
+    "t": "Foundations of Biology, Life & Scientific Inquiry",
+    "part": "Core roadmap",
+    "n": 34,
+    "q": 0
+   },
+   {
+    "id": "BIO-02",
+    "slug": "bio-02",
+    "t": "History, Philosophy & Global Development of Biology",
+    "part": "Core roadmap",
+    "n": 34,
+    "q": 1
+   },
+   {
+    "id": "BIO-03",
+    "slug": "bio-03",
+    "t": "Mathematics, Chemistry, Physics & Data for Biology",
+    "part": "Core roadmap",
+    "n": 46,
+    "q": 0
+   },
+   {
+    "id": "BIO-04",
+    "slug": "bio-04",
+    "t": "Chemistry of Life & Biomolecules",
+    "part": "Core roadmap",
+    "n": 30,
+    "q": 3
+   },
+   {
+    "id": "BIO-05",
+    "slug": "bio-05",
+    "t": "Cell Biology & Cell Theory",
+    "part": "Core roadmap",
+    "n": 36,
+    "q": 3
+   },
+   {
+    "id": "BIO-06",
+    "slug": "bio-06",
+    "t": "Membranes, Transport & Cell Signalling",
+    "part": "Core roadmap",
+    "n": 24,
+    "q": 2
+   },
+   {
+    "id": "BIO-07",
+    "slug": "bio-07",
+    "t": "Cell Cycle, Mitosis, Meiosis & Cell Death",
+    "part": "Core roadmap",
+    "n": 27,
+    "q": 1
+   },
+   {
+    "id": "BIO-08",
+    "slug": "bio-08",
+    "t": "Molecular Biology: DNA, RNA & Gene Expression",
+    "part": "Core roadmap",
+    "n": 53,
+    "q": 4
+   },
+   {
+    "id": "BIO-09",
+    "slug": "bio-09",
+    "t": "Genetics, Heredity & Chromosomes",
+    "part": "Core roadmap",
+    "n": 27,
+    "q": 0
+   },
+   {
+    "id": "BIO-10",
+    "slug": "bio-10",
+    "t": "Genomics, Epigenetics & Genome Architecture",
+    "part": "Core roadmap",
+    "n": 24,
+    "q": 0
+   },
+   {
+    "id": "BIO-11",
+    "slug": "bio-11",
+    "t": "Evolution, Natural Selection & Adaptation",
+    "part": "Core roadmap",
+    "n": 27,
+    "q": 0
+   },
+   {
+    "id": "BIO-12",
+    "slug": "bio-12",
+    "t": "Population Genetics, Speciation & Macroevolution",
+    "part": "Core roadmap",
+    "n": 29,
+    "q": 0
+   },
+   {
+    "id": "BIO-13",
+    "slug": "bio-13",
+    "t": "Taxonomy, Systematics, Phylogenetics & Biodiversity Classification",
+    "part": "Core roadmap",
+    "n": 28,
+    "q": 0
+   },
+   {
+    "id": "BIO-14",
+    "slug": "bio-14",
+    "t": "Microbiology: Bacteria, Archaea & Microbial Diversity",
+    "part": "Core roadmap",
+    "n": 35,
+    "q": 0
+   },
+   {
+    "id": "BIO-15",
+    "slug": "bio-15",
+    "t": "Virology & Subviral Agents",
+    "part": "Core roadmap",
+    "n": 31,
+    "q": 0
+   },
+   {
+    "id": "BIO-16",
+    "slug": "bio-16",
+    "t": "Mycology: Fungi, Lichens & Fungal Symbioses",
+    "part": "Core roadmap",
+    "n": 18,
+    "q": 0
+   },
+   {
+    "id": "BIO-17",
+    "slug": "bio-17",
+    "t": "Botany, Plant Diversity & Plant Structure",
+    "part": "Core roadmap",
+    "n": 35,
+    "q": 0
+   },
+   {
+    "id": "BIO-18",
+    "slug": "bio-18",
+    "t": "Plant Physiology, Photosynthesis & Plant Signalling",
+    "part": "Core roadmap",
+    "n": 38,
+    "q": 0
+   },
+   {
+    "id": "BIO-19",
+    "slug": "bio-19",
+    "t": "Zoology, Animal Diversity & Comparative Biology",
+    "part": "Core roadmap",
+    "n": 20,
+    "q": 1
+   },
+   {
+    "id": "BIO-20",
+    "slug": "bio-20",
+    "t": "Human Anatomy, Physiology & Homeostasis",
+    "part": "Core roadmap",
+    "n": 21,
+    "q": 1
+   },
+   {
+    "id": "BIO-21",
+    "slug": "bio-21",
+    "t": "Neurobiology, Brain, Behaviour & Sensory Systems",
+    "part": "Core roadmap",
+    "n": 25,
+    "q": 0
+   },
+   {
+    "id": "BIO-22",
+    "slug": "bio-22",
+    "t": "Endocrinology, Reproductive Biology & Developmental Lifecycles",
+    "part": "Core roadmap",
+    "n": 26,
+    "q": 2
+   },
+   {
+    "id": "BIO-23",
+    "slug": "bio-23",
+    "t": "Developmental Biology, Stem Cells & Regeneration",
+    "part": "Core roadmap",
+    "n": 17,
+    "q": 0
+   },
+   {
+    "id": "BIO-24",
+    "slug": "bio-24",
+    "t": "Immunology, Host Defence & Vaccinology",
+    "part": "Core roadmap",
+    "n": 23,
+    "q": 1
+   },
+   {
+    "id": "BIO-25",
+    "slug": "bio-25",
+    "t": "Microbiome, Symbiosis & Host-Microbe Interactions",
+    "part": "Core roadmap",
+    "n": 18,
+    "q": 1
+   },
+   {
+    "id": "BIO-26",
+    "slug": "bio-26",
+    "t": "Ecology: Populations, Communities & Ecosystems",
+    "part": "Core roadmap",
+    "n": 31,
+    "q": 1
+   },
+   {
+    "id": "BIO-27",
+    "slug": "bio-27",
+    "t": "Evolutionary Ecology, Behaviour & Sociobiology",
+    "part": "Core roadmap",
+    "n": 18,
+    "q": 0
+   },
+   {
+    "id": "BIO-28",
+    "slug": "bio-28",
+    "t": "Evolutionary History, Paleobiology & Extinction",
+    "part": "Core roadmap",
+    "n": 31,
+    "q": 0
+   },
+   {
+    "id": "BIO-29",
+    "slug": "bio-29",
+    "t": "Biodiversity, Conservation Biology & Restoration Ecology",
+    "part": "Core roadmap",
+    "n": 32,
+    "q": 2
+   },
+   {
+    "id": "BIO-30",
+    "slug": "bio-30",
+    "t": "Marine, Freshwater & Aquatic Biology",
+    "part": "Core roadmap",
+    "n": 25,
+    "q": 0
+   },
+   {
+    "id": "BIO-31",
+    "slug": "bio-31",
+    "t": "Soil Biology, Mycorrhizae & Decomposition",
+    "part": "Core roadmap",
+    "n": 16,
+    "q": 0
+   },
+   {
+    "id": "BIO-32",
+    "slug": "bio-32",
+    "t": "Plant Pathology, Animal Disease & Parasitology",
+    "part": "Core roadmap",
+    "n": 23,
+    "q": 0
+   },
+   {
+    "id": "BIO-33",
+    "slug": "bio-33",
+    "t": "Human Biology, Disease Mechanisms & Pathophysiology",
+    "part": "Core roadmap",
+    "n": 27,
+    "q": 1
+   },
+   {
+    "id": "BIO-34",
+    "slug": "bio-34",
+    "t": "Reproduction, Sexual Development & Reproductive Health Biology",
+    "part": "Core roadmap",
+    "n": 31,
+    "q": 0
+   },
+   {
+    "id": "BIO-35",
+    "slug": "bio-35",
+    "t": "Immunity, Infection, Epidemiology & Public Health Biology",
+    "part": "Core roadmap",
+    "n": 26,
+    "q": 0
+   },
+   {
+    "id": "BIO-36",
+    "slug": "bio-36",
+    "t": "Biotechnology, Genetic Engineering & Genome Editing",
+    "part": "Core roadmap",
+    "n": 16,
+    "q": 0
+   },
+   {
+    "id": "BIO-37",
+    "slug": "bio-37",
+    "t": "Bioinformatics, Computational Biology & AI for Life Science",
+    "part": "Core roadmap",
+    "n": 35,
+    "q": 0
+   },
+   {
+    "id": "BIO-38",
+    "slug": "bio-38",
+    "t": "Biotechnology in Agriculture, Food & Industrial Biology",
+    "part": "Core roadmap",
+    "n": 18,
+    "q": 0
+   },
+   {
+    "id": "BIO-39",
+    "slug": "bio-39",
+    "t": "Agriculture, Crop Science & Plant Breeding",
+    "part": "Core roadmap",
+    "n": 26,
+    "q": 0
+   },
+   {
+    "id": "BIO-40",
+    "slug": "bio-40",
+    "t": "Animal Biology, Veterinary Science & Wildlife Health",
+    "part": "Core roadmap",
+    "n": 15,
+    "q": 0
+   },
+   {
+    "id": "BIO-41",
+    "slug": "bio-41",
+    "t": "Environmental Biology, Climate Change & Global Change Biology",
+    "part": "Core roadmap",
+    "n": 23,
+    "q": 0
+   },
+   {
+    "id": "BIO-42",
+    "slug": "bio-42",
+    "t": "Ethology, Animal Cognition & Comparative Behaviour",
+    "part": "Core roadmap",
+    "n": 16,
+    "q": 1
+   },
+   {
+    "id": "BIO-43",
+    "slug": "bio-43",
+    "t": "Biophysics, Biomechanics & Quantitative Physiology",
+    "part": "Core roadmap",
+    "n": 20,
+    "q": 0
+   },
+   {
+    "id": "BIO-44",
+    "slug": "bio-44",
+    "t": "Synthetic Biology, Systems Biology & Network Biology",
+    "part": "Core roadmap",
+    "n": 24,
+    "q": 0
+   },
+   {
+    "id": "BIO-45",
+    "slug": "bio-45",
+    "t": "Biomedical Research, Pharmacology & Translational Biology",
+    "part": "Core roadmap",
+    "n": 25,
+    "q": 0
+   },
+   {
+    "id": "BIO-46",
+    "slug": "bio-46",
+    "t": "Astrobiology, Origins of Life & Biological Frontiers",
+    "part": "Core roadmap",
+    "n": 33,
+    "q": 0
+   },
+   {
+    "id": "BIO-47",
+    "slug": "bio-47",
+    "t": "Biology Education, Fieldwork, Laboratory & Research Practice",
+    "part": "Core roadmap",
+    "n": 67,
+    "q": 2
+   },
+   {
+    "id": "BIO-48",
+    "slug": "bio-48",
+    "t": "One Health, Bioethics, Biosafety & Society",
+    "part": "Core roadmap",
+    "n": 27,
+    "q": 1
+   },
+   {
+    "id": "BIO-49",
+    "slug": "bio-49",
+    "t": "Classification of Living Organisms",
+    "part": "Exam-Focused Essentials (added to fill gaps)",
+    "n": 47,
+    "q": 3
+   },
+   {
+    "id": "BIO-50",
+    "slug": "bio-50",
+    "t": "Human Body Systems — Quick Reference",
+    "part": "Exam-Focused Essentials (added to fill gaps)",
+    "n": 73,
+    "q": 28
+   },
+   {
+    "id": "BIO-51",
+    "slug": "bio-51",
+    "t": "Human Health, Diseases and Nutrition",
+    "part": "Exam-Focused Essentials (added to fill gaps)",
+    "n": 89,
+    "q": 24
+   },
+   {
+    "id": "BIO-52",
+    "slug": "bio-52",
+    "t": "Plant Biology and Economic Botany",
+    "part": "Exam-Focused Essentials (added to fill gaps)",
+    "n": 37,
+    "q": 5
+   },
+   {
+    "id": "BIO-53",
+    "slug": "bio-53",
+    "t": "Applied Biology and Biotechnology for Exams",
+    "part": "Exam-Focused Essentials (added to fill gaps)",
+    "n": 33,
+    "q": 2
+   }
+  ]
+ },
+ {
+  "slug": "maths",
+  "prefix": "MAT",
+  "name": "Maths",
+  "blurb": "Exam arithmetic and question types (Kiran index), concept and formula checklists, and the wider mathematics roadmap.",
+  "total": 437,
+  "levels": {
+   "1": 28,
+   "2": 194,
+   "3": 215
+  },
+  "majors": [
+   {
+    "id": "MAT-01",
+    "slug": "mat-01",
+    "t": "Number System",
+    "part": "Core roadmap",
+    "n": 7,
+    "q": 3
+   },
+   {
+    "id": "MAT-02",
+    "slug": "mat-02",
+    "t": "LCM and HCF",
+    "part": "Core roadmap",
+    "n": 6,
+    "q": 0
+   },
+   {
+    "id": "MAT-03",
+    "slug": "mat-03",
+    "t": "Simplification",
+    "part": "Core roadmap",
+    "n": 5,
+    "q": 1
+   },
+   {
+    "id": "MAT-04",
+    "slug": "mat-04",
+    "t": "Power, Indices and Surds",
+    "part": "Core roadmap",
+    "n": 6,
+    "q": 0
+   },
+   {
+    "id": "MAT-05",
+    "slug": "mat-05",
+    "t": "Average",
+    "part": "Core roadmap",
+    "n": 10,
+    "q": 14
+   },
+   {
+    "id": "MAT-06",
+    "slug": "mat-06",
+    "t": "Ratio and Proportion",
+    "part": "Core roadmap",
+    "n": 9,
+    "q": 22
+   },
+   {
+    "id": "MAT-07",
+    "slug": "mat-07",
+    "t": "Alligation or Mixture",
+    "part": "Core roadmap",
+    "n": 4,
+    "q": 4
+   },
+   {
+    "id": "MAT-08",
+    "slug": "mat-08",
+    "t": "Percentage",
+    "part": "Core roadmap",
+    "n": 8,
+    "q": 21
+   },
+   {
+    "id": "MAT-09",
+    "slug": "mat-09",
+    "t": "Profit and Loss",
+    "part": "Core roadmap",
+    "n": 10,
+    "q": 19
+   },
+   {
+    "id": "MAT-10",
+    "slug": "mat-10",
+    "t": "Discount",
+    "part": "Core roadmap",
+    "n": 5,
+    "q": 2
+   },
+   {
+    "id": "MAT-11",
+    "slug": "mat-11",
+    "t": "Simple Interest",
+    "part": "Core roadmap",
+    "n": 6,
+    "q": 9
+   },
+   {
+    "id": "MAT-12",
+    "slug": "mat-12",
+    "t": "Compound Interest",
+    "part": "Core roadmap",
+    "n": 6,
+    "q": 5
+   },
+   {
+    "id": "MAT-13",
+    "slug": "mat-13",
+    "t": "Time and Work",
+    "part": "Core roadmap",
+    "n": 6,
+    "q": 3
+   },
+   {
+    "id": "MAT-14",
+    "slug": "mat-14",
+    "t": "Pipe and Cistern",
+    "part": "Core roadmap",
+    "n": 4,
+    "q": 0
+   },
+   {
+    "id": "MAT-15",
+    "slug": "mat-15",
+    "t": "Time and Distance",
+    "part": "Core roadmap",
+    "n": 7,
+    "q": 21
+   },
+   {
+    "id": "MAT-16",
+    "slug": "mat-16",
+    "t": "Boat and Stream",
+    "part": "Core roadmap",
+    "n": 5,
+    "q": 26
+   },
+   {
+    "id": "MAT-17",
+    "slug": "mat-17",
+    "t": "Sequence and Series",
+    "part": "Core roadmap",
+    "n": 4,
+    "q": 0
+   },
+   {
+    "id": "MAT-18",
+    "slug": "mat-18",
+    "t": "Algebra",
+    "part": "Core roadmap",
+    "n": 6,
+    "q": 0
+   },
+   {
+    "id": "MAT-19",
+    "slug": "mat-19",
+    "t": "Trigonometry",
+    "part": "Core roadmap",
+    "n": 5,
+    "q": 0
+   },
+   {
+    "id": "MAT-20",
+    "slug": "mat-20",
+    "t": "Geometry",
+    "part": "Core roadmap",
+    "n": 8,
+    "q": 0
+   },
+   {
+    "id": "MAT-21",
+    "slug": "mat-21",
+    "t": "Mensuration",
+    "part": "Core roadmap",
+    "n": 15,
+    "q": 49
+   },
+   {
+    "id": "MAT-22",
+    "slug": "mat-22",
+    "t": "Statistics and Data Interpretation",
+    "part": "Core roadmap",
+    "n": 8,
+    "q": 4
+   },
+   {
+    "id": "MAT-23",
+    "slug": "mat-23",
+    "t": "Statistics and Probability",
+    "part": "Core roadmap",
+    "n": 6,
+    "q": 0
+   },
+   {
+    "id": "MAT-24",
+    "slug": "mat-24",
+    "t": "Miscellaneous",
+    "part": "Core roadmap",
+    "n": 6,
+    "q": 0
+   },
+   {
+    "id": "MAT-25",
+    "slug": "mat-25",
+    "t": "Arithmetic Concepts and Formula Checklist",
+    "part": "Concepts, Formulas and the Wider Mathematics Roadmap (added to fill gaps)",
+    "n": 78,
+    "q": 2
+   },
+   {
+    "id": "MAT-26",
+    "slug": "mat-26",
+    "t": "Algebra, Geometry and Mensuration Concepts",
+    "part": "Concepts, Formulas and the Wider Mathematics Roadmap (added to fill gaps)",
+    "n": 74,
+    "q": 4
+   },
+   {
+    "id": "MAT-27",
+    "slug": "mat-27",
+    "t": "Trigonometry, Statistics and Probability Concepts",
+    "part": "Concepts, Formulas and the Wider Mathematics Roadmap (added to fill gaps)",
+    "n": 36,
+    "q": 4
+   },
+   {
+    "id": "MAT-28",
+    "slug": "mat-28",
+    "t": "Mathematics Beyond Exams: Universal Roadmap",
+    "part": "Concepts, Formulas and the Wider Mathematics Roadmap (added to fill gaps)",
+    "n": 59,
+    "q": 0
+   }
+  ]
+ },
+ {
+  "slug": "reasoning",
+  "prefix": "REA",
+  "name": "Reasoning",
+  "blurb": "Verbal, non-verbal and analytical reasoning question types (Kiran index) with extra puzzle and logic topics.",
+  "total": 250,
+  "levels": {
+   "1": 52,
+   "2": 136,
+   "3": 62
+  },
+  "majors": [
+   {
+    "id": "REA-01",
+    "slug": "rea-01",
+    "t": "Analogy or Similarity",
+    "part": "PART A — VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 5,
+    "q": 13
+   },
+   {
+    "id": "REA-02",
+    "slug": "rea-02",
+    "t": "Blood Relationship",
+    "part": "PART A — VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 25
+   },
+   {
+    "id": "REA-03",
+    "slug": "rea-03",
+    "t": "Symbols & Notations",
+    "part": "PART A — VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 8,
+    "q": 0
+   },
+   {
+    "id": "REA-04",
+    "slug": "rea-04",
+    "t": "Classification",
+    "part": "PART A — VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 4,
+    "q": 11
+   },
+   {
+    "id": "REA-05",
+    "slug": "rea-05",
+    "t": "Direction & Distance Test",
+    "part": "PART A — VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 6,
+    "q": 4
+   },
+   {
+    "id": "REA-06",
+    "slug": "rea-06",
+    "t": "Scheduled Day/Date/Time",
+    "part": "PART A — VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 4,
+    "q": 0
+   },
+   {
+    "id": "REA-07",
+    "slug": "rea-07",
+    "t": "Series",
+    "part": "PART A — VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 6,
+    "q": 25
+   },
+   {
+    "id": "REA-08",
+    "slug": "rea-08",
+    "t": "Coding-Decoding",
+    "part": "PART A — VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 5,
+    "q": 9
+   },
+   {
+    "id": "REA-09",
+    "slug": "rea-09",
+    "t": "Word Formation",
+    "part": "PART A — VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 0
+   },
+   {
+    "id": "REA-10",
+    "slug": "rea-10",
+    "t": "Syllogism, Statement & Conclusions",
+    "part": "PART A — VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 14
+   },
+   {
+    "id": "REA-11",
+    "slug": "rea-11",
+    "t": "Ranking/Arrangement/Problem Solving",
+    "part": "PART A — VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 3,
+    "q": 0
+   },
+   {
+    "id": "REA-12",
+    "slug": "rea-12",
+    "t": "Finding the Missing Number",
+    "part": "PART A — VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 0
+   },
+   {
+    "id": "REA-13",
+    "slug": "rea-13",
+    "t": "Arithmetical Problems",
+    "part": "PART A — VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 10,
+    "q": 0
+   },
+   {
+    "id": "REA-14",
+    "slug": "rea-14",
+    "t": "Arrangement of Words in a Logical Order (Alphabetical Order)",
+    "part": "PART A — VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 0
+   },
+   {
+    "id": "REA-15",
+    "slug": "rea-15",
+    "t": "Cubes and Dice",
+    "part": "PART A — VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 2
+   },
+   {
+    "id": "REA-16",
+    "slug": "rea-16",
+    "t": "Logical Venn-Diagram",
+    "part": "PART A — VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 0
+   },
+   {
+    "id": "REA-17",
+    "slug": "rea-17",
+    "t": "Figure Counting",
+    "part": "PART A — VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 0,
+    "q": 3
+   },
+   {
+    "id": "REA-18",
+    "slug": "rea-18",
+    "t": "Miscellaneous",
+    "part": "PART A — VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 0,
+    "q": 0
+   },
+   {
+    "id": "REA-19",
+    "slug": "rea-19",
+    "t": "Series",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 0,
+    "q": 0
+   },
+   {
+    "id": "REA-20",
+    "slug": "rea-20",
+    "t": "Analogy",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 0,
+    "q": 0
+   },
+   {
+    "id": "REA-21",
+    "slug": "rea-21",
+    "t": "Classification",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 0,
+    "q": 0
+   },
+   {
+    "id": "REA-22",
+    "slug": "rea-22",
+    "t": "Mirror Image and Water Image",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 3
+   },
+   {
+    "id": "REA-23",
+    "slug": "rea-23",
+    "t": "Paper Cutting, Folding & Punching",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 0,
+    "q": 0
+   },
+   {
+    "id": "REA-24",
+    "slug": "rea-24",
+    "t": "Completion of Figural Pattern",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 0,
+    "q": 0
+   },
+   {
+    "id": "REA-25",
+    "slug": "rea-25",
+    "t": "Embedded Figure",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 0,
+    "q": 0
+   },
+   {
+    "id": "REA-26",
+    "slug": "rea-26",
+    "t": "Deviation of Figure",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 6,
+    "q": 2
+   },
+   {
+    "id": "REA-27",
+    "slug": "rea-27",
+    "t": "Symbols & Notations — operator replacement",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 1
+   },
+   {
+    "id": "REA-28",
+    "slug": "rea-28",
+    "t": "Symbols & Notations — letter replacement",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 0
+   },
+   {
+    "id": "REA-29",
+    "slug": "rea-29",
+    "t": "Analogy",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 0
+   },
+   {
+    "id": "REA-30",
+    "slug": "rea-30",
+    "t": "Blood Relationship",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 8
+   },
+   {
+    "id": "REA-31",
+    "slug": "rea-31",
+    "t": "Classification",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 1
+   },
+   {
+    "id": "REA-32",
+    "slug": "rea-32",
+    "t": "Direction & Distance",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 0
+   },
+   {
+    "id": "REA-33",
+    "slug": "rea-33",
+    "t": "Scheduled Day/Date/Time",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 2
+   },
+   {
+    "id": "REA-34",
+    "slug": "rea-34",
+    "t": "Series",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 1
+   },
+   {
+    "id": "REA-35",
+    "slug": "rea-35",
+    "t": "Coding-Decoding",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 0
+   },
+   {
+    "id": "REA-36",
+    "slug": "rea-36",
+    "t": "Word Formation",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 0
+   },
+   {
+    "id": "REA-37",
+    "slug": "rea-37",
+    "t": "Syllogism",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 0
+   },
+   {
+    "id": "REA-38",
+    "slug": "rea-38",
+    "t": "Ranking",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 0
+   },
+   {
+    "id": "REA-39",
+    "slug": "rea-39",
+    "t": "Finding the Missing Number",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 1
+   },
+   {
+    "id": "REA-40",
+    "slug": "rea-40",
+    "t": "Arithmetical Problems",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 15
+   },
+   {
+    "id": "REA-41",
+    "slug": "rea-41",
+    "t": "Logical Alphabetical Order",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 1
+   },
+   {
+    "id": "REA-42",
+    "slug": "rea-42",
+    "t": "Cubes and Dice",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 0
+   },
+   {
+    "id": "REA-43",
+    "slug": "rea-43",
+    "t": "Logical Venn-Diagram",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 0
+   },
+   {
+    "id": "REA-44",
+    "slug": "rea-44",
+    "t": "Figure Counting",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 1
+   },
+   {
+    "id": "REA-45",
+    "slug": "rea-45",
+    "t": "Mirror/Water Image",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 0
+   },
+   {
+    "id": "REA-46",
+    "slug": "rea-46",
+    "t": "Paper Cutting & Folding",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 2
+   },
+   {
+    "id": "REA-47",
+    "slug": "rea-47",
+    "t": "Completion of Figural Pattern",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 0
+   },
+   {
+    "id": "REA-48",
+    "slug": "rea-48",
+    "t": "Deviation of Figure / Classification",
+    "part": "PART B — NON-VERBAL TEST OF GENERAL INTELLIGENCE",
+    "n": 2,
+    "q": 1
+   },
+   {
+    "id": "REA-49",
+    "slug": "rea-49",
+    "t": "Seating Arrangement and Puzzles",
+    "part": "PART C — Additional Reasoning Topics (added to fill gaps)",
+    "n": 17,
+    "q": 2
+   },
+   {
+    "id": "REA-50",
+    "slug": "rea-50",
+    "t": "Advanced Verbal Reasoning",
+    "part": "PART C — Additional Reasoning Topics (added to fill gaps)",
+    "n": 25,
+    "q": 4
+   },
+   {
+    "id": "REA-51",
+    "slug": "rea-51",
+    "t": "Advanced Non-Verbal Reasoning",
+    "part": "PART C — Additional Reasoning Topics (added to fill gaps)",
+    "n": 21,
+    "q": 0
+   },
+   {
+    "id": "REA-52",
+    "slug": "rea-52",
+    "t": "Reasoning Skills Roadmap",
+    "part": "PART C — Additional Reasoning Topics (added to fill gaps)",
+    "n": 18,
+    "q": 0
+   }
+  ]
+ },
+ {
+  "slug": "computer",
+  "prefix": "COM",
+  "name": "Computer",
+  "blurb": "Digital literacy to MTech-level computer science, plus computer awareness for competitive exams.",
+  "total": 6232,
+  "levels": {
+   "1": 39,
+   "2": 371,
+   "3": 1239,
+   "4": 4583
+  },
+  "majors": [
+   {
+    "id": "COM-01",
+    "slug": "com-01",
+    "t": "Digital Literacy, Computer Education and Digital Citizenship",
+    "part": "PART A - THE LEARNER-FACING FOUNDATION",
+    "n": 176,
+    "q": 5
+   },
+   {
+    "id": "COM-02",
+    "slug": "com-02",
+    "t": "What Computer Science Is: Concepts, History and Philosophy",
+    "part": "PART A - THE LEARNER-FACING FOUNDATION",
+    "n": 88,
+    "q": 1
+   },
+   {
+    "id": "COM-03",
+    "slug": "com-03",
+    "t": "Computational Thinking, Problem Solving and Design",
+    "part": "PART A - THE LEARNER-FACING FOUNDATION",
+    "n": 130,
+    "q": 3
+   },
+   {
+    "id": "COM-04",
+    "slug": "com-04",
+    "t": "Mathematical and Statistical Foundations",
+    "part": "PART B - MATHEMATICAL AND HARDWARE FOUNDATIONS",
+    "n": 138,
+    "q": 1
+   },
+   {
+    "id": "COM-05",
+    "slug": "com-05",
+    "t": "Data Representation, Boolean Logic and Digital Circuits",
+    "part": "PART B - MATHEMATICAL AND HARDWARE FOUNDATIONS",
+    "n": 167,
+    "q": 1
+   },
+   {
+    "id": "COM-06",
+    "slug": "com-06",
+    "t": "Computer Architecture and Organization",
+    "part": "PART B - MATHEMATICAL AND HARDWARE FOUNDATIONS",
+    "n": 155,
+    "q": 1
+   },
+   {
+    "id": "COM-07",
+    "slug": "com-07",
+    "t": "Computer Hardware, Electronics and Semiconductor Technology",
+    "part": "PART B - MATHEMATICAL AND HARDWARE FOUNDATIONS",
+    "n": 142,
+    "q": 3
+   },
+   {
+    "id": "COM-08",
+    "slug": "com-08",
+    "t": "Programming, Programming Paradigms and Languages",
+    "part": "PART C - SOFTWARE, ALGORITHMS AND COMPUTATION",
+    "n": 208,
+    "q": 1
+   },
+   {
+    "id": "COM-09",
+    "slug": "com-09",
+    "t": "Algorithms and Data Structures",
+    "part": "PART C - SOFTWARE, ALGORITHMS AND COMPUTATION",
+    "n": 176,
+    "q": 1
+   },
+   {
+    "id": "COM-10",
+    "slug": "com-10",
+    "t": "Theory of Computation, Formal Languages and Verification",
+    "part": "PART C - SOFTWARE, ALGORITHMS AND COMPUTATION",
+    "n": 128,
+    "q": 0
+   },
+   {
+    "id": "COM-11",
+    "slug": "com-11",
+    "t": "Programming Language Implementation, Compilers and Runtimes",
+    "part": "PART C - SOFTWARE, ALGORITHMS AND COMPUTATION",
+    "n": 150,
+    "q": 0
+   },
+   {
+    "id": "COM-12",
+    "slug": "com-12",
+    "t": "Operating Systems and Systems Programming",
+    "part": "PART C - SOFTWARE, ALGORITHMS AND COMPUTATION",
+    "n": 179,
+    "q": 4
+   },
+   {
+    "id": "COM-13",
+    "slug": "com-13",
+    "t": "Software Engineering, Architecture and Quality",
+    "part": "PART C - SOFTWARE, ALGORITHMS AND COMPUTATION",
+    "n": 180,
+    "q": 0
+   },
+   {
+    "id": "COM-14",
+    "slug": "com-14",
+    "t": "Version Control, Collaboration, DevOps, SRE and Platform Engineering",
+    "part": "PART C - SOFTWARE, ALGORITHMS AND COMPUTATION",
+    "n": 170,
+    "q": 0
+   },
+   {
+    "id": "COM-15",
+    "slug": "com-15",
+    "t": "Databases, Data Management and Information Retrieval",
+    "part": "PART C - SOFTWARE, ALGORITHMS AND COMPUTATION",
+    "n": 202,
+    "q": 4
+   },
+   {
+    "id": "COM-16",
+    "slug": "com-16",
+    "t": "Data Science, Analytics, Statistics and Visualization",
+    "part": "PART D - DATA, CONNECTIVITY, INTELLIGENCE AND INTERACTIVE COMPUTING",
+    "n": 193,
+    "q": 3
+   },
+   {
+    "id": "COM-17",
+    "slug": "com-17",
+    "t": "Computer Networks and Communications",
+    "part": "PART D - DATA, CONNECTIVITY, INTELLIGENCE AND INTERACTIVE COMPUTING",
+    "n": 160,
+    "q": 1
+   },
+   {
+    "id": "COM-18",
+    "slug": "com-18",
+    "t": "Internet, World Wide Web and Web Development",
+    "part": "PART D - DATA, CONNECTIVITY, INTELLIGENCE AND INTERACTIVE COMPUTING",
+    "n": 185,
+    "q": 1
+   },
+   {
+    "id": "COM-19",
+    "slug": "com-19",
+    "t": "Cybersecurity, Cryptography, Privacy and Digital Trust",
+    "part": "PART D - DATA, CONNECTIVITY, INTELLIGENCE AND INTERACTIVE COMPUTING",
+    "n": 212,
+    "q": 1
+   },
+   {
+    "id": "COM-20",
+    "slug": "com-20",
+    "t": "Artificial Intelligence: Core Field and Intelligent Systems",
+    "part": "PART D - DATA, CONNECTIVITY, INTELLIGENCE AND INTERACTIVE COMPUTING",
+    "n": 202,
+    "q": 2
+   },
+   {
+    "id": "COM-21",
+    "slug": "com-21",
+    "t": "Machine Learning, Deep Learning, Generative AI, LLMs and AI Engineering",
+    "part": "PART D - DATA, CONNECTIVITY, INTELLIGENCE AND INTERACTIVE COMPUTING",
+    "n": 308,
+    "q": 1
+   },
+   {
+    "id": "COM-22",
+    "slug": "com-22",
+    "t": "Computer Graphics, Computer Vision and Interactive Visual Computing",
+    "part": "PART D - DATA, CONNECTIVITY, INTELLIGENCE AND INTERACTIVE COMPUTING",
+    "n": 162,
+    "q": 0
+   },
+   {
+    "id": "COM-23",
+    "slug": "com-23",
+    "t": "Human-Computer Interaction, UX, Accessibility and Human Factors",
+    "part": "PART D - DATA, CONNECTIVITY, INTELLIGENCE AND INTERACTIVE COMPUTING",
+    "n": 144,
+    "q": 0
+   },
+   {
+    "id": "COM-24",
+    "slug": "com-24",
+    "t": "Game Development, Simulation, Animation and Extended Reality",
+    "part": "PART D - DATA, CONNECTIVITY, INTELLIGENCE AND INTERACTIVE COMPUTING",
+    "n": 161,
+    "q": 2
+   },
+   {
+    "id": "COM-25",
+    "slug": "com-25",
+    "t": "Embedded Systems, IoT, Robotics and Cyber-Physical Systems",
+    "part": "PART E - EMBEDDED, DISTRIBUTED AND SPECIALIZED COMPUTING",
+    "n": 184,
+    "q": 1
+   },
+   {
+    "id": "COM-26",
+    "slug": "com-26",
+    "t": "Distributed Systems, Parallel Computing, Cloud, Edge and HPC",
+    "part": "PART E - EMBEDDED, DISTRIBUTED AND SPECIALIZED COMPUTING",
+    "n": 198,
+    "q": 1
+   },
+   {
+    "id": "COM-27",
+    "slug": "com-27",
+    "t": "Mobile Computing and Specialized Platform Development",
+    "part": "PART E - EMBEDDED, DISTRIBUTED AND SPECIALIZED COMPUTING",
+    "n": 132,
+    "q": 2
+   },
+   {
+    "id": "COM-28",
+    "slug": "com-28",
+    "t": "Information Systems, Enterprise Computing and Digital Transformation",
+    "part": "PART F - APPLIED AND INTERDISCIPLINARY COMPUTING",
+    "n": 129,
+    "q": 0
+   },
+   {
+    "id": "COM-29",
+    "slug": "com-29",
+    "t": "Computer Engineering, VLSI, FPGA and Chip Design",
+    "part": "PART F - APPLIED AND INTERDISCIPLINARY COMPUTING",
+    "n": 170,
+    "q": 0
+   },
+   {
+    "id": "COM-30",
+    "slug": "com-30",
+    "t": "Quantum Computing and Post-Quantum Computing Ecosystem",
+    "part": "PART F - APPLIED AND INTERDISCIPLINARY COMPUTING",
+    "n": 132,
+    "q": 1
+   },
+   {
+    "id": "COM-31",
+    "slug": "com-31",
+    "t": "Computational Science and Interdisciplinary Computing",
+    "part": "PART F - APPLIED AND INTERDISCIPLINARY COMPUTING",
+    "n": 123,
+    "q": 1
+   },
+   {
+    "id": "COM-32",
+    "slug": "com-32",
+    "t": "Society, Ethics, Law, Governance and the Computing Profession",
+    "part": "PART G - RESPONSIBLE PRACTICE AND ADVANCED STUDY",
+    "n": 171,
+    "q": 0
+   },
+   {
+    "id": "COM-33",
+    "slug": "com-33",
+    "t": "Research Methods, Technical Communication and MTech-Level Study",
+    "part": "PART G - RESPONSIBLE PRACTICE AND ADVANCED STUDY",
+    "n": 193,
+    "q": 4
+   },
+   {
+    "id": "COM-34",
+    "slug": "com-34",
+    "t": "Teaching Architecture, Curriculum Sequencing, Assessment and Project Ladder",
+    "part": "PART G - RESPONSIBLE PRACTICE AND ADVANCED STUDY",
+    "n": 6,
+    "q": 0
+   },
+   {
+    "id": "COM-35",
+    "slug": "com-35",
+    "t": "Emerging and Fast-Moving Frontiers: Living Index",
+    "part": "PART G - RESPONSIBLE PRACTICE AND ADVANCED STUDY",
+    "n": 393,
+    "q": 7
+   },
+   {
+    "id": "COM-36",
+    "slug": "com-36",
+    "t": "Computer Fundamentals for Competitive Exams",
+    "part": "PART H - EXAM-FOCUSED COMPUTER AWARENESS (added to fill gaps)",
+    "n": 75,
+    "q": 6
+   },
+   {
+    "id": "COM-37",
+    "slug": "com-37",
+    "t": "MS Office and Productivity Software",
+    "part": "PART H - EXAM-FOCUSED COMPUTER AWARENESS (added to fill gaps)",
+    "n": 58,
+    "q": 9
+   },
+   {
+    "id": "COM-38",
+    "slug": "com-38",
+    "t": "Internet, Networking and Security Awareness",
+    "part": "PART H - EXAM-FOCUSED COMPUTER AWARENESS (added to fill gaps)",
+    "n": 84,
+    "q": 7
+   },
+   {
+    "id": "COM-39",
+    "slug": "com-39",
+    "t": "Indian Digital Ecosystem and Current Computing Awareness",
+    "part": "PART H - EXAM-FOCUSED COMPUTER AWARENESS (added to fill gaps)",
+    "n": 29,
+    "q": 0
+   }
+  ]
+ },
+ {
+  "slug": "hindi",
+  "prefix": "HIN",
+  "name": "Hindi",
+  "blurb": "हिन्दी भाषा, व्याकरण, भाषा-विज्ञान, साहित्य का इतिहास, काव्यशास्त्र और परीक्षा-उपयोगी शब्द-ज्ञान।",
+  "total": 1694,
+  "levels": {
+   "1": 60,
+   "2": 375,
+   "3": 1259
+  },
+  "majors": [
+   {
+    "id": "HIN-01",
+    "slug": "hin-01",
+    "t": "हिन्दी भाषा, व्याकरण और भाषा-विज्ञान का परिचय",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 31,
+    "q": 3
+   },
+   {
+    "id": "HIN-02",
+    "slug": "hin-02",
+    "t": "हिन्दी भाषा का इतिहास और मानक हिन्दी का विकास",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 29,
+    "q": 2
+   },
+   {
+    "id": "HIN-03",
+    "slug": "hin-03",
+    "t": "भाषा, बोली, उपभाषा और भाषिक विविधता",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 28,
+    "q": 0
+   },
+   {
+    "id": "HIN-04",
+    "slug": "hin-04",
+    "t": "ध्वनि-विज्ञान और उच्चारण",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 30,
+    "q": 0
+   },
+   {
+    "id": "HIN-05",
+    "slug": "hin-05",
+    "t": "वर्ण-विचार और देवनागरी वर्णमाला",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 35,
+    "q": 0
+   },
+   {
+    "id": "HIN-06",
+    "slug": "hin-06",
+    "t": "स्वर, मात्रा और स्वर-चिह्न",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 26,
+    "q": 5
+   },
+   {
+    "id": "HIN-07",
+    "slug": "hin-07",
+    "t": "व्यंजन, वर्गीकरण और संयुक्ताक्षर",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 35,
+    "q": 0
+   },
+   {
+    "id": "HIN-08",
+    "slug": "hin-08",
+    "t": "अनुस्वार, अनुनासिक, चंद्रबिंदु और विसर्ग",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 21,
+    "q": 0
+   },
+   {
+    "id": "HIN-09",
+    "slug": "hin-09",
+    "t": "देवनागरी लिपि, वर्तनी और डिजिटल लेखन",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 33,
+    "q": 1
+   },
+   {
+    "id": "HIN-10",
+    "slug": "hin-10",
+    "t": "शब्द-विचार: शब्द, पद और रूपिम",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 19,
+    "q": 1
+   },
+   {
+    "id": "HIN-11",
+    "slug": "hin-11",
+    "t": "शब्दों की उत्पत्ति और स्रोत-वर्गीकरण",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 23,
+    "q": 6
+   },
+   {
+    "id": "HIN-12",
+    "slug": "hin-12",
+    "t": "संधि",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 17,
+    "q": 43
+   },
+   {
+    "id": "HIN-13",
+    "slug": "hin-13",
+    "t": "समास",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 18,
+    "q": 17
+   },
+   {
+    "id": "HIN-14",
+    "slug": "hin-14",
+    "t": "उपसर्ग, प्रत्यय और शब्द-निर्माण",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 27,
+    "q": 48
+   },
+   {
+    "id": "HIN-15",
+    "slug": "hin-15",
+    "t": "संज्ञा",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 24,
+    "q": 16
+   },
+   {
+    "id": "HIN-16",
+    "slug": "hin-16",
+    "t": "लिंग: व्याकरणिक लिंग और उसका प्रयोग",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 19,
+    "q": 6
+   },
+   {
+    "id": "HIN-17",
+    "slug": "hin-17",
+    "t": "वचन और संख्या-अभिव्यक्ति",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 20,
+    "q": 9
+   },
+   {
+    "id": "HIN-18",
+    "slug": "hin-18",
+    "t": "सर्वनाम",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 42,
+    "q": 16
+   },
+   {
+    "id": "HIN-19",
+    "slug": "hin-19",
+    "t": "विशेषण और विशेषण-पदबंध",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 35,
+    "q": 11
+   },
+   {
+    "id": "HIN-20",
+    "slug": "hin-20",
+    "t": "क्रिया और धातु",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 30,
+    "q": 32
+   },
+   {
+    "id": "HIN-21",
+    "slug": "hin-21",
+    "t": "काल: वर्तमान, भूत और भविष्य का व्याकरणिक निरूपण",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 23,
+    "q": 8
+   },
+   {
+    "id": "HIN-22",
+    "slug": "hin-22",
+    "t": "पक्ष, वृत्ति, संभावना और सहायक क्रियाएँ",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 37,
+    "q": 8
+   },
+   {
+    "id": "HIN-23",
+    "slug": "hin-23",
+    "t": "वाच्य और कारक-संबंधी संरचनाएँ",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 19,
+    "q": 7
+   },
+   {
+    "id": "HIN-24",
+    "slug": "hin-24",
+    "t": "कारक, परसर्ग और संबंध-सूचक पद",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 38,
+    "q": 18
+   },
+   {
+    "id": "HIN-25",
+    "slug": "hin-25",
+    "t": "क्रिया-सहमति और अन्विति",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 14,
+    "q": 3
+   },
+   {
+    "id": "HIN-26",
+    "slug": "hin-26",
+    "t": "कृदंत, क्रियाविशेषणीय रूप और गैर-समापिका क्रियाएँ",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 23,
+    "q": 8
+   },
+   {
+    "id": "HIN-27",
+    "slug": "hin-27",
+    "t": "संयुक्त क्रिया, प्रेरणार्थक और पुनरुक्त क्रिया",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 23,
+    "q": 1
+   },
+   {
+    "id": "HIN-28",
+    "slug": "hin-28",
+    "t": "अव्यय, क्रियाविशेषण और निपात",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 38,
+    "q": 3
+   },
+   {
+    "id": "HIN-29",
+    "slug": "hin-29",
+    "t": "पदबंध और वाक्यांश",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 25,
+    "q": 1
+   },
+   {
+    "id": "HIN-30",
+    "slug": "hin-30",
+    "t": "उपवाक्य और वाक्य-संयोजन",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 27,
+    "q": 2
+   },
+   {
+    "id": "HIN-31",
+    "slug": "hin-31",
+    "t": "वाक्य-रचना और शब्द-क्रम",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 25,
+    "q": 1
+   },
+   {
+    "id": "HIN-32",
+    "slug": "hin-32",
+    "t": "वाक्य के प्रकार: अर्थ और रचना के आधार पर",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 34,
+    "q": 5
+   },
+   {
+    "id": "HIN-33",
+    "slug": "hin-33",
+    "t": "वाक्य-शुद्धि, पद-शुद्धि और संपादन",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 33,
+    "q": 53
+   },
+   {
+    "id": "HIN-34",
+    "slug": "hin-34",
+    "t": "विराम-चिह्न और लिखित वाक्य-संगठन",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 22,
+    "q": 6
+   },
+   {
+    "id": "HIN-35",
+    "slug": "hin-35",
+    "t": "वाक्य-परिवर्तन और रूपांतरण अभ्यास",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 20,
+    "q": 1
+   },
+   {
+    "id": "HIN-36",
+    "slug": "hin-36",
+    "t": "शब्दार्थ, अर्थ-संबंध और शब्द-भंडार",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 24,
+    "q": 92
+   },
+   {
+    "id": "HIN-37",
+    "slug": "hin-37",
+    "t": "मुहावरे, लोकोक्तियाँ और स्थिर अभिव्यक्तियाँ",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 21,
+    "q": 38
+   },
+   {
+    "id": "HIN-38",
+    "slug": "hin-38",
+    "t": "वर्तनी, शब्द-चयन और मानक प्रयोग",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 20,
+    "q": 0
+   },
+   {
+    "id": "HIN-39",
+    "slug": "hin-39",
+    "t": "अर्थविज्ञान (Semantics)",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 29,
+    "q": 2
+   },
+   {
+    "id": "HIN-40",
+    "slug": "hin-40",
+    "t": "प्रयोगविज्ञान (Pragmatics) और विनम्रता",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 28,
+    "q": 1
+   },
+   {
+    "id": "HIN-41",
+    "slug": "hin-41",
+    "t": "पाठ-विज्ञान, अनुच्छेद और प्रवचन",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 29,
+    "q": 1
+   },
+   {
+    "id": "HIN-42",
+    "slug": "hin-42",
+    "t": "शैलीविज्ञान और रजिस्टर",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 28,
+    "q": 2
+   },
+   {
+    "id": "HIN-43",
+    "slug": "hin-43",
+    "t": "प्रयोजनमूलक हिन्दी और कार्यालयी भाषा",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 37,
+    "q": 16
+   },
+   {
+    "id": "HIN-44",
+    "slug": "hin-44",
+    "t": "अनुवाद, लिप्यंतरण और द्विभाषिक व्याकरण",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 22,
+    "q": 25
+   },
+   {
+    "id": "HIN-45",
+    "slug": "hin-45",
+    "t": "तुलनात्मक हिन्दी-व्याकरण: संस्कृत, उर्दू, अंग्रेज़ी और भारतीय भाषाएँ",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 28,
+    "q": 0
+   },
+   {
+    "id": "HIN-46",
+    "slug": "hin-46",
+    "t": "समाजभाषाविज्ञान और भाषा-नीति",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 26,
+    "q": 5
+   },
+   {
+    "id": "HIN-47",
+    "slug": "hin-47",
+    "t": "भाषा-अर्जन, हिन्दी शिक्षण और व्याकरण-पद्धति",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 33,
+    "q": 2
+   },
+   {
+    "id": "HIN-48",
+    "slug": "hin-48",
+    "t": "विद्यालयी हिन्दी व्याकरण और परीक्षा-उन्मुख अध्ययन",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 44,
+    "q": 2
+   },
+   {
+    "id": "HIN-49",
+    "slug": "hin-49",
+    "t": "उन्नत भाषाविज्ञान: ध्वनिम, रूपिम, वाक्य-विन्यास और अर्थ",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 33,
+    "q": 1
+   },
+   {
+    "id": "HIN-50",
+    "slug": "hin-50",
+    "t": "कॉर्पस, शब्दकोश और भाषा-संसाधन",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 35,
+    "q": 6
+   },
+   {
+    "id": "HIN-51",
+    "slug": "hin-51",
+    "t": "हिन्दी NLP और कम्प्यूटेशनल व्याकरण",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 36,
+    "q": 0
+   },
+   {
+    "id": "HIN-52",
+    "slug": "hin-52",
+    "t": "हिन्दी व्याकरण शोध, दस्तावेजीकरण और अकादमिक लेखन",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 31,
+    "q": 0
+   },
+   {
+    "id": "HIN-53",
+    "slug": "hin-53",
+    "t": "एकीकृत पुनरावृत्ति और मास्टर चेकलिस्ट",
+    "part": "मूल रोडमैप (Core roadmap)",
+    "n": 49,
+    "q": 0
+   },
+   {
+    "id": "HIN-54",
+    "slug": "hin-54",
+    "t": "हिन्दी साहित्य का इतिहास — काल-विभाजन",
+    "part": "हिन्दी साहित्य और परीक्षा-उपयोगी विषय (कमी पूरी करने हेतु जोड़ा गया)",
+    "n": 13,
+    "q": 3
+   },
+   {
+    "id": "HIN-55",
+    "slug": "hin-55",
+    "t": "आदिकाल",
+    "part": "हिन्दी साहित्य और परीक्षा-उपयोगी विषय (कमी पूरी करने हेतु जोड़ा गया)",
+    "n": 15,
+    "q": 2
+   },
+   {
+    "id": "HIN-56",
+    "slug": "hin-56",
+    "t": "भक्तिकाल",
+    "part": "हिन्दी साहित्य और परीक्षा-उपयोगी विषय (कमी पूरी करने हेतु जोड़ा गया)",
+    "n": 19,
+    "q": 0
+   },
+   {
+    "id": "HIN-57",
+    "slug": "hin-57",
+    "t": "रीतिकाल",
+    "part": "हिन्दी साहित्य और परीक्षा-उपयोगी विषय (कमी पूरी करने हेतु जोड़ा गया)",
+    "n": 15,
+    "q": 0
+   },
+   {
+    "id": "HIN-58",
+    "slug": "hin-58",
+    "t": "आधुनिक काल",
+    "part": "हिन्दी साहित्य और परीक्षा-उपयोगी विषय (कमी पूरी करने हेतु जोड़ा गया)",
+    "n": 34,
+    "q": 5
+   },
+   {
+    "id": "HIN-59",
+    "slug": "hin-59",
+    "t": "काव्यशास्त्र: रस, छंद और अलंकार",
+    "part": "हिन्दी साहित्य और परीक्षा-उपयोगी विषय (कमी पूरी करने हेतु जोड़ा गया)",
+    "n": 28,
+    "q": 2
+   },
+   {
+    "id": "HIN-60",
+    "slug": "hin-60",
+    "t": "परीक्षा-उपयोगी शब्द-ज्ञान",
+    "part": "हिन्दी साहित्य और परीक्षा-उपयोगी विषय (कमी पूरी करने हेतु जोड़ा गया)",
+    "n": 14,
+    "q": 0
+   }
+  ]
+ },
+ {
+  "slug": "english",
+  "prefix": "ENG",
+  "name": "English",
+  "blurb": "English grammar from word classes to discourse, vocabulary, reading, writing and exam English.",
+  "total": 1572,
+  "levels": {
+   "1": 57,
+   "2": 504,
+   "3": 1011
+  },
+  "majors": [
+   {
+    "id": "ENG-01",
+    "slug": "eng-01",
+    "t": "Understanding Grammar, Language and Communication",
+    "part": "Core roadmap",
+    "n": 25,
+    "q": 2
+   },
+   {
+    "id": "ENG-02",
+    "slug": "eng-02",
+    "t": "History and Traditions of Grammar",
+    "part": "Core roadmap",
+    "n": 18,
+    "q": 0
+   },
+   {
+    "id": "ENG-03",
+    "slug": "eng-03",
+    "t": "Foundations: Words, Sentences and Meaning",
+    "part": "Core roadmap",
+    "n": 22,
+    "q": 0
+   },
+   {
+    "id": "ENG-04",
+    "slug": "eng-04",
+    "t": "Parts of Speech and Word Classes",
+    "part": "Core roadmap",
+    "n": 32,
+    "q": 0
+   },
+   {
+    "id": "ENG-05",
+    "slug": "eng-05",
+    "t": "Nouns and Noun Phrases",
+    "part": "Core roadmap",
+    "n": 36,
+    "q": 1
+   },
+   {
+    "id": "ENG-06",
+    "slug": "eng-06",
+    "t": "Pronouns and Reference",
+    "part": "Core roadmap",
+    "n": 35,
+    "q": 12
+   },
+   {
+    "id": "ENG-07",
+    "slug": "eng-07",
+    "t": "Determiners, Articles and Quantifiers",
+    "part": "Core roadmap",
+    "n": 28,
+    "q": 6
+   },
+   {
+    "id": "ENG-08",
+    "slug": "eng-08",
+    "t": "Adjectives and Adjective Phrases",
+    "part": "Core roadmap",
+    "n": 29,
+    "q": 2
+   },
+   {
+    "id": "ENG-09",
+    "slug": "eng-09",
+    "t": "Adverbs and Adverbials",
+    "part": "Core roadmap",
+    "n": 27,
+    "q": 5
+   },
+   {
+    "id": "ENG-10",
+    "slug": "eng-10",
+    "t": "Verbs: Forms, Classes and Verb Phrases",
+    "part": "Core roadmap",
+    "n": 27,
+    "q": 0
+   },
+   {
+    "id": "ENG-11",
+    "slug": "eng-11",
+    "t": "Tense, Time and Temporal Reference",
+    "part": "Core roadmap",
+    "n": 34,
+    "q": 3
+   },
+   {
+    "id": "ENG-12",
+    "slug": "eng-12",
+    "t": "Aspect: Simple, Progressive, Perfect and Perfect Progressive",
+    "part": "Core roadmap",
+    "n": 33,
+    "q": 4
+   },
+   {
+    "id": "ENG-13",
+    "slug": "eng-13",
+    "t": "Auxiliary Verbs, Do-Support and Short Forms",
+    "part": "Core roadmap",
+    "n": 21,
+    "q": 3
+   },
+   {
+    "id": "ENG-14",
+    "slug": "eng-14",
+    "t": "Modal Verbs and Modality",
+    "part": "Core roadmap",
+    "n": 41,
+    "q": 20
+   },
+   {
+    "id": "ENG-15",
+    "slug": "eng-15",
+    "t": "Subject–Verb Agreement and Concord",
+    "part": "Core roadmap",
+    "n": 27,
+    "q": 3
+   },
+   {
+    "id": "ENG-16",
+    "slug": "eng-16",
+    "t": "Voice: Active, Passive and Causative Structures",
+    "part": "Core roadmap",
+    "n": 28,
+    "q": 4
+   },
+   {
+    "id": "ENG-17",
+    "slug": "eng-17",
+    "t": "Mood, Sentence Function and Speech Acts",
+    "part": "Core roadmap",
+    "n": 16,
+    "q": 2
+   },
+   {
+    "id": "ENG-18",
+    "slug": "eng-18",
+    "t": "Negation and Polarity",
+    "part": "Core roadmap",
+    "n": 20,
+    "q": 4
+   },
+   {
+    "id": "ENG-19",
+    "slug": "eng-19",
+    "t": "Questions, Interrogatives and Tags",
+    "part": "Core roadmap",
+    "n": 35,
+    "q": 29
+   },
+   {
+    "id": "ENG-20",
+    "slug": "eng-20",
+    "t": "Non-finite Verbs: Infinitives, -ing Forms and Participles",
+    "part": "Core roadmap",
+    "n": 30,
+    "q": 1
+   },
+   {
+    "id": "ENG-21",
+    "slug": "eng-21",
+    "t": "Prepositions, Particles and Prepositional Phrases",
+    "part": "Core roadmap",
+    "n": 41,
+    "q": 6
+   },
+   {
+    "id": "ENG-22",
+    "slug": "eng-22",
+    "t": "Conjunctions and Linking Expressions",
+    "part": "Core roadmap",
+    "n": 36,
+    "q": 9
+   },
+   {
+    "id": "ENG-23",
+    "slug": "eng-23",
+    "t": "Phrases: Structure, Heads and Functions",
+    "part": "Core roadmap",
+    "n": 22,
+    "q": 0
+   },
+   {
+    "id": "ENG-24",
+    "slug": "eng-24",
+    "t": "Clauses: Independent, Dependent and Embedded",
+    "part": "Core roadmap",
+    "n": 26,
+    "q": 0
+   },
+   {
+    "id": "ENG-25",
+    "slug": "eng-25",
+    "t": "Sentence Patterns, Types and Core Syntax",
+    "part": "Core roadmap",
+    "n": 28,
+    "q": 0
+   },
+   {
+    "id": "ENG-26",
+    "slug": "eng-26",
+    "t": "Verb Complements, Valency and Argument Structure",
+    "part": "Core roadmap",
+    "n": 24,
+    "q": 2
+   },
+   {
+    "id": "ENG-27",
+    "slug": "eng-27",
+    "t": "Relative Clauses and Other Postmodifiers",
+    "part": "Core roadmap",
+    "n": 19,
+    "q": 0
+   },
+   {
+    "id": "ENG-28",
+    "slug": "eng-28",
+    "t": "Conditionals, Hypotheticals and Wishes",
+    "part": "Core roadmap",
+    "n": 20,
+    "q": 3
+   },
+   {
+    "id": "ENG-29",
+    "slug": "eng-29",
+    "t": "Reported Speech and Reporting Structures",
+    "part": "Core roadmap",
+    "n": 29,
+    "q": 5
+   },
+   {
+    "id": "ENG-30",
+    "slug": "eng-30",
+    "t": "Information Structure, Word Order and Emphasis",
+    "part": "Core roadmap",
+    "n": 18,
+    "q": 0
+   },
+   {
+    "id": "ENG-31",
+    "slug": "eng-31",
+    "t": "Punctuation: Sentence and Clause Boundaries",
+    "part": "Core roadmap",
+    "n": 28,
+    "q": 5
+   },
+   {
+    "id": "ENG-32",
+    "slug": "eng-32",
+    "t": "Capitalisation, Spelling and Written Conventions",
+    "part": "Core roadmap",
+    "n": 21,
+    "q": 2
+   },
+   {
+    "id": "ENG-33",
+    "slug": "eng-33",
+    "t": "Morphology: Word Formation and Inflection",
+    "part": "Core roadmap",
+    "n": 29,
+    "q": 0
+   },
+   {
+    "id": "ENG-34",
+    "slug": "eng-34",
+    "t": "Word Order, Agreement and Syntactic Relations at Advanced Level",
+    "part": "Core roadmap",
+    "n": 22,
+    "q": 0
+   },
+   {
+    "id": "ENG-35",
+    "slug": "eng-35",
+    "t": "Semantics: Grammar and Meaning",
+    "part": "Core roadmap",
+    "n": 26,
+    "q": 3
+   },
+   {
+    "id": "ENG-36",
+    "slug": "eng-36",
+    "t": "Pragmatics, Politeness and Context",
+    "part": "Core roadmap",
+    "n": 28,
+    "q": 0
+   },
+   {
+    "id": "ENG-37",
+    "slug": "eng-37",
+    "t": "Cohesion, Coherence and Discourse Grammar",
+    "part": "Core roadmap",
+    "n": 26,
+    "q": 1
+   },
+   {
+    "id": "ENG-38",
+    "slug": "eng-38",
+    "t": "Grammar for Speaking and Conversation",
+    "part": "Core roadmap",
+    "n": 19,
+    "q": 8
+   },
+   {
+    "id": "ENG-39",
+    "slug": "eng-39",
+    "t": "Grammar for Formal, Academic and Professional Writing",
+    "part": "Core roadmap",
+    "n": 16,
+    "q": 0
+   },
+   {
+    "id": "ENG-40",
+    "slug": "eng-40",
+    "t": "Register, Style and Language Variation",
+    "part": "Core roadmap",
+    "n": 16,
+    "q": 0
+   },
+   {
+    "id": "ENG-41",
+    "slug": "eng-41",
+    "t": "British, American, Indian and Global English Usage",
+    "part": "Core roadmap",
+    "n": 18,
+    "q": 2
+   },
+   {
+    "id": "ENG-42",
+    "slug": "eng-42",
+    "t": "Common Errors and Grammar Diagnostics",
+    "part": "Core roadmap",
+    "n": 38,
+    "q": 2
+   },
+   {
+    "id": "ENG-43",
+    "slug": "eng-43",
+    "t": "Word Relationships, Collocations and Multi-word Patterns",
+    "part": "Core roadmap",
+    "n": 20,
+    "q": 1
+   },
+   {
+    "id": "ENG-44",
+    "slug": "eng-44",
+    "t": "Grammar of Comparison, Degree and Quantity",
+    "part": "Core roadmap",
+    "n": 16,
+    "q": 1
+   },
+   {
+    "id": "ENG-45",
+    "slug": "eng-45",
+    "t": "Grammar of Time, Place, Direction and Spatial Relations",
+    "part": "Core roadmap",
+    "n": 27,
+    "q": 0
+   },
+   {
+    "id": "ENG-46",
+    "slug": "eng-46",
+    "t": "Grammar Learning Design and Progressive Curriculum",
+    "part": "Core roadmap",
+    "n": 61,
+    "q": 1
+   },
+   {
+    "id": "ENG-47",
+    "slug": "eng-47",
+    "t": "Grammar Assessment, Testing and Feedback",
+    "part": "Core roadmap",
+    "n": 18,
+    "q": 1
+   },
+   {
+    "id": "ENG-48",
+    "slug": "eng-48",
+    "t": "Grammar Practice, Drills and Retrieval Systems",
+    "part": "Core roadmap",
+    "n": 23,
+    "q": 8
+   },
+   {
+    "id": "ENG-49",
+    "slug": "eng-49",
+    "t": "Grammar in Literature, Narrative and Creative Writing",
+    "part": "Core roadmap",
+    "n": 14,
+    "q": 0
+   },
+   {
+    "id": "ENG-50",
+    "slug": "eng-50",
+    "t": "Grammar for Digital Communication, AI and Online Writing",
+    "part": "Core roadmap",
+    "n": 17,
+    "q": 0
+   },
+   {
+    "id": "ENG-51",
+    "slug": "eng-51",
+    "t": "Corpus Grammar, Dictionaries and Reference Skills",
+    "part": "Core roadmap",
+    "n": 19,
+    "q": 0
+   },
+   {
+    "id": "ENG-52",
+    "slug": "eng-52",
+    "t": "Linguistics, Grammar Theory and Research Methods",
+    "part": "Core roadmap",
+    "n": 34,
+    "q": 0
+   },
+   {
+    "id": "ENG-53",
+    "slug": "eng-53",
+    "t": "Editing, Proofreading and Quality Assurance",
+    "part": "Core roadmap",
+    "n": 13,
+    "q": 0
+   },
+   {
+    "id": "ENG-54",
+    "slug": "eng-54",
+    "t": "Vocabulary for Competitive Exams",
+    "part": "Exam English and Communication Skills (added to fill gaps)",
+    "n": 50,
+    "q": 14
+   },
+   {
+    "id": "ENG-55",
+    "slug": "eng-55",
+    "t": "Grammar Application for Exams",
+    "part": "Exam English and Communication Skills (added to fill gaps)",
+    "n": 35,
+    "q": 11
+   },
+   {
+    "id": "ENG-56",
+    "slug": "eng-56",
+    "t": "Reading and Verbal Ability",
+    "part": "Exam English and Communication Skills (added to fill gaps)",
+    "n": 26,
+    "q": 2
+   },
+   {
+    "id": "ENG-57",
+    "slug": "eng-57",
+    "t": "Writing and Communication Skills",
+    "part": "Exam English and Communication Skills (added to fill gaps)",
+    "n": 28,
+    "q": 7
+   }
+  ]
+ },
+ {
+  "slug": "rajasthan",
+  "prefix": "RAJ",
+  "name": "Rajasthan GK",
+  "blurb": "Rajasthan history, art & culture, geography, polity, economy and current affairs — built from RPSC/RSSB syllabi and PYQs (added Nov 2026).",
+  "total": 244,
+  "levels": {
+   "1": 57,
+   "2": 187
+  },
+  "majors": [
+   {
+    "id": "RAJ-01",
+    "slug": "raj-01",
+    "t": "Sources of Rajasthan history",
+    "part": "Rajasthan GK · Part A — Rajasthan History",
+    "n": 5,
+    "q": 7
+   },
+   {
+    "id": "RAJ-02",
+    "slug": "raj-02",
+    "t": "Prehistoric and proto-historic sites of Rajasthan",
+    "part": "Rajasthan GK · Part A — Rajasthan History",
+    "n": 6,
+    "q": 13
+   },
+   {
+    "id": "RAJ-03",
+    "slug": "raj-03",
+    "t": "Janapadas and early history",
+    "part": "Rajasthan GK · Part A — Rajasthan History",
+    "n": 3,
+    "q": 1
+   },
+   {
+    "id": "RAJ-04",
+    "slug": "raj-04",
+    "t": "Origin of the Rajputs",
+    "part": "Rajasthan GK · Part A — Rajasthan History",
+    "n": 2,
+    "q": 3
+   },
+   {
+    "id": "RAJ-05",
+    "slug": "raj-05",
+    "t": "Gurjara-Pratiharas",
+    "part": "Rajasthan GK · Part A — Rajasthan History",
+    "n": 3,
+    "q": 2
+   },
+   {
+    "id": "RAJ-06",
+    "slug": "raj-06",
+    "t": "Chauhans of Sambhar, Ajmer, Ranthambhore and Jalore",
+    "part": "Rajasthan GK · Part A — Rajasthan History",
+    "n": 7,
+    "q": 12
+   },
+   {
+    "id": "RAJ-07",
+    "slug": "raj-07",
+    "t": "Guhilas and Sisodias of Mewar",
+    "part": "Rajasthan GK · Part A — Rajasthan History",
+    "n": 9,
+    "q": 21
+   },
+   {
+    "id": "RAJ-08",
+    "slug": "raj-08",
+    "t": "Rathores of Marwar (Jodhpur)",
+    "part": "Rajasthan GK · Part A — Rajasthan History",
+    "n": 7,
+    "q": 30
+   },
+   {
+    "id": "RAJ-09",
+    "slug": "raj-09",
+    "t": "Rathores of Bikaner",
+    "part": "Rajasthan GK · Part A — Rajasthan History",
+    "n": 5,
+    "q": 9
+   },
+   {
+    "id": "RAJ-10",
+    "slug": "raj-10",
+    "t": "Kachhwahas of Amer (Jaipur)",
+    "part": "Rajasthan GK · Part A — Rajasthan History",
+    "n": 6,
+    "q": 29
+   },
+   {
+    "id": "RAJ-11",
+    "slug": "raj-11",
+    "t": "Other princely states of Rajasthan",
+    "part": "Rajasthan GK · Part A — Rajasthan History",
+    "n": 5,
+    "q": 17
+   },
+   {
+    "id": "RAJ-12",
+    "slug": "raj-12",
+    "t": "Rajasthan and the Mughals and Marathas",
+    "part": "Rajasthan GK · Part A — Rajasthan History",
+    "n": 2,
+    "q": 0
+   },
+   {
+    "id": "RAJ-13",
+    "slug": "raj-13",
+    "t": "British paramountcy and subsidiary treaties of 1818",
+    "part": "Rajasthan GK · Part A — Rajasthan History",
+    "n": 2,
+    "q": 10
+   },
+   {
+    "id": "RAJ-14",
+    "slug": "raj-14",
+    "t": "Revolt of 1857 in Rajasthan",
+    "part": "Rajasthan GK · Part A — Rajasthan History",
+    "n": 5,
+    "q": 12
+   },
+   {
+    "id": "RAJ-15",
+    "slug": "raj-15",
+    "t": "Peasant and tribal movements of Rajasthan",
+    "part": "Rajasthan GK · Part A — Rajasthan History",
+    "n": 6,
+    "q": 31
+   },
+   {
+    "id": "RAJ-16",
+    "slug": "raj-16",
+    "t": "Freedom movement, Praja Mandals and integration of Rajasthan",
+    "part": "Rajasthan GK · Part A — Rajasthan History",
+    "n": 5,
+    "q": 29
+   },
+   {
+    "id": "RAJ-17",
+    "slug": "raj-17",
+    "t": "Forts, palaces and sakas of Rajasthan",
+    "part": "Rajasthan GK · Part A — Rajasthan History",
+    "n": 3,
+    "q": 13
+   },
+   {
+    "id": "RAJ-18",
+    "slug": "raj-18",
+    "t": "Temples and religious architecture of Rajasthan",
+    "part": "Rajasthan GK · Part B — Rajasthan Art, Culture, Literature And Heritage",
+    "n": 5,
+    "q": 13
+   },
+   {
+    "id": "RAJ-19",
+    "slug": "raj-19",
+    "t": "Palaces, havelis, chhatris, stepwells and lakes",
+    "part": "Rajasthan GK · Part B — Rajasthan Art, Culture, Literature And Heritage",
+    "n": 4,
+    "q": 3
+   },
+   {
+    "id": "RAJ-20",
+    "slug": "raj-20",
+    "t": "Paintings of Rajasthan",
+    "part": "Rajasthan GK · Part B — Rajasthan Art, Culture, Literature And Heritage",
+    "n": 5,
+    "q": 9
+   },
+   {
+    "id": "RAJ-21",
+    "slug": "raj-21",
+    "t": "Folk dances of Rajasthan",
+    "part": "Rajasthan GK · Part B — Rajasthan Art, Culture, Literature And Heritage",
+    "n": 4,
+    "q": 6
+   },
+   {
+    "id": "RAJ-22",
+    "slug": "raj-22",
+    "t": "Folk music, songs and instruments of Rajasthan",
+    "part": "Rajasthan GK · Part B — Rajasthan Art, Culture, Literature And Heritage",
+    "n": 3,
+    "q": 7
+   },
+   {
+    "id": "RAJ-23",
+    "slug": "raj-23",
+    "t": "Folk drama and folk theatre",
+    "part": "Rajasthan GK · Part B — Rajasthan Art, Culture, Literature And Heritage",
+    "n": 2,
+    "q": 8
+   },
+   {
+    "id": "RAJ-24",
+    "slug": "raj-24",
+    "t": "Fairs and festivals of Rajasthan",
+    "part": "Rajasthan GK · Part B — Rajasthan Art, Culture, Literature And Heritage",
+    "n": 4,
+    "q": 12
+   },
+   {
+    "id": "RAJ-25",
+    "slug": "raj-25",
+    "t": "Folk deities of Rajasthan",
+    "part": "Rajasthan GK · Part B — Rajasthan Art, Culture, Literature And Heritage",
+    "n": 3,
+    "q": 11
+   },
+   {
+    "id": "RAJ-26",
+    "slug": "raj-26",
+    "t": "Saints and sects of Rajasthan",
+    "part": "Rajasthan GK · Part B — Rajasthan Art, Culture, Literature And Heritage",
+    "n": 2,
+    "q": 10
+   },
+   {
+    "id": "RAJ-27",
+    "slug": "raj-27",
+    "t": "Handicrafts and crafts of Rajasthan",
+    "part": "Rajasthan GK · Part B — Rajasthan Art, Culture, Literature And Heritage",
+    "n": 4,
+    "q": 5
+   },
+   {
+    "id": "RAJ-28",
+    "slug": "raj-28",
+    "t": "Language, dialects and literature of Rajasthan",
+    "part": "Rajasthan GK · Part B — Rajasthan Art, Culture, Literature And Heritage",
+    "n": 3,
+    "q": 21
+   },
+   {
+    "id": "RAJ-29",
+    "slug": "raj-29",
+    "t": "Society, customs, attire and ornaments",
+    "part": "Rajasthan GK · Part B — Rajasthan Art, Culture, Literature And Heritage",
+    "n": 3,
+    "q": 11
+   },
+   {
+    "id": "RAJ-30",
+    "slug": "raj-30",
+    "t": "Museums, cultural institutions and tourism of Rajasthan",
+    "part": "Rajasthan GK · Part B — Rajasthan Art, Culture, Literature And Heritage",
+    "n": 2,
+    "q": 4
+   },
+   {
+    "id": "RAJ-31",
+    "slug": "raj-31",
+    "t": "Location, extent and boundaries of Rajasthan",
+    "part": "Rajasthan GK · Part C — Geography Of Rajasthan",
+    "n": 3,
+    "q": 11
+   },
+   {
+    "id": "RAJ-32",
+    "slug": "raj-32",
+    "t": "Physiographic divisions of Rajasthan",
+    "part": "Rajasthan GK · Part C — Geography Of Rajasthan",
+    "n": 4,
+    "q": 20
+   },
+   {
+    "id": "RAJ-33",
+    "slug": "raj-33",
+    "t": "Climate of Rajasthan",
+    "part": "Rajasthan GK · Part C — Geography Of Rajasthan",
+    "n": 3,
+    "q": 6
+   },
+   {
+    "id": "RAJ-34",
+    "slug": "raj-34",
+    "t": "Rivers, lakes and drainage of Rajasthan",
+    "part": "Rajasthan GK · Part C — Geography Of Rajasthan",
+    "n": 5,
+    "q": 13
+   },
+   {
+    "id": "RAJ-35",
+    "slug": "raj-35",
+    "t": "Soils, natural vegetation and forests of Rajasthan",
+    "part": "Rajasthan GK · Part C — Geography Of Rajasthan",
+    "n": 2,
+    "q": 4
+   },
+   {
+    "id": "RAJ-36",
+    "slug": "raj-36",
+    "t": "Wildlife and biodiversity of Rajasthan",
+    "part": "Rajasthan GK · Part C — Geography Of Rajasthan",
+    "n": 3,
+    "q": 8
+   },
+   {
+    "id": "RAJ-37",
+    "slug": "raj-37",
+    "t": "Agriculture of Rajasthan",
+    "part": "Rajasthan GK · Part C — Geography Of Rajasthan",
+    "n": 4,
+    "q": 18
+   },
+   {
+    "id": "RAJ-38",
+    "slug": "raj-38",
+    "t": "Irrigation and water resources of Rajasthan",
+    "part": "Rajasthan GK · Part C — Geography Of Rajasthan",
+    "n": 3,
+    "q": 18
+   },
+   {
+    "id": "RAJ-39",
+    "slug": "raj-39",
+    "t": "Minerals and energy resources of Rajasthan",
+    "part": "Rajasthan GK · Part C — Geography Of Rajasthan",
+    "n": 3,
+    "q": 22
+   },
+   {
+    "id": "RAJ-40",
+    "slug": "raj-40",
+    "t": "Industries of Rajasthan",
+    "part": "Rajasthan GK · Part C — Geography Of Rajasthan",
+    "n": 2,
+    "q": 10
+   },
+   {
+    "id": "RAJ-41",
+    "slug": "raj-41",
+    "t": "Population and settlement of Rajasthan",
+    "part": "Rajasthan GK · Part C — Geography Of Rajasthan",
+    "n": 2,
+    "q": 21
+   },
+   {
+    "id": "RAJ-42",
+    "slug": "raj-42",
+    "t": "Transport and communication of Rajasthan",
+    "part": "Rajasthan GK · Part C — Geography Of Rajasthan",
+    "n": 2,
+    "q": 1
+   },
+   {
+    "id": "RAJ-43",
+    "slug": "raj-43",
+    "t": "Governor of Rajasthan",
+    "part": "Rajasthan GK · Part D — Polity And Administration Of Rajasthan",
+    "n": 1,
+    "q": 8
+   },
+   {
+    "id": "RAJ-44",
+    "slug": "raj-44",
+    "t": "Chief Minister and Council of Ministers of Rajasthan",
+    "part": "Rajasthan GK · Part D — Polity And Administration Of Rajasthan",
+    "n": 2,
+    "q": 18
+   },
+   {
+    "id": "RAJ-45",
+    "slug": "raj-45",
+    "t": "Rajasthan Legislative Assembly",
+    "part": "Rajasthan GK · Part D — Polity And Administration Of Rajasthan",
+    "n": 1,
+    "q": 4
+   },
+   {
+    "id": "RAJ-46",
+    "slug": "raj-46",
+    "t": "Rajasthan High Court and subordinate judiciary",
+    "part": "Rajasthan GK · Part D — Polity And Administration Of Rajasthan",
+    "n": 1,
+    "q": 2
+   },
+   {
+    "id": "RAJ-47",
+    "slug": "raj-47",
+    "t": "Constitutional and statutory bodies of Rajasthan",
+    "part": "Rajasthan GK · Part D — Polity And Administration Of Rajasthan",
+    "n": 5,
+    "q": 26
+   },
+   {
+    "id": "RAJ-48",
+    "slug": "raj-48",
+    "t": "Panchayati Raj and local self-government in Rajasthan",
+    "part": "Rajasthan GK · Part D — Polity And Administration Of Rajasthan",
+    "n": 2,
+    "q": 8
+   },
+   {
+    "id": "RAJ-49",
+    "slug": "raj-49",
+    "t": "District administration and political parties of Rajasthan",
+    "part": "Rajasthan GK · Part D — Polity And Administration Of Rajasthan",
+    "n": 2,
+    "q": 13
+   },
+   {
+    "id": "RAJ-50",
+    "slug": "raj-50",
+    "t": "Economy of Rajasthan — overview",
+    "part": "Rajasthan GK · Part E — Economy Of Rajasthan",
+    "n": 2,
+    "q": 2
+   },
+   {
+    "id": "RAJ-51",
+    "slug": "raj-51",
+    "t": "Planning and development in Rajasthan",
+    "part": "Rajasthan GK · Part E — Economy Of Rajasthan",
+    "n": 1,
+    "q": 6
+   },
+   {
+    "id": "RAJ-52",
+    "slug": "raj-52",
+    "t": "Welfare schemes of Rajasthan",
+    "part": "Rajasthan GK · Part E — Economy Of Rajasthan",
+    "n": 4,
+    "q": 19
+   },
+   {
+    "id": "RAJ-53",
+    "slug": "raj-53",
+    "t": "Infrastructure, banking and cooperatives in Rajasthan",
+    "part": "Rajasthan GK · Part E — Economy Of Rajasthan",
+    "n": 1,
+    "q": 1
+   },
+   {
+    "id": "RAJ-54",
+    "slug": "raj-54",
+    "t": "Tourism economy and handicraft economy",
+    "part": "Rajasthan GK · Part E — Economy Of Rajasthan",
+    "n": 1,
+    "q": 0
+   },
+   {
+    "id": "RAJ-55",
+    "slug": "raj-55",
+    "t": "Personalities of Rajasthan",
+    "part": "Rajasthan GK · Part F — Rajasthan Miscellaneous And Current Affairs",
+    "n": 1,
+    "q": 2
+   },
+   {
+    "id": "RAJ-56",
+    "slug": "raj-56",
+    "t": "Awards, sports and institutions of Rajasthan",
+    "part": "Rajasthan GK · Part F — Rajasthan Miscellaneous And Current Affairs",
+    "n": 1,
+    "q": 6
+   },
+   {
+    "id": "RAJ-57",
+    "slug": "raj-57",
+    "t": "Rajasthan current affairs",
+    "part": "Rajasthan GK · Part F — Rajasthan Miscellaneous And Current Affairs",
+    "n": 1,
+    "q": 0
+   }
+  ]
+ }
+]

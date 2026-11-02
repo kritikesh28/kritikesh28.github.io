@@ -1,0 +1,104 @@
+---
+// One subject of the Curriculum Index: its parts and major topics, with search inside the subject.
+import ExamLayout from '../../../../layouts/ExamLayout.astro';
+import ExamSearch from '../../../../components/exam/ExamSearch.astro';
+import { SUBJECTS, GLYPH, CI, BASE, GUIDE, fmt, partLabel, type Subject } from '../../../../exam-prep';
+
+export function getStaticPaths() {
+  return SUBJECTS.map((s) => ({ params: { subject: s.slug }, props: { s } }));
+}
+const { s } = Astro.props as { s: Subject };
+const parts: { label: string; majors: (Subject['majors'][number] & { i: number })[] }[] = [];
+s.majors.forEach((m, i) => {
+  const label = partLabel(m.part);
+  const last = parts.at(-1);
+  if (last && last.label === label) last.majors.push({ ...m, i });
+  else parts.push({ label, majors: [{ ...m, i }] });
+});
+const levelNames = ['', 'major topics', 'topics', 'subtopics', 'details'];
+const asked = s.majors.filter((m) => m.q > 0).sort((a, b) => b.q - a.q).slice(0, 5);
+---
+
+<ExamLayout
+  title={`${s.name} · Curriculum Index`}
+  description={`${s.blurb} ${fmt(s.total)} topics of ${s.name} for competitive exams, in order, from the basics up.`}
+  section="ci"
+  subject={s.slug}
+  crumbs={[{ href: `${BASE}/`, label: 'Exam Prep' }, { href: `${CI}/`, label: 'Curriculum Index' }, { label: s.name }]}
+>
+  <header class="sub-hero">
+    <span class="g" aria-hidden="true">{GLYPH[s.slug]}</span>
+    <div>
+      <p class="eyebrow">Curriculum Index · Subject</p>
+      <h1>{s.name}</h1>
+      <p class="lede">{s.blurb}</p>
+      <p class="levels small">
+        {Object.entries(s.levels).map(([lv, n]) => <span><b>{fmt(n)}</b> {levelNames[Number(lv)] ?? 'items'}</span>)}
+      </p>
+    </div>
+  </header>
+
+  <section class="search-card" aria-label={`Search ${s.name}`}>
+    <ExamSearch subject={s.slug} />
+  </section>
+
+  {asked.length > 0 && (
+    <aside class="asked">
+      <p class="eyebrow">Most asked in the papers we analysed</p>
+      <ul>
+        {asked.map((m) => <li><a href={`${CI}/${s.slug}/${m.slug}/`}>{m.t}</a> <span>{m.q}×</span></li>)}
+      </ul>
+      <p class="small muted">Want this ranked for your own exam? <a href={`${GUIDE}/`}>Open the Exam Guide</a>.</p>
+    </aside>
+  )}
+
+  {parts.map((p) => (
+    <section class="part">
+      {parts.length > 1 && <h2>{p.label}</h2>}
+      <ol class="majors">
+        {p.majors.map((m) => (
+          <li>
+            <a href={`${CI}/${s.slug}/${m.slug}/`}>
+              <span class="i">{m.i + 1}</span>
+              <span class="t">{m.t}</span>
+              <span class="n">{m.n > 0 ? `${fmt(m.n)} inside` : 'one page'}{m.q > 0 && <em> · asked {m.q}×</em>}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </section>
+  ))}
+</ExamLayout>
+
+<style>
+  .sub-hero { display: flex; gap: 1.2rem; align-items: flex-start; margin-bottom: 1.4rem; }
+  .sub-hero .g { flex: none; display: grid; place-items: center; width: 64px; height: 64px; border-radius: 18px; font-size: 1.9rem; background: color-mix(in srgb, var(--tree) 16%, transparent); margin-top: 0.4rem; }
+  .sub-hero h1 { font-size: clamp(2rem, 4.4vw, 2.8rem); }
+  .lede { font-size: 1.08rem; color: var(--ink-soft); margin: 0; max-width: 42rem; }
+  .levels { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; margin: 0.8rem 0 0; color: var(--ink-soft); }
+  .levels b { color: var(--ink); font-variant-numeric: tabular-nums; }
+  .search-card { padding: 1.1rem; border-radius: 20px; border: 1px solid var(--line); background: radial-gradient(120% 120% at 0% 0%, color-mix(in srgb, var(--tree) 10%, var(--surface)), var(--surface) 55%); }
+  .asked { margin: 1.4rem 0 0; padding: 1rem 1.2rem; border-radius: 16px; border: 1px dashed color-mix(in srgb, var(--tree) 55%, var(--line)); }
+  .asked ul { list-style: none; margin: 0.4rem 0 0.5rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .asked li { margin: 0; display: inline-flex; gap: 0.35rem; align-items: center; padding: 0.25rem 0.7rem; border-radius: 999px; background: color-mix(in srgb, var(--tree) 12%, transparent); font-size: 0.9rem; }
+  .asked li span { color: var(--tree); font-weight: 700; font-size: 0.78rem; }
+  .asked a { color: var(--ink); text-decoration: none; }
+  .part h2 { font-size: 1.3rem; margin: 2.2rem 0 0.8rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--line); }
+  .part:first-of-type h2 { margin-top: 1.8rem; }
+  .majors { list-style: none; margin: 1.2rem 0 0; padding: 0; display: grid; gap: 0.5rem; }
+  .majors li { margin: 0; }
+  .majors a {
+    display: grid; grid-template-columns: 2.4rem 1fr auto; gap: 0.8rem; align-items: center; padding: 0.75rem 1rem; border-radius: 14px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; transition: border-color 0.2s, transform 0.2s;
+  }
+  .majors a:hover { border-color: var(--tree); transform: translateX(3px); }
+  .majors .i { font: 600 1.05rem var(--font-serif); color: var(--tree); text-align: right; font-variant-numeric: tabular-nums; }
+  .majors .t { font-weight: 500; line-height: 1.4; }
+  .majors .n { font-size: 0.8rem; color: var(--ink-soft); white-space: nowrap; }
+  .majors .n em { font-style: normal; color: var(--tree); font-weight: 600; }
+  @media (max-width: 560px) {
+    .sub-hero .g { width: 48px; height: 48px; font-size: 1.4rem; }
+    .majors a { grid-template-columns: 1.8rem 1fr; }
+    .majors .n { grid-column: 2; white-space: normal; }
+  }
+</style>
