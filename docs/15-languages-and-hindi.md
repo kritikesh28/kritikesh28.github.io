@@ -17,7 +17,7 @@ The promise of the site is that **nobody has to leave it for Google or an AI to 
 3. **English technical words are fine** when that is what people actually say: AI, GIS, डेटा, मॉडल, ऐप. Write them in the script readers know (AI stays in Latin letters; डेटा in Devanagari), and still add the meaning once.
 4. **Numbers in digits** (12 पत्ते, 2 मिनट). Units in plain words (किलोमीटर, साल).
 5. **Brand names never change.** "Curious Sparoows" and "Sparoows" stay in Latin letters with the double o. Never write "Sparrows" for the brand, and never translate it. (The story series title "The Curious Sparrows" is separate and stays as it is.)
-6. **First person without gender.** Hindi verbs change with the writer's gender (रहा / रही). The site avoids this by using forms that don't change: "मैंने सीखा", "मेरा काम", "कृतिकेश राजपुरोहित के अभी के काम", or the passive voice ("ठीक किया जाएगा"). Drafts that can't avoid it show both (रहा/रही) and Kritikesh picks one.
+6. **First person is masculine.** Hindi verbs change with the writer's gender. Kritikesh writes with the masculine forms: "सीख रहा हूँ", "मैं गया", "कर सकता हूँ" (never रही / गई / सकती). Neutral forms such as "मैंने सीखा" and "मेरा काम" are fine too, and are already used on several pages.
 7. **Tags stay in English** (`[universe, stars]`). They form the addresses of tag pages and keep the English and Hindi versions linked.
 8. **Check before publishing:** read the page aloud. If any word would make a class-5 reader stop, add its meaning or change the word.
 
@@ -56,7 +56,7 @@ aiAssisted: true
 ---
 
 <!-- Easy-learning check: every hard word has a plain meaning in brackets the first time it appears.
-     Brand: write "Curious Sparoows" exactly. First person: avoid रहा/रही (use मैंने…, मेरा…). -->
+     Brand: write "Curious Sparoows" exactly. First person: masculine forms (रहा, गया, सकता). -->
 
 एक छोटी-सी बात या सवाल से शुरू करें, जो पढ़ने वाले ने खुद कभी सोचा हो।
 

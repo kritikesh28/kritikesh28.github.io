@@ -10,10 +10,10 @@ aiAssisted: true
 ---
 
 <!-- DRAFT (Hindi) for Kritikesh to rewrite in your own words. Set draft: false at the top when ready.
-     Hindi verbs change with the writer's gender (रहा / रही). "सीख रहा/रही हूँ" below: keep the one that fits you.
+     First person uses masculine verb forms (रहा, गया, सकता), as Kritikesh chose on 2 Nov 2026.
      Easy-learning rule: every hard word gets a plain meaning in brackets (docs/15-languages-and-hindi.md). -->
 
-पहले भूविज्ञान (जियोलॉजी: चट्टानों और धरती की बनावट का विज्ञान) पढ़ा, फिर भूगोल, और कई साल सिविल सेवा (बड़े सरकारी अफ़सरों की परीक्षा) की तैयारी में लगाए। अब अप्लाइड AI (असली कामों में लगने वाली कृत्रिम बुद्धि) सीख रहा/रही हूँ। यह साइट वह जगह है, जहाँ ये सब आकर मिलते हैं।
+पहले भूविज्ञान (जियोलॉजी: चट्टानों और धरती की बनावट का विज्ञान) पढ़ा, फिर भूगोल, और कई साल सिविल सेवा (बड़े सरकारी अफ़सरों की परीक्षा) की तैयारी में लगाए। अब अप्लाइड AI (असली कामों में लगने वाली कृत्रिम बुद्धि) सीख रहा हूँ। यह साइट वह जगह है, जहाँ ये सब आकर मिलते हैं।
 
 **यहाँ आपको क्या मिलेगा:** असली कोड वाले प्रोजेक्ट, बिल्कुल शुरुआत से समझाने वाले लेख, और आगे चलकर कहानियाँ।
 
