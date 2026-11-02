@@ -34,24 +34,35 @@ kritikesh28.github.io/
 ├── public/                  ← files served as they are
 │   ├── images/              ← pictures used on pages and posts
 │   ├── CNAME                ← the domain name (curioussparoows.com)
+│   ├── exam-prep/           ← Exam Prep search and Exam Guide data (made by the script, never edit)
+│   ├── a1a8670a….txt        ← IndexNow key file (never delete)
 │   └── Kritikesh_Rajpurohit_Resume.pdf
 ├── src/
 │   ├── site.config.ts       ← name, tagline, links, menu, categories, services
 │   ├── library.config.ts    ← library trees, branches, twigs, "What is growing" list
+│   ├── exam-prep.ts         ← Exam Prep settings: subjects, exam display names
 │   ├── data/curious-questions.ts ← questions for the curious question card
+│   ├── data/exam-prep/      ← Exam Prep data made from the two sheets (never edit by hand)
 │   ├── content/
 │   │   ├── blog/            ← one .md file per long read (shown in the library at /library/read/...)
 │   │   ├── library/         ← one folder per library twig (course); see guide 13
 │   │   └── projects/        ← one .md file per portfolio project
 │   ├── pages/               ← the pages (about, now, contact, privacy...)
+│   │   └── exam-prep/       ← the Exam Prep section (guide 14)
+│   ├── scripts/             ← code that runs in the visitor's browser (search, Exam Guide)
 │   ├── components/          ← reusable building blocks (cards, starfield...)
 │   ├── layouts/Base.astro   ← the frame around every page (header, footer)
+│   ├── layouts/ExamLayout.astro ← the frame of Exam Prep pages (left sidebar)
 │   └── styles/global.css    ← colours, fonts and spacing
+├── tools/exam-prep/build_data.py ← turns the two Google Sheets into Exam Prep data
 ├── astro.config.mjs         ← technical settings (do not change unless needed)
 ├── package.json             ← list of tools the site needs
-└── .github/workflows/deploy.yml ← the automatic publish job
+└── .github/workflows/
+    ├── deploy.yml           ← the automatic publish job
+    └── indexnow.yml         ← after each publish, tells search engines about new pages
 ```
 
 **Safe to edit any time:** anything in `src/content/`, `public/images/`, `src/site.config.ts`, `src/library.config.ts`, `src/data/`, and the text inside `src/pages/*.astro`.
 **Edit with care:** `src/components/`, `src/layouts/`, `src/styles/`.
 **Leave alone unless you know why:** `astro.config.mjs`, `package.json`, `package-lock.json`, `.github/`.
+**Never edit by hand:** `src/data/exam-prep/` and `public/exam-prep/`. Change the sheets and re-run the script instead ([14](14-exam-prep.md)).

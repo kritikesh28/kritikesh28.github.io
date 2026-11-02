@@ -42,4 +42,8 @@ Phase 1 and the reading tracker from phase 2 are live in the library update: the
 
 One change from the plan: search is built into the site instead of using Pagefind. With a few hundred pages, a small search file is faster, needs no extra tool, works with the site's strict security settings, and lets us control the "never empty" behaviour exactly. Revisit Pagefind when the library passes about 1,000 pages.
 
+## Exam Prep, next to the library (November 2026)
+
+The Exam Prep section (/exam-prep/) is separate from the library trees: it shows the whole competitive-exam syllabus (Curriculum Index) and which topics past papers asked most (Exam Guide), straight from two Google Sheets. The library's "Exam Prep" tree links to it. Later, library Leaves can link from an Exam Prep topic to a full explanation. Details: [14 · Exam Prep section](14-exam-prep.md).
+
 _Status on 25 October 2026: plan agreed and phase 1 built. The live list of what is pending, in order, is [12 · Pending task list](12-task-list.md)._

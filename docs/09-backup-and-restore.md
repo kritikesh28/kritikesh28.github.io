@@ -8,6 +8,7 @@
 | --- | --- | --- | --- |
 | **Main** | GitHub repository | Every file and every past version | Automatically, with each change |
 | **Backup** | Google Drive › "Digital Ecosystem - Claude Project Files" › **Curious Sparoows Website (backup)** | A zip of the whole site, plus Google Doc copies of this handbook, the vision, the task list, the working-methods file and the library guide | Refreshed after important changes (see below) |
+| **Exam Prep sources** | Google Drive › library › `06_EXAM_GUIDE_RPSC_RSSB` | The Curriculum Index and Exam Guide sheets and `export.json`. The site holds a copy of their data, so even if a sheet is lost the site keeps working. | Drive keeps version history of each sheet (File › Version history) |
 | **Your computer** (optional) | The folder from [07](07-run-on-your-computer.md) | Every file and its history | Type `git pull` |
 
 ## Make a fresh backup (about 2 minutes)

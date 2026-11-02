@@ -16,7 +16,7 @@ Change only the text **inside the quotes**. Keep every quote mark, comma and bra
 | Job title, location, email | `jobTitle:`, `location:`, `email:` |
 | Résumé file | Upload the new PDF to `public/`, then change `resumePdf:` |
 | Social links | The `SOCIALS` list: add a line like `{ label: 'YouTube', href: 'https://...' },` |
-| Top menu | The `NAV` list |
+| Top menu | The `NAV` list (Home, Library, Exam Prep, Portfolio, About, Contact...). Each line is `{ href: '/address/', label: 'Name' }`. |
 | Subjects (the library's trees) | The `CATEGORIES` list. Each one is a tree in the library; its branches and short courses are in `src/library.config.ts` (see [13](13-add-to-the-library.md)). Also add the new slug to `BRANCHES` there, and a colour line `.t-<slug>` in `src/styles/global.css`. A new line needs a `slug` (lowercase-with-hyphens), `label`, `short` and `blurb`. **Never remove a category that posts still use**, or the build fails. |
 | Fun facts shown by the sparrows | The `CURIOUS_FACTS` list |
 
@@ -30,6 +30,8 @@ Change only the text **inside the quotes**. Keep every quote mark, comma and bra
 | Contact | `src/pages/contact.astro` |
 | Privacy | `src/pages/privacy.astro` |
 | 404 (page not found) | `src/pages/404.astro` |
+| Exam Prep intro | `src/pages/exam-prep/index.astro` (the `chapters` list; see [14](14-exam-prep.md)) |
+| Summary for AI assistants (curioussparoows.com/llms.txt) | `src/pages/llms.txt.ts` |
 
 In these files, change only the words between tags, for example the words between `<p>` and `</p>`, or `<li>` and `</li>`. Don't delete the tags themselves. Remember to update "Updated October 2026" on the Now page.
 
