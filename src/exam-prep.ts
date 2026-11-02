@@ -63,3 +63,66 @@ const FRIENDLY: Record<string, string> = {
 };
 /** "RPSC RAS Pre", "RSSB Patwari", "All RPSC exams" */
 export const examTitle = (e: ExamPage) => (e.key.endsWith('-ALL') ? `All ${e.agency} exams` : `${e.agency} ${FRIENDLY[e.key] ?? e.short}`);
+
+// ---------------------------------------------------------------------------------------------
+// Languages. The sheets are English (Hindi subject in Hindi). Hindi words live in src/data/exam-prep/hi/,
+// keyed by topic id, so re-running build_data.py never wipes them. Anything not translated yet shows in
+// English (and is marked lang="en"). Guide: docs/15-languages-and-hindi.md, part 6.
+import { DEFAULT_LANG, localizePath, type Lang } from './i18n/config';
+import hiSubjects from './data/exam-prep/hi/subjects.json';
+import hiParts from './data/exam-prep/hi/parts.json';
+import hiExams from './data/exam-prep/hi/exams.json';
+
+type Tr = { t?: string; d?: string; p?: string };
+const hiTopicFiles = import.meta.glob<{ default: Record<string, string | Tr> }>('./data/exam-prep/hi/topics/*.json', { eager: true });
+const HI: Record<string, Tr> = {};
+for (const f of Object.values(hiTopicFiles)) for (const [id, v] of Object.entries(f.default)) HI[id] = typeof v === 'string' ? { t: v } : v;
+
+const DEV = /[ऀ-ॿ]/;
+/** True when a piece of text is still English (so the page can mark it lang="en"). */
+export const isEnglish = (s: string) => !DEV.test(s);
+export const trTopic = (id: string, lang: Lang): Tr | undefined => (lang === 'hi' ? HI[id] : undefined);
+/** A topic title in a language, falling back to the sheet's own text. */
+export const tt = (id: string, fallback: string, lang: Lang) => trTopic(id, lang)?.t ?? fallback;
+
+export type LMajor = Major & { en?: boolean };
+export type LSubject = Omit<Subject, 'majors'> & { majors: LMajor[] };
+const SUBJ_HI = hiSubjects as Record<string, { name: string; blurb: string }>;
+const subjCache = new Map<Lang, LSubject[]>();
+/** The subjects with their names, blurbs and major-topic titles in a language. */
+export function subjectsIn(lang: Lang): LSubject[] {
+  if (lang === DEFAULT_LANG) return SUBJECTS;
+  if (!subjCache.has(lang)) {
+    subjCache.set(lang, SUBJECTS.map((s) => ({
+      ...s, name: SUBJ_HI[s.slug]?.name ?? s.name, blurb: SUBJ_HI[s.slug]?.blurb ?? s.blurb,
+      majors: s.majors.map((m) => { const t = tt(m.id, m.t, lang); return { ...m, t, en: isEnglish(t) }; }),
+    })));
+  }
+  return subjCache.get(lang)!;
+}
+/** Topics of a subject in a language; untranslated ones keep their English text and get en: true. */
+export function topicsIn(slug: string, lang: Lang): (Topic & { en?: boolean })[] {
+  const all = topicsOf(slug);
+  if (lang === DEFAULT_LANG) return all;
+  return all.map((t) => {
+    const h = trTopic(t.id, lang);
+    const title = h?.t ?? t.t;
+    return { ...t, t: title, d: h?.d ?? t.d, p: h?.p ?? t.p, en: isEnglish(title),
+      rel: t.rel?.map(([rid, label]) => [rid, tt(rid, label, lang)] as [string, string]) };
+  });
+}
+/** Part label ("Part II — Ancient India") in a language */
+export const partIn = (part: string, lang: Lang) => {
+  const en = partLabel(part);
+  return lang === 'hi' ? ((hiParts as Record<string, string>)[en] ?? (en === 'Topics' ? 'टॉपिक' : en)) : en;
+};
+/** Exam Prep addresses in a language */
+export const paths = (lang: Lang) => ({ BASE: localizePath(`${BASE}/`, lang).replace(/\/$/, ''), CI: localizePath(`${CI}/`, lang).replace(/\/$/, ''), GUIDE: localizePath(`${GUIDE}/`, lang).replace(/\/$/, '') });
+export const topicUrlIn = (id: string, lang: Lang) => localizePath(topicUrl(id), lang);
+const EX_HI = hiExams as { names: Record<string, string>; agencies: Record<string, string>; govs: Record<string, string> };
+/** "RPSC RAS Pre" / "RPSC RAS प्री" */
+export const examTitleIn = (e: ExamPage, lang: Lang) => {
+  if (lang !== 'hi') return examTitle(e);
+  return e.key.endsWith('-ALL') ? `${e.agency} की सभी परीक्षाएँ` : `${e.agency} ${EX_HI.names[e.key] ?? FRIENDLY[e.key] ?? e.short}`;
+};
+export const EXAM_HI = EX_HI;

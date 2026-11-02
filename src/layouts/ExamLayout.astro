@@ -3,7 +3,8 @@
 // both tools (Curriculum Index, Exam Guide) and the page itself. On phones the sidebar opens as a drawer.
 // Guide: docs/14-exam-prep.md
 import Base from './Base.astro';
-import { SUBJECTS, GLYPH, BASE, CI, GUIDE, fmt } from '../exam-prep';
+import { subjectsIn, paths, GLYPH, fmt } from '../exam-prep';
+import { langFromUrl, pick } from '../i18n/config';
 
 interface Props {
   title: string;
@@ -16,6 +17,13 @@ interface Props {
   noindex?: boolean;
 }
 const { title, description, section, subject, major, crumbs = [], schema, noindex } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const SUBJECTS = subjectsIn(lang);
+const { BASE, CI, GUIDE } = paths(lang);
+const T = pick({
+  en: { menu: 'Exam Prep menu', sections: 'Exam Prep sections', home: 'Exam Prep', start: 'Start here', ci: 'Exhaustive Curriculum Index', filterLabel: 'Filter the topics of', filterPh: (n: number) => `Filter ${n} major topics…`, none: '{T.none}', guide: 'Exam Guide', find: 'Find my topics', byExam: 'Most asked topics, exam by exam', how: 'How the ranking works', papers: 'Papers analysed', note: '{T.note}', where: 'Where you are' },
+  hi: { menu: 'परीक्षा तैयारी मेनू', sections: 'परीक्षा तैयारी के हिस्से', home: 'परीक्षा तैयारी', start: 'यहाँ से शुरू करें', ci: 'पूरा पाठ्यक्रम सूचकांक (सिलेबस का नक्शा)', filterLabel: 'इन टॉपिकों में छाँटें:', filterPh: (n: number) => `${n} मुख्य टॉपिकों में ढूँढें…`, none: 'किसी मुख्य टॉपिक में यह शब्द नहीं है। ऊपर वाली पूरी खोज आज़माएँ।', guide: 'परीक्षा गाइड', find: 'मेरे टॉपिक बताओ', byExam: 'हर परीक्षा के सबसे ज़्यादा पूछे गए टॉपिक', how: 'क्रम (रैंकिंग) कैसे बनता है', papers: 'जिन पेपरों को पढ़ा गया', note: 'सिर्फ़ देखने के लिए। आप यहाँ जो लिखते या चुनते हैं, वह न सेव होता है, न कहीं भेजा जाता है, न ट्रैक होता है।', where: 'आप यहाँ हैं' },
+}, lang);
 const current = SUBJECTS.find((s) => s.slug === subject);
 // Breadcrumbs for search engines, built from the visible crumbs
 const crumbSchema = crumbs.length
@@ -30,24 +38,24 @@ const crumbSchema = crumbs.length
 const allSchema = [...crumbSchema, ...(schema ?? [])];
 ---
 
-<Base {title} {description} {noindex} schema={allSchema} langs={['en']}>
+<Base {title} {description} {noindex} schema={allSchema}>
   <div class="ex wrap t-exam-prep">
     <button class="ex-menu" type="button" aria-expanded="false" aria-controls="ex-side" data-ex-menu>
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
-      <span>Exam Prep menu</span>
+      <span>{T.menu}</span>
       {current && <span class="ex-menu-where">· {current.name}</span>}
     </button>
     <div class="ex-scrim" data-ex-scrim hidden></div>
 
-    <aside class="ex-side" id="ex-side" aria-label="Exam Prep sections">
+    <aside class="ex-side" id="ex-side" aria-label={T.sections}>
       <a class="side-home" href={`${BASE}/`} aria-current={section === 'home' ? 'page' : undefined}>
         <span class="side-mark" aria-hidden="true">✦</span>
-        <span><strong>Exam Prep</strong><small>Start here</small></span>
+        <span><strong>{T.home}</strong><small>{T.start}</small></span>
       </a>
 
       <div class="side-group">
         <a class="side-title" href={`${CI}/`} aria-current={section === 'ci' && !subject ? 'page' : undefined}>
-          <span class="num" aria-hidden="true">1</span> Exhaustive Curriculum Index
+          <span class="num" aria-hidden="true">1</span> {T.ci}
         </a>
         <ul class="side-subjects">
           {SUBJECTS.map((s) => (
@@ -59,18 +67,18 @@ const allSchema = [...crumbSchema, ...(schema ?? [])];
               </a>
               {s.slug === subject && (
                 <div class="side-majors">
-                  <label class="sr-only" for="side-filter">Filter the topics of {s.name}</label>
-                  <input id="side-filter" type="search" placeholder={`Filter ${s.majors.length} major topics…`} autocomplete="off" data-side-filter />
+                  <label class="sr-only" for="side-filter">{T.filterLabel} {s.name}</label>
+                  <input id="side-filter" type="search" placeholder={T.filterPh(s.majors.length)} autocomplete="off" data-side-filter />
                   <ol data-side-list>
                     {s.majors.map((m, i) => (
                       <li>
-                        <a href={`${CI}/${s.slug}/${m.slug}/`} aria-current={m.slug === major ? 'page' : undefined} data-t={m.t.toLowerCase()}>
+                        <a href={`${CI}/${s.slug}/${m.slug}/`} aria-current={m.slug === major ? 'page' : undefined} data-t={m.t.toLowerCase()} lang={m.en ? 'en' : undefined}>
                           <span class="i">{i + 1}</span>{m.t}
                         </a>
                       </li>
                     ))}
                   </ol>
-                  <p class="side-none small muted" data-side-none hidden>No major topic has that word. Try the full search above the topics.</p>
+                  <p class="side-none small muted" data-side-none hidden>{T.none}</p>
                 </div>
               )}
             </li>
@@ -80,22 +88,22 @@ const allSchema = [...crumbSchema, ...(schema ?? [])];
 
       <div class="side-group">
         <a class="side-title" href={`${GUIDE}/`} aria-current={section === 'guide' ? 'page' : undefined}>
-          <span class="num" aria-hidden="true">2</span> Exam Guide
+          <span class="num" aria-hidden="true">2</span> {T.guide}
         </a>
         <ul class="side-links">
-          <li><a href={`${GUIDE}/`} aria-current={section === 'guide' ? 'page' : undefined}>Find my topics</a></li>
-          <li><a href={`${BASE}/exams/`} aria-current={section === 'exams' ? 'page' : undefined}>Most asked topics, exam by exam</a></li>
-          <li><a href={`${GUIDE}/how-it-works/`} aria-current={section === 'how' ? 'page' : undefined}>How the ranking works</a></li>
-          <li><a href={`${GUIDE}/how-it-works/#papers`}>Papers analysed</a></li>
+          <li><a href={`${GUIDE}/`} aria-current={section === 'guide' ? 'page' : undefined}>{T.find}</a></li>
+          <li><a href={`${BASE}/exams/`} aria-current={section === 'exams' ? 'page' : undefined}>{T.byExam}</a></li>
+          <li><a href={`${GUIDE}/how-it-works/`} aria-current={section === 'how' ? 'page' : undefined}>{T.how}</a></li>
+          <li><a href={`${GUIDE}/how-it-works/#papers`}>{T.papers}</a></li>
         </ul>
       </div>
 
-      <p class="side-note">View only. Nothing you type or pick here is saved, sent or tracked.</p>
+      <p class="side-note">{T.note}</p>
     </aside>
 
     <div class="ex-main">
       {crumbs.length > 0 && (
-        <nav class="ex-crumbs small" aria-label="Where you are">
+        <nav class="ex-crumbs small" aria-label={T.where}>
           {crumbs.map((c, i) => (
             <>
               {i > 0 && <span aria-hidden="true">›</span>}

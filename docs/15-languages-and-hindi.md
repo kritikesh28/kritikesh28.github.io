@@ -88,5 +88,24 @@ Every page is then built in the new language at `/ta/...`, the switcher shows it
 
 ## 5. What stays English for now
 
-- **Exam Prep** (`/exam-prep/`) is built from the Curriculum Index sheet and stays English only. On those pages the switcher takes a Hindi reader to the Hindi home page.
+- **Deeper Exam Prep topic lines.** Every Exam Prep page, the Exam Guide, search, all 15 subjects, every major topic and the most-asked topics are in Hindi. The deeper lines (about 30,000) are still English and show in English on Hindi pages until their batch is done (see part 6).
 - The contact form sends the visitor's language with each message, so you know which language to reply in.
+
+## 6. Exam Prep translations
+
+Exam Prep is built from the Curriculum Index sheet by `tools/exam-prep/build_data.py`. The Hindi is kept **separately**, so a sheet refresh never wipes it:
+
+| File | What it holds |
+|---|---|
+| `src/data/exam-prep/hi/subjects.json` | Hindi name and blurb for each subject |
+| `src/data/exam-prep/hi/parts.json` | Hindi part headings ("Part II — Ancient India" → "भाग II — प्राचीन भारत") |
+| `src/data/exam-prep/hi/exams.json` | Hindi names of exams, agencies and governments |
+| `src/data/exam-prep/hi/topics/<subject>.json` | One entry per topic id: `"POL-12": "मौलिक अधिकार"`, or `{"t": title, "d": description, "p": exam-paper note}` |
+
+Rules:
+
+1. The key is the topic id from the sheet (`POL-12.3`). If an id changes in the sheet, change it here too.
+2. Anything without a Hindi entry falls back to English and is marked as English for screen readers and Google.
+3. Hindi search also matches the English title of a translated topic, so typing "Fundamental Rights" on the Hindi page still works.
+4. Keep the standard Hindi-medium exam word and add the English or a plain gloss in brackets: "न्याय निगमन (सिलॉजिज़्म)".
+5. **Adding a batch:** list the ids still in English for one subject, translate them, add them to that subject's file, build and check `/hi/exam-prep/curriculum-index/<subject>/`. Do one subject at a time, most-asked topics first.

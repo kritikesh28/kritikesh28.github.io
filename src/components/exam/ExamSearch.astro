@@ -1,7 +1,8 @@
 ---
 // The Curriculum Index search: suggestions while typing, filters, "did you mean", and results that
 // always offer something useful. Logic: src/scripts/exam-search.ts
-import { SUBJECTS, fmt, STATS } from '../../exam-prep';
+import { subjectsIn, fmt, STATS } from '../../exam-prep';
+import { langFromUrl, pick } from '../../i18n/config';
 
 interface Props {
   subject?: string; // preselect one subject
@@ -9,60 +10,80 @@ interface Props {
   syncUrl?: boolean; // keep ?q= in the address so a search can be shared
 }
 const { subject, autofocus = false, syncUrl = false } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const SUBJECTS = subjectsIn(lang);
 const preset = SUBJECTS.findIndex((s) => s.slug === subject);
+const P = pick({
+  en: { label: `Search ${fmt(STATS.topics)} topics`, phS: (n: string) => `Search ${n}: try a topic, a name or a date`, ph: 'Search any topic: mughal, monsoon, fundamental rights, संधि…', filters: 'Filters', subject: 'Subject', all: 'All 15 subjects', depth: 'Depth', every: 'Every level', l1: 'Major topics only', l2: 'Major topics and topics', l3: 'Down to subtopics', pyq: 'Only topics asked in past papers', status: 'Spelling mistakes are fine. Press Enter to see every match.', dym: 'Did you mean', more: 'Show more', noscript: 'Search needs JavaScript. You can still open every subject from the menu.' },
+  hi: { label: `${fmt(STATS.topics)} टॉपिकों में खोजें`, phS: (n: string) => `${n} में खोजें: कोई टॉपिक, नाम या साल लिखिए`, ph: 'कोई भी टॉपिक खोजें: मुग़ल, मानसून, मौलिक अधिकार, संधि, mughal…', filters: 'फ़िल्टर', subject: 'विषय', all: 'सभी 15 विषय', depth: 'कितना गहराई तक', every: 'हर स्तर', l1: 'सिर्फ़ मुख्य टॉपिक', l2: 'मुख्य टॉपिक और टॉपिक', l3: 'उप-टॉपिक तक', pyq: 'सिर्फ़ पुराने पेपरों में पूछे गए टॉपिक', status: 'स्पेलिंग ग़लत भी चलेगी। सारे नतीजे देखने के लिए Enter दबाइए।', dym: 'क्या आपका मतलब था', more: 'और दिखाएँ', noscript: 'खोज के लिए JavaScript चाहिए। फिर भी आप मेनू से हर विषय खोल सकते हैं।' },
+}, lang);
 ---
 
 <div class="xs" data-xs data-preset={preset} data-sync={syncUrl ? '1' : ''}>
   <div class="xs-box" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-owns="xs-sugg">
     <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2" /><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
-    <label class="sr-only" for="xs-q">Search {fmt(STATS.topics)} topics</label>
+    <label class="sr-only" for="xs-q">{P.label}</label>
     <input
       id="xs-q" type="search" autocomplete="off" spellcheck="false" enterkeyhint="search" autofocus={autofocus}
-      placeholder={preset >= 0 ? `Search ${SUBJECTS[preset].name}: try a topic, a name or a date` : 'Search any topic: mughal, monsoon, fundamental rights, संधि…'}
+      placeholder={preset >= 0 ? P.phS(SUBJECTS[preset].name) : P.ph}
       aria-autocomplete="list" aria-controls="xs-sugg" data-xs-q
     />
     <kbd aria-hidden="true">/</kbd>
     <ul id="xs-sugg" class="xs-sugg" role="listbox" hidden data-xs-sugg></ul>
   </div>
 
-  <div class="xs-filters" role="group" aria-label="Filters">
+  <div class="xs-filters" role="group" aria-label={P.filters}>
     <label>
-      <span>Subject</span>
+      <span>{P.subject}</span>
       <select data-xs-subject>
-        <option value="-1">All 15 subjects</option>
+        <option value="-1">{P.all}</option>
         {SUBJECTS.map((s, i) => <option value={i} selected={i === preset}>{s.name}</option>)}
       </select>
     </label>
     <label>
-      <span>Depth</span>
+      <span>{P.depth}</span>
       <select data-xs-level>
-        <option value="9">Every level</option>
-        <option value="1">Major topics only</option>
-        <option value="2">Major topics and topics</option>
-        <option value="3">Down to subtopics</option>
+        <option value="9">{P.every}</option>
+        <option value="1">{P.l1}</option>
+        <option value="2">{P.l2}</option>
+        <option value="3">{P.l3}</option>
       </select>
     </label>
     <label class="xs-check">
       <input type="checkbox" data-xs-pyq />
-      <span>Only topics asked in past papers</span>
+      <span>{P.pyq}</span>
     </label>
   </div>
 
-  <p class="xs-status small" aria-live="polite" data-xs-status>Spelling mistakes are fine. Press Enter to see every match.</p>
-  <p class="xs-dym" hidden data-xs-dym>Did you mean <button type="button" data-xs-dym-btn></button>?</p>
+  <p class="xs-status small" aria-live="polite" data-xs-status>{P.status}</p>
+  <p class="xs-dym" hidden data-xs-dym>{P.dym} <button type="button" data-xs-dym-btn></button>?</p>
   <ol class="xs-results" data-xs-results></ol>
-  <button class="btn ghost xs-more" type="button" hidden data-xs-more>Show more</button>
-  <noscript><p class="small">Search needs JavaScript. You can still open every subject from the menu.</p></noscript>
+  <button class="btn ghost xs-more" type="button" hidden data-xs-more>{P.more}</button>
+  <noscript><p class="small">{P.noscript}</p></noscript>
 </div>
 
 <script>
   import { load, search, didYouMean, highlight, majorTitle, subjects, type Hit } from '../../scripts/exam-search';
 
-  const LEVEL = ['', 'Major topic', 'Topic', 'Subtopic', 'Detail'];
+  const HI = document.documentElement.lang === 'hi';
+  const W = HI ? {
+    level: ['', 'मुख्य टॉपिक', 'टॉपिक', 'उप-टॉपिक', 'बारीक बात'], in: (m: string) => `${m} में`, whole: 'पूरा मुख्य टॉपिक खोलें', asked: (n: number) => `पुराने पेपरों में ${n} बार पूछा गया`,
+    keep: 'लिखते रहिए, या सबसे मिलते-जुलते टॉपिक देखने के लिए Enter दबाइए।', status: 'स्पेलिंग ग़लत भी चलेगी। सारे नतीजे देखने के लिए Enter दबाइए।',
+    loose: (n: number) => `इन फ़िल्टरों के साथ कुछ नहीं मिला, इसलिए हर विषय से सबसे मिलते-जुलते टॉपिक दिखाए जा रहे हैं (${n})।`,
+    none: 'इस सूचकांक में अभी यह शब्द नहीं है। छोटा शब्द, बड़ा टॉपिक, या अंग्रेज़ी शब्द आज़माइए, या मेनू से कोई विषय खोलिए।',
+    found: (n: string, w: string) => `${n} टॉपिक मिले, सबसे अच्छे पहले।${w ? ` ${w} पहले।` : ''}`,
+  } : {
+    level: ['', 'Major topic', 'Topic', 'Subtopic', 'Detail'], in: (m: string) => `in ${m}`, whole: 'Open the whole major topic', asked: (n: number) => `Asked ${n}× in past papers`,
+    keep: 'Keep typing, or press Enter for the closest topics.', status: 'Spelling mistakes are fine. Press Enter to see every match.',
+    loose: (n: number) => `Nothing matched with these filters, so here are the closest topics in every subject (${n}).`,
+    none: 'This index does not have that word yet. Try a shorter word, a broader topic, or browse a subject from the menu.',
+    found: (n: string, w: string) => `${n} topics found, best matches first.${w ? ` ${w} first.` : ''}`,
+  };
+  const LEVEL = W.level;
   const slugId = (id: string) => id.toLowerCase().replaceAll('.', '-');
   const urlOf = (id: string, s: number) => {
     const l1 = id.match(/^[A-Z]{3}-\d+/)?.[0] ?? id;
-    return `/exam-prep/curriculum-index/${subjects[s][0]}/${slugId(l1)}/${l1 === id ? '' : '#' + slugId(id)}`;
+    return `${HI ? '/hi' : ''}/exam-prep/curriculum-index/${subjects[s][0]}/${slugId(l1)}/${l1 === id ? '' : '#' + slugId(id)}`;
   };
 
   document.querySelectorAll<HTMLElement>('[data-xs]').forEach((root) => {
@@ -92,19 +113,20 @@ const preset = SUBJECTS.findIndex((s) => s.slug === subject);
       a.className = compact ? 'xs-opt' : 'xs-hit';
       const top = document.createElement('span');
       top.className = 'xs-meta';
-      top.textContent = `${subjects[r.s][1]} · ${LEVEL[r.lvl] ?? 'Topic'}`;
+      top.textContent = `${subjects[r.s][1]} · ${LEVEL[r.lvl] ?? LEVEL[2]}`;
       const t = document.createElement('strong');
       t.innerHTML = highlight(r.t, query);
+      if (HI && !/[\u0900-\u097F]/.test(r.t)) t.lang = 'en';
       a.append(top, t);
       if (!compact) {
         const path = document.createElement('span');
         path.className = 'xs-path';
-        path.textContent = r.lvl > 1 ? `in ${majorTitle(r.id)}` : 'Open the whole major topic';
+        path.textContent = r.lvl > 1 ? W.in(majorTitle(r.id)) : W.whole;
         a.append(path);
         if (r.q) {
           const b = document.createElement('span');
           b.className = 'xs-pyq';
-          b.textContent = `Asked ${r.q}× in past papers`;
+          b.textContent = W.asked(r.q);
           a.append(b);
         }
       }
@@ -127,7 +149,7 @@ const preset = SUBJECTS.findIndex((s) => s.slug === subject);
       if (!top.length) {
         const li = document.createElement('li');
         li.className = 'xs-empty';
-        li.textContent = 'Keep typing, or press Enter for the closest topics.';
+        li.textContent = W.keep;
         sugg.append(li);
       }
       sugg.hidden = false;
@@ -144,7 +166,7 @@ const preset = SUBJECTS.findIndex((s) => s.slug === subject);
         query ? u.searchParams.set('q', query) : u.searchParams.delete('q');
         history.replaceState(null, '', u);
       }
-      if (!query) { more.hidden = true; status.textContent = 'Spelling mistakes are fine. Press Enter to see every match.'; return; }
+      if (!query) { more.hidden = true; status.textContent = W.status; return; }
       const res = search(query, filters());
       hits = res.hits;
       const fix = didYouMean(query);
@@ -154,11 +176,10 @@ const preset = SUBJECTS.findIndex((s) => s.slug === subject);
         const loose = search(fix || query, { subject: -1, maxLevel: 9, pyqOnly: false }).hits;
         hits = loose;
         status.textContent = loose.length
-          ? `Nothing matched with these filters, so here are the closest topics in every subject (${loose.length}).`
-          : 'This index does not have that word yet. Try a shorter word, a broader topic, or browse a subject from the menu.';
+          ? W.loose(loose.length)
+          : W.none;
       } else {
-        const where = res.subjectHint >= 0 ? ` ${subjects[res.subjectHint][1]} first.` : '';
-        status.textContent = `${hits.length === 400 ? '400+' : hits.length} topics found, best matches first.${where}`;
+        status.textContent = W.found(hits.length === 400 ? '400+' : String(hits.length), res.subjectHint >= 0 ? subjects[res.subjectHint][1] : '');
       }
       shown = 0;
       showMore();

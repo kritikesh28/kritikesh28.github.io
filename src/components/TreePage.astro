@@ -50,7 +50,7 @@ const schema = [
       </header>
 
       {tree.slug === 'exam-prep' && (
-        <a class="exam-door" href="/exam-prep/">
+        <a class="exam-door" href={L("/exam-prep/")}>
           <strong>{t('lib.examDoorTitle')}</strong>
           <span>{t('lib.examDoorText')}</span>
         </a>

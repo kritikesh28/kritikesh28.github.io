@@ -1,0 +1,123 @@
+---
+// The Exhaustive Curriculum Index: all subjects, with the search that is the heart of the section.
+import ExamLayout from '../../../../layouts/ExamLayout.astro';
+import ExamSearch from '../../../../components/exam/ExamSearch.astro';
+import { subjectsIn, paths, STATS, GLYPH, fmt } from '../../../../exam-prep';
+import { langFromUrl, langParams, pick } from '../../../../i18n/config';
+
+export const getStaticPaths = () => langParams().map((params) => ({ params }));
+const lang = langFromUrl(Astro.url);
+const SUBJECTS = subjectsIn(lang);
+const { CI, GUIDE, BASE } = paths(lang);
+const P = pick({
+  en: {
+    title: 'Complete Syllabus for Competitive Exams: Every Topic in One Searchable Map',
+    description: `Every topic of 15 exam subjects in one searchable map: ${fmt(STATS.topics)} topics from the basics to advanced, with the ones asked in RPSC and RSSB papers marked.`,
+    home: 'Exam Prep', crumb: 'Curriculum Index', eyebrow: 'Tool 1 · The whole map', h1: 'Exhaustive Curriculum Index',
+    lede: 'Every topic you could be asked, in one calm map. Search it, filter it, or open one subject at a time.',
+    topics: 'Topics', majors: 'Major topics', subjects: 'Subjects', searchLabel: 'Search the index',
+    q1: 'Do I have to study all of this?',
+    a1: (g: string) => `No, and please don't try. This map exists so nothing surprises you, not so you read every line. To see what matters most for <em>your</em> exam, use the <a href="${g}/">Exam Guide</a>. Come back here when you want to see where a topic sits, or what lies next to it.`,
+    q2: 'How is it arranged?',
+    a2: 'Each subject is broken into <strong>major topics</strong>, then topics, subtopics and details. Topics that appeared in the RPSC and RSSB papers we analysed carry a small "asked in past papers" mark. Links under a topic jump to the same idea in another subject, because exams love those bridges.',
+    pick: 'Pick a subject', nMajors: (n: number) => `${n} major topics`, inAll: (n: string) => `${n} in all`, asked: (n: number) => `${n} asked in papers`,
+  },
+  hi: {
+    title: 'प्रतियोगी परीक्षाओं का पूरा सिलेबस: हर टॉपिक एक नक्शे में, जिसमें खोज सकते हैं',
+    description: `15 विषयों का हर टॉपिक एक नक्शे में: बुनियाद से ऊँचे स्तर तक ${fmt(STATS.topics)} टॉपिक, और RPSC व RSSB पेपरों में पूछे गए टॉपिकों पर निशान।`,
+    home: 'परीक्षा तैयारी', crumb: 'पाठ्यक्रम सूचकांक', eyebrow: 'टूल 1 · पूरा नक्शा', h1: 'पूरा पाठ्यक्रम सूचकांक',
+    lede: 'हर वह टॉपिक जो पूछा जा सकता है, एक शांत, साफ़ नक्शे में। इसमें खोजिए, छाँटिए, या एक बार में एक विषय खोलिए।',
+    topics: 'टॉपिक', majors: 'मुख्य टॉपिक', subjects: 'विषय', searchLabel: 'सूचकांक में खोजें',
+    q1: 'क्या यह सब पढ़ना ज़रूरी है?',
+    a1: (g: string) => `नहीं, और कृपया कोशिश भी मत कीजिए। यह नक्शा इसलिए है कि कुछ भी आपको अचानक न चौंकाए, इसलिए नहीं कि आप हर पंक्ति पढ़ें। <em>आपकी</em> परीक्षा के लिए सबसे ज़रूरी क्या है, यह देखने के लिए <a href="${g}/">परीक्षा गाइड</a> खोलिए। यहाँ तब आइए जब देखना हो कि कोई टॉपिक कहाँ आता है, या उसके आसपास क्या है।`,
+    q2: 'यह किस तरह सजाया गया है?',
+    a2: 'हर विषय को <strong>मुख्य टॉपिकों</strong> में बाँटा गया है, फिर टॉपिक, उप-टॉपिक और बारीक बातें। जो टॉपिक RPSC और RSSB के पढ़े गए पेपरों में आए, उन पर "पुराने पेपरों में पूछा गया" का छोटा निशान है। टॉपिक के नीचे के लिंक उसी विचार को दूसरे विषय में दिखाते हैं, क्योंकि परीक्षा में ऐसे जोड़ वाले सवाल ख़ूब आते हैं।',
+    pick: 'एक विषय चुनिए', nMajors: (n: number) => `${n} मुख्य टॉपिक`, inAll: (n: string) => `कुल ${n}`, asked: (n: number) => `${n} पेपरों में पूछे गए`,
+  },
+}, lang);
+---
+
+<ExamLayout
+  title={P.title}
+  description={P.description}
+  section="ci"
+  crumbs={[{ href: `${BASE}/`, label: P.home }, { label: P.crumb }]}
+>
+  <header class="ci-hero">
+    <p class="eyebrow">{P.eyebrow}</p>
+    <h1>{P.h1}</h1>
+    <p class="lede">{P.lede}</p>
+    <dl class="stats">
+      <div><dt>{P.topics}</dt><dd>{fmt(STATS.topics)}</dd></div>
+      <div><dt>{P.majors}</dt><dd>{fmt(STATS.majors)}</dd></div>
+      <div><dt>{P.subjects}</dt><dd>{STATS.subjects}</dd></div>
+    </dl>
+  </header>
+
+  <section class="search-card" aria-label={P.searchLabel}>
+    <ExamSearch syncUrl />
+  </section>
+
+  <section class="qa">
+    <details>
+      <summary>{P.q1}</summary>
+      <p set:html={P.a1(GUIDE)} />
+    </details>
+    <details>
+      <summary>{P.q2}</summary>
+      <p set:html={P.a2} />
+    </details>
+  </section>
+
+  <h2 class="sec">{P.pick}</h2>
+  <ul class="subjects">
+    {SUBJECTS.map((s) => {
+      const asked = s.majors.filter((m) => m.q > 0).length;
+      return (
+        <li>
+          <a href={`${CI}/${s.slug}/`}>
+            <span class="g" aria-hidden="true">{GLYPH[s.slug]}</span>
+            <strong>{s.name}</strong>
+            <span class="blurb">{s.blurb}</span>
+            <span class="foot">
+              <span>{P.nMajors(s.majors.length)}</span>
+              <span>{P.inAll(fmt(s.total))}</span>
+              {asked > 0 && <span class="ask">{P.asked(asked)}</span>}
+            </span>
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</ExamLayout>
+
+<style>
+  .ci-hero { position: relative; padding: 0.4rem 0 1.4rem; }
+  .ci-hero h1 { font-size: clamp(2rem, 4.4vw, 3rem); letter-spacing: -0.01em; }
+  .lede { font-size: 1.15rem; color: var(--ink-soft); max-width: 38rem; margin: 0; }
+  .stats { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 1.4rem 0 0; }
+  .stats div { padding: 0.65rem 1.1rem; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); min-width: 8.5rem; }
+  .stats dt { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-soft); }
+  .stats dd { margin: 0; font: 600 1.6rem/1.2 var(--font-serif); color: var(--tree); font-variant-numeric: tabular-nums; }
+  .search-card {
+    padding: 1.3rem; border-radius: 22px; border: 1px solid var(--line);
+    background: radial-gradient(120% 120% at 0% 0%, color-mix(in srgb, var(--tree) 12%, var(--surface)), var(--surface) 55%);
+  }
+  .qa { display: grid; gap: 0.6rem; margin: 1.6rem 0 0; }
+  .qa details { border: 1px solid var(--line); border-radius: 14px; background: var(--surface); padding: 0.2rem 1rem; }
+  .qa summary { cursor: pointer; padding: 0.6rem 0; font-family: var(--font-serif); font-weight: 600; font-size: 1.05rem; }
+  .qa p { margin: 0 0 0.9rem; color: var(--ink-soft); }
+  .sec { margin-top: 2.4rem; }
+  .subjects { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.9rem; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+  .subjects li { margin: 0; }
+  .subjects a {
+    height: 100%; display: grid; grid-template-rows: auto auto 1fr auto; gap: 0.35rem; padding: 1.1rem 1.1rem 1rem; border-radius: 18px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  }
+  .subjects a:hover { transform: translateY(-3px); border-color: var(--tree); box-shadow: 0 14px 34px rgb(42 35 80 / 0.12); }
+  .subjects .g { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; font-size: 1.25rem; background: color-mix(in srgb, var(--tree) 14%, transparent); }
+  .subjects strong { font: 600 1.2rem/1.3 var(--font-serif); }
+  .subjects .blurb { font-size: 0.88rem; color: var(--ink-soft); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .subjects .foot { display: flex; flex-wrap: wrap; gap: 0.3rem 0.8rem; font-size: 0.78rem; color: var(--ink-soft); padding-top: 0.5rem; border-top: 1px dashed var(--line); }
+  .subjects .ask { color: var(--tree); font-weight: 600; }
+</style>
