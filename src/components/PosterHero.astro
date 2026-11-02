@@ -48,6 +48,13 @@ const SPOTS = [
   </div>
   <div class="legend">
     <p class="cap" aria-live="polite"><span class="title"></span><span class="text"></span></p>
+    <p class="motto" lang="en">
+      <span class="rule" aria-hidden="true"></span>
+      <span class="motto-text motto-lead">Two Sparoows, open sky:</span>
+      <span class="motto-text"><em>Exploring Everything Together</em></span>
+      <span class="sapling" role="img" aria-label="a growing sapling">🌱</span>
+      <span class="rule" aria-hidden="true"></span>
+    </p>
     <button class="tour" type="button"><span aria-hidden="true">✦</span> <span class="tour-label">Read the poster</span></button>
     <p class="hint"><span class="mouse">or hover over a glowing point</span><span class="touch">or tap a glowing point</span></p>
   </div>
@@ -295,12 +302,47 @@ const SPOTS = [
 
   /* the caption line and the tour button */
   .legend {
-    position: absolute; left: 50%; bottom: 4.4rem; transform: translateX(-50%); width: min(46rem, calc(100% - 2rem));
+    position: absolute; left: 50%; bottom: 4.4rem; transform: translateX(-50%); width: min(64rem, calc(100% - 2rem));
     display: flex; flex-direction: column; align-items: center; gap: 0.7rem; text-align: center; pointer-events: none;
   }
-  .cap { margin: 0; min-height: 2.6em; display: flex; flex-direction: column; justify-content: flex-end; gap: 0.25rem; color: #f6e7c8; }
+  .cap { margin: 0; min-height: 2.6em; max-width: 46rem; display: flex; flex-direction: column; justify-content: flex-end; gap: 0.25rem; color: #f6e7c8; }
   .cap .title { font: 600 0.72rem/1 var(--font-sans, Inter, sans-serif); letter-spacing: 0.3em; text-transform: uppercase; color: #e8c584; }
   .cap .text { font: italic 500 clamp(1.1rem, 1.7vw, 1.55rem)/1.3 'Cormorant Garamond', Georgia, serif; text-shadow: 0 1px 12px rgb(10 6 30 / 0.9); }
+  /* the signature line: same Cormorant and gold as the tagline, with a slow light sweep and a sapling that grows in */
+  .motto {
+    margin: 0; display: flex; align-items: center; justify-content: center; gap: 0.75rem; flex-wrap: nowrap;
+    animation: rise 1.8s cubic-bezier(0.2, 0.7, 0.2, 1) both 0.9s; transition: opacity 0.4s;
+  }
+  .motto .rule { flex: 0 0 auto; width: clamp(1.2rem, 4vw, 3.2rem); height: 1px; background: linear-gradient(90deg, transparent, rgb(232 197 132 / 0.75)); }
+  .motto .rule:last-child { background: linear-gradient(90deg, rgb(232 197 132 / 0.75), transparent); }
+  .motto-text {
+    font: 500 clamp(1.08rem, 1.75vw, 1.6rem)/1.25 'Cormorant Garamond', Georgia, serif; letter-spacing: 0.02em;
+    background: linear-gradient(100deg, #e8c584 0%, #e8c584 38%, #fffaf0 50%, #e8c584 62%, #e8c584 100%);
+    background-size: 260% 100%; background-position: 100% 0;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 1px 10px rgb(10 6 30 / 0.85));
+    animation: sweep 9s ease-in-out infinite 2.6s; white-space: nowrap;
+  }
+  .motto-lead { font-variant: small-caps; letter-spacing: 0.09em; }
+  .motto-text em { font-style: italic; }
+  .sapling {
+    display: inline-block; font-size: clamp(1.15rem, 1.8vw, 1.6rem); line-height: 1; transform-origin: 50% 95%;
+    filter: drop-shadow(0 0 6px rgb(140 220 120 / 0.55));
+    animation: sprout 1.4s cubic-bezier(0.3, 1.4, 0.5, 1) both 2.1s, sway 5.5s ease-in-out infinite 3.6s;
+  }
+  @keyframes sweep { 0% { background-position: 100% 0; } 35%, 100% { background-position: 0% 0; } }
+  @keyframes sprout { from { transform: scale(0.15); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  @keyframes sway { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-5deg); } }
+  .poster.reading .motto, .poster.decoding .motto { opacity: 0; }
+  .motto .motto-lead + .motto-text { margin-left: -0.35rem; }
+  @media (max-width: 640px) {
+    .motto { flex-wrap: wrap; gap: 0.1rem 0.4rem; }
+    .motto .rule { display: none; }
+    .motto-text { font-size: 1.08rem; }
+    .motto .motto-lead { flex-basis: 100%; text-align: center; }
+    .motto .motto-lead + .motto-text { margin-left: 0; }
+  }
+
   .tour {
     pointer-events: auto; cursor: pointer; display: inline-flex; align-items: center; gap: 0.45rem;
     font: 500 0.82rem/1 var(--font-sans, Inter, sans-serif); letter-spacing: 0.14em; text-transform: uppercase;
@@ -332,6 +374,7 @@ const SPOTS = [
     .cap:has(.title:empty) { display: none; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .cue, .hero-text h1, .hero-text .sub, .hot .halo { animation: none; }
+    .cue, .hero-text h1, .hero-text .sub, .hot .halo, .motto, .motto-text, .sapling { animation: none; }
+    .motto-text { background-position: 50% 0; }
   }
 </style>
