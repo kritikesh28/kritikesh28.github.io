@@ -17,8 +17,16 @@ The single list of what is waiting to be done, in the recommended order. When yo
 
 ## Exam Prep section
 
-- [ ] **Review and publish Exam Prep** (/exam-prep/): read the intro text, add your own line, then merge the pull request. Guide: 14 · Exam Prep section.
-- [ ] Refresh the data after each sheet update (guide 14).
+- [x] **Exam Prep published** (pull request #10, 2 November 2026): intro Q&A, Exhaustive Curriculum Index (15 subjects, about 900 topic pages), Exam Guide planner, search. Guide: [14 · Exam Prep section](14-exam-prep.md).
+- [x] **Found on Google and AI** (pull request #12, 2 November 2026): 27 exam pages, search-style titles, structured data, llms.txt, IndexNow.
+- [ ] **You, 5 minutes:** submit `https://curioussparoows.com/sitemap-index.xml` in Google Search Console › Sitemaps.
+- [ ] **You, 5 minutes:** sign in to Bing Webmaster Tools and choose "Import from Google Search Console".
+- [ ] **You:** fix two junk rows in the Curriculum Index sheet: "Question: What is 25% of 240?" (Reasoning) and "Maintain a living roadmap" (Computer). Then ask Claude to rebuild the data.
+- [ ] **You:** read the intro at /exam-prep/ and add your own line if you like.
+- [ ] Add the other papers of AEN and APO to the Exam Guide analysis (today only their Hindi paper is in, so their pages are hidden from Google).
+- [ ] Refresh the data after each sheet update (guide 14, part 4).
+- [ ] Later: add SSC, UPSC, Railway and bank past papers to the analysis, so those exams get their own pages too.
+- [ ] Check Search Console once a month: which searches bring aspirants, and which pages are "Not indexed".
 
 ## Phase 1: Foundation (build first)
 
@@ -66,4 +74,4 @@ The library page shows it publicly as "Not started" in the "What is growing" lis
 
 Reminder: this track is how recruiters see your AI skill. Raise it at every weekly review until stage C is done.
 
-_Last updated: 25 October 2026._
+_Last updated: 2 November 2026._

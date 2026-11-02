@@ -43,3 +43,10 @@ Actions tab › **Deploy site to GitHub Pages** (left) › **Run workflow** › 
 ## Contact form emails stopped
 
 Sign in to Formspree and check the form is active and the monthly limit isn't reached. The form address is `formspreeUrl` in `src/site.config.ts`.
+
+## Exam Prep problems
+
+- **A topic or exam is wrong or missing on the site:** fix it in the Google Sheet, then rebuild the data ([14](14-exam-prep.md), part 4). The site only changes after a rebuild.
+- **The rebuild script prints far fewer topics than before:** a sheet tab or column was renamed. Rename it back, or change the name in `tools/exam-prep/build_data.py`.
+- **A bar, width or colour set by a script doesn't show:** the site's security setting blocks inline `style="..."`. Set `element.style` in the script instead.
+- **The IndexNow job fails with 403:** normal for a few days after the key is new. Run it again later (Actions › "Tell search engines about new pages (IndexNow)" › Run workflow). If it keeps failing, check that `public/a1a8670a13934983a9f2272ac3cd12f2.txt` still exists and holds the same 32 characters as its name.
