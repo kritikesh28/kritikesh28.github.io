@@ -65,7 +65,7 @@ Pages in square brackets (`[subject]`, `[major]`, `[exam]`) are templates: one f
 Do this whenever a topic is added, renamed, moved or deleted in either sheet, or the past-paper analysis is re-run.
 
 1. Download both sheets: open each one, **File › Download › Microsoft Excel (.xlsx)**. Name them `Curriculum_Index.xlsx` and `Exam_Guide.xlsx`.
-2. Download the latest `export.json` from the Exam Guide's `_build` folder in Drive (it is rewritten whenever the past-paper analysis is re-run).
+2. Get the latest `export.json`, the output of the past-paper analysis (it is rewritten whenever the analysis is re-run). Today it lives in the Claude project files under `Exam_Guide/_build/`, next to the analysis scripts (`scripts.tar.gz`) and OCR text; once Kritikesh uploads that folder to Drive it will also be in `06_EXAM_GUIDE_RPSC_RSSB` › "Exam Guide" › `_build`. A copy without the Drive links is always in the repository as `public/exam-prep/guide.json`.
 3. On a computer with Python 3 and the repository (guide [07](07-run-on-your-computer.md)):
    ```
    pip install openpyxl
@@ -133,7 +133,8 @@ The full explanation, written for Kritikesh, is the Claude artifact "How aspiran
 ## 9. Where the copies are
 
 - **Code and data:** this repository.
-- **Sheets:** Google Drive › library › `06_EXAM_GUIDE_RPSC_RSSB` › "Exam Guide" (the Exam Guide sheet, `_build/export.json`, past papers) and the Curriculum Index sheet.
+- **Sheets:** Google Drive › library › `06_EXAM_GUIDE_RPSC_RSSB` › "Exam Guide" (the Exam Guide sheet, past papers, and a README explaining how they feed the website) and the Curriculum Index sheet. The analysis output and scripts (`_build/`) are in the Claude project files until uploaded by hand.
+- **Analysis scripts stay private:** they contain Drive file IDs of the papers, so never commit them to this public repository.
 - **Guides in Drive:** the same Drive folder has "README: how the sheets feed the website", and "Curious Sparoows Website (backup)" has a copy of this guide plus the assessment and SEO write-ups.
 
 _Last updated: 2 November 2026._
