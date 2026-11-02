@@ -32,14 +32,14 @@ The website never reads Google directly. When a sheet changes, the website only 
 
 | Page | Address | Built from | File |
 | :---- | :---- | :---- | :---- |
-| Intro (problems first, short Q&A) | /exam-prep/ | text written in the file | `src/pages/exam-prep/index.astro` |
-| Exhaustive Curriculum Index (all subjects, search) | /exam-prep/curriculum-index/ | Curriculum Index sheet | `src/pages/exam-prep/curriculum-index/index.astro` |
+| Intro (problems first, short Q&A) | /exam-prep/ | text written in the file | `src/pages/[...lang]/exam-prep/index.astro` |
+| Exhaustive Curriculum Index (all subjects, search) | /exam-prep/curriculum-index/ | Curriculum Index sheet | `src/pages/[...lang]/exam-prep/curriculum-index/index.astro` |
 | One subject | /exam-prep/curriculum-index/SUBJECT/ | same | `.../curriculum-index/[subject]/index.astro` |
 | One major topic (Level 1) with everything inside | /exam-prep/curriculum-index/SUBJECT/ID/ | same | `.../curriculum-index/[subject]/[major].astro` |
-| Exam Guide (pick exam and time, get ranked topics) | /exam-prep/exam-guide/ | Exam Guide sheet and export.json | `src/pages/exam-prep/exam-guide/index.astro` + `src/scripts/exam-guide.ts` |
+| Exam Guide (pick exam and time, get ranked topics) | /exam-prep/exam-guide/ | Exam Guide sheet and export.json | `src/pages/[...lang]/exam-prep/exam-guide/index.astro` + `src/scripts/exam-guide.ts` |
 | How the ranking works, papers analysed | /exam-prep/exam-guide/how-it-works/ | same | `.../exam-guide/how-it-works.astro` |
-| All exams | /exam-prep/exams/ | export.json | `src/pages/exam-prep/exams/index.astro` |
-| One exam (for example RSSB Patwari) | /exam-prep/exams/rssb-patwari/ | same | `src/pages/exam-prep/exams/[exam].astro` |
+| All exams | /exam-prep/exams/ | export.json | `src/pages/[...lang]/exam-prep/exams/index.astro` |
+| One exam (for example RSSB Patwari) | /exam-prep/exams/rssb-patwari/ | same | `src/pages/[...lang]/exam-prep/exams/[exam].astro` |
 
 Pages in square brackets (`[subject]`, `[major]`, `[exam]`) are templates: one file makes hundreds of pages, one per subject, topic or exam in the data. About 950 pages in all.
 
@@ -47,7 +47,7 @@ Pages in square brackets (`[subject]`, `[major]`, `[exam]`) are templates: one f
 
 | File | What it does | Safe to edit? |
 | --- | --- | --- |
-| `src/pages/exam-prep/index.astro` | The intro. All words are in this file (the Q&A list near the top). | Yes, the words |
+| `src/pages/[...lang]/exam-prep/index.astro` | The intro. All words are in this file (the Q&A list near the top). | Yes, the words |
 | `src/exam-prep.ts` | Shared settings: subject list, addresses, subject icons (`GLYPH`), exam display names (`FRIENDLY`) | Yes, the names |
 | `src/layouts/ExamLayout.astro` | The frame of every Exam Prep page: left sidebar (a drawer on phones), breadcrumbs, structured data for Google | With care |
 | `src/components/exam/ExamSearch.astro` | The search box, filters and results list | With care |
@@ -77,6 +77,8 @@ Do this whenever a topic is added, renamed, moved or deleted in either sheet, or
 
 **Or ask Claude:** "Rebuild the Exam Prep data from the sheets and open a pull request." Give Claude the three files, or access to the Drive folder.
 
+The Hindi version (`/hi/exam-prep/`) reads its words from `src/data/exam-prep/hi/`, which the script never touches. After a refresh, new topic ids show in English on Hindi pages until they are translated (guide [15](15-languages-and-hindi.md), part 6).
+
 ### What the script reads
 
 - **Curriculum Index:** each subject sheet, with columns ID, Lvl, Topic, Date / Period, Details, Related topics in other subjects, Part / Unit. Header on row 5.
@@ -91,14 +93,14 @@ If a column or a sheet tab is renamed in a sheet, rename it in `tools/exam-prep/
 | --- | --- |
 | Add, rename or delete a topic | Change it in the sheet, then section 4. Never edit the JSON files. |
 | Fix a wrong or junk topic | Same. Known junk rows to fix (November 2026): "Question: What is 25% of 240?" in Reasoning and "Maintain a living roadmap" in Computer. |
-| Change the intro words | Edit the `chapters` list near the top of `src/pages/exam-prep/index.astro` (each item is a question `q` and its answer lines `a`). Keep each answer short (under a 2-minute read), in a friend's voice, honest, no promises. The FAQ for Google is made from the same list. |
+| Change the intro words | Edit the `chaptersEn` list (and its Hindi twin `chaptersHi`) near the top of `src/pages/[...lang]/exam-prep/index.astro` (each item is a question `q` and its answer lines `a`). Keep each answer short (under a 2-minute read), in a friend's voice, honest, no promises. The FAQ for Google is made from the same list. |
 | Add a new subject | Add its tab to the Curriculum Index (same columns, IDs with a new 3-letter prefix). Add one line to `SUBJECTS` at the top of `build_data.py`: `('Sheet tab name', 'PFX', 'web-slug', 'Name on site')`. Add an icon for it in `GLYPH` in `src/exam-prep.ts`. Then section 4. |
 | Remove a subject | Delete its line from `SUBJECTS` in `build_data.py`, then section 4. Its pages disappear on the next publish. |
 | Add a new exam | Add it in the Exam Guide sheet and re-run the past-paper analysis so `export.json` has it. Then section 4. Its page appears by itself. For a nicer address add a line to `PAGE_SLUG` in `build_data.py`; for a nicer title add a line to `FRIENDLY` in `src/exam-prep.ts`. |
 | Change an exam's page address | Change `PAGE_SLUG` in `build_data.py`. Warning: an address Google has already indexed is lost, so do this rarely. |
 | Teach search a new Hinglish or everyday word | Add a line to `SYN` in `src/scripts/exam-search.ts`, for example `nadi: ['river', 'rivers'],` |
 | Change the ranking maths | Only if the sheet's maths changed: edit `buildPlan` in `src/scripts/exam-guide.ts` and section 7 of this guide, and the "How it works" page. |
-| Take the whole section offline | Remove the "Exam Prep" line from `NAV` in `src/site.config.ts` and delete the folder `src/pages/exam-prep/`. Everything else can stay. |
+| Take the whole section offline | Remove the "Exam Prep" line from `NAV` in `src/site.config.ts` and delete the folder `src/pages/[...lang]/exam-prep/`. Everything else can stay. |
 
 ## 6. Rules this section keeps
 
