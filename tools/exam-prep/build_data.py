@@ -47,6 +47,14 @@ PAGE_SLUG = {'RPSC-ALL': 'all-exams', 'RSSB-ALL': 'all-exams', 'CET-GRAD': 'cet-
              'SCH-LECT-SPL': 'school-lecturer-special-education', 'SR-TEACHER': 'senior-teacher', 'ACF-FRO': 'acf-forest-range-officer', 'PRAHARI': 'jail-prahari',
              'ANIMAL-ATT': 'pashu-parichar', 'CLASS-IV': 'fourth-grade', 'FOREST-GUARD': 'forest-guard', 'HOSTEL-SUPT': 'hostel-superintendent', 'MVSI-RSSB': 'mvsi',
              'SI': 'sub-inspector', 'STENO': 'stenographer', 'LDC': 'ldc-clerk', 'RAS-PRE': 'ras-pre', 'RAS-MAINS': 'ras-mains'}
+# Topic rows whose sheet text is not a real topic title (an example question, a note to self).
+# Fixed here so the fix survives every rebuild, even before the sheet itself is corrected.
+# Add Hindi for the same id in src/data/exam-prep/hi/topics/. Patch existing data with: build_data.py --fix-only
+TITLE_FIX = {
+    'REA-40.1': 'Arithmetic word problems (for example, percentages)',
+    'REA-40.2': 'Worked example: 25% of 240 = 60',
+    'COM-35.11': 'Computer terms, abbreviations and learning routes',
+}
 ID_RE = re.compile(r'\b([A-Z]{3})-(\d+(?:\.\d+)*)\b')
 
 
@@ -95,7 +103,7 @@ def read_subject(ws, prefix):
         topics.append({
             'id': tid.strip(),
             'lvl': lvl,
-            't': clean(g(r, 'Topic')),
+            't': TITLE_FIX.get(tid.strip(), clean(g(r, 'Topic'))),
             'p': clean(g(r, 'Date / Period')),
             'd': clean(g(r, 'Details')),
             'rel': clean(g(r, 'Related topics in other subjects')),
@@ -184,7 +192,7 @@ def main(ci_path, eg_path, export_path):
     sub_index = {s['name']: i for i, s in enumerate(subjects)}
     for gname, slug in GUIDE_SUBJECT.items():
         sub_index[gname] = [i for i, s in enumerate(subjects) if s['slug'] == slug][0]
-    units = [[u[0], sub_index[u[1]], u[2], u[3], u[4]] for u in guide['units']]
+    units = [[u[0], sub_index[u[1]], TITLE_FIX.get(u[0], u[2]), u[3], TITLE_FIX.get(u[3], u[4])] for u in guide['units']]
     def r5(x):
         return float(f'{x:.4g}') if x else 0
     scores = {k: [r5(v) for v in guide['score'][k]] for k in guide['keys']}
@@ -241,7 +249,45 @@ def main(ci_path, eg_path, export_path):
     print(stats)
 
 
+def fix_only():
+    """Apply TITLE_FIX to the data files already in the repository (no sheets needed)."""
+    n = 0
+    for f in (OUT_SRC / 'topics').glob('*.json'):
+        topics = json.loads(f.read_text(encoding='utf-8'))
+        changed = False
+        for t in topics:
+            if t['id'] in TITLE_FIX and t['t'] != TITLE_FIX[t['id']]:
+                t['t'] = TITLE_FIX[t['id']]; changed = True; n += 1
+            for link in t.get('rel', []):
+                if link[0] in TITLE_FIX:
+                    link[1] = TITLE_FIX[link[0]]; changed = True
+        if changed:
+            f.write_text(json.dumps(topics, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+    sp = OUT_PUB / 'search.json'
+    search = json.loads(sp.read_text(encoding='utf-8'))
+    for r in search['r']:
+        if r[0] in TITLE_FIX:
+            r[1] = TITLE_FIX[r[0]]
+    sp.write_text(json.dumps(search, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+    gp = OUT_PUB / 'guide.json'
+    guide = json.loads(gp.read_text(encoding='utf-8'))
+    for u in guide['units']:
+        u[2] = TITLE_FIX.get(u[0], u[2])
+        u[4] = TITLE_FIX.get(u[3], u[4])
+    gp.write_text(json.dumps(guide, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+    ep = OUT_SRC / 'exam-pages.json'
+    pages = json.loads(ep.read_text(encoding='utf-8'))
+    for pg in pages:
+        for t in pg['top']:
+            t['t'] = TITLE_FIX.get(t['id'], t['t'])
+    ep.write_text(json.dumps(pages, ensure_ascii=False, indent=1), encoding='utf-8')
+    print(f'fixed {n} topic titles, plus search, guide and exam pages')
+
+
 if __name__ == '__main__':
+    if sys.argv[1:] == ['--fix-only']:
+        fix_only()
+        raise SystemExit(0)
     if len(sys.argv) != 4:
         raise SystemExit(__doc__)
     main(*sys.argv[1:])

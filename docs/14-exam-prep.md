@@ -92,7 +92,7 @@ If a column or a sheet tab is renamed in a sheet, rename it in `tools/exam-prep/
 | I want to... | Do this |
 | --- | --- |
 | Add, rename or delete a topic | Change it in the sheet, then section 4. Never edit the JSON files. |
-| Fix a wrong or junk topic | Same. Known junk rows to fix (November 2026): "Question: What is 25% of 240?" in Reasoning and "Maintain a living roadmap" in Computer. |
+| Fix a wrong or junk topic | Same. Rows whose sheet text isn't a real topic title can also be renamed in `TITLE_FIX` at the top of `build_data.py` (then run `python3 tools/exam-prep/build_data.py --fix-only`, and add the Hindi title for the same id). Done that way on 2 November 2026 for REA-40.1, REA-40.2 and COM-35.11; still to clean in the sheet: the 60-odd rows under COM-35.11 that are really an appendix (learning routes, references and web links). |
 | Change the intro words | Edit the `chaptersEn` list (and its Hindi twin `chaptersHi`) near the top of `src/pages/[...lang]/exam-prep/index.astro` (each item is a question `q` and its answer lines `a`). Keep each answer short (under a 2-minute read), in a friend's voice, honest, no promises. The FAQ for Google is made from the same list. |
 | Add a new subject | Add its tab to the Curriculum Index (same columns, IDs with a new 3-letter prefix). Add one line to `SUBJECTS` at the top of `build_data.py`: `('Sheet tab name', 'PFX', 'web-slug', 'Name on site')`. Add an icon for it in `GLYPH` in `src/exam-prep.ts`. Then section 4. |
 | Remove a subject | Delete its line from `SUBJECTS` in `build_data.py`, then section 4. Its pages disappear on the next publish. |
