@@ -8,17 +8,29 @@ import { SUBJECTS, GLYPH, BASE, CI, GUIDE, fmt } from '../exam-prep';
 interface Props {
   title: string;
   description: string;
-  section: 'home' | 'ci' | 'guide' | 'how';
+  section: 'home' | 'ci' | 'guide' | 'how' | 'exams';
   subject?: string; // slug of the subject being read
   major?: string; // slug of the major topic being read
   crumbs?: { href?: string; label: string }[];
   schema?: Record<string, unknown>[];
+  noindex?: boolean;
 }
-const { title, description, section, subject, major, crumbs = [], schema } = Astro.props;
+const { title, description, section, subject, major, crumbs = [], schema, noindex } = Astro.props;
 const current = SUBJECTS.find((s) => s.slug === subject);
+// Breadcrumbs for search engines, built from the visible crumbs
+const crumbSchema = crumbs.length
+  ? [{
+      '@type': 'BreadcrumbList',
+      itemListElement: crumbs.map((c, i) => ({
+        '@type': 'ListItem', position: i + 1, name: c.label,
+        ...(c.href ? { item: new URL(c.href, Astro.site).href } : { item: new URL(Astro.url.pathname, Astro.site).href }),
+      })),
+    }]
+  : [];
+const allSchema = [...crumbSchema, ...(schema ?? [])];
 ---
 
-<Base {title} {description} {schema}>
+<Base {title} {description} {noindex} schema={allSchema}>
   <div class="ex wrap t-exam-prep">
     <button class="ex-menu" type="button" aria-expanded="false" aria-controls="ex-side" data-ex-menu>
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
@@ -72,6 +84,7 @@ const current = SUBJECTS.find((s) => s.slug === subject);
         </a>
         <ul class="side-links">
           <li><a href={`${GUIDE}/`} aria-current={section === 'guide' ? 'page' : undefined}>Find my topics</a></li>
+          <li><a href={`${BASE}/exams/`} aria-current={section === 'exams' ? 'page' : undefined}>Most asked topics, exam by exam</a></li>
           <li><a href={`${GUIDE}/how-it-works/`} aria-current={section === 'how' ? 'page' : undefined}>How the ranking works</a></li>
           <li><a href={`${GUIDE}/how-it-works/#papers`}>Papers analysed</a></li>
         </ul>

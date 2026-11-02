@@ -21,6 +21,7 @@ const qa: [string, string][] = [
   title="How the Exam Guide ranks topics"
   description="How the Exam Guide turns RPSC and RSSB past papers into a ranked, finishable topic list, what it is built from, and where it can be wrong."
   section="how"
+  schema={[{ '@type': 'FAQPage', mainEntity: qa.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a.replace(/<[^>]+>/g, '') } })) }]}
   crumbs={[{ href: `${BASE}/`, label: 'Exam Prep' }, { href: `${GUIDE}/`, label: 'Exam Guide' }, { label: 'How it works' }]}
 >
   <header>

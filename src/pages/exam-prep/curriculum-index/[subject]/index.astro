@@ -20,7 +20,7 @@ const asked = s.majors.filter((m) => m.q > 0).sort((a, b) => b.q - a.q).slice(0,
 ---
 
 <ExamLayout
-  title={`${s.name} · Curriculum Index`}
+  title={`${s.name} Syllabus for Competitive Exams: All ${fmt(s.total)} Topics in Order`}
   description={`${s.blurb} ${fmt(s.total)} topics of ${s.name} for competitive exams, in order, from the basics up.`}
   section="ci"
   subject={s.slug}

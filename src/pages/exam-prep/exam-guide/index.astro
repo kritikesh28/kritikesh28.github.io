@@ -9,7 +9,7 @@ const quick = [
 ---
 
 <ExamLayout
-  title="Exam Guide: your topics, most important first"
+  title="Free Exam Study Planner: Your Most Important Topics from Past Papers (RPSC, RSSB)"
   description={`Pick your RPSC or RSSB exam and how much time you have. The Exam Guide ranks topics by ${fmt(STATS.questions)} past questions and gives you a short list to start with.`}
   section="guide"
   crumbs={[{ href: `${BASE}/`, label: 'Exam Prep' }, { label: 'Exam Guide' }]}
@@ -81,6 +81,8 @@ const quick = [
       <div><dt>Topics a day</dt><dd data-t="pd">–</dd></div>
       <div><dt>Based on</dt><dd class="src" data-t="src">–</dd></div>
     </dl>
+
+    <p class="pagelink" hidden data-eg-page><a href="/exam-prep/exams/"></a></p>
 
     <h2 class="sec">Your list by subject</h2>
     <p class="small muted">Tap a subject to see only its topics.</p>
@@ -226,6 +228,11 @@ const quick = [
       $('[data-t="src"]').textContent = p.exam.papers
         ? `${p.exam.papers} paper${p.exam.papers > 1 ? 's' : ''} · ${fmt(p.exam.questions)} questions${p.exam.years !== 'all' ? ` · ${p.exam.years}` : ''}`
         : p.exam.key === 'GENERAL' ? 'All RPSC + RSSB papers' : `Syllabus + other ${p.exam.agency} papers`;
+      // link to the exam's own analysis page
+      const pl = $('[data-eg-page]');
+      const pg = (p.exam as { page?: string }).page;
+      pl.hidden = !pg;
+      if (pg) { const a = pl.querySelector('a')!; a.href = `/exam-prep/exams/${pg}/`; a.textContent = `Read the full past-paper analysis for this exam →`; }
       // bars
       const inPlan = p.items.slice(0, p.n);
       const by = new Map<number, { n: number; q: number }>();
@@ -409,6 +416,7 @@ const quick = [
   .list :global(.st) { color: var(--gold); letter-spacing: 0.08em; font-size: 0.9rem; }
   .list :global(.q) { font-size: 0.78rem; color: var(--ink-soft); white-space: nowrap; }
   .list :global(.none) { padding: 1rem; color: var(--ink-soft); }
+  .pagelink { margin: 0.8rem 0 0; font-weight: 600; }
   .honest { margin-top: 1.6rem; padding: 1rem 1.2rem; border-radius: 16px; border-left: 4px solid var(--tree); background: var(--surface); }
   .honest p { margin: 0; font-size: 0.93rem; }
   @media (max-width: 640px) {
