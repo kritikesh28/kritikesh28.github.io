@@ -46,3 +46,20 @@ export function partLabel(part: string) {
   }
   return last || 'Topics';
 }
+
+import examPagesJson from './data/exam-prep/exam-pages.json';
+export type ExamPage = {
+  gov: string; agency: string; name: string; key: string; short: string; slug: string; alias: string; papers: number; years: string; questions: number;
+  syllabus: boolean; qpp: number; ranked: number; n85: number; cov10: number; cov50: number; langOnly: boolean; paperList: [number, string][];
+  subjects: [number, number][]; top: { id: string; s: number; t: string; major: string; q: number; here: number; all: number; last: number }[];
+};
+export const EXAM_PAGES = examPagesJson as ExamPage[];
+const FRIENDLY: Record<string, string> = {
+  'RAS-PRE': 'RAS Pre', 'RAS-MAINS': 'RAS Mains', LDC: 'LDC (Clerk Grade II)', SI: 'SI (Sub Inspector)', 'SCH-LECT': 'School Lecturer (1st Grade)',
+  'SCH-LECT-SPL': 'School Lecturer (Special Education)', 'SR-TEACHER': 'Senior Teacher (2nd Grade)', 'CET-GRAD': 'CET Graduate Level', 'CET-12': 'CET 12th Level',
+  PATWARI: 'Patwari', VDO: 'VDO (Gram Vikas Adhikari)', PRAHARI: 'Jail Prahari', 'ANIMAL-ATT': 'Pashu Parichar', 'CLASS-IV': 'Fourth Grade (Class IV)',
+  'FOREST-GUARD': 'Forest Guard and Forester', 'HOSTEL-SUPT': 'Hostel Superintendent', 'MVSI-RSSB': 'MVSI', MVSI: 'MVSI', STENO: 'Stenographer',
+  AAO: 'AAO (Assistant Agriculture Officer)', AEN: 'AEN', APO: 'APO', 'ACF-FRO': 'ACF and Forest Range Officer', RSET: 'RSET', NHM: 'NHM', SURVEYOR: 'Surveyor and Mine Foreman', APRO: 'APRO',
+};
+/** "RPSC RAS Pre", "RSSB Patwari", "All RPSC exams" */
+export const examTitle = (e: ExamPage) => (e.key.endsWith('-ALL') ? `All ${e.agency} exams` : `${e.agency} ${FRIENDLY[e.key] ?? e.short}`);

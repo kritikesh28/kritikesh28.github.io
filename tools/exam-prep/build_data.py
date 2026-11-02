@@ -43,6 +43,10 @@ SUBJECTS = [
 ]
 # Names the Exam Guide uses for a subject -> our slug
 GUIDE_SUBJECT = {'Technology': 'technology', 'Art & Culture': 'art-culture', 'Rajasthan': 'rajasthan'}
+PAGE_SLUG = {'RPSC-ALL': 'all-exams', 'RSSB-ALL': 'all-exams', 'CET-GRAD': 'cet-graduate', 'CET-12': 'cet-senior-secondary', 'SCH-LECT': 'school-lecturer',
+             'SCH-LECT-SPL': 'school-lecturer-special-education', 'SR-TEACHER': 'senior-teacher', 'ACF-FRO': 'acf-forest-range-officer', 'PRAHARI': 'jail-prahari',
+             'ANIMAL-ATT': 'pashu-parichar', 'CLASS-IV': 'fourth-grade', 'FOREST-GUARD': 'forest-guard', 'HOSTEL-SUPT': 'hostel-superintendent', 'MVSI-RSSB': 'mvsi',
+             'SI': 'sub-inspector', 'STENO': 'stenographer', 'LDC': 'ldc-clerk', 'RAS-PRE': 'ras-pre', 'RAS-MAINS': 'ras-mains'}
 ID_RE = re.compile(r'\b([A-Z]{3})-(\d+(?:\.\d+)*)\b')
 
 
@@ -193,6 +197,41 @@ def main(ci_path, eg_path, export_path):
     out = {'subjects': meta['subjects'], 'exams': exams, 'units': units, 'score': scores, 'hits': hits, 'last': last,
            'hits_all': guide['hits_all'], 'papers': papers, 'missing': missing, 'questions': guide['nq_total']}
     (OUT_PUB / 'guide.json').write_text(json.dumps(out, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+    # One static page per Rajasthan exam (for people who search "<exam> important topics")
+    pages = []
+    for e in exams:
+        if e['gov'] != 'Rajasthan Govt':
+            continue
+        k = e['key']
+        sc = scores[k]
+        order = sorted([(v, i) for i, v in enumerate(sc) if v > 0], reverse=True)
+        total = sum(v for v, _ in order) or 1
+        cum, n85 = 0, len(order)
+        for r, (v, _) in enumerate(order):
+            cum += v
+            if cum / total >= 0.85:
+                n85 = r + 1
+                break
+        subj = {}
+        for v, i in order:
+            subj[units[i][1]] = subj.get(units[i][1], 0) + v
+        top = []
+        for r, (v, i) in enumerate(order[:40]):
+            u = units[i]
+            top.append({'id': u[0], 's': u[1], 't': u[2], 'major': '' if u[0] == u[3] else u[4],
+                        'q': round(v * e['qpp'], 2), 'here': hits[k].get(i, 0), 'all': guide['hits_all'][i], 'last': last[k].get(i, 0) or last_all.get(u[0], 0)})
+        cov10 = sum(v for v, _ in order[:10]) / total
+        cov50 = sum(v for v, _ in order[:50]) / total
+        short = e['name'].split(' · ', 1)[-1]
+        slug = f"{e['agency']}-{PAGE_SLUG.get(k, k)}".lower()
+        mine = [pp for pp in guide['papers'] if pp[4] == 'pyq' and (k.endswith('-ALL') and pp[0] == e['agency'] or pp[1] == short)]
+        lang_only = bool(mine) and all(re.search(r'hindi|english|language', pp[3], re.I) and not re.search(r'gk|g\.k|general knowledge|gs', pp[3], re.I) for pp in mine)
+        pages.append({**e, 'short': short, 'slug': slug, 'langOnly': lang_only, 'paperList': [[pp[2], pp[3]] for pp in mine][:12], 'ranked': len(order), 'n85': n85, 'cov10': round(cov10, 3), 'cov50': round(cov50, 3),
+                      'subjects': sorted([[si, round(v * e['qpp'], 1)] for si, v in subj.items()], key=lambda x: -x[1]), 'top': top})
+    page_of = {pg['key']: pg['slug'] for pg in pages if not pg['langOnly']}
+    out['exams'] = [{**ex, 'page': page_of.get(ex['key'], '')} for ex in out['exams']]
+    (OUT_PUB / 'guide.json').write_text(json.dumps(out, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+    (OUT_SRC / 'exam-pages.json').write_text(json.dumps(pages, ensure_ascii=False, indent=1), encoding='utf-8')
     (OUT_SRC / 'papers.json').write_text(json.dumps({'papers': papers, 'missing': missing, 'exams': exams}, ensure_ascii=False, indent=1), encoding='utf-8')
     stats = {'topics': sum(s['total'] for s in subjects), 'majors': sum(len(s['majors']) for s in subjects),
              'subjects': len(subjects), 'papers': sum(1 for p in papers if p[4] == 'pyq'),

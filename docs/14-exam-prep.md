@@ -47,3 +47,12 @@ If a column is renamed in a sheet, rename it in `tools/exam-prep/build_data.py` 
 - "≈ Qs per paper" = score × questions in one paper.
 - Recommended number of topics = study days × 0.8 × hours a day × 0.75 ÷ 2 hours per topic, never more than the topics that covered 85% of past questions, and at least 10 when there is any time at all. No date = the 85% list.
 - Stars: top 5% ★★★★★, next 10% ★★★★, next 20% ★★★, next 25% ★★, rest ★.
+
+## Being found on Google and by AI assistants
+
+- **Exam pages** (/exam-prep/exams/ and one page per RPSC/RSSB exam) are built from `src/data/exam-prep/exam-pages.json`, which the script writes. Each page opens with a plain answer (what AI assistants quote), then subject weightage, the top 40 topics, an FAQ and the papers used. Exams whose only analysed paper is a language paper (AEN, APO) are marked `noindex` and left out of the sitemap, so they never mislead a searcher.
+- **Titles** follow how aspirants search: "<exam> Most Asked Topics: Topic-wise PYQ Analysis and Subject Weightage", "<subject> Syllabus for Competitive Exams: All N Topics in Order".
+- **Structured data:** breadcrumbs on every Exam Prep page (from the visible crumbs, in `ExamLayout.astro`), FAQ on the intro, exam pages and "How it works", and a ranked list on exam pages.
+- **llms.txt** lists Exam Prep and every exam page for AI assistants.
+- **IndexNow:** `.github/workflows/indexnow.yml` runs after each successful publish and sends every sitemap page to IndexNow (Bing, which also feeds ChatGPT search and Copilot). The key file is the 32-character `.txt` in `public/`; keep it.
+- **By hand, once:** submit `sitemap-index.xml` in Google Search Console, and import the site into Bing Webmaster Tools from Search Console.

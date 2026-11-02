@@ -1,12 +1,18 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import { readFileSync } from 'node:fs';
+
+// Exam pages that only cover a language paper are kept out of search (noindex), so keep them out of the sitemap too.
+const hiddenExamPages = JSON.parse(readFileSync(new URL('./src/data/exam-prep/exam-pages.json', import.meta.url), 'utf8'))
+  .filter((e) => e.langOnly)
+  .map((e) => `/exam-prep/exams/${e.slug}/`);
 
 // When you buy a domain, change `site` to it (for example 'https://curioussparoows.com')
 // and add the domain to public/CNAME. See docs/04-edit-pages-and-settings.md.
 export default defineConfig({
   site: 'https://curioussparoows.com',
-  integrations: [sitemap({ filter: (page) => !page.includes('/thanks/') && !page.endsWith('/all/') && !page.includes('/blog/') })],
+  integrations: [sitemap({ filter: (page) => !page.includes('/thanks/') && !page.endsWith('/all/') && !page.includes('/blog/') && !hiddenExamPages.some((p) => page.endsWith(p)) })],
   security: {
     // Content Security Policy: the browser only runs scripts and loads content from the sources listed here.
     csp: {
