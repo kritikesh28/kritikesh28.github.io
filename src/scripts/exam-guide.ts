@@ -3,7 +3,7 @@
 // View only: nothing is saved or sent. The choices live in the page address so a plan can be shared.
 // The maths is the same as in the sheet (docs/14-exam-prep.md, "How the ranking works").
 
-type Exam = { gov: string; agency: string; bank: string; name: string; key: string; alias: string; papers: number; years: string; questions: number; syllabus: boolean; qpp: number };
+type Exam = { gov: string; govLabel?: string; agency: string; bank: string; name: string; key: string; alias: string; papers: number; years: string; questions: number; syllabus: boolean; qpp: number };
 type Guide = {
   subjects: [string, string, string][]; exams: Exam[]; units: [string, number, string, string, string][];
   score: Record<string, number[]>; hits: Record<string, Record<string, number>>; last: Record<string, Record<string, number>>;
@@ -16,11 +16,12 @@ export type Plan = {
 
 let data: Guide | undefined;
 export async function loadGuide() {
-  data ??= await fetch('/exam-prep/guide.json').then((r) => r.json());
+  const lang = document.documentElement.lang;
+  data ??= await fetch(`${lang === 'en' ? '' : `/${lang}`}/exam-prep/guide.json`).then((r) => r.json());
   return data!;
 }
 
-export const norm = (s: string) => s.toLowerCase().normalize('NFC').replace(/[^\p{L}\p{M}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim();
+export const norm = (s: string) => s.toLowerCase().normalize('NFC').replace(/\u093C/g, '').replace(/[^\p{L}\p{M}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim();
 function lev(a: string, b: string) {
   const d = Array.from({ length: b.length + 1 }, (_, i) => i);
   for (let i = 1; i <= a.length; i++) {
@@ -100,5 +101,6 @@ export function buildPlan(g: Guide, examIndex: number, opts: { deadline?: Date; 
 export const slugId = (id: string) => id.toLowerCase().replaceAll('.', '-');
 export function topicUrl(g: Guide, id: string, s: number) {
   const l1 = id.match(/^[A-Z]{3}-\d+/)?.[0] ?? id;
-  return `/exam-prep/curriculum-index/${g.subjects[s][0]}/${slugId(l1)}/${l1 === id ? '' : '#' + slugId(id)}`;
+  const lang = document.documentElement.lang;
+  return `${lang === 'en' ? '' : `/${lang}`}/exam-prep/curriculum-index/${g.subjects[s][0]}/${slugId(l1)}/${l1 === id ? '' : '#' + slugId(id)}`;
 }

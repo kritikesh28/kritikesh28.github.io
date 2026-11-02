@@ -1,0 +1,329 @@
+---
+// Exam Prep, the front door: starts from the problems aspirants feel, builds up step by step,
+// and only then introduces the two tools. Short Q&A, every answer well under 2 minutes.
+// Text rules: docs/VISION.md (no guarantees, no pressure). Guide: docs/14-exam-prep.md
+import ExamLayout from '../../../layouts/ExamLayout.astro';
+import { STATS, paths, fmt } from '../../../exam-prep';
+import { langFromUrl, langParams, pick, localizePath } from '../../../i18n/config';
+
+export const getStaticPaths = () => langParams().map((params) => ({ params }));
+const lang = langFromUrl(Astro.url);
+const { CI, GUIDE, BASE } = paths(lang);
+
+// reading time: about 200 English or 150 Hindi words a minute
+const secs = (s: string) => Math.max(15, Math.round((s.split(/\s+/).length / (lang === 'hi' ? 150 : 200)) * 60 / 5) * 5);
+type QA = { q: string; a: string[] };
+const chaptersEn: { kicker: string; title: string; qa: QA[] }[] = [
+  {
+    kicker: 'Part 1',
+    title: 'Does any of this sound like you?',
+    qa: [
+      {
+        q: 'Why does the syllabus feel like a mountain?',
+        a: [
+          'Because nobody shows you the whole of it at once. You get one book for history, another for polity, a coaching list for Rajasthan GK, and a PDF that a friend forwarded. Each one looks finished on its own, and none of them tells you how big the whole thing is.',
+          'When you can\'t see the edges of a task, your mind fills the gap with "it\'s endless". That feeling is not laziness. It is what uncertainty feels like.',
+        ],
+      },
+      {
+        q: 'Why do I keep starting, and never finishing?',
+        a: [
+          'Most of us start at chapter one of the thickest book, because that feels responsible. Three weeks later we are still in ancient history, the exam date has not moved, and we quietly start again with a new book.',
+          'The problem is rarely discipline. It is starting without knowing which pages matter most for your exam.',
+        ],
+      },
+      {
+        q: 'Why does everyone give different advice?',
+        a: [
+          'Every topper, teacher and channel remembers their own exam, their own year and their own strengths. Their advice is honest, but it is one person\'s experience. When ten honest people disagree, you end up following none of them, or all of them at once.',
+        ],
+      },
+      {
+        q: 'Why does working hard still feel like guessing?',
+        a: [
+          'Because you are making the most important decision, what to study first, without evidence. The evidence exists: it is sitting in old question papers. It is just too slow to count it by hand, paper after paper, while you are also trying to study.',
+        ],
+      },
+    ],
+  },
+  {
+    kicker: 'Part 2',
+    title: 'So I tried to fix the two things that hurt most',
+    qa: [
+      {
+        q: 'What if you could see the whole map first?',
+        a: [
+          `That is the <a href="${CI}/">Exhaustive Curriculum Index</a>: ${STATS.subjects} subjects broken into ${fmt(STATS.majors)} major topics and ${fmt(STATS.topics)} topics in all, in a sensible order, from the basics up. It is big on purpose. Seeing the edges is what makes the mountain stop feeling endless.`,
+          'You don\'t read it like a book. You search it, open one subject at a time, and come back whenever you wonder "where does this fit?".',
+        ],
+      },
+      {
+        q: 'What if past papers could tell you where to start?',
+        a: [
+          `That is the <a href="${GUIDE}/">Exam Guide</a>. We machine-read ${STATS.papers} RPSC and RSSB question papers and ${STATS.syllabi} syllabi, and matched ${fmt(STATS.questions)} questions to topics in the index. You pick your exam and how much time you have; it gives you a short list, most-asked topics first, sized to what you can finish.`,
+        ],
+      },
+      {
+        q: 'How is that different from a topper\'s list?',
+        a: [
+          'It shows its working. Next to every topic you see how often it was asked, in which exam and when it was last asked. If you disagree with it, you can see exactly why it said what it said, and decide for yourself.',
+        ],
+      },
+    ],
+  },
+  {
+    kicker: 'Part 3',
+    title: 'Fair questions to ask before you trust it',
+    qa: [
+      {
+        q: 'Will this guarantee my selection?',
+        a: [
+          'No, and be careful of anyone who promises that. Past papers show what was asked; they can\'t tell what will be asked next time. What this does is take away the guessing about where to begin, so your hours go into the topics that have mattered most so far.',
+        ],
+      },
+      {
+        q: 'What doesn\'t it cover yet?',
+        a: [
+          'Today it knows RPSC and RSSB best. For SSC, UPSC, Railway, NTA and bank exams it shows the overall pattern for now, because their papers aren\'t added yet. Some exams have only a syllabus and no papers, and a few papers were too large to read. Machine-reading scanned papers also makes mistakes, so treat the ranking as a strong guide, not a verdict.',
+        ],
+      },
+      {
+        q: 'Why can\'t I tick topics or log in here?',
+        a: [
+          'On purpose. This section is view only: nothing you type or pick is saved, sent or tracked, and there are no streaks to make you feel guilty. Keep your progress where you already study, in a notebook or your own sheet. Your list lives in the page address, so you can bookmark it or send it to a friend.',
+        ],
+      },
+    ],
+  },
+];
+const chaptersHi: typeof chaptersEn = [
+  {
+    kicker: 'भाग 1',
+    title: 'क्या आपके साथ भी ऐसा होता है?',
+    qa: [
+      {
+        q: 'सिलेबस पहाड़ जैसा क्यों लगता है?',
+        a: [
+          'क्योंकि कोई भी आपको पूरा सिलेबस एक साथ नहीं दिखाता। इतिहास की एक किताब, राजव्यवस्था की दूसरी, राजस्थान GK की कोचिंग वाली सूची, और दोस्त की भेजी एक PDF। हर एक अपने आप में पूरी लगती है, पर कोई नहीं बताता कि पूरा काम कितना बड़ा है।',
+          'जब किसी काम का किनारा न दिखे, तो मन मान लेता है कि "यह कभी ख़त्म नहीं होगा"। यह आलस नहीं है। अनिश्चितता (पक्का पता न होना) ऐसी ही महसूस होती है।',
+        ],
+      },
+      {
+        q: 'पढ़ाई बार-बार शुरू होती है, पर पूरी क्यों नहीं होती?',
+        a: [
+          'हम में से ज़्यादातर लोग सबसे मोटी किताब के पहले अध्याय से शुरू करते हैं, क्योंकि ऐसा करना ज़िम्मेदारी जैसा लगता है। तीन हफ़्ते बाद भी हम प्राचीन इतिहास में ही होते हैं, परीक्षा की तारीख़ वहीं की वहीं है, और हम चुपचाप नई किताब से फिर शुरू कर देते हैं।',
+          'असली दिक़्क़त अनुशासन (ख़ुद पर काबू) की कमी नहीं होती। दिक़्क़त यह है कि बिना जाने शुरू किया कि आपकी परीक्षा के लिए कौन-से पन्ने सबसे ज़रूरी हैं।',
+        ],
+      },
+      {
+        q: 'हर कोई अलग सलाह क्यों देता है?',
+        a: [
+          'हर टॉपर, शिक्षक और चैनल अपनी परीक्षा, अपना साल और अपनी ताक़त याद रखता है। उनकी सलाह सच्ची है, पर वह एक इंसान का अनुभव है। जब दस सच्चे लोग अलग-अलग बात कहें, तो हम या तो किसी की नहीं मानते, या सबकी एक साथ मानने लगते हैं।',
+        ],
+      },
+      {
+        q: 'मेहनत करके भी अंदाज़ा लगाने जैसा क्यों लगता है?',
+        a: [
+          'क्योंकि सबसे बड़ा फ़ैसला, कि पहले क्या पढ़ें, आप बिना सबूत के ले रहे हैं। सबूत मौजूद है: वह पुराने प्रश्न-पत्रों में रखा है। बस पढ़ाई के साथ-साथ हर पेपर को हाथ से गिनना बहुत धीमा काम है।',
+        ],
+      },
+    ],
+  },
+  {
+    kicker: 'भाग 2',
+    title: 'इसलिए मैंने सबसे ज़्यादा चुभने वाली दो बातें ठीक करने की कोशिश की',
+    qa: [
+      {
+        q: 'अगर पहले पूरा नक्शा दिख जाए तो?',
+        a: [
+          `यही है <a href="${CI}/">पूरा पाठ्यक्रम सूचकांक</a> (सिलेबस का पूरा नक्शा): ${STATS.subjects} विषय, ${fmt(STATS.majors)} मुख्य टॉपिक और कुल ${fmt(STATS.topics)} टॉपिक, सही क्रम में, बुनियाद से ऊपर तक। यह जान-बूझकर बड़ा है। किनारे दिख जाएँ, तभी पहाड़ "कभी न ख़त्म होने वाला" लगना बंद होता है।`,
+          'इसे किताब की तरह शुरू से अंत तक नहीं पढ़ना है। इसमें खोजिए, एक बार में एक विषय खोलिए, और जब भी सोचें "यह टॉपिक कहाँ आता है?", तब वापस आइए।',
+        ],
+      },
+      {
+        q: 'अगर पुराने पेपर बता दें कि कहाँ से शुरू करें तो?',
+        a: [
+          `यही है <a href="${GUIDE}/">परीक्षा गाइड</a>। कंप्यूटर से RPSC और RSSB के ${STATS.papers} प्रश्न-पत्र और ${STATS.syllabi} सिलेबस पढ़े गए, और ${fmt(STATS.questions)} सवालों को सूचकांक के टॉपिकों से मिलाया गया। आप अपनी परीक्षा और अपने पास बचा समय चुनते हैं; यह आपको एक छोटी सूची देती है, सबसे ज़्यादा पूछे गए टॉपिक सबसे ऊपर, उतनी ही जितनी आप पूरी कर सकें।`,
+        ],
+      },
+      {
+        q: 'यह किसी टॉपर की सूची से अलग कैसे है?',
+        a: [
+          'यह अपना हिसाब दिखाती है। हर टॉपिक के साथ आप देखते हैं कि वह कितनी बार पूछा गया, किस परीक्षा में, और आख़िरी बार कब। अगर आप इससे सहमत न हों, तो आप साफ़ देख सकते हैं कि इसने ऐसा क्यों कहा, और फिर ख़ुद फ़ैसला कर सकते हैं।',
+        ],
+      },
+    ],
+  },
+  {
+    kicker: 'भाग 3',
+    title: 'भरोसा करने से पहले पूछने लायक़ सवाल',
+    qa: [
+      {
+        q: 'क्या इससे चयन पक्का हो जाएगा?',
+        a: [
+          'नहीं, और जो ऐसा वादा करे उससे सावधान रहिए। पुराने पेपर बताते हैं कि क्या पूछा गया था; वे यह नहीं बता सकते कि अगली बार क्या पूछा जाएगा। यह बस इतना करता है कि "कहाँ से शुरू करूँ" का अंदाज़ा हटा देता है, ताकि आपके घंटे उन टॉपिकों में लगें जो अब तक सबसे ज़्यादा काम के रहे हैं।',
+        ],
+      },
+      {
+        q: 'अभी इसमें क्या नहीं है?',
+        a: [
+          'अभी यह RPSC और RSSB को सबसे अच्छी तरह जानता है। SSC, UPSC, रेलवे, NTA और बैंक की परीक्षाओं के लिए अभी यह सब परीक्षाओं का मिला-जुला पैटर्न दिखाता है, क्योंकि उनके पेपर अभी जोड़े नहीं गए। कुछ परीक्षाओं का सिर्फ़ सिलेबस है, पेपर नहीं, और कुछ पेपर पढ़ने के लिए बहुत बड़े थे। स्कैन किए पेपरों को कंप्यूटर से पढ़ने में ग़लतियाँ भी होती हैं, इसलिए इस क्रम को मज़बूत मार्गदर्शन मानिए, अंतिम फ़ैसला नहीं।',
+        ],
+      },
+      {
+        q: 'यहाँ टॉपिक पर निशान लगाने या लॉग-इन करने की सुविधा क्यों नहीं है?',
+        a: [
+          'जान-बूझकर। यह हिस्सा सिर्फ़ देखने के लिए है: आप जो लिखते या चुनते हैं, वह न सेव होता है, न भेजा जाता है, न ट्रैक होता है, और कोई "लगातार इतने दिन" वाला दबाव नहीं जो आपको अपराधी जैसा महसूस कराए। अपनी प्रगति वहीं रखिए जहाँ आप पहले से पढ़ते हैं, कॉपी में या अपनी शीट में। आपकी सूची पेज के पते (लिंक) में रहती है, इसलिए उसे बुकमार्क कर सकते हैं या किसी दोस्त को भेज सकते हैं।',
+        ],
+      },
+    ],
+  },
+];
+const chapters = lang === 'hi' ? chaptersHi : chaptersEn;
+const P = pick({
+  en: {
+    title: 'Exam Prep for RPSC, RSSB and Government Exams: Full Syllabus Map and Most Asked Topics',
+    description: 'Feeling lost in the syllabus? See every topic of 15 subjects in one searchable map, and get your exam\'s most asked topics from past papers, sized to your time. Free, no login.',
+    kick: 'Exam Prep · Curious Sparoows', h1: 'Preparing for a government exam shouldn\'t feel like drowning.',
+    sub: 'If the syllabus feels endless, the advice keeps changing and you\'re not sure what to study first, read on. Each answer below takes less than a minute.',
+    painsLabel: 'Common feelings', pains: ['“Where do I even start?”', '“I\'ve bought five books.”', '“Everyone says something different.”', '“Am I studying the right things?”'],
+    short: 'Read the short version', skip: 'Skip to my exam', secRead: 'sec read', part4: 'Part 4', steps: 'Where do I start? Three small steps',
+    t1: 'Open the Exam Guide', d1: 'Pick your exam and your date. Two minutes. You get your list, most important first.', g1: 'Find my topics →',
+    t2: 'Study from the top of your list', d2: 'Every topic opens in the Curriculum Index, with what sits inside it and what it links to.', g2: 'Open the index →',
+    t3: 'Come back when you\'re unsure', d3: 'Search any word, even misspelled, to see where it fits. Nothing here needs a login, and nothing is tracked.',
+    examsA: 'Want the short answer for one exam?', examsB: 'See the most asked topics, exam by exam', examsC: ': RAS, LDC, School Lecturer, CET, Patwari, Jail Prahari and more.',
+    sign: 'One topic at a time, a little every day. आप कर सकते हैं।',
+    note: 'Written by Kritikesh with AI help. The data comes from his Curriculum Index and Exam Guide sheets; corrections are welcome on the', contact: 'contact page',
+  },
+  hi: {
+    title: 'RPSC, RSSB और सरकारी परीक्षाओं की तैयारी: पूरे सिलेबस का नक्शा और सबसे ज़्यादा पूछे गए टॉपिक',
+    description: 'सिलेबस में खोए हुए लगते हैं? 15 विषयों का हर टॉपिक एक ही नक्शे में देखिए, जिसमें खोज सकते हैं, और पुराने पेपरों से अपनी परीक्षा के सबसे ज़्यादा पूछे गए टॉपिक पाइए, अपने समय के हिसाब से। मुफ़्त, बिना लॉग-इन।',
+    kick: 'परीक्षा तैयारी · Curious Sparoows', h1: 'सरकारी परीक्षा की तैयारी में डूबने जैसा महसूस नहीं होना चाहिए।',
+    sub: 'अगर सिलेबस कभी ख़त्म न होने वाला लगता है, सलाह बदलती रहती है और समझ नहीं आता कि पहले क्या पढ़ें, तो आगे पढ़िए। नीचे का हर जवाब एक मिनट से कम का है।',
+    painsLabel: 'आम उलझनें', pains: ['“शुरू कहाँ से करूँ?”', '“पाँच किताबें ख़रीद लीं।”', '“हर कोई अलग बात कहता है।”', '“क्या मेरी पढ़ाई सही दिशा में है?”'],
+    short: 'छोटा जवाब पढ़ें', skip: 'सीधे मेरी परीक्षा पर चलें', secRead: 'सेकंड में पढ़ें', part4: 'भाग 4', steps: 'शुरू कहाँ से करूँ? तीन छोटे क़दम',
+    t1: 'परीक्षा गाइड खोलिए', d1: 'अपनी परीक्षा और तारीख़ चुनिए। दो मिनट। आपकी सूची मिल जाएगी, सबसे ज़रूरी सबसे ऊपर।', g1: 'मेरे टॉपिक बताओ →',
+    t2: 'अपनी सूची में ऊपर से पढ़ना शुरू कीजिए', d2: 'हर टॉपिक पाठ्यक्रम सूचकांक में खुलता है: उसके अंदर क्या-क्या है और वह किन टॉपिकों से जुड़ा है।', g2: 'सूचकांक खोलें →',
+    t3: 'जब उलझन हो, वापस आइए', d3: 'कोई भी शब्द खोजिए, ग़लत स्पेलिंग भी चलेगी, और देखिए कि वह कहाँ आता है। यहाँ न लॉग-इन चाहिए, न कुछ ट्रैक होता है।',
+    examsA: 'किसी एक परीक्षा का छोटा जवाब चाहिए?', examsB: 'हर परीक्षा के सबसे ज़्यादा पूछे गए टॉपिक देखिए', examsC: ': RAS, LDC, स्कूल व्याख्याता, CET, पटवारी, जेल प्रहरी और बाक़ी।',
+    sign: 'एक बार में एक टॉपिक, रोज़ थोड़ा-थोड़ा। आप कर सकते हैं।',
+    note: 'कृतिकेश ने AI की मदद से लिखा। डेटा उनकी पाठ्यक्रम सूचकांक और परीक्षा गाइड वाली शीटों से आता है; कोई ग़लती दिखे तो बताइए,', contact: 'संपर्क पेज पर',
+  },
+}, lang);
+
+let n = 0;
+const strip = (h: string) => h.replace(/<[^>]+>/g, '');
+const faqSchema = [{ '@type': 'FAQPage', mainEntity: chapters.flatMap((c) => c.qa).map((x) => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: x.a.map(strip).join(' ') } })) }];
+---
+
+<ExamLayout
+  title={P.title}
+  description={P.description}
+  section="home"
+  schema={faqSchema}
+>
+  <header class="hero">
+    <p class="kick">{P.kick}</p>
+    <h1>{P.h1}</h1>
+    <p class="sub">{P.sub}</p>
+    <ul class="pains" aria-label={P.painsLabel}>
+      {P.pains.map((x) => <li>{x}</li>)}
+    </ul>
+    <div class="cta">
+      <a class="btn" href="#part-1">{P.short}</a>
+      <a class="btn ghost light" href={`${GUIDE}/`}>{P.skip}</a>
+    </div>
+  </header>
+
+  {chapters.map((c, ci) => (
+    <section class="chapter" id={`part-${ci + 1}`}>
+      <p class="eyebrow">{c.kicker}</p>
+      <h2>{c.title}</h2>
+      <ol class="path">
+        {c.qa.map((item) => {
+          n++;
+          return (
+            <li class="qa reveal">
+              <span class="dot" aria-hidden="true">{n}</span>
+              <div>
+                <h3>{item.q}</h3>
+                {item.a.map((p) => <p set:html={p} />)}
+                <span class="time">{secs(item.a.join(' '))} {P.secRead}</span>
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+    </section>
+  ))}
+
+  <section class="chapter" id="part-4">
+    <p class="eyebrow">{P.part4}</p>
+    <h2>{P.steps}</h2>
+    <div class="tools">
+      <a class="tool" href={`${GUIDE}/`}>
+        <span class="num">1</span>
+        <strong>{P.t1}</strong>
+        <span>{P.d1}</span>
+        <span class="go">{P.g1}</span>
+      </a>
+      <a class="tool" href={`${CI}/`}>
+        <span class="num">2</span>
+        <strong>{P.t2}</strong>
+        <span>{P.d2}</span>
+        <span class="go">{P.g2}</span>
+      </a>
+      <div class="tool">
+        <span class="num">3</span>
+        <strong>{P.t3}</strong>
+        <span>{P.d3}</span>
+      </div>
+    </div>
+    <p class="exams-line">{P.examsA} <a href={`${BASE}/exams/`}>{P.examsB}</a>{P.examsC}</p>
+    <p class="sign">{P.sign}</p>
+    <p class="small muted note">{P.note} <a href={localizePath('/contact/', lang)}>{P.contact}</a>.</p>
+  </section>
+</ExamLayout>
+
+<style>
+  .hero {
+    position: relative; overflow: hidden; padding: clamp(1.8rem, 5vw, 3.4rem); border-radius: 26px; color: #f6e7c8;
+    background:
+      radial-gradient(60% 80% at 100% 0%, rgb(217 150 47 / 0.28), transparent 60%),
+      radial-gradient(120% 140% at 85% 0%, #2a1f4d 0%, #17132e 60%, #120f24 100%);
+  }
+  .hero::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.5;
+    background-image: radial-gradient(1px 1px at 20% 30%, #fff8 50%, transparent 51%), radial-gradient(1px 1px at 70% 20%, #fff6 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 85% 70%, #fff5 50%, transparent 51%), radial-gradient(1px 1px at 40% 80%, #fff5 50%, transparent 51%), radial-gradient(1px 1px at 55% 45%, #fff4 50%, transparent 51%);
+  }
+  .kick { margin: 0 0 0.8rem; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: #e8c584; }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3.3rem); line-height: 1.12; max-width: 17em; color: #fff3dc; letter-spacing: -0.01em; }
+  .sub { font-size: 1.15rem; max-width: 36rem; color: rgb(246 231 200 / 0.85); margin: 0.6rem 0 1.4rem; }
+  .pains { list-style: none; margin: 0 0 1.6rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .pains li { margin: 0; padding: 0.4rem 0.9rem; border-radius: 999px; border: 1px solid rgb(242 215 166 / 0.3); background: rgb(255 255 255 / 0.05); font: italic 500 1.08rem var(--font-display); color: #f2d7a6; }
+  .cta { display: flex; flex-wrap: wrap; gap: 0.6rem; position: relative; z-index: 1; }
+  .cta .btn { background: #e8b65a; border-color: #e8b65a; color: #1d1636; }
+  .cta .btn.ghost.light { background: transparent; color: #f2d7a6; border-color: rgb(242 215 166 / 0.5); }
+  .chapter { margin-top: 3rem; scroll-margin-top: 140px; }
+  .chapter > h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 0.2rem 0 1.2rem; max-width: 30rem; }
+  .path { list-style: none; margin: 0; padding: 0; position: relative; }
+  .path::before { content: ''; position: absolute; left: 17px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(var(--tree), color-mix(in srgb, var(--tree) 15%, transparent)); }
+  .qa { position: relative; display: grid; grid-template-columns: 36px 1fr; gap: 1rem; margin: 0 0 1.1rem; }
+  .dot { position: relative; z-index: 1; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--surface); border: 2px solid var(--tree); color: var(--tree); font: 700 0.9rem var(--font-sans); }
+  .qa > div { padding: 0.9rem 1.2rem 0.8rem; border-radius: 18px; border: 1px solid var(--line); background: var(--surface); max-width: 46rem; }
+  .qa h3 { margin: 0 0 0.4rem; font-size: 1.2rem; }
+  .qa p { margin: 0 0 0.6rem; }
+  .time { font-size: 0.75rem; color: var(--ink-soft); }
+  .tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0.9rem; }
+  .tool { display: grid; gap: 0.4rem; align-content: start; padding: 1.2rem; border-radius: 20px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s; }
+  a.tool:hover { transform: translateY(-3px); border-color: var(--tree); box-shadow: 0 14px 34px rgb(42 35 80 / 0.12); }
+  .tool .num { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--tree); color: #fff; font-weight: 700; }
+  .tool strong { font: 600 1.15rem var(--font-serif); }
+  .tool span { color: var(--ink-soft); font-size: 0.95rem; }
+  .tool .go { color: var(--accent); font-weight: 600; margin-top: 0.3rem; }
+  .exams-line { margin: 1.4rem 0 0; padding: 0.9rem 1.1rem; border-radius: 14px; background: color-mix(in srgb, var(--tree) 10%, var(--surface)); }
+  .sign { margin: 2rem 0 0.4rem; font: italic 500 1.5rem/1.3 var(--font-display); color: var(--tree); }
+  .note { max-width: 40rem; }
+  @media (max-width: 560px) { .qa { grid-template-columns: 28px 1fr; gap: 0.7rem; } .dot { width: 28px; height: 28px; font-size: 0.8rem; } .path::before { left: 13px; } .qa > div { padding: 0.8rem 0.9rem; } }
+</style>

@@ -1,54 +1,73 @@
 ---
 // One subject of the Curriculum Index: its parts and major topics, with search inside the subject.
-import ExamLayout from '../../../../layouts/ExamLayout.astro';
-import ExamSearch from '../../../../components/exam/ExamSearch.astro';
-import { SUBJECTS, GLYPH, CI, BASE, GUIDE, fmt, partLabel, type Subject } from '../../../../exam-prep';
+import ExamLayout from '../../../../../layouts/ExamLayout.astro';
+import ExamSearch from '../../../../../components/exam/ExamSearch.astro';
+import { SUBJECTS, subjectsIn, paths, GLYPH, fmt, partIn, type LSubject } from '../../../../../exam-prep';
+import { langFromUrl, withLangs, pick } from '../../../../../i18n/config';
 
 export function getStaticPaths() {
-  return SUBJECTS.map((s) => ({ params: { subject: s.slug }, props: { s } }));
+  return withLangs(SUBJECTS.map((s) => ({ params: { subject: s.slug } })));
 }
-const { s } = Astro.props as { s: Subject };
-const parts: { label: string; majors: (Subject['majors'][number] & { i: number })[] }[] = [];
+const lang = langFromUrl(Astro.url);
+const s = subjectsIn(lang).find((x) => x.slug === Astro.params.subject)!;
+const { CI, BASE, GUIDE } = paths(lang);
+const parts: { label: string; majors: (LSubject['majors'][number] & { i: number })[] }[] = [];
 s.majors.forEach((m, i) => {
-  const label = partLabel(m.part);
+  const label = partIn(m.part, lang);
   const last = parts.at(-1);
   if (last && last.label === label) last.majors.push({ ...m, i });
   else parts.push({ label, majors: [{ ...m, i }] });
 });
-const levelNames = ['', 'major topics', 'topics', 'subtopics', 'details'];
+const P = pick({
+  en: {
+    title: `${s.name} Syllabus for Competitive Exams: All ${fmt(s.total)} Topics in Order`,
+    description: `${s.blurb} ${fmt(s.total)} topics of ${s.name} for competitive exams, in order, from the basics up.`,
+    home: 'Exam Prep', ci: 'Curriculum Index', eyebrow: 'Curriculum Index · Subject', levels: ['', 'major topics', 'topics', 'subtopics', 'details'], items: 'items',
+    search: `Search ${s.name}`, most: 'Most asked in the papers we analysed', want: 'Want this ranked for your own exam?', open: 'Open the Exam Guide',
+    inside: (n: string) => `${n} inside`, one: 'one page', askedN: (n: number) => ` · asked ${n}×`,
+  },
+  hi: {
+    title: `प्रतियोगी परीक्षाओं के लिए ${s.name} का सिलेबस: सभी ${fmt(s.total)} टॉपिक क्रम से`,
+    description: `${s.blurb} प्रतियोगी परीक्षाओं के लिए ${s.name} के ${fmt(s.total)} टॉपिक, क्रम से, बुनियाद से ऊपर तक।`,
+    home: 'परीक्षा तैयारी', ci: 'पाठ्यक्रम सूचकांक', eyebrow: 'पाठ्यक्रम सूचकांक · विषय', levels: ['', 'मुख्य टॉपिक', 'टॉपिक', 'उप-टॉपिक', 'बारीक बातें'], items: 'चीज़ें',
+    search: `${s.name} में खोजें`, most: 'पढ़े गए पेपरों में सबसे ज़्यादा पूछे गए', want: 'अपनी परीक्षा के हिसाब से क्रम चाहिए?', open: 'परीक्षा गाइड खोलिए',
+    inside: (n: string) => `अंदर ${n}`, one: 'एक पेज', askedN: (n: number) => ` · ${n} बार पूछा गया`,
+  },
+}, lang);
+const levelNames = P.levels;
 const asked = s.majors.filter((m) => m.q > 0).sort((a, b) => b.q - a.q).slice(0, 5);
 ---
 
 <ExamLayout
-  title={`${s.name} Syllabus for Competitive Exams: All ${fmt(s.total)} Topics in Order`}
-  description={`${s.blurb} ${fmt(s.total)} topics of ${s.name} for competitive exams, in order, from the basics up.`}
+  title={P.title}
+  description={P.description}
   section="ci"
   subject={s.slug}
-  crumbs={[{ href: `${BASE}/`, label: 'Exam Prep' }, { href: `${CI}/`, label: 'Curriculum Index' }, { label: s.name }]}
+  crumbs={[{ href: `${BASE}/`, label: P.home }, { href: `${CI}/`, label: P.ci }, { label: s.name }]}
 >
   <header class="sub-hero">
     <span class="g" aria-hidden="true">{GLYPH[s.slug]}</span>
     <div>
-      <p class="eyebrow">Curriculum Index · Subject</p>
+      <p class="eyebrow">{P.eyebrow}</p>
       <h1>{s.name}</h1>
       <p class="lede">{s.blurb}</p>
       <p class="levels small">
-        {Object.entries(s.levels).map(([lv, n]) => <span><b>{fmt(n)}</b> {levelNames[Number(lv)] ?? 'items'}</span>)}
+        {Object.entries(s.levels).map(([lv, n]) => <span><b>{fmt(n)}</b> {levelNames[Number(lv)] ?? P.items}</span>)}
       </p>
     </div>
   </header>
 
-  <section class="search-card" aria-label={`Search ${s.name}`}>
+  <section class="search-card" aria-label={P.search}>
     <ExamSearch subject={s.slug} />
   </section>
 
   {asked.length > 0 && (
     <aside class="asked">
-      <p class="eyebrow">Most asked in the papers we analysed</p>
+      <p class="eyebrow">{P.most}</p>
       <ul>
-        {asked.map((m) => <li><a href={`${CI}/${s.slug}/${m.slug}/`}>{m.t}</a> <span>{m.q}×</span></li>)}
+        {asked.map((m) => <li><a href={`${CI}/${s.slug}/${m.slug}/`} lang={m.en ? 'en' : undefined}>{m.t}</a> <span>{m.q}×</span></li>)}
       </ul>
-      <p class="small muted">Want this ranked for your own exam? <a href={`${GUIDE}/`}>Open the Exam Guide</a>.</p>
+      <p class="small muted">{P.want} <a href={`${GUIDE}/`}>{P.open}</a>.</p>
     </aside>
   )}
 
@@ -60,8 +79,8 @@ const asked = s.majors.filter((m) => m.q > 0).sort((a, b) => b.q - a.q).slice(0,
           <li>
             <a href={`${CI}/${s.slug}/${m.slug}/`}>
               <span class="i">{m.i + 1}</span>
-              <span class="t">{m.t}</span>
-              <span class="n">{m.n > 0 ? `${fmt(m.n)} inside` : 'one page'}{m.q > 0 && <em> · asked {m.q}×</em>}</span>
+              <span class="t" lang={m.en ? 'en' : undefined}>{m.t}</span>
+              <span class="n">{m.n > 0 ? P.inside(fmt(m.n)) : P.one}{m.q > 0 && <em>{P.askedN(m.q)}</em>}</span>
             </a>
           </li>
         ))}

@@ -1,0 +1,97 @@
+---
+// How the Exam Guide ranks topics, what it is built from, and its honest limits.
+import ExamLayout from '../../../../layouts/ExamLayout.astro';
+import papersJson from '../../../../data/exam-prep/papers.json';
+import { STATS, paths, fmt } from '../../../../exam-prep';
+import { langFromUrl, langParams, pick } from '../../../../i18n/config';
+
+export const getStaticPaths = () => langParams().map((params) => ({ params }));
+const lang = langFromUrl(Astro.url);
+const { BASE, GUIDE, CI } = paths(lang);
+
+const { papers, missing } = papersJson as { papers: [string, string, number, string, string, number][]; missing: [string, string, number, string][] };
+const sorted = [...papers].sort((a, b) => a[0].localeCompare(b[0]) || a[1].localeCompare(b[1]) || a[2] - b[2]);
+const qaEn: [string, string][] = [
+  ['Where does the list come from?', `From ${STATS.papers} RPSC and RSSB question papers and ${STATS.syllabi} official syllabi. Each scanned paper was read by machine in Hindi and English, every question was matched to a topic in the <a href="${CI}/">Curriculum Index</a>, and the matches were counted. ${fmt(STATS.questions)} questions were matched in all.`],
+  ['How does a topic get ranked?', 'A topic scores higher the more often it was asked in <em>your</em> exam, then in other exams of the same agency (RPSC or RSSB), then in all exams. How much each subject weighs comes from your exam\'s own papers, or from its official syllabus when there are no papers yet.'],
+  ['What does "≈ Qs per paper" mean?', 'Roughly how many questions that topic has brought in one paper of your exam, on average, in the papers we have. It describes the past. It is not a forecast.'],
+  ['How many topics will it suggest?', 'About two focused hours per topic, at 75% efficiency, with the last fifth of your days kept free for revision and mock tests. It never suggests more than the topics that together covered 85% of past questions, so the list stays finishable. You can type your own number instead.'],
+  ['What do the stars mean?', 'Where a topic sits in your exam\'s ranking: ★★★★★ is the top 5%, ★★★★ the next 10%, ★★★ the next 20%, ★★ the next 25%, and ★ the rest.'],
+  ['Can it be wrong?', 'Yes. Machine-reading scanned papers misses some questions and misfiles others, small samples (one or two papers) can swing the ranking, and exam patterns change. Use it to decide where to begin, and keep an eye on your exam\'s current official syllabus.'],
+  ['How does it stay up to date?', 'Both tools are built from two Google Sheets that Kritikesh maintains. When new papers are added or the index changes, the analysis is re-run and these pages are rebuilt from the sheets.'],
+];
+const qaHi: [string, string][] = [
+  ['यह सूची कहाँ से आती है?', `RPSC और RSSB के ${STATS.papers} प्रश्न-पत्रों और ${STATS.syllabi} आधिकारिक सिलेबस से। हर स्कैन किया पेपर कंप्यूटर से हिन्दी और अंग्रेज़ी में पढ़ा गया, हर सवाल को <a href="${CI}/">पाठ्यक्रम सूचकांक</a> के किसी टॉपिक से मिलाया गया, और फिर गिना गया। कुल ${fmt(STATS.questions)} सवाल मिलाए गए।`],
+  ['किसी टॉपिक का क्रम (रैंक) कैसे तय होता है?', 'कोई टॉपिक जितनी ज़्यादा बार <em>आपकी</em> परीक्षा में पूछा गया, उसका स्कोर उतना ऊँचा; फिर उसी संस्था (RPSC या RSSB) की दूसरी परीक्षाओं में, फिर सभी परीक्षाओं में। हर विषय का वज़न आपकी परीक्षा के अपने पेपरों से आता है, और अगर पेपर अभी नहीं हैं तो उसके आधिकारिक सिलेबस से।'],
+  ['"≈ सवाल प्रति पेपर" का क्या मतलब है?', 'हमारे पास के पेपरों में, आपकी परीक्षा के एक पेपर में उस टॉपिक से औसतन लगभग कितने सवाल आए। यह बीते समय की बात है, आगे की भविष्यवाणी नहीं।'],
+  ['यह कितने टॉपिक सुझाएगी?', 'हर टॉपिक के लिए लगभग दो घंटे की ध्यान से पढ़ाई, 75% कार्यक्षमता (यानी हर घंटा पूरा काम का नहीं मानकर) के साथ, और आख़िरी पाँचवाँ हिस्सा दिन रिवीज़न और मॉक टेस्ट के लिए ख़ाली। यह कभी उन टॉपिकों से ज़्यादा नहीं सुझाती जिनसे मिलकर पुराने सवालों का 85% हिस्सा आया, ताकि सूची पूरी की जा सके। चाहें तो अपनी संख्या ख़ुद लिख सकते हैं।'],
+  ['तारों (★) का क्या मतलब है?', 'आपकी परीक्षा के क्रम में टॉपिक कहाँ है: ★★★★★ यानी ऊपर के 5%, ★★★★ अगले 10%, ★★★ अगले 20%, ★★ अगले 25%, और ★ बाक़ी।'],
+  ['क्या यह ग़लत हो सकती है?', 'हाँ। स्कैन किए पेपर कंप्यूटर से पढ़ने में कुछ सवाल छूट जाते हैं और कुछ ग़लत टॉपिक में चले जाते हैं, कम पेपर (एक या दो) होने पर क्रम ऊपर-नीचे हो सकता है, और परीक्षा का पैटर्न बदलता रहता है। इसे यह तय करने के लिए इस्तेमाल कीजिए कि शुरुआत कहाँ से करें, और अपनी परीक्षा का मौजूदा आधिकारिक सिलेबस भी देखते रहिए।'],
+  ['यह नया (अपडेट) कैसे रहता है?', 'दोनों टूल दो Google शीटों से बनते हैं जिन्हें कृतिकेश सँभालते हैं। जब नए पेपर जुड़ते हैं या सूचकांक बदलता है, तो विश्लेषण फिर से चलाया जाता है और ये पेज शीटों से दोबारा बनते हैं।'],
+];
+const qa = lang === 'hi' ? qaHi : qaEn;
+const P = pick({
+  en: { title: 'How the Exam Guide ranks topics', description: 'How the Exam Guide turns RPSC and RSSB past papers into a ranked, finishable topic list, what it is built from, and where it can be wrong.', home: 'Exam Prep', guide: 'Exam Guide', how: 'How it works', eyebrow: 'Exam Guide · Open book', h1: 'How the ranking works', lede: 'No secret sauce. Here is exactly what the Exam Guide does, what it is built from, and where it can go wrong.', papersH: 'Papers and syllabi analysed', papersNote: `${STATS.papers} question papers and ${STATS.syllabi} syllabi. The original files are not linked here; you can find official papers and syllabi on the RPSC and RSSB websites.`, cols: ['Agency', 'Exam', 'Year', 'Paper', 'Questions matched'], syl: 'syllabus', notRead: 'Not read yet (files too large):', back: 'Back to my exam' },
+  hi: { title: 'परीक्षा गाइड टॉपिकों का क्रम कैसे बनाती है', description: 'परीक्षा गाइड RPSC और RSSB के पुराने पेपरों से क्रमवार, पूरी की जा सकने वाली टॉपिक-सूची कैसे बनाती है, यह किन चीज़ों से बनी है, और कहाँ ग़लत हो सकती है।', home: 'परीक्षा तैयारी', guide: 'परीक्षा गाइड', how: 'यह कैसे काम करती है', eyebrow: 'परीक्षा गाइड · खुली किताब', h1: 'क्रम (रैंकिंग) कैसे बनता है', lede: 'कोई छिपा राज़ नहीं। यहाँ साफ़-साफ़ लिखा है कि परीक्षा गाइड क्या करती है, किन चीज़ों से बनी है, और कहाँ चूक सकती है।', papersH: 'पढ़े गए पेपर और सिलेबस', papersNote: `${STATS.papers} प्रश्न-पत्र और ${STATS.syllabi} सिलेबस। मूल फ़ाइलों के लिंक यहाँ नहीं हैं; आधिकारिक पेपर और सिलेबस RPSC और RSSB की वेबसाइटों पर मिल जाएँगे।`, cols: ['संस्था', 'परीक्षा', 'वर्ष', 'पेपर', 'मिलाए गए सवाल'], syl: 'सिलेबस', notRead: 'अभी नहीं पढ़े गए (फ़ाइलें बहुत बड़ी):', back: 'वापस मेरी परीक्षा पर' },
+}, lang);
+---
+
+<ExamLayout
+  title={P.title}
+  description={P.description}
+  section="how"
+  schema={[{ '@type': 'FAQPage', mainEntity: qa.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a.replace(/<[^>]+>/g, '') } })) }]}
+  crumbs={[{ href: `${BASE}/`, label: P.home }, { href: `${GUIDE}/`, label: P.guide }, { label: P.how }]}
+>
+  <header>
+    <p class="eyebrow">{P.eyebrow}</p>
+    <h1>{P.h1}</h1>
+    <p class="lede">{P.lede}</p>
+  </header>
+
+  <div class="qas">
+    {qa.map(([q, a]) => (
+      <section class="qa">
+        <h2>{q}</h2>
+        <p set:html={a} />
+      </section>
+    ))}
+  </div>
+
+  <h2 id="papers" class="sec">{P.papersH}</h2>
+  <p class="muted small">{P.papersNote}</p>
+  <div class="tbl">
+    <table>
+      <thead><tr>{P.cols.map((c) => <th>{c}</th>)}</tr></thead>
+      <tbody>
+        {sorted.map(([ag, ex, yr, paper, type, n]) => (
+          <tr class:list={[{ syl: type !== 'pyq' }]}>
+            <td>{ag}</td><td>{ex}</td><td>{yr}</td><td>{paper}{type !== 'pyq' && <span class="tag">{P.syl}</span>}</td><td class="r">{type === 'pyq' ? n : '–'}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  {missing.length > 0 && (
+    <p class="small muted">{P.notRead} {missing.map(([ag, ex, yr, paper]) => `${ag} ${ex} ${yr} (${paper.replace(/\s*\(file over.*\)/, '')})`).join('; ')}.</p>
+  )}
+
+  <p class="back"><a class="btn" href={`${GUIDE}/`}>{P.back}</a></p>
+</ExamLayout>
+
+<style>
+  h1 { font-size: clamp(2rem, 4.4vw, 2.8rem); }
+  .lede { font-size: 1.1rem; color: var(--ink-soft); max-width: 40rem; }
+  .qas { display: grid; gap: 0.8rem; margin-top: 1.4rem; }
+  .qa { padding: 1rem 1.2rem; border-radius: 18px; border: 1px solid var(--line); background: var(--surface); max-width: 48rem; }
+  .qa h2 { font-size: 1.15rem; margin: 0 0 0.35rem; }
+  .qa p { margin: 0; color: var(--ink-soft); }
+  .sec { margin-top: 2.6rem; scroll-margin-top: 140px; }
+  .tbl { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--surface); }
+  table { font-size: 0.9rem; }
+  th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); background: color-mix(in srgb, var(--tree) 8%, var(--surface)); }
+  .r { text-align: right; font-variant-numeric: tabular-nums; }
+  .syl td { color: var(--ink-soft); }
+  .tag { margin-left: 0.4rem; font-size: 0.7rem; padding: 0.05rem 0.45rem; border-radius: 999px; background: var(--accent-soft); }
+  .back { margin-top: 2rem; }
+</style>

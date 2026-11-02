@@ -1,21 +1,44 @@
 ---
 // One major topic (Level 1) with everything inside it, as calm nested cards.
-import ExamLayout from '../../../../layouts/ExamLayout.astro';
-import { SUBJECTS, CI, BASE, GUIDE, fmt, partLabel, topicsOf, topicUrl, subjectOf, slugId, type Subject, type Topic } from '../../../../exam-prep';
+import ExamLayout from '../../../../../layouts/ExamLayout.astro';
+import { SUBJECTS, subjectsIn, paths, fmt, partIn, topicsIn, topicUrlIn, subjectOf, slugId, type Topic } from '../../../../../exam-prep';
+import { langFromUrl, withLangs, pick } from '../../../../../i18n/config';
 
-type Node = Topic & { kids: Node[] };
+type LTopic = Topic & { en?: boolean };
+type Node = LTopic & { kids: Node[] };
 export function getStaticPaths() {
-  return SUBJECTS.flatMap((s) => {
-    const all = topicsOf(s.slug);
-    return s.majors.map((m, i) => ({
-      params: { subject: s.slug, major: m.slug },
-      props: { s, i, rows: all.filter((t) => t.l1 === m.id) },
-    }));
-  });
+  return withLangs(SUBJECTS.flatMap((s) => s.majors.map((m, i) => ({ params: { subject: s.slug, major: m.slug }, props: { i } }))));
 }
-const { s, i, rows } = Astro.props as { s: Subject; i: number; rows: Topic[] };
+const lang = langFromUrl(Astro.url);
+const { i } = Astro.props as { i: number };
+const s = subjectsIn(lang).find((x) => x.slug === Astro.params.subject)!;
 const major = s.majors[i];
-const head = rows.find((r) => r.lvl === 1) ?? ({ id: major.id, lvl: 1, t: major.t, l1: major.id } as Topic);
+const rows: LTopic[] = topicsIn(s.slug, lang).filter((t) => t.l1 === major.id);
+const { CI, BASE, GUIDE } = paths(lang);
+const sname = (id: string) => subjectsIn(lang).find((x) => x.prefix === subjectOf(id)?.prefix)?.name;
+const topicUrl = (id: string) => topicUrlIn(id, lang);
+const ln = (t: { en?: boolean }) => (t.en ? 'en' : undefined);
+const P = pick({
+  en: {
+    tail: `Topics, Subtopics and PYQs | ${s.name}`, descFallback: `${major.t}: every topic inside, in order, for competitive exams.`, home: 'Exam Prep', ci: 'Curriculum Index',
+    of: (a: number, b: number) => `Major topic ${a} of ${b}`, items: (n: string) => `${n} items inside`,
+    askedHead: (n: number, y: number) => `Asked ${n}× in the RPSC/RSSB papers we analysed${y > 0 ? `, most recently ${y}` : ''}`,
+    also: 'Also look at:', alone: 'This major topic is one page on its own. Its outline is above.',
+    asked: (n: number) => `Asked ${n}×`, last: (y: number) => ` · last ${y}`, more: (n: number) => `${n} more point${n === 1 ? '' : 's'}`,
+    nudge: 'Not sure if this topic matters for your exam?', nudge2: 'The Exam Guide ranks every topic by how often it was asked.', find: 'Find my topics',
+    pn: 'Next and previous major topics', prev: '← Previous', next: 'Next →', done: `Done with ${s.name} →`, all: 'All subjects',
+  },
+  hi: {
+    tail: `टॉपिक, उप-टॉपिक और पुराने प्रश्न (PYQ) | ${s.name}`, descFallback: `${major.t}: अंदर का हर टॉपिक, क्रम से, प्रतियोगी परीक्षाओं के लिए।`, home: 'परीक्षा तैयारी', ci: 'पाठ्यक्रम सूचकांक',
+    of: (a: number, b: number) => `${b} में से मुख्य टॉपिक ${a}`, items: (n: string) => `अंदर ${n} चीज़ें`,
+    askedHead: (n: number, y: number) => `पढ़े गए RPSC/RSSB पेपरों में ${n} बार पूछा गया${y > 0 ? `, आख़िरी बार ${y} में` : ''}`,
+    also: 'इसे भी देखें:', alone: 'यह मुख्य टॉपिक अपने आप में एक पेज है। इसकी रूपरेखा ऊपर है।',
+    asked: (n: number) => `${n} बार पूछा गया`, last: (y: number) => ` · आख़िरी बार ${y}`, more: (n: number) => `${n} और बातें`,
+    nudge: 'पक्का नहीं कि यह टॉपिक आपकी परीक्षा के लिए ज़रूरी है?', nudge2: 'परीक्षा गाइड हर टॉपिक को इस हिसाब से क्रम में रखती है कि वह कितनी बार पूछा गया।', find: 'मेरे टॉपिक बताओ',
+    pn: 'अगला और पिछला मुख्य टॉपिक', prev: '← पिछला', next: 'अगला →', done: `${s.name} पूरा हुआ →`, all: 'सभी विषय',
+  },
+}, lang);
+const head: LTopic = rows.find((r) => r.lvl === 1) ?? ({ id: major.id, lvl: 1, t: major.t, l1: major.id, en: major.en } as LTopic);
 // nest the rows by level (they are stored in reading order)
 const root: Node = { ...head, kids: [] };
 const stack: Node[] = [root];
@@ -31,33 +54,33 @@ const next = s.majors[i + 1];
 const asked = rows.reduce((a, r) => a + (r.lvl <= 2 ? r.q ?? 0 : 0), 0);
 const lastYear = Math.max(0, ...rows.map((r) => r.y ?? 0));
 const count = (n: Node): number => n.kids.reduce((a, k) => a + 1 + count(k), 0);
-const desc = head.d ? head.d.slice(0, 150) : `${major.t}: every topic inside, in order, for competitive exams.`;
+const desc = head.d ? head.d.slice(0, 150) : P.descFallback;
 ---
 
 <ExamLayout
-  title={`${major.t}: Topics, Subtopics and PYQs | ${s.name}`}
+  title={`${major.t}: ${P.tail}`}
   description={desc}
   section="ci"
   subject={s.slug}
   major={major.slug}
-  crumbs={[{ href: `${BASE}/`, label: 'Exam Prep' }, { href: `${CI}/`, label: 'Curriculum Index' }, { href: `${CI}/${s.slug}/`, label: s.name }, { label: `${i + 1}. ${major.t}` }]}
+  crumbs={[{ href: `${BASE}/`, label: P.home }, { href: `${CI}/`, label: P.ci }, { href: `${CI}/${s.slug}/`, label: s.name }, { label: `${i + 1}. ${major.t}` }]}
 >
   <header class="m-hero">
-    <p class="eyebrow">{s.name} · {partLabel(major.part)} · Major topic {i + 1} of {s.majors.length}</p>
-    <h1>{major.t}</h1>
+    <p class="eyebrow">{s.name} · {partIn(major.part, lang)} · {P.of(i + 1, s.majors.length)}</p>
+    <h1 lang={ln(major)}>{major.t}</h1>
     {head.p && <p class="period">{head.p}</p>}
-    {head.d && <p class="lede">{head.d}</p>}
+    {head.d && <p class="lede" lang={ln(head)}>{head.d}</p>}
     <p class="facts">
-      <span>{fmt(rows.length - 1)} items inside</span>
-      {asked > 0 && <span class="ask">Asked {asked}× in the RPSC/RSSB papers we analysed{lastYear > 0 && `, most recently ${lastYear}`}</span>}
+      <span>{P.items(fmt(Math.max(0, rows.length - 1)))}</span>
+      {asked > 0 && <span class="ask">{P.askedHead(asked, lastYear)}</span>}
       <span class="id">{major.id}</span>
     </p>
     {head.rel && (
-      <p class="rel">Also look at: {head.rel.map(([id, label]) => <a href={topicUrl(id)}>{subjectOf(id)?.name}: {label || id}</a>)}</p>
+      <p class="rel">{P.also} {head.rel.map(([id, label]) => <a href={topicUrl(id)}>{sname(id)}: {label || id}</a>)}</p>
     )}
   </header>
 
-  {root.kids.length === 0 && <p class="muted">This major topic is one page on its own. Its outline is above.</p>}
+  {root.kids.length === 0 && <p class="muted">{P.alone}</p>}
 
   <ol class="tree">
     {root.kids.map((k, n) => (
@@ -65,29 +88,29 @@ const desc = head.d ? head.d.slice(0, 150) : `${major.t}: every topic inside, in
         <div class="row">
           <span class="num">{n + 1}</span>
           <div class="body">
-            <h2>{k.t}</h2>
+            <h2 lang={ln(k)}>{k.t}</h2>
             {k.p && <span class="period">{k.p}</span>}
-            {k.d && <p class="d">{k.d}</p>}
+            {k.d && <p class="d" lang={ln(k)}>{k.d}</p>}
             {(k.q || k.rel) && (
               <p class="tags">
-                {k.q && <span class="ask">Asked {k.q}×{k.y && ` · last ${k.y}`}</span>}
-                {k.rel?.map(([id, label]) => <a href={topicUrl(id)}>↗ {subjectOf(id)?.name}: {label || id}</a>)}
+                {k.q && <span class="ask">{P.asked(k.q)}{k.y && P.last(k.y)}</span>}
+                {k.rel?.map(([id, label]) => <a href={topicUrl(id)}>↗ {sname(id)}: {label || id}</a>)}
               </p>
             )}
             {k.kids.length > 0 && (
               <ul class="l3s">
                 {k.kids.map((c) => (
                   <li class="l3" id={slugId(c.id)}>
-                    <strong>{c.t}</strong>
+                    <strong lang={ln(c)}>{c.t}</strong>
                     {c.p && <span class="period sm">{c.p}</span>}
-                    {c.d && <span class="d sm">{c.d}</span>}
-                    {c.q && <span class="ask sm">Asked {c.q}×</span>}
+                    {c.d && <span class="d sm" lang={ln(c)}>{c.d}</span>}
+                    {c.q && <span class="ask sm">{P.asked(c.q)}</span>}
                     {c.kids.length > 0 && (
                       <details class="l4s">
-                        <summary>{count(c)} more point{count(c) === 1 ? '' : 's'}</summary>
+                        <summary>{P.more(count(c))}</summary>
                         <ul>
                           {c.kids.flatMap((g) => [g, ...g.kids]).map((g) => (
-                            <li id={slugId(g.id)}><span>{g.t}</span>{g.d && <span class="d sm"> · {g.d}</span>}</li>
+                            <li id={slugId(g.id)} lang={ln(g)}><span>{g.t}</span>{g.d && <span class="d sm"> · {g.d}</span>}</li>
                           ))}
                         </ul>
                       </details>
@@ -103,13 +126,13 @@ const desc = head.d ? head.d.slice(0, 150) : `${major.t}: every topic inside, in
   </ol>
 
   <aside class="guide-nudge">
-    <p><strong>Not sure if this topic matters for your exam?</strong> The Exam Guide ranks every topic by how often it was asked.</p>
-    <a class="btn" href={`${GUIDE}/`}>Find my topics</a>
+    <p><strong>{P.nudge}</strong> {P.nudge2}</p>
+    <a class="btn" href={`${GUIDE}/`}>{P.find}</a>
   </aside>
 
-  <nav class="pn" aria-label="Next and previous major topics">
-    {prev ? <a href={`${CI}/${s.slug}/${prev.slug}/`} rel="prev"><small>← Previous</small><span>{prev.t}</span></a> : <span></span>}
-    {next ? <a href={`${CI}/${s.slug}/${next.slug}/`} rel="next" class="nx"><small>Next →</small><span>{next.t}</span></a> : <a href={`${CI}/`} class="nx"><small>Done with {s.name} →</small><span>All subjects</span></a>}
+  <nav class="pn" aria-label={P.pn}>
+    {prev ? <a href={`${CI}/${s.slug}/${prev.slug}/`} rel="prev"><small>{P.prev}</small><span lang={ln(prev)}>{prev.t}</span></a> : <span></span>}
+    {next ? <a href={`${CI}/${s.slug}/${next.slug}/`} rel="next" class="nx"><small>{P.next}</small><span lang={ln(next)}>{next.t}</span></a> : <a href={`${CI}/`} class="nx"><small>{P.done}</small><span>{P.all}</span></a>}
   </nav>
 </ExamLayout>
 

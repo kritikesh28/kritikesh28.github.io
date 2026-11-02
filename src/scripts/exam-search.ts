@@ -1,14 +1,14 @@
 // Search for the Exhaustive Curriculum Index (about 32,000 topics).
-// It reads /exam-prep/search.json once, only when someone starts searching.
+// It reads /exam-prep/search.json (or /hi/exam-prep/search.json on Hindi pages) once, only when someone starts searching.
 // Typo-tolerant: every query word is matched exactly, by its beginning, or by a near spelling
 // (one or two letters off), and a subject named in the query becomes a gentle preference.
 // Guide: docs/14-exam-prep.md
 
-export type Row = { id: string; t: string; s: number; lvl: number; q: number; n: string; w: string[] };
+export type Row = { id: string; t: string; s: number; lvl: number; q: number; n: string; w: string[]; x?: string };
 export type Hit = { row: Row; score: number };
 export type Filters = { subject: number | -1; maxLevel: number; pyqOnly: boolean };
 
-const STOP = new Set('a an the is are was were be of to in on at for and or what why how who when which does do it its with from by as into about vs ka ki ke ko se me mein hai aur'.split(' '));
+const STOP = new Set('a an the is are was were be of to in on at for and or what why how who when which does do it its with from by as into about vs ka ki ke ko se me mein hai aur का की के को से में है और या एवं तथा पर क्या कैसे'.split(' '));
 // Hinglish and everyday words -> words used in the index
 const SYN: Record<string, string[]> = {
   itihas: ['history'], bhugol: ['geography'], rajniti: ['polity'], samvidhan: ['constitution'], arthvyavastha: ['economy'],
@@ -20,7 +20,7 @@ const SYN: Record<string, string[]> = {
   rbi: ['rbi', 'reserve', 'bank'], upsc: ['upsc'], ras: ['ras'], dna: ['dna'], ww1: ['world', 'war'], ww2: ['world', 'war'],
 };
 
-export const norm = (s: string) => s.toLowerCase().normalize('NFC').replace(/[^\p{L}\p{M}\p{N}\s]/gu, ' ');
+export const norm = (s: string) => s.toLowerCase().normalize('NFC').replace(/\u093C/g, '').replace(/[^\p{L}\p{M}\p{N}\s]/gu, ' ');
 export const tokens = (s: string) => norm(s).split(/\s+/).filter((w) => w && !STOP.has(w));
 const stem = (w: string) => (w.length > 4 ? w.replace(/(ies)$/, 'y').replace(/(ing|ed|es|s)$/, '') : w);
 
@@ -49,14 +49,16 @@ const titles = new Map<string, string>();
 let loading: Promise<void> | undefined;
 
 export function load() {
-  loading ??= fetch('/exam-prep/search.json')
+  const prefix = document.documentElement.lang === 'en' ? '' : `/${document.documentElement.lang}`;
+  loading ??= fetch(`${prefix}/exam-prep/search.json`)
     .then((r) => r.json())
-    .then((data: { s: [string, string, string][]; r: [string, string, number, number, number?][] }) => {
+    .then((data: { s: [string, string, string][]; r: [string, string, number, number, number?, string?][] }) => {
       subjects = data.s;
-      rows = data.r.map(([id, t, s, lvl, q]) => ({ id, t, s, lvl, q: q ?? 0, n: norm(t), w: [] }));
+      // x: the English title of a translated row, kept only as extra search words
+      rows = data.r.map(([id, t, s, lvl, q, x]) => ({ id, t, s, lvl, q: q ?? 0, n: norm(x ? `${t} ${x}` : t), w: [], x }));
       for (const r of rows) if (r.lvl === 1) titles.set(r.id, r.t);
       rows.forEach((r, i) => {
-        r.w = [...new Set(tokens(r.t).map(stem))];
+        r.w = [...new Set(tokens(r.x ? `${r.t} ${r.x}` : r.t).map(stem))];
         for (const w of r.w) {
           let list = vocab.get(w);
           if (!list) vocab.set(w, (list = []));
