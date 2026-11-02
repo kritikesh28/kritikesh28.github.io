@@ -24,7 +24,7 @@ You need only a web browser and your GitHub login. No installation.
 | `date` | Today's date as YEAR-MONTH-DAY | `2026-10-25` |
 | `category` | Exactly one of: `ai-ml`, `geography-earth`, `exam-prep`, `mind-ideas`, `stories-films`, `life-skills` | `geography-earth` |
 | `tags` | Any words in square brackets, separated by commas | `[universe, stars, light]` |
-| `lang` | `en` for English, `hi` for Hindi | `en` |
+| `lang` | `en` for English, `hi` for Hindi (a Hindi copy goes in the `hi/` folder with the same file name, see [15](15-languages-and-hindi.md)) | `en` |
 | `draft` | `true` to keep it hidden, `false` to publish | `false` |
 | `aiAssisted` | `true` if an AI helped write it (shows a short honest note) | `true` |
 | `updated` | Optional. The date you last changed the post | `2026-11-02` |

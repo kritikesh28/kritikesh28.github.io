@@ -4,10 +4,17 @@ import '@fontsource-variable/inter';
 import '@fontsource-variable/lora';
 import '../styles/global.css';
 import '@fontsource/cormorant-garamond/latin-500-italic.css';
+// Hindi fonts: each file only downloads when a page shows Devanagari letters
+import '@fontsource-variable/noto-sans-devanagari';
+import '@fontsource-variable/noto-serif-devanagari';
+import '@fontsource/tiro-devanagari-hindi/devanagari-400.css';
+import '@fontsource/tiro-devanagari-hindi/devanagari-400-italic.css';
 import { SITE, NAV, SOCIALS } from '../site.config';
 import Seo, { type Props as SeoProps } from '../components/Seo.astro';
 import Wordmark from '../components/Wordmark.astro';
 import SparrowSeal from '../components/SparrowSeal.astro';
+import { LANGS, LOCALES, DEFAULT_LANG, langFromUrl, localizePath, stripLang, type Lang } from '../i18n/config';
+import { useT } from '../i18n/ui';
 
 interface Props {
   title?: string;
@@ -18,25 +25,39 @@ interface Props {
   updated?: Date;
   noindex?: boolean;
   schema?: Record<string, unknown>[];
+  /** Languages this page has an address in (default: all). Exam Prep is English-only for now. */
+  langs?: Lang[];
+  /** Languages this page is really written in (default: same as langs). The others show English with a note. */
+  translated?: Lang[];
 }
 
+const lang = langFromUrl(Astro.url);
+const t = useT(lang);
 const {
   title,
-  description = SITE.description,
+  description = t('site.description'),
   image = '/images/banner-cosmic.webp',
   type,
   published,
   updated,
   noindex,
   schema,
+  langs = LANGS,
+  translated = langs,
 } = Astro.props;
 const pageTitle = title ? `${title} | ${SITE.blogBrand}` : SITE.blogBrand;
 const path = Astro.url.pathname;
-const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+const bare = stripLang(path);
+const L = (href: string) => localizePath(href, lang);
+const isActive = (href: string) => (href === '/' ? bare === '/' : bare.startsWith(href));
+// this page in every language (or that language's home page, when the page does not exist there yet)
+const switcher = LANGS.map((l) => ({ lang: l, ...LOCALES[l], href: langs.includes(l) ? localizePath(bare, l) : localizePath('/', l), exists: langs.includes(l) }));
+const alternates = translated.filter((l) => langs.includes(l)).map((l) => ({ hreflang: LOCALES[l].hreflang, href: localizePath(bare, l) }));
+const fallback = !translated.includes(lang);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={LOCALES[lang].htmlLang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -44,7 +65,9 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#1d1636" />
     <script is:inline src="/theme-init.js"></script>
-    <Seo title={pageTitle} {description} {image} {type} {published} {updated} {noindex} {schema} />
+    <Seo title={pageTitle} {description} {image} {type} {published} {updated} noindex={noindex || fallback} {schema} {lang} {alternates} defaultHref={alternates.length > 1 ? localizePath(bare, DEFAULT_LANG) : undefined} />
+    {/* returns visitors to the language they chose last time; needs the alternate links above */}
+    <script is:inline src="/lang-init.js"></script>
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     <link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192" />
@@ -55,10 +78,10 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
   </head>
   <body id="top">
     <div class="progress" aria-hidden="true"></div>
-    <a class="skip" href="#main">Skip to content</a>
+    <a class="skip" href="#main">{t('header.skip')}</a>
     <header class="site-header">
       <div class="wrap bar">
-        <a class="brand" href="/">
+        <a class="brand" href={L('/')}>
           <LogoMark height={40} />
           <span class="sr-only">{SITE.blogBrand}</span>
           {/* the double o is drawn as one infinity sign, in the text colour */}
@@ -68,21 +91,27 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
           <ul>
             {NAV.map((item) => (
               <li>
-                <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
+                <a href={item.href === '/exam-prep/' ? item.href : L(item.href)} aria-current={isActive(item.href) ? 'page' : undefined}>{t(item.key)}</a>
               </li>
             ))}
           </ul>
         </nav>
-        <a class="theme" href="/search/" aria-label="Search the site" title="Search">
+        <nav class="langs" aria-label={t('header.lang')}>
+          {switcher.map((s) => (
+            <a href={s.href} hreflang={s.htmlLang} lang={s.htmlLang} data-lang={s.lang} aria-current={s.lang === lang ? 'true' : undefined} title={s.exists ? s.name : useT(s.lang)('header.langMissing', { lang: s.name })}>{s.label}</a>
+          ))}
+        </nav>
+        <a class="theme" href={L('/search/')} aria-label={t('header.search')} title={t('header.searchTitle')}>
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2" /><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
         </a>
-        <button class="theme" type="button" aria-label="Switch light or dark theme" title="Light / dark">
+        <button class="theme" type="button" aria-label={t('header.theme')} title={t('header.themeTitle')}>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z" fill="currentColor" /></svg>
         </button>
       </div>
     </header>
 
     <main id="main">
+      {fallback && <p class="wrap lang-note" role="note">{t('notice.fallback', { lang: LOCALES[lang].name })}</p>}
       <slot />
     </main>
 
@@ -93,31 +122,31 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
     <footer class="site-footer">
       <div class="wrap foot">
         <div class="foot-brand">
-          <a class="foot-logo" href="/" aria-label={`${SITE.blogBrand}, home`}>
+          <a class="foot-logo" href={L('/')} aria-label={`${SITE.blogBrand}, ${t('footer.home')}`}>
             <LogoMark height={34} />
             <Wordmark />
           </a>
-          <p class="foot-motto">{SITE.motto}</p>
+          <p class="foot-motto">{t('site.motto')}</p>
           <a class="foot-mail" href={`mailto:${SITE.email}`}>{SITE.email}</a>
         </div>
         <nav class="foot-cols" aria-label="Footer">
           <div>
-            <h2>Explore</h2>
+            <h2>{t('footer.explore')}</h2>
             <ul>
-              {NAV.filter((n) => n.href !== '/').map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+              {NAV.filter((n) => n.href !== '/').map((n) => <li><a href={n.href === '/exam-prep/' ? n.href : L(n.href)}>{t(n.key)}</a></li>)}
             </ul>
           </div>
           <div>
-            <h2>Begin</h2>
+            <h2>{t('footer.begin')}</h2>
             <ul>
-              <li><a href="/start/">Start here</a></li>
-              <li><a href="/library/the-universe/">The Universe course</a></li>
-              <li><a href="/search/">Search</a></li>
-              <li><a href="/now/">What I'm doing now</a></li>
+              <li><a href={L('/start/')}>{t('footer.start')}</a></li>
+              <li><a href={L('/library/the-universe/')}>{t('footer.universe')}</a></li>
+              <li><a href={L('/search/')}>{t('footer.search')}</a></li>
+              <li><a href={L('/now/')}>{t('footer.now')}</a></li>
             </ul>
           </div>
           <div>
-            <h2>Connect</h2>
+            <h2>{t('footer.connect')}</h2>
             <ul>
               {SOCIALS.map((s) => <li><a href={s.href} rel="me noopener noreferrer" target="_blank">{s.label}<span class="ext" aria-hidden="true">↗</span></a></li>)}
             </ul>
@@ -125,8 +154,8 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
         </nav>
       </div>
       <div class="wrap foot-base">
-        <p>© {new Date().getFullYear()} {SITE.name}</p>
-        <p><a href="/privacy/">Privacy</a><a href="#top" class="top">Back to top <span aria-hidden="true">↑</span></a></p>
+        <p>© {new Date().getFullYear()} {t('site.name')}</p>
+        <p><a href={L('/privacy/')}>{t('footer.privacy')}</a><a href="#top" class="top">{t('footer.top')} <span aria-hidden="true">↑</span></a></p>
       </div>
     </footer>
 
@@ -154,6 +183,11 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
     try { localStorage.setItem('theme', root.dataset.theme); } catch {}
   });
 
+
+  // Language switcher: remember the choice, so the next visit opens in the same language (public/lang-init.js)
+  document.querySelectorAll<HTMLAnchorElement>('.langs a[data-lang]').forEach((a) =>
+    a.addEventListener('click', () => { try { localStorage.setItem('lang', a.dataset.lang!); } catch {} }),
+  );
 
   // Reading progress bar
   const bar = document.querySelector<HTMLElement>('.progress');
@@ -216,6 +250,13 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
   .site-header nav a { white-space: nowrap; display: block; padding: 0.35rem 0.75rem; border-radius: 999px; color: var(--ink-soft); text-decoration: none; font-size: 0.95rem; transition: background 0.2s, color 0.2s; }
   .site-header nav a:hover { color: var(--ink); background: var(--accent-soft); }
   .site-header nav a[aria-current='page'] { color: var(--ink); background: var(--accent-soft); font-weight: 600; }
+  /* the EN / हिंदी switch */
+  .site-header .langs { margin-left: 0; display: flex; flex: none; border: 1px solid var(--line); border-radius: 999px; padding: 2px; gap: 2px; }
+  .site-header .langs a { display: block; padding: 0.2rem 0.65rem; border-radius: 999px; font-size: 0.85rem; line-height: 1.45; color: var(--ink-soft); text-decoration: none; transition: background 0.2s, color 0.2s; }
+  .site-header .langs a:hover { color: var(--ink); background: var(--accent-soft); }
+  .site-header .langs a[aria-current] { background: var(--accent); color: var(--on-accent); font-weight: 600; }
+  .lang-note { margin-top: 1rem; font-size: 0.9rem; color: var(--ink-soft); }
+  .lang-note::before { content: 'ⓘ '; }
   .theme { display: grid; place-items: center; background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 999px; width: 36px; height: 36px; cursor: pointer; transition: transform 0.4s; }
   .theme:hover { transform: rotate(-25deg); }
   .theme svg { width: 18px; height: 18px; }
@@ -224,6 +265,9 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
     nav { order: 3; width: 100%; margin-left: 0; }
     .site-header nav ul { gap: 0; overflow-x: auto; flex-wrap: nowrap; }
     a.theme { margin-left: auto; }
+    /* second row: the menu scrolls sideways, the language switch stays visible at its end */
+    .site-header nav[aria-label='Main'] { flex: 1 1 60%; width: auto; min-width: 0; }
+    .site-header .langs { order: 4; width: auto; }
   }
   .sig-wm {
     position: fixed; right: -9vw; bottom: -6vh; z-index: -1; width: min(58vw, 760px); pointer-events: none;
@@ -243,7 +287,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
   .foot { display: grid; grid-template-columns: minmax(16rem, 1.2fr) 2fr; gap: 3rem; padding-block: 3.6rem 2.6rem; }
   .foot-logo { display: inline-flex; align-items: center; gap: 0.6rem; color: #f2d7a6; text-decoration: none; font-size: 1.45rem; }
   .foot-logo :global(.logo-mark) { color: #f2d7a6; }
-  .foot-motto { margin: 1rem 0 1.1rem; max-width: 22rem; font: italic 500 1.2rem/1.45 'Cormorant Garamond', Georgia, serif; color: rgb(246 231 200 / 0.85); }
+  .foot-motto { margin: 1rem 0 1.1rem; max-width: 22rem; font: italic 500 1.2rem/1.45 var(--font-display); color: rgb(246 231 200 / 0.85); }
   .foot-mail { color: #f2d7a6; font-size: 0.92rem; text-decoration: none; border-bottom: 1px solid rgb(242 215 166 / 0.35); padding-bottom: 1px; }
   .foot-mail:hover { border-color: #f2d7a6; }
   .foot-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }

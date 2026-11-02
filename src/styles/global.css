@@ -16,8 +16,11 @@
   --gold: #b9842a;
   --radius: 14px;
   --max: 1080px;
-  --font-sans: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Noto Sans Devanagari', sans-serif;
-  --font-serif: 'Lora Variable', Georgia, 'Noto Serif Devanagari', serif;
+  /* Latin letters come from the first font, Hindi (Devanagari) letters from the matching Devanagari font next to it */
+  --font-sans: 'Inter Variable', 'Noto Sans Devanagari Variable', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Noto Sans Devanagari', sans-serif;
+  --font-serif: 'Lora Variable', 'Noto Serif Devanagari Variable', Georgia, 'Noto Serif Devanagari', serif;
+  /* the gold display type of the poster and footer: Cormorant for English, Tiro Devanagari Hindi (same calligraphic feel) for Hindi */
+  --font-display: 'Cormorant Garamond', 'Tiro Devanagari Hindi', Georgia, serif;
   color-scheme: light;
 }
 
@@ -167,3 +170,12 @@ html { scroll-behavior: smooth; }
   :root:not([data-theme='light']) .t-stories-films { --tree: #f08e70; }
   :root:not([data-theme='light']) .t-life-skills { --tree: #9ccf84; }
 }
+
+/* ---- Hindi (and any Devanagari text): letter spacing and all-caps break joined letters, and the script needs a little more room */
+:lang(hi) { letter-spacing: normal !important; text-transform: none !important; font-variant: normal !important; }
+html[lang='hi'] body { line-height: 1.8; }
+html[lang='hi'] .eyebrow { font-size: 0.86rem; }
+html[lang='hi'] h1, html[lang='hi'] h2, html[lang='hi'] h3 { line-height: 1.45; }
+html[lang='hi'] .prose p, html[lang='hi'] .prose li { line-height: 1.9; }
+/* gold text painted with background-clip needs room above for Hindi vowel signs (ें, ि), or their tops get cut off */
+html[lang='hi'] .motto-text { padding-block: 0.22em; }

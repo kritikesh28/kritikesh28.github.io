@@ -1,14 +1,19 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import type { Localized } from '../lib';
+import { langFromUrl, localizePath } from '../i18n/config';
+import { useT } from '../i18n/ui';
 
-interface Props { project: CollectionEntry<'projects'> }
+interface Props { project: Localized<CollectionEntry<'projects'>> }
 const { project } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const t = useT(lang);
 const { title, summary, status, tags, image, imageAlt } = project.data;
-const statusLabel = { live: 'Live', 'in-progress': 'In progress', planned: 'Coming soon' }[status];
-const href = `/portfolio/${project.id}/`;
+const statusLabel = t(`status.${status}`);
+const href = localizePath(`/portfolio/${project.slug}/`, lang);
 ---
 
-<article class="card">
+<article class="card" lang={project.lang}>
   {image && <a href={href}><img src={image} alt={imageAlt ?? ''} loading="lazy" /></a>}
   <p><span class={`chip ${status}`}>{statusLabel}</span></p>
   <h3><a href={href}>{title}</a></h3>

@@ -1,17 +1,22 @@
 ---
 // One band at the end of pages that routes each kind of visitor to the right next step.
+import { langFromUrl, localizePath } from '../i18n/config';
+import { useT } from '../i18n/ui';
+const lang = langFromUrl(Astro.url);
+const t = useT(lang);
+const contact = localizePath('/contact/', lang);
 ---
 
 <section class="cta reveal">
   <div class="wrap inner">
     <div>
-      <h2>Hiring, learning, or just curious?</h2>
-      <p class="muted">Tell me which, and your message lands in the right pile.</p>
+      <h2>{t('cta.title')}</h2>
+      <p class="muted">{t('cta.text')}</p>
     </div>
     <div class="paths">
-      <a class="btn" href="/contact/?intent=hiring">I'm hiring</a>
-      <a class="btn ghost" href="/contact/?intent=collab">Let's build something</a>
-      <a class="btn ghost" href="/contact/?intent=learning">I want to learn</a>
+      <a class="btn" href={`${contact}?intent=hiring`}>{t('cta.hiring')}</a>
+      <a class="btn ghost" href={`${contact}?intent=collab`}>{t('cta.build')}</a>
+      <a class="btn ghost" href={`${contact}?intent=learning`}>{t('cta.learn')}</a>
     </div>
   </div>
 </section>

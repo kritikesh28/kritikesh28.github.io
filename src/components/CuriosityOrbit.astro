@@ -1,23 +1,29 @@
 ---
-import { CATEGORIES } from '../site.config';
+import { CATEGORIES, categoryLabel } from '../site.config';
+import { CATEGORIES_HI } from '../i18n/library.hi';
+import { langFromUrl, localizePath } from '../i18n/config';
+import { useT } from '../i18n/ui';
+const lang = langFromUrl(Astro.url);
+const t = useT(lang);
 // The six blog themes orbit one centre: one curiosity, many threads.
 const C = 280;
 const R = 196;
 const colors = ['#8f7be8', '#2f9a83', '#d9962f', '#d9603f', '#c56b9c', '#4f8fd8'];
 const nodes = CATEGORIES.map((c, i) => {
   const a = (i / CATEGORIES.length) * Math.PI * 2 - Math.PI / 2;
-  return { ...c, x: +(C + R * Math.cos(a)).toFixed(1), y: +(C + R * Math.sin(a)).toFixed(1), color: colors[i] };
+  const hi = lang === 'hi' ? CATEGORIES_HI[c.slug] : undefined;
+  return { ...c, label: categoryLabel(c.slug, lang), short: hi?.short ?? c.short, blurb: hi?.blurb ?? c.blurb, x: +(C + R * Math.cos(a)).toFixed(1), y: +(C + R * Math.sin(a)).toFixed(1), color: colors[i] };
 });
 ---
 
 <div class="orbit-wrap">
-  <svg class="orbit" viewBox="0 0 560 560" role="group" aria-label="Six blog themes around one curiosity">
+  <svg class="orbit" viewBox="0 0 560 560" role="group" aria-label={t('orbit.label')}>
     <circle cx={C} cy={C} r={R} class="track" />
     <circle cx={C} cy={C} r={R - 70} class="track inner" />
     <g class="ring">
       {nodes.map((n) => <line x1={C} y1={C} x2={n.x} y2={n.y} class="thread" stroke={n.color} />)}
       {nodes.map((n) => (
-        <a href={n.slug === 'exam-prep' ? '/exam-prep/' : `/library/${n.slug}/`} class="node" data-label={n.label} data-blurb={n.blurb} aria-label={`${n.label}: ${n.blurb}`}>
+        <a href={n.slug === 'exam-prep' ? '/exam-prep/' : localizePath(`/library/${n.slug}/`, lang)} class="node" data-label={n.label} data-blurb={n.blurb} aria-label={`${n.label}: ${n.blurb}`}>
           <g transform={`translate(${n.x} ${n.y})`}>
             <g class="upright">
               <circle r="46" class="halo" fill={n.color} />
@@ -28,13 +34,13 @@ const nodes = CATEGORIES.map((c, i) => {
         </a>
       ))}
     </g>
-    <a href="/library/" class="centre" aria-label="Open the library">
+    <a href={localizePath('/library/', lang)} class="centre" aria-label={t('orbit.openLabel')}>
       <circle cx={C} cy={C} r="62" class="sun" />
-      <text x={C} y={C - 4} text-anchor="middle" class="centre-big">Library</text>
-      <text x={C} y={C + 18} text-anchor="middle" class="centre-small">open</text>
+      <text x={C} y={C - 4} text-anchor="middle" class="centre-big">{t('orbit.centre')}</text>
+      <text x={C} y={C + 18} text-anchor="middle" class="centre-small">{t('orbit.open')}</text>
     </a>
   </svg>
-  <p class="caption" aria-live="polite">Hover or tap a thread to see where it leads.</p>
+  <p class="caption" aria-live="polite">{t('orbit.caption')}</p>
 </div>
 
 <style>

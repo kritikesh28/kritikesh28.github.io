@@ -24,6 +24,7 @@ This folder explains, step by step, every task needed to keep the website **curi
 | Add a Leaf, a new course (twig), a curious question, or update the library | [13 · Add to the library](13-add-to-the-library.md) |
 | Update the Exam Prep section after changing the Curriculum Index or Exam Guide sheet, or add, change or remove a subject, exam or intro text | [14 · Exam Prep section](14-exam-prep.md) |
 | Help aspirants find the site on Google and AI assistants (sitemaps, IndexNow, structured data) | [14 · Exam Prep section](14-exam-prep.md), part 8 |
+| Translate a page into Hindi, follow the easy-Hindi rules, or add a new language | [15 · Languages and Hindi](15-languages-and-hindi.md) |
 | Understand the plan for the library | [11 · Library plan](11-library-plan.md) |
 | See what is waiting to be done, and what to do first | [12 · Pending task list](12-task-list.md) |
 | Understand the mission and the ethics everything rests on | [Vision and foundation](VISION.md) |
@@ -40,4 +41,4 @@ This folder explains, step by step, every task needed to keep the website **curi
 - **Backup copy:** Google Drive, folder "Digital Ecosystem - Claude Project Files" › "Curious Sparoows Website (backup)". See [09 · Backup and restore](09-backup-and-restore.md).
 - **Exam Prep data source:** the Curriculum Index and Exam Guide Google Sheets, in the Drive library folder `06_EXAM_GUIDE_RPSC_RSSB`. See [14](14-exam-prep.md).
 
-_Last updated: 2 November 2026 (Exam Prep section added). When you change how something works, update the guide for it and the date here._
+_Last updated: 2 November 2026 (Exam Prep section added; site made bilingual, English and Hindi). When you change how something works, update the guide for it and the date here._

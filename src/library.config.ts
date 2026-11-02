@@ -8,6 +8,8 @@
 //         Leaf = one 2-minute page    (like a lesson)
 
 import { CATEGORIES, type CategorySlug } from './site.config';
+import type { Lang } from './i18n/config';
+import { CATEGORIES_HI, BRANCHES_HI, TWIGS_HI, LEVELS_HI, BUILD_STATUS_HI } from './i18n/library.hi';
 
 export const LEVELS = [
   { name: 'Forest', means: 'The whole library', like: 'the whole university', example: 'Curious Sparoows Library' },
@@ -82,14 +84,34 @@ const BRANCHES: Record<CategorySlug, Branch[]> = {
 
 export const TREES: Tree[] = CATEGORIES.map((c) => ({ slug: c.slug, title: c.label, short: c.short, blurb: c.blurb, branches: BRANCHES[c.slug] }));
 
-export const findTree = (slug: string) => TREES.find((t) => t.slug === slug);
+// The same trees with their names in another language (Hindi names live in src/i18n/library.hi.ts).
+export const getTrees = (lang: Lang = 'en'): Tree[] =>
+  lang !== 'hi'
+    ? TREES
+    : TREES.map((t) => ({
+        ...t,
+        title: CATEGORIES_HI[t.slug]?.label ?? t.title,
+        short: CATEGORIES_HI[t.slug]?.short ?? t.short,
+        blurb: CATEGORIES_HI[t.slug]?.blurb ?? t.blurb,
+        branches: t.branches.map((b) => ({
+          ...b,
+          title: BRANCHES_HI[b.slug] ?? b.title,
+          twigs: b.twigs.map((tw) => ({ ...tw, ...TWIGS_HI[tw.slug] })),
+        })),
+      }));
 
-export const findTwig = (slug: string) => {
-  for (const tree of TREES)
+export const findTree = (slug: string, lang: Lang = 'en') => getTrees(lang).find((t) => t.slug === slug);
+
+export const findTwig = (slug: string, lang: Lang = 'en') => {
+  for (const tree of getTrees(lang))
     for (const branch of tree.branches)
       for (const twig of branch.twigs) if (twig.slug === slug) return { tree, branch, twig };
   return undefined;
 };
+
+// The five levels with their words in a language. `name` stays English: it picks the icon.
+export const getLevels = (lang: Lang = 'en') =>
+  LEVELS.map((l, i) => ({ ...l, label: lang === 'hi' ? LEVELS_HI[i].label : l.name, ...(lang === 'hi' ? { means: LEVELS_HI[i].means, like: LEVELS_HI[i].like, example: LEVELS_HI[i].example } : {}) }));
 
 // What is being built, shown on the library page so readers (and I) can see the honest status.
 export const BUILD_STATUS: { name: string; status: 'live' | 'in-progress' | 'planned'; note: string }[] = [
@@ -100,3 +122,6 @@ export const BUILD_STATUS: { name: string; status: 'live' | 'in-progress' | 'pla
   { name: 'How the Earth formed', status: 'in-progress', note: 'The next twig, being written now.' },
   { name: 'Sparrow, the AI study assistant', status: 'planned', note: 'Will answer your questions using only this library, and always link the page it used. Not built yet.' },
 ];
+
+export const getBuildStatus = (lang: Lang = 'en') =>
+  lang === 'hi' ? BUILD_STATUS.map((b, i) => ({ ...b, ...BUILD_STATUS_HI[i] })) : BUILD_STATUS;

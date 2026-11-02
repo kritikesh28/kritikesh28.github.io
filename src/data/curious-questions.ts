@@ -3,6 +3,9 @@
 // `link` is optional and only points to a page that goes deeper. Never tease without answering.
 // Guide: docs/13-add-to-the-library.md, "Add a curious question".
 
+import { localizePath, type Lang } from '../i18n/config';
+import { CURIOUS_QUESTIONS_HI } from './curious-questions.hi';
+
 export interface CuriousQuestion {
   q: string;
   a: string;
@@ -142,3 +145,10 @@ export const CURIOUS_QUESTIONS: CuriousQuestion[] = [
     topic: 'Life',
   },
 ];
+
+/** The questions in a language. Hindi text lives in curious-questions.hi.ts (same order); links point to that language's pages. */
+export const getQuestions = (lang: Lang = 'en'): CuriousQuestion[] =>
+  CURIOUS_QUESTIONS.map((q, i) => {
+    const tr = lang === 'hi' ? CURIOUS_QUESTIONS_HI[i] : undefined;
+    return { ...q, ...(tr ?? {}), link: q.link && localizePath(q.link, lang) };
+  });

@@ -45,7 +45,10 @@ export function paintProgress() {
     const n = [...read].filter((id) => id.startsWith(`${twig}/`)).length;
     const count = el.querySelector<HTMLElement>('[data-count]');
     const bar = el.querySelector<HTMLElement>('[data-bar]');
-    if (count) count.textContent = n === 0 ? 'Not started yet' : n >= total ? `All ${total} read` : `${n} of ${total} read`;
+    // words come from the page's language (data-words, filled from src/i18n/ui.ts)
+    const w = JSON.parse(el.dataset.words ?? '{}');
+    const fill = (s: string | undefined, fallback: string) => (s ?? fallback).replace('{n}', String(n >= total ? total : n)).replace('{m}', String(total));
+    if (count) count.textContent = n === 0 ? fill(w.none, 'Not started yet') : n >= total ? fill(w.all, 'All {n} read') : fill(w.some, '{n} of {m} read');
     if (bar) bar.style.setProperty('--done', `${total ? Math.min(100, (n / total) * 100) : 0}%`);
     el.classList.toggle('started', n > 0);
   });
@@ -56,7 +59,7 @@ export function paintProgress() {
     const label = a.querySelector<HTMLElement>('[data-label]');
     if (!started || !next) return;
     a.href = next.url;
-    if (label) label.textContent = `Continue: ${next.title}`;
+    if (label) label.textContent = (a.dataset.continueLabel ?? 'Continue: {title}').replace('{title}', next.title);
   });
 }
 

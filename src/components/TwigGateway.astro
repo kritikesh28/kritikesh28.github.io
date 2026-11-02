@@ -6,79 +6,88 @@ import LibraryGuide from '../components/LibraryGuide.astro';
 import LibraryCrumbs from '../components/LibraryCrumbs.astro';
 import ProgressMeter from '../components/ProgressMeter.astro';
 import { findTwig } from '../library.config';
-import { getTwigPages, splitLibraryId, libraryUrl, readMinutes } from '../lib';
+import { getTwigPages, splitLibraryId, libraryUrl, readMinutes, translatedLangs, type Localized } from '../lib';
+import { langFromUrl, localizePath, pick } from '../i18n/config';
+import { useT } from '../i18n/ui';
 
-interface Props { gateway: CollectionEntry<'library'> }
+interface Props { gateway: Localized<CollectionEntry<'library'>> }
 const { gateway } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const t = useT(lang);
+const L = (p: string) => localizePath(p, lang);
 const { twig } = splitLibraryId(gateway.id);
 const { Content } = await render(gateway);
 const { title, description, outcomes, date, updated } = gateway.data;
-const twigInfo = findTwig(twig)?.twig;
-const all = await getTwigPages(twig);
+const twigInfo = findTwig(twig, lang)?.twig;
+const all = await getTwigPages(twig, lang);
 const leaves = all.filter((p) => p.data.kind === 'leaf');
 const recap = all.find((p) => p.data.kind === 'recap');
 const minutes = leaves.reduce((m, l) => m + readMinutes(l.body), 0);
-const leafList = leaves.map((l) => ({ id: l.id, url: libraryUrl(l.id, 'leaf'), title: l.data.title }));
-const url = new URL(`/library/${twig}/`, Astro.site).href;
+const leafList = leaves.map((l) => ({ id: l.slug, url: libraryUrl(l.id, 'leaf', lang), title: l.data.title }));
+const url = new URL(L(`/library/${twig}/`), Astro.site).href;
+const T = pick({
+  en: { meta: (n: number, m: number) => `Twig · ${n} short pages · about ${m} minutes in all · free, no sign-up`, outcomes: 'By the end, you will be able to', all: 'Read it all on one page', recap: 'Just the recap', path: 'The path', recapQuiz: 'Recap and quick quiz' },
+  hi: { meta: (n: number, m: number) => `टहनी · ${n} छोटे पन्ने · कुल लगभग ${m} मिनट · मुफ़्त, कोई साइन-अप नहीं`, outcomes: 'आख़िर तक आप ये कर पाएँगे', all: 'सब कुछ एक ही पन्ने पर पढ़ें', recap: 'सिर्फ़ दोहराव पढ़ें', path: 'रास्ता', recapQuiz: 'दोहराव और छोटी-सी क्विज़' },
+}, lang);
 const schema = [
   {
     '@type': 'Course',
     name: title,
     description,
     url,
-    inLanguage: 'en',
+    inLanguage: gateway.lang,
     isAccessibleForFree: true,
     educationalLevel: 'Beginner',
     teaches: outcomes,
     timeRequired: `PT${minutes}M`,
     provider: { '@id': new URL('/#person', Astro.site).href },
-    hasPart: leaves.map((l) => ({ '@type': 'LearningResource', name: l.data.title, url: new URL(libraryUrl(l.id, 'leaf'), Astro.site).href })),
+    hasPart: leaves.map((l) => ({ '@type': 'LearningResource', name: l.data.title, url: new URL(libraryUrl(l.id, 'leaf', lang), Astro.site).href })),
   },
 ];
 ---
 
-<Base {title} {description} published={date} {updated} {schema}>
+<Base {title} {description} published={date} {updated} {schema} translated={await translatedLangs('library', gateway.slug)}>
   <div class="wrap gate-layout">
     <div>
       <LibraryCrumbs {twig} />
-      <p class="eyebrow">Twig · {leaves.length} short pages · about {minutes} minutes in all · free, no sign-up</p>
+      <p class="eyebrow">{T.meta(leaves.length, minutes)}</p>
       <h1>{title}</h1>
       <p class="big-q">{twigInfo?.question}</p>
-      <div class="prose"><Content /></div>
+      <div class="prose" lang={gateway.lang}><Content /></div>
 
       {outcomes.length > 0 && (
         <div class="outcomes">
-          <h2>By the end, you will be able to</h2>
+          <h2>{T.outcomes}</h2>
           <ul>{outcomes.map((o) => <li>{o}</li>)}</ul>
         </div>
       )}
 
       <div class="choose">
-        <a class="btn start" href={leafList[0]?.url} data-continue-twig={twig} data-leaves={JSON.stringify(leafList)}>
-          <span data-label>Start with Leaf 1</span> <span aria-hidden="true">→</span>
+        <a class="btn start" href={leafList[0]?.url} data-continue-twig={twig} data-leaves={JSON.stringify(leafList)} data-continue-label={t('lib.continue')}>
+          <span data-label>{t('lib.startLeaf1')}</span> <span aria-hidden="true">→</span>
         </a>
-        <a class="btn ghost" href={`/library/${twig}/all/`}>Read it all on one page</a>
-        {recap && <a class="btn ghost" href={libraryUrl(recap.id, 'recap')}>Just the recap</a>}
+        <a class="btn ghost" href={L(`/library/${twig}/all/`)}>{T.all}</a>
+        {recap && <a class="btn ghost" href={libraryUrl(recap.id, 'recap', lang)}>{T.recap}</a>}
       </div>
       <ProgressMeter {twig} total={leaves.length} />
 
-      <h2>The path</h2>
+      <h2>{T.path}</h2>
       <ol class="path">
         {leaves.map((l, i) => (
-          <li data-leaf-id={l.id}>
-            <a href={libraryUrl(l.id, 'leaf')}>
+          <li data-leaf-id={l.slug}>
+            <a href={libraryUrl(l.id, 'leaf', lang)}>
               <span class="num">{i + 1}</span>
               <span class="q">{l.data.title}</span>
-              <span class="small muted mins">{readMinutes(l.body)} min</span>
+              <span class="small muted mins">{t('common.min', { n: readMinutes(l.body) })}</span>
             </a>
           </li>
         ))}
         {recap && (
           <li class="recap">
-            <a href={libraryUrl(recap.id, 'recap')}>
+            <a href={libraryUrl(recap.id, 'recap', lang)}>
               <span class="num">✓</span>
-              <span class="q">Recap and quick quiz</span>
-              <span class="small muted mins">{readMinutes(recap.body)} min</span>
+              <span class="q">{T.recapQuiz}</span>
+              <span class="small muted mins">{t('common.min', { n: readMinutes(recap.body) })}</span>
             </a>
           </li>
         )}
@@ -96,7 +105,7 @@ const schema = [
 <style>
   .gate-layout { display: grid; grid-template-columns: minmax(0, 720px) 280px; gap: 3rem; justify-content: center; }
   .side .sticky { position: sticky; top: 84px; }
-  .big-q { font: italic 500 1.5rem/1.4 'Cormorant Garamond', Georgia, serif; color: var(--accent); margin: 0 0 1rem; }
+  .big-q { font: italic 500 1.5rem/1.4 var(--font-display); color: var(--accent); margin: 0 0 1rem; }
   .outcomes { margin: 1.6rem 0; padding: 1.1rem 1.3rem; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); }
   .outcomes h2 { margin: 0 0 0.6rem; font-size: 1.15rem; }
   .outcomes ul { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.3rem; }

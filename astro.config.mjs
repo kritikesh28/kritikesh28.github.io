@@ -12,7 +12,7 @@ const hiddenExamPages = JSON.parse(readFileSync(new URL('./src/data/exam-prep/ex
 // and add the domain to public/CNAME. See docs/04-edit-pages-and-settings.md.
 export default defineConfig({
   site: 'https://curioussparoows.com',
-  integrations: [sitemap({ filter: (page) => !page.includes('/thanks/') && !page.endsWith('/all/') && !page.includes('/blog/') && !hiddenExamPages.some((p) => page.endsWith(p)) })],
+  integrations: [sitemap({ i18n: { defaultLocale: 'en', locales: { en: 'en', hi: 'hi' } }, filter: (page) => !page.includes('/thanks/') && !page.endsWith('/all/') && !page.includes('/blog/') && !hiddenExamPages.some((p) => page.endsWith(p)) })],
   security: {
     // Content Security Policy: the browser only runs scripts and loads content from the sources listed here.
     csp: {

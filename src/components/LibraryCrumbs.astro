@@ -1,17 +1,22 @@
 ---
 import { findTwig } from '../library.config';
+import { langFromUrl, localizePath } from '../i18n/config';
+import { useT } from '../i18n/ui';
 interface Props { twig: string; current?: string }
 const { twig, current } = Astro.props;
-const found = findTwig(twig);
+const lang = langFromUrl(Astro.url);
+const t = useT(lang);
+const L = (p: string) => localizePath(p, lang);
+const found = findTwig(twig, lang);
 ---
 
-<nav class="crumbs small" aria-label="Where you are in the library">
-  <a href="/library/">Library</a>
+<nav class="crumbs small" aria-label={t('lib.whereYouAre')}>
+  <a href={L('/library/')}>{t('nav.library')}</a>
   {found && (
     <>
-      <span aria-hidden="true">›</span><a href={`/library/${found.tree.slug}/`}>{found.tree.title}</a>
+      <span aria-hidden="true">›</span><a href={L(`/library/${found.tree.slug}/`)}>{found.tree.title}</a>
       <span aria-hidden="true">›</span><span>{found.branch.title}</span>
-      <span aria-hidden="true">›</span>{current ? <a href={`/library/${twig}/`}>{found.twig.title}</a> : <span aria-current="page">{found.twig.title}</span>}
+      <span aria-hidden="true">›</span>{current ? <a href={L(`/library/${twig}/`)}>{found.twig.title}</a> : <span aria-current="page">{found.twig.title}</span>}
     </>
   )}
   {current && <><span aria-hidden="true">›</span><span aria-current="page">{current}</span></>}

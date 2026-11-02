@@ -1,3 +1,6 @@
+import type { Lang } from './i18n/config';
+import { CATEGORIES_HI } from './i18n/library.hi';
+
 // Every setting you are likely to change lives in this one file.
 
 export const SITE = {
@@ -28,14 +31,15 @@ export const SITE = {
   bingSiteVerification: '',
 };
 
+// Menu. `key` is the label's entry in src/i18n/ui.ts, so each language shows its own words.
 export const NAV = [
-  { href: '/', label: 'Home' },
-  { href: '/library/', label: 'Library' },
-  { href: '/exam-prep/', label: 'Exam Prep' },
-  { href: '/portfolio/', label: 'Portfolio' },
-  { href: '/about/', label: 'About' },
-  { href: '/contact/', label: 'Contact' },
-];
+  { href: '/', label: 'Home', key: 'nav.home' },
+  { href: '/library/', label: 'Library', key: 'nav.library' },
+  { href: '/exam-prep/', label: 'Exam Prep', key: 'nav.exam' },
+  { href: '/portfolio/', label: 'Portfolio', key: 'nav.portfolio' },
+  { href: '/about/', label: 'About', key: 'nav.about' },
+  { href: '/contact/', label: 'Contact', key: 'nav.contact' },
+] as const;
 
 export const SOCIALS = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/kritikesh-rajpurohit-6b3043195' },
@@ -57,8 +61,8 @@ export const CATEGORIES = [
 
 export type CategorySlug = (typeof CATEGORIES)[number]['slug'];
 
-export const categoryLabel = (slug: string) =>
-  CATEGORIES.find((c) => c.slug === slug)?.label ?? slug;
+export const categoryLabel = (slug: string, lang: Lang = 'en') =>
+  (lang === 'hi' ? CATEGORIES_HI[slug]?.label : undefined) ?? CATEGORIES.find((c) => c.slug === slug)?.label ?? slug;
 
 // Small true facts the sparrows share when clicked
 export const CURIOUS_FACTS = [

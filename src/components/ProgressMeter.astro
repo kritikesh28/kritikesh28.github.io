@@ -1,12 +1,16 @@
 ---
 // "3 of 12 read" with a bar. Filled in by src/scripts/library-progress.ts
+import { langFromUrl } from '../i18n/config';
+import { useT } from '../i18n/ui';
 interface Props { twig: string; total: number }
 const { twig, total } = Astro.props;
+const t = useT(langFromUrl(Astro.url));
+const words = { none: t('lib.progress.none'), all: t('lib.progress.all'), some: t('lib.progress.some') };
 ---
 
-<div class="meter" data-progress-twig={twig} data-total={total}>
+<div class="meter" data-progress-twig={twig} data-total={total} data-words={JSON.stringify(words)}>
   <div class="track" data-bar><span></span></div>
-  <p class="small muted" data-count>Not started yet</p>
+  <p class="small muted" data-count>{words.none}</p>
 </div>
 
 <style>

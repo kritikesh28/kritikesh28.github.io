@@ -1,0 +1,182 @@
+---
+// The Forest: the whole library on one page.
+import Base from '../../../layouts/Base.astro';
+import QuestionCard from '../../../components/QuestionCard.astro';
+import SearchBox from '../../../components/SearchBox.astro';
+import ProgressMeter from '../../../components/ProgressMeter.astro';
+import LevelIcon from '../../../components/LevelIcon.astro';
+import TreeMotif from '../../../components/TreeMotif.astro';
+import { SITE } from '../../../site.config';
+import { getTrees, getLevels, getBuildStatus } from '../../../library.config';
+import { getLibraryPages, getPosts } from '../../../lib';
+import { langFromUrl, langParams, localizePath, pick } from '../../../i18n/config';
+import { useT } from '../../../i18n/ui';
+
+export const getStaticPaths = () => langParams().map((params) => ({ params }));
+
+const lang = langFromUrl(Astro.url);
+const t = useT(lang);
+const L = (p: string) => localizePath(p, lang);
+const pages = await getLibraryPages(lang);
+const leafCount = (twig: string) => pages.filter((p) => p.slug.startsWith(`${twig}/`) && p.data.kind === 'leaf').length;
+const posts = await getPosts(lang);
+const readCount = (tree: string) => posts.filter((p) => p.data.category === tree).length;
+const statusLabel = { live: t('lib.readNow'), next: t('lib.beingWritten'), planned: t('lib.plannedStatus') } as const;
+const T = pick({
+  en: {
+    description: 'An open library for curious minds. Short, question-led pages on the Universe, the Earth, AI and ideas, each readable in about two minutes.',
+    schemaDesc: 'An open library for curious minds: short, question-led pages that start from zero.',
+    h1: 'An open library for curious minds',
+    lede: 'Every page answers one real question in about two minutes, starting from zero. Follow a path from the first page, or jump straight to the question on your mind.',
+    orgEyebrow: 'How it is organised', orgTitle: 'A forest of questions', like: 'Like', eg: 'e.g.',
+    exEyebrow: 'Explore', exTitle: 'Six trees, one forest',
+    courses: (n: number) => `${n} short course${n > 1 ? 's' : ''}`, reads: (n: number) => `${n} long read${n > 1 ? 's' : ''}`, growing: 'Growing',
+    open: (x: string) => `Open ${x} →`,
+    stEyebrow: 'Honest status', stTitle: 'What is growing',
+    stText: 'The library is new. Here is exactly what works today and what is still being built, so you never click on a promise.',
+    build: { live: 'Live', 'in-progress': 'In progress', planned: 'Not started' },
+  },
+  hi: {
+    description: 'जानने की चाह रखने वालों के लिए एक खुली लाइब्रेरी। ब्रह्मांड, पृथ्वी, AI और बड़े विचारों पर छोटे पन्ने, हर पन्ना एक सवाल पर, लगभग दो मिनट में पढ़ने लायक़।',
+    schemaDesc: 'जानने की चाह रखने वालों के लिए एक खुली लाइब्रेरी: सवालों से शुरू होने वाले छोटे पन्ने, बिल्कुल शून्य से।',
+    h1: 'जानने की चाह रखने वालों की खुली लाइब्रेरी',
+    lede: 'हर पन्ना एक असली सवाल का जवाब लगभग दो मिनट में देता है, बिल्कुल शुरुआत से। पहले पन्ने से एक रास्ते पर चलिए, या सीधे उस सवाल पर जाइए जो आपके मन में है।',
+    orgEyebrow: 'यह कैसे सजी है', orgTitle: 'सवालों का एक जंगल', like: 'जैसे', eg: 'उदाहरण:',
+    exEyebrow: 'घूमिए', exTitle: 'छह पेड़, एक जंगल',
+    courses: (n: number) => `${n} छोटे कोर्स`, reads: (n: number) => `${n} लंबे लेख`, growing: 'बढ़ रहा है',
+    open: (x: string) => `${x} खोलें →`,
+    stEyebrow: 'सच्ची स्थिति', stTitle: 'क्या-क्या बढ़ रहा है',
+    stText: 'लाइब्रेरी अभी नई है। यहाँ साफ़-साफ़ लिखा है कि आज क्या चल रहा है और क्या अभी बन रहा है, ताकि आप कभी किसी झूठे वादे पर क्लिक न करें।',
+    build: { live: 'तैयार है', 'in-progress': 'काम चल रहा है', planned: 'शुरू नहीं हुआ' },
+  },
+}, lang);
+const schema = [
+  {
+    '@type': 'CollectionPage',
+    name: t('site.libraryName'),
+    url: new URL(L('/library/'), Astro.site).href,
+    description: T.schemaDesc,
+    inLanguage: lang,
+  },
+];
+---
+
+<Base title={t('nav.library')} description={T.description} {schema}>
+  <section class="wrap hero">
+    <div>
+      <p class="eyebrow">{t('site.libraryName')}</p>
+      <h1>{T.h1}</h1>
+      <p class="lede">{T.lede}</p>
+      <div class="find"><SearchBox id="lib-q" /></div>
+    </div>
+    <QuestionCard />
+  </section>
+
+  <section class="wrap block">
+    <p class="eyebrow">{T.orgEyebrow}</p>
+    <h2>{T.orgTitle}</h2>
+    <ol class="levels">
+      {getLevels(lang).map((l) => (
+        <li>
+          <LevelIcon level={l.name} size={150} class="lv-wm" />
+          <LevelIcon level={l.name} size={44} class="lv-icon" />
+          <strong>{l.label}</strong>
+          <span>{l.means}</span>
+          <span class="small muted">{T.like} {l.like}{lang === 'hi' ? '।' : '.'} {T.eg} <em>{l.example}</em></span>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="wrap block">
+    <p class="eyebrow">{T.exEyebrow}</p>
+    <h2>{T.exTitle}</h2>
+    <div class="trees">
+      {getTrees(lang).map((tree) => {
+        const twigs = tree.branches.flatMap((b) => b.twigs);
+        const live = twigs.filter((t) => t.status === 'live');
+        const reads = readCount(tree.slug);
+        return (
+          <article class={`tree t-${tree.slug}`} id={tree.slug}>
+            <TreeMotif tree={tree.slug} class="wm" />
+            <a class="tree-link" href={L(`/library/${tree.slug}/`)}>
+              <span class="tree-top"><LevelIcon level="Tree" size={30} /><span class="small">{live.length > 0 ? T.courses(live.length) : T.growing}{reads > 0 && ` · ${T.reads(reads)}`}</span></span>
+              <h3>{tree.title}</h3>
+              <p class="small">{tree.blurb}</p>
+            </a>
+            <ul>
+              {twigs.slice(0, 3).map((twig) => (
+                <li class:list={['twig', twig.status]}>
+                  {twig.status === 'live'
+                    ? <a href={L(`/library/${twig.slug}/`)}><strong>{twig.title}</strong><span class="small">{t('lib.leaves', { n: leafCount(twig.slug) })} · {t('lib.readNow')} →</span><ProgressMeter twig={twig.slug} total={leafCount(twig.slug)} /></a>
+                    : <div><strong>{twig.title}</strong><span class="tag small">{t('lib.notWritten', { status: statusLabel[twig.status] })}</span></div>}
+                </li>
+              ))}
+            </ul>
+            <a class="tree-more small" href={L(`/library/${tree.slug}/`)}>{T.open(tree.title)}</a>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+
+  <section class="wrap block">
+    <p class="eyebrow">{T.stEyebrow}</p>
+    <h2>{T.stTitle}</h2>
+    <p class="muted narrow">{T.stText}</p>
+    <ul class="build">
+      {getBuildStatus(lang).map((b) => (
+        <li>
+          <span class:list={['chip', b.status]}>{T.build[b.status]}</span>
+          <strong>{b.name}</strong>
+          <span class="small muted">{b.note}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>
+
+<script>
+  import { paintProgress } from '../../../scripts/library-progress';
+  paintProgress();
+</script>
+
+<style>
+  .hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 2.5rem; align-items: center; margin-top: 1rem; }
+  .lede { font-size: 1.15rem; color: var(--ink-soft); max-width: 36rem; }
+  .find { margin-top: 1.4rem; max-width: 34rem; }
+  .block { margin-top: 4rem; }
+  .levels { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.8rem; }
+  .levels li { position: relative; overflow: hidden; display: grid; gap: 0.2rem; align-content: start; padding: 1rem; border-radius: var(--radius); background: linear-gradient(160deg, var(--surface), color-mix(in srgb, var(--teal) 7%, var(--surface))); border: 1px solid var(--line); }
+  .levels :global(.lv-wm) { position: absolute; right: -34px; bottom: -36px; color: var(--teal); opacity: 0.1; }
+  .levels :global(.lv-icon) { color: #8a6a3b; margin-bottom: 0.3rem; }
+  :global([data-theme='dark']) .levels :global(.lv-icon) { color: #e0b45e; }
+  @media (prefers-color-scheme: dark) { :global(:root:not([data-theme='light'])) .levels :global(.lv-icon) { color: #e0b45e; } }
+  .levels li > * { position: relative; }
+  .trees { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); margin-top: 1rem; }
+  .tree { position: relative; overflow: hidden; isolation: isolate; display: flex; flex-direction: column; padding: 1.3rem; border-radius: 20px; border: 1px solid color-mix(in srgb, var(--tree) 30%, var(--line)); background: linear-gradient(165deg, color-mix(in srgb, var(--tree) 13%, var(--surface)) 0%, var(--surface) 55%); scroll-margin-top: 80px; transition: transform 0.25s, box-shadow 0.25s; }
+  .tree:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -22px color-mix(in srgb, var(--tree) 70%, transparent); }
+  .tree :global(.wm) { position: absolute; z-index: -1; right: -18px; bottom: -10px; width: 240px; height: auto; color: var(--tree); opacity: 0.14; transition: opacity 0.3s, transform 0.6s; }
+  .tree:hover :global(.wm) { opacity: 0.22; transform: scale(1.04) rotate(-1deg); }
+  .tree-link { text-decoration: none; color: var(--ink); }
+  .tree-link:hover { color: var(--ink); }
+  .tree-top { display: flex; align-items: center; justify-content: space-between; color: var(--tree); font-weight: 600; }
+  .tree h3 { margin: 0.5rem 0 0.2rem; font-size: 1.35rem; }
+  .tree-link p { margin: 0 0 0.8rem; color: var(--ink-soft); }
+  .tree ul { list-style: none; padding: 0; margin: 0 0 0.8rem; display: grid; gap: 0.5rem; }
+  .twig > a, .twig > div { display: grid; gap: 0.2rem; padding: 0.7rem 0.8rem; border-radius: 12px; text-decoration: none; color: var(--ink); background: color-mix(in srgb, var(--surface) 82%, transparent); backdrop-filter: blur(2px); }
+  .twig.live > a { border: 1px solid color-mix(in srgb, var(--tree) 40%, transparent); }
+  .twig.live > a:hover { color: var(--ink); border-color: var(--tree); }
+  .twig:not(.live) > div { border: 1px dashed var(--line); }
+  .tag { justify-self: start; padding: 0.1rem 0.5rem; border-radius: 999px; background: var(--accent-soft); color: var(--ink-soft); }
+  .tree-more { margin-top: auto; font-weight: 600; color: var(--tree); text-decoration: none; }
+  .build { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: 0.6rem; max-width: 760px; }
+  .build li { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.1rem 0.8rem; align-items: baseline; padding: 0.8rem 1rem; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); }
+  .build .chip { grid-row: span 2; justify-self: start; margin: 0; }
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: minmax(0, 1fr); }
+    .levels { grid-template-columns: 1fr; }
+    .build li { grid-template-columns: 1fr; }
+    .build .chip { grid-row: auto; }
+  }
+</style>
