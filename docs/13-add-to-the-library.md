@@ -116,7 +116,7 @@ When a reader reaches the end of a Leaf, the browser remembers it (in its own st
 
 ## G. How search works
 
-`/search-index.json` is rebuilt on every publish from all library pages, posts, projects and curious questions. The search page ranks results by title, keywords, description and text, accepts spelling mistakes, and when nothing matches well it shows the closest pages with an honest note and a link to suggest the question. To make a page easier to find, add the words people use to its `keywords`. To teach search that two words mean the same (including Hindi words such as brahmand → universe), add them to `SYN` near the top of `src/scripts/search-engine.ts`.
+`/search-index.json` (and `/hi/search-index.json` for Hindi, see [15](15-languages-and-hindi.md)) is rebuilt on every publish from all library pages, posts, projects and curious questions. The search page ranks results by title, keywords, description and text, accepts spelling mistakes, and when nothing matches well it shows the closest pages with an honest note and a link to suggest the question. To make a page easier to find, add the words people use to its `keywords`. To teach search that two words mean the same (including Hindi words such as brahmand → universe), add them to `SYN` near the top of `src/scripts/search-engine.ts`.
 
 While typing, every search box suggests up to six real pages, offers "Did you mean …?" when a word looks misspelt (it compares against words used on the site), and ends with "See all results". Arrow keys move through suggestions, Enter opens one, Escape closes the list.
 

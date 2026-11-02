@@ -177,3 +177,5 @@ html[lang='hi'] body { line-height: 1.8; }
 html[lang='hi'] .eyebrow { font-size: 0.86rem; }
 html[lang='hi'] h1, html[lang='hi'] h2, html[lang='hi'] h3 { line-height: 1.45; }
 html[lang='hi'] .prose p, html[lang='hi'] .prose li { line-height: 1.9; }
+/* gold text painted with background-clip needs room above for Hindi vowel signs (ें, ि), or their tops get cut off */
+html[lang='hi'] .motto-text { padding-block: 0.22em; }
