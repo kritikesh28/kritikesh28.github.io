@@ -1,25 +1,28 @@
 ---
 // The NYC taxi demand explorer, served from this site, with links to the Hugging Face Space and the code.
+import { langFromUrl } from '../i18n/config';
+import { useT } from '../i18n/ui';
 interface Props { height?: number }
 const { height = 760 } = Astro.props;
+const t = useT(langFromUrl(Astro.url));
 ---
 
 <figure class="demo">
   <div class="frame">
-    <div class="chrome" aria-hidden="true"><span></span><span></span><span></span><em>NYC Taxi Demand Explorer · live</em></div>
+    <div class="chrome" aria-hidden="true"><span></span><span></span><span></span><em>{t('demo.chrome')}</em></div>
     <iframe
       src="/demos/nyc-taxi/"
-      title="NYC Taxi Demand Explorer: pick a weekday and hour to see where taxi pickups happen"
+      title={t('demo.title')}
       loading="lazy"
       height={height}
       referrerpolicy="strict-origin-when-cross-origin"
     ></iframe>
   </div>
   <figcaption>
-    <span class="muted small">Pick a weekday and an hour; the map shows where New York taxi pickups happen. Built from about 1.8 million trips.</span>
+    <span class="muted small">{t('demo.caption')}</span>
     <span class="links">
-      <a class="btn ghost" href="https://huggingface.co/spaces/kritikesh28/nyc-taxi-demand-explorer" target="_blank" rel="noopener noreferrer">Open on Hugging Face</a>
-      <a class="btn ghost" href="https://github.com/kritikesh28/nyc-taxi-2023-eda" target="_blank" rel="noopener noreferrer">Code on GitHub</a>
+      <a class="btn ghost" href="https://huggingface.co/spaces/kritikesh28/nyc-taxi-demand-explorer" target="_blank" rel="noopener noreferrer">{t('demo.hf')}</a>
+      <a class="btn ghost" href="https://github.com/kritikesh28/nyc-taxi-2023-eda" target="_blank" rel="noopener noreferrer">{t('demo.code')}</a>
     </span>
   </figcaption>
 </figure>

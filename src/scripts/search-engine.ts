@@ -1,11 +1,15 @@
 // The site search, shared by the search page and every search box with suggestions.
-// It reads /search-index.json (built by src/pages/search-index.json.ts) once per visit.
+// It reads /search-index.json (or /hi/search-index.json on Hindi pages; built by src/pages/[...lang]/search-index.json.ts) once per visit.
 // Guide: docs/13-add-to-the-library.md, "How search works".
 
 export type Item = { t: string; d: string; u: string; k: string; w: string; b: string };
 type Indexed = { item: Item; fields: [Set<string>, number][]; tris: Set<string>; title: string };
 
-const STOP = new Set('a an the is are was were be of to in on at for and or what why how who when where which does do did it its can i you we me my this that with from by as into about'.split(' '));
+const STOP = new Set(
+  ('a an the is are was were be of to in on at for and or what why how who when where which does do did it its can i you we me my this that with from by as into about ' +
+    // Hindi: small joining words that carry no topic (written as norm() leaves them, without the nukta dot)
+    'है हैं था थे का की के में से और या को पर यह वह ये वे क्या कैसे क्यों कब कहाँ कौन कौनसा एक भी तो ही ने हम आप मैं').split(' '),
+);
 // Words people use for the same idea. Add pairs here to teach search new synonyms.
 const SYN: Record<string, string[]> = {
   bigbang: ['big', 'bang'], cmb: ['cosmic', 'microwave', 'background'], ai: ['artificial', 'intelligence', 'ai'],
@@ -15,7 +19,9 @@ const SYN: Record<string, string[]> = {
   brahmand: ['universe'], prithvi: ['earth'], tara: ['star'], taare: ['star'], akash: ['sky'], bhugol: ['geography'],
 };
 
-export const norm = (s: string) => s.toLowerCase().normalize('NFKD').replace(/[^\p{L}\p{N}\s]/gu, ' ');
+// Lower case, accents dropped (é -> e), Hindi nukta dropped (ज़ -> ज), punctuation removed. Hindi vowel signs are kept.
+export const norm = (s: string) =>
+  s.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f\u093c]/g, '').replace(/[^\p{L}\p{M}\p{N}\s]/gu, ' ');
 const words = (s: string) => norm(s).split(/\s+/).filter((w) => w && !STOP.has(w));
 const stem = (w: string) => w.replace(/(ies)$/, 'y').replace(/(es|s)$/, '');
 function lev(a: string, b: string) {
@@ -44,7 +50,8 @@ let vocab = new Map<string, number>(); // every word in titles and keywords, wit
 let loading: Promise<void> | undefined;
 
 export function loadIndex() {
-  loading ??= fetch('/search-index.json')
+  const lang = document.documentElement.lang;
+  loading ??= fetch(lang && lang !== 'en' ? `/${lang}/search-index.json` : '/search-index.json')
     .then((r) => r.json())
     .then((items: Item[]) => {
       index = items.map((item) => ({

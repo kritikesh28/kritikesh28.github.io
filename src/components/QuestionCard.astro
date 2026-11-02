@@ -1,22 +1,27 @@
 ---
 // A curious question with its full answer one tap away. Questions live in src/data/curious-questions.ts.
-import { CURIOUS_QUESTIONS } from '../data/curious-questions';
+import { getQuestions } from '../data/curious-questions';
+import { langFromUrl, localizePath } from '../i18n/config';
+import { useT } from '../i18n/ui';
 interface Props { compact?: boolean }
 const { compact = false } = Astro.props;
-const first = CURIOUS_QUESTIONS[0];
+const lang = langFromUrl(Astro.url);
+const t = useT(lang);
+const QUESTIONS = getQuestions(lang);
+const first = QUESTIONS[0];
 ---
 
 <section class:list={['qcard', { compact }]} aria-labelledby="qcard-title">
   <div class="stars" aria-hidden="true"></div>
-  <p class="qeyebrow" id="qcard-title"><span aria-hidden="true">✦</span> A curious question <span class="qtopic" data-topic>{first.topic}</span></p>
+  <p class="qeyebrow" id="qcard-title"><span aria-hidden="true">✦</span> {t('q.eyebrow')} <span class="qtopic" data-topic>{first.topic}</span></p>
   <p class="qtext" data-q>{first.q}</p>
   <details class="qreveal" data-details>
-    <summary><span>Tap to see the answer</span></summary>
+    <summary><span>{t('q.reveal')}</span></summary>
     <p class="qanswer" data-a>{first.a}</p>
-    <a class="qmore" data-link href={first.link ?? '/library/'} hidden={!first.link}>Go deeper on this <span aria-hidden="true">→</span></a>
+    <a class="qmore" data-link href={first.link ?? localizePath('/library/', lang)} hidden={!first.link}>{t('q.more')} <span aria-hidden="true">→</span></a>
   </details>
-  <button class="qnext" type="button" data-next>Another question <span aria-hidden="true">↻</span></button>
-  <script type="application/json" data-questions set:html={JSON.stringify(CURIOUS_QUESTIONS)} />
+  <button class="qnext" type="button" data-next>{t('q.next')} <span aria-hidden="true">↻</span></button>
+  <script type="application/json" data-questions set:html={JSON.stringify(QUESTIONS)} />
 </section>
 
 <script>

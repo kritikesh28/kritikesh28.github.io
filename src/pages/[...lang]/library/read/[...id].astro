@@ -1,0 +1,79 @@
+---
+import { render } from 'astro:content';
+import Base from '../../../../layouts/Base.astro';
+import FormattedDate from '../../../../components/FormattedDate.astro';
+import Comments from '../../../../components/Comments.astro';
+import CtaBand from '../../../../components/CtaBand.astro';
+import { SITE, categoryLabel } from '../../../../site.config';
+import { getPosts, slugify, translatedLangs } from '../../../../lib';
+import { LANGS, DEFAULT_LANG, langFromUrl, localizePath } from '../../../../i18n/config';
+import { useT } from '../../../../i18n/ui';
+
+export async function getStaticPaths() {
+  const all = await Promise.all(LANGS.map(async (lang) => ({ lang, posts: await getPosts(lang) })));
+  return all.flatMap(({ lang, posts }) =>
+    posts.map((post) => ({
+      params: { lang: lang === DEFAULT_LANG ? undefined : lang, id: post.slug },
+      props: { post },
+    })),
+  );
+}
+
+const { post } = Astro.props;
+const translated = await translatedLangs('blog', post.slug);
+const lang = langFromUrl(Astro.url);
+const t = useT(lang);
+const L = (p: string) => localizePath(p, lang);
+const { Content } = await render(post);
+const { title, description, date, updated, category, tags, aiAssisted } = post.data;
+const url = new URL(L(`/library/read/${post.slug}/`), Astro.site).href;
+const schema = [
+  {
+    '@type': 'BlogPosting',
+    headline: title,
+    description,
+    datePublished: date.toISOString(),
+    dateModified: (updated ?? date).toISOString(),
+    inLanguage: post.lang,
+    author: { '@id': new URL('/#person', Astro.site).href },
+    publisher: { '@id': new URL('/#person', Astro.site).href },
+    mainEntityOfPage: url,
+    image: new URL('/images/sparrows.webp', Astro.site).href,
+    articleSection: categoryLabel(category, lang),
+    keywords: tags.join(', '),
+    isPartOf: { '@id': new URL('/#website', Astro.site).href },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: t('nav.library'), item: new URL(L('/library/'), Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: categoryLabel(category, lang), item: new URL(L(`/library/${category}/`), Astro.site).href },
+      { '@type': 'ListItem', position: 3, name: title, item: url },
+    ],
+  },
+];
+---
+
+<Base title={title} {description} image="/images/sparrows.webp" type="article" published={date} {updated} {schema} {translated}>
+  <article class="wrap">
+    <div class="prose" lang={post.lang}>
+      <p class="small muted">
+        <a href={L('/library/')}>{t('nav.library')}</a> › <a href={L(`/library/${category}/`)}>{categoryLabel(category, lang)}</a> › {t('common.longRead')}
+      </p>
+      <h1>{title}</h1>
+      <p class="small muted">
+        {t('common.by')} <a href={L('/about/')}>{t('site.name')}</a> · <FormattedDate date={date} />
+        {updated && <span> · {t('common.updated')} <FormattedDate date={updated} /></span>}
+      </p>
+      {aiAssisted && <p class="note small">{t('ai.post', { name: t('site.name') })}</p>}
+      <Content />
+      {tags.length > 0 && <p>{tags.map((tag) => <a class="chip" href={L(`/library/tag/${slugify(tag)}/`)}>{tag}</a>)}</p>}
+      <Comments />
+    </div>
+    <CtaBand />
+  </article>
+</Base>
+
+<style>
+  .note { border-left: 3px solid var(--gold); padding: 0.3rem 0.8rem; color: var(--ink-soft); background: color-mix(in srgb, var(--gold) 8%, transparent); border-radius: 0 8px 8px 0; }
+</style>

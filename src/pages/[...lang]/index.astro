@@ -1,0 +1,109 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import PosterHero from '../../components/PosterHero.astro';
+import CuriosityOrbit from '../../components/CuriosityOrbit.astro';
+import LiveDemo from '../../components/LiveDemo.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import QuestionCard from '../../components/QuestionCard.astro';
+import { SITE } from '../../site.config';
+import { getPosts, getProjects } from '../../lib';
+import { langFromUrl, langParams, localizePath, pick } from '../../i18n/config';
+
+export const getStaticPaths = () => langParams().map((params) => ({ params }));
+
+const lang = langFromUrl(Astro.url);
+const L = (p: string) => localizePath(p, lang);
+const posts = (await getPosts(lang)).slice(0, 3);
+const projects = (await getProjects(lang)).slice(0, 3);
+const T = pick({
+  en: {
+    libEyebrow: 'New · The Library', libTitle: 'Learn something real in two minutes',
+    libText: 'Short, question-led pages that start from zero. The first course follows the Universe from its first second to the atoms in your body, in 12 small steps.',
+    libStart: 'Start The Universe →', libBrowse: 'Browse the library',
+    exEyebrow: 'Explore', exTitle: 'Pick a thread', exText: 'Six trees grow in one forest. Each subject is a tree in the library, and they all meet in the middle.', exOpen: 'Open the library →',
+    liveEyebrow: 'Live project', liveTitle: 'Where New York takes a taxi, hour by hour',
+    pfEyebrow: 'Portfolio', pfTitle: 'Projects', pfAll: 'All projects →',
+    lrEyebrow: `${SITE.blogBrand} Library`, lrTitle: 'Latest long reads', lrNone: 'The first posts are being written.',
+  },
+  hi: {
+    libEyebrow: 'नया · लाइब्रेरी', libTitle: 'दो मिनट में कुछ सच्चा और काम का सीखिए',
+    libText: 'छोटे पन्ने, हर पन्ना एक सवाल से शुरू, बिल्कुल शून्य से। पहला कोर्स ब्रह्मांड (पूरी सृष्टि) की कहानी उसके पहले पल से लेकर आपके शरीर के परमाणुओं (सबसे छोटे कणों) तक, 12 छोटे कदमों में सुनाता है।',
+    libStart: 'ब्रह्मांड का कोर्स शुरू करें →', libBrowse: 'पूरी लाइब्रेरी देखें',
+    exEyebrow: 'घूमिए', exTitle: 'एक धागा चुनिए', exText: 'एक जंगल में छह पेड़ उगते हैं। लाइब्रेरी में हर विषय एक पेड़ है, और सब बीच में आकर मिलते हैं।', exOpen: 'लाइब्रेरी खोलें →',
+    liveEyebrow: 'लाइव प्रोजेक्ट', liveTitle: 'न्यूयॉर्क में लोग टैक्सी कहाँ से लेते हैं, घंटे-दर-घंटे',
+    pfEyebrow: 'मेरा काम', pfTitle: 'प्रोजेक्ट', pfAll: 'सारे प्रोजेक्ट →',
+    lrEyebrow: 'Curious Sparoows लाइब्रेरी', lrTitle: 'नए लंबे लेख', lrNone: 'पहले लेख लिखे जा रहे हैं।',
+  },
+}, lang);
+---
+
+<Base type="profile">
+  <PosterHero />
+
+  {/* keep Google's search snippet on the intro above: the demo and card text below should not be quoted */}
+  <div data-nosnippet>
+
+  <section id="library" class="wrap section reveal">
+    <div class="lib">
+      <div>
+        <p class="eyebrow">{T.libEyebrow}</p>
+        <h2>{T.libTitle}</h2>
+        <p class="muted">{T.libText}</p>
+        <p class="lib-links">
+          <a class="btn" href={L('/library/the-universe/')}>{T.libStart}</a>
+          <a class="btn ghost" href={L('/library/')}>{T.libBrowse}</a>
+        </p>
+      </div>
+      <QuestionCard />
+    </div>
+  </section>
+
+  <section id="explore" class="wrap section reveal">
+    <div class="split">
+      <div>
+        <p class="eyebrow">{T.exEyebrow}</p>
+        <h2>{T.exTitle}</h2>
+        <p class="muted">{T.exText}</p>
+        <p><a href={L('/library/')}>{T.exOpen}</a></p>
+      </div>
+      <CuriosityOrbit />
+    </div>
+  </section>
+
+  <section id="live" class="wrap section reveal">
+    <p class="eyebrow">{T.liveEyebrow}</p>
+    <h2>{T.liveTitle}</h2>
+    <LiveDemo />
+  </section>
+
+  <section class="wrap section reveal">
+    <p class="eyebrow">{T.pfEyebrow}</p>
+    <h2>{T.pfTitle}</h2>
+    <div class="grid3">{projects.map((p) => <ProjectCard project={p} />)}</div>
+    <p><a href={L('/portfolio/')}>{T.pfAll}</a></p>
+  </section>
+
+  <section class="wrap section reveal">
+    <p class="eyebrow">{T.lrEyebrow}</p>
+    <h2>{T.lrTitle}</h2>
+    {posts.length > 0
+      ? <div class="grid3">{posts.map((post) => <PostCard post={post} />)}</div>
+      : <p class="muted">{T.lrNone}</p>}
+  </section>
+
+  <div class="wrap"><CtaBand /></div>
+  </div>
+</Base>
+
+<style>
+  .section { margin-top: 4rem; }
+  .split { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 2rem; align-items: center; }
+  .lib { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2.5rem; align-items: center; }
+  .lib-links { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .grid3 { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  @media (max-width: 860px) {
+    .split, .lib { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>

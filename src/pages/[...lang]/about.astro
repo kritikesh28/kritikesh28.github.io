@@ -1,0 +1,165 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE, SOCIALS } from '../../site.config';
+import CtaBand from '../../components/CtaBand.astro';
+import { langFromUrl, langParams, localizePath, pick } from '../../i18n/config';
+
+export const getStaticPaths = () => langParams().map((params) => ({ params }));
+
+const lang = langFromUrl(Astro.url);
+const L = (p: string) => localizePath(p, lang);
+const schema = [{ '@type': 'ProfilePage', mainEntity: { '@id': new URL('/#person', Astro.site).href }, url: new URL(L('/about/'), Astro.site).href }];
+
+// Hindi note: Hindi verbs change with the speaker's gender (करता / करती). This page is written so that no verb needs it.
+const T = pick({
+  en: {
+    title: 'About', description: 'About Kritikesh Rajpurohit: geology and geography graduate learning applied AI.',
+    alt: 'Kritikesh Rajpurohit', h1: 'About me',
+    lead: `I'm Kritikesh Rajpurohit, from ${SITE.location}. I studied the Earth, I teach what I learn, and I'm now building a career in applied AI.`,
+    what: ['I build with data and AI.', 'I map the Earth in QGIS.', 'I explain ideas from the basics up.', 'I stay curious, without end.'],
+    motto: SITE.motto,
+    factsTitle: 'Quick facts',
+    facts: [
+      ['Name', SITE.name],
+      ['Based in', SITE.location],
+      ['Studying', 'Applied AI and Agentic AI (EPGP), IIIT Bangalore, 2026 to 2027'],
+      ['Degrees', 'M.Sc. Geography (IGNOU); B.Sc. (Hons.) Geology (Hansraj College, University of Delhi)'],
+      ['Works with', 'Python, pandas, QGIS, research and teaching'],
+      ['Writes as', `${SITE.blogBrand} (two o's on purpose)`],
+    ],
+    nowTitle: "What I'm doing now",
+    now: [
+      'Executive Post Graduate Programme in Applied AI and Agentic AI, IIIT Bangalore (online with upGrad), July 2026 to March 2027.',
+      `Building portfolio projects in data analysis and AI. The first, an analysis of New York taxi demand, is in my <a href="${L('/portfolio/')}">portfolio</a>.`,
+      'Writing a research paper on water poverty in the Bhil tribal region of Banswara, Rajasthan, which includes interviews with residents.',
+    ],
+    eduTitle: 'Education', eduHead: ['Programme', 'Where', 'Years'],
+    edu: [
+      ['EPGP, Applied AI and Agentic AI', 'IIIT Bangalore (via upGrad)', '2026 to 2027'],
+      ['M.Sc. Geography', 'IGNOU', '2023 to 2026'],
+      ['B.Sc. (Hons.) Geology', 'Hansraj College, University of Delhi', '2018 to 2021'],
+    ],
+    dissertation: 'My M.Sc. dissertation was <em>Tribal Poverty in Southern Rajasthan: A Case Study on Bhil Tribes</em>.',
+    skillsTitle: 'Skills, honestly rated',
+    skills: [
+      '<strong>Working:</strong> QGIS mapping (georeferencing; maps of India and Rajasthan down to village level; watershed, river and peak maps), research and field questionnaires, prompt and AI workflow design.',
+      '<strong>Basic:</strong> Python (NumPy, pandas, Matplotlib), SQL, Excel, satellite and terrain data (Landsat, Sentinel, DEM, NDVI).',
+      '<strong>Languages:</strong> English and Hindi.',
+    ],
+    teachTitle: 'Teaching and exam preparation',
+    teach: `Since 2018 I have prepared for the UPSC and RAS civil services exams alongside my degrees, and I qualified UGC-NET Geography for PhD admission. Over the same years I have tutored students for competitive exams. I teach from the prerequisites up: fill in the background first, then climb step by step. That method is what this site's library, ${SITE.blogBrand}, is built on.`,
+    outsideTitle: 'Outside work',
+    outside: [
+      '<strong>Ideas:</strong> philosophy and psychology, and how they link with mathematics, physics, chemistry and biology. I read across genres, especially self-help.',
+      '<strong>Stories and screen:</strong> story writing, film-making, sketching and painting; films of every genre.',
+      '<strong>Practice:</strong> Vedic chanting, flute and Rajasthani safa tying.',
+      '<strong>Hands-on:</strong> badminton, gardening and cooking.',
+    ],
+    verifyTitle: 'Find and verify me',
+    verify: 'These are my only official profiles. Each one links back to this site, so you can confirm they are really me.',
+    resume: 'Download my resume (PDF)', contact: 'Get in touch →',
+  },
+  hi: {
+    title: 'मेरे बारे में', description: 'कृतिकेश राजपुरोहित के बारे में: भूविज्ञान और भूगोल की पढ़ाई, और अब AI सीखने का सफ़र।',
+    alt: 'कृतिकेश राजपुरोहित', h1: 'मेरे बारे में',
+    lead: 'नमस्ते, मेरा नाम कृतिकेश राजपुरोहित है। मैं रावतभाटा, राजस्थान (कोटा के पास) से हूँ। मैंने पृथ्वी के बारे में पढ़ाई की है, जो सीखा है वह दूसरों को सिखाना मुझे अच्छा लगता है, और अब मेरा लक्ष्य अप्लाइड AI (असली कामों में इस्तेमाल होने वाली कृत्रिम बुद्धि) में करियर बनाना है।',
+    what: ['डेटा और AI से चीज़ें बनाना।', 'QGIS (नक्शे बनाने का सॉफ़्टवेयर) में पृथ्वी के नक्शे बनाना।', 'मुश्किल बातों को बिल्कुल शुरुआत से समझाना।', 'जानने की चाह, जो कभी ख़त्म न हो।'],
+    motto: 'दो o, दो गौरैया: जानने का मज़ा बाँटने से बढ़ता है।',
+    factsTitle: 'कुछ ज़रूरी बातें',
+    facts: [
+      ['नाम', 'कृतिकेश राजपुरोहित'],
+      ['कहाँ से', 'रावतभाटा, राजस्थान (कोटा के पास), भारत'],
+      ['अभी की पढ़ाई', 'अप्लाइड AI और एजेंटिक AI (ख़ुद से कई काम पूरे करने वाली AI) में EPGP (एक साल का पोस्ट-ग्रेजुएट प्रोग्राम), IIIT बेंगलुरु, 2026 से 2027'],
+      ['डिग्रियाँ', 'M.Sc. भूगोल (IGNOU); B.Sc. (ऑनर्स) भूविज्ञान, यानी जियोलॉजी: चट्टानों और धरती की बनावट का विज्ञान (हंसराज कॉलेज, दिल्ली विश्वविद्यालय)'],
+      ['किन चीज़ों से काम', 'Python (कंप्यूटर प्रोग्रामिंग की भाषा), pandas (डेटा सँभालने का टूल), QGIS, रिसर्च (खोजबीन) और पढ़ाना'],
+      ['लिखने का नाम', 'Curious Sparoows (दो o जान-बूझकर)'],
+    ],
+    nowTitle: 'अभी मेरे काम',
+    now: [
+      'अप्लाइड AI और एजेंटिक AI में एग्ज़िक्यूटिव पोस्ट ग्रेजुएट प्रोग्राम (EPGP), IIIT बेंगलुरु (upGrad के साथ ऑनलाइन), जुलाई 2026 से मार्च 2027 तक।',
+      `डेटा एनालिसिस (आँकड़ों की जाँच-परख) और AI के प्रोजेक्ट बनाना। पहला प्रोजेक्ट, न्यूयॉर्क में टैक्सी की माँग की जाँच, मेरे <a href="${L('/portfolio/')}">काम वाले पन्ने</a> पर है।`,
+      'बाँसवाड़ा, राजस्थान के भील आदिवासी इलाक़े में पानी की ग़रीबी (साफ़ पानी तक पहुँच की कमी) पर एक रिसर्च पेपर लिखना, जिसमें वहाँ के लोगों से की गई बातचीत भी शामिल है।',
+    ],
+    eduTitle: 'पढ़ाई', eduHead: ['कोर्स', 'कहाँ से', 'साल'],
+    edu: [
+      ['EPGP, अप्लाइड AI और एजेंटिक AI', 'IIIT बेंगलुरु (upGrad के ज़रिए)', '2026 से 2027'],
+      ['M.Sc. भूगोल', 'IGNOU', '2023 से 2026'],
+      ['B.Sc. (ऑनर्स) भूविज्ञान', 'हंसराज कॉलेज, दिल्ली विश्वविद्यालय', '2018 से 2021'],
+    ],
+    dissertation: 'M.Sc. में मेरा शोध-प्रबंध (डिसर्टेशन: पढ़ाई के आख़िर में लिखा जाने वाला बड़ा रिसर्च लेख) था: <em>Tribal Poverty in Southern Rajasthan: A Case Study on Bhil Tribes</em> (दक्षिणी राजस्थान में आदिवासी ग़रीबी: भील जनजाति पर एक अध्ययन)।',
+    skillsTitle: 'मेरे हुनर, ईमानदारी से',
+    skills: [
+      '<strong>काम चलाने लायक़ अच्छा:</strong> QGIS में नक्शे बनाना (जियोरेफ़रेंसिंग, यानी पुराने काग़ज़ी नक्शे को असली जगह से मिलाना; भारत और राजस्थान के गाँव स्तर तक के नक्शे; जलग्रहण क्षेत्र यानी वॉटरशेड, नदियों और पहाड़ की चोटियों के नक्शे), रिसर्च और गाँव-शहर में जाकर सवाल-जवाब (प्रश्नावली), AI से काम करवाने के निर्देश (प्रॉम्प्ट) और AI के काम का तरीका बनाना।',
+      '<strong>शुरुआती:</strong> Python (NumPy, pandas, Matplotlib), SQL (डेटाबेस से जानकारी निकालने की भाषा), Excel, सैटेलाइट और ज़मीन की ऊँचाई-नीचाई वाला डेटा (Landsat, Sentinel, DEM, और NDVI, यानी पेड़-पौधों की हरियाली नापने का पैमाना)।',
+      '<strong>भाषाएँ:</strong> हिंदी और अंग्रेज़ी।',
+    ],
+    teachTitle: 'पढ़ाना और परीक्षा की तैयारी',
+    teach: '2018 से अपनी डिग्रियों के साथ-साथ मैंने UPSC और RAS (सिविल सेवा, यानी बड़े सरकारी अफ़सरों की परीक्षाएँ) की तैयारी की है, और PhD में दाख़िले के लिए UGC-NET भूगोल पास किया है। इन्हीं सालों में प्रतियोगी परीक्षाओं के छात्रों को पढ़ाया भी है। मेरा पढ़ाने का तरीका है: पहले वह नींव (ज़रूरी पुरानी बातें) भरना जिस पर नया टॉपिक टिका है, फिर एक-एक कदम ऊपर चढ़ना। इस साइट की लाइब्रेरी, Curious Sparoows, इसी तरीके पर बनी है।',
+    outsideTitle: 'काम के बाहर',
+    outside: [
+      '<strong>विचार:</strong> दर्शन (जीवन के बड़े सवाल) और मनोविज्ञान (मन कैसे काम करता है), और ये गणित, भौतिकी, रसायन और जीव विज्ञान से कैसे जुड़ते हैं। हर तरह की किताबें, ख़ासकर सेल्फ़-हेल्प (ख़ुद को बेहतर बनाने वाली) किताबें।',
+      '<strong>कहानियाँ और परदा:</strong> कहानी लिखना, फ़िल्म बनाना, स्केच और पेंटिंग; हर तरह की फ़िल्में।',
+      '<strong>साधना:</strong> वैदिक मंत्र-पाठ, बाँसुरी और राजस्थानी साफ़ा बाँधना।',
+      '<strong>हाथ से करने वाले काम:</strong> बैडमिंटन, बागवानी और खाना बनाना।',
+    ],
+    verifyTitle: 'मुझे ढूँढिए और पक्का कीजिए',
+    verify: 'ये ही मेरी असली (ऑफ़िशियल) प्रोफ़ाइल हैं। हर एक में इस साइट का लिंक है, ताकि आप पक्का कर सकें कि ये सच में मेरी ही हैं।',
+    resume: 'मेरा रिज़्यूमे (PDF) डाउनलोड करें', contact: 'मुझसे बात करें →',
+  },
+}, lang);
+---
+
+<Base title={T.title} description={T.description} type="profile" {schema}>
+  <article class="wrap prose">
+    <img class="photo" src="/images/kritikesh.jpg" alt={T.alt} width="160" height="160" />
+    <h1>{T.h1}</h1>
+    <p class="lead">{T.lead}</p>
+    <ul class="what">{T.what.map((w) => <li>{w}</li>)}</ul>
+    <p class="motto">{T.motto}</p>
+
+    <aside class="facts card">
+      <h2>{T.factsTitle}</h2>
+      <dl>{T.facts.map(([k, v]) => <><dt>{k}</dt><dd>{v}</dd></>)}</dl>
+    </aside>
+
+    <h2>{T.nowTitle}</h2>
+    <ul>{T.now.map((x) => <li set:html={x} />)}</ul>
+
+    <h2>{T.eduTitle}</h2>
+    <table>
+      <thead><tr>{T.eduHead.map((h) => <th>{h}</th>)}</tr></thead>
+      <tbody>{T.edu.map((r) => <tr>{r.map((c) => <td>{c}</td>)}</tr>)}</tbody>
+    </table>
+    <p set:html={T.dissertation} />
+
+    <h2>{T.skillsTitle}</h2>
+    <ul>{T.skills.map((x) => <li set:html={x} />)}</ul>
+
+    <h2>{T.teachTitle}</h2>
+    <p>{T.teach}</p>
+
+    <h2>{T.outsideTitle}</h2>
+    <ul>{T.outside.map((x) => <li set:html={x} />)}</ul>
+
+    <h2>{T.verifyTitle}</h2>
+    <p>{T.verify}</p>
+    <p>{SOCIALS.map((s) => <a class="chip" href={s.href} rel="me noopener noreferrer" target="_blank">{s.label} ✓</a>)}</p>
+    {SITE.resumePdf && <p><a class="btn" href={SITE.resumePdf}>{T.resume}</a></p>}
+    <p><a href={L('/contact/')}>{T.contact}</a></p>
+    <CtaBand />
+  </article>
+</Base>
+
+<style>
+  .what { list-style: none; padding: 0; margin: 1rem 0 0.4rem; display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; font-family: var(--font-serif); color: var(--ink); }
+  .what li::before { content: "·"; margin-right: 0.45rem; color: var(--accent); }
+  .motto { font-family: var(--font-serif); font-style: italic; color: var(--ink-soft); }
+  .lead { font-family: var(--font-serif); font-size: 1.2rem; }
+  .facts { margin: 1.5rem 0; }
+  .facts h2 { margin: 0 0 0.4rem; font-size: 1.1rem; }
+  .facts dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 1rem; margin: 0; font-size: 0.95rem; }
+  .facts dt { font-weight: 600; color: var(--ink-soft); }
+  .facts dd { margin: 0; }
+  @media (max-width: 520px) { .facts dl { grid-template-columns: 1fr; } .facts dd { margin-bottom: 0.4rem; } }
+  .photo { width: 160px; height: 160px; border-radius: 50%; margin: 0 0 1rem; }
+</style>

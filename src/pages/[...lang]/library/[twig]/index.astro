@@ -1,0 +1,26 @@
+---
+// /library/<slug>/ is either a tree (one of the six subjects) or a twig's Gateway (a short course).
+// Tree and twig slugs must never be the same. Guide: docs/13-add-to-the-library.md
+import TwigGateway from '../../../../components/TwigGateway.astro';
+import TreePage from '../../../../components/TreePage.astro';
+import { getTrees } from '../../../../library.config';
+import { getLibraryPages, splitLibraryId } from '../../../../lib';
+import { LANGS, DEFAULT_LANG } from '../../../../i18n/config';
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (const lang of LANGS) {
+    const l = lang === DEFAULT_LANG ? undefined : lang;
+    const gateways = (await getLibraryPages(lang)).filter((p) => p.data.kind === 'gateway');
+    paths.push(
+      ...getTrees(lang).map((tree) => ({ params: { lang: l, twig: tree.slug }, props: { tree, gateway: undefined } })),
+      ...gateways.map((gateway) => ({ params: { lang: l, twig: splitLibraryId(gateway.id).twig }, props: { tree: undefined, gateway } })),
+    );
+  }
+  return paths;
+}
+
+const { tree, gateway } = Astro.props;
+---
+
+{tree ? <TreePage {tree} /> : gateway && <TwigGateway {gateway} />}

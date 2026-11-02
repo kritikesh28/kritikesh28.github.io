@@ -1,0 +1,133 @@
+---
+// Site search. It always shows something useful: exact matches first, then the closest pages,
+// and an honest note when the library does not cover a question yet. Logic: src/scripts/search-engine.ts
+import Base from '../../layouts/Base.astro';
+import QuestionCard from '../../components/QuestionCard.astro';
+import SearchBox from '../../components/SearchBox.astro';
+import { langFromUrl, langParams, localizePath, pick } from '../../i18n/config';
+import { useT } from '../../i18n/ui';
+
+export const getStaticPaths = () => langParams().map((params) => ({ params }));
+
+const lang = langFromUrl(Astro.url);
+const L = (p: string) => localizePath(p, lang);
+const t = useT(lang);
+const T = pick({
+  en: {
+    title: 'Search the library', description: 'Search every page, course and curious question on Curious Sparoows. You always get the closest answers we have.',
+    eyebrow: 'Search', h1: 'What are you curious about?', placeholder: 'Try: what is dark matter, age of universe, big bang', label: 'Search the site',
+    dym: 'Did you mean', nothing: 'This library is still young and may not cover that yet. <a data-suggest href="{contact}">Suggest it as a question</a> and I will consider writing it.',
+    noscript: 'Search needs JavaScript. You can still browse everything from the <a href="{library}">library</a> or <a href="{universe}">start with the Universe course</a>.',
+  },
+  hi: {
+    title: 'लाइब्रेरी में खोजें', description: 'Curious Sparoows के हर पन्ने, कोर्स और मज़ेदार सवाल में खोजिए। आपको हमेशा सबसे करीबी जवाब मिलेंगे।',
+    eyebrow: 'खोजें', h1: 'आप क्या जानना चाहते हैं?', placeholder: 'जैसे लिखिए: डार्क मैटर क्या है, ब्रह्मांड की उम्र, बिग बैंग', label: 'साइट में खोजें',
+    dym: 'क्या आप यह ढूँढ रहे थे:', nothing: 'यह लाइब्रेरी अभी नई है, हो सकता है इसमें यह विषय अभी न हो। <a data-suggest href="{contact}">इसे सवाल के रूप में सुझाइए</a>, इस पर लिखने के बारे में ज़रूर सोचा जाएगा।',
+    noscript: 'खोज के लिए JavaScript चालू होना ज़रूरी है। फिर भी आप <a href="{library}">लाइब्रेरी</a> में सब कुछ देख सकते हैं, या <a href="{universe}">ब्रह्मांड के कोर्स से शुरू</a> कर सकते हैं।',
+  },
+}, lang);
+const fill = (s: string) => s.replace('{contact}', L('/contact/')).replace('{library}', L('/library/')).replace('{universe}', L('/library/the-universe/'));
+const words = {
+  typeHint: t('search.typeHint'), matches1: t('search.matches1'), matchesN: t('search.matchesN'), alsoLike: t('search.alsoLike'),
+  closest: t('search.closest'), failed: t('search.failed'), search: L('/search/'), contact: L('/contact/'),
+};
+---
+
+<Base title={T.title} description={T.description}>
+  <div class="wrap search-page" data-words={JSON.stringify(words)}>
+    <p class="eyebrow">{T.eyebrow}</p>
+    <h1>{T.h1}</h1>
+    <div class="box"><SearchBox placeholder={T.placeholder} autofocus label={T.label} /></div>
+    <p class="small muted" data-status aria-live="polite">{t('search.typeHint')}</p>
+    <p class="dym" data-dym hidden>{T.dym} <a href={L('/search/')} data-dym-link></a>?</p>
+    <ol class="results" data-results></ol>
+    <div class="nothing" data-nothing hidden>
+      <p set:html={fill(T.nothing)} />
+    </div>
+    <noscript><p set:html={fill(T.noscript)} /></noscript>
+    <div class="aside"><QuestionCard compact /></div>
+  </div>
+</Base>
+
+<script>
+  import { loadIndex, search, didYouMean, type Item } from '../../scripts/search-engine';
+
+  const $ = <T extends HTMLElement>(s: string) => document.querySelector<T>(s)!;
+  const results = $('[data-results]');
+  const status = $('[data-status]');
+  const nothing = $('[data-nothing]');
+  const dym = $('[data-dym]');
+  const dymLink = $<HTMLAnchorElement>('[data-dym-link]');
+  const input = $<HTMLInputElement>('#q');
+  const words = JSON.parse($('.search-page').dataset.words ?? '{}');
+  const fill = (s: string, v: Record<string, string | number>) => s.replace(/\{(\w+)\}/g, (_, k) => String(v[k] ?? ''));
+
+  function card(item: Item) {
+    const li = document.createElement('li');
+    const inner = document.createElement(item.u ? 'a' : 'div');
+    if (item.u) (inner as HTMLAnchorElement).href = item.u;
+    inner.className = 'hit';
+    const k = document.createElement('span'); k.className = 'kind'; k.textContent = item.k;
+    const t = document.createElement('strong'); t.textContent = item.t;
+    const d = document.createElement('span'); d.className = 'desc'; d.textContent = item.d;
+    inner.append(k, t, d);
+    li.append(inner);
+    return li;
+  }
+  function heading(text: string) {
+    const li = document.createElement('li'); li.className = 'group'; li.textContent = text; return li;
+  }
+
+  function run(q: string) {
+    results.replaceChildren();
+    nothing.hidden = true;
+    dym.hidden = true;
+    if (!q.trim()) { status.textContent = words.typeHint; return; }
+    const fix = didYouMean(q);
+    if (fix) { dymLink.textContent = fix; dymLink.href = `${words.search}?q=${encodeURIComponent(fix)}`; dym.hidden = false; }
+    const { exact, close } = search(q);
+    if (exact.length) {
+      status.textContent = fill(exact.length === 1 ? words.matches1 : words.matchesN, { n: exact.length, q });
+      exact.forEach((r) => results.append(card(r.item)));
+      if (close.length) { results.append(heading(words.alsoLike)); close.forEach((r) => results.append(card(r.item))); }
+      if (exact.length < 3) nothing.hidden = false;
+    } else {
+      status.textContent = fill(words.closest, { q });
+      close.forEach((r) => results.append(card(r.item)));
+      nothing.hidden = false;
+    }
+    if (!nothing.hidden) $<HTMLAnchorElement>('[data-suggest]').href = `${words.contact}?intent=learning&topic=${encodeURIComponent(q)}`;
+  }
+
+  loadIndex().then(() => {
+    const q = new URLSearchParams(location.search).get('q') ?? '';
+    input.value = q;
+    run(q);
+  }).catch(() => { status.textContent = words.failed; });
+
+  let timer: number | undefined;
+  input.addEventListener('input', () => {
+    clearTimeout(timer);
+    timer = window.setTimeout(() => {
+      run(input.value);
+      history.replaceState(null, '', input.value ? `?q=${encodeURIComponent(input.value)}` : location.pathname);
+    }, 150);
+  });
+</script>
+
+<style>
+  .search-page { max-width: 760px; }
+  .box { margin: 1.2rem 0 0.6rem; }
+  .dym { margin: 0.4rem 0 0; font-size: 1rem; }
+  .dym a { font-weight: 600; }
+  .results { list-style: none; padding: 0; margin: 1rem 0; display: grid; gap: 0.6rem; }
+  .results :global(.hit) { display: grid; gap: 0.2rem; padding: 0.9rem 1.1rem; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+  .results :global(a.hit:hover) { border-color: var(--accent); transform: translateX(3px); }
+  .results :global(.kind) { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+  .results :global(strong) { font-family: var(--font-serif); font-size: 1.1rem; }
+  .results :global(.desc) { color: var(--ink-soft); font-size: 0.95rem; }
+  .results :global(.group) { margin-top: 1rem; font-weight: 600; color: var(--ink-soft); font-size: 0.9rem; }
+  .nothing { padding: 1rem 1.2rem; border-radius: 14px; background: var(--accent-soft); }
+  .nothing p { margin: 0; }
+  .aside { margin-top: 2.5rem; }
+</style>

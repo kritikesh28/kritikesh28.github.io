@@ -1,0 +1,89 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE } from '../../site.config';
+import { getProjects } from '../../lib';
+import { langFromUrl, langParams, localizePath, pick } from '../../i18n/config';
+
+export const getStaticPaths = () => langParams().map((params) => ({ params }));
+
+const lang = langFromUrl(Astro.url);
+const L = (p: string) => localizePath(p, lang);
+const top = (await getProjects(lang))[0];
+const T = pick({
+  en: {
+    title: 'Start here', description: 'New here? Three quick paths: for recruiters, for learners and for collaborators.',
+    eyebrow: 'Welcome', h1: 'Start here', intro: "Hi, I'm Kritikesh. Pick the door that fits you; each one takes under a minute.",
+    hireTitle: "You're hiring",
+    hire: ['Geology and Geography graduate, learning applied and agentic AI at IIIT Bangalore (2026 to 2027).', 'Python, pandas and QGIS, with a public data project you can run in the browser.', 'Years of teaching and exam preparation: I explain clearly and work steadily.'],
+    resume: 'Resume (PDF)', best: 'Best project', contactMe: 'Contact me',
+    learnTitle: 'You want to learn',
+    learn: [`The ${SITE.blogBrand} Library explains ideas from the basics up, in two-minute pages: AI, geography, exams, mind and more.`, 'Start with the Universe course, pick a subject tree, or follow new pages by RSS.', 'Want a topic explained? Ask, and it may become the next post.'],
+    openLib: 'Open the library', suggest: 'Suggest a topic',
+    buildTitle: 'You want to build something',
+    build: ['Open to data, GIS and AI projects, research on water and poverty, and teaching content.', "See what I'm working on right now."],
+    now: "What I'm doing now", propose: 'Propose an idea',
+  },
+  hi: {
+    title: 'यहाँ से शुरू करें', description: 'पहली बार आए हैं? तीन आसान रास्ते: काम देने वालों के लिए, सीखने वालों के लिए और साथ काम करने वालों के लिए।',
+    eyebrow: 'स्वागत है', h1: 'यहाँ से शुरू करें', intro: 'नमस्ते, मैं कृतिकेश हूँ। जो दरवाज़ा आपके लिए सही हो, उसे चुनिए; हर एक में एक मिनट से कम लगेगा।',
+    hireTitle: 'आपको किसी को काम पर रखना है',
+    hire: ['भूविज्ञान (जियोलॉजी) और भूगोल में डिग्री; अभी IIIT बेंगलुरु से अप्लाइड AI और एजेंटिक AI (ख़ुद से काम पूरे करने वाली AI) की पढ़ाई (2026 से 2027)।', 'Python, pandas और QGIS का इस्तेमाल; एक खुला डेटा प्रोजेक्ट भी, जिसे आप ब्राउज़र में ही चलाकर देख सकते हैं।', 'कई सालों का पढ़ाने और परीक्षा की तैयारी का अनुभव: बात साफ़-साफ़ समझाना और लगातार मेहनत से काम करना।'],
+    resume: 'रिज़्यूमे (PDF)', best: 'सबसे अच्छा प्रोजेक्ट', contactMe: 'संपर्क करें',
+    learnTitle: 'आपको सीखना है',
+    learn: ['Curious Sparoows लाइब्रेरी मुश्किल बातों को बिल्कुल शुरुआत से, दो-दो मिनट के पन्नों में समझाती है: AI, भूगोल, परीक्षा, मन और भी बहुत कुछ।', 'ब्रह्मांड के कोर्स से शुरू करें, कोई विषय चुनें, या RSS (नए पन्नों की ख़बर अपने आप पाने का तरीका) से नए पन्ने पाते रहें।', 'कोई टॉपिक समझना है? पूछिए, हो सकता है वही अगला लेख बन जाए।'],
+    openLib: 'लाइब्रेरी खोलें', suggest: 'टॉपिक सुझाएँ',
+    buildTitle: 'आपको साथ मिलकर कुछ बनाना है',
+    build: ['डेटा, GIS (कंप्यूटर पर नक्शे) और AI के प्रोजेक्ट, पानी और ग़रीबी पर रिसर्च, और पढ़ाई का कंटेंट (सामग्री), इन सब के लिए तैयार।', 'देखिए, अभी किन कामों पर ध्यान है।'],
+    now: 'अभी मेरे काम', propose: 'अपना आइडिया बताइए',
+  },
+}, lang);
+---
+
+<Base title={T.title} description={T.description}>
+  <div class="wrap">
+    <p class="eyebrow">{T.eyebrow}</p>
+    <h1>{T.h1}</h1>
+    <p class="muted narrow">{T.intro}</p>
+
+    <div class="doors">
+      <section class="card door reveal">
+        <p class="icon" aria-hidden="true">💼</p>
+        <h2>{T.hireTitle}</h2>
+        <ul>{T.hire.map((x) => <li>{x}</li>)}</ul>
+        <p class="go">
+          <a class="btn" href={SITE.resumePdf}>{T.resume}</a>
+          {top && <a class="btn ghost" href={L(`/portfolio/${top.slug}/`)}>{T.best}</a>}
+          <a class="btn ghost" href={`${L('/contact/')}?intent=hiring`}>{T.contactMe}</a>
+        </p>
+      </section>
+
+      <section class="card door reveal">
+        <p class="icon" aria-hidden="true">📚</p>
+        <h2>{T.learnTitle}</h2>
+        <ul>{T.learn.map((x) => <li>{x}</li>)}</ul>
+        <p class="go">
+          <a class="btn" href={L('/library/')}>{T.openLib}</a>
+          <a class="btn ghost" href={`${L('/contact/')}?intent=learning`}>{T.suggest}</a>
+        </p>
+      </section>
+
+      <section class="card door reveal">
+        <p class="icon" aria-hidden="true">🤝</p>
+        <h2>{T.buildTitle}</h2>
+        <ul>{T.build.map((x) => <li>{x}</li>)}</ul>
+        <p class="go">
+          <a class="btn" href={L('/now/')}>{T.now}</a>
+          <a class="btn ghost" href={`${L('/contact/')}?intent=collab`}>{T.propose}</a>
+        </p>
+      </section>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .doors { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); margin-top: 2rem; }
+  .door h2 { margin: 0; font-size: 1.3rem; }
+  .icon { font-size: 2rem; margin: 0; }
+  .door ul { padding-left: 1.1rem; margin: 0.3rem 0 0.6rem; color: var(--ink-soft); }
+  .go { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: auto; }
+</style>

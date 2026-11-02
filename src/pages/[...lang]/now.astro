@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE } from '../../site.config';
+import CtaBand from '../../components/CtaBand.astro';
+import { langFromUrl, langParams, localizePath, pick } from '../../i18n/config';
+
+export const getStaticPaths = () => langParams().map((params) => ({ params }));
+
+const lang = langFromUrl(Astro.url);
+const portfolio = localizePath('/portfolio/', lang);
+const T = pick({
+  en: {
+    title: 'Now', description: 'What Kritikesh Rajpurohit is working on right now.', h1: 'Now',
+    updated: "What I'm working on at the moment. Updated October 2026.",
+    items: [
+      `Studying applied and agentic AI at IIIT Bangalore, and building projects as I go. Finished ones are in the <a href="${portfolio}">portfolio</a>.`,
+      'Writing a research paper on water poverty in the Bhil tribal region of Banswara, Rajasthan.',
+      `Starting ${SITE.blogBrand}, a blog of explainers that begin from the basics and climb.`,
+    ],
+    whyTitle: 'Why this site exists',
+    why: `I want my work to be easy to find and easy to check. Projects live here under my own name; teaching and stories live here under ${SITE.blogBrand}. Every other platform I use points back to this site.`,
+  },
+  hi: {
+    title: 'अभी', description: 'कृतिकेश राजपुरोहित के अभी के काम।', h1: 'अभी मेरे काम',
+    updated: 'इस समय मेरे काम। अक्टूबर 2026 में अपडेट किया गया।',
+    items: [
+      `IIIT बेंगलुरु से अप्लाइड AI और एजेंटिक AI की पढ़ाई, और साथ-साथ प्रोजेक्ट बनाना। जो पूरे हो चुके हैं, वे <a href="${portfolio}">मेरे काम वाले पन्ने</a> पर हैं।`,
+      'बाँसवाड़ा, राजस्थान के भील आदिवासी इलाक़े में पानी की ग़रीबी पर एक रिसर्च पेपर लिखना।',
+      'Curious Sparoows की शुरुआत: ऐसे लेख जो बिल्कुल शुरुआत से समझाते हैं और फिर धीरे-धीरे ऊपर चढ़ते हैं।',
+    ],
+    whyTitle: 'यह साइट क्यों है',
+    why: 'मेरा मक़सद है कि मेरा काम आसानी से मिले और आसानी से जाँचा जा सके। प्रोजेक्ट यहाँ मेरे अपने नाम से हैं; पढ़ाई और कहानियाँ यहाँ Curious Sparoows नाम से हैं। बाक़ी हर प्लेटफ़ॉर्म पर मेरी प्रोफ़ाइल इसी साइट की ओर इशारा करती है।',
+  },
+}, lang);
+---
+
+<Base title={T.title} description={T.description}>
+  <article class="wrap prose">
+    <h1>{T.h1}</h1>
+    <p class="muted">{T.updated}</p>
+    <ul>{T.items.map((x) => <li set:html={x} />)}</ul>
+    <h2>{T.whyTitle}</h2>
+    <p>{T.why}</p>
+    <CtaBand />
+  </article>
+</Base>

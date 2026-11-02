@@ -6,47 +6,53 @@ import TreeMotif from './TreeMotif.astro';
 import ProgressMeter from './ProgressMeter.astro';
 import PostCard from './PostCard.astro';
 import LibraryGuide from './LibraryGuide.astro';
-import { TREES, type Tree } from '../library.config';
+import { getTrees, type Tree } from '../library.config';
 import { getLibraryPages, getPosts } from '../lib';
+import { langFromUrl, localizePath } from '../i18n/config';
+import { useT } from '../i18n/ui';
 
 interface Props { tree: Tree }
 const { tree } = Astro.props;
-const pages = await getLibraryPages();
-const leafCount = (twig: string) => pages.filter((p) => p.id.startsWith(`${twig}/`) && p.data.kind === 'leaf').length;
-const reads = (await getPosts()).filter((p) => p.data.category === tree.slug);
-const statusLabel = { live: 'Read now', next: 'Being written', planned: 'Planned' } as const;
+const lang = langFromUrl(Astro.url);
+const t = useT(lang);
+const L = (p: string) => localizePath(p, lang);
+const pages = await getLibraryPages(lang);
+const leafCount = (twig: string) => pages.filter((p) => p.slug.startsWith(`${twig}/`) && p.data.kind === 'leaf').length;
+const reads = (await getPosts(lang)).filter((p) => p.data.category === tree.slug);
+const statusLabel = { live: t('lib.readNow'), next: t('lib.beingWritten'), planned: t('lib.plannedStatus') } as const;
 const schema = [
   {
     '@type': 'CollectionPage',
-    name: `${tree.title} · Curious Sparoows Library`,
+    name: `${tree.title} · ${t('site.libraryName')}`,
     description: tree.blurb,
-    url: new URL(`/library/${tree.slug}/`, Astro.site).href,
+    url: new URL(L(`/library/${tree.slug}/`), Astro.site).href,
+    inLanguage: lang,
   },
   {
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Library', item: new URL('/library/', Astro.site).href },
-      { '@type': 'ListItem', position: 2, name: tree.title, item: new URL(`/library/${tree.slug}/`, Astro.site).href },
+      { '@type': 'ListItem', position: 1, name: t('nav.library'), item: new URL(L('/library/'), Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: tree.title, item: new URL(L(`/library/${tree.slug}/`), Astro.site).href },
     ],
   },
 ];
 ---
 
-<Base title={tree.title} description={`${tree.blurb} Short courses and long reads in the Curious Sparoows Library.`} {schema}>
+<Base title={tree.title} description={t('lib.treeDescription', { blurb: tree.blurb })} {schema}>
   <div class={`wrap tree-layout t-${tree.slug}`}>
     <div>
-      <nav class="crumbs small" aria-label="Where you are in the library"><a href="/library/">Library</a><span aria-hidden="true">›</span><span aria-current="page">{tree.title}</span></nav>
+      <nav class="crumbs small" aria-label={t('lib.whereYouAre')}><a href={L('/library/')}>{t('nav.library')}</a><span aria-hidden="true">›</span><span aria-current="page">{tree.title}</span></nav>
       <header class="tree-hero">
         <TreeMotif tree={tree.slug} class="wm" />
-        <p class="eyebrow"><LevelIcon level="Tree" size={22} /> Tree</p>
+        <p class="eyebrow"><LevelIcon level="Tree" size={22} /> {t('lib.tree')}</p>
         <h1>{tree.title}</h1>
         <p class="lede">{tree.blurb}</p>
       </header>
 
       {tree.slug === 'exam-prep' && (
         <a class="exam-door" href="/exam-prep/">
-          <strong>Preparing for RPSC, RSSB or another government exam?</strong>
-          <span>Open Exam Prep: the whole syllabus as one searchable map, and a guide that ranks topics by past papers. →</span>
+          <strong>{t('lib.examDoorTitle')}</strong>
+          <span>{t('lib.examDoorText')}</span>
         </a>
       )}
 
@@ -57,18 +63,18 @@ const schema = [
             {branch.twigs.map((twig) => (
               <li class:list={['twig', twig.status]}>
                 {twig.status === 'live' ? (
-                  <a href={`/library/${twig.slug}/`}>
-                    <span class="kind"><LevelIcon level="Twig" size={18} /> Short course · {leafCount(twig.slug)} Leaves</span>
+                  <a href={L(`/library/${twig.slug}/`)}>
+                    <span class="kind"><LevelIcon level="Twig" size={18} /> {t('lib.shortCourse')} · {t('lib.leaves', { n: leafCount(twig.slug) })}</span>
                     <strong>{twig.title}</strong>
                     <span>{twig.question}</span>
                     <ProgressMeter twig={twig.slug} total={leafCount(twig.slug)} />
                   </a>
                 ) : (
                   <div>
-                    <span class="kind"><LevelIcon level="Twig" size={18} /> Short course</span>
+                    <span class="kind"><LevelIcon level="Twig" size={18} /> {t('lib.shortCourse')}</span>
                     <strong>{twig.title}</strong>
                     <span>{twig.question}</span>
-                    <span class="tag small">{statusLabel[twig.status]}, not written yet</span>
+                    <span class="tag small">{t('lib.notWritten', { status: statusLabel[twig.status] })}</span>
                   </div>
                 )}
               </li>
@@ -78,16 +84,16 @@ const schema = [
       ))}
 
       <section class="branch">
-        <h2>Long reads</h2>
-        <p class="muted small">Longer articles you can read in one sitting.</p>
+        <h2>{t('lib.longReads')}</h2>
+        <p class="muted small">{t('lib.longReadsText')}</p>
         {reads.length > 0
           ? <div class="grid">{reads.map((post) => <PostCard post={post} />)}</div>
-          : <p class="muted">No long reads here yet. The first ones are being written.</p>}
+          : <p class="muted">{t('lib.noLongReads')}</p>}
       </section>
 
-      <nav class="others" aria-label="Other trees">
-        <p class="eyebrow">Other trees</p>
-        {TREES.filter((t) => t.slug !== tree.slug).map((t) => <a class="chip" href={`/library/${t.slug}/`}>{t.title}</a>)}
+      <nav class="others" aria-label={t('lib.otherTrees')}>
+        <p class="eyebrow">{t('lib.otherTrees')}</p>
+        {getTrees(lang).filter((o) => o.slug !== tree.slug).map((o) => <a class="chip" href={L(`/library/${o.slug}/`)}>{o.title}</a>)}
       </nav>
     </div>
     <aside class="side"><div class="sticky"><LibraryGuide here="Tree" /></div></aside>

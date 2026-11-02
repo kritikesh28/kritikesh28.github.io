@@ -1,0 +1,79 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE } from '../../site.config';
+import { langFromUrl, langParams, pick } from '../../i18n/config';
+
+export const getStaticPaths = () => langParams().map((params) => ({ params }));
+
+const lang = langFromUrl(Astro.url);
+const mail = `<a href="mailto:${SITE.email}?subject=Security">${SITE.email}</a>`;
+const T = pick({
+  en: {
+    title: 'Privacy and security', description: 'What this site collects (very little), and how it is kept safe.',
+    reviewed: 'Last reviewed October 2026.',
+    sections: [
+      ['The short version', [
+        'No ads, no tracking cookies, no data sold or shared.',
+        'Every page is served over HTTPS (the padlock in your browser).',
+        "Fonts are served from this site itself, so your visit isn't reported to a font company.",
+      ]],
+      ['What is collected, and why', [
+        `<strong>Messages you send</strong> through the contact form go to my email inbox${SITE.formspreeUrl ? ' through Formspree, a form service' : ''}. I use them only to reply.`,
+        `<strong>Visitor counts</strong>${SITE.goatcounterCode ? ' are measured with GoatCounter, which uses no cookies and does not identify you.' : ' are not collected at the moment. If I add them, I will use a cookie-free tool and update this page.'}`,
+        `<strong>Comments</strong>${SITE.giscus.repo ? ' use Giscus, which stores them as GitHub Discussions; you sign in with your own GitHub account.' : ' are not enabled yet.'}`,
+        'Your light or dark theme choice, your language choice, and whether you hid the sparrows, are saved only in your own browser.',
+        'Library reading progress (which short pages you reached the end of) is saved only in your own browser. It is never sent to me or anyone else, and clearing your browser data removes it.',
+      ]],
+      ['Security', [
+        'The site is static: there is no login, database or payment on it, which leaves very little to attack.',
+        'A strict content security policy lets the browser load scripts only from this site and a short list of named services.',
+        `Found a security problem? Please email ${mail}. See also <a href="/security.txt">security.txt</a>.`,
+      ]],
+      ['Honesty notes', [
+        'Posts and pages written with help from an AI tool say so at the top.',
+        'If I get a fact wrong, I correct it and note the change with the date.',
+      ]],
+    ],
+  },
+  hi: {
+    title: 'आपकी जानकारी की सुरक्षा', description: 'यह साइट आपके बारे में क्या जानकारी लेती है (बहुत कम), और उसे सुरक्षित कैसे रखा जाता है।',
+    reviewed: 'आख़िरी बार अक्टूबर 2026 में जाँचा गया।',
+    sections: [
+      ['छोटे में', [
+        'कोई विज्ञापन नहीं, कोई ट्रैकिंग कुकी (आपके पीछे-पीछे नज़र रखने वाली छोटी फ़ाइल) नहीं, आपकी कोई जानकारी बेची या किसी को दी नहीं जाती।',
+        'हर पन्ना HTTPS से आता है (ब्राउज़र में दिखने वाला ताले का निशान, यानी रास्ते में कोई आपकी जानकारी नहीं पढ़ सकता)।',
+        'अक्षरों के फ़ॉन्ट इसी साइट से आते हैं, इसलिए आपके आने की ख़बर किसी फ़ॉन्ट कंपनी को नहीं जाती।',
+      ]],
+      ['क्या जानकारी ली जाती है, और क्यों', [
+        `<strong>संपर्क फ़ॉर्म से भेजे गए संदेश</strong> मेरे ईमेल में आते हैं${SITE.formspreeUrl ? ' (Formspree नाम की फ़ॉर्म सेवा के ज़रिए)' : ''}। इनका इस्तेमाल सिर्फ़ जवाब देने के लिए होता है।`,
+        `<strong>कितने लोग आए, यह गिनती</strong>${SITE.goatcounterCode ? ' GoatCounter से होती है, जो कोई कुकी नहीं लगाता और यह नहीं जानता कि आप कौन हैं।' : ' अभी नहीं होती। अगर शुरू हुई, तो बिना कुकी वाला टूल होगा और यह पन्ना बदला जाएगा।'}`,
+        `<strong>टिप्पणियाँ</strong>${SITE.giscus.repo ? ' Giscus से होती हैं, जो उन्हें GitHub Discussions में रखता है; आप अपने GitHub अकाउंट से लॉग-इन करते हैं।' : ' अभी चालू नहीं हैं।'}`,
+        'आपने हल्का या गहरा रंग चुना, कौन-सी भाषा चुनी, और गौरैयों को छिपाया या नहीं, यह सब सिर्फ़ आपके अपने ब्राउज़र में सेव होता है।',
+        'लाइब्रेरी में आपने कौन-से पन्ने पूरे पढ़े, यह भी सिर्फ़ आपके अपने ब्राउज़र में सेव होता है। यह न मुझे भेजा जाता है, न किसी और को। ब्राउज़र का डेटा साफ़ करने पर यह मिट जाता है।',
+      ]],
+      ['सुरक्षा', [
+        'यह साइट सीधी-सादी (स्टैटिक) है: इस पर न लॉग-इन है, न डेटाबेस (जानकारी का भंडार), न पैसे का लेन-देन। इसलिए इस पर हमला करने लायक़ बहुत कम है।',
+        'एक सख़्त सुरक्षा नियम (कंटेंट सिक्योरिटी पॉलिसी) ब्राउज़र को सिर्फ़ इसी साइट और कुछ गिनी-चुनी सेवाओं से ही स्क्रिप्ट (छोटे प्रोग्राम) चलाने देता है।',
+        `कोई सुरक्षा की कमी दिखी? कृपया ${mail} पर ईमेल करें। <a href="/security.txt">security.txt</a> भी देखें।`,
+      ]],
+      ['ईमानदारी की बातें', [
+        'जो लेख और पन्ने किसी AI टूल की मदद से लिखे गए हैं, उनमें सबसे ऊपर यह साफ़ लिखा होता है।',
+        'अगर कोई तथ्य गलत निकला, तो उसे ठीक किया जाता है, और बदलाव तारीख़ के साथ लिखा जाता है।',
+      ]],
+    ],
+  },
+}, lang);
+---
+
+<Base title={T.title} description={T.description}>
+  <article class="wrap prose">
+    <h1>{T.title}</h1>
+    <p class="muted">{T.reviewed}</p>
+    {T.sections.map(([h, items]) => (
+      <>
+        <h2>{h}</h2>
+        <ul>{(items as string[]).map((x) => <li set:html={x} />)}</ul>
+      </>
+    ))}
+  </article>
+</Base>

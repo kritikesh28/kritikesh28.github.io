@@ -1,0 +1,36 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import PostCard from '../../../../components/PostCard.astro';
+import { getPosts, slugify } from '../../../../lib';
+import { LANGS, DEFAULT_LANG, langFromUrl, localizePath } from '../../../../i18n/config';
+import { useT } from '../../../../i18n/ui';
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (const lang of LANGS) {
+    const posts = await getPosts(lang);
+    const tags = new Map<string, string>();
+    for (const p of posts) for (const t of p.data.tags) tags.set(slugify(t), t);
+    paths.push(...[...tags].map(([slug, label]) => ({
+      params: { lang: lang === DEFAULT_LANG ? undefined : lang, tag: slug },
+      props: { label, posts: posts.filter((p) => p.data.tags.some((t) => slugify(t) === slug)) },
+    })));
+  }
+  return paths;
+}
+
+const { label, posts } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const t = useT(lang);
+// a tag page exists only in the languages that use this tag
+const langs = [lang];
+---
+
+<Base title={t('lib.tagTitle', { tag: label })} {langs}>
+  <div class="wrap">
+    <p class="small muted"><a href={localizePath('/library/', lang)}>← {t('nav.library')}</a></p>
+    <h1>#{label}</h1>
+    <p class="muted">{t('lib.taggedText', { tag: label })}</p>
+    <div class="grid">{posts.map((post) => <PostCard post={post} />)}</div>
+  </div>
+</Base>

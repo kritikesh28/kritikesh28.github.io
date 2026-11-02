@@ -1,0 +1,192 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE, SOCIALS } from '../../site.config';
+import { langFromUrl, langParams, localizePath, pick } from '../../i18n/config';
+
+export const getStaticPaths = () => langParams().map((params) => ({ params }));
+
+const lang = langFromUrl(Astro.url);
+const L = (p: string) => localizePath(p, lang);
+const T = pick({
+  en: {
+    intents: [
+      { id: 'hiring', label: "I'm hiring", hint: 'Role, team and timeline help me reply properly. My resume is one click away.' },
+      { id: 'collab', label: 'Collaboration', hint: 'What would we build or research together, and by when?' },
+      { id: 'learning', label: 'Learning or a topic', hint: 'Which topic should I explain? Your level helps me pitch it right.' },
+      { id: 'hello', label: 'Just saying hi', hint: 'Always welcome. Tell me what brought you here.' },
+    ],
+    title: 'Contact', description: 'Write to Kritikesh Rajpurohit about a role, a collaboration or a topic to learn.',
+    eyebrow: 'Contact', h1: "Let's talk", intro: "Choose why you're writing, so your message lands in the right pile. I read every message myself.",
+    about: "I'm writing about", name: 'Your name', email: 'Your email', org: 'Organisation or link', optional: '(optional)', message: 'Message',
+    trap: 'Leave this empty', send: 'Send message', mailNote: 'Sending opens your email app with the message filled in.',
+    doneTitle: 'Thank you, message received.', doneText: "I'll reply to the email you gave. Meanwhile:",
+    seeProjects: 'See my projects', explore: 'Explore the library', linkedin: 'Connect on LinkedIn',
+    other: 'Other ways', call: 'Book a 20-minute call',
+    hiringNote: `Hiring? <a href="${SITE.resumePdf}">Download my resume (PDF)</a>.`,
+    privacyNote: `To check this site is really mine, each profile above links back here. Your details are only used to reply; see <a href="${L('/privacy/')}">Privacy</a>.`,
+    sending: 'Sending…', failed: 'That did not go through. Please email me directly instead.', subject: 'Website', explain: 'Please explain:',
+  },
+  hi: {
+    intents: [
+      { id: 'hiring', label: 'मुझे काम पर रखना है', hint: 'काम क्या है, टीम कौन-सी है और कब तक चाहिए, यह लिखेंगे तो सही जवाब दे पाऊँ। मेरा रिज़्यूमे बस एक क्लिक दूर है।' },
+      { id: 'collab', label: 'साथ मिलकर काम', hint: 'हम साथ मिलकर क्या बनाएँगे या किस पर रिसर्च (खोजबीन) करेंगे, और कब तक?' },
+      { id: 'learning', label: 'कुछ सीखना है / कोई टॉपिक', hint: 'कौन-सा टॉपिक समझाया जाए? आप अभी कितना जानते हैं, यह बताएँगे तो उसी हिसाब से समझाना आसान होगा।' },
+      { id: 'hello', label: 'बस नमस्ते कहना है', hint: 'आपका हमेशा स्वागत है। बताइए, आप यहाँ तक कैसे पहुँचे।' },
+    ],
+    title: 'संपर्क', description: 'कृतिकेश राजपुरोहित को किसी काम, साथ मिलकर कुछ करने या कोई टॉपिक सीखने के बारे में लिखिए।',
+    eyebrow: 'संपर्क', h1: 'चलिए, बात करते हैं', intro: 'पहले चुनिए कि आप किस बारे में लिख रहे हैं, ताकि आपका संदेश सही जगह पहुँचे। हर संदेश सीधे मुझ तक पहुँचता है, किसी और के पास नहीं।',
+    about: 'मेरा संदेश इस बारे में है', name: 'आपका नाम', email: 'आपका ईमेल', org: 'संस्था का नाम या कोई लिंक', optional: '(ज़रूरी नहीं)', message: 'संदेश',
+    trap: 'इसे ख़ाली छोड़ दें', send: 'संदेश भेजें', mailNote: 'भेजने पर आपका ईमेल ऐप खुलेगा, जिसमें संदेश पहले से लिखा होगा।',
+    doneTitle: 'धन्यवाद, आपका संदेश मिल गया।', doneText: 'आपने जो ईमेल दिया है, उसी पर जवाब आएगा। तब तक:',
+    seeProjects: 'मेरे प्रोजेक्ट देखें', explore: 'लाइब्रेरी में घूमें', linkedin: 'LinkedIn पर जुड़ें',
+    other: 'दूसरे तरीके', call: '20 मिनट की कॉल बुक करें',
+    hiringNote: `काम पर रखना है? <a href="${SITE.resumePdf}">मेरा रिज़्यूमे (PDF) डाउनलोड करें</a>।`,
+    privacyNote: `यह पक्का करने के लिए कि यह साइट सच में मेरी है, ऊपर की हर प्रोफ़ाइल में इस साइट का लिंक है। आपकी जानकारी सिर्फ़ जवाब देने के लिए इस्तेमाल होती है; देखें <a href="${L('/privacy/')}">आपकी जानकारी की सुरक्षा</a>।`,
+    sending: 'भेजा जा रहा है…', failed: 'संदेश नहीं जा पाया। कृपया सीधे मेरे ईमेल पर लिखें।', subject: 'वेबसाइट', explain: 'कृपया समझाइए:',
+  },
+}, lang);
+const intents = T.intents;
+const words = { sending: T.sending, failed: T.failed, subject: T.subject, explain: T.explain };
+---
+
+<Base title={T.title} description={T.description}>
+  <div class="wrap narrow">
+    <p class="eyebrow">{T.eyebrow}</p>
+    <h1>{T.h1}</h1>
+    <p class="muted">{T.intro}</p>
+
+    <form class="form" id="contact" action={SITE.formspreeUrl || undefined} method="POST" data-endpoint={SITE.formspreeUrl} data-email={SITE.email} data-words={JSON.stringify(words)}>
+      <fieldset class="intents">
+        <legend>{T.about}</legend>
+        {intents.map((it, i) => (
+          <label class="intent">
+            <input type="radio" name="intent" value={it.id} data-hint={it.hint} checked={i === 0} />
+            <span>{it.label}</span>
+          </label>
+        ))}
+      </fieldset>
+      <p class="hint muted small" aria-live="polite">{intents[0].hint}</p>
+
+      <div class="two">
+        <label>{T.name} <input name="name" required autocomplete="name" maxlength="120" /></label>
+        <label>{T.email} <input type="email" name="email" required autocomplete="email" maxlength="200" /></label>
+      </div>
+      <label><span>{T.org} <span class="muted small">{T.optional}</span></span><input name="organisation" maxlength="200" autocomplete="organization" /></label>
+      <label>{T.message} <textarea name="message" rows="6" required maxlength="5000"></textarea></label>
+      <input type="hidden" name="language" value={lang} />
+
+      <input type="hidden" name="source" />
+      <input type="hidden" name="_subject" value="Website message" />
+      <label class="trap" aria-hidden="true">{T.trap} <input name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+
+      <p class="row">
+        <button class="btn" type="submit">{T.send}</button>
+        <span class="status small" role="status" aria-live="polite"></span>
+      </p>
+      {!SITE.formspreeUrl && <p class="muted small">{T.mailNote}</p>}
+    </form>
+
+    <div class="done card" hidden>
+      <h2>{T.doneTitle}</h2>
+      <p class="muted">{T.doneText}</p>
+      <p class="go">
+        <a class="btn ghost" href={L('/portfolio/')}>{T.seeProjects}</a>
+        <a class="btn ghost" href={L('/library/')}>{T.explore}</a>
+        <a class="btn ghost" href={SOCIALS[0].href} target="_blank" rel="noopener noreferrer">{T.linkedin}</a>
+      </p>
+    </div>
+
+    <section class="other">
+      <h2>{T.other}</h2>
+      <p>
+        <a class="chip" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+        {SOCIALS.map((s) => <a class="chip" href={s.href} rel="me noopener noreferrer" target="_blank">{s.label}</a>)}
+      </p>
+      {SITE.calUrl && <p><a class="btn ghost" href={SITE.calUrl} target="_blank" rel="noopener noreferrer">{T.call}</a></p>}
+      <p class="muted small" set:html={T.hiringNote} />
+      <p class="muted small" set:html={T.privacyNote} />
+    </section>
+  </div>
+</Base>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('#contact');
+  if (form) {
+    const hint = form.querySelector<HTMLElement>('.hint');
+    const status = form.querySelector<HTMLElement>('.status');
+    const subject = form.querySelector<HTMLInputElement>('[name=_subject]')!;
+    const radios = [...form.querySelectorAll<HTMLInputElement>('[name=intent]')];
+    const words = JSON.parse(form.dataset.words ?? '{}');
+
+    // Where did this visitor come from? (e.g. ?utm_source=linkedin), remembered for this visit only
+    let source = '';
+    try {
+      const p = new URLSearchParams(location.search);
+      source = p.get('utm_source') || sessionStorage.getItem('source') || '';
+      if (!source && document.referrer && !document.referrer.startsWith(location.origin)) source = new URL(document.referrer).hostname;
+      if (source) sessionStorage.setItem('source', source);
+    } catch {}
+    form.querySelector<HTMLInputElement>('[name=source]')!.value = source || 'direct';
+
+    const pick = (id: string) => {
+      const r = radios.find((x) => x.value === id) ?? radios[0];
+      r.checked = true;
+      if (hint) hint.textContent = r.dataset.hint ?? '';
+      subject.value = `${words.subject}: ${r.parentElement?.textContent?.trim()}`;
+    };
+    radios.forEach((r) => r.addEventListener('change', () => pick(r.value)));
+    pick(new URLSearchParams(location.search).get('intent') ?? 'hiring');
+    // From the library search: ?intent=learning&topic=... prefills the question
+    const topic = new URLSearchParams(location.search).get('topic');
+    const message = form.querySelector<HTMLTextAreaElement>('[name=message]');
+    if (topic && message && !message.value) message.value = `${words.explain} ${topic.slice(0, 200)}`;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if ((form.elements.namedItem('_gotcha') as HTMLInputElement).value) return;
+      const data = new FormData(form);
+      const endpoint = form.dataset.endpoint;
+      if (!endpoint) {
+        const body = `${data.get('message')}\n\n${data.get('name')}\n${data.get('organisation') || ''}\n(via website, ${data.get('intent')}, source: ${data.get('source')})`;
+        location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(String(data.get('_subject')))}&body=${encodeURIComponent(body)}`;
+        return;
+      }
+      if (status) status.textContent = words.sending;
+      try {
+        const res = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+        if (!res.ok) throw new Error(String(res.status));
+        form.hidden = true;
+        document.querySelector<HTMLElement>('.done')!.hidden = false;
+      } catch {
+        if (status) status.textContent = words.failed;
+      }
+    });
+  }
+</script>
+
+<style>
+  .form { display: grid; gap: 1rem; margin-top: 1.5rem; }
+  .form label { display: grid; gap: 0.3rem; font-weight: 600; font-size: 0.95rem; }
+  .form input, .form textarea {
+    font: inherit; font-weight: 400; padding: 0.65rem 0.85rem; border-radius: 12px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink); transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .form input:focus, .form textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent); }
+  .two { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 560px) { .two { grid-template-columns: 1fr; } }
+  .intents { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .intents legend { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.5rem; }
+  .form .intent { display: block; font-weight: 500; }
+  .intent input { position: absolute; opacity: 0; pointer-events: none; }
+  .intent span { display: inline-block; padding: 0.45rem 0.9rem; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; transition: all 0.2s; }
+  .intent input:checked + span { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+  .intent input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .hint { margin: -0.3rem 0 0; }
+  .trap { position: absolute; left: -9999px; }
+  .row { display: flex; align-items: center; gap: 1rem; margin: 0; }
+  .row .btn { cursor: pointer; }
+  .done { margin-top: 1.5rem; }
+  .done h2 { margin: 0; }
+  .go { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .other { margin-top: 2.5rem; }
+</style>

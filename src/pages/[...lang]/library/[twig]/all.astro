@@ -1,0 +1,71 @@
+---
+// The Full Journey: every Leaf of a twig on one page, for readers who prefer one long read.
+// noindex, because each Leaf already has its own page in search results.
+import { render } from 'astro:content';
+import Base from '../../../../layouts/Base.astro';
+import LibraryCrumbs from '../../../../components/LibraryCrumbs.astro';
+import ProgressMeter from '../../../../components/ProgressMeter.astro';
+import { getLibraryPages, getTwigPages, splitLibraryId, libraryUrl, translatedLangs } from '../../../../lib';
+import { LANGS, DEFAULT_LANG, langFromUrl, pick } from '../../../../i18n/config';
+import { useT } from '../../../../i18n/ui';
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (const lang of LANGS) {
+    const gateways = (await getLibraryPages(lang)).filter((p) => p.data.kind === 'gateway');
+    paths.push(...gateways.map((g) => ({ params: { lang: lang === DEFAULT_LANG ? undefined : lang, twig: splitLibraryId(g.id).twig }, props: { gateway: g } })));
+  }
+  return paths;
+}
+
+const { gateway } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const t = useT(lang);
+const { twig } = splitLibraryId(gateway.id);
+const all = await getTwigPages(twig, lang);
+const T = pick({
+  en: { title: (x: string) => `${x}: the full journey`, crumb: 'All on one page', eyebrow: (n: number) => `The full journey · all ${n} Leaves on one page`, contents: 'Contents', own: 'open as its own page', finish: 'Finish with the recap and quiz →' },
+  hi: { title: (x: string) => `${x}: पूरा सफ़र`, crumb: 'सब एक पन्ने पर', eyebrow: (n: number) => `पूरा सफ़र · सभी ${n} पत्ते एक ही पन्ने पर`, contents: 'सूची', own: 'अलग पन्ने पर खोलें', finish: 'आख़िर में दोहराव और क्विज़ →' },
+}, lang);
+const leaves = await Promise.all(all.filter((p) => p.data.kind === 'leaf').map(async (l) => ({ l, Content: (await render(l)).Content })));
+const recap = all.find((p) => p.data.kind === 'recap');
+---
+
+<Base title={T.title(gateway.data.title)} description={gateway.data.description} noindex translated={await translatedLangs('library', gateway.slug)}>
+  <div class="wrap journey">
+    <LibraryCrumbs {twig} current={T.crumb} />
+    <p class="eyebrow">{T.eyebrow(leaves.length)}</p>
+    <h1>{gateway.data.title}</h1>
+    <ProgressMeter {twig} total={leaves.length} />
+    <nav class="toc" aria-label={T.contents}>
+      <ol>{leaves.map(({ l }, i) => <li><a href={`#leaf-${i + 1}`}>{l.data.title}</a></li>)}</ol>
+    </nav>
+    {leaves.map(({ l, Content }, i) => (
+      <section id={`leaf-${i + 1}`} class="part" lang={l.lang}>
+        <p class="eyebrow">{t('lib.leafN', { n: i + 1 })} · <a href={libraryUrl(l.id, 'leaf', lang)}>{T.own}</a></p>
+        <h2>{l.data.title}</h2>
+        {l.data.answer && <p class="answer"><strong>{t('lib.shortAnswer')}:</strong> {l.data.answer}</p>}
+        <div class="prose body"><Content /></div>
+        <span data-leaf-end={l.slug}></span>
+      </section>
+    ))}
+    {recap && <p class="end"><a class="btn" href={libraryUrl(recap.id, 'recap', lang)}>{T.finish}</a></p>}
+  </div>
+</Base>
+
+<script>
+  import { paintProgress, watchLeafEnds } from '../../../../scripts/library-progress';
+  paintProgress();
+  watchLeafEnds();
+</script>
+
+<style>
+  .journey { max-width: 760px; }
+  .toc { margin: 1.4rem 0 2rem; padding: 1rem 1.2rem; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); }
+  .toc ol { margin: 0; padding-left: 1.3rem; display: grid; gap: 0.2rem; }
+  .part { padding-top: 1rem; margin-top: 2rem; border-top: 1px solid var(--line); scroll-margin-top: 80px; }
+  .part > h2 { font-size: 1.7rem; margin-top: 0.3rem; }
+  .body :global(h2) { font-size: 1.2rem; }
+  .answer { padding: 0.8rem 1rem; border-radius: 12px; background: var(--accent-soft); }
+  .end { margin-top: 2.5rem; }
+</style>

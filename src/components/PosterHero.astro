@@ -7,22 +7,62 @@
 import '@fontsource/cormorant-garamond/latin-500.css';
 import '@fontsource/cormorant-garamond/latin-500-italic.css';
 
+import { langFromUrl, localizePath, pick } from '../i18n/config';
+const lang = langFromUrl(Astro.url);
+
 // story points, in image px (2560x1600), read left to right
-const SPOTS = [
-  { x: 470, y: 650, title: 'Seeds', text: 'Every mind begins as scattered pieces of curiosity.' },
-  { x: 896.5, y: 800, title: 'The yantra', text: 'Small skills lock together into larger ones, again and again, without end.' },
-  { x: 896.5, y: 528, title: 'The orbit', text: 'Twelve fields and passions circle one centre, each feeding the next.' },
-  { x: 1676.5, y: 650, title: 'The engine', text: 'Every thread runs into one engine: learning to find patterns with AI.' },
-  { x: 2126, y: 862, title: 'Growth', text: 'What is learned keeps growing.' },
-  { x: 2378.5, y: 709, title: 'The loop', text: 'Two sparrows keep the loop turning: no one reaches freedom alone.' },
-];
+const POINTS = [{ x: 470, y: 650 }, { x: 896.5, y: 800 }, { x: 896.5, y: 528 }, { x: 1676.5, y: 650 }, { x: 2126, y: 862 }, { x: 2378.5, y: 709 }];
+const T = pick({
+  en: {
+    spots: [
+      { title: 'Seeds', text: 'Every mind begins as scattered pieces of curiosity.' },
+      { title: 'The yantra', text: 'Small skills lock together into larger ones, again and again, without end.' },
+      { title: 'The orbit', text: 'Twelve fields and passions circle one centre, each feeding the next.' },
+      { title: 'The engine', text: 'Every thread runs into one engine: learning to find patterns with AI.' },
+      { title: 'Growth', text: 'What is learned keeps growing.' },
+      { title: 'The loop', text: 'Two sparrows keep the loop turning: no one reaches freedom alone.' },
+    ],
+    label: 'Curious Sparoows poster',
+    alt: 'A night sky: scattered triangles gather into a yantra ringed by subject symbols, threads run into a glowing neural network, and two sparrows fly round an infinity loop.',
+    h1: 'Curious Minds.', h1b: 'Better Tomorrows.',
+    sub: 'Explainers on AI, geography and big ideas, from the basics up.',
+    scroll: 'Scroll down',
+    mottoLead: 'Two Sparoows, open sky:', mottoEm: 'Exploring Everything Together',
+    sapling: 'a growing sapling',
+    tour: 'Read the poster', stop: 'Stop', again: 'Read again',
+    hover: 'or hover over a glowing point', tap: 'or tap a glowing point',
+    closer: 'Look closer', morse: 'C U R I O U S: the loop spells it in Morse, for ever.',
+  },
+  hi: {
+    spots: [
+      { title: 'बीज', text: 'हर मन की शुरुआत जिज्ञासा (जानने की चाह) के बिखरे हुए टुकड़ों से होती है।' },
+      { title: 'यंत्र', text: 'इस यंत्र (रेखाओं से बने पवित्र चित्र) की तरह, छोटे-छोटे हुनर जुड़कर बड़े हुनर बनते हैं, बार-बार, बिना रुके।' },
+      { title: 'घेरा', text: 'बारह विषय और शौक एक ही केंद्र के चारों ओर घूमते हैं, और हर एक अगले को ताक़त देता है।' },
+      { title: 'इंजन', text: 'हर धागा एक ही इंजन में जाकर मिलता है: AI (कृत्रिम बुद्धि) की मदद से पैटर्न (छिपे हुए नियम) ढूँढना सीखना।' },
+      { title: 'बढ़त', text: 'जो सीखा है, वह बढ़ता ही रहता है।' },
+      { title: 'अनंत घेरा', text: 'दो गौरैया इस घेरे को घुमाती रहती हैं: आज़ादी तक कोई अकेला नहीं पहुँचता।' },
+    ],
+    label: 'Curious Sparoows पोस्टर',
+    alt: 'रात का आसमान: बिखरे हुए त्रिकोण मिलकर एक यंत्र बनाते हैं, जिसके चारों ओर विषयों के निशान हैं। धागे एक चमकते न्यूरल नेटवर्क (दिमाग़ की तरह जुड़े बिंदुओं का जाल) में जाते हैं, और दो गौरैया अनंत (∞) के घेरे पर उड़ती हैं।',
+    h1: 'जानने की चाह।', h1b: 'बेहतर कल।',
+    sub: 'AI, भूगोल और बड़े विचार, बिल्कुल शुरुआत से, आसान भाषा में।',
+    scroll: 'नीचे जाएँ',
+    mottoLead: 'दो Sparoows, खुला आसमान:', mottoEm: 'साथ मिलकर, सब कुछ खोजें',
+    sapling: 'उगता हुआ नन्हा पौधा',
+    tour: 'पोस्टर पढ़िए', stop: 'रुकिए', again: 'फिर से पढ़िए',
+    hover: 'या किसी चमकते बिंदु पर माउस ले जाइए', tap: 'या किसी चमकते बिंदु को छुइए',
+    closer: 'ध्यान से देखिए', morse: 'C U R I O U S: यह घेरा मोर्स कोड (बिंदु और डैश से लिखने का तरीका) में “CURIOUS” यानी “जानने को उत्सुक” लिखता है, हमेशा के लिए।',
+  },
+}, lang);
+const SPOTS = POINTS.map((p, i) => ({ ...p, ...T.spots[i] }));
+const words = { tour: T.tour, stop: T.stop, again: T.again, closer: T.closer, morse: T.morse };
 ---
 
-<section class="poster" aria-label="Curious Sparoows poster">
+<section class="poster" aria-label={T.label} data-words={JSON.stringify(words)}>
   <div class="art">
   <picture>
     <source type="image/webp" srcset="/images/poster-cosmic-1280.webp 1280w, /images/poster-cosmic.webp 2560w" sizes="100vw" />
-    <img src="/images/poster-cosmic.webp" alt="A night sky: scattered triangles gather into a yantra ringed by subject symbols, threads run into a glowing neural network, and two sparrows fly round an infinity loop." width="2560" height="1600" fetchpriority="high" decoding="async" />
+    <img src="/images/poster-cosmic.webp" alt={T.alt} width="2560" height="1600" fetchpriority="high" decoding="async" />
   </picture>
   <svg class="flight" viewBox="0 0 2560 1600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <defs><g id="sp-body"><polygon points="-40.0,2.0 -92.0,30.0 -86.0,12.0 -98.0,10.0 -70.0,-4.0 -30.0,-6.0" fill="#B07E55"/><polygon points="44.6,-11.1 45.0,-8.5 44.9,-5.7 44.3,-2.9 43.1,-0.1 41.5,2.7 39.4,5.5 36.9,8.3 33.9,10.9 30.6,13.5 26.9,15.8 22.9,18.0 18.7,20.0 14.2,21.8 9.6,23.3 4.9,24.5 0.1,25.5 -4.7,26.2 -9.5,26.6 -14.1,26.7 -18.5,26.5 -22.8,26.0 -26.8,25.1 -30.5,24.0 -33.9,22.7 -36.8,21.1 -39.4,19.2 -41.5,17.1 -43.1,14.8 -44.2,12.4 -44.9,9.8 -45.0,7.1 -44.7,4.4 -43.8,1.5 -42.4,-1.3 -40.5,-4.1 -38.2,-6.9 -35.5,-9.6 -32.3,-12.2 -28.8,-14.7 -25.0,-16.9 -20.8,-19.0 -16.5,-20.9 -11.9,-22.6 -7.2,-24.0 -2.5,-25.1 2.3,-25.9 7.1,-26.4 11.8,-26.7 16.3,-26.6 20.7,-26.2 24.8,-25.6 28.7,-24.6 32.2,-23.4 35.4,-21.9 38.1,-20.2 40.5,-18.2 42.3,-16.0 43.7,-13.6 44.6,-11.1" fill="#D6A67B"/><polygon points="36.5,3.4 36.6,4.8 36.3,6.3 35.6,7.7 34.6,9.2 33.3,10.7 31.6,12.2 29.7,13.6 27.5,15.0 25.0,16.3 22.2,17.5 19.3,18.6 16.3,19.7 13.1,20.6 9.8,21.3 6.4,21.9 3.1,22.4 -0.3,22.8 -3.6,22.9 -6.8,22.9 -9.8,22.8 -12.7,22.5 -15.4,22.0 -17.8,21.4 -20.0,20.7 -21.9,19.8 -23.5,18.8 -24.8,17.7 -25.8,16.5 -26.3,15.2 -26.6,13.9 -26.5,12.4 -26.0,11.0 -25.2,9.5 -24.0,8.0 -22.5,6.6 -20.7,5.1 -18.6,3.7 -16.2,2.4 -13.6,1.1 -10.8,-0.1 -7.8,-1.2 -4.7,-2.1 -1.4,-3.0 1.9,-3.7 5.3,-4.2 8.6,-4.6 11.9,-4.9 15.2,-5.0 18.3,-4.9 21.3,-4.7 24.1,-4.3 26.6,-3.8 29.0,-3.1 31.0,-2.3 32.8,-1.4 34.2,-0.3 35.3,0.9 36.1,2.1 36.5,3.4" fill="#FFF3E4"/><polygon points="62.0,-17.0 61.9,-15.1 61.6,-13.2 61.0,-11.3 60.3,-9.6 59.4,-7.9 58.3,-6.3 57.0,-4.8 55.5,-3.5 53.9,-2.3 52.2,-1.3 50.4,-0.4 48.5,0.2 46.5,0.7 44.5,0.9 42.5,1.0 40.5,0.8 38.5,0.5 36.6,-0.1 34.7,-0.8 32.9,-1.7 31.3,-2.8 29.7,-4.1 28.4,-5.5 27.2,-7.0 26.1,-8.7 25.3,-10.4 24.7,-12.3 24.2,-14.1 24.0,-16.0 24.0,-18.0 24.2,-19.9 24.7,-21.7 25.3,-23.6 26.1,-25.3 27.2,-27.0 28.4,-28.5 29.7,-29.9 31.3,-31.2 32.9,-32.3 34.7,-33.2 36.6,-33.9 38.5,-34.5 40.5,-34.8 42.5,-35.0 44.5,-34.9 46.5,-34.7 48.5,-34.2 50.4,-33.6 52.2,-32.7 53.9,-31.7 55.5,-30.5 57.0,-29.2 58.3,-27.7 59.4,-26.1 60.3,-24.4 61.0,-22.7 61.6,-20.8 61.9,-18.9 62.0,-17.0" fill="#9C6B45"/><polygon points="58.0,-11.0 57.9,-10.3 57.8,-9.5 57.4,-8.8 57.0,-8.1 56.5,-7.4 55.8,-6.8 55.1,-6.3 54.2,-5.7 53.3,-5.3 52.3,-4.9 51.3,-4.6 50.2,-4.3 49.0,-4.1 47.9,-4.0 46.7,-4.0 45.5,-4.1 44.4,-4.2 43.3,-4.4 42.2,-4.7 41.2,-5.1 40.2,-5.5 39.3,-6.0 38.5,-6.5 37.8,-7.1 37.2,-7.8 36.8,-8.5 36.4,-9.2 36.1,-9.9 36.0,-10.6 36.0,-11.4 36.1,-12.1 36.4,-12.8 36.8,-13.5 37.2,-14.2 37.8,-14.9 38.5,-15.5 39.3,-16.0 40.2,-16.5 41.2,-16.9 42.2,-17.3 43.3,-17.6 44.4,-17.8 45.5,-17.9 46.7,-18.0 47.9,-18.0 49.0,-17.9 50.2,-17.7 51.3,-17.4 52.3,-17.1 53.3,-16.7 54.2,-16.3 55.1,-15.7 55.8,-15.2 56.5,-14.6 57.0,-13.9 57.4,-13.2 57.8,-12.5 57.9,-11.7 58.0,-11.0" fill="#FFF3E4"/><polygon points="60.0,-21.0 75.0,-17.0 60.0,-12.0" fill="#2B1D14"/><circle cx="50" cy="-21" r="3.4" fill="#17132E"/></g></defs>
@@ -39,24 +79,24 @@ const SPOTS = [
     ))}
   </svg>
   <div class="hero-text">
-    <h1>Curious Minds. <span>Better Tomorrows.</span></h1>
-    <p class="sub">Explainers on AI, geography and big ideas, from the basics up.</p>
+    <h1>{T.h1} <span>{T.h1b}</span></h1>
+    <p class="sub">{T.sub}</p>
   </div>
-  <a class="cue" href="#explore" aria-label="Scroll down">
+  <a class="cue" href="#explore" aria-label={T.scroll}>
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
   </a>
   </div>
   <div class="legend">
     <p class="cap" aria-live="polite"><span class="title"></span><span class="text"></span></p>
-    <p class="motto" lang="en">
+    <p class="motto">
       <span class="rule" aria-hidden="true"></span>
-      <span class="motto-text motto-lead">Two Sparoows, open sky:</span>
-      <span class="motto-text"><em>Exploring Everything Together</em></span>
-      <span class="sapling" role="img" aria-label="a growing sapling">🌱</span>
+      <span class="motto-text motto-lead">{T.mottoLead}</span>
+      <span class="motto-text"><em>{T.mottoEm}</em></span>
+      <span class="sapling" role="img" aria-label={T.sapling}>🌱</span>
       <span class="rule" aria-hidden="true"></span>
     </p>
-    <button class="tour" type="button"><span aria-hidden="true">✦</span> <span class="tour-label">Read the poster</span></button>
-    <p class="hint"><span class="mouse">or hover over a glowing point</span><span class="touch">or tap a glowing point</span></p>
+    <button class="tour" type="button"><span aria-hidden="true">✦</span> <span class="tour-label">{T.tour}</span></button>
+    <p class="hint"><span class="mouse">{T.hover}</span><span class="touch">{T.tap}</span></p>
   </div>
 </section>
 
@@ -189,6 +229,7 @@ const SPOTS = [
   const tourBtn = poster?.querySelector<HTMLButtonElement>('.tour');
   const tourLabel = poster?.querySelector<HTMLElement>('.tour-label');
   const LOOP = spots.length - 1;
+  const words = JSON.parse(poster?.dataset.words ?? '{}');
   let timers: number[] = [], touring = false, morseOn = false, pinned = -1;
   const later = (fn: () => void, ms: number) => { timers.push(window.setTimeout(fn, ms)); };
   const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
@@ -211,26 +252,26 @@ const SPOTS = [
     morseOn = true; (window as any).__sparrowsPaused = true;
     poster?.classList.add('decoding');
     show(LOOP);
-    if (capTitle) capTitle.textContent = 'Look closer';
+    if (capTitle) capTitle.textContent = words.closer;
     if (capText) capText.textContent = '';
     letters.forEach((g, li) => later(() => {
       g.classList.add('lit');
       if (capText) capText.textContent = WORD.slice(0, li + 1).split('').join(' ');
     }, 700 + li * 650));
-    later(() => { if (capText) capText.textContent = 'C U R I O U S: the loop spells it in Morse, for ever.'; }, 700 + WORD.length * 650 + 300);
+    later(() => { if (capText) capText.textContent = words.morse; }, 700 + WORD.length * 650 + 300);
     later(() => { endMorse(); then?.(); }, 700 + WORD.length * 650 + 4200);
   };
   const stop = () => {
     clearTimers(); endMorse(); touring = false; pinned = -1; show(-1);
-    if (tourLabel) tourLabel.textContent = 'Read the poster';
+    if (tourLabel) tourLabel.textContent = words.tour;
     tourBtn?.setAttribute('aria-pressed', 'false');
   };
   const tour = () => {
     stop(); touring = true;
-    if (tourLabel) tourLabel.textContent = 'Stop';
+    if (tourLabel) tourLabel.textContent = words.stop;
     tourBtn?.setAttribute('aria-pressed', 'true');
     spots.forEach((_, i) => later(() => show(i), i * 5200));
-    later(() => decode(() => { stop(); if (tourLabel) tourLabel.textContent = 'Read again'; }), LOOP * 5200 + 5200);
+    later(() => decode(() => { stop(); if (tourLabel) tourLabel.textContent = words.again; }), LOOP * 5200 + 5200);
   };
   tourBtn?.addEventListener('click', () => (touring ? stop() : tour()));
   spots.forEach((h, i) => {
@@ -263,7 +304,7 @@ const SPOTS = [
     text-align: center; pointer-events: none;
   }
   .hero-text h1 {
-    margin: 0; font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500;
+    margin: 0; font-family: var(--font-display); font-weight: 500;
     font-size: clamp(1.45rem, 4.3vw, 4.6rem); line-height: 1.08; letter-spacing: 0.015em;
     background: linear-gradient(180deg, #fff6e4 20%, #e8c584 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
     filter: drop-shadow(0 0 22px rgb(242 196 109 / 0.28));
@@ -307,7 +348,7 @@ const SPOTS = [
   }
   .cap { margin: 0; min-height: 2.6em; max-width: 46rem; display: flex; flex-direction: column; justify-content: flex-end; gap: 0.25rem; color: #f6e7c8; }
   .cap .title { font: 600 0.72rem/1 var(--font-sans, Inter, sans-serif); letter-spacing: 0.3em; text-transform: uppercase; color: #e8c584; }
-  .cap .text { font: italic 500 clamp(1.1rem, 1.7vw, 1.55rem)/1.3 'Cormorant Garamond', Georgia, serif; text-shadow: 0 1px 12px rgb(10 6 30 / 0.9); }
+  .cap .text { font: italic 500 clamp(1.1rem, 1.7vw, 1.55rem)/1.3 var(--font-display); text-shadow: 0 1px 12px rgb(10 6 30 / 0.9); }
   /* the signature line: same Cormorant and gold as the tagline, with a slow light sweep and a sapling that grows in */
   .motto {
     margin: 0; display: flex; align-items: center; justify-content: center; gap: 0.75rem; flex-wrap: nowrap;
@@ -316,7 +357,7 @@ const SPOTS = [
   .motto .rule { flex: 0 0 auto; width: clamp(1.2rem, 4vw, 3.2rem); height: 1px; background: linear-gradient(90deg, transparent, rgb(232 197 132 / 0.75)); }
   .motto .rule:last-child { background: linear-gradient(90deg, rgb(232 197 132 / 0.75), transparent); }
   .motto-text {
-    font: 500 clamp(1.08rem, 1.75vw, 1.6rem)/1.25 'Cormorant Garamond', Georgia, serif; letter-spacing: 0.02em;
+    font: 500 clamp(1.08rem, 1.75vw, 1.6rem)/1.25 var(--font-display); letter-spacing: 0.02em;
     background: linear-gradient(100deg, #e8c584 0%, #e8c584 38%, #fffaf0 50%, #e8c584 62%, #e8c584 100%);
     background-size: 260% 100%; background-position: 100% 0;
     -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -349,7 +390,7 @@ const SPOTS = [
     color: #f2d7a6; background: rgb(23 16 46 / 0.55); border: 1px solid rgb(242 215 166 / 0.35); border-radius: 999px;
     padding: 0.62rem 1.15rem; backdrop-filter: blur(6px); transition: background 0.3s, border-color 0.3s, color 0.3s;
   }
-  .hint { margin: -0.15rem 0 0; font: italic 500 1.08rem/1.2 'Cormorant Garamond', Georgia, serif; color: rgb(246 231 200 / 0.7); transition: opacity 0.4s; }
+  .hint { margin: -0.15rem 0 0; font: italic 500 1.08rem/1.2 var(--font-display); color: rgb(246 231 200 / 0.7); transition: opacity 0.4s; }
   .hint .touch { display: none; }
   @media (hover: none) { .hint .mouse { display: none; } .hint .touch { display: inline; } }
   .poster.reading .hint, .poster.decoding .hint { opacity: 0; }

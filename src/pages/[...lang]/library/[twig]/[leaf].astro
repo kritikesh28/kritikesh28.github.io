@@ -1,33 +1,59 @@
 ---
 // One Leaf: one question, about two minutes. Also renders the twig's recap page.
 import { render } from 'astro:content';
-import Base from '../../../layouts/Base.astro';
-import LibraryGuide from '../../../components/LibraryGuide.astro';
-import LibraryCrumbs from '../../../components/LibraryCrumbs.astro';
-import ProgressMeter from '../../../components/ProgressMeter.astro';
-import { SITE } from '../../../site.config';
-import { findTwig } from '../../../library.config';
-import { getLibraryPages, getTwigPages, splitLibraryId, libraryUrl, readMinutes } from '../../../lib';
+import Base from '../../../../layouts/Base.astro';
+import LibraryGuide from '../../../../components/LibraryGuide.astro';
+import LibraryCrumbs from '../../../../components/LibraryCrumbs.astro';
+import ProgressMeter from '../../../../components/ProgressMeter.astro';
+import { SITE } from '../../../../site.config';
+import { findTwig } from '../../../../library.config';
+import { getLibraryPages, getTwigPages, splitLibraryId, libraryUrl, readMinutes, translatedLangs } from '../../../../lib';
+import { LANGS, DEFAULT_LANG, langFromUrl, localizePath, pick } from '../../../../i18n/config';
+import { useT } from '../../../../i18n/ui';
 
 export async function getStaticPaths() {
-  const pages = (await getLibraryPages()).filter((p) => p.data.kind !== 'gateway');
-  return pages.map((page) => ({ params: { twig: splitLibraryId(page.id).twig, leaf: splitLibraryId(page.id).slug }, props: { page } }));
+  const paths = [];
+  for (const lang of LANGS) {
+    const pages = (await getLibraryPages(lang)).filter((p) => p.data.kind !== 'gateway');
+    paths.push(...pages.map((page) => ({ params: { lang: lang === DEFAULT_LANG ? undefined : lang, twig: splitLibraryId(page.id).twig, leaf: splitLibraryId(page.id).slug }, props: { page } })));
+  }
+  return paths;
 }
 
 const { page } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const t = useT(lang);
+const L = (p: string) => localizePath(p, lang);
 const { twig } = splitLibraryId(page.id);
 const { Content } = await render(page);
 const { title, description, answer, nextHook, kind, date, updated, aiAssisted, keywords } = page.data;
-const twigInfo = findTwig(twig)?.twig;
-const all = await getTwigPages(twig);
+const twigInfo = findTwig(twig, lang)?.twig;
+const all = await getTwigPages(twig, lang);
+const T = pick({
+  en: {
+    quiz: (n: number) => `Test yourself: all ${n} questions`, quizHint: 'Try to answer each one in your head, then tap to check.', read: (n: number) => `Read Leaf ${n}`,
+    endHook: (x: string) => `You have reached the end of ${x}. One page pulls it all together.`, last: 'Last step', recapQuiz: 'Recap and quick quiz',
+    finished: (x: string) => `You finished ${x}`,
+    whatNext: (lib: string, s: string, g: string) => `What next? Keep exploring the <a href="${lib}">library</a>, <a href="${s}">search for a question</a>, or start again from the <a href="${g}">beginning</a>.`,
+    next: (n: number) => `Next · Leaf ${n}`, map: 'Course map', allOne: 'Read all on one page',
+  },
+  hi: {
+    quiz: (n: number) => `ख़ुद को परखिए: सभी ${n} सवाल`, quizHint: 'हर सवाल का जवाब पहले मन में सोचिए, फिर छूकर जाँचिए।', read: (n: number) => `पत्ता ${n} पढ़ें`,
+    endHook: (x: string) => `आप “${x}” के आख़िर तक पहुँच गए हैं। एक पन्ना पूरी बात को जोड़कर समझा देगा।`, last: 'आख़िरी कदम', recapQuiz: 'दोहराव और छोटी-सी क्विज़',
+    finished: (x: string) => `आपने “${x}” पूरा कर लिया`,
+    whatNext: (lib: string, s: string, g: string) => `आगे क्या? <a href="${lib}">लाइब्रेरी</a> में घूमते रहिए, <a href="${s}">कोई सवाल खोजिए</a>, या फिर से <a href="${g}">शुरुआत</a> से पढ़िए।`,
+    next: (n: number) => `अगला · पत्ता ${n}`, map: 'कोर्स का नक्शा', allOne: 'सब एक पन्ने पर पढ़ें',
+  },
+}, lang);
 const leaves = all.filter((p) => p.data.kind === 'leaf');
 const recap = all.find((p) => p.data.kind === 'recap');
-const index = leaves.findIndex((p) => p.id === page.id);
+const index = leaves.findIndex((p) => p.slug === page.slug);
 const isRecap = kind === 'recap';
 const prev = isRecap ? leaves.at(-1) : leaves[index - 1];
 const next = isRecap ? undefined : leaves[index + 1];
-const url = new URL(libraryUrl(page.id, kind), Astro.site).href;
-const gatewayUrl = `/library/${twig}/`;
+const url = new URL(libraryUrl(page.id, kind, lang), Astro.site).href;
+const gatewayUrl = L(`/library/${twig}/`);
+const leafUrl = (id: string, k = 'leaf') => libraryUrl(id, k, lang);
 
 const schema: Record<string, unknown>[] = [
   {
@@ -38,7 +64,7 @@ const schema: Record<string, unknown>[] = [
     url,
     datePublished: date.toISOString(),
     dateModified: (updated ?? date).toISOString(),
-    inLanguage: 'en',
+    inLanguage: page.lang,
     learningResourceType: isRecap ? 'Summary' : 'Lesson',
     educationalLevel: 'Beginner',
     keywords: keywords.join(', '),
@@ -49,7 +75,7 @@ const schema: Record<string, unknown>[] = [
   {
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Library', item: new URL('/library/', Astro.site).href },
+      { '@type': 'ListItem', position: 1, name: t('nav.library'), item: new URL(L('/library/'), Astro.site).href },
       { '@type': 'ListItem', position: 2, name: twigInfo?.title, item: new URL(gatewayUrl, Astro.site).href },
       { '@type': 'ListItem', position: 3, name: title, item: url },
     ],
@@ -59,70 +85,70 @@ const schema: Record<string, unknown>[] = [
 if (answer) schema.push({ '@type': 'FAQPage', mainEntity: [{ '@type': 'Question', name: title, acceptedAnswer: { '@type': 'Answer', text: answer } }] });
 ---
 
-<Base {title} {description} type="article" published={date} {updated} {schema}>
+<Base {title} {description} type="article" published={date} {updated} {schema} translated={await translatedLangs('library', page.slug)}>
   <div class="wrap leaf-layout">
     <article class="leaf">
-      <LibraryCrumbs {twig} current={isRecap ? 'Recap' : `Leaf ${index + 1}`} />
+      <LibraryCrumbs {twig} current={isRecap ? t('lib.recap') : t('lib.leafN', { n: index + 1 })} />
       {!isRecap && (
-        <ol class="dots" aria-label={`Leaf ${index + 1} of ${leaves.length}`}>
+        <ol class="dots" aria-label={t('lib.leafNofM', { n: index + 1, m: leaves.length })}>
           {leaves.map((l, i) => (
-            <li data-leaf-id={l.id} class:list={{ now: i === index }}>
-              <a href={libraryUrl(l.id, 'leaf')} title={`${i + 1}. ${l.data.title}`}><span class="sr-only">{i + 1}. {l.data.title}</span></a>
+            <li data-leaf-id={l.slug} class:list={{ now: i === index }}>
+              <a href={leafUrl(l.id)} title={`${i + 1}. ${l.data.title}`}><span class="sr-only">{i + 1}. {l.data.title}</span></a>
             </li>
           ))}
         </ol>
       )}
-      <p class="eyebrow">{isRecap ? 'Recap' : `Leaf ${index + 1} of ${leaves.length}`} · {readMinutes(page.body)} min read</p>
-      <h1>{title}</h1>
+      <p class="eyebrow">{isRecap ? t('lib.recap') : t('lib.leafNofM', { n: index + 1, m: leaves.length })} · {t('common.minRead', { n: readMinutes(page.body) })}</p>
+      <h1 lang={page.lang}>{title}</h1>
       {answer && (
-        <div class="answer">
-          <p class="eyebrow">Short answer</p>
+        <div class="answer" lang={page.lang}>
+          <p class="eyebrow">{t('lib.shortAnswer')}</p>
           <p>{answer}</p>
         </div>
       )}
-      <div class="prose body"><Content /></div>
+      <div class="prose body" lang={page.lang}><Content /></div>
 
       {isRecap && (
         <section class="quiz">
-          <h2>Test yourself: all {leaves.length} questions</h2>
-          <p class="muted small">Try to answer each one in your head, then tap to check.</p>
+          <h2>{T.quiz(leaves.length)}</h2>
+          <p class="muted small">{T.quizHint}</p>
           {leaves.map((l, i) => (
             <details>
               <summary><span class="n">{i + 1}</span>{l.data.title}</summary>
-              <p>{l.data.answer} <a href={libraryUrl(l.id, 'leaf')}>Read Leaf {i + 1}</a></p>
+              <p>{l.data.answer} <a href={leafUrl(l.id)}>{T.read(i + 1)}</a></p>
             </details>
           ))}
         </section>
       )}
 
-      {aiAssisted && <p class="note small">Written by {SITE.name} with help from an AI assistant, and checked by me. Spotted a mistake? <a href="/contact/">Tell me</a> and I will fix it openly.</p>}
+      {aiAssisted && <p class="note small" set:html={t('ai.leaf', { name: t('site.name'), contact: L('/contact/') })} />}
 
-      <div class="end" data-leaf-end={page.id}>
+      <div class="end" data-leaf-end={page.slug}>
         {next && (
-          <a class="next" href={libraryUrl(next.id, 'leaf')} rel="next">
+          <a class="next" href={leafUrl(next.id)} rel="next">
             {nextHook && <span class="hook">{nextHook}</span>}
-            <span class="next-label">Next · Leaf {index + 2}</span>
+            <span class="next-label">{T.next(index + 2)}</span>
             <strong>{next.data.title} <span aria-hidden="true">→</span></strong>
           </a>
         )}
         {!next && !isRecap && recap && (
-          <a class="next" href={libraryUrl(recap.id, 'recap')} rel="next">
-            <span class="hook">You have reached the end of {twigInfo?.title}. One page pulls it all together.</span>
-            <span class="next-label">Last step</span>
-            <strong>Recap and quick quiz <span aria-hidden="true">→</span></strong>
+          <a class="next" href={leafUrl(recap.id, 'recap')} rel="next">
+            <span class="hook">{T.endHook(twigInfo?.title ?? '')}</span>
+            <span class="next-label">{T.last}</span>
+            <strong>{T.recapQuiz} <span aria-hidden="true">→</span></strong>
           </a>
         )}
         {isRecap && (
           <div class="finish">
-            <p class="eyebrow">You finished {twigInfo?.title}</p>
+            <p class="eyebrow">{T.finished(twigInfo?.title ?? '')}</p>
             <ProgressMeter {twig} total={leaves.length} />
-            <p>What next? Keep exploring the <a href="/library/">library</a>, <a href="/search/">search for a question</a>, or start again from the <a href={gatewayUrl}>beginning</a>.</p>
+            <p set:html={T.whatNext(L('/library/'), L('/search/'), gatewayUrl)} />
           </div>
         )}
         <p class="side-links small">
-          {prev && <a href={libraryUrl(prev.id, 'leaf')} rel="prev">← {isRecap ? `Leaf ${leaves.length}` : `Leaf ${index}`}</a>}
-          <a href={gatewayUrl}>Course map</a>
-          <a href={`${gatewayUrl}all/`}>Read all on one page</a>
+          {prev && <a href={leafUrl(prev.id)} rel="prev">← {isRecap ? t('lib.leafN', { n: leaves.length }) : t('lib.leafN', { n: index })}</a>}
+          <a href={gatewayUrl}>{T.map}</a>
+          <a href={`${gatewayUrl}all/`}>{T.allOne}</a>
         </p>
       </div>
     </article>
@@ -140,7 +166,7 @@ if (answer) schema.push({ '@type': 'FAQPage', mainEntity: [{ '@type': 'Question'
 </Base>
 
 <script>
-  import { paintProgress, watchLeafEnds } from '../../../scripts/library-progress';
+  import { paintProgress, watchLeafEnds } from '../../../../scripts/library-progress';
   paintProgress();
   watchLeafEnds();
 </script>

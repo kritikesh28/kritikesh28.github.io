@@ -2,17 +2,23 @@
 import type { CollectionEntry } from 'astro:content';
 import { categoryLabel } from '../site.config';
 import FormattedDate from './FormattedDate.astro';
+import type { Localized } from '../lib';
+import { langFromUrl, localizePath, LOCALES } from '../i18n/config';
+import { useT } from '../i18n/ui';
 
-interface Props { post: CollectionEntry<'blog'> }
+interface Props { post: Localized<CollectionEntry<'blog'>> }
 const { post } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const t = useT(lang);
+const L = (p: string) => localizePath(p, lang);
 ---
 
 <article class="card">
   <p class="small muted">
-    Long read · <FormattedDate date={post.data.date} /> ·
-    <a href={`/library/${post.data.category}/`}>{categoryLabel(post.data.category)}</a>
-    {post.data.lang === 'hi' && <span> · हिन्दी</span>}
+    {t('common.longRead')} · <FormattedDate date={post.data.date} /> ·
+    <a href={L(`/library/${post.data.category}/`)}>{categoryLabel(post.data.category, lang)}</a>
+    {post.lang !== lang && <span> · {LOCALES[post.lang].name}</span>}
   </p>
-  <h3><a href={`/library/read/${post.id}/`}>{post.data.title}</a></h3>
-  <p class="muted">{post.data.description}</p>
+  <h3 lang={post.lang}><a href={L(`/library/read/${post.slug}/`)}>{post.data.title}</a></h3>
+  <p class="muted" lang={post.lang}>{post.data.description}</p>
 </article>

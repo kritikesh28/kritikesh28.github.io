@@ -1,11 +1,17 @@
 ---
 // A search box that suggests real pages while you type (arrow keys + Enter, or tap).
 // Pressing Enter without picking a suggestion opens the full results on /search/.
+import { langFromUrl, localizePath } from '../i18n/config';
+import { useT } from '../i18n/ui';
+const lang = langFromUrl(Astro.url);
+const t = useT(lang);
 interface Props { id?: string; placeholder?: string; autofocus?: boolean; label?: string }
-const { id = 'q', placeholder = 'Ask anything, e.g. why is space dark?', autofocus = false, label = 'Search the library' } = Astro.props;
+const { id = 'q', placeholder = t('search.placeholder'), autofocus = false, label = t('search.label') } = Astro.props;
+const words = { dym: t('search.didYouMean'), instead: t('search.insteadSub'), all: t('search.all'), allSub: t('search.allSub') };
+const searchUrl = localizePath('/search/', lang);
 ---
 
-<form class="sbox" action="/search/" method="get" role="search" data-sbox>
+<form class="sbox" action={searchUrl} method="get" role="search" data-sbox data-words={JSON.stringify(words)}>
   <label class="sr-only" for={id}>{label}</label>
   <div class="field">
     <input
@@ -21,9 +27,9 @@ const { id = 'q', placeholder = 'Ask anything, e.g. why is space dark?', autofoc
       aria-expanded="false"
       aria-controls={`${id}-list`}
     />
-    <ul class="suggest" id={`${id}-list`} role="listbox" aria-label="Suggestions" hidden></ul>
+    <ul class="suggest" id={`${id}-list`} role="listbox" aria-label={t('search.suggestions')} hidden></ul>
   </div>
-  <button class="btn" type="submit">Search</button>
+  <button class="btn" type="submit">{t('search.button')}</button>
 </form>
 
 <script>
@@ -60,8 +66,10 @@ const { id = 'q', placeholder = 'Ask anything, e.g. why is space dark?', autofoc
       list.append(li);
       options.push({ el: li, go });
     };
-    const openItem = (item: Item) => { location.href = item.u || `/search/?q=${encodeURIComponent(item.t)}`; };
-    const searchFor = (q: string) => { location.href = `/search/?q=${encodeURIComponent(q)}`; };
+    const words = JSON.parse(form.dataset.words ?? '{}');
+    const searchUrl = form.getAttribute('action') ?? '/search/';
+    const openItem = (item: Item) => { location.href = item.u || `${searchUrl}?q=${encodeURIComponent(item.t)}`; };
+    const searchFor = (q: string) => { location.href = `${searchUrl}?q=${encodeURIComponent(q)}`; };
 
     const render = async () => {
       const q = input.value;
@@ -72,9 +80,9 @@ const { id = 'q', placeholder = 'Ask anything, e.g. why is space dark?', autofoc
       active = -1;
       if (q.trim().length < 2) return close();
       const fix = didYouMean(q);
-      if (fix) option(`Did you mean “${fix}”?`, 'Search for this instead', () => searchFor(fix), 'fix');
+      if (fix) option(words.dym.replace('{q}', fix), words.instead, () => searchFor(fix), 'fix');
       suggest(fix ?? q).forEach((item) => option(item.t, item.k, () => openItem(item)));
-      option(`See all results for “${q}”`, 'Full search', () => searchFor(q), 'all');
+      option(words.all.replace('{q}', q), words.allSub, () => searchFor(q), 'all');
       list.hidden = false;
       input.setAttribute('aria-expanded', 'true');
     };
