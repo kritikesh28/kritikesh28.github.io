@@ -44,6 +44,6 @@ One change from the plan: search is built into the site instead of using Pagefin
 
 ## Exam Prep, next to the library (November 2026)
 
-The Exam Prep section (/exam-prep/) is separate from the library trees: it shows the whole competitive-exam syllabus (Curriculum Index) and which topics past papers asked most (Exam Guide), straight from two Google Sheets. The library's "Exam Prep" tree links to it. Later, library Leaves can link from an Exam Prep topic to a full explanation. Details: [14 · Exam Prep section](14-exam-prep.md).
+The Exam Prep section (/exam-prep/) is separate from the library trees: it shows the whole competitive-exam syllabus (Curriculum Index) and which topics past papers asked most (the Exam Mentor, built from the Exam Guide sheet), straight from two Google Sheets. The library's "Exam Prep" tree links to it. Later, library Leaves can link from an Exam Prep topic to a full explanation. Details: [14 · Exam Prep section](14-exam-prep.md).
 
 _Status on 25 October 2026: plan agreed and phase 1 built. The live list of what is pending, in order, is [12 · Pending task list](12-task-list.md)._

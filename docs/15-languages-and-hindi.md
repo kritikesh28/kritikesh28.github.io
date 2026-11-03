@@ -88,7 +88,7 @@ Every page is then built in the new language at `/ta/...`, the switcher shows it
 
 ## 5. What stays English for now
 
-- **Deeper Exam Prep topic lines.** Every Exam Prep page, the Exam Guide, search, all 15 subjects, every major topic and the most-asked topics are in Hindi. The deeper lines (about 30,000) are still English and show in English on Hindi pages until their batch is done (see part 6).
+- **Deeper Exam Prep topic lines.** Every Exam Prep page, the Exam Mentor (परीक्षा मार्गदर्शक), search, all 15 subjects, every major topic and the most-asked topics are in Hindi. The deeper lines (about 30,000) are still English and show in English on Hindi pages until their batch is done (see part 6).
 - The contact form sends the visitor's language with each message, so you know which language to reply in.
 
 ## 6. Exam Prep translations

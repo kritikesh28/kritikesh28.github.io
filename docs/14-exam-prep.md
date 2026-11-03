@@ -20,7 +20,7 @@ The Exam Prep section lives at **curioussparoows.com/exam-prep/**. It puts two G
             ▼
  data files in the repository
    ├── src/data/exam-prep/   (used while the site is built)
-   └── public/exam-prep/     (downloaded by the visitor's browser: search and Exam Guide)
+   └── public/exam-prep/     (downloaded by the visitor's browser: search and Exam Mentor)
             │
             ▼
  Astro builds the pages  →  GitHub Pages publishes  →  curioussparoows.com/exam-prep/
@@ -36,10 +36,12 @@ The website never reads Google directly. When a sheet changes, the website only 
 | Exhaustive Curriculum Index (all subjects, search) | /exam-prep/curriculum-index/ | Curriculum Index sheet | `src/pages/[...lang]/exam-prep/curriculum-index/index.astro` |
 | One subject | /exam-prep/curriculum-index/SUBJECT/ | same | `.../curriculum-index/[subject]/index.astro` |
 | One major topic (Level 1) with everything inside | /exam-prep/curriculum-index/SUBJECT/ID/ | same | `.../curriculum-index/[subject]/[major].astro` |
-| Exam Guide (pick exam and time, get ranked topics) | /exam-prep/exam-guide/ | Exam Guide sheet and export.json | `src/pages/[...lang]/exam-prep/exam-guide/index.astro` + `src/scripts/exam-guide.ts` |
+| Exam Mentor (pick exam and time, get ranked topics) | /exam-prep/exam-guide/ (old address kept on purpose, see the note below) | Exam Guide sheet and export.json | `src/pages/[...lang]/exam-prep/exam-guide/index.astro` + `src/scripts/exam-guide.ts` |
 | How the ranking works, papers analysed | /exam-prep/exam-guide/how-it-works/ | same | `.../exam-guide/how-it-works.astro` |
 | All exams | /exam-prep/exams/ | export.json | `src/pages/[...lang]/exam-prep/exams/index.astro` |
 | One exam (for example RSSB Patwari) | /exam-prep/exams/rssb-patwari/ | same | `src/pages/[...lang]/exam-prep/exams/[exam].astro` |
+
+**Name vs address (3 November 2026).** The planner tool is called **Exam Mentor** in English and **परीक्षा मार्गदर्शक** in Hindi on every page. Its address stays `/exam-prep/exam-guide/` because links to it were already shared on LinkedIn and Instagram; changing it would break them. The Google Sheet behind it is still named "Exam Guide", so the docs call it "the Exam Guide sheet". If the address is ever renamed, add redirects from every old `/exam-guide/` page first.
 
 Pages in square brackets (`[subject]`, `[major]`, `[exam]`) are templates: one file makes hundreds of pages, one per subject, topic or exam in the data. About 950 pages in all.
 
@@ -52,7 +54,7 @@ Pages in square brackets (`[subject]`, `[major]`, `[exam]`) are templates: one f
 | `src/layouts/ExamLayout.astro` | The frame of every Exam Prep page: left sidebar (a drawer on phones), breadcrumbs, structured data for Google | With care |
 | `src/components/exam/ExamSearch.astro` | The search box, filters and results list | With care |
 | `src/scripts/exam-search.ts` | The search engine (typo-tolerant, Hinglish words in `SYN`) | `SYN` list: yes |
-| `src/scripts/exam-guide.ts` | The Exam Guide maths (`buildPlan`) and exam finder | Only if the sheet's maths changes |
+| `src/scripts/exam-guide.ts` | The Exam Mentor maths (`buildPlan`) and exam finder | Only if the sheet's maths changes |
 | `tools/exam-prep/build_data.py` | Turns the sheets into data files | Lists at the top: yes |
 | `src/data/exam-prep/*.json`, `public/exam-prep/*.json` | Data made by the script | **Never by hand**: re-run the script |
 | `src/pages/llms.txt.ts` | The summary for AI assistants (has an Exam Prep part) | Yes |
@@ -104,7 +106,7 @@ If a column or a sheet tab is renamed in a sheet, rename it in `tools/exam-prep/
 
 ## 6. Rules this section keeps
 
-- **View only:** no ticks, no login, nothing saved or sent. The Exam Guide keeps the visitor's choices only in the page address (so a plan can be bookmarked or shared).
+- **View only:** no ticks, no login, nothing saved or sent. The Exam Mentor keeps the visitor's choices only in the page address (so a plan can be bookmarked or shared).
 - **No promises:** past papers describe the past. The intro, the guide and every exam page say so, and "How it works" lists every paper used and its limits.
 - **No private links:** papers are listed by name only. No Drive file IDs or links ever go on the site (the script leaves them out on purpose).
 - **Honest pages only in Google:** exams whose only analysed paper is a language paper (AEN, APO) are marked `noindex` and kept out of the sitemap.

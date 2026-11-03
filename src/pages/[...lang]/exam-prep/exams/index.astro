@@ -17,7 +17,7 @@ const P = pick({
     home: 'Exam Prep', crumb: 'Exams', eyebrow: 'Exam by exam', h1: 'Most asked topics, for every RPSC and RSSB exam',
     lede: `We read ${STATS.papers} past papers and ${STATS.syllabi} syllabi and matched ${fmt(STATS.questions)} questions to topics. Pick your exam to see what was asked most, and how much each subject weighs.`,
     papers: (n: number, y: string) => `${n} paper${n > 1 ? 's' : ''} · ${y === 'all' ? 'combined' : y}`, syl: 'Syllabus + related papers', top: 'Top:',
-    foot1: 'SSC, UPSC, Railway, NTA and bank papers are not added yet. For those exams, the', guide: 'Exam Guide', foot2: 'shows the overall pattern across every paper we have.',
+    foot1: 'SSC, UPSC, Railway, NTA and bank papers are not added yet. For those exams, the', guide: 'Exam Mentor', foot2: 'shows the overall pattern across every paper we have.',
   },
   hi: {
     full: { RPSC: 'राजस्थान लोक सेवा आयोग', RSSB: 'राजस्थान कर्मचारी चयन बोर्ड' } as Record<string, string>,
@@ -27,7 +27,7 @@ const P = pick({
     home: 'परीक्षा तैयारी', crumb: 'परीक्षाएँ', eyebrow: 'परीक्षा-वार', h1: 'हर RPSC और RSSB परीक्षा के सबसे ज़्यादा पूछे गए टॉपिक',
     lede: `${STATS.papers} पुराने पेपर और ${STATS.syllabi} सिलेबस पढ़े गए, और ${fmt(STATS.questions)} सवाल टॉपिकों से मिलाए गए। अपनी परीक्षा चुनिए और देखिए कि सबसे ज़्यादा क्या पूछा गया, और किस विषय का कितना वज़न (वेटेज) है।`,
     papers: (n: number, y: string) => `${n} पेपर · ${y === 'all' ? 'सब मिलाकर' : y}`, syl: 'सिलेबस + मिलते-जुलते पेपर', top: 'सबसे ऊपर:',
-    foot1: 'SSC, UPSC, रेलवे, NTA और बैंक के पेपर अभी नहीं जुड़े हैं। उन परीक्षाओं के लिए', guide: 'परीक्षा गाइड', foot2: 'हमारे पास के सभी पेपरों का मिला-जुला पैटर्न दिखाती है।',
+    foot1: 'SSC, UPSC, रेलवे, NTA और बैंक के पेपर अभी नहीं जुड़े हैं। उन परीक्षाओं के लिए', guide: 'परीक्षा मार्गदर्शक', foot2: 'हमारे पास के सभी पेपरों का मिला-जुला पैटर्न दिखाता है।',
   },
 }, lang);
 const groups = ['RPSC', 'RSSB'].map((ag) => ({
