@@ -1,5 +1,5 @@
 ---
-// The Exam Guide, view only: pick an exam and your time, get your topics in order of importance.
+// The Exam Mentor (URL stays /exam-guide/), view only: pick an exam and your time, get your topics in order of importance.
 // Logic: src/scripts/exam-guide.ts. Data: public/exam-prep/guide.json (from the Exam Guide sheet).
 import ExamLayout from '../../../../layouts/ExamLayout.astro';
 import { subjectsIn, paths, STATS, fmt } from '../../../../exam-prep';
@@ -12,9 +12,9 @@ const { BASE, GUIDE, CI } = paths(lang);
 const P = pick({
   en: {
     quick: [['RAS Pre', 'RAS-PRE'], ['Patwari', 'PATWARI'], ['CET Graduate', 'CET-GRAD'], ['School Lecturer', 'SCH-LECT'], ['Jail Prahari', 'PRAHARI'], ['All RPSC exams', 'RPSC-ALL']],
-    title: 'Free Exam Study Planner: Your Most Important Topics from Past Papers (RPSC, RSSB)',
-    description: `Pick your RPSC or RSSB exam and how much time you have. The Exam Guide ranks topics by ${fmt(STATS.questions)} past questions and gives you a short list to start with.`,
-    home: 'Exam Prep', crumb: 'Exam Guide', eyebrow: 'Tool 2 · What first, for your exam', h1: 'Exam Guide',
+    title: 'Exam Mentor: Free Study Planner, Your Most Important Topics from Past Papers (RPSC, RSSB)',
+    description: `Pick your RPSC or RSSB exam and how much time you have. The Exam Mentor ranks topics by ${fmt(STATS.questions)} past questions and gives you a short list to start with.`,
+    home: 'Exam Prep', crumb: 'Exam Mentor', eyebrow: 'Tool 2 · What first, for your exam', h1: 'Exam Mentor',
     lede: 'Tell it your exam and your time. It reads what past papers asked and hands you a list you can actually finish, most important first.',
     s1: 'Which exam?', type: 'Type it (spelling mistakes are fine)', typePh: 'patwari, sub inspector, 1st grade, RAS…', or: 'or choose',
     gov: 'Government', agency: 'Agency', bank: 'Bank body', exam: 'Exam', loading: 'Loading exams…', popular: 'Popular:',
@@ -27,18 +27,18 @@ const P = pick({
     subject: 'Subject', all: 'All subjects', imp: 'Importance', any: 'Any', s5: '★★★★★ only', s4: '★★★★ and up', s3: '★★★ and up',
     findIn: 'Find in my list', findPh: 'e.g. river, sandhi, mughal', full: 'Show the full ranking, beyond my list', more: 'Show 50 more',
     honestA: 'Please read this once.', honestB: 'The ranking comes from machine-reading scanned papers, so it is a strong guide, not a promise. Past papers show what was asked; they cannot tell what will be asked. Keep revising, and use your own judgement.', how: 'How the ranking works',
-    noscript: 'The Exam Guide needs JavaScript to rank topics. You can still browse every topic in the', ci: 'Curriculum Index',
+    noscript: 'The Exam Mentor needs JavaScript to rank topics. You can still browse every topic in the', ci: 'Curriculum Index',
   },
   hi: {
     quick: [['RAS प्री', 'RAS-PRE'], ['पटवारी', 'PATWARI'], ['CET स्नातक', 'CET-GRAD'], ['स्कूल व्याख्याता', 'SCH-LECT'], ['जेल प्रहरी', 'PRAHARI'], ['RPSC की सभी परीक्षाएँ', 'RPSC-ALL']],
-    title: 'मुफ़्त परीक्षा स्टडी प्लानर: पुराने पेपरों से आपके सबसे ज़रूरी टॉपिक (RPSC, RSSB)',
-    description: `अपनी RPSC या RSSB परीक्षा और बचा हुआ समय चुनिए। परीक्षा गाइड ${fmt(STATS.questions)} पुराने सवालों के आधार पर टॉपिकों को क्रम में रखती है और शुरू करने के लिए एक छोटी सूची देती है।`,
-    home: 'परीक्षा तैयारी', crumb: 'परीक्षा गाइड', eyebrow: 'टूल 2 · आपकी परीक्षा के लिए पहले क्या', h1: 'परीक्षा गाइड',
-    lede: 'इसे अपनी परीक्षा और अपना समय बताइए। यह देखती है कि पुराने पेपरों में क्या पूछा गया, और आपको ऐसी सूची देती है जो सच में पूरी हो सके, सबसे ज़रूरी सबसे ऊपर।',
+    title: 'परीक्षा मार्गदर्शक: मुफ़्त स्टडी प्लानर, पुराने पेपरों से आपके सबसे ज़रूरी टॉपिक (RPSC, RSSB)',
+    description: `अपनी RPSC या RSSB परीक्षा और बचा हुआ समय चुनिए। परीक्षा मार्गदर्शक ${fmt(STATS.questions)} पुराने सवालों के आधार पर टॉपिकों को क्रम में रखता है और शुरू करने के लिए एक छोटी सूची देता है।`,
+    home: 'परीक्षा तैयारी', crumb: 'परीक्षा मार्गदर्शक', eyebrow: 'टूल 2 · आपकी परीक्षा के लिए पहले क्या', h1: 'परीक्षा मार्गदर्शक',
+    lede: 'इसे अपनी परीक्षा और अपना समय बताइए। यह देखता है कि पुराने पेपरों में क्या पूछा गया, और आपको ऐसी सूची देता है जो सच में पूरी हो सके, सबसे ज़रूरी सबसे ऊपर।',
     s1: 'कौन-सी परीक्षा?', type: 'लिखिए (स्पेलिंग ग़लत भी चलेगी)', typePh: 'पटवारी, patwari, सब इंस्पेक्टर, 1st grade, RAS…', or: 'या चुनिए',
     gov: 'सरकार', agency: 'संस्था', bank: 'बैंक संस्था', exam: 'परीक्षा', loading: 'परीक्षाएँ आ रही हैं…', popular: 'लोकप्रिय:',
     s2: 'आपके पास कितना समय है?', date: 'परीक्षा की तारीख़', orI: 'या', left: 'बचा हुआ समय', units: [['days', 'दिन'], ['weeks', 'हफ़्ते'], ['months', 'महीने']],
-    hours: 'रोज़ पढ़ाई के घंटे', topn: 'सिर्फ़ मेरे ऊपर के ___ टॉपिक (चाहें तो)', topnPh: 'ख़ाली = गाइड का सुझाव',
+    hours: 'रोज़ पढ़ाई के घंटे', topn: 'सिर्फ़ मेरे ऊपर के ___ टॉपिक (चाहें तो)', topnPh: 'ख़ाली = मेरा सुझाव',
     noDate: 'तारीख़ अभी तय नहीं? ख़ाली छोड़ दीजिए, आपको वे टॉपिक मिलेंगे जिनसे पुराने सवालों का 85% हिस्सा आया।',
     empty: 'ऊपर कोई परीक्षा चुनिए, एक सेकंड में आपकी सूची यहाँ दिखेगी।', d: 'दिन', h: 'घंटे', m: 'मिनट', leftUntil: 'आपकी परीक्षा में बाक़ी',
     tN: 'आपकी सूची में टॉपिक', tCov: 'इनसे आए पुराने सवाल', tPd: 'रोज़ के टॉपिक', tSrc: 'आधार',
@@ -46,7 +46,7 @@ const P = pick({
     subject: 'विषय', all: 'सभी विषय', imp: 'महत्व', any: 'कोई भी', s5: 'सिर्फ़ ★★★★★', s4: '★★★★ और ऊपर', s3: '★★★ और ऊपर',
     findIn: 'मेरी सूची में ढूँढें', findPh: 'जैसे नदी, संधि, मुग़ल, river', full: 'मेरी सूची से आगे, पूरा क्रम दिखाएँ', more: '50 और दिखाएँ',
     honestA: 'इसे एक बार ज़रूर पढ़िए।', honestB: 'यह क्रम स्कैन किए पेपरों को कंप्यूटर से पढ़कर बना है, इसलिए यह मज़बूत मार्गदर्शन है, वादा नहीं। पुराने पेपर बताते हैं कि क्या पूछा गया; वे यह नहीं बता सकते कि क्या पूछा जाएगा। दोहराते रहिए, और अपनी समझ से भी काम लीजिए।', how: 'क्रम कैसे बनता है',
-    noscript: 'टॉपिकों का क्रम बनाने के लिए परीक्षा गाइड को JavaScript चाहिए। फिर भी आप हर टॉपिक यहाँ देख सकते हैं:', ci: 'पाठ्यक्रम सूचकांक',
+    noscript: 'टॉपिकों का क्रम बनाने के लिए परीक्षा मार्गदर्शक को JavaScript चाहिए। फिर भी आप हर टॉपिक यहाँ देख सकते हैं:', ci: 'पाठ्यक्रम सूचकांक',
   },
 }, lang);
 const quick = P.quick;

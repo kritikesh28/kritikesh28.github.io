@@ -56,12 +56,12 @@ const answer = hi
 const faq: [string, string][] = hi ? [
   [`${name} के लिए सबसे ज़रूरी टॉपिक कौन-से हैं?`, `${has ? 'पुराने पेपरों के हिसाब से' : `सिलेबस और ${e.agency} के दूसरे पेपरों के हिसाब से`} ऊपर के पाँच टॉपिक हैं: ${and(e.top.slice(0, 5).map((t) => t.t))}। पूरी क्रमवार सूची नीचे है।`],
   [`${name} में किस विषय का वेटेज सबसे ज़्यादा है?`, `${sname(subj[0][0])} का, ${e.qpp} सवालों वाले पेपर में लगभग ${subj[0][1]} सवाल${subj[1] ? `, फिर ${sname(subj[1][0])} (लगभग ${subj[1][1]})` : ''}। ये पढ़े गए पेपरों के औसत हैं, कोई आधिकारिक योजना नहीं।`],
-  [`${name} के लिए कितने टॉपिक पढ़ने होंगे?`, `लगभग ${fmt(e.n85)} टॉपिकों से पुराने सवालों का 85% हिस्सा आया। अगर समय कम है, तो परीक्षा गाइड इसे उतना छोटा कर देती है जितना आप पूरा कर सकें: हर टॉपिक के लिए लगभग दो घंटे की ध्यान से पढ़ाई, और आख़िरी पाँचवाँ हिस्सा दिन दोहराने (रिवीज़न) के लिए ख़ाली।`],
+  [`${name} के लिए कितने टॉपिक पढ़ने होंगे?`, `लगभग ${fmt(e.n85)} टॉपिकों से पुराने सवालों का 85% हिस्सा आया। अगर समय कम है, तो परीक्षा मार्गदर्शक इसे उतना छोटा कर देता है जितना आप पूरा कर सकें: हर टॉपिक के लिए लगभग दो घंटे की ध्यान से पढ़ाई, और आख़िरी पाँचवाँ हिस्सा दिन दोहराने (रिवीज़न) के लिए ख़ाली।`],
   ['क्या यह आधिकारिक सूची है?', `नहीं। यह ${has ? `${paperText} (${yearsText})` : `${e.agency} के दूसरे पेपरों और आधिकारिक सिलेबस`} का स्वतंत्र विश्लेषण है, जिसे कंप्यूटर से पढ़ा गया, इसलिए इसमें ग़लतियाँ हो सकती हैं। पुराने पेपर बताते हैं कि क्या पूछा गया, यह नहीं कि क्या पूछा जाएगा। मौजूदा सिलेबस हमेशा ${e.agency} की आधिकारिक वेबसाइट पर ज़रूर देखिए।`],
 ] : [
   [`What are the most important topics for ${name}?`, `${has ? 'Going by past papers' : `Going by the syllabus and other ${e.agency} papers`}, the top five are ${and(e.top.slice(0, 5).map((t) => t.t))}. The full ranked list is below.`],
   [`Which subject has the most weightage in ${name}?`, `${sname(subj[0][0])}, at about ${subj[0][1]} questions per ${e.qpp}-question paper${subj[1] ? `, then ${sname(subj[1][0])} (about ${subj[1][1]})` : ''}. These are averages from the papers we analysed, not an official scheme.`],
-  [`How many topics do I need to study for ${name}?`, `About ${fmt(e.n85)} topics covered 85% of past questions. If you have little time, the Exam Guide trims that to what you can finish, about two focused hours per topic, and keeps the last fifth of your days free for revision.`],
+  [`How many topics do I need to study for ${name}?`, `About ${fmt(e.n85)} topics covered 85% of past questions. If you have little time, the Exam Mentor trims that to what you can finish, about two focused hours per topic, and keeps the last fifth of your days free for revision.`],
   [`Is this an official list?`, `No. It is an independent analysis of ${has ? `${paperText} (${yearsText})` : `other ${e.agency} papers and the official syllabus`}, read by machine, so it can contain mistakes. Past papers show what was asked, not what will be asked. Always check the current syllabus on the official ${e.agency} website.`],
 ];
 const W = hi ? {
@@ -70,7 +70,7 @@ const W = hi ? {
   plan: `${name} के लिए मेरी पढ़ाई योजना बनाओ`, seeTop: `ऊपर के ${e.top.length} टॉपिक देखें`, weight: 'विषय-वार वेटेज',
   avg: `${e.qpp} सवालों वाले पेपर में औसत सवाल${has ? `, ${paperText} से` : ', आधिकारिक सिलेबस से'}।`,
   qs: 'सवाल', topH: `ऊपर के ${e.top.length} टॉपिक, सबसे ज़रूरी पहले`, cols: ['#', 'टॉपिक', 'विषय', '≈ सवाल प्रति पेपर', has ? 'कितनी बार पूछा' : 'दूसरे पेपरों में', 'आख़िरी बार'], in: 'इसमें:',
-  more1: `पूरे क्रम में ${fmt(e.ranked)} टॉपिक हैं।`, more2: 'इसे परीक्षा गाइड में खोलिए', more3: ', अपनी परीक्षा की तारीख़ डालिए, और वह सूची को आपके समय के हिसाब से छोटा कर देगी।',
+  more1: `पूरे क्रम में ${fmt(e.ranked)} टॉपिक हैं।`, more2: 'इसे परीक्षा मार्गदर्शक में खोलिए', more3: ', अपनी परीक्षा की तारीख़ डालिए, और वह सूची को आपके समय के हिसाब से छोटा कर देगा।',
   faqH: 'अभ्यर्थी जो पूछते हैं', papersH: 'यह पेज इन पेपरों पर आधारित है', andMore: (n: number) => `…और ${n} और`,
   note1: `Curious Sparoows का स्वतंत्र विश्लेषण, ${e.agency} से कोई संबंध नहीं।`, how: 'क्रम कैसे बनता है', other: 'दूसरी परीक्षाएँ',
 } : {
@@ -79,7 +79,7 @@ const W = hi ? {
   plan: `Make my study plan for ${name}`, seeTop: `See the top ${e.top.length} topics`, weight: 'Subject-wise weightage',
   avg: `Average questions per ${e.qpp}-question paper${has ? `, from ${paperText}` : ', from the official syllabus'}.`,
   qs: 'Qs', topH: `Top ${e.top.length} topics, most important first`, cols: ['#', 'Topic', 'Subject', '≈ Qs per paper', has ? 'Times asked' : 'Asked in other papers', 'Last asked'], in: 'in',
-  more1: `The full ranking has ${fmt(e.ranked)} topics.`, more2: 'Open it in the Exam Guide', more3: ', add your exam date, and it sizes the list to your time.',
+  more1: `The full ranking has ${fmt(e.ranked)} topics.`, more2: 'Open it in the Exam Mentor', more3: ', add your exam date, and it sizes the list to your time.',
   faqH: 'Questions aspirants ask', papersH: 'Papers this page is based on', andMore: (n: number) => `…and ${n} more`,
   note1: `Independent analysis by Curious Sparoows, not affiliated with ${e.agency}.`, how: 'How the ranking works', other: 'Other exams',
 };

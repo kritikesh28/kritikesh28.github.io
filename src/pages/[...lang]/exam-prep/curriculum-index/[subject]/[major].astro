@@ -25,7 +25,7 @@ const P = pick({
     askedHead: (n: number, y: number) => `Asked ${n}× in the RPSC/RSSB papers we analysed${y > 0 ? `, most recently ${y}` : ''}`,
     also: 'Also look at:', alone: 'This major topic is one page on its own. Its outline is above.',
     asked: (n: number) => `Asked ${n}×`, last: (y: number) => ` · last ${y}`, more: (n: number) => `${n} more point${n === 1 ? '' : 's'}`,
-    nudge: 'Not sure if this topic matters for your exam?', nudge2: 'The Exam Guide ranks every topic by how often it was asked.', find: 'Find my topics',
+    nudge: 'Not sure if this topic matters for your exam?', nudge2: 'The Exam Mentor ranks every topic by how often it was asked.', find: 'Find my topics',
     pn: 'Next and previous major topics', prev: '← Previous', next: 'Next →', done: `Done with ${s.name} →`, all: 'All subjects',
   },
   hi: {
@@ -34,7 +34,7 @@ const P = pick({
     askedHead: (n: number, y: number) => `पढ़े गए RPSC/RSSB पेपरों में ${n} बार पूछा गया${y > 0 ? `, आख़िरी बार ${y} में` : ''}`,
     also: 'इसे भी देखें:', alone: 'यह मुख्य टॉपिक अपने आप में एक पेज है। इसकी रूपरेखा ऊपर है।',
     asked: (n: number) => `${n} बार पूछा गया`, last: (y: number) => ` · आख़िरी बार ${y}`, more: (n: number) => `${n} और बातें`,
-    nudge: 'पक्का नहीं कि यह टॉपिक आपकी परीक्षा के लिए ज़रूरी है?', nudge2: 'परीक्षा गाइड हर टॉपिक को इस हिसाब से क्रम में रखती है कि वह कितनी बार पूछा गया।', find: 'मेरे टॉपिक बताओ',
+    nudge: 'पक्का नहीं कि यह टॉपिक आपकी परीक्षा के लिए ज़रूरी है?', nudge2: 'परीक्षा मार्गदर्शक हर टॉपिक को इस हिसाब से क्रम में रखता है कि वह कितनी बार पूछा गया।', find: 'मेरे टॉपिक बताओ',
     pn: 'अगला और पिछला मुख्य टॉपिक', prev: '← पिछला', next: 'अगला →', done: `${s.name} पूरा हुआ →`, all: 'सभी विषय',
   },
 }, lang);

@@ -34,7 +34,7 @@ kritikesh28.github.io/
 ├── public/                  ← files served as they are
 │   ├── images/              ← pictures used on pages and posts
 │   ├── CNAME                ← the domain name (curioussparoows.com)
-│   ├── exam-prep/           ← Exam Prep search and Exam Guide data (made by the script, never edit)
+│   ├── exam-prep/           ← Exam Prep search and Exam Mentor data (made by the script, never edit)
 │   ├── a1a8670a….txt        ← IndexNow key file (never delete)
 │   └── Kritikesh_Rajpurohit_Resume.pdf
 ├── src/
@@ -49,7 +49,7 @@ kritikesh28.github.io/
 │   │   └── projects/        ← one .md file per portfolio project
 │   ├── pages/               ← the pages (about, now, contact, privacy...)
 │   │   └── exam-prep/       ← the Exam Prep section (guide 14)
-│   ├── scripts/             ← code that runs in the visitor's browser (search, Exam Guide)
+│   ├── scripts/             ← code that runs in the visitor's browser (search, Exam Mentor)
 │   ├── components/          ← reusable building blocks (cards, starfield...)
 │   ├── layouts/Base.astro   ← the frame around every page (header, footer)
 │   ├── layouts/ExamLayout.astro ← the frame of Exam Prep pages (left sidebar)

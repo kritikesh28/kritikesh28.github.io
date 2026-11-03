@@ -60,7 +60,7 @@ const chaptersEn: { kicker: string; title: string; qa: QA[] }[] = [
       {
         q: 'What if past papers could tell you where to start?',
         a: [
-          `That is the <a href="${GUIDE}/">Exam Guide</a>. We machine-read ${STATS.papers} RPSC and RSSB question papers and ${STATS.syllabi} syllabi, and matched ${fmt(STATS.questions)} questions to topics in the index. You pick your exam and how much time you have; it gives you a short list, most-asked topics first, sized to what you can finish.`,
+          `That is the <a href="${GUIDE}/">Exam Mentor</a>. We machine-read ${STATS.papers} RPSC and RSSB question papers and ${STATS.syllabi} syllabi, and matched ${fmt(STATS.questions)} questions to topics in the index. You pick your exam and how much time you have; it gives you a short list, most-asked topics first, sized to what you can finish.`,
         ],
       },
       {
@@ -143,7 +143,7 @@ const chaptersHi: typeof chaptersEn = [
       {
         q: 'अगर पुराने पेपर बता दें कि कहाँ से शुरू करें तो?',
         a: [
-          `यही है <a href="${GUIDE}/">परीक्षा गाइड</a>। कंप्यूटर से RPSC और RSSB के ${STATS.papers} प्रश्न-पत्र और ${STATS.syllabi} सिलेबस पढ़े गए, और ${fmt(STATS.questions)} सवालों को सूचकांक के टॉपिकों से मिलाया गया। आप अपनी परीक्षा और अपने पास बचा समय चुनते हैं; यह आपको एक छोटी सूची देती है, सबसे ज़्यादा पूछे गए टॉपिक सबसे ऊपर, उतनी ही जितनी आप पूरी कर सकें।`,
+          `यही है <a href="${GUIDE}/">परीक्षा मार्गदर्शक</a>। कंप्यूटर से RPSC और RSSB के ${STATS.papers} प्रश्न-पत्र और ${STATS.syllabi} सिलेबस पढ़े गए, और ${fmt(STATS.questions)} सवालों को सूचकांक के टॉपिकों से मिलाया गया। आप अपनी परीक्षा और अपने पास बचा समय चुनते हैं; यह आपको एक छोटी सूची देता है, सबसे ज़्यादा पूछे गए टॉपिक सबसे ऊपर, उतनी ही जितनी आप पूरी कर सकें।`,
         ],
       },
       {
@@ -188,12 +188,12 @@ const P = pick({
     sub: 'If the syllabus feels endless, the advice keeps changing and you\'re not sure what to study first, read on. Each answer below takes less than a minute.',
     painsLabel: 'Common feelings', pains: ['“Where do I even start?”', '“I\'ve bought five books.”', '“Everyone says something different.”', '“Am I studying the right things?”'],
     short: 'Read the short version', skip: 'Skip to my exam', secRead: 'sec read', part4: 'Part 4', steps: 'Where do I start? Three small steps',
-    t1: 'Open the Exam Guide', d1: 'Pick your exam and your date. Two minutes. You get your list, most important first.', g1: 'Find my topics →',
+    t1: 'Open the Exam Mentor', d1: 'Pick your exam and your date. Two minutes. You get your list, most important first.', g1: 'Find my topics →',
     t2: 'Study from the top of your list', d2: 'Every topic opens in the Curriculum Index, with what sits inside it and what it links to.', g2: 'Open the index →',
     t3: 'Come back when you\'re unsure', d3: 'Search any word, even misspelled, to see where it fits. Nothing here needs a login, and nothing is tracked.',
     examsA: 'Want the short answer for one exam?', examsB: 'See the most asked topics, exam by exam', examsC: ': RAS, LDC, School Lecturer, CET, Patwari, Jail Prahari and more.',
     sign: 'One topic at a time, a little every day. आप कर सकते हैं।',
-    note: 'Written by Kritikesh with AI help. The data comes from his Curriculum Index and Exam Guide sheets; corrections are welcome on the', contact: 'contact page',
+    note: 'Written by Kritikesh with AI help. The data comes from his Curriculum Index and Exam Mentor sheets; corrections are welcome on the', contact: 'contact page',
   },
   hi: {
     title: 'RPSC, RSSB और सरकारी परीक्षाओं की तैयारी: पूरे सिलेबस का नक्शा और सबसे ज़्यादा पूछे गए टॉपिक',
@@ -202,12 +202,12 @@ const P = pick({
     sub: 'अगर सिलेबस कभी ख़त्म न होने वाला लगता है, सलाह बदलती रहती है और समझ नहीं आता कि पहले क्या पढ़ें, तो आगे पढ़िए। नीचे का हर जवाब एक मिनट से कम का है।',
     painsLabel: 'आम उलझनें', pains: ['“शुरू कहाँ से करूँ?”', '“पाँच किताबें ख़रीद लीं।”', '“हर कोई अलग बात कहता है।”', '“क्या मेरी पढ़ाई सही दिशा में है?”'],
     short: 'छोटा जवाब पढ़ें', skip: 'सीधे मेरी परीक्षा पर चलें', secRead: 'सेकंड में पढ़ें', part4: 'भाग 4', steps: 'शुरू कहाँ से करूँ? तीन छोटे क़दम',
-    t1: 'परीक्षा गाइड खोलिए', d1: 'अपनी परीक्षा और तारीख़ चुनिए। दो मिनट। आपकी सूची मिल जाएगी, सबसे ज़रूरी सबसे ऊपर।', g1: 'मेरे टॉपिक बताओ →',
+    t1: 'परीक्षा मार्गदर्शक खोलिए', d1: 'अपनी परीक्षा और तारीख़ चुनिए। दो मिनट। आपकी सूची मिल जाएगी, सबसे ज़रूरी सबसे ऊपर।', g1: 'मेरे टॉपिक बताओ →',
     t2: 'अपनी सूची में ऊपर से पढ़ना शुरू कीजिए', d2: 'हर टॉपिक पाठ्यक्रम सूचकांक में खुलता है: उसके अंदर क्या-क्या है और वह किन टॉपिकों से जुड़ा है।', g2: 'सूचकांक खोलें →',
     t3: 'जब उलझन हो, वापस आइए', d3: 'कोई भी शब्द खोजिए, ग़लत स्पेलिंग भी चलेगी, और देखिए कि वह कहाँ आता है। यहाँ न लॉग-इन चाहिए, न कुछ ट्रैक होता है।',
     examsA: 'किसी एक परीक्षा का छोटा जवाब चाहिए?', examsB: 'हर परीक्षा के सबसे ज़्यादा पूछे गए टॉपिक देखिए', examsC: ': RAS, LDC, स्कूल व्याख्याता, CET, पटवारी, जेल प्रहरी और बाक़ी।',
     sign: 'एक बार में एक टॉपिक, रोज़ थोड़ा-थोड़ा। आप कर सकते हैं।',
-    note: 'कृतिकेश ने AI की मदद से लिखा। डेटा उनकी पाठ्यक्रम सूचकांक और परीक्षा गाइड वाली शीटों से आता है; कोई ग़लती दिखे तो बताइए,', contact: 'संपर्क पेज पर',
+    note: 'कृतिकेश ने AI की मदद से लिखा। डेटा उनकी पाठ्यक्रम सूचकांक और परीक्षा मार्गदर्शक वाली शीटों से आता है; कोई ग़लती दिखे तो बताइए,', contact: 'संपर्क पेज पर',
   },
 }, lang);
 

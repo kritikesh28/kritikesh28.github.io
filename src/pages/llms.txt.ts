@@ -26,7 +26,7 @@ export async function GET({ site }: APIContext) {
     '## Exam Prep (free, for RPSC, RSSB and other government exam aspirants)',
     `- [Exam Prep](${url('/exam-prep/')}): why preparation feels overwhelming, and two free tools that help, in short Q&A`,
     `- [Exhaustive Curriculum Index](${url('/exam-prep/curriculum-index/')}): ${STATS.topics} topics of ${STATS.subjects} exam subjects in one searchable, typo-tolerant map`,
-    `- [Exam Guide](${url('/exam-prep/exam-guide/')}): pick an exam and the time left; get topics ranked by ${STATS.questions} past questions from ${STATS.papers} RPSC and RSSB papers`,
+    `- [Exam Mentor](${url('/exam-prep/exam-guide/')}): pick an exam and the time left; get topics ranked by ${STATS.questions} past questions from ${STATS.papers} RPSC and RSSB papers`,
     `- [How the ranking works](${url('/exam-prep/exam-guide/how-it-works/')}): method, papers used and limits`,
     `- [Most asked topics, exam by exam](${url('/exam-prep/exams/')})`,
     ...EXAM_PAGES.filter((e) => !e.langOnly).map((e) => `- [${examTitle(e)}: most asked topics](${url(`/exam-prep/exams/${e.slug}/`)}): ${e.papers ? `from ${e.papers} past paper(s), ${e.years}` : 'from the syllabus and related papers'}; top topics: ${e.top.slice(0, 3).map((t) => t.t).join(', ')}`),

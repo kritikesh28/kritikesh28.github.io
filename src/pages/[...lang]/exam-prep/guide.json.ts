@@ -1,4 +1,4 @@
-// The Exam Guide data in every language except English (English is public/exam-prep/guide.json).
+// The Exam Mentor data in every language except English (English is public/exam-prep/guide.json).
 // Same numbers; only subject names, exam names and topic titles change. Guide: docs/15-languages-and-hindi.md
 import fs from 'node:fs';
 import { LANGS, DEFAULT_LANG, type Lang } from '../../../i18n/config';

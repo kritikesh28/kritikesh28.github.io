@@ -1,4 +1,4 @@
-// The Exam Guide: pick an exam and your time, get a ranked list of topics.
+// The Exam Mentor (page /exam-prep/exam-guide/): pick an exam and your time, get a ranked list of topics.
 // Reads /exam-prep/guide.json (made by tools/exam-prep/build_data.py from the Exam Guide sheet).
 // View only: nothing is saved or sent. The choices live in the page address so a plan can be shared.
 // The maths is the same as in the sheet (docs/14-exam-prep.md, "How the ranking works").

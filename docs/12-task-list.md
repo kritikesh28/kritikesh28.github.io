@@ -17,7 +17,7 @@ The single list of what is waiting to be done, in the recommended order. When yo
 
 ## Exam Prep section
 
-- [x] **Exam Prep published** (pull request #10, 2 November 2026): intro Q&A, Exhaustive Curriculum Index (15 subjects, about 900 topic pages), Exam Guide planner, search. Guide: [14 · Exam Prep section](14-exam-prep.md).
+- [x] **Exam Prep published** (pull request #10, 2 November 2026): intro Q&A, Exhaustive Curriculum Index (15 subjects, about 900 topic pages), Exam Guide planner (renamed Exam Mentor on 3 November 2026), search. Guide: [14 · Exam Prep section](14-exam-prep.md).
 - [x] **Found on Google and AI** (pull request #12, 2 November 2026): 27 exam pages, search-style titles, structured data, llms.txt, IndexNow.
 - [ ] **You, 5 minutes:** submit `https://curioussparoows.com/sitemap-index.xml` in Google Search Console › Sitemaps.
 - [ ] **You, 5 minutes:** sign in to Bing Webmaster Tools and choose "Import from Google Search Console".
