@@ -1,0 +1,19 @@
+---
+// The contents of one topic: every Part and its pages. Shown beside the text on laptops and in a sheet on phones.
+import type { Topic } from '../../explore';
+interface Props { t: Topic; current?: string }
+const { t, current } = Astro.props;
+---
+<nav class="x-toc" aria-label={`${t.short} contents`}>
+  <a class="x-toc-topic" href={`/explore/${t.slug}/`}>{t.short}</a>
+  {t.parts.map((p) => (
+    <details open={p.sections.some((s) => s.id === current) || undefined}>
+      <summary><span class="n">{p.num}</span><span>{p.title}</span></summary>
+      <ul>
+        {p.sections.map((s) => (
+          <li><a href={s.url} aria-current={s.id === current ? 'page' : undefined}>{s.title}</a></li>
+        ))}
+      </ul>
+    </details>
+  ))}
+</nav>

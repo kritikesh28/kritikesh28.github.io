@@ -18,10 +18,10 @@ export default defineConfig({
     csp: {
       directives: [
         "default-src 'self'",
-        "img-src 'self' data: https://*.goatcounter.com",
+        "img-src 'self' data: https://*.goatcounter.com https://i.ytimg.com",
         "font-src 'self'",
         "connect-src 'self' https://formspree.io https://*.goatcounter.com",
-        "frame-src 'self' https://giscus.app https://cal.com",
+        "frame-src 'self' https://giscus.app https://cal.com https://www.youtube-nocookie.com",
         "form-action 'self' https://formspree.io https://buttondown.com",
         "base-uri 'self'",
         "object-src 'none'",

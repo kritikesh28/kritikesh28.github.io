@@ -7,6 +7,7 @@ import CuriosityOrbit from '../../components/CuriosityOrbit.astro';
 import LiveDemo from '../../components/LiveDemo.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import QuestionCard from '../../components/QuestionCard.astro';
+import ExploreBand from '../../components/explore/ExploreBand.astro';
 import { SITE } from '../../site.config';
 import { getPosts, getProjects } from '../../lib';
 import { langFromUrl, langParams, localizePath, pick } from '../../i18n/config';
@@ -59,6 +60,8 @@ const T = pick({
       <QuestionCard />
     </div>
   </section>
+
+  <ExploreBand />
 
   <section id="explore" class="wrap section reveal">
     <div class="split">
