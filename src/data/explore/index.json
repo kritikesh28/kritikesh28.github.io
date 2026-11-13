@@ -1,0 +1,719 @@
+[
+ {
+  "slug": "movies",
+  "code": "MOV",
+  "short": "Movies",
+  "shelf": "stories",
+  "order": 0,
+  "title": "Movies",
+  "subtitle": "The complete map of world cinema, from shadow puppets to streaming",
+  "edition": "Edition 1 · 3 November 2026",
+  "color1": "#7B1E3A",
+  "color2": "#B8860B",
+  "light": "#FBF3E4",
+  "question": "Why do a few hours of moving light in a dark room change the way we see our lives?",
+  "entries": 624,
+  "words": 21330,
+  "sections": 41,
+  "cover": null,
+  "url": "/explore/movies/",
+  "leaves": [
+   {
+    "id": "MOV-00.01",
+    "title": "What did people do for stories before the movies?",
+    "url": "/explore/movies/mov-00-01-what-did-people-do-for-stories-before-the-movies/"
+   },
+   {
+    "id": "MOV-00.02",
+    "title": "Who made the first movie, and did audiences really run from a train?",
+    "url": "/explore/movies/mov-00-02-who-made-the-first-movie-and-did-audiences/"
+   },
+   {
+    "id": "MOV-00.03",
+    "title": "Why does a row of still pictures look like it is moving?",
+    "url": "/explore/movies/mov-00-03-why-does-a-row-of-still-pictures-look-like-it-is/"
+   },
+   {
+    "id": "MOV-00.04",
+    "title": "How did India get its first film?",
+    "url": "/explore/movies/mov-00-04-how-did-india-get-its-first-film/"
+   },
+   {
+    "id": "MOV-00.05",
+    "title": "Why were silent films never silent?",
+    "url": "/explore/movies/mov-00-05-why-were-silent-films-never-silent/"
+   },
+   {
+    "id": "MOV-00.06",
+    "title": "What changed when movies learned to talk?",
+    "url": "/explore/movies/mov-00-06-what-changed-when-movies-learned-to-talk/"
+   },
+   {
+    "id": "MOV-00.07",
+    "title": "Why do we cry for people who do not exist?",
+    "url": "/explore/movies/mov-00-07-why-do-we-cry-for-people-who-do-not-exist/"
+   },
+   {
+    "id": "MOV-00.08",
+    "title": "How did movies become the world's biggest dream factory?",
+    "url": "/explore/movies/mov-00-08-how-did-movies-become-the-world-s-biggest-dream/"
+   },
+   {
+    "id": "MOV-00.09",
+    "title": "Why does every country make its films differently?",
+    "url": "/explore/movies/mov-00-09-why-does-every-country-make-its-films/"
+   },
+   {
+    "id": "MOV-00.10",
+    "title": "Did television, video and streaming try to kill the cinema?",
+    "url": "/explore/movies/mov-00-10-did-television-video-and-streaming-try-to-kill/"
+   },
+   {
+    "id": "MOV-00.11",
+    "title": "How much money does a movie really make?",
+    "url": "/explore/movies/mov-00-11-how-much-money-does-a-movie-really-make/"
+   },
+   {
+    "id": "MOV-00.12",
+    "title": "What is the future of the movies?",
+    "url": "/explore/movies/mov-00-12-what-is-the-future-of-the-movies/"
+   }
+  ]
+ },
+ {
+  "slug": "books",
+  "code": "BOK",
+  "short": "Books",
+  "shelf": "stories",
+  "order": 1,
+  "title": "Books",
+  "subtitle": "The complete map of world literature, from palm leaves to e-books",
+  "edition": "Edition 1 · 3 November 2026",
+  "color1": "#1F3A5F",
+  "color2": "#A0522D",
+  "light": "#F3EFE6",
+  "question": "How can a few marks on a page put another person's mind inside yours?",
+  "entries": 643,
+  "words": 18329,
+  "sections": 41,
+  "cover": null,
+  "url": "/explore/books/",
+  "leaves": [
+   {
+    "id": "BOK-00.01",
+    "title": "How did humans tell stories before writing?",
+    "url": "/explore/books/bok-00-01-how-did-humans-tell-stories-before-writing/"
+   },
+   {
+    "id": "BOK-00.02",
+    "title": "Who wrote the first book?",
+    "url": "/explore/books/bok-00-02-who-wrote-the-first-book/"
+   },
+   {
+    "id": "BOK-00.03",
+    "title": "Why did India write on palm leaves?",
+    "url": "/explore/books/bok-00-03-why-did-india-write-on-palm-leaves/"
+   },
+   {
+    "id": "BOK-00.04",
+    "title": "How did printing change the world?",
+    "url": "/explore/books/bok-00-04-how-did-printing-change-the-world/"
+   },
+   {
+    "id": "BOK-00.05",
+    "title": "Why was the novel once called dangerous?",
+    "url": "/explore/books/bok-00-05-why-was-the-novel-once-called-dangerous/"
+   },
+   {
+    "id": "BOK-00.06",
+    "title": "Is poetry older than prose?",
+    "url": "/explore/books/bok-00-06-is-poetry-older-than-prose/"
+   },
+   {
+    "id": "BOK-00.07",
+    "title": "Why do some books outlive empires?",
+    "url": "/explore/books/bok-00-07-why-do-some-books-outlive-empires/"
+   },
+   {
+    "id": "BOK-00.08",
+    "title": "What happens in your brain when you read?",
+    "url": "/explore/books/bok-00-08-what-happens-in-your-brain-when-you-read/"
+   },
+   {
+    "id": "BOK-00.09",
+    "title": "Will e-books and AI replace books?",
+    "url": "/explore/books/bok-00-09-will-e-books-and-ai-replace-books/"
+   },
+   {
+    "id": "BOK-00.10",
+    "title": "Recap: the story of the book in one page",
+    "url": "/explore/books/bok-00-10-recap-the-story-of-the-book-in-one-page/"
+   }
+  ]
+ },
+ {
+  "slug": "music",
+  "code": "MUS",
+  "short": "Music",
+  "shelf": "stories",
+  "order": 2,
+  "title": "Music",
+  "subtitle": "The complete map of the world's music, from bone flutes to streaming",
+  "edition": "Edition 1 · 3 November 2026",
+  "color1": "#4B2C6F",
+  "color2": "#C2185B",
+  "light": "#F5EFF8",
+  "question": "Why does a pattern of vibrating air make you cry, dance or pray?",
+  "entries": 398,
+  "words": 12754,
+  "sections": 41,
+  "cover": null,
+  "url": "/explore/music/",
+  "leaves": [
+   {
+    "id": "MUS-00.01",
+    "title": "What was the first music?",
+    "url": "/explore/music/mus-00-01-what-was-the-first-music/"
+   },
+   {
+    "id": "MUS-00.02",
+    "title": "Is music older than language?",
+    "url": "/explore/music/mus-00-02-is-music-older-than-language/"
+   },
+   {
+    "id": "MUS-00.03",
+    "title": "Why does a raga change with the time of day?",
+    "url": "/explore/music/mus-00-03-why-does-a-raga-change-with-the-time-of-day/"
+   },
+   {
+    "id": "MUS-00.04",
+    "title": "Why do some notes sound happy and others sad?",
+    "url": "/explore/music/mus-00-04-why-do-some-notes-sound-happy-and-others-sad/"
+   },
+   {
+    "id": "MUS-00.05",
+    "title": "How did music get trapped in a box?",
+    "url": "/explore/music/mus-00-05-how-did-music-get-trapped-in-a-box/"
+   },
+   {
+    "id": "MUS-00.06",
+    "title": "Why does a song get stuck in your head?",
+    "url": "/explore/music/mus-00-06-why-does-a-song-get-stuck-in-your-head/"
+   },
+   {
+    "id": "MUS-00.07",
+    "title": "How does the world share one pop chart now?",
+    "url": "/explore/music/mus-00-07-how-does-the-world-share-one-pop-chart-now/"
+   },
+   {
+    "id": "MUS-00.08",
+    "title": "Can AI make music that moves us?",
+    "url": "/explore/music/mus-00-08-can-ai-make-music-that-moves-us/"
+   },
+   {
+    "id": "MUS-00.09",
+    "title": "Recap: the story of music in one page",
+    "url": "/explore/music/mus-00-09-recap-the-story-of-music-in-one-page/"
+   }
+  ]
+ },
+ {
+  "slug": "musical-instruments",
+  "code": "INS",
+  "short": "Musical Instruments",
+  "shelf": "stories",
+  "order": 3,
+  "title": "Musical Instruments",
+  "subtitle": "How humans taught wood, skin, metal and air to sing",
+  "edition": "Edition 1 · 3 November 2026",
+  "color1": "#7A3E10",
+  "color2": "#1E7A6E",
+  "light": "#F7F1E8",
+  "question": "How did humans teach wood, skin, metal and air to sing?",
+  "entries": 511,
+  "words": 16858,
+  "sections": 47,
+  "cover": null,
+  "url": "/explore/musical-instruments/",
+  "leaves": [
+   {
+    "id": "INS-00.01",
+    "title": "What is the oldest instrument ever found?",
+    "url": "/explore/musical-instruments/ins-00-01-what-is-the-oldest-instrument-ever-found/"
+   },
+   {
+    "id": "INS-00.02",
+    "title": "Why does a guitar string make a note at all?",
+    "url": "/explore/musical-instruments/ins-00-02-why-does-a-guitar-string-make-a-note-at-all/"
+   },
+   {
+    "id": "INS-00.03",
+    "title": "Why do a flute and a violin sound different on the same note?",
+    "url": "/explore/musical-instruments/ins-00-03-why-do-a-flute-and-a-violin-sound-different-on/"
+   },
+   {
+    "id": "INS-00.04",
+    "title": "How did India classify instruments 2,000 years ago?",
+    "url": "/explore/musical-instruments/ins-00-04-how-did-india-classify-instruments-2-000-years/"
+   },
+   {
+    "id": "INS-00.05",
+    "title": "Why does a sitar buzz?",
+    "url": "/explore/musical-instruments/ins-00-05-why-does-a-sitar-buzz/"
+   },
+   {
+    "id": "INS-00.06",
+    "title": "How did electricity change instruments?",
+    "url": "/explore/musical-instruments/ins-00-06-how-did-electricity-change-instruments/"
+   },
+   {
+    "id": "INS-00.07",
+    "title": "Which instrument should you learn first?",
+    "url": "/explore/musical-instruments/ins-00-07-which-instrument-should-you-learn-first/"
+   },
+   {
+    "id": "INS-00.08",
+    "title": "Recap: the story of instruments in one page",
+    "url": "/explore/musical-instruments/ins-00-08-recap-the-story-of-instruments-in-one-page/"
+   }
+  ]
+ },
+ {
+  "slug": "cooking",
+  "code": "COK",
+  "short": "Cooking",
+  "shelf": "living",
+  "order": 4,
+  "title": "Cooking",
+  "subtitle": "Did cooking make us human?",
+  "edition": "Edition 1 · 13 November 2026",
+  "color1": "#9C2A12",
+  "color2": "#C98A0B",
+  "light": "#FBF3E6",
+  "question": "Did cooking make us human?",
+  "entries": 286,
+  "words": 10896,
+  "sections": 43,
+  "cover": null,
+  "url": "/explore/cooking/",
+  "leaves": [
+   {
+    "id": "COK-00.01",
+    "title": "What did humans eat before fire?",
+    "url": "/explore/cooking/cok-00-01-what-did-humans-eat-before-fire/"
+   },
+   {
+    "id": "COK-00.02",
+    "title": "Why do we love spicy food that hurts?",
+    "url": "/explore/cooking/cok-00-02-why-do-we-love-spicy-food-that-hurts/"
+   },
+   {
+    "id": "COK-00.03",
+    "title": "How did the chilli reach India if it came from America?",
+    "url": "/explore/cooking/cok-00-03-how-did-the-chilli-reach-india-if-it-came-from/"
+   },
+   {
+    "id": "COK-00.04",
+    "title": "Why does every culture have a flatbread?",
+    "url": "/explore/cooking/cok-00-04-why-does-every-culture-have-a-flatbread/"
+   },
+   {
+    "id": "COK-00.05",
+    "title": "What makes umami?",
+    "url": "/explore/cooking/cok-00-05-what-makes-umami/"
+   },
+   {
+    "id": "COK-00.06",
+    "title": "Why does grandma's food taste better?",
+    "url": "/explore/cooking/cok-00-06-why-does-grandma-s-food-taste-better/"
+   },
+   {
+    "id": "COK-00.07",
+    "title": "Recap: from the first fire to the family table",
+    "url": "/explore/cooking/cok-00-07-recap-from-the-first-fire-to-the-family-table/"
+   }
+  ]
+ },
+ {
+  "slug": "gardening",
+  "code": "GRD",
+  "short": "Gardening",
+  "shelf": "living",
+  "order": 5,
+  "title": "Gardening",
+  "subtitle": "How a seed in the soil became the first step of every civilisation",
+  "edition": "Edition 1 · 3 November 2026",
+  "color1": "#2E6B1F",
+  "color2": "#A0522D",
+  "light": "#F1F6EC",
+  "question": "How did a seed in the soil become the first step of every civilisation?",
+  "entries": 291,
+  "words": 11364,
+  "sections": 42,
+  "cover": null,
+  "url": "/explore/gardening/",
+  "leaves": [
+   {
+    "id": "GRD-00.01",
+    "title": "Who planted the first garden?",
+    "url": "/explore/gardening/grd-00-01-who-planted-the-first-garden/"
+   },
+   {
+    "id": "GRD-00.02",
+    "title": "How does a seed know which way is up?",
+    "url": "/explore/gardening/grd-00-02-how-does-a-seed-know-which-way-is-up/"
+   },
+   {
+    "id": "GRD-00.03",
+    "title": "Why is soil alive?",
+    "url": "/explore/gardening/grd-00-03-why-is-soil-alive/"
+   },
+   {
+    "id": "GRD-00.04",
+    "title": "Why do Mughal gardens have four parts?",
+    "url": "/explore/gardening/grd-00-04-why-do-mughal-gardens-have-four-parts/"
+   },
+   {
+    "id": "GRD-00.05",
+    "title": "Can you grow food on a balcony?",
+    "url": "/explore/gardening/grd-00-05-can-you-grow-food-on-a-balcony/"
+   },
+   {
+    "id": "GRD-00.06",
+    "title": "Why does gardening make people calmer?",
+    "url": "/explore/gardening/grd-00-06-why-does-gardening-make-people-calmer/"
+   },
+   {
+    "id": "GRD-00.07",
+    "title": "Recap: from one seed to a garden of the world",
+    "url": "/explore/gardening/grd-00-07-recap-from-one-seed-to-a-garden-of-the-world/"
+   }
+  ]
+ },
+ {
+  "slug": "sports-and-games",
+  "code": "SPT",
+  "short": "Sports and Games",
+  "shelf": "living",
+  "order": 6,
+  "title": "Sports and Games",
+  "subtitle": "Why humans invent games with rules that don't matter, and then care so much",
+  "edition": "Edition 1 · 3 November 2026",
+  "color1": "#0B5D3B",
+  "color2": "#D35400",
+  "light": "#EEF6F0",
+  "question": "Why do humans everywhere invent games with rules that don't matter, and then care about them so much?",
+  "entries": 279,
+  "words": 12089,
+  "sections": 46,
+  "cover": null,
+  "url": "/explore/sports-and-games/",
+  "leaves": [
+   {
+    "id": "SPT-00.01",
+    "title": "What was the first game?",
+    "url": "/explore/sports-and-games/spt-00-01-what-was-the-first-game/"
+   },
+   {
+    "id": "SPT-00.02",
+    "title": "Why does every culture have a ball game?",
+    "url": "/explore/sports-and-games/spt-00-02-why-does-every-culture-have-a-ball-game/"
+   },
+   {
+    "id": "SPT-00.03",
+    "title": "How did chess travel from India to the world?",
+    "url": "/explore/sports-and-games/spt-00-03-how-did-chess-travel-from-india-to-the-world/"
+   },
+   {
+    "id": "SPT-00.04",
+    "title": "Why did the Olympics stop for 1,500 years?",
+    "url": "/explore/sports-and-games/spt-00-04-why-did-the-olympics-stop-for-1-500-years/"
+   },
+   {
+    "id": "SPT-00.05",
+    "title": "What makes a sport a sport?",
+    "url": "/explore/sports-and-games/spt-00-05-what-makes-a-sport-a-sport/"
+   },
+   {
+    "id": "SPT-00.06",
+    "title": "Why do fans feel a win in their own body?",
+    "url": "/explore/sports-and-games/spt-00-06-why-do-fans-feel-a-win-in-their-own-body/"
+   },
+   {
+    "id": "SPT-00.07",
+    "title": "Are video games a sport?",
+    "url": "/explore/sports-and-games/spt-00-07-are-video-games-a-sport/"
+   },
+   {
+    "id": "SPT-00.08",
+    "title": "Recap: the story of sports and games in one page",
+    "url": "/explore/sports-and-games/spt-00-08-recap-the-story-of-sports-and-games-in-one-page/"
+   }
+  ]
+ },
+ {
+  "slug": "technology",
+  "code": "TEC",
+  "short": "Technology",
+  "shelf": "how",
+  "order": 7,
+  "title": "Technology",
+  "subtitle": "How a sharpened stone became a smartphone",
+  "edition": "Edition 1 · 13 November 2026",
+  "color1": "#1F3A5F",
+  "color2": "#E07A1F",
+  "light": "#EEF2F7",
+  "question": "How did a sharpened stone become a smartphone?",
+  "entries": 203,
+  "words": 8963,
+  "sections": 39,
+  "cover": null,
+  "url": "/explore/technology/",
+  "leaves": [
+   {
+    "id": "TEC-00.01",
+    "title": "What was the first technology?",
+    "url": "/explore/technology/tec-00-01-what-was-the-first-technology/"
+   },
+   {
+    "id": "TEC-00.02",
+    "title": "Why did the wheel take so long to invent?",
+    "url": "/explore/technology/tec-00-02-why-did-the-wheel-take-so-long-to-invent/"
+   },
+   {
+    "id": "TEC-00.03",
+    "title": "How does a screw hold things together?",
+    "url": "/explore/technology/tec-00-03-how-does-a-screw-hold-things-together/"
+   },
+   {
+    "id": "TEC-00.04",
+    "title": "Why did electricity change everything?",
+    "url": "/explore/technology/tec-00-04-why-did-electricity-change-everything/"
+   },
+   {
+    "id": "TEC-00.05",
+    "title": "How does a fridge make cold?",
+    "url": "/explore/technology/tec-00-05-how-does-a-fridge-make-cold/"
+   },
+   {
+    "id": "TEC-00.06",
+    "title": "How does the internet reach your phone?",
+    "url": "/explore/technology/tec-00-06-how-does-the-internet-reach-your-phone/"
+   },
+   {
+    "id": "TEC-00.07",
+    "title": "What is the newest technology today?",
+    "url": "/explore/technology/tec-00-07-what-is-the-newest-technology-today/"
+   },
+   {
+    "id": "TEC-00.08",
+    "title": "Recap: from a stone edge to a thinking machine",
+    "url": "/explore/technology/tec-00-08-recap-from-a-stone-edge-to-a-thinking-machine/"
+   }
+  ]
+ },
+ {
+  "slug": "crochet",
+  "code": "CRO",
+  "short": "Crochet",
+  "shelf": "needle",
+  "order": 8,
+  "title": "Crochet",
+  "subtitle": "How one hook and one string make lace, toys and blankets",
+  "edition": "Edition 1 · 13 November 2026",
+  "color1": "#8E3B6E",
+  "color2": "#2A8C82",
+  "light": "#F7EEF4",
+  "question": "How can one hook and one string make lace, toys and blankets?",
+  "entries": 104,
+  "words": 4329,
+  "sections": 28,
+  "cover": null,
+  "url": "/explore/crochet/",
+  "leaves": [
+   {
+    "id": "CRO-00.01",
+    "title": "What is crochet, really?",
+    "url": "/explore/crochet/cro-00-01-what-is-crochet-really/"
+   },
+   {
+    "id": "CRO-00.02",
+    "title": "Why can't a machine crochet the way it knits?",
+    "url": "/explore/crochet/cro-00-02-why-can-t-a-machine-crochet-the-way-it-knits/"
+   },
+   {
+    "id": "CRO-00.03",
+    "title": "Where did crochet come from?",
+    "url": "/explore/crochet/cro-00-03-where-did-crochet-come-from/"
+   },
+   {
+    "id": "CRO-00.04",
+    "title": "How did crochet save families in the Irish famine?",
+    "url": "/explore/crochet/cro-00-04-how-did-crochet-save-families-in-the-irish/"
+   },
+   {
+    "id": "CRO-00.05",
+    "title": "Why is crocheting calming?",
+    "url": "/explore/crochet/cro-00-05-why-is-crocheting-calming/"
+   },
+   {
+    "id": "CRO-00.06",
+    "title": "Recap: one loop at a time",
+    "url": "/explore/crochet/cro-00-06-recap-one-loop-at-a-time/"
+   }
+  ]
+ },
+ {
+  "slug": "knitting",
+  "code": "KNT",
+  "short": "Knitting",
+  "shelf": "needle",
+  "order": 9,
+  "title": "Knitting",
+  "subtitle": "How two sticks and a thread turn into a warm sweater",
+  "edition": "Edition 1 · 13 November 2026",
+  "color1": "#2E5A8A",
+  "color2": "#B5651D",
+  "light": "#EEF3F9",
+  "question": "How do two sticks and a thread turn into a warm sweater?",
+  "entries": 99,
+  "words": 4199,
+  "sections": 27,
+  "cover": null,
+  "url": "/explore/knitting/",
+  "leaves": [
+   {
+    "id": "KNT-00.01",
+    "title": "What is knitting?",
+    "url": "/explore/knitting/knt-00-01-what-is-knitting/"
+   },
+   {
+    "id": "KNT-00.02",
+    "title": "Who knitted the first sock?",
+    "url": "/explore/knitting/knt-00-02-who-knitted-the-first-sock/"
+   },
+   {
+    "id": "KNT-00.03",
+    "title": "Why are fishermen's sweaters patterned?",
+    "url": "/explore/knitting/knt-00-03-why-are-fishermen-s-sweaters-patterned/"
+   },
+   {
+    "id": "KNT-00.04",
+    "title": "How did knitting become a machine?",
+    "url": "/explore/knitting/knt-00-04-how-did-knitting-become-a-machine/"
+   },
+   {
+    "id": "KNT-00.05",
+    "title": "Is knitting a kind of computer code?",
+    "url": "/explore/knitting/knt-00-05-is-knitting-a-kind-of-computer-code/"
+   },
+   {
+    "id": "KNT-00.06",
+    "title": "Recap: loops that hang from loops",
+    "url": "/explore/knitting/knt-00-06-recap-loops-that-hang-from-loops/"
+   }
+  ]
+ },
+ {
+  "slug": "embroidery",
+  "code": "EMB",
+  "short": "Embroidery",
+  "shelf": "needle",
+  "order": 10,
+  "title": "Embroidery",
+  "subtitle": "How women wrote stories in thread",
+  "edition": "Edition 1 · 13 November 2026",
+  "color1": "#7A2E3B",
+  "color2": "#C08A2D",
+  "light": "#FBF3EC",
+  "question": "How did women write stories in thread long before they were allowed to write books?",
+  "entries": 122,
+  "words": 5433,
+  "sections": 26,
+  "cover": null,
+  "url": "/explore/embroidery/",
+  "leaves": [
+   {
+    "id": "EMB-00.01",
+    "title": "What is embroidery?",
+    "url": "/explore/embroidery/emb-00-01-what-is-embroidery/"
+   },
+   {
+    "id": "EMB-00.02",
+    "title": "Why is the Bayeux Tapestry not a tapestry?",
+    "url": "/explore/embroidery/emb-00-02-why-is-the-bayeux-tapestry-not-a-tapestry/"
+   },
+   {
+    "id": "EMB-00.03",
+    "title": "How is chikankari made?",
+    "url": "/explore/embroidery/emb-00-03-how-is-chikankari-made/"
+   },
+   {
+    "id": "EMB-00.04",
+    "title": "Why does every phulkari tell a family story?",
+    "url": "/explore/embroidery/emb-00-04-why-does-every-phulkari-tell-a-family-story/"
+   },
+   {
+    "id": "EMB-00.05",
+    "title": "Can a machine embroider like a hand?",
+    "url": "/explore/embroidery/emb-00-05-can-a-machine-embroider-like-a-hand/"
+   },
+   {
+    "id": "EMB-00.06",
+    "title": "Recap: thread as language",
+    "url": "/explore/embroidery/emb-00-06-recap-thread-as-language/"
+   }
+  ]
+ },
+ {
+  "slug": "sewing",
+  "code": "SEW",
+  "short": "Sewing",
+  "shelf": "needle",
+  "order": 11,
+  "title": "Sewing",
+  "subtitle": "How a needle with a hole in it changed human history",
+  "edition": "Edition 1 · 13 November 2026",
+  "color1": "#23466B",
+  "color2": "#B5562E",
+  "light": "#EEF3F8",
+  "question": "How did a needle with a hole in it change human history?",
+  "entries": 98,
+  "words": 5141,
+  "sections": 27,
+  "cover": null,
+  "url": "/explore/sewing/",
+  "leaves": [
+   {
+    "id": "SEW-00.01",
+    "title": "Who made the first needle?",
+    "url": "/explore/sewing/sew-00-01-who-made-the-first-needle/"
+   },
+   {
+    "id": "SEW-00.02",
+    "title": "Why did India love unstitched clothes?",
+    "url": "/explore/sewing/sew-00-02-why-did-india-love-unstitched-clothes/"
+   },
+   {
+    "id": "SEW-00.03",
+    "title": "How does a sewing machine tie a knot with two threads?",
+    "url": "/explore/sewing/sew-00-03-how-does-a-sewing-machine-tie-a-knot-with-two/"
+   },
+   {
+    "id": "SEW-00.04",
+    "title": "Why was the sewing machine called a freedom machine?",
+    "url": "/explore/sewing/sew-00-04-why-was-the-sewing-machine-called-a-freedom/"
+   },
+   {
+    "id": "SEW-00.05",
+    "title": "Can sewing fight fast fashion?",
+    "url": "/explore/sewing/sew-00-05-can-sewing-fight-fast-fashion/"
+   },
+   {
+    "id": "SEW-00.06",
+    "title": "Recap: the five steps in one page",
+    "url": "/explore/sewing/sew-00-06-recap-the-five-steps-in-one-page/"
+   }
+  ]
+ }
+]

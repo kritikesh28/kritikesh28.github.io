@@ -1,0 +1,13 @@
+/* Made by tools/explore/build_explore.py from each booklet's cover colours. Do not edit by hand. */
+.t-movies { --c1: #7B1E3A; --c2: #B8860B; --c-light: #FBF3E4; }
+.t-books { --c1: #1F3A5F; --c2: #A0522D; --c-light: #F3EFE6; }
+.t-music { --c1: #4B2C6F; --c2: #C2185B; --c-light: #F5EFF8; }
+.t-musical-instruments { --c1: #7A3E10; --c2: #1E7A6E; --c-light: #F7F1E8; }
+.t-cooking { --c1: #9C2A12; --c2: #C98A0B; --c-light: #FBF3E6; }
+.t-gardening { --c1: #2E6B1F; --c2: #A0522D; --c-light: #F1F6EC; }
+.t-sports-and-games { --c1: #0B5D3B; --c2: #D35400; --c-light: #EEF6F0; }
+.t-technology { --c1: #1F3A5F; --c2: #E07A1F; --c-light: #EEF2F7; }
+.t-crochet { --c1: #8E3B6E; --c2: #2A8C82; --c-light: #F7EEF4; }
+.t-knitting { --c1: #2E5A8A; --c2: #B5651D; --c-light: #EEF3F9; }
+.t-embroidery { --c1: #7A2E3B; --c2: #C08A2D; --c-light: #FBF3EC; }
+.t-sewing { --c1: #23466B; --c2: #B5562E; --c-light: #EEF3F8; }

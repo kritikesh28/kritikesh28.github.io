@@ -2,6 +2,7 @@ import type { APIContext } from 'astro';
 import { SITE, SOCIALS, CATEGORIES } from '../site.config';
 import { getPosts, getProjects, getLibraryPages, libraryUrl } from '../lib';
 import { EXAM_PAGES, SUBJECTS, STATS, examTitle } from '../exam-prep';
+import { TOPICS } from '../explore';
 
 // A plain summary for AI assistants (the llms.txt convention), built from the same data as the site.
 export async function GET({ site }: APIContext) {
@@ -22,6 +23,10 @@ export async function GET({ site }: APIContext) {
     `- [Library](${url('/library/')}): short question-led courses; each page answers one question in about two minutes`,
     `- [Now](${url('/now/')}): current work`,
     `- [Contact](${url('/contact/')})`,
+    '',
+    '## Explore: the Encyclopedic Indexes (12 subjects, compared across the world and India)',
+    `- [Explore](${url('/explore/')}): hub of all 12 indexes; every entry has an ID that matches the printable booklet`,
+    ...TOPICS.map((t) => `- [${t.short}: The Encyclopedic Index](${url(t.url)}): ${t.subtitle}. ${t.sections} pages, ${t.entries} entries, ${t.edition}`),
     '',
     '## Exam Prep (free, for RPSC, RSSB and other government exam aspirants)',
     `- [Exam Prep](${url('/exam-prep/')}): why preparation feels overwhelming, and two free tools that help, in short Q&A`,

@@ -1,0 +1,25 @@
+---
+// Pictures and videos for one page, listed in tools/explore/media/<topic>.json (guide: docs/16-explore.md).
+// Videos show a thumbnail first and only load YouTube when tapped, so pages stay fast and private.
+import type { Media } from '../../explore';
+interface Props { items: Media[] }
+const { items } = Astro.props;
+---
+{items.map((m) =>
+  m.type === 'image' ? (
+    <figure>
+      <img src={m.src} alt={m.alt} loading="lazy" decoding="async" />
+      {(m.caption || m.credit) && <figcaption>{m.caption}{m.credit && <> · {m.credit}</>}</figcaption>}
+    </figure>
+  ) : (
+    <figure class="x-video-fig">
+      <div class="x-video">
+        <button type="button" data-yt={m.youtube} data-title={m.title} aria-label={`Play video: ${m.title}`}>
+          <img src={`https://i.ytimg.com/vi/${m.youtube}/hqdefault.jpg`} alt="" loading="lazy" decoding="async" />
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+      <figcaption>{m.caption ?? m.title}{m.credit && <> · {m.credit}</>}</figcaption>
+    </figure>
+  ),
+)}

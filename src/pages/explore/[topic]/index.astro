@@ -1,0 +1,102 @@
+---
+// One Encyclopedic Index: cover, the five starting questions, the map of Parts, progress and the booklet download.
+import Base from '../../../layouts/Base.astro';
+import Progress from '../../../components/explore/Progress.astro';
+import { TOPICS, getTopic, minutes, isLeaf } from '../../../explore';
+import '../../../styles/explore.css';
+import '../../../styles/explore-topics.css';
+
+export function getStaticPaths() {
+  return TOPICS.map((t) => ({ params: { topic: t.slug } }));
+}
+const t = getTopic(Astro.params.topic!);
+const [part0, ...rest] = t.parts;
+const leaves = part0.sections.filter((s) => isLeaf(s.id));
+const gateway = part0.sections[0];
+const allIds = t.parts.flatMap((p) => p.sections.flatMap((s) => s.entries.map((e) => e.id)));
+const description = `${t.short}: The Encyclopedic Index. ${t.subtitle}. ${t.sections} short pages and ${t.entries} entries covering ${t.tagline.replace(/ · /g, ', ').toLowerCase()}.`.slice(0, 300);
+const schema = [
+  {
+    '@type': 'Book',
+    name: `${t.short}: The Encyclopedic Index`,
+    alternateName: t.subtitle,
+    url: new URL(t.url, Astro.site).href,
+    bookEdition: t.edition,
+    inLanguage: 'en',
+    author: { '@id': new URL('/#person', Astro.site).href },
+    encoding: { '@type': 'MediaObject', encodingFormat: 'application/pdf', contentUrl: new URL(t.pdf, Astro.site).href },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Explore', item: new URL('/explore/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: t.short, item: new URL(t.url, Astro.site).href },
+    ],
+  },
+];
+---
+
+<Base title={`${t.short}: The Encyclopedic Index`} {description} {schema} langs={['en']} image={t.cover?.src}>
+  <div class={`t-${t.slug}`}>
+    <section class="x-cover x-topic-hero">
+      {t.cover && <img class="x-cover-img" src={t.cover.src} alt={t.cover.alt} decoding="async" />}
+      <span class="x-code" aria-hidden="true">{t.code}</span>
+      <div class="x-wrap">
+        <p class="x-crumbs"><a href="/explore/">Explore</a><span aria-hidden="true">›</span><span>The Encyclopedic Index</span></p>
+        <h1>{t.short}</h1>
+        <p class="x-question">{t.subtitle}</p>
+        <ul class="x-facts">
+          <li>{t.parts.length} Parts</li><li>{t.sections} pages</li><li>{t.entries} entries</li><li>about {minutes(t.words)} min in all</li><li>{t.edition}</li>
+        </ul>
+        <div class="x-actions">
+          <a class="x-btn" href={leaves[0]?.url ?? gateway.url}>Start with question 1 →</a>
+          <a class="x-btn ghost" href="#map">See the whole map</a>
+        </div>
+      </div>
+      {t.cover?.credit && <span class="x-cover-credit">{t.cover.credit}</span>}
+    </section>
+
+    <div class="x-wrap">
+      <div class="x-section-title"><h2>Five questions to begin, and a recap</h2><p>About two minutes each. <a href={gateway.url}>Why these five?</a></p></div>
+      <ol class="x-questions">
+        {leaves.map((s, i) => (
+          <li><a class="x-q" href={s.url}><small>Question {i + 1} · {s.id}</small><span>{s.title.replace(/^Recap:\s*/, 'Recap: ')}</span></a></li>
+        ))}
+      </ol>
+
+      <div class="x-section-title" id="map"><h2>The whole map</h2><p>{rest.length} Parts, each a branch of {t.short.toLowerCase()}.</p></div>
+      <Progress ids={allIds} label="Your progress in this index" clear={`${t.code}-`} />
+      <ol class="x-parts" start="1">
+        {rest.map((p) => (
+          <li class="x-part">
+            <header><span class="num">{p.num}</span><h3>{p.title}</h3></header>
+            <ul>
+              {p.sections.map((s) => (
+                <li><a href={s.url}><span class="eid">{s.id}</span><span>{s.title}</span></a></li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ol>
+
+      <div class="x-section-title"><h2>Take it with you</h2></div>
+      <div class="x-download">
+        <div>
+          <h2>The printable booklet</h2>
+          <p>The whole index as one PDF with the same IDs and tick boxes, for reading offline, printing or teaching. The website is always the newest version.</p>
+        </div>
+        <a class="x-btn" href={t.pdf} download>Download the PDF{t.pdfMB && ` (${t.pdfMB} MB)`}</a>
+      </div>
+      <p class="x-edition"><small>{t.edition}. Compiled and edited by Kritikesh Rajpurohit with AI assistance; sources and credits are on the <a href={t.parts.at(-1)!.sections.find((s) => s.id.endsWith('-S'))?.url ?? '#'}>Sources page</a>.</small></p>
+    </div>
+  </div>
+</Base>
+
+<script>
+  import '../../../scripts/explore';
+</script>
+
+<style>
+  .x-edition { color: var(--ink-soft); margin: 1.2rem 0 4rem; }
+  ol.x-questions { counter-reset: none; }
+</style>

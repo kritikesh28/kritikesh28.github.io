@@ -9,6 +9,7 @@ const en = {
   // header and footer
   'nav.home': 'Home',
   'nav.library': 'Library',
+  'nav.explore': 'Explore',
   'nav.exam': 'Exam Prep',
   'nav.portfolio': 'Portfolio',
   'nav.about': 'About',
@@ -147,6 +148,7 @@ export type UiKey = keyof typeof en;
 const hi: Partial<Record<UiKey, string>> = {
   'nav.home': 'होम',
   'nav.library': 'लाइब्रेरी',
+  'nav.explore': 'Explore',
   'nav.exam': 'परीक्षा तैयारी',
   'nav.portfolio': 'मेरा काम',
   'nav.about': 'मेरे बारे में',

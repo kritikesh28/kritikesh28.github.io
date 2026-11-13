@@ -7,6 +7,7 @@ import { categoryLabel } from '../../site.config';
 import { getLibraryPages, getPosts, getProjects, libraryUrl, plainText } from '../../lib';
 import { langFromPath, langParams, localizePath, pick } from '../../i18n/config';
 import { useT } from '../../i18n/ui';
+import { TOPICS, getTopic } from '../../explore';
 
 export const getStaticPaths: GetStaticPaths = () => langParams().map((params) => ({ params }));
 
@@ -35,6 +36,14 @@ export async function GET({ url }: APIContext) {
     for (const branch of tree.branches)
       for (const twig of branch.twigs)
         if (twig.status !== 'live') items.push({ t: twig.title, d: t('search.notWritten', { q: twig.question }), u: L(`/library/${tree.slug}/`), k: t('search.kind.planned'), w: `${tree.title} ${branch.title}`, b: '' });
+  // Explore (English only for now): every topic and every page, with the names of its entries as keywords
+  for (const ts of TOPICS) {
+    const tp = getTopic(ts.slug);
+    items.push({ t: `${tp.short}: The Encyclopedic Index`, d: tp.subtitle, u: tp.url, k: 'Explore · Encyclopedic Index', w: `${tp.short} ${tp.code} ${tp.tagline}`, b: '' });
+    for (const p of tp.parts)
+      for (const sec of p.sections)
+        items.push({ t: sec.title, d: sec.summary, u: sec.url, k: `Explore · ${tp.short} · ${sec.id}`, w: sec.entries.map((e) => e.name).join(' ').slice(0, 600), b: '' });
+  }
   const pages = pick({
     en: [
       { t: 'About Kritikesh', d: 'Who writes Curious Sparoows: background, skills and interests.', u: '/about/', w: 'about author geography geology ai teacher' },

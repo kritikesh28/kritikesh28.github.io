@@ -91,7 +91,7 @@ const fallback = !translated.includes(lang);
           <ul>
             {NAV.map((item) => (
               <li>
-                <a href={L(item.href)} aria-current={isActive(item.href) ? 'page' : undefined}>{t(item.key)}</a>
+                <a href={'enOnly' in item && item.enOnly ? item.href : L(item.href)} aria-current={isActive(item.href) ? 'page' : undefined}>{t(item.key)}</a>
               </li>
             ))}
           </ul>
@@ -133,7 +133,7 @@ const fallback = !translated.includes(lang);
           <div>
             <h2>{t('footer.explore')}</h2>
             <ul>
-              {NAV.filter((n) => n.href !== '/').map((n) => <li><a href={L(n.href)}>{t(n.key)}</a></li>)}
+              {NAV.filter((n) => n.href !== '/').map((n) => <li><a href={'enOnly' in n && n.enOnly ? n.href : L(n.href)}>{t(n.key)}</a></li>)}
             </ul>
           </div>
           <div>
