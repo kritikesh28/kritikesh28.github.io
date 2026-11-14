@@ -43,7 +43,12 @@ The whole tree is at `/library/map/`. The six older trees of long reads (AI & ML
 
 ## 4. The background sound
 
-`src/scripts/ambient.ts` makes a very soft sound of sparrow chirps only (the wind and hum were removed on 14 Nov 2026 at Kritikesh's request; keep the chirp timing as it is), live in the browser (no sound files). Browsers allow sound only after a tap, so it fades in on the visitor's first tap or key press. The speaker button in the top bar pauses it, and that choice is remembered in the browser. To make it louder or softer, change `LEVEL` (now `0.025`, halved on 14 Nov 2026 so it never pulls attention from reading). To turn it off for everyone, delete the `import('../scripts/ambient')` line in `src/layouts/Base.astro`.
+`src/scripts/ambient.ts` plays soft background music on every page: a slow bansuri (bamboo flute) in Raag Bhupali (Sa Re Ga Pa Dha, tonic D) over a quiet tanpura-like drone, with sparrows chirping now and then (flute added 14 Nov 2026 at Kritikesh's request; keep the chirp timing as it is). It is all made live in the browser with the Web Audio API: no sound files, nothing downloaded, and no one else's recording, so there is no copyright question. The melody is made up fresh on every visit from short phrases that rest on Sa, Ga or Pa.
+
+- **On by default.** It starts at once where the browser allows it. Most browsers allow sound only after a tap, click or key press, so otherwise it fades in on the visitor's first one. The speaker button in the top bar switches it off, and that choice is remembered in the browser (`cs-ambient` in localStorage).
+- **Loudness.** `LEVEL` (now `0.3`) sets the overall level: about -24 dBFS on average, the loudest chirps about -10 dBFS, so it is clearly audible but stays under speech. `MIX` sets the balance of flute, drone, sparrows and room echo.
+- **Checking a change.** `compose()` also works on an `OfflineAudioContext`, so a minute can be rendered to a WAV file in a headless browser and measured before going live.
+- **Turning it off for everyone.** Delete the `import('../scripts/ambient')` line in `src/layouts/Base.astro`.
 
 ## 5. My story
 
