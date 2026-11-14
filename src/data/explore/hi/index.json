@@ -56,6 +56,62 @@
   ]
  },
  {
+  "slug": "gardening",
+  "code": "GRD",
+  "short": "बाग़बानी",
+  "shelf": "living",
+  "order": 5,
+  "title": "बाग़बानी",
+  "subtitle": "मिट्टी में एक बीज हर सभ्यता का पहला क़दम कैसे बना",
+  "edition": "संस्करण 1 · 13 नवंबर 2026",
+  "color1": "#2E6B1F",
+  "color2": "#A0522D",
+  "light": "#F1F6EC",
+  "question": "मिट्टी में एक बीज हर सभ्यता का पहला क़दम कैसे बना?",
+  "entries": 291,
+  "words": 12841,
+  "sections": 42,
+  "cover": null,
+  "url": "/library/gardening/",
+  "leaves": [
+   {
+    "id": "GRD-00.01",
+    "title": "पहला बग़ीचा किसने लगाया?",
+    "url": "/library/gardening/grd-00-01-who-planted-the-first-garden/"
+   },
+   {
+    "id": "GRD-00.02",
+    "title": "बीज को कैसे पता चलता है कि ऊपर कौन-सी दिशा है?",
+    "url": "/library/gardening/grd-00-02-how-does-a-seed-know-which-way-is-up/"
+   },
+   {
+    "id": "GRD-00.03",
+    "title": "मिट्टी जीवित क्यों है?",
+    "url": "/library/gardening/grd-00-03-why-is-soil-alive/"
+   },
+   {
+    "id": "GRD-00.04",
+    "title": "मुग़ल बाग़ों के चार हिस्से क्यों होते हैं?",
+    "url": "/library/gardening/grd-00-04-why-do-mughal-gardens-have-four-parts/"
+   },
+   {
+    "id": "GRD-00.05",
+    "title": "क्या बालकनी में खाना उगाया जा सकता है?",
+    "url": "/library/gardening/grd-00-05-can-you-grow-food-on-a-balcony/"
+   },
+   {
+    "id": "GRD-00.06",
+    "title": "बाग़बानी लोगों को शांत क्यों करती है?",
+    "url": "/library/gardening/grd-00-06-why-does-gardening-make-people-calmer/"
+   },
+   {
+    "id": "GRD-00.07",
+    "title": "दोहराव: एक बीज से दुनिया के बग़ीचे तक",
+    "url": "/library/gardening/grd-00-07-recap-from-one-seed-to-a-garden-of-the-world/"
+   }
+  ]
+ },
+ {
   "slug": "technology",
   "code": "TEC",
   "short": "तकनीक",
