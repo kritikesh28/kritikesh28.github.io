@@ -112,6 +112,67 @@
   ]
  },
  {
+  "slug": "sports-and-games",
+  "code": "SPT",
+  "short": "खेल",
+  "shelf": "living",
+  "order": 6,
+  "title": "खेल और खेलकूद",
+  "subtitle": "इंसान ऐसे नियमों वाले खेल क्यों बनाता है जिनका कोई असली मतलब नहीं, और फिर उनकी इतनी परवाह क्यों करता है",
+  "edition": "संस्करण 1 · 14 नवंबर 2026",
+  "color1": "#0B5D3B",
+  "color2": "#D35400",
+  "light": "#EEF6F0",
+  "question": "हर जगह इंसान ऐसे नियमों वाले खेल क्यों बनाते हैं जिनका कोई असली मतलब नहीं, और फिर उनकी इतनी परवाह क्यों करते हैं?",
+  "entries": 279,
+  "words": 13358,
+  "sections": 46,
+  "cover": null,
+  "url": "/library/sports-and-games/",
+  "leaves": [
+   {
+    "id": "SPT-00.01",
+    "title": "पहला खेल कौन-सा था?",
+    "url": "/library/sports-and-games/spt-00-01-what-was-the-first-game/"
+   },
+   {
+    "id": "SPT-00.02",
+    "title": "हर संस्कृति में गेंद का कोई खेल क्यों है?",
+    "url": "/library/sports-and-games/spt-00-02-why-does-every-culture-have-a-ball-game/"
+   },
+   {
+    "id": "SPT-00.03",
+    "title": "शतरंज भारत से दुनिया तक कैसे पहुँची?",
+    "url": "/library/sports-and-games/spt-00-03-how-did-chess-travel-from-india-to-the-world/"
+   },
+   {
+    "id": "SPT-00.04",
+    "title": "ओलंपिक 1,500 साल तक क्यों रुके रहे?",
+    "url": "/library/sports-and-games/spt-00-04-why-did-the-olympics-stop-for-1-500-years/"
+   },
+   {
+    "id": "SPT-00.05",
+    "title": "कोई खेल \"स्पोर्ट\" कब बनता है?",
+    "url": "/library/sports-and-games/spt-00-05-what-makes-a-sport-a-sport/"
+   },
+   {
+    "id": "SPT-00.06",
+    "title": "प्रशंसक जीत को अपने शरीर में क्यों महसूस करते हैं?",
+    "url": "/library/sports-and-games/spt-00-06-why-do-fans-feel-a-win-in-their-own-body/"
+   },
+   {
+    "id": "SPT-00.07",
+    "title": "क्या वीडियो गेम स्पोर्ट हैं?",
+    "url": "/library/sports-and-games/spt-00-07-are-video-games-a-sport/"
+   },
+   {
+    "id": "SPT-00.08",
+    "title": "दोहराव: खेलों की कहानी एक पन्ने में",
+    "url": "/library/sports-and-games/spt-00-08-recap-the-story-of-sports-and-games-in-one-page/"
+   }
+  ]
+ },
+ {
   "slug": "technology",
   "code": "TEC",
   "short": "तकनीक",
