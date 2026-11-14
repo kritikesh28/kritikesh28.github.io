@@ -1,5 +1,56 @@
 [
  {
+  "slug": "crochet",
+  "code": "CRO",
+  "short": "क्रोशिया",
+  "shelf": "needle",
+  "order": 8,
+  "title": "क्रोशिया",
+  "subtitle": "एक हुक और एक धागे से जाली, खिलौने और कंबल कैसे बनते हैं",
+  "edition": "संस्करण 1 · 13 नवंबर 2026",
+  "color1": "#8E3B6E",
+  "color2": "#2A8C82",
+  "light": "#F7EEF4",
+  "question": "एक हुक और एक धागे से जाली, खिलौने और कंबल कैसे बनते हैं?",
+  "entries": 104,
+  "words": 5076,
+  "sections": 28,
+  "cover": null,
+  "url": "/library/crochet/",
+  "leaves": [
+   {
+    "id": "CRO-00.01",
+    "title": "क्रोशिया असल में है क्या?",
+    "url": "/library/crochet/cro-00-01-what-is-crochet-really/"
+   },
+   {
+    "id": "CRO-00.02",
+    "title": "मशीन बुनाई की तरह क्रोशिया क्यों नहीं कर पाती?",
+    "url": "/library/crochet/cro-00-02-why-can-t-a-machine-crochet-the-way-it-knits/"
+   },
+   {
+    "id": "CRO-00.03",
+    "title": "क्रोशिया कहाँ से आया?",
+    "url": "/library/crochet/cro-00-03-where-did-crochet-come-from/"
+   },
+   {
+    "id": "CRO-00.04",
+    "title": "आयरलैंड के अकाल में क्रोशिया ने परिवारों को कैसे बचाया?",
+    "url": "/library/crochet/cro-00-04-how-did-crochet-save-families-in-the-irish/"
+   },
+   {
+    "id": "CRO-00.05",
+    "title": "क्रोशिया करने से सुकून क्यों मिलता है?",
+    "url": "/library/crochet/cro-00-05-why-is-crocheting-calming/"
+   },
+   {
+    "id": "CRO-00.06",
+    "title": "दोहराव: एक बार में एक फंदा",
+    "url": "/library/crochet/cro-00-06-recap-one-loop-at-a-time/"
+   }
+  ]
+ },
+ {
   "slug": "knitting",
   "code": "KNT",
   "short": "बुनाई",
@@ -47,6 +98,108 @@
     "id": "KNT-00.06",
     "title": "दोहराव: फंदों से लटकते फंदे",
     "url": "/library/knitting/knt-00-06-recap-loops-that-hang-from-loops/"
+   }
+  ]
+ },
+ {
+  "slug": "embroidery",
+  "code": "EMB",
+  "short": "कढ़ाई",
+  "shelf": "needle",
+  "order": 10,
+  "title": "कढ़ाई",
+  "subtitle": "औरतों ने धागे में कहानियाँ कैसे लिखीं",
+  "edition": "संस्करण 1 · 13 नवंबर 2026",
+  "color1": "#7A2E3B",
+  "color2": "#C08A2D",
+  "light": "#FBF3EC",
+  "question": "किताबें लिखने की इजाज़त मिलने से बहुत पहले औरतों ने धागे में कहानियाँ कैसे लिखीं?",
+  "entries": 122,
+  "words": 6067,
+  "sections": 26,
+  "cover": null,
+  "url": "/library/embroidery/",
+  "leaves": [
+   {
+    "id": "EMB-00.01",
+    "title": "कढ़ाई क्या है?",
+    "url": "/library/embroidery/emb-00-01-what-is-embroidery/"
+   },
+   {
+    "id": "EMB-00.02",
+    "title": "बायो की टेपेस्ट्री असल में टेपेस्ट्री क्यों नहीं है?",
+    "url": "/library/embroidery/emb-00-02-why-is-the-bayeux-tapestry-not-a-tapestry/"
+   },
+   {
+    "id": "EMB-00.03",
+    "title": "चिकनकारी कैसे बनती है?",
+    "url": "/library/embroidery/emb-00-03-how-is-chikankari-made/"
+   },
+   {
+    "id": "EMB-00.04",
+    "title": "हर फुलकारी एक पारिवारिक कहानी क्यों कहती है?",
+    "url": "/library/embroidery/emb-00-04-why-does-every-phulkari-tell-a-family-story/"
+   },
+   {
+    "id": "EMB-00.05",
+    "title": "क्या मशीन हाथ जैसी कढ़ाई कर सकती है?",
+    "url": "/library/embroidery/emb-00-05-can-a-machine-embroider-like-a-hand/"
+   },
+   {
+    "id": "EMB-00.06",
+    "title": "दोहराव: धागा यानी भाषा",
+    "url": "/library/embroidery/emb-00-06-recap-thread-as-language/"
+   }
+  ]
+ },
+ {
+  "slug": "sewing",
+  "code": "SEW",
+  "short": "सिलाई",
+  "shelf": "needle",
+  "order": 11,
+  "title": "सिलाई",
+  "subtitle": "छेद वाली एक सुई ने इंसान का इतिहास कैसे बदल दिया",
+  "edition": "संस्करण 1 · 13 नवंबर 2026",
+  "color1": "#23466B",
+  "color2": "#B5562E",
+  "light": "#EEF3F8",
+  "question": "छेद वाली एक सुई ने इंसान का इतिहास कैसे बदल दिया?",
+  "entries": 98,
+  "words": 5894,
+  "sections": 27,
+  "cover": null,
+  "url": "/library/sewing/",
+  "leaves": [
+   {
+    "id": "SEW-00.01",
+    "title": "पहली सुई किसने बनाई?",
+    "url": "/library/sewing/sew-00-01-who-made-the-first-needle/"
+   },
+   {
+    "id": "SEW-00.02",
+    "title": "भारत को बिना सिले कपड़े इतने प्यारे क्यों थे?",
+    "url": "/library/sewing/sew-00-02-why-did-india-love-unstitched-clothes/"
+   },
+   {
+    "id": "SEW-00.03",
+    "title": "सिलाई मशीन दो धागों से गाँठ कैसे बाँधती है?",
+    "url": "/library/sewing/sew-00-03-how-does-a-sewing-machine-tie-a-knot-with-two/"
+   },
+   {
+    "id": "SEW-00.04",
+    "title": "सिलाई मशीन को आज़ादी की मशीन क्यों कहा गया?",
+    "url": "/library/sewing/sew-00-04-why-was-the-sewing-machine-called-a-freedom/"
+   },
+   {
+    "id": "SEW-00.05",
+    "title": "क्या सिलाई फ़ास्ट फ़ैशन से लड़ सकती है?",
+    "url": "/library/sewing/sew-00-05-can-sewing-fight-fast-fashion/"
+   },
+   {
+    "id": "SEW-00.06",
+    "title": "दोहराव: पाँचों क़दम एक पन्ने पर",
+    "url": "/library/sewing/sew-00-06-recap-the-five-steps-in-one-page/"
    }
   ]
  }
