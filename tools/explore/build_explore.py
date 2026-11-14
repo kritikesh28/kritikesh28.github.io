@@ -5,6 +5,10 @@ Run from the repository root:   python3 -I tools/explore/build_explore.py
 Reads:   tools/explore/source/<topic>/p*.md + config.json   (the same part files that build the printed booklet)
          tools/explore/media/<topic>.json                     (optional pictures and videos, see docs/16-explore.md)
 Writes:  src/data/explore/<topic>.json and src/data/explore/index.json
+Hindi:   tools/explore/source/<topic>/hi/p*.md + hi/config.json (the same parts, translated; same IDs and the same
+         paragraphs, list items, table rows and headings in the same order) -> src/data/explore/hi/<topic>.json and
+         src/data/explore/hi/index.json. Hindi pages are cut exactly where the English ones are, so every page has
+         the same address in both languages. See docs/16-explore.md, "Hindi shelves".
 
 Only the Python standard library is used. The part files follow the booklet rules:
   # PART n — TITLE            a Part
@@ -40,6 +44,25 @@ TOPICS = [
     ('embroidery', 'needle', 'Embroidery'),
     ('sewing', 'needle', 'Sewing'),
 ]
+
+# The words the script itself writes into the pages, per language
+LANG = 'en'
+UI = {
+    'en': {'mark': 'Mark {eid} as learned', 'mark0': 'Mark as learned', 'listed': 'Listed here', 'more': ' and {n} more',
+           'start': 'Start here: five short questions', 'gateway': r'^The Gateway:\s*', 'remember': '**Remember this:**',
+           'short': '**Short answer', 'meta': r'\*\*(Web address|Keywords)', 'next': '**Next',
+           'first': r'^(Short answer:|Web address:.*?Keywords:)\s*'},
+    'hi': {'mark': '{eid} को सीखा हुआ चिह्नित करें', 'mark0': 'सीखा हुआ चिह्नित करें', 'listed': 'यहाँ शामिल', 'more': ' और {n} अन्य',
+           'start': 'यहाँ से शुरू करें: पाँच छोटे सवाल', 'gateway': r'^प्रवेश द्वार:\s*', 'remember': '**याद रखिए:**',
+           'short': '**छोटा जवाब', 'meta': r'\*\*(वेब पता|मुख्य शब्द)', 'next': '**अगला',
+           'first': r'^(छोटा जवाब:|वेब पता:.*?मुख्य शब्द:)\s*'},
+}
+WORD_RE = r'[\w\u0900-\u0963\u0966-\u097F]+'  # Devanagari vowel signs belong to their word
+
+
+def ui(k):
+    return UI[LANG][k]
+
 
 ID_RE = r'[A-Z]{3}-(?:\d{2}(?:\.\d{1,2})*|[SET])'
 
@@ -89,6 +112,13 @@ class Linker:
         return None
 
 
+def loc(url):
+    """On Hindi pages, links inside the site go to the Hindi twin of the page."""
+    if LANG == 'hi' and url.startswith('/') and not url.startswith(('/hi/', '/images/', '/audio/')):
+        return '/hi' + url
+    return url
+
+
 def inline(text, linker=None, current=None):
     """Escape, then apply **bold**, *italic*, [links](url) and ID links."""
     t = html.escape(text, quote=False)
@@ -98,7 +128,7 @@ def inline(text, linker=None, current=None):
         label, url = m.group(1), m.group(2)
         if not re.match(r'^(https?://|/)', url):
             return m.group(0)
-        links.append(f'<a href="{html.escape(url)}" rel="noopener">{label}</a>')
+        links.append(f'<a href="{html.escape(loc(url))}" rel="noopener">{label}</a>')
         return f'\u0000{len(links) - 1}\u0000'
 
     t = re.sub(r'\[([^\]]+)\]\(([^)\s]+)\)', keep, t)
@@ -110,7 +140,7 @@ def inline(text, linker=None, current=None):
             url = linker.url_for(ident)
             if not url or ident == current:
                 return ident
-            return f'<a class="xid" href="{url}">{ident}</a>'
+            return f'<a class="xid" href="{loc(url)}">{ident}</a>'
         # do not link inside tags
         parts = re.split(r'(<[^>]+>)', t)
         t = ''.join(p if p.startswith('<') else re.sub(ID_RE, link_id, p) for p in parts)
@@ -130,13 +160,13 @@ def parse_table(rows):
 
 
 def words_of(h):
-    return len(re.findall(r'\w+', html.unescape(re.sub(r'<[^>]+>', ' ', h))))
+    return len(re.findall(WORD_RE, html.unescape(re.sub(r'<[^>]+>', ' ', h))))
 
 
 def gist_of(text, n=150):
     """The first sentence of a plain-text explainer, for the summary box at the end of a page."""
     t = re.sub(r'\s+', ' ', text).strip().lstrip(':;,. ').strip()
-    m = re.match(r'(.+?[.!?;])(\s|$)', t)
+    m = re.match(r'(.+?[.!?;।])(\s|$)', t)
     t = m.group(1).rstrip(';') if m else t
     return t if len(t) <= n else t[:n].rsplit(' ', 1)[0] + '…'
 
@@ -159,13 +189,13 @@ def render_blocks(lines, topic, linker, current):
         if para:
             txt = ' '.join(s.strip() for s in para)
             cls = ''
-            if txt.startswith('**Remember this:**'):
+            if txt.startswith(ui('remember')):
                 cls = ' class="remember"'
-            elif txt.startswith('**Short answer'):
+            elif txt.startswith(ui('short')):
                 cls = ' class="short"'
-            elif re.match(r'\*\*(Web address|Keywords)', txt):
+            elif re.match(ui('meta'), txt):
                 cls = ' class="meta"'
-            elif txt.startswith('**Next'):
+            elif txt.startswith(ui('next')):
                 cls = ' class="next-q"'
             add(f'<p{cls}>{inline(txt, linker, current)}</p>', kind='p', text=plain(txt))
             para.clear()
@@ -221,7 +251,7 @@ def render_blocks(lines, topic, linker, current):
                     eid, name, rest = m.group(1), m.group(2).strip(), m.group(3)
                     entries.append({'id': eid, 'name': plain(name).rstrip(':')})
                     items.append((
-                        f'<li class="entry" id="{id_slug(eid)}"><label class="tick"><input type="checkbox" data-tick="{eid}" aria-label="Mark {eid} as learned"></label>'
+                        f'<li class="entry" id="{id_slug(eid)}"><label class="tick"><input type="checkbox" data-tick="{eid}" aria-label="{ui("mark").format(eid=eid)}"></label>'
                         f'<div><span class="eid">{eid}</span> <strong class="ename">{inline(name)}</strong>{inline(rest, linker, current)}</div></li>',
                         plain(name).rstrip(':'), plain(rest)))
                 elif item.startswith('☐'):
@@ -229,7 +259,7 @@ def render_blocks(lines, topic, linker, current):
                     key = f'{current}#{len(entries) + 1}'
                     entries.append({'id': key, 'name': plain(body)[:80]})
                     lm = re.match(r'\*\*([^*]{2,70})\*\*\s*:?\s*(.*)', body)
-                    items.append((f'<li class="entry"><label class="tick"><input type="checkbox" data-tick="{key}" aria-label="Mark as learned"></label><div>{inline(body, linker, current)}</div></li>',
+                    items.append((f'<li class="entry"><label class="tick"><input type="checkbox" data-tick="{key}" aria-label="{ui("mark0")}"></label><div>{inline(body, linker, current)}</div></li>',
                                   plain(lm.group(1)).rstrip(':') if lm else '', plain(lm.group(2)) if lm else plain(body)))
                 else:
                     # "**Silent era (1913–1931)**: ..." -> label "Silent era (1913–1931)"
@@ -256,7 +286,7 @@ def render_blocks(lines, topic, linker, current):
         para.append(s); i += 1
     flush()
     text = ' '.join(lines)
-    words = len(re.findall(r'\w+', plain(text)))
+    words = len(re.findall(WORD_RE, plain(text)))
     return out, entries, words
 
 
@@ -282,7 +312,7 @@ def join_atoms(atoms):
 PAGE_TARGET, PAGE_MAX, PAGE_MIN = 380, 480, 140
 
 
-def paginate(atoms):
+def paginate(atoms, cuts=None):
     """Cut a Section's atoms into short pages. Prefer cutting before a heading; cut inside
     a heading's block (between list items or table rows) only when that block alone is too long."""
     # words of the whole block that each heading starts
@@ -298,6 +328,11 @@ def paginate(atoms):
             k += 1
     pages, cur, cw = [], [], 0
     in_block = False
+    if cuts:  # Hindi: cut where the English pages were cut
+        k = 0
+        for c in cuts:
+            pages.append(atoms[k:k + c]); k += c
+        atoms = []
     for k, a in enumerate(atoms):
         if a.get('kind') == 'h3':
             in_block = True
@@ -309,7 +344,7 @@ def paginate(atoms):
             if prev != 'h3' and cw + a['words'] > limit:
                 pages.append(cur); cur, cw = [], 0
         cur.append(a); cw += a['words']
-    if cur:
+    if cur and not cuts:
         # a very short last page joins the one before
         if pages and cw < PAGE_MIN * 0.75 and sum(x['words'] for x in pages[-1]) + cw <= PAGE_MAX + 80:
             pages[-1] += cur
@@ -338,19 +373,19 @@ def paginate(atoms):
         if not summary:
             rows = [a['label'] for a in pg if a.get('kind') == 'row' and a.get('label')]
             if rows:
-                summary.append(['Listed here', ', '.join(rows[:8]) + (f' and {len(rows) - 8} more' if len(rows) > 8 else '') + '.'])
+                summary.append([ui('listed'), ', '.join(rows[:8]) + (ui('more').format(n=len(rows) - 8) if len(rows) > 8 else '') + '.'])
             else:
                 txt = [a['text'] for a in pg if a.get('kind') in ('p', 'li') and a.get('text')]
                 summary += [['', gist_of(x, 160)] for x in txt[:3]]
             if not summary:
                 summary += [[a, gist_of(b, 110)] for o in pg if o.get('kind') == 'ol' for a, b in o['items']][:6]
-        out.append({'html': join_atoms(pg), 'words': sum(a['words'] for a in pg), 'heads': heads, 'summary': summary, 'cont': cont})
+        out.append({'html': join_atoms(pg), 'words': sum(a['words'] for a in pg), 'heads': heads, 'summary': summary, 'cont': cont, 'atoms': len(pg)})
     return out
 
 
-def split_topic(slug):
+def split_topic(slug, lang='en'):
     """Part files -> parts[{num,title,intro,sections:[{id,title,lines}]}]"""
-    files = sorted((SRC / slug).glob('p*.md'))
+    files = sorted((SRC / slug / ('hi' if lang == 'hi' else '')).glob('p*.md'))
     lines = []
     for f in files:
         lines += f.read_text(encoding='utf-8').splitlines() + ['']
@@ -372,6 +407,71 @@ def split_topic(slug):
     return parts
 
 
+def build_topic(slug, shelf, short, order, raw, linker, cuts, lang='en'):
+    """One topic's website data. For Hindi, `cuts` holds the English page sizes so pages line up."""
+    global LANG
+    LANG = lang
+    cdir = SRC / slug / ('hi' if lang == 'hi' else '')
+    cfg = json.loads((SRC / slug / 'config.json').read_text(encoding='utf-8'))
+    if lang == 'hi':
+        cfg = cfg | json.loads((cdir / 'config.json').read_text(encoding='utf-8'))
+    media_file = MEDIA / f'{slug}.json'
+    media = json.loads(media_file.read_text(encoding='utf-8')) if media_file.exists() else {}
+    code = raw[0]['sections'][0]['id'][:3]
+    parts_out, total_entries, total_words, n_sections = [], 0, 0, 0
+    for p in raw:
+        intro_html = join_atoms(render_blocks(p['intro'], slug, linker, None)[0]) if any(x.strip() for x in p['intro']) else ''
+        secs = []
+        for s in p['sections']:
+            atoms, entries, words = render_blocks(s['lines'], slug, linker, s['id'])
+            # the short question pages of Part 0 stay whole; longer Sections are cut into 2-3 minute pages
+            if not p['num']:
+                pages = [{'html': join_atoms(atoms), 'words': words, 'heads': [], 'summary': [], 'atoms': len(atoms)}]
+            elif lang == 'hi':
+                want = cuts.get(s['id'])
+                if want and sum(want) != len(atoms):
+                    print(f'  ! {s["id"]}: {len(atoms)} blocks in Hindi, {sum(want)} in English; pages cut on their own', file=sys.stderr)
+                    want = None
+                pages = paginate(atoms, want)
+                if want is None and len(pages) != len(cuts.get(s['id'], [1])):
+                    print(f'  ! {s["id"]}: {len(pages)} pages in Hindi, {len(cuts.get(s["id"], [1]))} in English', file=sys.stderr)
+            else:
+                pages = paginate(atoms)
+            sizes = [pg.pop('atoms') for pg in pages]
+            if lang == 'en':
+                cuts[s['id']] = sizes
+            first = next((plain(x) for x in s['lines'] if x.strip() and not x.startswith(('#', '|', '>'))), '')
+            first = re.sub(ui('first'), '', first)
+            secs.append({
+                'id': s['id'], 'title': s['title'], 'url': s['url'], 'pages': pages,
+                'entries': entries, 'words': words,
+                'summary': (first[:220] + '…') if len(first) > 220 else first,
+                'media': media.get('sections', {}).get(s['id'], []),
+            })
+            total_entries += len(entries); total_words += words; n_sections += 1
+        if lang == 'hi':
+            ptitle = p['title'] if p['num'] else ui('start')
+        else:
+            ptitle = title_case(p['title']) if p['num'] else ui('start')
+        parts_out.append({'num': p['num'], 'title': ptitle, 'intro': intro_html, 'sections': secs})
+    gateway = parts_out[0]['sections'][0]
+    gq = re.sub(ui('gateway'), '', gateway['title'])
+    ed = cfg['edition'].split(' · ')
+    topic = {
+        'slug': slug, 'code': code, 'short': cfg.get('short', short) if lang == 'hi' else short, 'shelf': shelf, 'order': order,
+        'title': cfg['title'] if lang == 'hi' else title_case(cfg['title']), 'subtitle': cfg['subtitle'], 'tagline': cfg['tagline'],
+        'edition': ed[0] + ' · ' + ed[1],
+        'color1': '#' + cfg['color1'], 'color2': '#' + cfg['color2'], 'light': '#' + cfg['light'],
+        'question': gq, 'entries': total_entries, 'words': total_words, 'sections': n_sections,
+        'cover': media.get('cover'),
+        'parts': parts_out,
+    }
+    summary = {k: topic[k] for k in ('slug', 'code', 'short', 'shelf', 'order', 'title', 'subtitle', 'edition', 'color1', 'color2', 'light', 'question', 'entries', 'words', 'sections', 'cover')} | \
+        {'url': f'/library/{slug}/', 'leaves': [{'id': s['id'], 'title': s['title'], 'url': s['url']} for s in parts_out[0]['sections'][1:]]}
+    print(f'{lang} {slug:22} {code} parts={len(parts_out):2} sections={n_sections:3} entries={total_entries:4} words={total_words}')
+    return topic, summary
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     linker = Linker()
@@ -387,51 +487,36 @@ def main():
                 for line in s['lines']:
                     for m in re.finditer(r'(?:^\s*-\s*☐\s*\*\*|^###\s*☐\s*)(' + ID_RE + ')', line):
                         linker.entries[m.group(1)] = f'{url}#{id_slug(m.group(1))}'
-    index = []
+    index, index_hi, cuts = [], [], {}
     for order, (slug, shelf, short) in enumerate(TOPICS):
-        cfg = json.loads((SRC / slug / 'config.json').read_text(encoding='utf-8'))
-        media_file = MEDIA / f'{slug}.json'
-        media = json.loads(media_file.read_text(encoding='utf-8')) if media_file.exists() else {}
-        code = raw[slug][0]['sections'][0]['id'][:3]
-        parts_out, total_entries, total_words, n_sections = [], 0, 0, 0
-        for p in raw[slug]:
-            intro_html = join_atoms(render_blocks(p['intro'], slug, linker, None)[0]) if any(x.strip() for x in p['intro']) else ''
-            secs = []
-            for s in p['sections']:
-                atoms, entries, words = render_blocks(s['lines'], slug, linker, s['id'])
-                # the short question pages of Part 0 stay whole; longer Sections are cut into 2-3 minute pages
-                pages = paginate(atoms) if p['num'] else [{'html': join_atoms(atoms), 'words': words, 'heads': [], 'summary': []}]
-                first = next((plain(x) for x in s['lines'] if x.strip() and not x.startswith(('#', '|', '>'))), '')
-                first = re.sub(r'^(Short answer:|Web address:.*?Keywords:)\s*', '', first)
-                secs.append({
-                    'id': s['id'], 'title': s['title'], 'url': s['url'], 'pages': pages,
-                    'entries': entries, 'words': words,
-                    'summary': (first[:220] + '…') if len(first) > 220 else first,
-                    'media': media.get('sections', {}).get(s['id'], []),
-                })
-                total_entries += len(entries); total_words += words; n_sections += 1
-            parts_out.append({'num': p['num'], 'title': title_case(p['title']) if p['num'] else 'Start here: five short questions', 'intro': intro_html, 'sections': secs})
-        gateway = parts_out[0]['sections'][0]
-        gq = re.sub(r'^The Gateway:\s*', '', gateway['title'])
-        topic = {
-            'slug': slug, 'code': code, 'short': short, 'shelf': shelf, 'order': order,
-            'title': title_case(cfg['title']), 'subtitle': cfg['subtitle'], 'tagline': cfg['tagline'],
-            'edition': cfg['edition'].split(' · ')[0] + ' · ' + cfg['edition'].split(' · ')[1],
-            'color1': '#' + cfg['color1'], 'color2': '#' + cfg['color2'], 'light': '#' + cfg['light'],
-            'question': gq, 'entries': total_entries, 'words': total_words, 'sections': n_sections,
-            'cover': media.get('cover'),
-            'parts': parts_out,
-        }
+        topic, summary = build_topic(slug, shelf, short, order, raw[slug], linker, cuts)
         (OUT / f'{slug}.json').write_text(json.dumps(topic, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
-        index.append({k: topic[k] for k in ('slug', 'code', 'short', 'shelf', 'order', 'title', 'subtitle', 'edition', 'color1', 'color2', 'light', 'question', 'entries', 'words', 'sections', 'cover')} |
-                     {'url': f'/library/{slug}/', 'leaves': [{'id': s['id'], 'title': s['title'], 'url': s['url']} for s in parts_out[0]['sections'][1:]]})
-        print(f'{slug:22} {code} parts={len(parts_out):2} sections={n_sections:3} entries={total_entries:4} words={total_words}')
+        index.append(summary)
+        # Hindi, where the translated part files exist. Addresses stay the English ones (the site adds /hi/).
+        if (SRC / slug / 'hi' / 'config.json').exists():
+            parts_hi = split_topic(slug, 'hi')
+            en_ids = [s['id'] for p in raw[slug] for s in p['sections']]
+            hi_ids = [s['id'] for p in parts_hi for s in p['sections']]
+            if en_ids != hi_ids:
+                missing = sorted(set(en_ids) - set(hi_ids)); extra = sorted(set(hi_ids) - set(en_ids))
+                sys.exit(f'{slug}: the Hindi Sections do not match the English ones (missing {missing[:8]}, extra {extra[:8]})')
+            urls = {s['id']: s['url'] for p in raw[slug] for s in p['sections']}
+            for p in parts_hi:
+                for s in p['sections']:
+                    s['url'] = urls[s['id']]
+            (OUT / 'hi').mkdir(exist_ok=True)
+            topic_hi, summary_hi = build_topic(slug, shelf, short, order, parts_hi, linker, cuts, 'hi')
+            (OUT / 'hi' / f'{slug}.json').write_text(json.dumps(topic_hi, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+            index_hi.append(summary_hi)
+    globals()['LANG'] = 'en'
     # one colour class per topic (the site's security rules do not allow inline style attributes)
     css = ['/* Made by tools/explore/build_explore.py from each booklet\'s cover colours. Do not edit by hand. */']
     for t in index:
         css.append(f".t-{t['slug']} {{ --c1: {t['color1']}; --c2: {t['color2']}; --c-light: {t['light']}; }}")
     (ROOT / 'src' / 'styles' / 'explore-topics.css').write_text('\n'.join(css) + '\n', encoding='utf-8')
     (OUT / 'index.json').write_text(json.dumps(index, ensure_ascii=False, indent=1), encoding='utf-8')
+    (OUT / 'hi').mkdir(exist_ok=True)
+    (OUT / 'hi' / 'index.json').write_text(json.dumps(index_hi, ensure_ascii=False, indent=1), encoding='utf-8')
 
 
 if __name__ == '__main__':

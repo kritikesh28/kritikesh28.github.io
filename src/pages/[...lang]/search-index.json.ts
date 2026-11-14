@@ -35,13 +35,14 @@ export async function GET({ url }: APIContext) {
   // the old six subject trees now forward to the one Library tree, so they are not listed here (14 Nov 2026)
   for (const ps of PF_SECTIONS)
     items.push({ t: pfName(ps, lang), d: lang === 'hi' ? ps.blurbHi : ps.blurbEn, u: L(`/portfolio/${ps.slug}/`), k: t('search.kind.project'), w: (lang === 'hi' ? ps.comingHi : ps.comingEn).join(' '), b: '' });
-  // Explore (English only for now): every topic and every page, with the names of its entries as keywords
+  // The 12 shelves: every topic and every page, with the names of its entries as keywords (Hindi where it is written)
   for (const ts of TOPICS) {
-    const tp = getTopic(ts.slug);
-    items.push({ t: `${tp.short}: The Encyclopedic Index`, d: tp.subtitle, u: L(ts.url), k: 'Library · Encyclopedic Index', w: `${tp.short} ${tp.code} ${tp.tagline}`, b: '' });
+    const tp = getTopic(ts.slug, lang);
+    const ix = tp.hiText ? 'विश्वकोशीय सूचकांक' : 'Encyclopedic Index';
+    items.push({ t: `${tp.short}: ${tp.hiText ? ix : 'The ' + ix}`, d: tp.subtitle, u: L(ts.url), k: `${t('nav.library')} · ${ix}`, w: `${tp.short} ${tp.code} ${tp.tagline}`, b: '' });
     for (const p of tp.parts)
       for (const sec of p.sections)
-        items.push({ t: sec.title, d: sec.summary, u: L(sec.url), k: `Library · ${tp.short} · ${sec.id}`, w: sec.entries.map((e) => e.name).join(' ').slice(0, 600), b: '' });
+        items.push({ t: sec.title, d: sec.summary, u: L(sec.url), k: `${t('nav.library')} · ${tp.short} · ${sec.id}`, w: sec.entries.map((e) => e.name).join(' ').slice(0, 600), b: '' });
   }
   const pages = pick({
     en: [

@@ -15,7 +15,7 @@ The 12 Encyclopedic Indexes: Movies, Books, Music, Musical Instruments, Cooking,
 | Reading page (a Leaf) | `/library/<topic>/<id>-<title>/`, then `.../2/`, `.../3/` | One page of a Section, **two to three minutes long**: an Overview box, the text, a Summary box, tick boxes, Back/Next (and the ← → keys) |
 | Old addresses | `/explore/...` | Forwarding pages only (`src/pages/explore/[...path].astro`), not indexed |
 
-There are about 540 reading pages, in **English only** for now; Hindi pages link to the English ones.
+There are about 540 reading pages in English. The Hindi text is being added shelf by shelf (from 14 Nov 2026); see part 3a. A shelf without Hindi yet shows its English text on the Hindi site, inside the Hindi frame, with a note.
 
 **The reading layout (14 Nov 2026).** Every topic and reading page has three columns: on the left, every Part as a drop-down with its Sections (and the pages of the Section you are in); in the middle, the page; on the right, the five starting questions and the topic at a glance. On phones the left bar opens from the **Contents** button and the right bar moves below the text.
 
@@ -44,6 +44,23 @@ There are about 540 reading pages, in **English only** for now; Hindi pages link
 4. Copy the same change into the booklet's part files in Drive (07_ENCYCLOPEDIC_INDEXES/_build_tools) and rebuild the DOCX and PDF there. (The PDFs are not on the website for now.)
 
 A changed Section title changes that page's address. Avoid renaming once a page is shared; if you must, add a redirect (see [08](08-fix-problems.md)).
+
+
+## 3a. Hindi shelves
+
+The Hindi text of a shelf lives beside the English in `tools/explore/source/<topic>/hi/`:
+
+- `config.json`: `title`, `short` (the name used in menus), `subtitle`, `tagline`, `edition`, in Hindi.
+- `p*.md`: the same Parts and Sections, translated. The meaning is kept, not the word order: write it the way a Hindi writer would.
+
+**Rules that keep the two languages in step** (the script checks them):
+
+1. Keep every marker as it is: `# PART n — ...` (the word PART stays in English), `## KNT-05 ...`, `- ☐ **KNT-05.1 Name**: ...`, `### ...`, `>` boxes, tables, numbered lists. IDs never change.
+2. Keep the same paragraphs, headings, list items and table rows **in the same order**. Then the Hindi pages are cut exactly where the English ones are, and every page has the same address in both languages (only `/hi/` is added), so the language switch keeps the reader on the same page. If a Section has a different number of blocks, the script prints a warning and that page falls back to the English text on the Hindi site.
+3. The words the script looks for are Hindi on Hindi pages: `**छोटा जवाब:**` (Short answer), `**याद रखिए:**` (Remember this), `**अगला:**` (Next), `**वेब पता:**` and `**मुख्य शब्द:**` (Web address, Keywords), and the gateway title starts with `प्रवेश द्वार:`; a recap title starts with `दोहराव:`.
+4. Follow the Hindi style rules in [15](15-languages-and-hindi.md), part 1 (everyday Hindi, hard words explained, masculine first person).
+
+Run `python3 -I tools/explore/build_explore.py` as usual: it writes `src/data/explore/hi/<topic>.json` and `src/data/explore/hi/index.json`. The site picks the Hindi file up by itself (`getTopic(slug, 'hi')` in `src/explore.ts`), marks the page as really written in Hindi, and drops the "in English" notes.
 
 ## 4. Add pictures and videos
 
