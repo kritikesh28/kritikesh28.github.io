@@ -43,12 +43,11 @@ The whole tree is at `/library/map/`. The six older trees of long reads (AI & ML
 
 ## 4. The background sound
 
-`src/scripts/ambient.ts` plays soft background music on every page: a bamboo-flute track with birdsong, `public/audio/flute-and-birds.mp3` (5 min 13 s, looped). Kritikesh chose it on 14 Nov 2026 to play very quietly, the way music plays in the background of a cinema foyer. It replaced the flute that was made live in the browser.
+`src/scripts/ambient.ts` plays soft sparrow chirps on every page, and nothing else: short rising-falling chirps in groups of 2 to 5, from the left or right, with a quiet gap of 3.5 to 11 seconds between groups. They are made live in the browser with the Web Audio API (no sound files). Kritikesh chose this on 14 Nov 2026 after trying a flute (first made in the browser, then a recorded track): no flute, and the chirps must carry on without a break from page to page. Keep the chirp timing and shape as they are.
 
-- **The track.** "Nature Bird Bamboo Flute Morning Relaxing Music", shared as copyright-free by its creator, Sujan. Before replacing it, check that the new track's licence allows use on a website, and keep the creator's name here. The file was levelled to about -16 LUFS with a 1 s fade-in and 3 s fade-out (so the loop has no click) and saved as an 80 kbps MP3 (about 3 MB):
-  `ffmpeg -i in.mp3 -map_metadata -1 -af "loudnorm=I=-16:TP=-1.5:LRA=11,afade=t=in:d=1,afade=t=out:st=<length-3>:d=3" -c:a libmp3lame -b:a 80k public/audio/flute-and-birds.mp3`
-- **On by default.** It starts at once where the browser allows it. Most browsers allow sound only after a tap, click or key press, so otherwise it fades in on the visitor's first one. The file is fetched only when it starts. The speaker button in the top bar switches it off, and that choice is remembered in the browser (`cs-ambient` in localStorage). It pauses while the tab is hidden.
-- **Loudness.** `LEVEL` (now `0.2`, on a 0 to 1 scale) is the volume: about -30 LUFS on average, low and in the background. Raise it for louder, lower it for softer.
+- **Carrying on across pages.** Each page of the site is a separate page load, so the sound starts again on each one. To hide that: after the first page of a visit the chirps start at full level with no fade-in, and the next group keeps the timing it had on the page before (`cs-ambient-live` in sessionStorage, only for that tab). A page change falls in a quiet gap, so it is not heard. Chrome, Edge and Android Chrome let it go on straight away once the visitor has tapped anywhere on the site; Safari and Firefox may wait for a tap on each new page. A sound with no break at all in every browser would need the site to change pages without reloading (Astro's ClientRouter), which means changing every page script; that has not been done.
+- **On by default.** It starts at once where the browser allows it, otherwise on the visitor's first tap, click or key press. The speaker button in the top bar switches it off, and that choice is remembered in the browser (`cs-ambient` in localStorage). It is quiet while the tab is hidden.
+- **Loudness.** `LEVEL` (now `0.15`, on a 0 to 1 scale) sets the overall level. Raise it for louder, lower it for softer.
 - **Turning it off for everyone.** Delete the `import('../scripts/ambient')` line in `src/layouts/Base.astro`.
 
 ## 5. My story
