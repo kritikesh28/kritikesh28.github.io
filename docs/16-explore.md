@@ -15,7 +15,7 @@ The 12 Encyclopedic Indexes: Movies, Books, Music, Musical Instruments, Cooking,
 | Reading page (a Leaf) | `/library/<topic>/<id>-<title>/`, then `.../2/`, `.../3/` | One page of a Section, **two to three minutes long**: an Overview box, the text, a Summary box, tick boxes, Back/Next (and the ← → keys) |
 | Old addresses | `/explore/...` | Forwarding pages only (`src/pages/explore/[...path].astro`), not indexed |
 
-There are about 540 reading pages in English. The Hindi text is being added shelf by shelf (from 14 Nov 2026); see part 3a. A shelf without Hindi yet shows its English text on the Hindi site, inside the Hindi frame, with a note.
+There are about 540 reading pages in English, and **all 12 shelves are also fully in Hindi** (done 14 Nov 2026, pull requests #37 to #46); see part 3a. Every Hindi page has the same address as its English twin, with `/hi/` in front.
 
 **The reading layout (14 Nov 2026).** Every topic and reading page has three columns: on the left, every Part as a drop-down with its Sections (and the pages of the Section you are in); in the middle, the page; on the right, the five starting questions and the topic at a glance. On phones the left bar opens from the **Contents** button and the right bar moves below the text.
 
@@ -62,6 +62,8 @@ The Hindi text of a shelf lives beside the English in `tools/explore/source/<top
 
 Run `python3 -I tools/explore/build_explore.py` as usual: it writes `src/data/explore/hi/<topic>.json` and `src/data/explore/hi/index.json`. The site picks the Hindi file up by itself (`getTopic(slug, 'hi')` in `src/explore.ts`), marks the page as really written in Hindi, and drops the "in English" notes.
 
+**Status (14 Nov 2026): all 12 shelves are in Hindi.** Knitting (#37); Crochet, Sewing, Embroidery (#38); Technology (#39); Cooking (#40); Gardening (#41); Sports and games (#42); Music (#43); Musical instruments (#44); Books (#45); Movies (#46). In each one the Hindi has the same Parts, Sections and entries as the English (the script's counts match). If you add or change English text later, change the Hindi file in the same way, or that page falls back to English on the Hindi site until you do.
+
 ## 4. Add pictures and videos
 
 1. Prepare the picture as in [03 · Images](03-images.md) and upload it to `public/images/explore/<topic>/`.
@@ -90,9 +92,9 @@ Run `python3 -I tools/explore/build_explore.py` as usual: it writes `src/data/ex
 
 Ticks are saved only in the visitor's own browser (key `cs-explore-ticks`), never sent anywhere, and do not move between devices. The topic page shows progress and a "Clear my ticks" button. The privacy page says the same.
 
-## 6. Add Hindi later
+## 6. Hindi
 
-The layout is ready for Hindi (Devanagari fonts and line spacing are set). To add it: translate the part files into `tools/explore/source/hi/<topic>/` following the easy-Hindi rules in [15](15-languages-and-hindi.md), extend the script to write Hindi data, and give the pages a `[...lang]` route like the Library. Start with Part 0 (the five questions) of each topic.
+Done: every shelf has a Hindi copy (see part 3a for how it works and how to keep it in step with the English).
 
 ## 7. Change the shelves or the order
 
