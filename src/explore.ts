@@ -3,6 +3,7 @@
 // Do not edit the JSON by hand: change the part files in tools/explore/source/<topic>/ and run the script.
 
 import indexJson from './data/explore/index.json';
+import indexHiJson from './data/explore/hi/index.json';
 
 export type Media =
   | { type: 'image'; src: string; alt: string; caption?: string; credit?: string }
@@ -21,7 +22,7 @@ export type TopicSummary = {
   color1: string; color2: string; light: string; question: string; entries: number; words: number; sections: number;
   cover: Cover; url: string; leaves: { id: string; title: string; url: string }[];
 };
-export type Topic = TopicSummary & { tagline: string; parts: Part[] };
+export type Topic = TopicSummary & { tagline: string; parts: Part[]; hiText?: boolean };
 
 export type ShelfId = 'stories' | 'living' | 'how' | 'needle';
 export const SHELVES: { id: ShelfId; title: string; blurb: string }[] = [
@@ -34,7 +35,18 @@ export const SHELVES: { id: ShelfId; title: string; blurb: string }[] = [
 export const TOPICS = indexJson as unknown as TopicSummary[];
 
 const files = import.meta.glob<Topic>('./data/explore/*.json', { eager: true, import: 'default' });
-export function getTopic(slug: string): Topic {
+// Hindi shelves (tools/explore/source/<topic>/hi/, same IDs and the same page cuts as the English)
+const filesHi = import.meta.glob<Topic>('./data/explore/hi/*.json', { eager: true, import: 'default' });
+export const TOPICS_HI = indexHiJson as unknown as TopicSummary[];
+/** True when this shelf's text has been written in Hindi */
+export const hasHindi = (slug: string) => `./data/explore/hi/${slug}.json` in filesHi;
+/** A shelf's summary in the reader's language (English where the Hindi is not written yet) */
+export const topicSummary = (slug: string, lang: string = 'en') =>
+  (lang === 'hi' && TOPICS_HI.find((t) => t.slug === slug)) || TOPICS.find((t) => t.slug === slug)!;
+
+/** A shelf in the reader's language: the Hindi text where it exists, otherwise the English (hiText tells which) */
+export function getTopic(slug: string, lang: string = 'en'): Topic {
+  if (lang === 'hi' && hasHindi(slug)) return { ...filesHi[`./data/explore/hi/${slug}.json`], hiText: true };
   const t = files[`./data/explore/${slug}.json`];
   if (!t) throw new Error(`Explore: no data for "${slug}". Run python3 -I tools/explore/build_explore.py`);
   return t;
@@ -61,8 +73,11 @@ export const flatPages = (t: Topic) =>
   flatSections(t).flatMap((s) => s.pages.map((pg, n) => ({ ...pg, n, of: s.pages.length, url: pageUrl(s, n), sec: s, part: s.part })));
 
 /** What a page is about, in a few words: its headings, or "more of ..." for a page that carries on a long list */
-export const pageLabel = (pg: Page, max = 2) =>
-  pg.heads.length ? pg.heads.slice(0, max).join(', ') + (pg.heads.length > max ? ` and ${pg.heads.length - max} more` : '') : pg.cont ? `${pg.cont}, continued` : 'More';
+export const pageLabel = (pg: Page, max = 2, lang: string = 'en') => {
+  const hi = lang === 'hi';
+  return pg.heads.length ? pg.heads.slice(0, max).join(', ') + (pg.heads.length > max ? (hi ? ` और ${pg.heads.length - max} अन्य` : ` and ${pg.heads.length - max} more`) : '')
+    : pg.cont ? (hi ? `${pg.cont} (आगे)` : `${pg.cont}, continued`) : hi ? 'और' : 'More';
+};
 
 /** Every short page of every shelf, for the [...section] routes in both languages */
 export const shelfPagePaths = () =>

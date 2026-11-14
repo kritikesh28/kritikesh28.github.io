@@ -8,7 +8,7 @@ import Base from '../../../layouts/Base.astro';
 import Contents from '../Contents.astro';
 import MediaBlock from '../MediaBlock.astro';
 import Progress from '../Progress.astro';
-import { getTopic, flatPages, minutes, isLeaf, pageUrl, pageLabel } from '../../../explore';
+import { getTopic, flatPages, minutes, isLeaf, pageUrl, pageLabel, hasHindi } from '../../../explore';
 import { SHELVES, fieldName, fieldUrl, shelfTitle } from '../../../library-map';
 import { langFromUrl, localizePath, pick } from '../../../i18n/config';
 import '../../../styles/explore.css';
@@ -35,7 +35,11 @@ const T = pick({
     parts: 'भाग', pages: 'छोटे पन्ने', entriesW: 'प्रविष्टियाँ', overMap: 'एक नज़र में और नक्शा →', contents: 'विषय-सूची', close: 'बंद करें' },
 }, lang);
 const hi = lang === 'hi';
-const t = getTopic(topic);
+// the Hindi text where it is written and has this page; otherwise the English
+const hiOk = hasHindi(topic) && flatPages(getTopic(topic, 'hi')).some((x) => x.url === url);
+const t = hi && hiOk ? getTopic(topic, 'hi') : getTopic(topic);
+const en = hi && !t.hiText; // Hindi site, text not yet written in Hindi
+const PL = (p: Parameters<typeof pageLabel>[0], m: number) => pageLabel(p, m, t.hiText ? 'hi' : 'en');
 const shelf = SHELVES.find((x) => x.slug === t.slug)!;
 const tUrl = L(shelf.url);
 const all = flatPages(t);
@@ -46,9 +50,11 @@ const prev = all[k - 1];
 const next = all[k + 1];
 const leaf = isLeaf(s.id) || s.id.endsWith('-00');
 const many = pg.of > 1;
-const label = pageLabel(pg, 3);
-const title = leaf ? s.title : many ? `${s.title}: ${pageLabel(pg, 2)} (${t.short})` : `${s.title} (${t.short})`;
-const description = (many && pg.n > 0 ? `${s.title}, page ${pg.n + 1} of ${pg.of}: ${label}. ` : '') + (s.summary || `${s.title}: part of ${t.short}, The Encyclopedic Index by Curious Sparoows.`);
+const label = PL(pg, 3);
+const title = leaf ? s.title : many ? `${s.title}: ${PL(pg, 2)} (${t.short})` : `${s.title} (${t.short})`;
+const description = t.hiText
+  ? (many && pg.n > 0 ? `${s.title}, ${pg.of} में से पन्ना ${pg.n + 1}: ${label}। ` : '') + (s.summary || `${s.title}: ${t.short} का हिस्सा, Curious Sparoows का विश्वकोशीय सूचकांक।`)
+  : (many && pg.n > 0 ? `${s.title}, page ${pg.n + 1} of ${pg.of}: ${label}. ` : '') + (s.summary || `${s.title}: part of ${t.short}, The Encyclopedic Index by Curious Sparoows.`);
 const leaves = t.parts[0].sections.filter((x) => isLeaf(x.id));
 const firstOfPart = pg.n === 0 && t.parts.find((p) => p.num === s.part.num)!.sections[0].id === s.id;
 const ids = s.entries.map((e) => e.id);
@@ -58,8 +64,8 @@ const schema = [
     '@type': 'Article',
     headline: many ? `${s.title}: ${label}` : s.title,
     url: new URL(pg.url, Astro.site).href,
-    inLanguage: 'en',
-    isPartOf: { '@type': 'Book', name: `${t.short}: The Encyclopedic Index`, url: new URL(shelf.url, Astro.site).href },
+    inLanguage: t.hiText ? 'hi' : 'en',
+    isPartOf: { '@type': 'Book', name: t.hiText ? `${t.short}: विश्वकोशीय सूचकांक` : `${t.short}: The Encyclopedic Index`, url: new URL(shelf.url, Astro.site).href },
     author: { '@id': new URL('/#person', Astro.site).href },
     wordCount: pg.words,
   },
@@ -73,22 +79,22 @@ const schema = [
     ],
   },
 ];
-const nextLabel = (x: (typeof all)[number]) => (x.sec.id === s.id ? pageLabel(x, 2) : x.sec.title);
+const nextLabel = (x: (typeof all)[number]) => (x.sec.id === s.id ? PL(x, 2) : x.sec.title);
 const carried = T.carried(pg.cont ?? '');
 ---
 
-<Base {title} description={description.slice(0, 300)} {schema} translated={['en']} type="article">
+<Base {title} description={description.slice(0, 300)} {schema} translated={hiOk ? ['en', 'hi'] : ['en']} type="article">
   <div class={`t-${t.slug}`}>
     <div class="x-wrap x-page x-3col">
       <Contents t={t} current={s.id} page={pg.n} />
 
-      <article lang={hi ? 'en' : undefined}>
+      <article lang={en ? 'en' : undefined}>
         <header class="x-head">
           <p class="x-crumbs" lang={hi ? 'hi' : undefined}>
             <a href={L('/library/')}>{T.lib}</a><span aria-hidden="true">›</span>
             <a href={L(fieldUrl(shelf.field))}>{fieldName(shelf.field, lang)}</a><span aria-hidden="true">›</span>
             <a href={tUrl}>{hi ? shelfTitle(shelf, lang) : t.short}</a><span aria-hidden="true">›</span>
-            <span>{T.part} {s.part.num}: <span lang={hi ? 'en' : undefined}>{s.part.title}</span></span>
+            <span>{T.part} {s.part.num}: <span lang={en ? 'en' : undefined}>{s.part.title}</span></span>
           </p>
           <span class="x-idchip">{s.id}</span>
           <h1>{s.title}</h1>
@@ -96,7 +102,7 @@ const carried = T.carried(pg.cont ?? '');
           <p class="x-meta" lang={hi ? 'hi' : undefined}>{minutes(pg.words)} {T.minRead}{many && <> · {T.pageOf(pg.n + 1, pg.of)}</>}</p>
           {many && (
             <ol class="x-dots" aria-label={T.dots}>
-              {s.pages.map((p2, n) => <li><a href={L(pageUrl(s, n))} aria-current={n === pg.n ? 'page' : undefined} title={pageLabel(p2, 1)}><span class="sr-only">{T.pageN} {n + 1}: {pageLabel(p2, 1)}</span></a></li>)}
+              {s.pages.map((p2, n) => <li><a href={L(pageUrl(s, n))} aria-current={n === pg.n ? 'page' : undefined} title={PL(p2, 1)}><span class="sr-only">{T.pageN} {n + 1}: {PL(p2, 1)}</span></a></li>)}
             </ol>
           )}
         </header>
@@ -106,11 +112,11 @@ const carried = T.carried(pg.cont ?? '');
             <h2 lang={hi ? 'hi' : undefined}>{T.over}</h2>
             {many && pg.n === 0 && <>
               <p lang={hi ? 'hi' : undefined}>{T.cut(pg.of)}</p>
-              <ol>{s.pages.map((p2, n) => <li>{n === 0 ? <strong>{pageLabel(p2, 3)} <span lang={hi ? 'hi' : undefined}>{T.thisPage}</span></strong> : <a href={L(pageUrl(s, n))}>{pageLabel(p2, 3)}</a>}</li>)}</ol>
+              <ol>{s.pages.map((p2, n) => <li>{n === 0 ? <strong>{PL(p2, 3)} <span lang={hi ? 'hi' : undefined}>{T.thisPage}</span></strong> : <a href={L(pageUrl(s, n))}>{PL(p2, 3)}</a>}</li>)}</ol>
             </>}
             {many && pg.n > 0 && <p><span lang={hi ? 'hi' : undefined}>{T.pageLine(pg.n + 1, pg.of)}</span> <strong>{label}</strong>. <a href={L(s.url)} lang={hi ? 'hi' : undefined}>{T.backStart}</a>.</p>}
             {!many && (pg.heads.length > 0 || s.entries.length > 0) && (
-              <p><span lang={hi ? 'hi' : undefined}>{T.onPage}</span> {pg.heads.length > 0 ? <strong>{pageLabel(pg, 4)}</strong> : <><span lang={hi ? 'hi' : undefined}>{T.entries(s.entries.length)}</span> <strong>{s.entries[0].name}</strong> <span lang={hi ? 'hi' : undefined}>{T.to}</span> <strong>{s.entries.at(-1)!.name}</strong></>}.</p>
+              <p><span lang={hi ? 'hi' : undefined}>{T.onPage}</span> {pg.heads.length > 0 ? <strong>{PL(pg, 4)}</strong> : <><span lang={hi ? 'hi' : undefined}>{T.entries(s.entries.length)}</span> <strong>{s.entries[0].name}</strong> <span lang={hi ? 'hi' : undefined}>{T.to}</span> <strong>{s.entries.at(-1)!.name}</strong></>}.</p>
             )}
             {!many && pg.heads.length === 0 && s.entries.length === 0 && <p>{s.summary}</p>}
           </section>
@@ -139,8 +145,8 @@ const carried = T.carried(pg.cont ?? '');
         {ids.length > 2 && pg.n === pg.of - 1 && <Progress ids={ids} label={T.thisSec} />}
 
         <nav class="x-pager" aria-label={T.nav} lang={hi ? 'hi' : undefined}>
-          {prev ? <a href={L(prev.url)} data-prev><small>{T.back}{prev.sec.id === s.id ? ` · ${T.page} ${prev.n + 1}` : ` · ${prev.sec.id}`}</small><span lang={hi ? 'en' : undefined}>{nextLabel(prev)}</span></a> : <a href={tUrl} data-prev><small>{T.backTo}</small><span>{hi ? shelfTitle(shelf, lang) : t.short}</span></a>}
-          {next ? <a class="next" href={L(next.url)} data-next><small>{T.next}{next.sec.id === s.id ? ` · ${T.page} ${next.n + 1}` : ` · ${next.sec.id}`} →</small><span lang={hi ? 'en' : undefined}>{nextLabel(next)}</span></a> : <a class="next" href={`${L('/library/')}#shelves`} data-next><small>{T.more2}</small><span>{T.theLib}</span></a>}
+          {prev ? <a href={L(prev.url)} data-prev><small>{T.back}{prev.sec.id === s.id ? ` · ${T.page} ${prev.n + 1}` : ` · ${prev.sec.id}`}</small><span lang={en ? 'en' : undefined}>{nextLabel(prev)}</span></a> : <a href={tUrl} data-prev><small>{T.backTo}</small><span>{hi ? shelfTitle(shelf, lang) : t.short}</span></a>}
+          {next ? <a class="next" href={L(next.url)} data-next><small>{T.next}{next.sec.id === s.id ? ` · ${T.page} ${next.n + 1}` : ` · ${next.sec.id}`} →</small><span lang={en ? 'en' : undefined}>{nextLabel(next)}</span></a> : <a class="next" href={`${L('/library/')}#shelves`} data-next><small>{T.more2}</small><span>{T.theLib}</span></a>}
         </nav>
         <p class="x-keys" lang={hi ? 'hi' : undefined}>{T.keys}</p>
       </article>
@@ -149,13 +155,13 @@ const carried = T.carried(pg.cont ?? '');
         <div class="x-rail-box">
           <h2>{T.start}</h2>
           <p>{T.startP}</p>
-          <ol lang={hi ? 'en' : undefined}>
-            {leaves.map((q) => <li><a href={L(q.url)} aria-current={q.id === s.id ? 'page' : undefined}>{q.title.replace(/^Recap:\s*/, 'Recap: ')}</a></li>)}
+          <ol lang={en ? 'en' : undefined}>
+            {leaves.map((q) => <li><a href={L(q.url)} aria-current={q.id === s.id ? 'page' : undefined}>{q.title}</a></li>)}
           </ol>
         </div>
         <div class="x-rail-box">
           <h2>{hi ? shelfTitle(shelf, lang) : t.short}</h2>
-          <p lang={hi ? 'en' : undefined}>{t.subtitle}.</p>
+          <p lang={en ? 'en' : undefined}>{t.subtitle}.</p>
           <p class="x-rail-facts">{t.parts.length - 1} {T.parts} · {all.length} {T.pages} · {t.entries} {T.entriesW}</p>
           <a href={tUrl}>{T.overMap}</a>
         </div>

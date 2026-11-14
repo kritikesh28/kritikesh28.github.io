@@ -5,7 +5,7 @@
 import Base from '../../../layouts/Base.astro';
 import Progress from '../Progress.astro';
 import Contents from '../Contents.astro';
-import { getTopic, minutes, isLeaf, flatPages } from '../../../explore';
+import { getTopic, minutes, isLeaf, flatPages, hasHindi } from '../../../explore';
 import { SHELVES, fieldName, fieldUrl, nodeName, themeOf, shelfTitle, branchName, getField } from '../../../library-map';
 import { langFromUrl, localizePath, pick } from '../../../i18n/config';
 import '../../../styles/explore.css';
@@ -15,7 +15,9 @@ interface Props { topic: string }
 const lang = langFromUrl(Astro.url);
 const hi = lang === 'hi';
 const L = (p: string) => localizePath(p, lang);
-const t = getTopic(Astro.props.topic);
+const t = getTopic(Astro.props.topic, lang);
+const en = hi && !t.hiText; // Hindi site, text not yet written in Hindi
+const bookName = t.hiText ? `${t.short}: विश्वकोशीय सूचकांक` : `${t.short}: The Encyclopedic Index`;
 const shelf = SHELVES.find((x) => x.slug === t.slug)!;
 const tUrl = shelf.url;
 const node = nodeName(shelf.node);
@@ -26,15 +28,17 @@ const leaves = part0.sections.filter((s) => isLeaf(s.id));
 const gateway = part0.sections[0];
 const nPages = flatPages(t).length;
 const allIds = t.parts.flatMap((p) => p.sections.flatMap((s) => s.entries.map((e) => e.id)));
-const description = `${t.short}: The Encyclopedic Index. ${t.subtitle}. ${t.sections} short pages and ${t.entries} entries covering ${t.tagline.replace(/ · /g, ', ').toLowerCase()}.`.slice(0, 300);
+const description = (t.hiText
+  ? `${bookName}। ${t.subtitle}। ${t.sections} छोटे पन्ने और ${t.entries} प्रविष्टियाँ: ${t.tagline.replace(/ · /g, ', ')}।`
+  : `${t.short}: The Encyclopedic Index. ${t.subtitle}. ${t.sections} short pages and ${t.entries} entries covering ${t.tagline.replace(/ · /g, ', ').toLowerCase()}.`).slice(0, 300);
 const schema = [
   {
     '@type': 'Book',
-    name: `${t.short}: The Encyclopedic Index`,
+    name: bookName,
     alternateName: t.subtitle,
-    url: new URL(tUrl, Astro.site).href,
+    url: new URL(L(tUrl), Astro.site).href,
     bookEdition: t.edition,
-    inLanguage: 'en',
+    inLanguage: t.hiText ? 'hi' : 'en',
     author: { '@id': new URL('/#person', Astro.site).href },
   },
   {
@@ -67,7 +71,7 @@ const overP = T.overP(nPages);
 const srcUrl = t.parts.at(-1)!.sections.find((x) => x.id.endsWith('-S'))?.url;
 ---
 
-<Base title={`${t.short}: The Encyclopedic Index`} {description} {schema} translated={['en']} image={t.cover?.src}>
+<Base title={bookName} {description} {schema} translated={hasHindi(t.slug) ? ['en', 'hi'] : ['en']} image={t.cover?.src}>
   <div class={`t-${t.slug}`}>
     <section class="x-cover x-topic-hero">
       {t.cover && <img class="x-cover-img" src={t.cover.src} alt={t.cover.alt} decoding="async" />}
@@ -76,9 +80,9 @@ const srcUrl = t.parts.at(-1)!.sections.find((x) => x.id.endsWith('-S'))?.url;
         <p class="x-crumbs"><a href={L('/library/')}>{T.lib}</a><span aria-hidden="true">›</span><a href={`${L('/library/map/')}#${themeOf(shelf.field).id}`}>{hi ? themeOf(shelf.field).hi : themeOf(shelf.field).en}</a><span aria-hidden="true">›</span><a href={L(fieldUrl(shelf.field))}>{fieldName(shelf.field, lang)}</a>{node && <><span aria-hidden="true">›</span><a href={`${L(fieldUrl(shelf.field))}#${branchCode}`}>{nodeLabel}</a></>}</p>
         <p class="x-level">{T.level}</p>
         <h1>{shelfName}</h1>
-        <p class="x-question" lang={hi ? 'en' : undefined}>{t.subtitle}</p>
+        <p class="x-question" lang={en ? 'en' : undefined}>{t.subtitle}</p>
         <ul class="x-facts">
-          <li>{t.parts.length} {T.parts}</li><li>{nPages} {T.pages}</li><li>{t.entries} {T.entries}</li><li>{T.about(minutes(t.words))}</li><li lang={hi ? 'en' : undefined}>{t.edition}</li>
+          <li>{t.parts.length} {T.parts}</li><li>{nPages} {T.pages}</li><li>{t.entries} {T.entries}</li><li>{T.about(minutes(t.words))}</li><li lang={en ? 'en' : undefined}>{t.edition}</li>
         </ul>
         <div class="x-actions">
           <a class="x-btn" href={L(leaves[0]?.url ?? gateway.url)}>{T.start}</a>
@@ -93,19 +97,19 @@ const srcUrl = t.parts.at(-1)!.sections.find((x) => x.id.endsWith('-S'))?.url;
       <div>
         <section class="x-over" aria-label={T.over}>
           <h2>{T.over}</h2>
-          <p lang={hi ? 'en' : undefined}>{t.tagline}.</p>
+          <p lang={en ? 'en' : undefined}>{t.tagline}.</p>
           <p>{overP[0]} <strong>{overP[1]}</strong> {overP[2]} <em>{overP[3]}</em>{hi ? ' ' : ''}{overP[4]}</p>
         </section>
 
         <div class="x-section-title"><h2>{T.fiveH}</h2><p>{T.fiveP} <a href={L(gateway.url)}>{T.why}</a></p></div>
         <ol class="x-questions">
           {leaves.map((s, i) => (
-            <li><a class="x-q" href={L(s.url)}><small>{/^Recap/.test(s.title) ? T.recap : T.q(i + 1)}</small><span lang={hi ? 'en' : undefined}>{s.title.replace(/^Recap:\s*/, '')}</span></a></li>
+            <li><a class="x-q" href={L(s.url)}><small>{/^(Recap|दोहराव)/.test(s.title) ? T.recap : T.q(i + 1)}</small><span lang={en ? 'en' : undefined}>{s.title.replace(/^(Recap|दोहराव):\s*/, '')}</span></a></li>
           ))}
         </ol>
 
         <div class="x-section-title" id="map"><h2>{T.mapH}</h2><p>{T.mapP(rest.length, hi ? shelfName : t.short.toLowerCase())}</p></div>
-        <ol class="x-parts" start="1" lang={hi ? 'en' : undefined}>
+        <ol class="x-parts" start="1" lang={en ? 'en' : undefined}>
           {rest.map((p) => (
             <li class="x-part">
               <header><span class="num">{p.num}</span><h3>{p.title}</h3></header>
@@ -118,7 +122,7 @@ const srcUrl = t.parts.at(-1)!.sections.find((x) => x.id.endsWith('-S'))?.url;
           ))}
         </ol>
 
-        <p class="x-edition"><small><span lang={hi ? 'en' : undefined}>{t.edition}</span>. {T.ed} <a href={srcUrl ? L(srcUrl) : '#'}>{T.src}</a>.</small></p>
+        <p class="x-edition"><small><span lang={en ? 'en' : undefined}>{t.edition}</span>. {T.ed} <a href={srcUrl ? L(srcUrl) : '#'}>{T.src}</a>.</small></p>
       </div>
       <aside class="x-rail" aria-label={T.prog}>
         <Progress ids={allIds} label={T.prog} clear={`${t.code}-`} />

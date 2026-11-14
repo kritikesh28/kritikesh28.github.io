@@ -1,0 +1,53 @@
+[
+ {
+  "slug": "knitting",
+  "code": "KNT",
+  "short": "बुनाई",
+  "shelf": "needle",
+  "order": 9,
+  "title": "बुनाई",
+  "subtitle": "दो सलाइयाँ और एक धागा गरम स्वेटर कैसे बन जाते हैं",
+  "edition": "संस्करण 1 · 13 नवंबर 2026",
+  "color1": "#2E5A8A",
+  "color2": "#B5651D",
+  "light": "#EEF3F9",
+  "question": "दो सलाइयाँ और एक धागा गरम स्वेटर कैसे बन जाते हैं?",
+  "entries": 99,
+  "words": 4944,
+  "sections": 27,
+  "cover": null,
+  "url": "/library/knitting/",
+  "leaves": [
+   {
+    "id": "KNT-00.01",
+    "title": "बुनाई क्या है?",
+    "url": "/library/knitting/knt-00-01-what-is-knitting/"
+   },
+   {
+    "id": "KNT-00.02",
+    "title": "पहला मोज़ा किसने बुना?",
+    "url": "/library/knitting/knt-00-02-who-knitted-the-first-sock/"
+   },
+   {
+    "id": "KNT-00.03",
+    "title": "मछुआरों के स्वेटरों पर नमूने क्यों होते हैं?",
+    "url": "/library/knitting/knt-00-03-why-are-fishermen-s-sweaters-patterned/"
+   },
+   {
+    "id": "KNT-00.04",
+    "title": "बुनाई मशीन कैसे बनी?",
+    "url": "/library/knitting/knt-00-04-how-did-knitting-become-a-machine/"
+   },
+   {
+    "id": "KNT-00.05",
+    "title": "क्या बुनाई एक तरह का कंप्यूटर कोड है?",
+    "url": "/library/knitting/knt-00-05-is-knitting-a-kind-of-computer-code/"
+   },
+   {
+    "id": "KNT-00.06",
+    "title": "दोहराव: फंदों से लटकते फंदे",
+    "url": "/library/knitting/knt-00-06-recap-loops-that-hang-from-loops/"
+   }
+  ]
+ }
+]

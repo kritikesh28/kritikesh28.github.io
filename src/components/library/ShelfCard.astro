@@ -6,6 +6,7 @@ import '../../styles/explore-topics.css';
 import LevelIcon from '../LevelIcon.astro';
 import { fieldName, nodeName, themeOf, shelfTitle, type Shelf } from '../../library-map';
 import { langFromUrl, pick, localizePath } from '../../i18n/config';
+import { hasHindi, topicSummary } from '../../explore';
 interface Props { s: Shelf }
 const { s } = Astro.props;
 const lang = langFromUrl(Astro.url);
@@ -14,6 +15,9 @@ const T = pick({
   en: { pages: (n: number) => `${n} pages`, course: 'Short course', index: 'Encyclopedic index', open: 'Start reading →', en: '' },
   hi: { pages: (n: number) => `${n} पन्ने`, course: 'छोटा कोर्स', index: 'विश्वकोश सूचकांक', open: 'पढ़ना शुरू करें →', en: 'अंग्रेज़ी में' },
 }, lang);
+// a shelf whose text is written in Hindi shows its Hindi question and no "in English" note
+const hiDone = lang === 'hi' && s.kind === 'index' && hasHindi(s.slug);
+const question = hiDone ? topicSummary(s.slug, 'hi').subtitle : s.question;
 const where = [fieldName(s.field, lang), lang === 'en' ? nodeName(s.node) : undefined].filter(Boolean).join(' › ');
 ---
 <article class:list={['shelf', `t-${s.slug}`]} data-c={themeOf(s.field).id} id={`shelf-${s.slug}`}>
@@ -21,9 +25,9 @@ const where = [fieldName(s.field, lang), lang === 'en' ? nodeName(s.node) : unde
   <a class="shelf-link" href={L(s.url)}>
     <span class="shelf-top"><LevelIcon level="Twig" size={26} /><span class="small">{s.kind === 'course' ? T.course : T.index} · {T.pages(s.pages)}</span></span>
     <h3>{shelfTitle(s, lang)}</h3>
-    <p class="small q" lang="en">{s.question}</p>
+    <p class="small q" lang={lang === 'hi' && !hiDone ? 'en' : undefined}>{question}</p>
     <p class="small where">{where}</p>
-    <span class="go small">{T.open}{T.en && <em> ({T.en})</em>}</span>
+    <span class="go small">{T.open}{T.en && !hiDone && <em> ({T.en})</em>}</span>
   </a>
 </article>
 <style>
