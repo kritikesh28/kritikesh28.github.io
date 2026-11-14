@@ -1,0 +1,623 @@
+# The Curious Question bank (English). One question per line: Topic | Question | Answer
+# Rules: the answer is complete on the card, true and checked; no teasing. Lines starting with # are notes.
+# Guide: docs/13-add-to-the-library.md, "Add a curious question".
+Universe | How many stars can you see on a clear, dark night? | Only about 2,500 to 5,000 at once with the naked eye, even far from city lights. The Milky Way alone has a few hundred billion.
+Universe | Is the Sun a big star? | No, it is an ordinary, middle-sized yellow dwarf. Some stars, like Betelgeuse, are wide enough to swallow the orbits of Mars or beyond.
+Universe | Why do stars twinkle but planets mostly do not? | Stars are so far away they look like tiny points, and moving air bends that thin beam. Planets show small discs, so the wobbles average out.
+Universe | Is there a dark side of the Moon? | Not a permanently dark one. There is a far side we never see from Earth, but it gets as much sunlight as the near side.
+Universe | How long does moonlight take to reach us? | About 1.3 seconds. The Moon is roughly 384,000 kilometres away.
+Universe | What is a light-year? | A distance, not a time: how far light travels in one year, about 9.46 trillion kilometres.
+Universe | Which is the nearest star after the Sun? | Proxima Centauri, about 4.2 light-years away. Its light left it more than four years ago.
+Universe | Why is Mars red? | Its dust is rich in iron oxide, which is rust. Fine red dust blown into the air also tints its sky.
+Universe | Which planet has the longest day? | Venus. It spins so slowly that one turn takes about 243 Earth days, longer than its year of about 225 days.
+Universe | Is Pluto still a planet? | Since 2006 it is called a dwarf planet, because it has not cleared its path of other icy bodies.
+Universe | What is a black hole? | A region where matter is packed so tightly that nothing, not even light, can climb out once it crosses the edge, the event horizon.
+Universe | Are comets and asteroids the same? | No. Asteroids are mostly rock and metal; comets carry ice and dust and grow glowing tails when they come near the Sun.
+Universe | Why does the Moon look bigger near the horizon? | It is an illusion of the brain. Photos show the Moon is the same size high in the sky and near the horizon.
+Universe | What is a shooting star? | Not a star at all. It is a speck of space dust, often smaller than a grain of sand, burning up as it hits our air at high speed.
+Universe | How old is the Sun? | About 4.6 billion years, and it is roughly halfway through its life as a steady star.
+Universe | Can you hear sounds in space? | No. Sound needs air or another material to travel through, and space is almost empty.
+Universe | Why does Saturn have rings? | They are billions of pieces of ice and rock in orbit, probably the remains of moons or comets broken up by Saturn's gravity.
+Universe | What is the largest planet? | Jupiter. More than 1,300 Earths could fit inside it, and it has more mass than all the other planets put together.
+Universe | How hot is the surface of the Sun? | About 5,500 degrees Celsius. Its thin outer layer, the corona, is strangely much hotter, over a million degrees.
+Universe | What is the Milky Way? | Our home galaxy: a spiral of a few hundred billion stars. The milky band in a dark sky is its disc seen from inside.
+Universe | Is the Moon moving away from Earth? | Yes, by about 3.8 centimetres a year. Lasers bounced off mirrors left by Apollo astronauts measure it.
+Universe | What makes the northern and southern lights? | Charged particles from the Sun hit our upper air near the poles and make its gases glow green, red and purple.
+Universe | Which planet is the hottest? | Venus, not Mercury. Its thick carbon dioxide air traps heat, so it stays around 465 degrees Celsius.
+Universe | Why is the sky dark at night if there are so many stars? | The universe has an age, so light from very distant stars has not reached us yet, and expansion stretches old light out of sight.
+Space | Who was the first person in space? | Yuri Gagarin of the Soviet Union, on 12 April 1961. His flight went once around Earth in about 108 minutes.
+Space | When did humans first walk on the Moon? | On 20 July 1969, during Apollo 11. Neil Armstrong stepped out first, then Buzz Aldrin.
+Space | Who was the first Indian in space? | Rakesh Sharma, in 1984, aboard a Soviet Soyuz spacecraft. He spent about eight days in orbit.
+Space | What did Chandrayaan-3 achieve? | In August 2023 India became the first country to land a spacecraft near the Moon's south pole.
+Space | What was Mangalyaan? | India's Mars Orbiter Mission. In 2014 it reached Mars orbit on the first try, a first for any country.
+Space | How fast does the International Space Station move? | About 28,000 kilometres per hour. Its crew sees around 16 sunrises every day.
+Space | Why do astronauts float in the space station? | Not because gravity is gone. The station and its crew are falling around Earth together, so they feel weightless.
+Space | What was the first satellite? | Sputnik 1, launched by the Soviet Union on 4 October 1957. It was a metal ball about 58 centimetres wide that beeped radio signals.
+Space | How far has a human-made object travelled? | Voyager 1, launched in 1977, is more than 24 billion kilometres away and has left the Sun's bubble of solar wind.
+Space | Why are rockets launched toward the east? | Earth spins eastward, so launching that way borrows free speed from the spin. Launch sites near the equator get the most.
+Space | What does ISRO stand for? | The Indian Space Research Organisation, founded in 1969. Vikram Sarabhai is called the father of India's space programme.
+Space | What is the James Webb Space Telescope? | A huge infrared telescope launched in 2021. It sees heat light from the earliest galaxies and the air of distant planets.
+Earth | How old is the Earth? | About 4.54 billion years, worked out from the oldest meteorites and rocks using radioactive clocks.
+Earth | What is the Earth's core made of? | Mostly iron and nickel. The inner core is solid and the outer core is liquid metal, whose flow makes our magnetic field.
+Earth | Why do earthquakes happen? | Earth's crust is broken into plates that slowly move. Stress builds where they lock together and is released in a sudden slip.
+Earth | How much of Earth is covered by water? | About 71 percent. But about 97 percent of all water is salty sea; only a small share is fresh and easy to use.
+Earth | What is the deepest point in the ocean? | The Challenger Deep in the Mariana Trench, about 11 kilometres down. Mount Everest would fit with room to spare.
+Earth | Why is the sea salty? | Rain slowly washes salts from rocks into rivers and then to the sea. Water evaporates, but the salt stays behind.
+Earth | What makes a volcano erupt? | Molten rock rises because it is lighter than the rock around it. Gas dissolved in it expands near the surface and can blast it out.
+Earth | Why do we have seasons? | Earth's axis is tilted about 23.4 degrees. Each half of the planet leans toward the Sun for part of the year and gets stronger sunlight.
+Earth | Is Earth a perfect ball? | No. Its spin makes it bulge at the equator, about 43 kilometres wider across the equator than from pole to pole.
+Earth | What is the highest mountain on Earth? | Mount Everest, about 8,849 metres above sea level. Measured from its base on the sea floor, Mauna Kea in Hawaii is taller.
+Earth | What is a tsunami? | A series of long, fast waves pushed by a sudden shift of the sea floor, usually an undersea earthquake, which can grow huge near shore.
+Earth | What are fossils? | Remains or traces of ancient life, often turned to stone as minerals slowly replace bones, shells or wood buried in sediment.
+Earth | Where does sand come from? | Mostly from rocks broken down by water, wind and ice over long ages. Some beaches are made of crushed shells and coral.
+Earth | Why does the Earth have a magnetic field? | Swirling liquid iron in the outer core acts like a giant dynamo. The field shields us from much of the Sun's harmful particles.
+Earth | What is the largest hot desert? | The Sahara in Africa. The largest desert of all is Antarctica, because a desert is defined by how little rain or snow it gets.
+Earth | Can a river flow uphill? | Not on its own over land, but some rivers flow north, like the Nile, because north is not the same as uphill.
+Earth | What is the longest river in the world? | The Nile and the Amazon are both about 6,400 to 7,000 kilometres; experts still argue which is longer, depending on where each source is placed.
+Weather | What causes thunder? | Lightning heats the air to around 30,000 degrees Celsius in an instant. The air expands so fast it makes a shock wave we hear as thunder.
+Weather | How can you tell how far away lightning is? | Count the seconds between the flash and the thunder and divide by three. That gives the distance in kilometres.
+Weather | What brings the Indian monsoon? | In summer the land heats faster than the sea, and the seasonal shift of winds draws moist air in from the Indian Ocean.
+Weather | Why do clouds float if water is heavy? | Cloud droplets are tiny, about a hundredth of a millimetre, and rising air easily holds them up. They fall as rain when they merge and grow.
+Weather | Why is it colder on mountain tops? | Rising air expands as pressure drops, and expanding air cools. Air thins and cools by about 6.5 degrees for every kilometre up.
+Weather | What makes a rainbow? | Sunlight enters raindrops, bends, bounces off the back and bends again, splitting into colours. You see it with the Sun behind you.
+Weather | What is the difference between weather and climate? | Weather is what happens today; climate is the average pattern over about thirty years or more.
+Weather | What is a cyclone? | A huge spinning storm over warm seas. The same storm is called a hurricane in the Atlantic and a typhoon in the northwest Pacific.
+Climate | What is the greenhouse effect? | Gases like carbon dioxide let sunlight in but slow heat leaving. Without them Earth would average about minus 18 degrees Celsius.
+Climate | Why does melting sea ice not raise sea level much, but land ice does? | Floating ice already displaces its weight in water. Ice on land, like Greenland's, adds new water to the sea when it melts.
+Climate | What is the ozone layer? | A thin layer of ozone gas about 15 to 35 kilometres up that absorbs most harmful ultraviolet light from the Sun.
+Climate | Is the ozone hole getting better? | Yes. After the 1987 Montreal Protocol banned most ozone-harming chemicals, the layer has begun slowly healing.
+Geography | Which is the largest country by area? | Russia, covering about 17 million square kilometres across 11 time zones.
+Geography | Which country has the most people? | India, since 2023, with more than 1.4 billion people, just ahead of China.
+Geography | What is the smallest country in the world? | Vatican City, inside Rome, at about 0.44 square kilometres.
+Geography | Why are maps usually drawn with north at the top? | It is a habit, not a rule of nature. Many old maps put east or south at the top; European printing made north-up common.
+Geography | Why does Greenland look as big as Africa on many maps? | The common Mercator map stretches areas near the poles. Africa is really about 14 times bigger than Greenland.
+Geography | What is the Tropic of Cancer? | The line about 23.4 degrees north where the Sun is directly overhead at noon on the June solstice. It passes through eight Indian states.
+Geography | Which is the largest ocean? | The Pacific. It is bigger than all the land on Earth put together.
+Geography | What is a delta? | Land built where a river slows at the sea and drops its mud. The Ganga-Brahmaputra delta is the world's largest.
+Geography | Why is the Thar Desert dry? | The monsoon winds pass over it with little to stop them, and the Aravalli hills run parallel to the winds instead of blocking them.
+Geography | What is GIS? | Geographic Information System: software that stores data with locations, so you can map and analyse it, like flood risk or school access.
+Geography | What is latitude and longitude? | A grid for finding any place: latitude measures north or south of the equator, longitude east or west of Greenwich in London.
+Geography | Why does India have one time zone? | By choice. Indian Standard Time is set at 82.5 degrees east, near Mirzapur, even though the country spans about 30 degrees of longitude.
+India | Why is the Aravalli range special? | It is one of the oldest fold mountain ranges on Earth, worn down over more than a billion years to low hills.
+India | Which is the longest river in India? | The Ganga is the longest river flowing mostly within India, about 2,500 kilometres from Gangotri to the Bay of Bengal.
+India | Where is the wettest place in India? | Mawsynram and Cherrapunji in Meghalaya, which get around 11,000 millimetres of rain in a year.
+India | How many languages are listed in India's Constitution? | 22 languages in the Eighth Schedule. Hundreds more are spoken across the country.
+India | What is the national animal of India? | The Bengal tiger. India holds about three quarters of the world's wild tigers.
+India | Why is Rajasthan called the land of kings? | Its name means land of rulers: it was made of many princely states ruled by Rajput kings before 1947.
+India | Which is the largest state of India by area? | Rajasthan, at about 342,000 square kilometres.
+India | What is the Indian Constitution famous for? | It is one of the longest written constitutions of any country. It came into force on 26 January 1950.
+India | Who designed India's national flag? | Pingali Venkayya's design was the basis. The final flag with the Ashoka Chakra was adopted on 22 July 1947.
+India | Why is 26 January Republic Day? | On 26 January 1950 the Constitution came into force. The date was chosen because the call for complete independence was made on 26 January 1930.
+India | What does the Ashoka Chakra have? | 24 spokes. It comes from the Lion Capital of Ashoka at Sarnath.
+India | Why is Kota known across India? | It became a famous hub of coaching for engineering and medical entrance exams. It also sits on the Chambal river.
+India | What is the Rawatbhata power station? | The Rajasthan Atomic Power Station, near Kota on the Chambal, one of India's nuclear power sites.
+History | Who built the Great Pyramid of Giza? | Paid Egyptian workers, not slaves, for the pharaoh Khufu around 2560 BCE. It was the tallest human-made structure for nearly 4,000 years.
+History | What was the Indus Valley Civilisation? | One of the first urban civilisations, around 2600 to 1900 BCE, with planned cities like Harappa and Mohenjo-daro and covered drains.
+History | Has anyone read the Indus script? | Not yet. Its short seal inscriptions remain undeciphered, partly because no long texts or bilingual inscriptions have been found.
+History | Who was Ashoka? | A Maurya emperor of the 3rd century BCE who, after the bloody Kalinga war, turned to Buddhism and carved messages of dhamma on rocks and pillars.
+History | What was Nalanda? | A great centre of learning in Bihar from about the 5th century CE, with students from across Asia. It was destroyed around 1200.
+History | When did the Second World War end? | In 1945: in Europe in May, and in Asia in September after Japan surrendered.
+History | What was the Dandi March? | Gandhi's 1930 walk of about 385 kilometres to the sea at Dandi to make salt, breaking the British salt law.
+History | Why was the printing press so important? | Gutenberg's movable-type press, around 1440, made books cheap and fast to copy, spreading ideas and reading across Europe.
+History | Did Vikings wear horned helmets? | No. That image comes from 19th-century costumes and opera. Real Viking helmets were plain.
+History | Who was the first woman to win a Nobel Prize? | Marie Curie, in 1903 for physics. She won again in 1911 for chemistry, the first person to win twice.
+History | Was the Great Wall of China built at one time? | No. It is many walls built and rebuilt over about 2,000 years; most of what tourists see today dates from the Ming dynasty.
+History | Why did the Mughal emperor build the Taj Mahal? | Shah Jahan built it in Agra as a tomb for his wife Mumtaz Mahal, who died in 1631. It took about 20 years.
+History | What was the Silk Road? | Not one road but a web of trade routes linking China, India, Persia and the Mediterranean, carrying silk, spices, ideas and religions.
+History | When did India become independent? | On 15 August 1947, after a long freedom struggle. It became a republic on 26 January 1950.
+History | Who was Aryabhata? | An Indian mathematician and astronomer born in 476 CE. He said Earth spins on its axis and gave a very good value for pi.
+History | Who wrote the Arthashastra? | It is credited to Kautilya, also called Chanakya, adviser to Chandragupta Maurya. It is an ancient guide to statecraft and economics.
+History | What were the Olympic Games originally? | Religious festivals for Zeus at Olympia in Greece, held every four years from 776 BCE according to tradition.
+History | What was the Renaissance? | A rebirth of art and learning in Europe from about the 14th to 17th centuries, inspired by ancient Greek and Roman ideas.
+History | When was the first photograph taken? | Around 1826 or 1827, by Nicephore Niepce in France. The exposure took hours, maybe days.
+Human body | How many bones are in the adult human body? | 206. Babies are born with nearly 300, and many fuse together as they grow.
+Human body | What is the largest organ of the body? | The skin. An adult's skin weighs a few kilograms and covers nearly two square metres.
+Human body | How long are your blood vessels? | Laid end to end, an adult's blood vessels would stretch roughly 100,000 kilometres, mostly tiny capillaries.
+Human body | How often does the heart beat? | About 60 to 100 times a minute at rest, or around 100,000 times a day.
+Human body | Why do we yawn? | Scientists are still not sure. One leading idea is that yawning helps cool the brain; it is also contagious between people.
+Human body | Why do we have fingerprints? | They may help grip and sense texture. Their patterns form in the womb and are unique, even between identical twins.
+Human body | What is the smallest bone? | The stapes, or stirrup, in the middle ear, about 3 millimetres long. It passes sound to the inner ear.
+Human body | How much of your body is water? | About 60 percent for an adult man and a little less for a woman. A newborn is about 75 percent water.
+Human body | Why do we get goosebumps? | Tiny muscles pull our hairs upright when we are cold or scared. In furry ancestors this fluffed up fur for warmth or looked bigger.
+Human body | Do we use only 10 percent of our brain? | No, that is a myth. Brain scans show we use nearly all of it, though not every part at once.
+Human body | Why do we sleep? | Sleep helps the brain store memories and clear out waste, and lets the body repair. Long without sleep, thinking falls apart.
+Human body | Why do onions make us cry? | Cutting them releases a gas that turns into a mild irritant when it meets the water in our eyes, so tears flush it out.
+Human body | Why does your voice sound strange in a recording? | You normally hear yourself partly through your skull bones, which adds deeper tones. A recording gives only the air-carried sound.
+Human body | What do red blood cells do? | They carry oxygen from the lungs to every part of the body, using a protein called haemoglobin. They live about 120 days.
+Human body | Why do we hiccup? | The diaphragm muscle suddenly twitches, pulling air in, and the vocal cords snap shut, making the hic sound.
+Human body | Can your stomach digest itself? | It would, but a thick layer of mucus protects its wall from the strong acid, and the lining renews itself every few days.
+Human body | What is the strongest muscle? | It depends how you measure. For force for its size, the jaw muscle, the masseter, is often named.
+Human body | Why do we have two eyes? | Two slightly different views let the brain judge depth, and a second eye is a spare.
+Human body | How fast do nerve signals travel? | The fastest travel at about 100 metres per second, over 350 kilometres per hour, along insulated nerve fibres.
+Human body | Why does hair turn grey? | Hair cells slowly stop making the pigment melanin as we age. Genes mostly decide when it starts.
+Health | Why should you finish washing your hands for 20 seconds? | Scrubbing with soap that long breaks up the oily coats of many germs and lifts them off so water can rinse them away.
+Health | What do vaccines do? | They teach your immune system to recognise a germ safely, so it can fight the real one quickly. They have saved many millions of lives.
+Health | Who discovered penicillin? | Alexander Fleming, in 1928, when mould killed bacteria on a plate he had left out. Others later turned it into a medicine.
+Health | Why do antibiotics not work on colds? | Colds are caused by viruses, and antibiotics only kill bacteria. Using them needlessly helps bacteria become resistant.
+Health | Why is sugar bad for teeth? | Bacteria in the mouth eat sugar and make acid, which slowly dissolves tooth enamel and causes cavities.
+Health | What does yoga mean? | The Sanskrit word means to join or unite. The International Day of Yoga is on 21 June.
+Health | Why do we need vitamin D? | It helps the body take in calcium for strong bones. Skin makes it in sunlight.
+Health | How much water should you drink? | It depends on heat, size and activity. Food and other drinks count too; thirst and pale urine are good guides.
+Biology | How many species live on Earth? | Scientists have named about two million, but estimates of the real total range from about eight million to far more.
+Biology | What is DNA? | The molecule that carries the instructions for building and running living things, written in four chemical letters, A, T, G and C.
+Biology | How much DNA do humans share with chimpanzees? | About 98 to 99 percent of the DNA sequence that can be lined up, though small differences have big effects.
+Biology | How do plants make food? | By photosynthesis: using sunlight to turn carbon dioxide and water into sugar, releasing oxygen as a by-product.
+Biology | Why are leaves green? | Chlorophyll absorbs red and blue light for photosynthesis and reflects green light back to our eyes.
+Biology | Why do leaves change colour in autumn? | Trees stop making chlorophyll, so the yellow and orange pigments hidden underneath show through. Reds are made fresh.
+Biology | Which is the largest animal ever? | The blue whale, up to about 30 metres long. It is larger than any known dinosaur.
+Biology | How do bees make honey? | They sip flower nectar, add enzymes, and fan it with their wings in the hive until much of the water evaporates.
+Biology | Are bats blind? | No. All bats can see, and many see well. Many also use echolocation, calling out and listening to echoes, to hunt in the dark.
+Biology | Why do cats purr? | Usually when content, but also when hurt or stressed. Fast twitches of the voice box muscles make the sound.
+Biology | Can an octopus change colour? | Yes, in a fraction of a second, using skin cells full of pigment. It also has three hearts and blue blood.
+Biology | What is the oldest living tree? | A Great Basin bristlecone pine in California is over 4,800 years old. Some clonal plant colonies are far older.
+Biology | Why do birds fly in a V shape? | Each bird rides the rising air from the wingtip of the one ahead, saving energy on long flights.
+Biology | How do fireflies glow? | A chemical reaction in their bodies makes cold light, called bioluminescence, used to find mates.
+Biology | Are tomatoes fruits or vegetables? | By botany, a fruit, because it grows from the flower and holds seeds. In the kitchen it is used as a vegetable.
+Biology | Why are house sparrows declining in cities? | Likely causes include fewer nesting holes in modern buildings, fewer insects for chicks, and less green cover. World Sparrow Day is on 20 March.
+Biology | Do goldfish have three-second memories? | No. Experiments show goldfish can remember things for months and can be trained.
+Biology | How long can a camel go without water? | Often a week or more in hot weather, and much longer in cool weather. Its hump stores fat, not water.
+Biology | What is the fastest land animal? | The cheetah, which can sprint at about 100 to 110 kilometres per hour for short bursts.
+Biology | Do plants talk to each other? | In a way. Many release chemicals when attacked, and neighbours can sense them and prepare their defences.
+Biology | Why do some animals hibernate? | To survive winters with little food. Their heartbeat, breathing and temperature drop so they burn far less energy.
+Biology | What is a mushroom? | The fruiting part of a fungus. Most of the fungus lives as a hidden web of threads in soil or wood.
+Biology | Are spiders insects? | No. Spiders are arachnids with eight legs and two body parts; insects have six legs and three body parts.
+Biology | Why do zebras have stripes? | Studies suggest the stripes help keep biting flies away, which tend not to land on striped surfaces.
+Biology | How do salmon find their home river? | They seem to use Earth's magnetic field to reach the right coast, then smell to find the stream where they hatched.
+Biology | Can a starfish regrow an arm? | Yes. Many sea stars can regrow lost arms, and some can grow a whole body from one arm.
+Biology | What is the national bird of India? | The Indian peafowl, the peacock, chosen in 1963.
+Biology | Why are flamingos pink? | From pigments in the algae and shrimp they eat. Chicks are grey and turn pink as they feed.
+Biology | Which animal has the longest pregnancy? | The African elephant, at about 22 months.
+Physics | Why do things fall? | Gravity pulls masses toward each other. On Earth, all objects fall at the same rate in a vacuum, as Galileo argued.
+Physics | Would a feather and a hammer fall at the same speed? | Yes, without air. Astronaut David Scott showed it on the Moon in 1971; both hit the ground together.
+Physics | How fast does light travel? | About 300,000 kilometres per second in empty space. It could circle Earth over seven times in one second.
+Physics | Why is ice slippery? | A very thin wet layer forms on the surface of ice, even below freezing, and it acts like a lubricant.
+Physics | Why does a spoon in a glass of water look bent? | Light bends as it passes from water into air, because it travels at different speeds in each. This is refraction.
+Physics | What is E = mc squared? | Einstein's equation saying mass and energy are two forms of the same thing; a tiny mass holds a huge amount of energy.
+Physics | Why does metal feel colder than wood at the same temperature? | Metal pulls heat out of your hand much faster, so it feels colder, though both are the same temperature.
+Physics | What is the speed of sound? | About 343 metres per second in air at 20 degrees Celsius. It is much faster in water and faster still in steel.
+Physics | Why do magnets attract iron? | Iron's atoms act like tiny magnets. A magnet lines them up so the iron itself becomes magnetic for a while.
+Physics | What is a sonic boom? | The shock wave from something moving faster than sound, heard as a loud crack, like a jet or the tip of a cracked whip.
+Physics | Why do ships float though steel sinks? | A ship's hull pushes aside a lot of water; if that water weighs more than the ship, the water pushes it up.
+Physics | What is absolute zero? | The coldest possible temperature, minus 273.15 degrees Celsius, where particles have the least possible motion.
+Physics | Why do we see lightning before we hear thunder? | Light travels about a million times faster than sound, so the flash reaches you almost instantly.
+Physics | What is an atom mostly made of? | Mostly empty space. A tiny nucleus holds almost all the mass, with electrons spread in a cloud around it.
+Physics | Who was C. V. Raman? | An Indian physicist who discovered how light changes colour when it scatters from molecules. He won the Nobel Prize in 1930.
+Physics | Why does a rubbed balloon stick to a wall? | Rubbing moves electrons, giving the balloon a charge, which attracts opposite charges in the wall.
+Physics | Why do your ears pop in a plane? | Air pressure changes faster than the air inside your middle ear can adjust. Swallowing opens a tube to balance it.
+Physics | How does a rainbow have seven colours? | It is really a smooth spread of colours. Isaac Newton chose seven names, partly to match the seven notes of a musical scale.
+Physics | What is friction? | A force that resists sliding, caused by surfaces catching on each other. Without it you could not walk or hold a pen.
+Physics | Why does hot air rise? | Heated air expands and becomes less dense than the cooler air around it, so it is pushed upward.
+Physics | Who proposed that Earth goes around the Sun? | Nicolaus Copernicus argued it in 1543. Aristarchus of Samos had suggested it nearly 1,800 years before.
+Physics | What are X-rays? | A kind of light with very short waves and high energy. They pass through soft tissue but are blocked more by bone.
+Physics | Why does a microwave heat food? | Its waves make water molecules in the food spin back and forth very fast, and that motion becomes heat.
+Chemistry | What is the most common element in the universe? | Hydrogen, about three quarters of all normal matter by mass. Helium comes second.
+Chemistry | What is air made of? | About 78 percent nitrogen, 21 percent oxygen and 1 percent argon, plus small amounts of carbon dioxide and water vapour.
+Chemistry | Why does iron rust? | Iron reacts with oxygen and water to form iron oxide. Salt water speeds it up, which is why coastal cars rust faster.
+Chemistry | What is water made of? | Two hydrogen atoms joined to one oxygen atom, written H2O.
+Chemistry | Why does salt melt ice on roads? | Dissolved salt lowers the temperature at which water freezes, so the ice melts unless it is very cold.
+Chemistry | What is a diamond made of? | Pure carbon, the same element as pencil graphite. The atoms are just arranged in a different, very strong pattern.
+Chemistry | Who made the periodic table? | Dmitri Mendeleev in 1869 arranged elements by weight and properties and left gaps for elements not yet found.
+Chemistry | How many elements are there? | 118 confirmed elements. About 90 occur naturally; the rest were made in laboratories.
+Chemistry | What is the only metal that is liquid at room temperature? | Mercury. Gallium melts just above room temperature, even in your hand.
+Chemistry | Why does a cut apple turn brown? | An enzyme in the apple reacts with oxygen in the air. Lemon juice slows it down.
+Chemistry | Why does popcorn pop? | Water inside each kernel turns to steam when heated; pressure builds until the hard shell bursts and the starch puffs up.
+Chemistry | What is pH? | A scale from 0 to 14 for how acidic or basic something is. Pure water is 7; lemon juice is about 2; soap is basic.
+Chemistry | Why is gold so valuable? | It is rare, beautiful, easy to shape and never rusts or tarnishes, so it keeps its shine for thousands of years.
+Chemistry | Why does bread rise? | Yeast eats sugars and makes carbon dioxide gas; gluten in the dough traps the bubbles.
+Chemistry | What gives fireworks their colours? | Metal salts. Strontium makes red, copper makes blue, sodium makes yellow and barium makes green.
+Mathematics | What is pi? | The ratio of a circle's distance around to its width, about 3.14159. Its digits go on forever without repeating.
+Mathematics | Why are there 60 minutes in an hour? | It comes from the ancient Babylonians, who counted in sixties. 60 divides neatly by 2, 3, 4, 5, 6, 10, 12, 15, 20 and 30.
+Mathematics | What is a prime number? | A whole number greater than 1 that divides evenly only by 1 and itself, like 2, 3, 5, 7 and 11.
+Mathematics | Are there infinitely many prime numbers? | Yes. Euclid proved it over 2,000 years ago: multiply all known primes and add one, and you always get a new prime factor.
+Mathematics | Where do our numerals 0 to 9 come from? | From India, carried west by Arab scholars, which is why they are called Hindu-Arabic numerals.
+Mathematics | Who was Srinivasa Ramanujan? | A self-taught Indian genius who produced thousands of results in number theory before his death at 32 in 1920.
+Mathematics | Why is 1729 famous? | It is the smallest number that is the sum of two cubes in two different ways, as Ramanujan pointed out: 1 plus 1,728, and 729 plus 1,000.
+Mathematics | What is a googol? | The number 1 followed by 100 zeros. The company Google took its name from it, with a different spelling.
+Mathematics | Can you fold a paper in half more than seven times? | It is very hard, because thickness doubles each fold. In 2002 a student folded a very long sheet 12 times.
+Mathematics | What is the Fibonacci sequence? | Each number is the sum of the two before: 1, 1, 2, 3, 5, 8, 13. Indian poets described it centuries before Fibonacci.
+Mathematics | Why does a dice have opposite faces that add to 7? | It is a tradition that makes dice balanced and easy to check: 1 faces 6, 2 faces 5, 3 faces 4.
+Mathematics | What is the birthday paradox? | In a group of just 23 people, there is about a 50 percent chance that two share a birthday.
+Mathematics | Why is a circle 360 degrees? | Probably from Babylonian astronomy: 360 is close to the days in a year and divides evenly in many ways.
+Mathematics | What is statistics for? | Turning data into honest answers with a measure of doubt, from election polls to testing whether a medicine works.
+AI and computing | What is artificial intelligence? | Computer systems that do tasks we link with intelligence, like recognising speech or images, by learning patterns from data.
+AI and computing | What is machine learning? | A way of making software by showing it examples instead of writing every rule by hand.
+AI and computing | What does GPT stand for? | Generative Pre-trained Transformer: a model trained on lots of text to predict the next word, which lets it write answers.
+AI and computing | Can AI make mistakes confidently? | Yes. Language models can produce fluent but false statements, so important facts should always be checked with sources.
+AI and computing | Who is called the father of the computer? | Charles Babbage, who designed mechanical computers in the 1800s. Ada Lovelace wrote what is seen as the first program for one.
+AI and computing | What is the Turing test? | Alan Turing's 1950 idea: if a judge chatting by text cannot tell a machine from a human, the machine passes.
+AI and computing | What is a computer bug? | A mistake in a program. Engineers in 1947 taped a real moth from a faulty machine into their logbook as the first actual bug found.
+AI and computing | What is binary? | Counting with only 0 and 1. Computers use it because a circuit can easily be off or on.
+AI and computing | What is a byte? | Usually 8 bits, enough to store one simple letter like A. A kilobyte is about a thousand bytes.
+AI and computing | What is the cloud? | Other people's computers in large data centres, which store files and run programs for you over the internet.
+AI and computing | How did a computer first beat a world chess champion? | IBM's Deep Blue beat Garry Kasparov in a six-game match in 1997.
+AI and computing | What is an algorithm? | A clear set of steps to solve a problem, like a recipe. The word comes from the name of the Persian scholar al-Khwarizmi.
+AI and computing | What is open-source software? | Software whose code anyone can read, change and share, like Linux or Python.
+AI and computing | What does a GPU do in AI? | It does many simple calculations at the same time, which suits the huge number of multiplications neural networks need.
+AI and computing | Why does AI need so much data? | It learns patterns from examples, and complex patterns need many varied examples to learn reliably.
+AI and computing | What is a strong password? | Long beats clever. A phrase of several random words is easier to remember and harder to guess than a short mix of symbols.
+AI and computing | What is phishing? | Tricking people into giving passwords or money with fake messages that pretend to be a bank, shop or friend.
+AI and computing | What is the difference between the internet and the web? | The internet is the global network of connected computers; the web is one service on it, pages linked by addresses.
+AI and computing | Who invented the World Wide Web? | Tim Berners-Lee at CERN, in 1989, who also made the first website and browser.
+AI and computing | What was UPI? | India's Unified Payments Interface, launched in 2016. It lets people send money instantly from phone to phone and handles billions of payments a month.
+Technology | Who invented the telephone? | Alexander Graham Bell got the key patent in 1876, though others, like Antonio Meucci and Elisha Gray, worked on similar ideas.
+Technology | How does a touchscreen know where you touch? | Most phones use a grid that holds a tiny electric charge; your finger disturbs the charge at one point, and the phone reads where.
+Technology | How does GPS find your location? | Your phone listens to timed signals from several satellites and works out how far each is, then where those distances meet.
+Technology | Who invented the light bulb? | Many inventors worked on it. Thomas Edison and Joseph Swan made the first long-lasting practical bulbs around 1879 to 1880.
+Technology | How does a solar panel make electricity? | Light knocks electrons loose in layers of silicon, and the layers are arranged so those electrons flow as a current.
+Technology | Why are batteries rated in milliamp hours? | It tells how much charge they hold: a 5,000 mAh battery can give 5,000 milliamps for one hour, or less for longer.
+Technology | How did the Wright brothers fly? | In 1903 at Kitty Hawk, their powered plane flew for 12 seconds. Their key idea was controlling the wings to steer and balance.
+Technology | What does a refrigerator move? | Heat. It pumps heat from inside to the coils at the back, which is why the back feels warm.
+Technology | What is 5G? | The fifth generation of mobile networks, able to carry far more data, faster, with less delay than 4G.
+Technology | Why does a phone get warm when charging? | Moving energy into the battery is not perfectly efficient; some is lost as heat, especially with fast charging.
+Technology | How does a QR code work? | It stores information as a pattern of black and white squares that a camera reads, with built-in extra data to fix smudges.
+Technology | What is a lithium-ion battery? | A rechargeable battery where lithium ions move between two sides. Its inventors won the 2019 Nobel Prize in Chemistry.
+Technology | What is the oldest known tool? | Stone tools from Lomekwi in Kenya are about 3.3 million years old, older than our own genus.
+Technology | When was the first mobile phone call? | In 1973, Martin Cooper of Motorola called a rival from a New York street using a phone weighing about a kilogram.
+Technology | How does a lift stay safe if its cable breaks? | Lifts have several cables and safety brakes that grip the rails if the car falls too fast, an idea Elisha Otis showed in 1854.
+Technology | Who built the first steam engine? | Thomas Newcomen built a working steam engine in 1712; James Watt's improvements in the 1760s and after made steam power spread.
+Language | How many languages are spoken in the world? | About 7,000. Around 40 percent are endangered, often with fewer than 1,000 speakers.
+Language | What is the most spoken language? | English has the most total speakers when learners are included; Mandarin Chinese has the most native speakers.
+Language | How old is Sanskrit? | Its oldest form, in the Rigveda, dates back over 3,000 years. Panini wrote a famous grammar of it around the 4th century BCE.
+Language | Is Hindi related to English? | Yes, distantly. Both belong to the Indo-European family, which is why words like naam and name, or maata and mother, look alike.
+Language | Why is English spelling so odd? | English pronunciation changed a lot after spelling was fixed by printing, and it borrowed words from many languages.
+Language | Which script does Hindi use? | Devanagari, which is also used for Marathi, Nepali and Sanskrit. Its letters hang from a line on top.
+Language | What is the oldest living language of India? | Tamil is one of the oldest, with literature over 2,000 years old. It was the first to be declared a classical language in India, in 2004.
+Language | Why do we say OK? | It began as a joke abbreviation, oll korrect, in Boston newspapers in 1839, and spread around the world.
+Language | Can babies learn any language? | Yes. Babies can hear the sounds of every language but slowly tune into the ones they hear most in their first year.
+Language | What is a palindrome? | A word or phrase that reads the same backward, like madam or the Hindi word nayan.
+Language | Where does the word jungle come from? | From the Hindi and Sanskrit jangala, which meant dry, rough land, not thick forest.
+Language | Which English words come from India? | Many: shampoo, pyjamas, bungalow, shawl, avatar, karma, cot and thug all came from Indian languages.
+Literature | Who wrote the Mahabharata? | Tradition credits the sage Vyasa. It grew over centuries and is one of the longest poems in the world, about 100,000 verses.
+Literature | Who wrote the Ramayana? | The sage Valmiki is credited with the Sanskrit Ramayana. Tulsidas retold it in Awadhi as the Ramcharitmanas in the 16th century.
+Literature | Who was the first Asian to win the Nobel Prize in Literature? | Rabindranath Tagore, in 1913, for Gitanjali. He also wrote the national anthems of India and Bangladesh.
+Literature | What is the oldest known story? | The Epic of Gilgamesh from ancient Mesopotamia, written down around 4,000 years ago on clay tablets.
+Literature | Who wrote Panchatantra? | It is credited to Vishnu Sharma, around 2,000 years ago: animal fables to teach princes wisdom, retold in many languages.
+Literature | What was the first novel? | The Tale of Genji, written by Murasaki Shikibu in Japan about 1,000 years ago, is often called the first novel.
+Literature | How many plays did Shakespeare write? | About 37 to 39, depending on how shared works are counted. He also invented or first recorded many English words.
+Literature | Who wrote Godaan? | Munshi Premchand, in 1936. It tells the hard life of a poor farmer, Hori, and is a classic of Hindi literature.
+Literature | What is a haiku? | A short Japanese poem, traditionally in three lines of 5, 7 and 5 sounds, often about nature and a moment in time.
+Literature | Why are fairy tales so similar across countries? | Stories travel with people and trade, and some tale types may be thousands of years old, shared before languages split.
+Literature | Who wrote Harry Potter? | J. K. Rowling. The first book came out in 1997 and the series became one of the best-selling in history.
+Literature | What is the Thirukkural? | A Tamil classic by Thiruvalluvar of 1,330 couplets on virtue, wealth and love, around 2,000 years old.
+Music | Why do we get chills from music? | Moving music can trigger the brain's reward system, releasing dopamine, especially at surprising or swelling moments.
+Music | How many notes are in the Indian sargam? | Seven main notes: Sa, Re, Ga, Ma, Pa, Dha, Ni, with sharp and flat forms making twelve in all.
+Music | What is a raga? | A melodic framework in Indian music: a set of notes, how to move between them, and a mood, often linked to a time of day.
+Music | Who was Tansen? | A legendary musician at Akbar's court in the 16th century, one of the nine jewels. Many stories say his singing could light lamps.
+Music | Why does a guitar have frets? | Frets mark where to press so a string's vibrating length gives exact notes, each fret raising the pitch by a semitone.
+Music | What is the Sama Veda? | An ancient Indian text of hymns set to melody. It is often seen as a root of Indian classical music.
+Music | Why do songs get stuck in our heads? | Catchy songs have simple, repeated patterns with a small surprise; the brain replays unfinished loops, called earworms.
+Music | How does a flute make sound? | Blowing across the hole makes the air column inside vibrate. Covering holes changes its length and so the note.
+Music | What is the oldest known musical instrument? | Flutes carved from bird bone and mammoth ivory in Germany, about 40,000 years old.
+Music | Who composed the national anthem of India? | Rabindranath Tagore wrote Jana Gana Mana. It was adopted as the national anthem in 1950; it takes about 52 seconds to sing.
+Music | What does a tabla have that a drum does not? | A black spot of paste, the syahi, on each drumhead, which lets the tabla ring with clear, tuned tones.
+Music | Can music help plants grow? | Some small studies report effects of sound vibrations, but the evidence is weak and mixed. Light, water and soil matter far more.
+Movies | What was India's first feature film? | Raja Harishchandra, a silent film made by Dadasaheb Phalke and released in 1913.
+Movies | What was India's first talkie? | Alam Ara, released in 1931, directed by Ardeshir Irani.
+Movies | Why does a film look like it moves? | It shows many still pictures quickly, usually 24 a second, and our brain blends them into smooth motion.
+Movies | Which country makes the most films? | India makes the most feature films in many years, often well over 1,500, in more than 20 languages.
+Movies | Who won India's first Oscar? | Bhanu Athaiya, for costume design for Gandhi, in 1983.
+Movies | What is the Dadasaheb Phalke Award? | India's highest award in cinema, given for lifetime contribution and named after the father of Indian cinema.
+Movies | What was the first full-length animated feature film? | Snow White and the Seven Dwarfs by Disney, in 1937, is the most famous early one; a few animated features came before it.
+Movies | Why is popcorn linked with cinemas? | In the 1930s Depression in the United States, popcorn was cheap, easy to make and very profitable, so cinemas began selling it.
+Movies | What is a dubbing artist? | A voice actor who records a film's dialogue in another language, matching the actors' lips and feelings.
+Movies | Which Indian song won an Oscar in 2023? | Naatu Naatu, from the Telugu film RRR, music by M. M. Keeravani, won Best Original Song.
+Art | Who painted the Mona Lisa? | Leonardo da Vinci, in the early 1500s. It hangs in the Louvre in Paris behind bulletproof glass.
+Art | What are the Ajanta caves famous for? | Buddhist cave paintings and sculptures made from about the 2nd century BCE to the 5th century CE in Maharashtra.
+Art | What is Madhubani painting? | A folk art of the Mithila region of Bihar, with bold lines, bright colours and patterns from nature and myths.
+Art | Why did Van Gogh sell so few paintings? | He was little known in his lifetime and died in 1890 at 37. His fame grew after his death, partly thanks to his sister-in-law Jo.
+Art | What are the three primary colours of paint? | Traditionally red, yellow and blue. Printers use cyan, magenta and yellow, which mix to more colours.
+Art | What is the Bhimbetka rock shelter? | A site in Madhya Pradesh with rock paintings, some more than 10,000 years old, showing hunting, dancing and animals.
+Art | Why do paintings in museums often have dark varnish? | Old varnish yellows and darkens with age. Restorers can carefully remove it to show the original colours.
+Art | What is origami? | The Japanese art of folding paper into shapes without cutting or gluing. Its maths now helps fold solar panels for space.
+Crafts | What is crochet made with? | One hook and a single thread pulled through loops. Unlike knitting, only one loop is active at a time.
+Crafts | What is the difference between knitting and crochet? | Knitting holds many live loops on needles; crochet works one loop at a time with a hook.
+Crafts | What is chikankari? | Delicate white-on-white hand embroidery from Lucknow, with shadow work stitched on the back of thin cloth.
+Crafts | What is a phulkari? | Flower-work embroidery from Punjab, stitched in bright silk on coarse cotton, often made by women for weddings.
+Crafts | What is block printing? | Printing cloth by stamping it with carved wooden blocks dipped in dye. Sanganer and Bagru near Jaipur are famous for it.
+Crafts | What is bandhani? | Tie-dye from Rajasthan and Gujarat, made by tying tiny knots in cloth before dyeing, leaving dotted patterns.
+Crafts | Why did Gandhi spin khadi? | Hand-spun cloth was a symbol of self-reliance and a way to boycott British mill cloth during the freedom struggle.
+Crafts | How old is sewing? | Bone needles with eyes are at least 40,000 years old, and earlier people likely used awls to pierce and lace hides.
+Crafts | What is a loom? | A frame that holds lengthwise threads tight so crosswise threads can be woven over and under them to make cloth.
+Crafts | What is Pashmina? | Fine wool from the soft undercoat of Changthangi goats of Ladakh, hand-spun and woven into shawls in Kashmir.
+Crafts | Why is Jacquard's loom linked to computers? | His 1804 loom used punched cards to weave patterns, an idea later used to feed instructions to early computers.
+Food | Where did tea come from? | From China, where people drank it for thousands of years. The British began large tea gardens in Assam in the 1800s.
+Food | Where did the potato come from? | From the Andes in South America. It reached India through Portuguese and later British traders.
+Food | Is chilli native to India? | No. Chillies came from the Americas and were brought to India by the Portuguese in the 16th century.
+Food | Why does chilli feel hot? | A chemical called capsaicin triggers the same nerve sensors that detect heat, so your mouth feels it is burning.
+Food | What is umami? | The fifth basic taste, a savoury flavour from glutamates, found in tomatoes, mushrooms, cheese and soy sauce.
+Food | Why does honey never spoil? | It is very low in water and slightly acidic, so germs cannot grow. Edible honey has been found in ancient Egyptian tombs.
+Food | Why does cutting chilli burn your eyes? | The same capsaicin sticks to your fingers. Wash with soap and oil before touching your face.
+Food | Why do we cook food at all? | Cooking softens food, kills many germs and makes nutrients easier to absorb. Some scientists think it helped our brains grow.
+Food | What is the oldest bread? | Charred flatbread crumbs about 14,000 years old were found in Jordan, made before farming began.
+Food | Why is turmeric yellow? | Its colour comes from curcumin. India grows most of the world's turmeric.
+Food | What is the most expensive spice? | Saffron. Each crocus flower gives only three red threads, picked by hand. Kashmir grows a famous variety.
+Food | Why does milk boil over but water does not? | Milk proteins and fats form a skin on top that traps steam bubbles, so the foam rises and spills.
+Food | Why do we salt pasta and potato water? | Salt flavours food from the inside as it cooks. It barely changes the boiling temperature.
+Food | What is fermentation? | Microbes like yeast and bacteria change food, as in curd, idli batter, pickles, bread and kimchi, adding flavour and keeping it longer.
+Food | Is brown sugar healthier than white? | Barely. Brown sugar is white sugar with a little molasses; the extra minerals are tiny.
+Food | Where did the samosa come from? | From Central Asia and the Middle East, where it was called sambosa. It reached India with traders around the 13th or 14th century.
+Food | Why are some grains called millets the smart food? | Millets like bajra and ragi grow with little water, are rich in fibre and minerals, and suit dry places like Rajasthan.
+Food | What was 2023 declared for millets? | The United Nations declared 2023 the International Year of Millets, after a proposal by India.
+Food | Why do apples float? | About a quarter of an apple's volume is air, so it is less dense than water.
+Food | Why do eggs float when they are old? | Air slowly enters through the shell, so the air pocket grows. A fresh egg sinks; a very old one floats.
+Gardening | How does a seed know which way is up? | Root tips sense gravity using tiny heavy grains in their cells, and shoots grow toward light.
+Gardening | Why is soil alive? | A spoonful of healthy soil holds billions of microbes, plus fungi, worms and insects, which break down matter and feed plants.
+Gardening | What is compost? | Rotted kitchen and garden waste turned into rich, dark soil food by microbes and worms.
+Gardening | Why do plants need sunlight? | To make sugar by photosynthesis. Without enough light, they grow pale, thin and weak.
+Gardening | Why do we water plants in the morning or evening? | Less water evaporates in the cooler hours, so more reaches the roots.
+Gardening | What does a plant breathe? | It takes in carbon dioxide for photosynthesis and releases oxygen in light, but it also uses oxygen for respiration day and night.
+Gardening | Can plants grow without soil? | Yes. In hydroponics, roots sit in water with dissolved nutrients; soil mainly supplies water, food and support.
+Gardening | Why are earthworms good for gardens? | They mix soil, make tunnels for air and water, and leave behind rich castings that feed plants.
+Gardening | What is a seed bank? | A store of seeds kept cold and dry to protect crop varieties. The Svalbard vault in Norway holds over a million samples.
+Gardening | Why is tulsi grown in so many Indian homes? | Holy basil is sacred in Hindu tradition, easy to grow, and used in home remedies and teas.
+Sports | Where did chess begin? | In India, as chaturanga, around the 6th century CE. It spread to Persia as shatranj and then to the world.
+Sports | Where was kabaddi born? | In India, as an ancient game of breath and tag. The Pro Kabaddi League began in 2014.
+Sports | How long is a marathon? | 42.195 kilometres. The odd length was fixed after the 1908 London Olympics route ended in front of the royal box.
+Sports | Who was the first Indian to win an individual Olympic gold? | Abhinav Bindra, in the 10-metre air rifle at Beijing 2008.
+Sports | What did Neeraj Chopra win? | Olympic gold in the javelin throw at Tokyo, held in 2021, India's first Olympic gold in athletics. He added silver in Paris in 2024.
+Sports | Why does a cricket ball swing? | Bowlers keep one side shiny and the other rough, so air flows differently over each side and pushes the ball sideways.
+Sports | Who was Major Dhyan Chand? | India's hockey wizard, who won Olympic gold in 1928, 1932 and 1936. India's National Sports Day, 29 August, is his birthday.
+Sports | What are the five Olympic rings? | Blue, yellow, black, green and red on white. Together with the white, they contained a colour from every national flag in 1913.
+Sports | Why do golf balls have dimples? | Dimples make a thin layer of turbulent air that clings to the ball, cutting drag so it flies about twice as far.
+Sports | When did India win its first Cricket World Cup? | In 1983, led by Kapil Dev, beating the West Indies at Lord's. India won again in 2011 under M. S. Dhoni.
+Sports | Who was the first Indian woman to win an Olympic medal? | Karnam Malleswari, bronze in weightlifting at Sydney in 2000.
+Sports | Where did snakes and ladders come from? | From India, as Moksha Patam, a game about virtues and vices. Ladders were good deeds and snakes were bad ones.
+Sports | Are video games a sport? | Many countries now count esports as sport, and esports were medal events at the 2022 Asian Games, held in 2023.
+Sports | Why do runners run anticlockwise on a track? | It became the international rule in the early 1900s. One idea is that most people, being right-handed, find left turns easier.
+Psychology | Why do we remember bad things more than good ones? | The brain gives more attention to threats, a negativity bias that once helped our ancestors survive.
+Psychology | What is the placebo effect? | Feeling better after a fake treatment because you expect it to work. Expectations really can change how we feel pain.
+Psychology | Why do we procrastinate? | Usually not laziness: we put off tasks that make us feel bored, anxious or unsure. Small first steps help.
+Psychology | How many things can we hold in mind at once? | Working memory holds only about four chunks at a time, which is why phone numbers are split into groups.
+Psychology | Why do we forget dreams? | The brain chemistry during sleep does not store memories well, and dreams fade within minutes unless you note them right away.
+Psychology | Is multitasking real? | For thinking tasks, mostly no. The brain switches quickly between tasks, and each switch costs time and accuracy.
+Psychology | Why is curiosity good for learning? | When we are curious, the brain's reward system becomes active and we remember even unrelated things better.
+Psychology | What is spaced repetition? | Reviewing material at growing gaps, like after a day, then three, then a week. It beats cramming for long-term memory.
+Psychology | Why does time fly when you are having fun? | Absorbed attention means we notice time less. Looking back, new and busy days seem longer than dull ones.
+Psychology | What is the Dunning-Kruger effect? | Research suggesting that people with low skill in an area tend to overestimate it, while experts often underestimate theirs.
+Psychology | Why do we feel butterflies when nervous? | Stress hormones divert blood away from the gut to muscles, and stomach nerves send those odd fluttery signals.
+Psychology | Does reading a lot really change the brain? | Yes. Learning to read reshapes parts of the brain for recognising letters, and regular reading strengthens language networks.
+Philosophy | What did Socrates mean by know yourself? | It was a Greek saying he loved: wisdom starts with knowing your own mind and admitting what you do not know.
+Philosophy | What is the trolley problem? | A thought experiment: would you pull a lever to divert a runaway trolley to kill one person instead of five? It tests our moral rules.
+Philosophy | What is ahimsa? | Non-violence toward all living beings, central to Jainism, Buddhism and Hinduism, and to Gandhi's politics.
+Philosophy | What did Descartes mean by I think, therefore I am? | Even if everything else is doubtful, the fact that you are doubting proves that you, the thinker, exist.
+Philosophy | What is the ship of Theseus puzzle? | If every plank of a ship is replaced over time, is it still the same ship? It asks what makes something keep its identity.
+Philosophy | What is logic? | The study of good reasoning: which conclusions really follow from what we start with.
+Philosophy | What is Charvaka? | An ancient Indian school of materialist philosophy that trusted only what can be perceived and doubted the afterlife.
+Philosophy | What is the golden rule? | Treat others as you would like to be treated. Versions of it appear in nearly every major tradition.
+Philosophy | What is Occam's razor? | When two explanations fit the facts, prefer the simpler one with fewer assumptions, until evidence says otherwise.
+Philosophy | Did Buddha write any books? | No. His teachings were passed on orally and written down centuries later, in the Pali Canon and other texts.
+Economics | Why does money have value? | Because people trust that others will accept it. Most money today is not backed by gold but by faith in the system.
+Economics | What is inflation? | When prices in general rise over time, so the same money buys less. A little is normal; a lot hurts savers and the poor most.
+Economics | What does GDP measure? | The total value of goods and services a country produces in a year. It measures size, not happiness or fairness.
+Economics | Who prints India's money? | The Reserve Bank of India issues notes, and the government mints coins. The RBI was set up in 1935.
+Economics | What is compound interest? | Earning interest on your interest. Money grows slowly at first, then faster, which is why starting to save early matters.
+Economics | Why do prices rise when something is scarce? | When many people want something and there is little of it, sellers can charge more: the basic law of supply and demand.
+Economics | What is the oldest coin? | Some of the first coins were made in Lydia, in modern Turkey, around 600 BCE. India's punch-marked coins are almost as old.
+Economics | Who was Amartya Sen? | An Indian economist who won the 1998 Nobel Prize for work on welfare, poverty and famines.
+Economics | What is a budget? | A plan of expected income and spending. India's Union Budget is presented to Parliament every year on 1 February.
+Society | What is democracy? | Rule by the people, usually through elections of representatives. The word comes from Greek demos, people, and kratos, power.
+Society | How many people voted in India's 2024 general election? | Over 640 million people voted, the largest election in history.
+Society | What is the UN? | The United Nations, set up in 1945 after the Second World War to keep peace and help nations work together. It has 193 members.
+Society | What are human rights? | Basic rights everyone has simply for being human, like life, freedom and fair treatment, set out in a 1948 UN declaration.
+Society | Why do cities grow? | People move for jobs, schools and services. Since 2007, more than half of humanity lives in cities.
+Society | What is the Right to Information Act? | A 2005 Indian law that lets any citizen ask public offices for information, which must be given within 30 days.
+Society | What is Panchayati Raj? | Local self-government in villages through elected councils, given constitutional status in India in 1992.
+Society | Who wrote the Indian Constitution? | A Constituent Assembly drafted it; B. R. Ambedkar chaired the drafting committee and is called its chief architect.
+Society | What is the census? | A count of every person in a country, with details like age and work. India's first full census in its modern series was in 1881.
+Nature | Why do forests matter for rain? | Trees release water vapour through their leaves, and big forests like the Amazon help make their own rain.
+Nature | How old are coral reefs? | Some reefs have been growing for thousands of years. Corals are tiny animals that build limestone skeletons.
+Nature | What are the Western Ghats? | A mountain chain along India's west coast, older than the Himalayas and one of the world's hotspots of plants and animals.
+Nature | Why is the Sundarbans special? | It is the world's largest mangrove forest, shared by India and Bangladesh, and home to tigers that swim.
+Nature | What do bees do for food? | About three quarters of major food crops benefit at least partly from animal pollinators, mostly bees.
+Nature | What is biodiversity? | The variety of life, from genes to species to ecosystems. More variety makes nature better able to handle shocks.
+Nature | Why do frogs croak after rain? | Many frogs breed after rain fills ponds, and males call to attract females.
+Nature | How do monarch butterflies find Mexico? | They use the Sun as a compass, corrected by an internal clock, flying thousands of kilometres on a route none of them has flown before.
+Nature | Why is Keoladeo famous? | Keoladeo National Park in Bharatpur, Rajasthan, is a wetland visited by thousands of migratory birds in winter.
+Nature | Why are cheetahs back in India? | Cheetahs had died out in India by 1952. Starting in 2022, cheetahs from Namibia and South Africa were brought to Kuno National Park.
+Inventions | Who invented the printing press with movable type? | Johannes Gutenberg in Germany around 1440. Movable type had been made earlier in China and Korea.
+Inventions | Who invented paper? | It is credited to Cai Lun in China around 105 CE, though simpler paper existed slightly earlier.
+Inventions | When was the wheel invented? | Around 5,500 years ago in Mesopotamia, first for pottery and then for carts. Getting the axle right was the hard part.
+Inventions | Who invented the radio? | Several people. Guglielmo Marconi made long-distance radio practical; Jagadish Chandra Bose pioneered millimetre radio waves in the 1890s.
+Inventions | What did Jagadish Chandra Bose discover about plants? | He built sensitive instruments showing that plants respond to stimuli like heat and touch with electrical signals.
+Inventions | Who invented shampoo? | The word and the head massage came from India; Sake Dean Mahomed introduced shampooing to Britain in the early 1800s.
+Inventions | Who invented the zipper? | Whitcomb Judson patented an early version in 1893; Gideon Sundback made the modern zipper around 1913.
+Inventions | How were X-rays discovered? | By accident, by Wilhelm Rontgen in 1895, when a screen glowed across the room from his experiment.
+Inventions | What was the first vaccine? | Edward Jenner's smallpox vaccine in 1796, using cowpox. Smallpox was declared wiped out in 1980.
+Inventions | Who designed the phone keypad layout? | Bell engineers introduced the touch-tone keypad in 1963; its 3 by 4 layout came from tests of what people used fastest.
+Inventions | Who invented the computer mouse? | Douglas Engelbart and his team, in the 1960s. The first mouse was a wooden box with two wheels.
+Inventions | Who invented the bicycle? | Karl Drais made a two-wheeled running machine in 1817; pedals and chains came over the next decades.
+Inventions | Who created the Hindu-Arabic decimal system? | It grew in India over centuries; by the 7th century Indian mathematicians used place value with zero.
+Inventions | What was the first antibiotic used widely? | Penicillin, mass-produced during the Second World War, which saved countless soldiers from infected wounds.
+Mind and learning | What is the best way to remember something? | Test yourself instead of rereading. Trying to recall strengthens memory much more than looking again.
+Mind and learning | Does handwriting help learning? | Studies suggest writing notes by hand makes people summarise in their own words, which helps understanding.
+Mind and learning | Why does teaching help you learn? | Explaining forces you to organise ideas and find gaps. It is sometimes called the protege effect.
+Mind and learning | Is it better to study in long sessions or short ones? | Several shorter sessions spread over days usually beat one long session for remembering.
+Mind and learning | Why does sleep help learning? | During deep sleep the brain replays and stores what you learned during the day.
+Mind and learning | What is a growth mindset? | The belief that abilities can grow with effort and good strategies, which helps people keep going after mistakes.
+Mind and learning | Why do questions help us learn? | A question makes a gap in knowledge feel like an itch, and the brain pays close attention to the answer that scratches it.
+Exams | How many attempts does the UPSC Civil Services exam allow? | For general category candidates, six attempts up to age 32; more attempts and age relaxation apply to some categories.
+Exams | What are the three stages of the UPSC Civil Services exam? | Preliminary exam with objective papers, a written Main exam, and a personality test or interview.
+Exams | What does RAS stand for? | Rajasthan Administrative Service, recruited through the RPSC's combined state services exam.
+Exams | What does RPSC stand for? | Rajasthan Public Service Commission, based in Ajmer, which recruits for state services in Rajasthan.
+Exams | What is UGC-NET? | The National Eligibility Test, which qualifies candidates to be assistant professors in India and for research fellowships.
+Exams | What is the best first step for an exam syllabus? | Read the official syllabus line by line and match it to past papers to see what is asked most.
+Exams | Why do past papers matter so much? | They show which topics come up often and how questions are framed, so you study what is really tested.
+Exams | What is negative marking? | Losing part of a mark for each wrong answer, often a third, so blind guessing does not pay.
+Rajasthan | What is the state animal of Rajasthan? | The camel, in the animal category, and the chinkara among wild animals.
+Rajasthan | What is the state bird of Rajasthan? | The great Indian bustard, the godawan, which is critically endangered.
+Rajasthan | What is the state tree of Rajasthan? | The khejri, a hardy desert tree that the Bishnoi community famously protected with their lives in 1730.
+Rajasthan | Who are the Bishnois known for? | Protecting trees and wild animals. In 1730, Amrita Devi and over 360 people died hugging khejri trees to stop them being cut.
+Rajasthan | Which is the highest peak of Rajasthan? | Guru Shikhar on Mount Abu, about 1,722 metres high, in the Aravalli range.
+Rajasthan | Why is Jaipur called the Pink City? | In 1876 it was painted pink, a colour of welcome, for the visit of the Prince of Wales.
+Rajasthan | What is the Indira Gandhi Canal? | One of India's longest canals, bringing water from the Sutlej and Beas rivers into the Thar Desert.
+Rajasthan | Which river of Rajasthan is famous for gharials? | The Chambal, whose clean waters hold a sanctuary for gharials, a rare fish-eating crocodile.
+Rajasthan | What is the Jantar Mantar in Jaipur? | A set of 19 giant astronomical instruments built by Sawai Jai Singh II in the 1700s, including a huge sundial.
+Rajasthan | How old is Chittorgarh Fort? | Its origins go back over 1,300 years, and it is one of the largest forts in India, a UNESCO World Heritage Site.
+Everyday science | Why do we have leap years? | Earth takes about 365.24 days to go around the Sun, so an extra day every four years keeps the calendar in step.
+Everyday science | Why does soap clean? | Soap molecules have one end that loves water and one that loves grease, so they grab dirt and let water carry it away.
+Everyday science | Why do mirrors flip left and right? | They do not really. A mirror flips front to back; we just imagine turning around to face ourselves.
+Everyday science | Why does a fan make you feel cooler? | It does not cool the air. It moves air over your skin, helping sweat evaporate and carrying heat away.
+Everyday science | Why do clocks go clockwise? | Early clocks copied sundials in the northern hemisphere, where the shadow moves in that direction.
+Everyday science | Why do we see our breath in winter? | The warm, moist air we breathe out cools quickly, and its water vapour turns into tiny droplets, like a small cloud.
+Everyday science | Why does a pressure cooker cook faster? | Trapped steam raises the pressure, so water boils at about 120 degrees Celsius instead of 100, and food cooks quicker.
+Everyday science | Why does dal take longer to cook in the mountains? | Lower air pressure makes water boil at a lower temperature, so food cooks more slowly. Pressure cookers help.
+Everyday science | Why is the ocean blue? | Water absorbs red light slightly, so the light that comes back from deep water is blue. Reflected sky adds to it.
+Everyday science | Why does a cut onion lose its sting when chilled? | Cold slows the chemical reaction that makes the tear gas, so chilled onions make you cry less.
+Everyday science | Why do we see colours? | Our eyes have three kinds of colour cells, sensitive to red, green and blue light; the brain mixes their signals.
+Everyday science | Why does a bicycle stay up when moving? | Its steering geometry and the rider's small corrections keep it balanced; the spinning wheels help only a little.
+Everyday science | Why do glasses fog up? | Cold lenses cool the warm, moist air near them, and the water vapour condenses into tiny droplets.
+Everyday science | Why do cats land on their feet? | They twist their flexible spines in mid-air, turning the front then the back half, so they can right themselves.
+Everyday science | Why does chalk squeak on a blackboard? | The chalk sticks and slips very fast against the board, making vibrations at a high, sharp pitch.
+Curious facts | How many hearts does an octopus have? | Three: two pump blood through the gills and one pumps it to the rest of the body.
+Curious facts | Can a person sneeze with their eyes open? | It is very hard because the reflex closes them, but some people can.
+Curious facts | How long is a day on Mars? | About 24 hours and 40 minutes. Scientists call a Martian day a sol.
+Curious facts | Do sharks have bones? | No. Their skeletons are made of cartilage, the same bendy stuff as our ears and nose.
+Curious facts | How fast do fingernails grow? | About 3 millimetres a month. Toenails grow more slowly.
+Curious facts | How many times does Earth spin in a year? | About 366 times relative to the stars, one more than the 365 days we count, because we also travel around the Sun.
+Curious facts | Is a banana a berry? | Yes, by botany. Strawberries, oddly, are not true berries.
+Curious facts | How much does a cloud weigh? | A typical fluffy cloud can hold about 500 tonnes of water, spread through a huge volume of air.
+Curious facts | Can you see the Great Wall of China from space with the naked eye? | Not really. It is long but narrow, and the same colour as the land around it. Astronauts say it is very hard to spot.
+Curious facts | Are there more trees on Earth than stars in the Milky Way? | Possibly. One study estimated about 3 trillion trees, compared with a few hundred billion stars in our galaxy.
+Curious facts | How many grains of sand would fit in your hand? | Thousands to tens of thousands, depending on grain size. There are more stars in the universe than grains on all beaches, by estimates.
+Curious facts | How long would it take to drive to the Sun? | At 100 kilometres per hour without stopping, about 170 years.
+Curious facts | Why do we have wisdom teeth? | Our ancestors had bigger jaws and tough food, so the extra molars were useful. Smaller modern jaws often lack room.
+Curious facts | How long can a tardigrade survive without water? | Years or even decades in a dried-up state. These tiny water bears can also survive extreme cold and radiation.
+Curious facts | Why do rivers bend? | Water flows faster on the outside of a bend, wearing it away, and drops sand on the inside, so curves slowly grow.
+Curious facts | Is lightning hotter than the Sun's surface? | Yes, a lightning bolt can reach about 30,000 degrees Celsius, roughly five times hotter than the Sun's surface.
+Curious facts | How old is the oldest known rock art? | Hand stencils and paintings in Indonesia and Spain are over 40,000 years old; one Sulawesi painting is at least 51,000 years old.
+Curious facts | How far can an eagle see? | Eagles can spot a rabbit from about 3 kilometres away, with eyesight several times sharper than ours.
+Curious facts | Why are flamingos often standing on one leg? | Studies suggest it takes less muscle effort and helps them save body heat.
+Curious facts | How did sparrows get to almost every continent? | House sparrows followed farming people out of the Middle East thousands of years ago, and later were carried by settlers to the Americas and Australia.
+Curious facts | Why do sparrows live near people? | House sparrows evolved alongside farming: spilled grain and holes in buildings gave them food and nests.
+Universe | What is the Big Dipper or Saptarishi? | A pattern of seven bright stars in Ursa Major. In India they are named after the seven sages, the Saptarishi.
+Universe | What is the Pole Star? | Polaris, almost directly above Earth's north pole, so it seems to stay still while other stars circle it. Sailors used it to find north.
+Universe | Why is a year 365 days? | It is about how long Earth takes to go once around the Sun: 365 days and nearly 6 hours.
+Universe | What is a supernova? | The huge explosion of a massive star at the end of its life. For weeks it can outshine a whole galaxy.
+Universe | Why does the Moon have phases? | Half the Moon is always sunlit. As it orbits, we see different amounts of that lit half, from new to full.
+Universe | What is a solar eclipse? | When the Moon passes between Earth and the Sun and covers it. A total eclipse is possible because the Sun is about 400 times wider but about 400 times farther.
+Universe | Is there water on the Moon? | Yes, as ice in shadowed craters near the poles and tiny amounts in soil. Chandrayaan-1 helped find signs of it in 2009.
+Universe | How many moons does Jupiter have? | Over 90 known moons. Its moon Ganymede is bigger than the planet Mercury.
+Universe | What is a galaxy? | A huge system of stars, gas, dust and dark matter held by gravity. There are probably hundreds of billions in the observable universe.
+Universe | What is the Andromeda galaxy? | The nearest large galaxy to ours, about 2.5 million light-years away. It is the most distant thing most people can see with the naked eye.
+Universe | Will the Sun explode? | No. It is too small to become a supernova. In about 5 billion years it will swell into a red giant and then shrink to a white dwarf.
+Universe | What are exoplanets? | Planets around other stars. Astronomers have confirmed over 5,000 of them since the 1990s.
+History | What was the Harappan Great Bath? | A large, carefully waterproofed pool in Mohenjo-daro, about 4,500 years old, probably used for ritual bathing.
+History | Who was Rani Lakshmibai? | The queen of Jhansi who fought the British in the revolt of 1857 and died in battle in 1858.
+History | What was the Quit India Movement? | A mass protest launched by Gandhi in August 1942 calling for the British to leave India at once.
+History | Who were the Cholas famous for? | A south Indian dynasty whose navy reached Southeast Asia, and who built the great Brihadeeswarar temple at Thanjavur around 1010.
+History | What is Hampi? | The ruins of Vijayanagara, a rich capital of a south Indian empire in the 14th to 16th centuries, now a World Heritage Site.
+History | Who was Chhatrapati Shivaji? | The 17th-century founder of the Maratha kingdom, famous for forts, a navy and guerrilla tactics.
+History | When did humans first farm? | Around 11,000 to 12,000 years ago in the Fertile Crescent of the Middle East, and independently in several other regions later.
+History | Who was Cleopatra? | The last active ruler of Ptolemaic Egypt, who died in 30 BCE. She lived closer in time to the Moon landing than to the building of the Great Pyramid.
+History | What was the Industrial Revolution? | The shift from hand tools to machines and factories, starting in Britain around 1760, powered by coal and steam.
+History | What was the Cold War? | A long rivalry from 1947 to 1991 between the United States and the Soviet Union, fought with threats, spies and proxy wars rather than direct battle.
+History | When did the Berlin Wall fall? | On 9 November 1989, which led to the reunification of Germany in 1990.
+History | What was the Rosetta Stone? | A stone with the same decree in three scripts. It helped Jean-Francois Champollion decode Egyptian hieroglyphs in 1822.
+Geography | What is the Ring of Fire? | A horseshoe of volcanoes and earthquake zones around the Pacific Ocean, where many plates meet.
+Geography | Which is the largest island? | Greenland. Australia is larger but is counted as a continent.
+Geography | What is the Dead Sea? | A salt lake between Jordan and Israel, more than 400 metres below sea level, so salty that people float easily.
+Geography | Which is the wettest inhabited place? | Mawsynram in Meghalaya is often named the wettest inhabited place on Earth.
+Geography | Why do Rajasthan's houses often have thick walls? | Thick stone and mud walls keep heat out by day and release it slowly at night, keeping homes cooler in the desert.
+Geography | What are the seven continents? | Asia, Africa, North America, South America, Antarctica, Europe and Australia, also called Oceania.
+Geography | What is a monsoon break? | A pause of days or weeks in monsoon rain over much of India when the rain belt shifts toward the Himalayan foothills.
+Geography | Why is the Ganga plain so fertile? | Rivers from the Himalayas have spread thick layers of silt, rich alluvial soil, over thousands of years.
+Geography | What is the International Date Line? | An imaginary line roughly along 180 degrees longitude where the calendar date changes by one day.
+Geography | What is the source of the Ganga? | The Gangotri glacier, at Gaumukh in Uttarakhand, where it is called the Bhagirathi.
+Biology | Why do we have an appendix? | It was long thought useless, but it may store helpful gut bacteria and play a small role in immunity.
+Biology | How do vaccines and immunity remember germs? | Memory cells stay in the body after an infection or vaccine and react fast if the same germ returns.
+Biology | Why do plants grow toward light? | A hormone called auxin gathers on the shaded side of a shoot and makes those cells grow longer, bending it toward light.
+Biology | What is the biggest flower? | Rafflesia arnoldii, a parasitic plant whose single flower can be about a metre wide and smells of rotting meat.
+Biology | Why do crows seem so clever? | Crows can make and use tools, solve puzzles and recognise human faces for years.
+Biology | What is a lichen? | A partnership between a fungus and an alga or bacterium, living together as one. Lichens grow on bare rock.
+Biology | Do elephants really never forget? | They have excellent long memories, recognising friends and water sources after many years.
+Biology | Why do dogs wag their tails? | Wagging signals mood. Studies suggest a wag more to the dog's right often means happy, more to the left means wary.
+Biology | Why do some snakes have venom? | To subdue prey and digest it. Venom is a mix of proteins that attack nerves, blood or tissue.
+Biology | How many legs does a centipede have? | Never exactly 100. Depending on the species, from about 30 to over 350, always an odd number of leg pairs.
+Biology | How do chameleons change colour? | They change the spacing of tiny crystals in their skin cells, which changes how light reflects.
+Biology | Which bird can fly backwards? | The hummingbird, which can hover and fly backward by twisting its wings.
+Physics | Why does a balloon pop? | Stretching thins the rubber; when it is stretched too far, a small tear spreads very quickly around it.
+Physics | Why do we feel pushed back when a car speeds up? | Our body tends to stay as it is, called inertia, while the seat moves forward and pushes us.
+Physics | What is a lever? | A bar that turns on a pivot. Archimedes said with a long enough lever and a place to stand he could move the world.
+Physics | Why do shadows change length during the day? | When the Sun is low, its light hits at a slant and shadows stretch long; at noon they are shortest.
+Physics | Why is it hard to open a jar? | Air pressure outside pushes the lid down, and the seal grips tightly. Tapping the lid or warming it helps.
+Physics | Why is a rainbow curved? | Each colour comes back from raindrops at a fixed angle from the point opposite the Sun, so the colours form a circle; the ground hides the rest.
+Chemistry | Why do leaves smell after rain? | The earthy smell, called petrichor, comes from plant oils and a chemical called geosmin made by soil bacteria.
+Chemistry | Why does dry ice smoke? | Dry ice is frozen carbon dioxide. It turns straight into gas, chilling air so its water vapour forms a fog.
+Chemistry | Why does a candle flame point up? | Hot gases rise because they are lighter than the cool air around them, pulling the flame upward. In space, a flame is round.
+Chemistry | Why do some batteries leak? | Over time, chemical reactions inside make gas and corrosion that can break the seal and let the electrolyte out.
+Chemistry | What is plastic made from? | Mostly from oil and gas. Long chains of repeating molecules, called polymers, give plastics their strength and flexibility.
+Chemistry | Why is lime water used to whitewash walls? | Slaked lime reacts with carbon dioxide in air to form a hard, white layer of calcium carbonate.
+Mathematics | What is an even number? | A whole number that can be split into two equal whole numbers, like 2, 4 or 10. Zero is even too.
+Mathematics | What is a perfect number? | A number equal to the sum of its smaller divisors, like 6, which is 1 plus 2 plus 3, and 28.
+Mathematics | What is the Pythagorean theorem? | In a right-angled triangle, the square on the longest side equals the sum of the squares on the other two. Indian Sulba Sutras stated it too.
+Mathematics | What is probability? | The chance that something happens, from 0 for impossible to 1 for certain. A fair coin has a 0.5 chance of heads.
+Mathematics | Why can you not divide by zero? | No number multiplied by zero gives anything but zero, so there is no answer that works.
+Mathematics | What is a fractal? | A shape that looks similar at every scale, like a fern, coastline or snowflake.
+Language | What is the longest word in English dictionaries? | Pneumonoultramicroscopicsilicovolcanoconiosis, a lung disease from fine dust, made up to be long. Real everyday long words are much shorter.
+Language | What is the Devanagari script's top line called? | The shirorekha, the head line that joins the letters of a word.
+Language | Why do many Indian languages share words? | Long contact, shared roots in Sanskrit or Prakrit, and borrowing from Persian, Arabic and English.
+Language | What is sign language? | A full language using hands, face and body. Indian Sign Language has its own grammar, different from spoken languages.
+Language | Which language has the most words? | It is hard to count. English dictionaries list hundreds of thousands, partly because English borrows so freely.
+Language | Why is Urdu so close to Hindi? | Spoken Hindi and Urdu share most grammar and everyday words; they differ in script and in formal vocabulary.
+Art | What is the Konark Sun Temple? | A 13th-century temple in Odisha built as a giant stone chariot for the Sun god, with 24 carved wheels.
+Art | Who painted The Starry Night? | Vincent van Gogh, in 1889, from his window at an asylum in Saint-Remy, France.
+Art | What is Warli art? | Tribal painting from Maharashtra using simple circles, triangles and lines in white on mud walls, showing village life.
+Art | Who was Raja Ravi Varma? | A 19th-century Indian painter famous for realistic paintings of gods and epics, whose prints brought art into many homes.
+Art | What is calligraphy? | The art of beautiful handwriting, practised in many scripts, from Chinese and Arabic to Devanagari.
+Art | What is a mural? | A painting made directly on a wall or ceiling, like those in the Ajanta caves or Rajasthan's havelis in Shekhawati.
+Food | Why does cut fruit turn soft in the fridge? | Cold damages cell walls in some fruits, like bananas, and enzymes keep working, softening them.
+Food | Why is curd sour? | Bacteria turn the sugar in milk, lactose, into lactic acid, which sours and thickens it.
+Food | Where did biryani come from? | It grew from Persian rice dishes brought to India and was shaped in Mughal and regional kitchens like Lucknow and Hyderabad.
+Food | Why does dal need soaking? | Soaking softens beans, shortens cooking time and helps reduce compounds that can cause gas.
+Food | Why is dal baati churma linked with Rajasthan? | Baati are hard wheat balls that keep well and can be baked in hot ashes, suiting desert travel and war camps.
+Food | What makes Indian sweets so varied? | Milk, sugar, ghee and grains are combined in countless ways, with regional traditions from rasgulla to ghewar.
+Gardening | Why do some plants close their leaves at night? | Many plants fold leaves in a daily rhythm, perhaps to save water and protect against cold. Darwin studied it.
+Gardening | What does neem do in the garden? | Neem oil and leaves can deter many pests, a use known in India for centuries.
+Gardening | Why do pots need holes at the bottom? | Extra water must drain out, or roots sit in water, run out of air and rot.
+Gardening | What is a bonsai? | A tree kept small in a pot by careful pruning of roots and branches. The art came from China and was refined in Japan.
+Sports | Who is called the Flying Sikh? | Milkha Singh, the Indian sprinter who just missed a medal in the 400 metres at the 1960 Rome Olympics.
+Sports | What is a hat-trick? | Three successes in a row, such as three wickets with three balls in cricket or three goals by one player in a match.
+Sports | Why is the Tour de France so hard? | Riders cover about 3,400 kilometres over three weeks, including high mountain climbs.
+Sports | What is the oldest board game still played? | Go, from China, is about 2,500 years old or more. The Royal Game of Ur is older but stopped being widely played.
+Sports | Who was the first Indian to win an Olympic medal in badminton? | Saina Nehwal won bronze in 2012; P. V. Sindhu won silver in 2016 and bronze in 2020.
+Sports | Why do football players wear numbered shirts? | So referees and fans can tell players apart. Numbers began in the 1920s and 1930s.
+Psychology | Why do we feel déjà vu? | It may be a brief glitch in how the brain marks familiarity, making a new moment feel already seen.
+Psychology | Why are some people left-handed? | Genes and early development both play a part. About one in ten people are left-handed.
+Psychology | Does music help you study? | It depends. Calm music without words may help some people; lyrics often compete with reading for attention.
+Psychology | Why do we laugh? | Laughter is mainly social: we laugh far more with others than alone, and it helps bond groups.
+Psychology | What is mindfulness? | Paying calm attention to the present moment without judging it, a practice drawn from meditation traditions.
+Philosophy | What is karma in Indian thought? | The idea that actions have consequences that shape future experiences, central to Hindu, Buddhist and Jain traditions.
+Philosophy | What is a paradox? | A statement that seems true but leads to a contradiction, like this sentence is false.
+Philosophy | What is ethics? | The study of right and wrong: how we should live and treat others, and why.
+Philosophy | What did Confucius teach? | Respect, kindness, learning and harmony in families and society. He lived in China around 500 BCE.
+Economics | What is a stock? | A small share of ownership in a company. If the company does well, the share's value can rise.
+Economics | Why do banks pay interest? | They use your deposit to lend to others at a higher rate, and share part of the profit with you.
+Economics | What is the Sensex? | An index of 30 large companies on the Bombay Stock Exchange, used as a quick measure of the Indian stock market.
+Society | Why is 8 March celebrated? | International Women's Day, recognising women's rights and achievements, marked worldwide since the early 1900s.
+Society | Why is 5 June important? | It is World Environment Day, led by the United Nations and first held in 1973.
+Society | What is the National Voters' Day? | 25 January, the founding day of the Election Commission of India in 1950.
+Nature | Why do we need bees and butterflies? | They carry pollen from flower to flower, helping plants make fruit and seeds.
+Nature | Why do monsoon clouds look dark? | Thick clouds full of big water drops block and scatter so much sunlight that their bases look grey or nearly black.
+Nature | How do trees talk underground? | Fungi linked to roots form networks that can move water, sugars and chemical signals between trees, though how much is debated.
+Nature | What is a keystone species? | A species whose role holds an ecosystem together, like the tiger as top predator or the fig tree that feeds many animals.
+Everyday science | Why do bubbles look rainbow-coloured? | Light reflects from the inner and outer surfaces of the thin soap film, and the two reflections interfere, making colours.
+Everyday science | Why does a ceiling fan wobble? | Its blades are not perfectly balanced, or the mount is loose, so it shakes as it spins.
+Everyday science | Why does an ice cube crack in water? | The outside warms and expands faster than the frozen core, and the stress cracks it.
+Everyday science | Why do tyres have treads? | Grooves push water out from under the tyre so it can grip the road in rain.
+Everyday science | Why does a whistle make noise? | Air blown in splits over a sharp edge, making the air inside vibrate at a steady, high frequency.
+Everyday science | Why does steel not rust as fast as iron? | Stainless steel contains chromium, which forms a thin, invisible protective layer on the surface.
+Everyday science | How does a thermos keep tea hot? | A vacuum between two walls stops heat moving by conduction, and shiny walls reflect heat back.
+Everyday science | Why do we get static shocks in winter? | Dry air lets charge build up on your body; touching metal lets it jump across in a tiny spark.
+Everyday science | Why does a match light when struck? | Friction heats the head, and chemicals there, with phosphorus on the box strip, catch fire easily.
+Everyday science | Why do noodles get soft? | Hot water enters the starch, swells the grains and loosens their structure.
+Curious facts | Do ants sleep? | Yes, in short naps. Worker ants may take hundreds of naps of about a minute each in a day.
+Curious facts | Why is a group of crows called a murder? | It is an old poetic name from medieval English, like a parliament of owls, not a sign that crows are cruel.
+Curious facts | How far does a sparrow fly in a day? | House sparrows usually stay within a couple of kilometres of their nest, rarely travelling far.
+Curious facts | How long can a sea turtle hold its breath? | When resting, many sea turtles can stay underwater for several hours.
+Curious facts | Are there snakes in Ireland? | No native ones. Ireland was separated from Europe by sea after the last ice age before snakes could reach it.
+Curious facts | Is it true that a bolt of lightning never strikes the same place twice? | False. Tall buildings like the Empire State Building are hit around 20 times a year.
+Curious facts | How long does it take light from the Sun to reach Pluto? | About five and a half hours on average.
+Curious facts | What is the coldest place on Earth? | Parts of the East Antarctic plateau, where satellites have measured surface temperatures near minus 94 degrees Celsius.
+Curious facts | Why do koalas sleep so much? | Their eucalyptus diet is low in energy and hard to digest, so they rest up to 20 hours a day.
+Curious facts | Why are some eggs brown and some white? | It depends on the breed of hen. Colour does not change taste or nutrition.
+Curious facts | Which planet would float in water? | Saturn, in theory: it is less dense than water. You would need a very big bathtub.

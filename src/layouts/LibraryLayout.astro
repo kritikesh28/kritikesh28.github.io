@@ -1,0 +1,199 @@
+---
+// The frame of the Library pages: the site header and footer (Base), a left sidebar that lists every theme,
+// discipline and branch (dropdown › sub-dropdown › sub-dropdown, like Exam Prep), and the page itself.
+// On phones the sidebar opens as a drawer. Data: src/library-map.ts. Guide: docs/17-library-map.md
+import Base from './Base.astro';
+import { THEMES, SHELVES, getField, fieldName, fieldUrl, shelvesIn, shelfTitle, themeOf, BOOK } from '../library-map';
+import { langFromUrl, localizePath, pick, type Lang } from '../i18n/config';
+
+interface Props {
+  title: string;
+  description: string;
+  section: 'home' | 'map' | 'field' | 'shelf';
+  field?: string; // discipline code being read, e.g. ACP
+  shelf?: string; // shelf slug being read, e.g. crochet
+  schema?: Record<string, unknown>[];
+  langs?: Lang[];
+  image?: string;
+  wide?: boolean; // main column without the sidebar width limit
+}
+const { title, description, section, field, shelf, schema, langs, image } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const L = (p: string) => localizePath(p, lang);
+const T = pick({
+  en: { menu: 'Library menu', sections: 'Library sections', home: 'The Library', start: 'The whole forest', tree: 'The whole tree', shelves: 'Open shelves', all: 'All disciplines', exam: 'Exam Prep', examSub: 'Curriculum Index and Exam Mentor', note: `${BOOK.fields} disciplines and ${BOOK.nodes.toLocaleString('en-IN')} topics from The Universal Index of Human Knowledge. A filled dot means pages you can read today; the rest are named first and written next.` , open: 'Open' },
+  hi: { menu: 'लाइब्रेरी मेनू', sections: 'लाइब्रेरी के हिस्से', home: 'लाइब्रेरी', start: 'पूरा जंगल', tree: 'पूरा पेड़', shelves: 'खुली अलमारियाँ', all: 'सारे विषय', exam: 'परीक्षा तैयारी', examSub: 'पाठ्यक्रम सूचकांक और परीक्षा मार्गदर्शक', note: `${BOOK.fields} विषय और ${BOOK.nodes.toLocaleString('en-IN')} टॉपिक। भरा हुआ बिंदु मतलब आज पढ़ने लायक़ पन्ने; बाक़ी के नाम पहले लिखे गए हैं, पन्ने आगे आएँगे।`, open: 'खोलें' },
+}, lang);
+const currentTheme = field ? themeOf(field).id : shelf ? themeOf(SHELVES.find((s) => s.slug === shelf)?.field ?? 'ASC').id : undefined;
+const currentField = field ?? SHELVES.find((s) => s.slug === shelf)?.field;
+const where = shelf ? shelfTitle(SHELVES.find((s) => s.slug === shelf)!, lang) : field ? fieldName(field, lang) : undefined;
+---
+
+<Base {title} {description} {schema} {langs} {image}>
+  <div class="lx wrap">
+    <button class="lx-menu" type="button" aria-expanded="false" aria-controls="lx-side" data-lx-menu>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+      <span>{T.menu}</span>
+      {where && <span class="lx-where">· {where}</span>}
+    </button>
+    <div class="lx-scrim" data-lx-scrim hidden></div>
+
+    <aside class="lx-side" id="lx-side" aria-label={T.sections}>
+      <a class="side-home" href={L('/library/')} aria-current={section === 'home' ? 'page' : undefined}>
+        <span class="side-mark" aria-hidden="true">✦</span>
+        <span><strong>{T.home}</strong><small>{T.start}</small></span>
+      </a>
+      <a class="side-tree" href="/library/map/" hreflang="en" aria-current={section === 'map' ? 'page' : undefined}>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22v-8M12 14l-5-5M12 14l5-5M12 10V4M7 9l-3-2M17 9l3-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
+        {T.tree}
+      </a>
+
+      <details class="side-group" open>
+        <summary class="side-title"><span class="num" aria-hidden="true">1</span> {T.shelves} <span class="ct">{SHELVES.length}</span></summary>
+        <ul class="side-shelves">
+          {SHELVES.map((s) => (
+            <li><a href={s.url} hreflang="en" aria-current={s.slug === shelf ? 'page' : undefined} data-c={themeOf(s.field).id}><span class="dot" aria-hidden="true"></span>{shelfTitle(s, lang)}<span class="ct">{s.pages}</span></a></li>
+          ))}
+        </ul>
+      </details>
+
+      <details class="side-group" open>
+        <summary class="side-title"><span class="num" aria-hidden="true">2</span> {T.all} <span class="ct">{BOOK.fields}</span></summary>
+        <ul class="side-themes">
+          {THEMES.map((th) => (
+            <li>
+              <details open={th.id === currentTheme} data-c={th.id}>
+                <summary><span class="dot" aria-hidden="true"></span><span class="nm">{lang === 'hi' ? th.hi : th.en}</span><span class="ct">{th.fields.length}</span></summary>
+                <ul class="side-fields">
+                  {th.fields.map((code) => {
+                    const f = getField(code);
+                    const live = shelvesIn(code);
+                    return (
+                      <li>
+                        <details open={code === currentField}>
+                          <summary class:list={[{ here: code === field }]}><span class:list={['dot', 'sm', { hollow: live.length === 0 }]} aria-hidden="true"></span><span class="nm">{fieldName(code, lang)}</span></summary>
+                          <ul class="side-branches">
+                            <li><a class="open" href={fieldUrl(code)} hreflang="en" aria-current={code === field && section === 'field' ? 'page' : undefined}>{T.open}: {fieldName(code, lang)} →</a></li>
+                            {live.map((s) => <li><a class="live" href={s.url} hreflang="en" aria-current={s.slug === shelf ? 'page' : undefined}>● {shelfTitle(s, lang)}</a></li>)}
+                            {f.branches.map((b) => <li><a href={`${fieldUrl(code)}#${b.code}`} hreflang="en" lang="en">{b.name}</a></li>)}
+                          </ul>
+                        </details>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </details>
+            </li>
+          ))}
+        </ul>
+      </details>
+
+      <a class="side-exam" href={L('/exam-prep/')}><strong>{T.exam}</strong><small>{T.examSub}</small></a>
+      <p class="side-note">{T.note}</p>
+    </aside>
+
+    <div class="lx-main">
+      <slot />
+    </div>
+  </div>
+</Base>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('[data-lx-menu]');
+  const side = document.getElementById('lx-side');
+  const scrim = document.querySelector<HTMLElement>('[data-lx-scrim]');
+  const setOpen = (open: boolean) => {
+    if (!btn || !side || !scrim) return;
+    btn.setAttribute('aria-expanded', String(open));
+    side.classList.toggle('open', open);
+    scrim.hidden = !open;
+    document.body.classList.toggle('ex-lock', open);
+  };
+  btn?.addEventListener('click', () => setOpen(btn.getAttribute('aria-expanded') !== 'true'));
+  scrim?.addEventListener('click', () => setOpen(false));
+  side?.addEventListener('click', (e) => { if ((e.target as HTMLElement).closest('a')) setOpen(false); });
+  addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false));
+  // keep the current item in view inside the sidebar
+  const here = side?.querySelector<HTMLElement>('.side-fields [aria-current="page"], .side-fields .here, .side-shelves [aria-current="page"]');
+  if (here && side && matchMedia('(min-width: 961px)').matches) side.scrollTop = here.offsetTop - side.clientHeight / 2;
+</script>
+
+<style>
+  .lx { display: grid; grid-template-columns: 290px minmax(0, 1fr); gap: 2.4rem; align-items: start; max-width: 1280px; margin-top: 1.2rem; }
+  .lx-menu, .lx-scrim { display: none; }
+  .lx-side {
+    position: sticky; top: 84px; max-height: calc(100vh - 100px); overflow-y: auto; overscroll-behavior: contain;
+    padding: 1rem 0.9rem 1.2rem; border: 1px solid var(--line); border-radius: 18px;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--gold) 9%, var(--surface)), var(--surface) 180px);
+    font-size: 0.93rem; scrollbar-width: thin;
+  }
+  .side-home { display: flex; gap: 0.7rem; align-items: center; padding: 0.55rem 0.6rem; border-radius: 12px; text-decoration: none; color: var(--ink); }
+  .side-home strong { display: block; font-family: var(--font-serif); font-size: 1.15rem; line-height: 1.1; }
+  .side-home small { color: var(--ink-soft); font-size: 0.8rem; }
+  .side-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, #8a6438, #3b2a1e); color: #f6e7c8; font-size: 1rem; flex: none; }
+  .side-home:hover, .side-home[aria-current='page'], .side-tree:hover, .side-tree[aria-current='page'] { background: var(--accent-soft); }
+  .side-tree { display: flex; align-items: center; gap: 0.55rem; margin-top: 0.2rem; padding: 0.45rem 0.6rem; border-radius: 10px; color: var(--ink); text-decoration: none; font-weight: 600; }
+  .side-tree svg { width: 20px; height: 20px; color: #8a6438; }
+  .side-group { margin-top: 0.9rem; padding-top: 0.8rem; border-top: 1px solid var(--line); }
+  summary { list-style: none; cursor: pointer; }
+  summary::-webkit-details-marker { display: none; }
+  .side-title {
+    display: flex; align-items: center; gap: 0.55rem; padding: 0.3rem 0.6rem; border-radius: 10px;
+    font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .side-title:hover { color: var(--ink); background: var(--accent-soft); }
+  .num { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #8a6438; color: #8a6438; font-size: 0.7rem; letter-spacing: 0; }
+  .ct { margin-left: auto; font-size: 0.72rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; letter-spacing: 0; font-weight: 500; }
+  ul { list-style: none; margin: 0.3rem 0 0; padding: 0; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; background: var(--th, #8a6438); }
+  .dot.sm { width: 7px; height: 7px; }
+  .dot.hollow { background: none; border: 1.5px solid var(--th, #8a6438); }
+  .side-shelves a, .side-themes summary, .side-fields summary {
+    display: flex; align-items: center; gap: 0.55rem; padding: 0.34rem 0.6rem; border-radius: 10px; color: var(--ink); text-decoration: none; line-height: 1.3;
+  }
+  .side-shelves a:hover, .side-themes summary:hover, .side-fields summary:hover { background: var(--accent-soft); }
+  .side-shelves a[aria-current='page'] { background: color-mix(in srgb, var(--th) 16%, transparent); font-weight: 600; }
+  .side-themes > li > details > summary { font-weight: 600; }
+  .side-themes > li > details > summary::after, .side-fields summary::after { content: '▸'; color: var(--ink-soft); font-size: 0.75rem; transition: transform 0.2s; }
+  .side-themes details[open] > summary::after { transform: rotate(90deg); }
+  .nm { flex: 1; }
+  .side-fields { margin: 0.1rem 0 0.4rem 0.9rem; padding-left: 0.5rem; border-left: 2px solid color-mix(in srgb, var(--th) 35%, transparent); }
+  .side-fields summary { font-size: 0.88rem; padding-block: 0.28rem; }
+  .side-fields summary.here { background: color-mix(in srgb, var(--th) 16%, transparent); font-weight: 600; }
+  .side-branches { margin: 0 0 0.4rem 0.9rem; padding-left: 0.5rem; border-left: 1px dashed var(--line); }
+  .side-branches a { display: block; padding: 0.22rem 0.45rem; border-radius: 8px; color: var(--ink-soft); text-decoration: none; font-size: 0.82rem; line-height: 1.35; }
+  .side-branches a:hover { color: var(--ink); background: var(--accent-soft); }
+  .side-branches a.open { color: var(--th); font-weight: 600; }
+  .side-branches a.live { color: var(--ink); font-weight: 600; }
+  .side-branches a[aria-current='page'] { background: color-mix(in srgb, var(--th) 16%, transparent); color: var(--ink); }
+  .side-exam { display: grid; margin-top: 1rem; padding: 0.7rem 0.75rem; border-radius: 12px; border: 1px solid var(--line); text-decoration: none; color: var(--ink); }
+  .side-exam small { color: var(--ink-soft); font-size: 0.78rem; }
+  .side-exam:hover { border-color: var(--accent); }
+  .side-note { margin: 0.9rem 0.2rem 0; padding: 0.6rem 0.7rem; border-radius: 10px; background: var(--accent-soft); color: var(--ink-soft); font-size: 0.78rem; line-height: 1.45; }
+  [data-c='cosmos'] { --th: #6f5fd6; } [data-c='life'] { --th: #c2514a; } [data-c='earth'] { --th: #2f8a62; } [data-c='mind'] { --th: #b0699f; }
+  [data-c='society'] { --th: #c98a2b; } [data-c='past'] { --th: #8a6a3b; } [data-c='arts'] { --th: #d0613c; } [data-c='making'] { --th: #3f7fc4; }
+  .lx-main { min-width: 0; }
+
+  @media (max-width: 960px) {
+    .lx { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    .lx-menu {
+      display: inline-flex; align-items: center; gap: 0.5rem; justify-self: start; margin-bottom: 1rem; max-width: 100%;
+      position: sticky; top: 76px; z-index: 20; padding: 0.5rem 0.9rem; border-radius: 999px; border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--surface) 92%, transparent); backdrop-filter: blur(8px); color: var(--ink); font: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer;
+      box-shadow: 0 6px 18px rgb(42 35 80 / 0.08);
+    }
+    .lx-menu svg { width: 18px; height: 18px; flex: none; }
+    .lx-where { font-weight: 400; color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .lx-side {
+      position: fixed; top: 0; bottom: 0; left: 0; z-index: 70; width: min(86vw, 340px); max-height: none; border-radius: 0 18px 18px 0;
+      transform: translateX(-105%); transition: transform 0.3s ease; box-shadow: 0 20px 60px rgb(0 0 0 / 0.25); background: var(--surface);
+    }
+    .lx-side.open { transform: none; }
+    .lx-scrim { display: block; position: fixed; inset: 0; z-index: 65; background: rgb(18 15 36 / 0.45); }
+    .lx-scrim[hidden] { display: none; }
+    :global(html:not(.js)) .lx-side { position: static; transform: none; width: auto; border-radius: 18px; box-shadow: none; margin-bottom: 1.5rem; }
+    :global(html:not(.js)) .lx-menu { display: none; }
+  }
+  @media (max-width: 720px) { .lx-menu { top: 134px; } }
+  @media print { .lx-side, .lx-menu { display: none; } .lx { display: block; } }
+</style>

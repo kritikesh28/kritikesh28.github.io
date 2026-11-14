@@ -152,3 +152,17 @@ export const getQuestions = (lang: Lang = 'en'): CuriousQuestion[] =>
     const tr = lang === 'hi' ? CURIOUS_QUESTIONS_HI[i] : undefined;
     return { ...q, ...(tr ?? {}), link: q.link && localizePath(q.link, lang) };
   });
+
+// The big bank: 600+ more questions across the library's themes and beyond, one per line in questions/bank.en.txt.
+// The card shows every question once before any repeats (see QuestionCard.astro).
+import BANK_EN from './questions/bank.en.txt?raw';
+const parseBank = (raw: string): CuriousQuestion[] =>
+  raw.split('\n').filter((l) => l.trim() && !l.startsWith('#')).map((l) => {
+    const [topic, q, a] = l.split(' | ').map((x) => x.trim());
+    if (!topic || !q || !a) throw new Error(`questions bank: bad line "${l}"`);
+    return { topic, q, a };
+  });
+
+/** Every question for a language: the hand-picked ones first (with links), then the bank. Hindi has its own set. */
+export const getAllQuestions = (lang: Lang = 'en'): CuriousQuestion[] =>
+  lang === 'hi' ? getQuestions('hi') : [...getQuestions('en'), ...parseBank(BANK_EN)];

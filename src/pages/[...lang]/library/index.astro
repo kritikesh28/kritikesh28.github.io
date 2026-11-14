@@ -1,6 +1,10 @@
 ---
 // The Forest: the whole library on one page.
-import Base from '../../../layouts/Base.astro';
+import LibraryLayout from '../../../layouts/LibraryLayout.astro';
+import ShelfCard from '../../../components/library/ShelfCard.astro';
+import ThemeGrid from '../../../components/library/ThemeGrid.astro';
+import LibraryTree from '../../../components/library/LibraryTree.astro';
+import { SHELVES, BOOK } from '../../../library-map';
 import QuestionCard from '../../../components/QuestionCard.astro';
 import SearchBox from '../../../components/SearchBox.astro';
 import ProgressMeter from '../../../components/ProgressMeter.astro';
@@ -24,29 +28,41 @@ const readCount = (tree: string) => posts.filter((p) => p.data.category === tree
 const statusLabel = { live: t('lib.readNow'), next: t('lib.beingWritten'), planned: t('lib.plannedStatus') } as const;
 const T = pick({
   en: {
-    description: 'An open library for curious minds. Short, question-led pages on the Universe, the Earth, AI and ideas, each readable in about two minutes.',
+    description: 'An open library for curious minds: the whole map of human knowledge in 46 disciplines, with open shelves on the Universe, movies, books, music, cooking, gardening, sports, technology and the needle arts.',
     schemaDesc: 'An open library for curious minds: short, question-led pages that start from zero.',
     h1: 'An open library for curious minds',
-    lede: 'Every page answers one real question in about two minutes, starting from zero. Follow a path from the first page, or jump straight to the question on your mind.',
+    lede: 'One tree for everything people have learned: 8 themes, 46 disciplines and over 3,000 topics. Every page answers one real question, starting from zero. Pick a shelf, follow a branch, or jump to the question on your mind.',
+    mapEyebrow: 'The whole library at a glance', mapTitle: 'One trunk, eight great branches',
+    mapText: `Every field of study, from Accounting to Veterinary science, grouped into eight themes. Filled branches have pages you can read today; the rest are named first, so you can see where the forest will grow.`,
+    mapOpen: 'Open the full tree →',
+    shEyebrow: 'Open shelves', shTitle: `${SHELVES.length} shelves you can read today`, shText: 'Each shelf is a twig of the tree: a whole topic told in short pages, with tick boxes to keep your place.',
+    grEyebrow: 'Every discipline', grTitle: 'Where each topic grows',
+    ltEyebrow: 'Long reads and courses',
     orgEyebrow: 'How it is organised', orgTitle: 'A forest of questions', like: 'Like', eg: 'e.g.',
-    exEyebrow: 'Explore', exTitle: 'Six trees, one forest',
+    exEyebrow: 'Explore', exTitle: 'Six trees of long reads',
     courses: (n: number) => `${n} short course${n > 1 ? 's' : ''}`, reads: (n: number) => `${n} long read${n > 1 ? 's' : ''}`, growing: 'Growing',
     open: (x: string) => `Open ${x} →`,
     stEyebrow: 'Honest status', stTitle: 'What is growing',
-    stText: 'The library is new. Here is exactly what works today and what is still being built, so you never click on a promise.',
+    stText: 'The library is young and growing fast. First I am planting the names of every topic, so the whole tree is visible; the detailed pages for each one are being written and will arrive shelf by shelf. Here is exactly what works today and what comes next.',
     build: { live: 'Live', 'in-progress': 'In progress', planned: 'Not started' },
   },
   hi: {
     description: 'जानने की चाह रखने वालों के लिए एक खुली लाइब्रेरी। ब्रह्मांड, पृथ्वी, AI और बड़े विचारों पर छोटे पन्ने, हर पन्ना एक सवाल पर, लगभग दो मिनट में पढ़ने लायक़।',
     schemaDesc: 'जानने की चाह रखने वालों के लिए एक खुली लाइब्रेरी: सवालों से शुरू होने वाले छोटे पन्ने, बिल्कुल शून्य से।',
     h1: 'जानने की चाह रखने वालों की खुली लाइब्रेरी',
-    lede: 'हर पन्ना एक असली सवाल का जवाब लगभग दो मिनट में देता है, बिल्कुल शुरुआत से। पहले पन्ने से एक रास्ते पर चलिए, या सीधे उस सवाल पर जाइए जो आपके मन में है।',
+    lede: 'इंसान ने जो कुछ सीखा है, उसके लिए एक पेड़: 8 बड़ी शाखाएँ, 46 विषय और 3,000 से ज़्यादा टॉपिक। हर पन्ना एक असली सवाल का जवाब देता है, बिल्कुल शुरुआत से। कोई अलमारी चुनिए, कोई शाखा पकड़िए, या सीधे अपने सवाल पर जाइए।',
+    mapEyebrow: 'पूरी लाइब्रेरी एक नज़र में', mapTitle: 'एक तना, आठ बड़ी शाखाएँ',
+    mapText: 'हिसाब-किताब से लेकर पशु चिकित्सा तक, पढ़ाई का हर क्षेत्र आठ हिस्सों में। भरी हुई शाखाओं पर आज पढ़ने लायक़ पन्ने हैं; बाक़ी के नाम पहले लिखे गए हैं, ताकि आप देख सकें कि जंगल कहाँ-कहाँ बढ़ेगा।',
+    mapOpen: 'पूरा पेड़ खोलें →',
+    shEyebrow: 'खुली अलमारियाँ', shTitle: `आज पढ़ने लायक़ ${SHELVES.length} अलमारियाँ`, shText: 'हर अलमारी पेड़ की एक टहनी है: एक पूरा विषय छोटे पन्नों में, टिक लगाकर अपनी जगह याद रखने के साथ। ये पन्ने अभी अंग्रेज़ी में हैं।',
+    grEyebrow: 'हर विषय', grTitle: 'कौन-सा टॉपिक कहाँ उगता है',
+    ltEyebrow: 'लंबे लेख और कोर्स',
     orgEyebrow: 'यह कैसे सजी है', orgTitle: 'सवालों का एक जंगल', like: 'जैसे', eg: 'उदाहरण:',
-    exEyebrow: 'घूमिए', exTitle: 'छह पेड़, एक जंगल',
+    exEyebrow: 'घूमिए', exTitle: 'लंबे लेखों के छह पेड़',
     courses: (n: number) => `${n} छोटे कोर्स`, reads: (n: number) => `${n} लंबे लेख`, growing: 'बढ़ रहा है',
     open: (x: string) => `${x} खोलें →`,
     stEyebrow: 'सच्ची स्थिति', stTitle: 'क्या-क्या बढ़ रहा है',
-    stText: 'लाइब्रेरी अभी नई है। यहाँ साफ़-साफ़ लिखा है कि आज क्या चल रहा है और क्या अभी बन रहा है, ताकि आप कभी किसी झूठे वादे पर क्लिक न करें।',
+    stText: 'लाइब्रेरी अभी नई है और तेज़ी से बढ़ रही है। पहले मैं हर टॉपिक का नाम लगा रहा हूँ, ताकि पूरा पेड़ दिखे; हर टॉपिक के विस्तार वाले पन्ने लिखे जा रहे हैं और एक-एक अलमारी करके आएँगे। यहाँ साफ़ लिखा है कि आज क्या चल रहा है और आगे क्या आएगा।',
     build: { live: 'तैयार है', 'in-progress': 'काम चल रहा है', planned: 'शुरू नहीं हुआ' },
   },
 }, lang);
@@ -61,8 +77,8 @@ const schema = [
 ];
 ---
 
-<Base title={t('nav.library')} description={T.description} {schema}>
-  <section class="wrap hero">
+<LibraryLayout title={t('nav.library')} description={T.description} {schema} section="home">
+  <section class="hero">
     <div>
       <p class="eyebrow">{t('site.libraryName')}</p>
       <h1>{T.h1}</h1>
@@ -72,7 +88,28 @@ const schema = [
     <QuestionCard />
   </section>
 
-  <section class="wrap block">
+  <section class="block" id="map">
+    <p class="eyebrow">{T.mapEyebrow}</p>
+    <h2>{T.mapTitle}</h2>
+    <p class="muted narrow">{T.mapText}</p>
+    <LibraryTree />
+    <p class="center"><a class="btn" href="/library/map/" hreflang="en">{T.mapOpen}</a></p>
+  </section>
+
+  <section class="block" id="shelves">
+    <p class="eyebrow">{T.shEyebrow}</p>
+    <h2>{T.shTitle}</h2>
+    <p class="muted narrow">{T.shText}</p>
+    <div class="trees">{SHELVES.map((s) => <ShelfCard s={s} />)}</div>
+  </section>
+
+  <section class="block" id="disciplines">
+    <p class="eyebrow">{T.grEyebrow}</p>
+    <h2>{T.grTitle}</h2>
+    <ThemeGrid />
+  </section>
+
+  <section class="block">
     <p class="eyebrow">{T.orgEyebrow}</p>
     <h2>{T.orgTitle}</h2>
     <ol class="levels">
@@ -88,8 +125,8 @@ const schema = [
     </ol>
   </section>
 
-  <section class="wrap block">
-    <p class="eyebrow">{T.exEyebrow}</p>
+  <section class="block" id="long-reads">
+    <p class="eyebrow">{T.ltEyebrow}</p>
     <h2>{T.exTitle}</h2>
     <div class="trees">
       {getTrees(lang).map((tree) => {
@@ -120,7 +157,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="wrap block">
+  <section class="block" id="growing">
     <p class="eyebrow">{T.stEyebrow}</p>
     <h2>{T.stTitle}</h2>
     <p class="muted narrow">{T.stText}</p>
@@ -134,7 +171,7 @@ const schema = [
       ))}
     </ul>
   </section>
-</Base>
+</LibraryLayout>
 
 <script>
   import { paintProgress } from '../../../scripts/library-progress';
@@ -142,18 +179,19 @@ const schema = [
 </script>
 
 <style>
-  .hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 2.5rem; align-items: center; margin-top: 1rem; }
+  .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 2rem; align-items: center; }
+  .center { text-align: center; margin-top: 0.4rem; }
   .lede { font-size: 1.15rem; color: var(--ink-soft); max-width: 36rem; }
   .find { margin-top: 1.4rem; max-width: 34rem; }
   .block { margin-top: 4rem; }
-  .levels { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.8rem; }
+  .levels { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.8rem; }
   .levels li { position: relative; overflow: hidden; display: grid; gap: 0.2rem; align-content: start; padding: 1rem; border-radius: var(--radius); background: linear-gradient(160deg, var(--surface), color-mix(in srgb, var(--teal) 7%, var(--surface))); border: 1px solid var(--line); }
   .levels :global(.lv-wm) { position: absolute; right: -34px; bottom: -36px; color: var(--teal); opacity: 0.1; }
   .levels :global(.lv-icon) { color: #8a6a3b; margin-bottom: 0.3rem; }
   :global([data-theme='dark']) .levels :global(.lv-icon) { color: #e0b45e; }
   @media (prefers-color-scheme: dark) { :global(:root:not([data-theme='light'])) .levels :global(.lv-icon) { color: #e0b45e; } }
   .levels li > * { position: relative; }
-  .trees { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); margin-top: 1rem; }
+  .trees { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); margin-top: 1rem; }
   .tree { position: relative; overflow: hidden; isolation: isolate; display: flex; flex-direction: column; padding: 1.3rem; border-radius: 20px; border: 1px solid color-mix(in srgb, var(--tree) 30%, var(--line)); background: linear-gradient(165deg, color-mix(in srgb, var(--tree) 13%, var(--surface)) 0%, var(--surface) 55%); scroll-margin-top: 80px; transition: transform 0.25s, box-shadow 0.25s; }
   .tree:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -22px color-mix(in srgb, var(--tree) 70%, transparent); }
   .tree :global(.wm) { position: absolute; z-index: -1; right: -18px; bottom: -10px; width: 240px; height: auto; color: var(--tree); opacity: 0.14; transition: opacity 0.3s, transform 0.6s; }
@@ -173,6 +211,7 @@ const schema = [
   .build { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: 0.6rem; max-width: 760px; }
   .build li { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.1rem 0.8rem; align-items: baseline; padding: 0.8rem 1rem; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); }
   .build .chip { grid-row: span 2; justify-self: start; margin: 0; }
+  @media (max-width: 1180px) { .hero { grid-template-columns: minmax(0, 1fr); } }
   @media (max-width: 900px) {
     .hero { grid-template-columns: minmax(0, 1fr); }
     .levels { grid-template-columns: 1fr; }

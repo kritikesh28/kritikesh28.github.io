@@ -1,0 +1,26 @@
+---
+// Explore moved into the Library on 14 Nov 2026. These small pages send old /explore/ links to the new address.
+import { TOPICS, getTopic, flatSections } from '../../explore';
+
+export function getStaticPaths() {
+  const moved = [{ from: undefined as string | undefined, to: '/library/#shelves' }];
+  for (const ts of TOPICS) {
+    moved.push({ from: ts.slug, to: ts.url });
+    for (const s of flatSections(getTopic(ts.slug))) moved.push({ from: s.url.replace(/^\/library\//, '').replace(/\/$/, ''), to: s.url });
+  }
+  return moved.map((m) => ({ params: { path: m.from }, props: { to: m.to } }));
+}
+const { to } = Astro.props as { to: string };
+const href = new URL(to, Astro.site).href;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Moved to the Library</title>
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={href} />
+    <meta http-equiv="refresh" content={`0; url=${to}`} />
+  </head>
+  <body><p>This page has moved to the Library: <a href={to}>{href}</a></p></body>
+</html>

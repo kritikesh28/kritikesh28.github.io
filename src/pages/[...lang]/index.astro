@@ -3,11 +3,11 @@ import Base from '../../layouts/Base.astro';
 import PostCard from '../../components/PostCard.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import PosterHero from '../../components/PosterHero.astro';
-import CuriosityOrbit from '../../components/CuriosityOrbit.astro';
+import LibraryTree from '../../components/library/LibraryTree.astro';
+import JustHatched from '../../components/JustHatched.astro';
 import LiveDemo from '../../components/LiveDemo.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import QuestionCard from '../../components/QuestionCard.astro';
-import ExploreBand from '../../components/explore/ExploreBand.astro';
 import { SITE } from '../../site.config';
 import { getPosts, getProjects } from '../../lib';
 import { langFromUrl, langParams, localizePath, pick } from '../../i18n/config';
@@ -20,19 +20,19 @@ const posts = (await getPosts(lang)).slice(0, 3);
 const projects = (await getProjects(lang)).slice(0, 3);
 const T = pick({
   en: {
-    libEyebrow: 'New · The Library', libTitle: 'Learn something real in two minutes',
-    libText: 'Short, question-led pages that start from zero. The first course follows the Universe from its first second to the atoms in your body, in 12 small steps.',
-    libStart: 'Start The Universe →', libBrowse: 'Browse the library',
-    exEyebrow: 'Explore', exTitle: 'Pick a thread', exText: 'Six trees grow in one forest. Each subject is a tree in the library, and they all meet in the middle.', exOpen: 'Open the library →',
+    libEyebrow: 'The Library', libTitle: 'Every big idea begins as a small question',
+    libText: 'A growing library of everything people study, told in short pages that start from zero. Ask anything, start anywhere, and leave knowing something real.',
+    libStart: 'Open the Library →', libBrowse: 'See the whole tree',
+    exEyebrow: 'Explore', exTitle: 'Pick a thread', exText: 'One trunk, eight great branches, every subject people study. Follow a branch to its twigs: the coloured ones are ready to read, and new ones grow every week.', exOpen: 'Climb the whole tree →',
     liveEyebrow: 'Live project', liveTitle: 'Where New York takes a taxi, hour by hour',
     pfEyebrow: 'Portfolio', pfTitle: 'Projects', pfAll: 'All projects →',
     lrEyebrow: `${SITE.blogBrand} Library`, lrTitle: 'Latest long reads', lrNone: 'The first posts are being written.',
   },
   hi: {
-    libEyebrow: 'नया · लाइब्रेरी', libTitle: 'दो मिनट में कुछ सच्चा और काम का सीखिए',
-    libText: 'छोटे पन्ने, हर पन्ना एक सवाल से शुरू, बिल्कुल शून्य से। पहला कोर्स ब्रह्मांड (पूरी सृष्टि) की कहानी उसके पहले पल से लेकर आपके शरीर के परमाणुओं (सबसे छोटे कणों) तक, 12 छोटे कदमों में सुनाता है।',
-    libStart: 'ब्रह्मांड का कोर्स शुरू करें →', libBrowse: 'पूरी लाइब्रेरी देखें',
-    exEyebrow: 'घूमिए', exTitle: 'एक धागा चुनिए', exText: 'एक जंगल में छह पेड़ उगते हैं। लाइब्रेरी में हर विषय एक पेड़ है, और सब बीच में आकर मिलते हैं।', exOpen: 'लाइब्रेरी खोलें →',
+    libEyebrow: 'लाइब्रेरी', libTitle: 'हर बड़ा विचार एक छोटे सवाल से शुरू होता है',
+    libText: 'इंसान जो कुछ भी पढ़ता है, उसकी एक बढ़ती लाइब्रेरी, छोटे पन्नों में, बिल्कुल शुरुआत से। कुछ भी पूछिए, कहीं से भी शुरू कीजिए, और कुछ सच्चा सीखकर जाइए।',
+    libStart: 'लाइब्रेरी खोलें →', libBrowse: 'पूरा पेड़ देखें',
+    exEyebrow: 'घूमिए', exTitle: 'एक धागा चुनिए', exText: 'एक तना, आठ बड़ी शाखाएँ, पढ़ाई का हर विषय। किसी शाखा को उसकी टहनियों तक पकड़िए: रंगीन टहनियाँ पढ़ने के लिए तैयार हैं, और हर हफ़्ते नई उगती हैं।', exOpen: 'पूरे पेड़ पर चढ़िए →',
     liveEyebrow: 'लाइव प्रोजेक्ट', liveTitle: 'न्यूयॉर्क में लोग टैक्सी कहाँ से लेते हैं, घंटे-दर-घंटे',
     pfEyebrow: 'मेरा काम', pfTitle: 'प्रोजेक्ट', pfAll: 'सारे प्रोजेक्ट →',
     lrEyebrow: 'Curious Sparoows लाइब्रेरी', lrTitle: 'नए लंबे लेख', lrNone: 'पहले लेख लिखे जा रहे हैं।',
@@ -52,16 +52,15 @@ const T = pick({
         <p class="eyebrow">{T.libEyebrow}</p>
         <h2>{T.libTitle}</h2>
         <p class="muted">{T.libText}</p>
+        <JustHatched />
         <p class="lib-links">
-          <a class="btn" href={L('/library/the-universe/')}>{T.libStart}</a>
-          <a class="btn ghost" href={L('/library/')}>{T.libBrowse}</a>
+          <a class="btn" href={L('/library/')}>{T.libStart}</a>
+          <a class="btn ghost" href="/library/map/" hreflang="en">{T.libBrowse}</a>
         </p>
       </div>
       <QuestionCard />
     </div>
   </section>
-
-  <ExploreBand />
 
   <section id="explore" class="wrap section reveal">
     <div class="split">
@@ -69,9 +68,9 @@ const T = pick({
         <p class="eyebrow">{T.exEyebrow}</p>
         <h2>{T.exTitle}</h2>
         <p class="muted">{T.exText}</p>
-        <p><a href={L('/library/')}>{T.exOpen}</a></p>
+        <p><a href="/library/map/" hreflang="en">{T.exOpen}</a></p>
       </div>
-      <CuriosityOrbit />
+      <LibraryTree />
     </div>
   </section>
 
@@ -102,8 +101,10 @@ const T = pick({
 
 <style>
   .section { margin-top: 4rem; }
-  .split { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 2rem; align-items: center; }
-  .lib { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2.5rem; align-items: center; }
+  .split { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: 2rem; align-items: center; }
+  .lib { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 2.5rem; align-items: center; }
+  .lib h2 { margin-bottom: 0.4rem; }
+  .lib-links { margin-top: 1.1rem; }
   .lib-links { display: flex; flex-wrap: wrap; gap: 0.6rem; }
   .grid3 { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
   @media (max-width: 860px) {

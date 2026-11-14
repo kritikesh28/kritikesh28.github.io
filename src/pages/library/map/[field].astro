@@ -1,0 +1,154 @@
+---
+// One discipline (a Tree of the Library) with all its branches and topics from The Universal Index of Human Knowledge.
+// Written topics show as shelves; the rest are named and marked "pages coming". Guide: docs/17-library-map.md
+import LibraryLayout from '../../../layouts/LibraryLayout.astro';
+import ShelfCard from '../../../components/library/ShelfCard.astro';
+import LevelIcon from '../../../components/LevelIcon.astro';
+import { FIELDS, fieldSlug, fieldName, fieldUrl, themeOf, shelvesIn, plannedIn, topicCount, branchOf, type Field } from '../../../library-map';
+
+export function getStaticPaths() {
+  return FIELDS.map((f) => ({ params: { field: fieldSlug(f.code) }, props: { code: f.code } }));
+}
+const { code } = Astro.props as { code: string };
+const f = FIELDS.find((x) => x.code === code) as Field;
+const th = themeOf(code);
+const live = shelvesIn(code);
+const planned = plannedIn(code);
+const i = FIELDS.indexOf(f);
+const prev = FIELDS[i - 1];
+const next = FIELDS[i + 1];
+const name = fieldName(code);
+const description = `${f.name}: ${f.scope}`.slice(0, 300);
+const schema = [
+  { '@type': 'CollectionPage', name: `${f.name} in the Curious Sparoows Library`, url: new URL(fieldUrl(code), Astro.site).href, description, inLanguage: 'en' },
+  { '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Library', item: new URL('/library/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: 'The Library tree', item: new URL('/library/map/', Astro.site).href },
+    { '@type': 'ListItem', position: 3, name: f.name, item: new URL(fieldUrl(code), Astro.site).href },
+  ] },
+];
+---
+
+<LibraryLayout title={`${name}: the Library tree`} {description} {schema} section="field" field={code} langs={['en']}>
+  <div class="fp" data-c={th.id}>
+    <nav class="crumbs small" aria-label="Where you are">
+      <a href="/library/">Library</a><span aria-hidden="true">›</span><a href={`/library/map/#${th.id}`}>{th.en}</a><span aria-hidden="true">›</span><span aria-current="page">{name}</span>
+    </nav>
+    <header class="fh">
+      <span class="lvl"><LevelIcon level="Tree" size={30} /> A tree of the Library · {f.code}</span>
+      <h1>{f.name}</h1>
+      <p class="lede">{f.scope}</p>
+      <ul class="facts">
+        <li><b>{f.branches.length}</b> branches</li><li><b>{topicCount(f)}</b> topics</li><li><b>{f.nodes}</b> entries in all</li>
+        <li class:list={['st', { on: live.length > 0 }]}>{live.length > 0 ? `${live.length} ${live.length > 1 ? 'shelves' : 'shelf'} to read today` : 'Names first, pages coming'}</li>
+      </ul>
+    </header>
+
+    {live.length > 0 && (
+      <section class="blk">
+        <h2>Read today</h2>
+        <div class="cards">{live.map((s) => <ShelfCard s={s} />)}</div>
+      </section>
+    )}
+
+    {live.length === 0 && (
+      <aside class="grow">
+        <strong>This tree is planted, and its pages are growing.</strong>
+        <p>Every branch and topic below is named so you can see the whole subject at a glance. The short, question-led pages for it are being written{planned.length > 0 ? `, starting with ${planned.map((p) => p.title).join(' and ')}` : ''}. Want this one sooner? <a href="/contact/">Tell me</a>.</p>
+      </aside>
+    )}
+
+    <section class="blk">
+      <h2>All branches</h2>
+      <p class="muted small">Tap a topic to see its smaller study units. Codes match <em>The Universal Index of Human Knowledge</em>.</p>
+      <ol class="brs">
+        {f.branches.map((b) => {
+          const bShelves = live.filter((s) => s.node && (s.node === b.code || s.node.startsWith(b.code + '.')));
+          return (
+            <li id={b.code} class:list={['br', { has: bShelves.length > 0 }]}>
+              <header><span class="bc">{b.code}</span><h3>{b.name}</h3>{bShelves.length > 0 && <span class="pill">pages ready</span>}</header>
+              {bShelves.filter((s) => s.node === b.code).map((s) => <a class="shelf-link" href={s.url}>● Read the {s.title} shelf →</a>)}
+              <ul class="tps">
+                {b.topics.map((tp) => {
+                  const here = live.filter((s) => s.node === tp.code);
+                  return (
+                    <li class:list={[{ has: here.length > 0 }]}>
+                      {tp.units.length > 0
+                        ? (
+                          <details>
+                            <summary><span class="tc">{tp.code}</span><span class="tn">{tp.name}</span><span class="un">{tp.units.length}</span></summary>
+                            <ul class="uts">{tp.units.map((u) => <li><span class="tc">{u.code}</span>{u.name}{u.more && u.more.length > 0 && <span class="more"> · {u.more.join(' · ')}</span>}</li>)}</ul>
+                          </details>
+                        )
+                        : <div class="row"><span class="tc">{tp.code}</span><span class="tn">{tp.name}</span></div>}
+                      {here.map((s) => <a class="shelf-link" href={s.url}>● Read the {s.title} shelf →</a>)}
+                    </li>
+                  );
+                })}
+              </ul>
+            </li>
+          );
+        })}
+      </ol>
+    </section>
+
+    <nav class="pager" aria-label="Other disciplines">
+      {prev ? <a href={fieldUrl(prev.code)}><small>← Previous tree</small><span>{fieldName(prev.code)}</span></a> : <span></span>}
+      <a class="mid" href="/library/map/">The whole tree</a>
+      {next ? <a class="nx" href={fieldUrl(next.code)}><small>Next tree →</small><span>{fieldName(next.code)}</span></a> : <span></span>}
+    </nav>
+  </div>
+</LibraryLayout>
+
+<style>
+  .fp { --th: #8a6a3b; }
+  [data-c='cosmos'] { --th: #6f5fd6; } [data-c='life'] { --th: #c2514a; } [data-c='earth'] { --th: #2f8a62; } [data-c='mind'] { --th: #b0699f; }
+  [data-c='society'] { --th: #c98a2b; } [data-c='past'] { --th: #8a6a3b; } [data-c='arts'] { --th: #d0613c; } [data-c='making'] { --th: #3f7fc4; }
+  .crumbs { display: flex; flex-wrap: wrap; gap: 0.4rem; color: var(--ink-soft); margin-bottom: 0.8rem; }
+  .crumbs a { color: var(--ink-soft); text-decoration: none; }
+  .fh { padding: 1.4rem 1.4rem 1.2rem; border-radius: 22px; border: 1px solid color-mix(in srgb, var(--th) 30%, var(--line)); background: linear-gradient(160deg, color-mix(in srgb, var(--th) 14%, var(--surface)), var(--surface) 70%); }
+  .lvl { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--th); font-weight: 600; font-size: 0.85rem; }
+  .fh h1 { margin: 0.4rem 0 0.5rem; }
+  .lede { color: var(--ink-soft); font-size: 1.05rem; max-width: 48rem; margin: 0; }
+  .facts { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0 0; padding: 0; }
+  .facts li { padding: 0.3rem 0.7rem; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); font-size: 0.86rem; }
+  .facts .st { border-style: dashed; color: var(--ink-soft); }
+  .facts .st.on { border-style: solid; background: var(--th); border-color: var(--th); color: #fff; font-weight: 600; }
+  .blk { margin-top: 2.4rem; }
+  .cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  .grow { margin-top: 1.6rem; padding: 1rem 1.2rem; border-radius: 16px; border: 1px dashed color-mix(in srgb, var(--th) 50%, var(--line)); background: color-mix(in srgb, var(--th) 6%, var(--surface)); }
+  .grow p { margin: 0.3rem 0 0; color: var(--ink-soft); }
+  .brs { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); align-items: start; }
+  .br { padding: 1rem 1rem 0.8rem; border-radius: 16px; border: 1px dashed var(--line); background: var(--surface); scroll-margin-top: 90px; }
+  .br.has { border: 1px solid color-mix(in srgb, var(--th) 50%, transparent); }
+  .br:target { box-shadow: 0 0 0 3px color-mix(in srgb, var(--th) 40%, transparent); }
+  .br header { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; }
+  .br h3 { margin: 0; font-size: 1.08rem; flex: 1; }
+  .bc, .tc { font: 600 0.66rem/1 var(--font-sans); letter-spacing: 0.06em; color: var(--th); }
+  .bc { padding: 0.2rem 0.4rem; border-radius: 6px; background: color-mix(in srgb, var(--th) 12%, transparent); }
+  .pill { font-size: 0.7rem; font-weight: 600; color: #fff; background: var(--th); padding: 0.15rem 0.5rem; border-radius: 999px; }
+  .tps { list-style: none; margin: 0.6rem 0 0; padding: 0; display: grid; gap: 0.15rem; }
+  .tps > li { border-radius: 8px; }
+  .tps > li.has { background: color-mix(in srgb, var(--th) 10%, transparent); }
+  summary { list-style: none; cursor: pointer; }
+  summary::-webkit-details-marker { display: none; }
+  summary, .row { display: flex; gap: 0.5rem; align-items: baseline; padding: 0.3rem 0.4rem; border-radius: 8px; font-size: 0.92rem; line-height: 1.35; }
+  summary:hover { background: var(--accent-soft); }
+  .tc { min-width: 4.6rem; opacity: 0.85; }
+  .tn { flex: 1; }
+  .un { font-size: 0.7rem; color: var(--ink-soft); }
+  .un::after { content: ' ▾'; }
+  details[open] .un::after { content: ' ▴'; }
+  .uts { list-style: none; margin: 0.1rem 0 0.4rem 0.6rem; padding: 0 0 0 0.6rem; border-left: 2px solid color-mix(in srgb, var(--th) 30%, transparent); display: grid; gap: 0.2rem; font-size: 0.84rem; color: var(--ink-soft); }
+  .uts .tc { min-width: 5.6rem; display: inline-block; }
+  .more { font-size: 0.78rem; }
+  .shelf-link { display: inline-block; margin: 0.15rem 0.4rem 0.3rem; font-size: 0.86rem; font-weight: 600; color: var(--th); text-decoration: none; }
+  .shelf-link:hover { text-decoration: underline; }
+  .pager { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; margin: 3rem 0 2rem; }
+  .pager a { display: grid; text-decoration: none; color: var(--ink); padding: 0.7rem 0.9rem; border-radius: 12px; border: 1px solid var(--line); }
+  .pager a:hover { border-color: var(--th); }
+  .pager small { color: var(--ink-soft); }
+  .pager .nx { text-align: right; }
+  .pager .mid { font-weight: 600; text-align: center; }
+  @media (max-width: 640px) { .pager { grid-template-columns: 1fr 1fr; } .pager .mid { grid-column: 1 / -1; order: -1; } .brs { grid-template-columns: minmax(0, 1fr); } }
+</style>

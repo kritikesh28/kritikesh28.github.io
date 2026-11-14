@@ -1,54 +1,101 @@
 ---
-// A curious question with its full answer one tap away. Questions live in src/data/curious-questions.ts.
+// A curious question with its full answer one tap away, sliding slowly to the next one on its own.
+// Arrows go back and forward, the small round button pauses. Every question is shown once before any repeats,
+// remembered in this browser only. Questions: src/data/curious-questions.ts and src/data/questions/bank.en.txt.
 import { getQuestions } from '../data/curious-questions';
-import { langFromUrl, localizePath } from '../i18n/config';
+import { langFromUrl, localizePath, pick } from '../i18n/config';
 import { useT } from '../i18n/ui';
 interface Props { compact?: boolean }
 const { compact = false } = Astro.props;
 const lang = langFromUrl(Astro.url);
 const t = useT(lang);
-const QUESTIONS = getQuestions(lang);
-const first = QUESTIONS[0];
+const first = getQuestions(lang)[0];
+const T = pick({
+  en: { prev: 'Previous question', next: 'Next question', pause: 'Pause the questions', play: 'Play the questions' },
+  hi: { prev: 'पिछला सवाल', next: 'अगला सवाल', pause: 'सवाल रोकें', play: 'सवाल फिर चलाएँ' },
+}, lang);
 ---
 
-<section class:list={['qcard', { compact }]} aria-labelledby="qcard-title">
+<section class:list={['qcard', { compact }]} aria-labelledby="qcard-title" aria-roledescription="carousel" data-qcard data-src={localizePath('/questions.json', lang)} data-lang={lang} data-pause={T.pause} data-play={T.play}>
   <div class="stars" aria-hidden="true"></div>
   <p class="qeyebrow" id="qcard-title"><span aria-hidden="true">✦</span> {t('q.eyebrow')} <span class="qtopic" data-topic>{first.topic}</span></p>
-  <p class="qtext" data-q>{first.q}</p>
-  <details class="qreveal" data-details>
-    <summary><span>{t('q.reveal')}</span></summary>
-    <p class="qanswer" data-a>{first.a}</p>
-    <a class="qmore" data-link href={first.link ?? localizePath('/library/', lang)} hidden={!first.link}>{t('q.more')} <span aria-hidden="true">→</span></a>
-  </details>
-  <button class="qnext" type="button" data-next>{t('q.next')} <span aria-hidden="true">↻</span></button>
-  <script type="application/json" data-questions set:html={JSON.stringify(QUESTIONS)} />
+  <div class="qbody" aria-live="polite">
+    <p class="qtext" data-q>{first.q}</p>
+    <details class="qreveal" data-details>
+      <summary><span>{t('q.reveal')}</span></summary>
+      <p class="qanswer" data-a>{first.a}</p>
+      <a class="qmore" data-link href={first.link ?? localizePath('/library/', lang)} hidden={!first.link}>{t('q.more')} <span aria-hidden="true">→</span></a>
+    </details>
+  </div>
+  <div class="qbar" aria-hidden="true"><span data-bar></span></div>
+  <div class="qctl">
+    <button type="button" class="qbtn" aria-label={T.prev} data-prev><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5" /></svg></button>
+    <button type="button" class="qbtn qplay" aria-label={T.pause} aria-pressed="false" data-toggle><svg viewBox="0 0 20 20" aria-hidden="true"><path class="bars" d="M7.5 5.5v9M12.5 5.5v9" /><path class="tri" d="M7.5 5.2v9.6L15 10z" /></svg></button>
+    <button type="button" class="qbtn" aria-label={T.next} data-next><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5" /></svg></button>
+    <span class="qcount" data-count></span>
+  </div>
 </section>
 
 <script>
-  document.querySelectorAll<HTMLElement>('.qcard').forEach((card) => {
-    const data = JSON.parse(card.querySelector('[data-questions]')?.textContent ?? '[]');
+  type Q = { q: string; a: string; t: string; l?: string };
+  const STAY = 16000; // very slow: time to read, think, and decide whether to peek
+  document.querySelectorAll<HTMLElement>('[data-qcard]').forEach(async (card) => {
+    const $ = <E extends HTMLElement>(s: string) => card.querySelector<E>(s)!;
+    let data: Q[] = [];
+    try { data = await (await fetch(card.dataset.src!)).json(); } catch { return; }
     if (!data.length) return;
-    const $ = (s: string) => card.querySelector<HTMLElement>(s)!;
-    let order = data.map((_: unknown, i: number) => i).sort(() => Math.random() - 0.5);
-    let at = 0;
+    // A shuffled deck kept in this browser, so no question repeats until all have been seen
+    const KEY = `cs-q-deck-${card.dataset.lang}`;
+    type Deck = { n: number; order: number[]; at: number };
+    let deck: Deck | null = null;
+    try { deck = JSON.parse(localStorage.getItem(KEY) ?? 'null'); } catch {}
+    const shuffle = () => { const o = data.map((_, i) => i); for (let i = o.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [o[i], o[j]] = [o[j], o[i]]; } return o; };
+    if (!deck || deck.n !== data.length || !Array.isArray(deck.order) || deck.order.length !== data.length) deck = { n: data.length, order: shuffle(), at: -1 };
+    const save = () => { try { localStorage.setItem(KEY, JSON.stringify(deck)); } catch {} };
+    const details = $<HTMLDetailsElement>('[data-details]');
+    const link = $<HTMLAnchorElement>('[data-link]');
+    const bar = $('[data-bar]');
+    const toggle = $<HTMLButtonElement>('[data-toggle]');
     const show = (i: number) => {
-      const item = data[i];
+      const item = data[deck!.order[i]];
       $('[data-q]').textContent = item.q;
       $('[data-a]').textContent = item.a;
-      $('[data-topic]').textContent = item.topic;
-      const link = $('[data-link]') as HTMLAnchorElement;
-      link.hidden = !item.link;
-      if (item.link) link.href = item.link;
-      ($('[data-details]') as HTMLDetailsElement).open = false;
-      card.classList.remove('flip');
-      void card.offsetWidth;
-      card.classList.add('flip');
+      $('[data-topic]').textContent = item.t;
+      link.hidden = !item.l;
+      if (item.l) link.href = item.l;
+      details.open = false;
+      $('[data-count]').textContent = `${(i % data.length) + 1} / ${data.length}`;
+      card.classList.remove('flip'); void card.offsetWidth; card.classList.add('flip');
     };
-    show(order[0]);
-    $('[data-next]').addEventListener('click', () => {
-      at = (at + 1) % order.length;
-      show(order[at]);
-    });
+    const step = (d: number) => {
+      let at = deck!.at + d;
+      if (at >= data.length) { deck = { n: data.length, order: shuffle(), at: 0 }; at = 0; }
+      if (at < 0) at = 0;
+      deck!.at = at; save(); show(at); restart();
+    };
+    let timer: number | undefined;
+    let paused = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let hover = false;
+    const running = () => !paused && !hover && !details.open && !document.hidden;
+    const restart = () => {
+      clearTimeout(timer);
+      bar.classList.remove('go'); void bar.offsetWidth;
+      if (running()) { bar.style.setProperty('--stay', `${STAY}ms`); bar.classList.add('go'); timer = window.setTimeout(() => step(1), STAY); }
+    };
+    const paint = () => {
+      toggle.setAttribute('aria-pressed', String(paused));
+      toggle.setAttribute('aria-label', paused ? card.dataset.play! : card.dataset.pause!);
+      card.classList.toggle('paused', paused);
+    };
+    toggle.addEventListener('click', () => { paused = !paused; paint(); restart(); });
+    $('[data-next]').addEventListener('click', () => step(1));
+    $('[data-prev]').addEventListener('click', () => step(-1));
+    details.addEventListener('toggle', restart);
+    card.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') { hover = true; restart(); } });
+    card.addEventListener('pointerleave', () => { hover = false; restart(); });
+    document.addEventListener('visibilitychange', restart);
+    paint();
+    step(1);
   });
 </script>
 
@@ -84,8 +131,20 @@ const first = QUESTIONS[0];
   .qanswer { margin: 0; font-size: 1.02rem; line-height: 1.6; color: #f6e7c8; animation: rise 0.45s ease both; }
   .qmore { display: inline-block; margin-top: 0.7rem; color: #f2d7a6; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgb(242 215 166 / 0.4); }
   .qmore:hover { color: #fff3dc; border-color: #fff3dc; }
-  .qnext { display: block; margin-top: 1.1rem; background: none; border: 0; padding: 0; color: rgb(246 231 200 / 0.7); font: inherit; font-size: 0.88rem; cursor: pointer; }
-  .qnext:hover { color: #fff3dc; }
+  .qbody { min-height: 8.5rem; }
+  .qbar { height: 2px; margin-top: 1.1rem; border-radius: 2px; background: rgb(242 215 166 / 0.14); overflow: hidden; }
+  .qbar span { display: block; height: 100%; width: 100%; transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(90deg, #e8c584, #f6dfae); }
+  .qbar span.go { animation: qfill var(--stay, 16s) linear forwards; }
+  @keyframes qfill { to { transform: scaleX(1); } }
+  .qctl { display: flex; align-items: center; gap: 0.45rem; margin-top: 0.75rem; }
+  .qbtn { display: grid; place-items: center; width: 30px; height: 30px; padding: 0; border-radius: 50%; border: 1px solid rgb(242 215 166 / 0.35); background: rgb(242 215 166 / 0.06); color: #f2d7a6; cursor: pointer; transition: background 0.2s, transform 0.2s, border-color 0.2s; }
+  .qbtn:hover { background: rgb(242 215 166 / 0.18); border-color: #f2d7a6; transform: translateY(-1px); }
+  .qbtn svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .qplay { width: 34px; height: 34px; background: linear-gradient(135deg, rgb(246 223 174 / 0.22), rgb(232 197 132 / 0.08)); }
+  .qplay .tri { display: none; fill: currentColor; stroke: none; }
+  .paused .qplay .bars { display: none; }
+  .paused .qplay .tri { display: block; }
+  .qcount { margin-left: auto; font-size: 0.75rem; letter-spacing: 0.06em; color: rgb(246 231 200 / 0.55); font-variant-numeric: tabular-nums; }
   .flip .qtext { animation: rise 0.45s ease both; }
   @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
   @media (prefers-reduced-motion: reduce) { .qanswer, .flip .qtext { animation: none; } }

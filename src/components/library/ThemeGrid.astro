@@ -1,0 +1,69 @@
+---
+// The 8 themes as cards, each listing its disciplines. Disciplines with pages show their shelves;
+// the others are named and marked "pages coming", so readers see the whole library and what is next.
+import ShelfMotif from './ShelfMotif.astro';
+import { THEMES, getField, fieldName, fieldUrl, shelvesIn, plannedIn, shelfTitle, topicCount } from '../../library-map';
+import { langFromUrl, pick } from '../../i18n/config';
+interface Props { detail?: boolean }
+const { detail = false } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const T = pick({
+  en: { topics: (n: number) => `${n} topics`, soon: 'pages coming', next: 'being written', live: 'read now' },
+  hi: { topics: (n: number) => `${n} टॉपिक`, soon: 'पन्ने आएँगे', next: 'लिखा जा रहा है', live: 'अभी पढ़ें' },
+}, lang);
+---
+<div class="groves">
+  {THEMES.map((th) => (
+    <section class="grove" data-c={th.id} id={th.id}>
+      <ShelfMotif name={th.id} class="wm" />
+      <header>
+        <h3>{lang === 'hi' ? th.hi : th.en}</h3>
+        <p class="small">{lang === 'hi' ? th.blurbHi : th.blurbEn}</p>
+      </header>
+      <ul>
+        {th.fields.map((code) => {
+          const f = getField(code);
+          const live = shelvesIn(code);
+          const planned = plannedIn(code);
+          return (
+            <li class:list={[{ has: live.length > 0 }]}>
+              <a class="fl" href={fieldUrl(code)} hreflang="en">
+                <span class="code">{code}</span>
+                <span class="nm">{fieldName(code, lang)}</span>
+                <span class="ct">{T.topics(topicCount(f))}</span>
+              </a>
+              {live.length > 0
+                ? <span class="chips">{live.map((s) => <a href={s.url} hreflang="en">{shelfTitle(s, lang)}</a>)}</span>
+                : <span class="soon">{planned.some((p) => p.status === 'next') ? T.next : T.soon}</span>}
+              {detail && lang === 'en' && <span class="brs">{f.branches.map((b) => b.name).join(' · ')}</span>}
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  ))}
+</div>
+<style>
+  .groves { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+  .grove { position: relative; overflow: hidden; isolation: isolate; padding: 1.15rem 1.15rem 1rem; border-radius: 20px; border: 1px solid color-mix(in srgb, var(--th) 30%, var(--line)); background: linear-gradient(165deg, color-mix(in srgb, var(--th) 12%, var(--surface)) 0%, var(--surface) 50%); scroll-margin-top: 90px; }
+  .grove :global(.wm) { position: absolute; z-index: -1; right: -20px; top: -16px; width: 200px; height: auto; color: var(--th); opacity: 0.13; }
+  header h3 { margin: 0; font-size: 1.3rem; color: var(--ink); }
+  header h3::before { content: ''; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 0.5rem; vertical-align: 0.15em; background: var(--th); box-shadow: 0 0 0 4px color-mix(in srgb, var(--th) 20%, transparent); }
+  header p { margin: 0.2rem 0 0.8rem; color: var(--ink-soft); }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; }
+  li { display: grid; gap: 0.25rem; padding: 0.5rem 0.6rem; border-radius: 12px; background: color-mix(in srgb, var(--surface) 84%, transparent); border: 1px dashed var(--line); }
+  li.has { border: 1px solid color-mix(in srgb, var(--th) 45%, transparent); }
+  .fl { display: flex; align-items: baseline; gap: 0.5rem; color: var(--ink); text-decoration: none; font-weight: 600; font-size: 0.95rem; line-height: 1.3; }
+  .fl:hover .nm { color: var(--th); }
+  .code { font: 600 0.64rem/1 var(--font-sans); letter-spacing: 0.08em; color: var(--th); padding: 0.18rem 0.35rem; border-radius: 5px; background: color-mix(in srgb, var(--th) 12%, transparent); }
+  .nm { flex: 1; }
+  .ct { font-size: 0.72rem; font-weight: 500; color: var(--ink-soft); white-space: nowrap; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+  .chips a { font-size: 0.76rem; font-weight: 600; padding: 0.14rem 0.55rem; border-radius: 999px; color: #fff; background: var(--th); text-decoration: none; }
+  .chips a:hover { filter: brightness(1.1); color: #fff; }
+  .soon { font-size: 0.75rem; color: var(--ink-soft); font-style: italic; }
+  .soon::before { content: '◌ '; font-style: normal; color: var(--th); }
+  .brs { font-size: 0.76rem; color: var(--ink-soft); line-height: 1.45; }
+  [data-c='cosmos'] { --th: #6f5fd6; } [data-c='life'] { --th: #c2514a; } [data-c='earth'] { --th: #2f8a62; } [data-c='mind'] { --th: #b0699f; }
+  [data-c='society'] { --th: #c98a2b; } [data-c='past'] { --th: #8a6a3b; } [data-c='arts'] { --th: #d0613c; } [data-c='making'] { --th: #3f7fc4; }
+</style>

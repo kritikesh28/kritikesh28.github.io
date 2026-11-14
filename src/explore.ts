@@ -19,7 +19,7 @@ export type TopicSummary = {
   color1: string; color2: string; light: string; question: string; entries: number; words: number; sections: number;
   cover: Cover; url: string; leaves: { id: string; title: string; url: string }[];
 };
-export type Topic = TopicSummary & { tagline: string; pdf: string; pdfMB: number | null; parts: Part[] };
+export type Topic = TopicSummary & { tagline: string; parts: Part[] };
 
 export type ShelfId = 'stories' | 'living' | 'how' | 'needle';
 export const SHELVES: { id: ShelfId; title: string; blurb: string }[] = [
@@ -45,7 +45,7 @@ export const minutes = (words: number) => Math.max(1, Math.round(words / 200));
 /** "SEW-00.03" -> true: the short question pages of Part 0 */
 export const isLeaf = (id: string) => /-00\.\d+$/.test(id);
 
-/** The address part after /explore/<topic>/ */
+/** The address part after /library/<topic>/ */
 export const sectionSlug = (s: Section) => s.url.split('/').filter(Boolean).at(-1)!;
 
 /** Every Section of a topic in reading order, with its Part */

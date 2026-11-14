@@ -35,8 +35,6 @@ export const SITE = {
 export const NAV = [
   { href: '/', label: 'Home', key: 'nav.home' },
   { href: '/library/', label: 'Library', key: 'nav.library' },
-  // Explore is English-only for now, so Hindi pages link to the English address
-  { href: '/explore/', label: 'Explore', key: 'nav.explore', enOnly: true },
   { href: '/exam-prep/', label: 'Exam Prep', key: 'nav.exam' },
   { href: '/portfolio/', label: 'Portfolio', key: 'nav.portfolio' },
   { href: '/about/', label: 'About', key: 'nav.about' },

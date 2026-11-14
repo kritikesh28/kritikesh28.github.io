@@ -1,0 +1,163 @@
+---
+// The Library menu in the top bar of every page: 8 themes > 46 disciplines > their main branches.
+// Data: src/library-map.ts (from The Universal Index of Human Knowledge). Guide: docs/17-library-map.md
+import { THEMES, BOOK, getField, fieldName, fieldUrl, shelvesIn, shelfTitle, themeName } from '../../library-map';
+import { langFromUrl, localizePath, pick } from '../../i18n/config';
+
+const lang = langFromUrl(Astro.url);
+const L = (p: string) => localizePath(p, lang);
+const T = pick({
+  en: { open: 'Open the Library menu', tree: 'See the whole tree', shelves: 'Open shelves', exam: 'Exam Prep', count: `${BOOK.fields} disciplines · ${BOOK.nodes.toLocaleString('en-IN')} topics, growing one shelf at a time`, more: (n: number) => `+${n} more`, soon: 'Pages coming soon', live: 'Ready to read' },
+  hi: { open: 'लाइब्रेरी का मेनू खोलें', tree: 'पूरा पेड़ देखें', shelves: 'खुली अलमारियाँ', exam: 'परीक्षा तैयारी', count: `${BOOK.fields} विषय · ${BOOK.nodes.toLocaleString('en-IN')} टॉपिक, एक-एक अलमारी करके बढ़ रहे हैं`, more: (n: number) => `+${n} और`, soon: 'पन्ने जल्द आएँगे', live: 'पढ़ने के लिए तैयार' },
+}, lang);
+const themes = THEMES.map((th) => ({
+  ...th,
+  name: themeName(th.id, lang),
+  live: th.fields.reduce((a, c) => a + shelvesIn(c).length, 0),
+  fields: th.fields.map((code) => {
+    const f = getField(code);
+    return { code, name: fieldName(code, lang), url: fieldUrl(code), branches: f.branches, shelves: shelvesIn(code) };
+  }),
+}));
+---
+
+<div class="mega" id="lib-mega" data-mega hidden>
+  <div class="wrap mega-in">
+    <div class="mg-themes" role="presentation">
+      {themes.map((th, i) => (
+        <div class:list={['mg-theme', { active: i === 0 }]} data-mg-theme>
+          <button class="mg-tab" type="button" aria-expanded={i === 0 ? 'true' : 'false'} data-mg-tab>
+            <span class="mg-dot" data-c={th.id} aria-hidden="true"></span>
+            <span class="mg-tname">{th.name}</span>
+            <span class="mg-tct">{th.fields.length}</span>
+          </button>
+          <div class="mg-pane" data-c={th.id}>
+            <p class="mg-blurb">{lang === 'hi' ? th.blurbHi : th.blurbEn}</p>
+            <ul class="mg-fields">
+              {th.fields.map((f) => (
+                <li class:list={['mg-field', { has: f.shelves.length > 0 }]}>
+                  <a class="mg-fname" href={f.url} hreflang="en"><span class="mg-code">{f.code}</span>{f.name}</a>
+                  {f.shelves.length > 0 && (
+                    <span class="mg-live">
+                      {f.shelves.map((s) => <a href={s.url} hreflang="en" title={T.live}>{shelfTitle(s, lang)}</a>)}
+                    </span>
+                  )}
+                  {lang === 'en' && (
+                    <span class="mg-br">
+                      {f.branches.slice(0, 4).map((b) => <a href={`${f.url}#${b.code}`}>{b.name}</a>)}
+                      {f.branches.length > 4 && <a class="mg-more" href={f.url}>{T.more(f.branches.length - 4)}</a>}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="mg-foot">
+      <a class="mg-cta" href="/library/map/" hreflang="en">{T.tree} →</a>
+      <a href={L('/library/') + '#shelves'}>{T.shelves}</a>
+      <a href={L('/exam-prep/')}>{T.exam}</a>
+      <span class="mg-count">{T.count}</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const mega = document.querySelector<HTMLElement>('[data-mega]');
+  const btn = document.querySelector<HTMLButtonElement>('[data-mega-btn]');
+  const item = btn?.closest('li');
+  if (mega && btn && item) {
+    let timer: number | undefined;
+    const set = (open: boolean) => {
+      clearTimeout(timer);
+      mega.hidden = !open;
+      btn.setAttribute('aria-expanded', String(open));
+      item.classList.toggle('mega-open', open);
+    };
+    btn.addEventListener('click', (e) => { e.stopPropagation(); set(mega.hidden); });
+    // mouse: open on hover with a small delay, so passing over the menu does not flash it
+    if (matchMedia('(hover: hover) and (min-width: 900px)').matches) {
+      item.addEventListener('pointerenter', () => { clearTimeout(timer); timer = window.setTimeout(() => set(true), 160); });
+      item.addEventListener('pointerleave', () => { clearTimeout(timer); timer = window.setTimeout(() => set(false), 260); });
+      mega.addEventListener('pointerenter', () => clearTimeout(timer));
+    }
+    document.addEventListener('click', (e) => { if (!mega.hidden && !mega.contains(e.target as Node)) set(false); });
+    addEventListener('keydown', (e) => { if (e.key === 'Escape' && !mega.hidden) { set(false); btn.focus(); } });
+    // themes: hover or tap shows that theme's disciplines
+    const themes = [...mega.querySelectorAll<HTMLElement>('[data-mg-theme]')];
+    const pick = (t: HTMLElement, toggle = false) => {
+      const wide = matchMedia('(min-width: 900px)').matches;
+      const on = wide || !toggle ? true : !t.classList.contains('active');
+      themes.forEach((x) => { x.classList.toggle('active', x === t && on); x.querySelector('[data-mg-tab]')?.setAttribute('aria-expanded', String(x === t && on)); });
+    };
+    // phones: start with every theme folded, so all eight are visible
+    if (!matchMedia('(min-width: 900px)').matches) themes.forEach((x) => { x.classList.remove('active'); x.querySelector('[data-mg-tab]')?.setAttribute('aria-expanded', 'false'); });
+    themes.forEach((t) => {
+      const tab = t.querySelector<HTMLElement>('[data-mg-tab]')!;
+      tab.addEventListener('click', () => pick(t, true));
+      tab.addEventListener('pointerenter', (e) => { if ((e as PointerEvent).pointerType === 'mouse') pick(t); });
+      tab.addEventListener('focus', () => matchMedia('(min-width: 900px)').matches && pick(t));
+    });
+  }
+</script>
+
+<style>
+  .mega {
+    position: fixed; left: 0; right: 0; top: 100%; z-index: 40;
+    max-height: calc(100vh - 80px); overflow-y: auto; overscroll-behavior: contain;
+    background: var(--bg); border-bottom: 1px solid var(--line);
+    box-shadow: 0 30px 60px -30px rgb(18 15 36 / 0.45);
+    animation: mg-in 0.22s ease both;
+  }
+  .mega[hidden] { display: none; }
+  @keyframes mg-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+  .mega-in { padding-block: 1.2rem 1rem; }
+  .mg-themes { display: grid; grid-template-columns: 250px minmax(0, 1fr); column-gap: 1.6rem; align-items: start; }
+  .mg-theme { display: contents; }
+  .mg-tab {
+    grid-column: 1; display: flex; align-items: center; gap: 0.6rem; width: 100%; padding: 0.55rem 0.75rem; margin: 0 0 2px;
+    border: 0; border-radius: 12px; background: none; color: var(--ink-soft); font: inherit; font-size: 0.95rem; text-align: left; cursor: pointer;
+  }
+  .mg-tab:hover, .active > .mg-tab { background: var(--accent-soft); color: var(--ink); }
+  .active > .mg-tab { font-weight: 600; }
+  .mg-dot { width: 10px; height: 10px; border-radius: 50%; flex: none; background: var(--th); box-shadow: 0 0 0 3px color-mix(in srgb, var(--th) 22%, transparent); }
+  .mg-tname { flex: 1; }
+  .mg-tct { font-size: 0.75rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .mg-pane { grid-column: 2; grid-row: 1 / span 8; display: none; min-height: 100%; padding: 0.2rem 0 0.4rem 1.6rem; border-left: 2px solid color-mix(in srgb, var(--th) 35%, var(--line)); }
+  .active > .mg-pane { display: block; animation: mg-in 0.2s ease both; }
+  .mg-blurb { margin: 0 0 0.7rem; color: var(--ink-soft); font-size: 0.9rem; }
+  .mg-fields { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.9rem 1.4rem; }
+  .mg-field { display: grid; gap: 0.25rem; align-content: start; }
+  .mg-fname { display: flex; align-items: baseline; gap: 0.45rem; color: var(--ink); text-decoration: none; font-weight: 600; font-size: 0.95rem; line-height: 1.3; }
+  .mg-fname:hover { color: var(--th); }
+  .mg-code { font: 600 0.66rem/1 var(--font-sans); letter-spacing: 0.08em; color: var(--th); padding: 0.18rem 0.35rem; border-radius: 5px; background: color-mix(in srgb, var(--th) 12%, transparent); }
+  .mg-br { display: flex; flex-wrap: wrap; gap: 0.15rem 0.6rem; font-size: 0.8rem; line-height: 1.45; }
+  .mg-br a { color: var(--ink-soft); text-decoration: none; }
+  .mg-br a:hover { color: var(--ink); text-decoration: underline; }
+  .mg-more { font-style: italic; }
+  .mg-live { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+  .mg-live a { font-size: 0.76rem; font-weight: 600; padding: 0.12rem 0.5rem; border-radius: 999px; text-decoration: none; color: #fff; background: var(--th); }
+  .mg-live a::before { content: '● '; font-size: 0.6em; vertical-align: 0.15em; opacity: 0.8; }
+  .mg-live a:hover { filter: brightness(1.1); color: #fff; }
+  .mg-foot { display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; align-items: center; margin-top: 1.1rem; padding-top: 0.9rem; border-top: 1px solid var(--line); font-size: 0.9rem; }
+  .mg-foot a { color: var(--ink-soft); text-decoration: none; }
+  .mg-foot a:hover { color: var(--ink); }
+  .mg-foot .mg-cta { color: var(--ink); font-weight: 600; }
+  .mg-count { margin-left: auto; color: var(--ink-soft); font-size: 0.8rem; }
+  [data-c='cosmos'] { --th: #6f5fd6; } [data-c='life'] { --th: #c2514a; } [data-c='earth'] { --th: #2f8a62; } [data-c='mind'] { --th: #b0699f; }
+  [data-c='society'] { --th: #c98a2b; } [data-c='past'] { --th: #8a6a3b; } [data-c='arts'] { --th: #d0613c; } [data-c='making'] { --th: #3f7fc4; }
+  @media (max-width: 899px) {
+    .mega { max-height: calc(100vh - 120px); }
+    .mg-themes { display: block; }
+    .mg-theme { display: block; border-bottom: 1px solid var(--line); }
+    .mg-tab { padding: 0.75rem 0.4rem; margin: 0; border-radius: 0; }
+    .mg-tab::after { content: '▾'; color: var(--ink-soft); transition: transform 0.2s; }
+    .active > .mg-tab::after { transform: rotate(180deg); }
+    .mg-pane { padding: 0 0 1rem 0.9rem; min-height: 0; }
+    .mg-fields { grid-template-columns: minmax(0, 1fr); gap: 0.8rem; }
+    .mg-count { margin-left: 0; width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) { .mega, .active > .mg-pane { animation: none; } }
+</style>

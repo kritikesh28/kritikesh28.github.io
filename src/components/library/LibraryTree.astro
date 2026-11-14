@@ -1,0 +1,182 @@
+---
+// The Library as one schematic tree: "Library" on the trunk, the 8 themes as big branches,
+// and every written topic hanging from its discipline as a small twig. Sparrows sit on it.
+// Used on the home page ("Pick a thread") and at the top of /library/map/. Data: src/library-map.ts
+import { THEMES, SHELVES, themeOf, nodeName, shelfTitle, type ThemeId } from '../../library-map';
+import { langFromUrl, localizePath, pick } from '../../i18n/config';
+
+interface Props { big?: boolean }
+const { big = false } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const L = (p: string) => localizePath(p, lang);
+const T = pick({
+  en: { trunk: 'LIBRARY', label: 'The Library tree: eight themes grow from one trunk; the written topics hang from their disciplines', shelves: (n: number) => `${n} shelves`, shelf: '1 shelf', growing: 'growing', crafts: '4 crafts' },
+  hi: { trunk: 'लाइब्रेरी', label: 'लाइब्रेरी का पेड़: एक तने से आठ बड़ी शाखाएँ, और लिखे हुए विषय अपनी-अपनी शाखा पर', shelves: (n: number) => `${n} अलमारियाँ`, shelf: '1 अलमारी', growing: 'बढ़ रहा है', crafts: '4 शिल्प' },
+}, lang);
+
+// The twigs that hang from each theme: one per discipline node, with the shelves on it.
+type Twig = { label: string; href: string; n: number };
+const twigsOf = (id: ThemeId): Twig[] => {
+  const groups = new Map<string, typeof SHELVES>();
+  for (const s of SHELVES) if (themeOf(s.field).id === id) groups.set(s.nodeLabel, [...(groups.get(s.nodeLabel) ?? []), s]);
+  return [...groups.entries()].map(([node, list]) => ({
+    label: list.length === 1 ? (node === list[0].title ? shelfTitle(list[0], lang) : `${node} · ${shelfTitle(list[0], lang)}`) : node === 'Fibre arts' ? `${node} · ${T.crafts}` : `${node} · ${T.shelves(list.length)}`,
+    href: list.length === 1 ? list[0].url : '/library/#shelves',
+    n: list.length,
+  }));
+};
+
+// Wide tree (laptops): branch tips on an arc around the crown
+const W = 760, H = 560, cx = 380, base = 540, top = 350;
+const ORDER: ThemeId[] = ['life', 'earth', 'cosmos', 'mind', 'society', 'past', 'making', 'arts'];
+// hand-placed branch tips, so no two names touch
+const TIPS: Record<ThemeId, [number, number]> = {
+  life: [112, 304], earth: [140, 214], cosmos: [222, 138], mind: [300, 66],
+  society: [470, 66], past: [560, 138], making: [628, 214], arts: [650, 304],
+};
+const wide = ORDER.map((id, i) => {
+  const [ex, ey] = TIPS[id];
+  const th = THEMES.find((t) => t.id === id)!;
+  const name = lang === 'hi' ? th.hi : th.en;
+  const sx = cx + (ex < cx ? -6 : 6);
+  const sy = top + Math.abs(i - 3.5) * 6;
+  const path = `M${sx} ${sy} C${sx} ${sy - 70} ${Math.round(ex * 0.55 + cx * 0.45)} ${ey + 46} ${ex} ${ey}`;
+  const left = ex < cx;
+  const w = Math.round(name.length * (lang === 'hi' ? 8.4 : 8.3) + 26);
+  return { id, name, color: th.color, ex, ey, path, left, w, twigs: twigsOf(id) };
+});
+// Tall tree (phones): branches alternate up the trunk, labels at the sides
+const TW = 400, TH = 600, tcx = 200;
+const tall = ORDER.map((id, i) => {
+  const left = i % 2 === 0;
+  const row = Math.floor(i / 2);
+  const ey = 430 - row * 104 - (left ? 0 : 52);
+  const ex = left ? 92 : 308;
+  const sy = ey + 70;
+  const th = THEMES.find((t) => t.id === id)!;
+  const name = lang === 'hi' ? th.hi : th.en;
+  const path = `M${tcx} ${sy} C${tcx} ${sy - 30} ${left ? 150 : 250} ${ey + 8} ${ex} ${ey}`;
+  return { id, name, color: th.color, ex, ey, path, left, n: SHELVES.filter((s) => themeOf(s.field).id === id).length };
+});
+const sparrow = 'M23 6.2l-2.8-1c-.6-2.6-3.2-3.8-5.4-3.4-2.2.4-3.6 1.8-4.4 3.6C8.2 6.4 5.6 7.6 3.2 8.4L.4 9.4l3.2 1.2c2.4 3 6.4 4 10 3 4-1 6.4-3.4 6.8-6.2L23 6.2zM18.3 4.6a.7.7 0 1 1-1.4 0 .7.7 0 1 1 1.4 0zM9 8.4c2.6-.6 5.4 0 7.2 1.8-2.4.4-5 .2-7.2-1.8z';
+const mapHref = '/library/map/';
+---
+
+<figure class:list={['ltree', { big }]}>
+  <svg class="lt-wide" viewBox={`0 0 ${W} ${H}`} role="group" aria-label={T.label}>
+    <defs>
+      <linearGradient id="lt-bark" x1="0" x2="1"><stop offset="0" stop-color="#6b4a2b" /><stop offset="0.5" stop-color="#8a6438" /><stop offset="1" stop-color="#5a3d22" /></linearGradient>
+      <radialGradient id="lt-crown" cx="0.5" cy="0.55" r="0.6"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.16" /><stop offset="1" stop-color="var(--gold)" stop-opacity="0" /></radialGradient>
+    </defs>
+    <ellipse cx={cx} cy="250" rx="360" ry="250" fill="url(#lt-crown)" />
+    {/* ground and roots */}
+    <path class="lt-ground" d={`M60 ${base} C220 ${base - 8} 540 ${base - 8} 700 ${base}`} />
+    <path class="lt-root" d={`M${cx - 20} ${base - 4} C${cx - 50} ${base} ${cx - 90} ${base + 2} ${cx - 130} ${base + 8}M${cx + 20} ${base - 4} C${cx + 50} ${base} ${cx + 90} ${base + 2} ${cx + 130} ${base + 8}`} />
+    {/* branches */}
+    {wide.map((b) => <path class="lt-branch" d={b.path} stroke={b.color} />)}
+    {/* trunk */}
+    <path class="lt-trunk" d={`M${cx - 28} ${base} C${cx - 16} ${base - 80} ${cx - 12} ${top + 60} ${cx - 10} ${top} L${cx + 10} ${top} C${cx + 12} ${top + 60} ${cx + 16} ${base - 80} ${cx + 28} ${base} Z`} fill="url(#lt-bark)" />
+    <a href={L('/library/')} class="lt-plaque">
+      <rect x={cx - 62} y={base - 50} width="124" height="30" rx="8" />
+      <text x={cx} y={base - 30} text-anchor="middle">{T.trunk}</text>
+    </a>
+    {/* twigs with the written topics */}
+    {wide.map((b) => b.twigs.map((tw, k) => {
+      const y = b.ey + 40 + k * 30;
+      const x = b.ex;
+      return (
+        <a href={tw.href} hreflang="en" class="lt-twig">
+          <path d={`M${x} ${b.ey + 14} L${x} ${y}`} stroke={b.color} />
+          <circle cx={x} cy={y} r="5.5" fill={b.color} />
+          <text x={b.left ? x + 12 : x - 12} y={y + 4.5} text-anchor={b.left ? 'start' : 'end'}>{tw.label}</text>
+        </a>
+      );
+    }))}
+    {/* buds where pages are still growing */}
+    {wide.filter((b) => b.twigs.length === 0).map((b) => (
+      <g class="lt-bud"><circle cx={b.ex + (b.left ? -16 : 16)} cy={b.ey - 26} r="5" stroke={b.color} /><circle cx={b.ex + (b.left ? 14 : -14)} cy={b.ey - 30} r="3.5" stroke={b.color} /></g>
+    ))}
+    {/* the theme names at the branch tips */}
+    {wide.map((b) => (
+      <a href={`${mapHref}#${b.id}`} hreflang="en" class="lt-pill">
+        <rect x={b.ex - b.w / 2} y={b.ey - 15} width={b.w} height="30" rx="15" fill={b.color} />
+        <text x={b.ex} y={b.ey + 5} text-anchor="middle">{b.name}</text>
+      </a>
+    ))}
+    {/* sparrows */}
+    <g class="lt-sp s1" transform={`translate(${cx + 8} ${top - 26}) scale(1.5)`}><path d={sparrow} fill-rule="evenodd" /></g>
+    <g class="lt-sp s2" transform={`translate(${wide[3].ex - 40} ${wide[3].ey - 44}) scale(1.3)`}><path d={sparrow} fill-rule="evenodd" /></g>
+    <g class="lt-sp s3" transform={`translate(${wide[5].ex + 30} ${wide[5].ey - 42}) scale(-1.3 1.3)`}><path d={sparrow} fill-rule="evenodd" /></g>
+    <g class="lt-sp s4 fly" transform="translate(640 40) scale(1.1)"><path d={sparrow} fill-rule="evenodd" /></g>
+  </svg>
+
+  <svg class="lt-tall" viewBox={`0 0 ${TW} ${TH}`} role="group" aria-label={T.label}>
+    <defs>
+      <linearGradient id="lt-bark2" x1="0" x2="1"><stop offset="0" stop-color="#6b4a2b" /><stop offset="0.5" stop-color="#8a6438" /><stop offset="1" stop-color="#5a3d22" /></linearGradient>
+      <radialGradient id="lt-crown2" cx="0.5" cy="0.5" r="0.6"><stop offset="0" stop-color="var(--gold)" stop-opacity="0.16" /><stop offset="1" stop-color="var(--gold)" stop-opacity="0" /></radialGradient>
+    </defs>
+    <ellipse cx={tcx} cy="300" rx="200" ry="300" fill="url(#lt-crown2)" />
+    <path class="lt-ground" d={`M20 ${TH - 30} C120 ${TH - 36} 280 ${TH - 36} 380 ${TH - 30}`} />
+    {tall.map((b) => <path class="lt-branch" d={b.path} stroke={b.color} />)}
+    <path class="lt-trunk" d={`M${tcx - 24} ${TH - 30} C${tcx - 14} ${TH - 120} ${tcx - 9} 200 ${tcx - 6} 80 L${tcx + 6} 80 C${tcx + 9} 200 ${tcx + 14} ${TH - 120} ${tcx + 24} ${TH - 30} Z`} fill="url(#lt-bark2)" />
+    <a href={L('/library/')} class="lt-plaque">
+      <rect x={tcx - 64} y={TH - 76} width="128" height="32" rx="9" />
+      <text x={tcx} y={TH - 54} text-anchor="middle">{T.trunk}</text>
+    </a>
+    {tall.map((b) => {
+      const w = Math.round(b.name.length * 8.6 + 26);
+      const x = b.left ? Math.max(4, b.ex - w + 40) : Math.min(TW - 4 - w, b.ex - 40);
+      return (
+        <a href={`${mapHref}#${b.id}`} hreflang="en" class="lt-pill">
+          <rect x={x} y={b.ey - 16} width={w} height="32" rx="16" fill={b.color} />
+          <text x={x + w / 2} y={b.ey + 5} text-anchor="middle">{b.name}</text>
+          <text class="lt-n" x={x + w / 2} y={b.ey + 32} text-anchor="middle">{b.n === 0 ? T.growing : b.n === 1 ? T.shelf : T.shelves(b.n)}</text>
+        </a>
+      );
+    })}
+    <g class="lt-sp s1" transform={`translate(${tcx - 110} 70) scale(1.4)`}><path d={sparrow} fill-rule="evenodd" /></g>
+    <g class="lt-sp s3" transform="translate(330 120) scale(-1.2 1.2)"><path d={sparrow} fill-rule="evenodd" /></g>
+  </svg>
+</figure>
+
+<style>
+  .ltree { margin: 0; display: grid; justify-items: center; }
+  .ltree svg { width: 100%; height: auto; overflow: visible; }
+  .lt-wide { max-width: 760px; }
+  .big .lt-wide { max-width: 980px; }
+  .lt-tall { display: none; max-width: 420px; }
+  @media (max-width: 640px) { .lt-wide { display: none; } .lt-tall { display: block; } }
+  .lt-ground { fill: none; stroke: var(--line); stroke-width: 2; }
+  .lt-root { fill: none; stroke: #6b4a2b; stroke-width: 4; stroke-linecap: round; opacity: 0.55; }
+  .lt-branch { fill: none; stroke-width: 6; stroke-linecap: round; opacity: 0.85; }
+  .lt-trunk { stroke: none; }
+  .lt-plaque rect { fill: #f6e7c8; stroke: #8a6438; stroke-width: 1.5; }
+  .lt-plaque text { font: 700 15px/1 var(--font-sans); letter-spacing: 0.32em; fill: #3b2a1e; }
+  .lt-plaque:hover rect { fill: #fff3dc; }
+  .lt-pill text { font: 600 15px/1 var(--font-sans); fill: #fff; }
+  .lt-pill rect { transition: filter 0.2s; }
+  .lt-pill:hover rect, .lt-pill:focus-visible rect { filter: brightness(1.12) drop-shadow(0 4px 8px rgb(0 0 0 / 0.25)); }
+  .lt-n { font: 500 12px/1 var(--font-sans) !important; fill: var(--ink-soft) !important; }
+  .lt-twig path { fill: none; stroke-width: 2; opacity: 0.8; }
+  .lt-twig text { font: 500 13px/1 var(--font-sans); fill: var(--ink); paint-order: stroke; stroke: var(--bg); stroke-width: 5px; stroke-linejoin: round; }
+  .lt-twig:hover text, .lt-twig:focus-visible text { fill: var(--accent); text-decoration: underline; }
+  .lt-twig circle { transition: r 0.2s; }
+  .lt-twig:hover circle { r: 7.5; }
+  .lt-bud circle { fill: none; stroke-width: 1.6; stroke-dasharray: 2 3; opacity: 0.8; }
+  .lt-sp { fill: #3b2a1e; }
+  :global([data-theme='dark']) .lt-sp { fill: #d9bb7a; }
+  @media (prefers-color-scheme: dark) { :global(:root:not([data-theme='light'])) .lt-sp { fill: #d9bb7a; } }
+  :global([data-theme='dark']) .lt-plaque rect { fill: #2a1f4d; stroke: #d9bb7a; }
+  :global([data-theme='dark']) .lt-plaque text { fill: #f2d7a6; }
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme='light'])) .lt-plaque rect { fill: #2a1f4d; stroke: #d9bb7a; }
+    :global(:root:not([data-theme='light'])) .lt-plaque text { fill: #f2d7a6; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .lt-sp path { animation: lt-bob 4.5s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+    .s2 path { animation-delay: -1.5s; } .s3 path { animation-delay: -3s; }
+    .fly path { animation: lt-fly 9s ease-in-out infinite; }
+  }
+  @keyframes lt-bob { 0%, 100% { transform: none; } 50% { transform: translateY(-1.5px) rotate(-4deg); } }
+  @keyframes lt-fly { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-18px, 8px); } }
+</style>

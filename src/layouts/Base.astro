@@ -12,6 +12,7 @@ import '@fontsource/tiro-devanagari-hindi/devanagari-400-italic.css';
 import { SITE, NAV, SOCIALS } from '../site.config';
 import Seo, { type Props as SeoProps } from '../components/Seo.astro';
 import Wordmark from '../components/Wordmark.astro';
+import LibraryMega from '../components/library/LibraryMega.astro';
 import SparrowSeal from '../components/SparrowSeal.astro';
 import { LANGS, LOCALES, DEFAULT_LANG, langFromUrl, localizePath, stripLang, type Lang } from '../i18n/config';
 import { useT } from '../i18n/ui';
@@ -89,13 +90,21 @@ const fallback = !translated.includes(lang);
         </a>
         <nav aria-label="Main">
           <ul>
-            {NAV.map((item) => (
+            {NAV.map((item) => item.href === '/library/' ? (
+              <li class="has-mega">
+                <a href={L(item.href)} aria-current={isActive(item.href) || bare.startsWith('/explore/') ? 'page' : undefined}>{t(item.key)}</a>
+                <button class="mega-btn" type="button" aria-expanded="false" aria-controls="lib-mega" aria-label={t('header.libMenu')} data-mega-btn>
+                  <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                </button>
+              </li>
+            ) : (
               <li>
-                <a href={'enOnly' in item && item.enOnly ? item.href : L(item.href)} aria-current={isActive(item.href) ? 'page' : undefined}>{t(item.key)}</a>
+                <a href={L(item.href)} aria-current={isActive(item.href) ? 'page' : undefined}>{t(item.key)}</a>
               </li>
             ))}
           </ul>
         </nav>
+        <LibraryMega />
         <nav class="langs" aria-label={t('header.lang')}>
           {switcher.map((s) => (
             <a href={s.href} hreflang={s.htmlLang} lang={s.htmlLang} data-lang={s.lang} aria-current={s.lang === lang ? 'true' : undefined} title={s.exists ? s.name : useT(s.lang)('header.langMissing', { lang: s.name })}>{s.label}</a>
@@ -104,7 +113,10 @@ const fallback = !translated.includes(lang);
         <a class="theme" href={L('/search/')} aria-label={t('header.search')} title={t('header.searchTitle')}>
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2" /><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
         </a>
-        <button class="theme" type="button" aria-label={t('header.theme')} title={t('header.themeTitle')}>
+        <button class="theme sound" type="button" aria-pressed="false" aria-label={t('header.sound')} title={t('header.soundTitle')} data-ambient>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor" /><path class="w1" d="M15.5 9a4 4 0 0 1 0 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /><path class="w2" d="M18 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /><path class="x" d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
+        </button>
+        <button class="theme mode" type="button" aria-label={t('header.theme')} title={t('header.themeTitle')}>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z" fill="currentColor" /></svg>
         </button>
       </div>
@@ -133,7 +145,8 @@ const fallback = !translated.includes(lang);
           <div>
             <h2>{t('footer.explore')}</h2>
             <ul>
-              {NAV.filter((n) => n.href !== '/').map((n) => <li><a href={'enOnly' in n && n.enOnly ? n.href : L(n.href)}>{t(n.key)}</a></li>)}
+              {NAV.filter((n) => n.href !== '/').map((n) => <li><a href={L(n.href)}>{t(n.key)}</a></li>)}
+              <li><a href="/library/map/" hreflang="en">{t('footer.map')}</a></li>
             </ul>
           </div>
           <div>
@@ -141,6 +154,7 @@ const fallback = !translated.includes(lang);
             <ul>
               <li><a href={L('/start/')}>{t('footer.start')}</a></li>
               <li><a href={L('/library/the-universe/')}>{t('footer.universe')}</a></li>
+              <li><a href={L('/about/my-story/')}>{t('footer.story')}</a></li>
               <li><a href={L('/search/')}>{t('footer.search')}</a></li>
               <li><a href={L('/now/')}>{t('footer.now')}</a></li>
             </ul>
@@ -175,7 +189,7 @@ const fallback = !translated.includes(lang);
   const root = document.documentElement;
 
   // Light / dark toggle
-  document.querySelector('button.theme')?.addEventListener('click', () => {
+  document.querySelector('button.theme.mode')?.addEventListener('click', () => {
     const dark = root.dataset.theme
       ? root.dataset.theme === 'dark'
       : matchMedia('(prefers-color-scheme: dark)').matches;
@@ -183,6 +197,9 @@ const fallback = !translated.includes(lang);
     try { localStorage.setItem('theme', root.dataset.theme); } catch {}
   });
 
+
+  // Soft background sound (sparrows, breeze and a faint cosmic hum), made in the browser. See src/scripts/ambient.ts
+  import('../scripts/ambient').then((m) => m.initAmbient());
 
   // Language switcher: remember the choice, so the next visit opens in the same language (public/lang-init.js)
   document.querySelectorAll<HTMLAnchorElement>('.langs a[data-lang]').forEach((a) =>
@@ -234,7 +251,7 @@ const fallback = !translated.includes(lang);
     backdrop-filter: blur(10px) saturate(1.4);
     border-bottom: 1px solid var(--line);
   }
-  .bar { display: flex; align-items: center; gap: 1rem; min-height: 64px; flex-wrap: wrap; }
+  .bar { display: flex; align-items: center; gap: 0.6rem; min-height: 64px; flex-wrap: wrap; }
   .brand { display: flex; align-items: center; gap: 0.6rem; color: var(--ink); text-decoration: none; font-family: var(--font-serif); font-weight: 600; font-size: 1.1rem; }
   .brand-name { font-size: 1.45rem; font-weight: 600; letter-spacing: 0.01em; line-height: 1; color: #3b2a1e; }
   .brand-name .oo { display: inline-block; width: 1.02em; height: 0.43em; margin: 0 0.02em; vertical-align: 0; overflow: visible; }
@@ -247,8 +264,23 @@ const fallback = !translated.includes(lang);
   .brand:hover :global(.logo-mark) { transform: scale(1.06); }
   nav { margin-left: auto; }
   .site-header nav ul { list-style: none; display: flex; gap: 0.2rem; margin: 0; padding: 0; flex-wrap: wrap; }
-  .site-header nav a { white-space: nowrap; display: block; padding: 0.35rem 0.75rem; border-radius: 999px; color: var(--ink-soft); text-decoration: none; font-size: 0.95rem; transition: background 0.2s, color 0.2s; }
+  .site-header nav a { white-space: nowrap; display: block; padding: 0.35rem 0.62rem; border-radius: 999px; color: var(--ink-soft); text-decoration: none; font-size: 0.95rem; transition: background 0.2s, color 0.2s; }
   .site-header nav a:hover { color: var(--ink); background: var(--accent-soft); }
+  .has-mega { display: flex; align-items: center; }
+  .has-mega > a { padding-right: 0.3rem !important; }
+  .mega-btn { display: grid; place-items: center; width: 24px; height: 24px; margin-left: -2px; border: 0; border-radius: 999px; background: none; color: var(--ink-soft); cursor: pointer; transition: transform 0.2s, background 0.2s; }
+  .mega-btn svg { width: 12px; height: 12px; }
+  .mega-btn:hover { background: var(--accent-soft); color: var(--ink); }
+  .mega-open .mega-btn { transform: rotate(180deg); color: var(--ink); }
+  .theme.sound:hover { transform: scale(1.08); }
+  .sound .w1, .sound .w2 { opacity: 0.35; }
+  .sound .x { opacity: 0.8; }
+  .sound[aria-pressed='true'] .w1, .sound[aria-pressed='true'] .w2 { opacity: 1; }
+  .sound[aria-pressed='true'] .x { opacity: 0; }
+  .sound[aria-pressed='true'] { border-color: color-mix(in srgb, var(--gold) 60%, var(--line)); }
+  .sound[aria-pressed='true'] .w2 { animation: sound-breathe 3.2s ease-in-out infinite; }
+  @keyframes sound-breathe { 50% { opacity: 0.35; } }
+  @media (prefers-reduced-motion: reduce) { .sound[aria-pressed='true'] .w2 { animation: none; } }
   .site-header nav a[aria-current='page'] { color: var(--ink); background: var(--accent-soft); font-weight: 600; }
   /* the EN / हिंदी switch */
   .site-header .langs { margin-left: 0; display: flex; flex: none; border: 1px solid var(--line); border-radius: 999px; padding: 2px; gap: 2px; }
@@ -260,6 +292,7 @@ const fallback = !translated.includes(lang);
   .theme { display: grid; place-items: center; background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 999px; width: 36px; height: 36px; cursor: pointer; transition: transform 0.4s; }
   .theme:hover { transform: rotate(-25deg); }
   .theme svg { width: 18px; height: 18px; }
+  @media (max-width: 1180px) and (min-width: 721px) { .brand-name { font-size: 1.25rem; } .site-header nav a { padding-inline: 0.5rem; font-size: 0.92rem; } }
   @media (max-width: 720px) {
     .bar { padding-top: 0.5rem; padding-bottom: 0.5rem; gap: 0.5rem; }
     nav { order: 3; width: 100%; margin-left: 0; }

@@ -1,18 +1,21 @@
-# 16 · Explore: the Encyclopedic Indexes
+# 16 · Library shelves: the Encyclopedic Indexes (was "Explore")
 
 [Back to the handbook](README.md)
 
-**Explore** (<https://curioussparoows.com/explore/>) puts the 12 Encyclopedic Indexes on the website: Movies, Books, Music, Musical Instruments, Cooking, Gardening, Sports and Games, Technology, Crochet, Knitting, Embroidery and Sewing. Each index is also a printable booklet; the website and the booklet share the same IDs (such as `SEW-07.1`), so they match line for line.
+> **14 Nov 2026: Explore moved into the Library.** The 12 indexes are now *shelves* of the Library, each placed on its branch of the Library tree (see [17 · The Library map](17-library-map.md)). Old `/explore/...` links still work: small pages forward them to the new address. The PDF download section was removed from the website for now; the booklets stay in Drive.
+
+The 12 Encyclopedic Indexes: Movies, Books, Music, Musical Instruments, Cooking, Gardening, Sports and Games, Technology, Crochet, Knitting, Embroidery and Sewing. The website and the printed booklet share the same IDs (such as `SEW-07.1`), so they match line for line.
 
 ## 1. How it is arranged
 
 | Page | Address | What it shows |
 | --- | --- | --- |
-| Hub | `/explore/` | The 12 subjects on four shelves (Stories and Sound, Living Well, How Things Work, Needle Arts) and one starting question from each |
-| Topic page | `/explore/<topic>/` | Cover, the five starting questions, the map of Parts, the reader's progress, the PDF download |
-| Reading page | `/explore/<topic>/<id>-<title>/` | One Section of the booklet (for example SEW-07), with tick boxes, contents and Previous/Next |
+| Shelf cards | `/library/#shelves` | Every shelf as a card with a line drawing behind it |
+| Topic page (a Twig) | `/library/<topic>/` | Cover, where it sits in the tree, the five starting questions, the map of Parts, the reader's progress |
+| Reading page (a Leaf) | `/library/<topic>/<id>-<title>/` | One Section (for example SEW-07), with tick boxes, contents and Previous/Next |
+| Old addresses | `/explore/...` | Forwarding pages only (`src/pages/explore/[...path].astro`), not indexed |
 
-There are about 450 reading pages. The menu has an **Explore** link, and the home page has a "Twelve worlds, mapped" band. Explore is in **English only** for now; Hindi pages link to the English ones.
+There are about 450 reading pages, in **English only** for now; Hindi pages link to the English ones.
 
 ## 2. Where the files are
 
@@ -23,19 +26,18 @@ There are about 450 reading pages. The menu has an **Explore** link, and the hom
 | `tools/explore/media/<topic>.json` | Optional pictures and videos for a topic (part 4) |
 | `src/data/explore/` | The website data the script writes. **Never edit by hand** |
 | `src/styles/explore-topics.css` | Each topic's colours, written by the script from the booklet cover colours |
-| `src/explore.ts` | The shelves, their names and blurbs |
-| `src/pages/explore/` | The hub, topic and reading pages |
-| `src/components/explore/` | Topic card, contents, progress bar, pictures and videos, the home band |
+| `src/explore.ts` | Reading the shelf data. Where each shelf sits in the tree is in `src/library-map.ts` (`PLACE`) |
+| `src/pages/library/[topic]/` | The topic and reading pages |
+| `src/components/explore/` | Contents, progress bar, pictures and videos (the shelf card is `src/components/library/ShelfCard.astro`) |
 | `src/scripts/explore.ts` | Tick boxes, progress, the phone contents sheet, tap-to-play videos |
 | `src/styles/explore.css` | The look of Explore |
-| `public/explore/pdf/<topic>-encyclopedic-index.pdf` | The downloadable booklets |
 
 ## 3. Correct or update an index
 
 1. Edit the part file in `tools/explore/source/<topic>/` (keep the booklet rules: `# PART n — TITLE`, `## XXX-nn Title`, `- ☐ **XXX-nn.n Name**: text`).
 2. From the repository root run `python3 -I tools/explore/build_explore.py`.
 3. Run `npm run build` to check, then publish as usual ([06](06-pull-requests.md)).
-4. Copy the same change into the booklet's part files in Drive (07_ENCYCLOPEDIC_INDEXES/_build_tools) and rebuild the DOCX and PDF there, then replace `public/explore/pdf/<topic>-encyclopedic-index.pdf`.
+4. Copy the same change into the booklet's part files in Drive (07_ENCYCLOPEDIC_INDEXES/_build_tools) and rebuild the DOCX and PDF there. (The PDFs are not on the website for now.)
 
 A changed Section title changes that page's address. Avoid renaming once a page is shared; if you must, add a redirect (see [08](08-fix-problems.md)).
 

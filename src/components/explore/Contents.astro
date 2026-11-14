@@ -5,7 +5,7 @@ interface Props { t: Topic; current?: string }
 const { t, current } = Astro.props;
 ---
 <nav class="x-toc" aria-label={`${t.short} contents`}>
-  <a class="x-toc-topic" href={`/explore/${t.slug}/`}>{t.short}</a>
+  <a class="x-toc-topic" href={t.url}>{t.short}</a>
   {t.parts.map((p) => (
     <details open={p.sections.some((s) => s.id === current) || undefined}>
       <summary><span class="n">{p.num}</span><span>{p.title}</span></summary>
