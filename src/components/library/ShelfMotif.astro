@@ -1,0 +1,148 @@
+---
+// Faint line drawings behind the Library cards: one per shelf (topic) and one per theme.
+// Same style as TreeMotif (the six long-read trees): thin strokes in the card's colour, with a sparrow hidden in each.
+interface Props { name: string; class?: string }
+const { name, class: cls } = Astro.props;
+const sparrow = 'M23 6.2l-2.8-1c-.6-2.6-3.2-3.8-5.4-3.4-2.2.4-3.6 1.8-4.4 3.6C8.2 6.4 5.6 7.6 3.2 8.4L.4 9.4l3.2 1.2c2.4 3 6.4 4 10 3 4-1 6.4-3.4 6.8-6.2L23 6.2zM18.3 4.6a.7.7 0 1 1-1.4 0 .7.7 0 1 1 1.4 0zM9 8.4c2.6-.6 5.4 0 7.2 1.8-2.4.4-5 .2-7.2-1.8z';
+const bird = (x: number, y: number, s = 0.9) => `translate(${x} ${y}) scale(${s})`;
+---
+
+<svg class:list={['motif', cls]} viewBox="0 0 220 180" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+  {(name === 'the-universe' || name === 'cosmos') && (
+    <>
+      <path d="M110 92c0-12 18-16 26-4 10 16-6 38-30 36-30-2-44-34-26-58 22-30 70-24 86 10 18 38-12 78-54 80" />
+      <path d="M110 92c0 8-10 10-14 4-6-10 4-22 18-20 18 2 24 24 12 38" />
+      <circle cx="110" cy="92" r="3" fill="currentColor" />
+      <circle cx="40" cy="40" r="10" /><ellipse cx="40" cy="40" rx="20" ry="5" transform="rotate(-20 40 40)" />
+      <path d="M180 30v10M175 35h10M30 140v8M26 144h8M196 120v6M193 123h6" />
+      <g transform={bird(150, 140)}><path d={sparrow} fill="currentColor" fill-rule="evenodd" stroke="none" /></g>
+    </>
+  )}
+  {name === 'movies' && (
+    <>
+      <circle cx="70" cy="70" r="40" /><circle cx="70" cy="70" r="8" />
+      {[0, 72, 144, 216, 288].map((a) => <circle cx={70 + 22 * Math.cos((a * Math.PI) / 180)} cy={70 + 22 * Math.sin((a * Math.PI) / 180)} r="9" />)}
+      <path d="M110 70c30 0 40 20 60 20h40M118 120h84v44h-84zM118 120l10-16h84l-10 16M140 104l-8 16M164 104l-8 16M188 104l-8 16" />
+      <path d="M30 120c-8 20 0 40 20 48" stroke-dasharray="3 6" />
+      <g transform={bird(170, 60)}><path d={sparrow} fill="currentColor" fill-rule="evenodd" stroke="none" /></g>
+    </>
+  )}
+  {name === 'books' && (
+    <>
+      <path d="M20 120c30-12 60-12 90 4 30-16 60-16 90-4V50c-30-12-60-12-90 4-30-16-60-16-90-4z" />
+      <path d="M110 54v70M36 70c18-6 36-6 56 2M36 86c18-6 36-6 56 2M128 72c20-8 38-8 56-2M128 88c20-8 38-8 56-2" />
+      <path d="M40 140h140M48 152h124M56 164h108" />
+      <path d="M150 20c10 6 14 16 12 28" />
+      <g transform={bird(66, 26)}><path d={sparrow} fill="currentColor" fill-rule="evenodd" stroke="none" /></g>
+    </>
+  )}
+  {(name === 'music' || name === 'arts') && (
+    <>
+      <path d="M10 60c50-20 150-20 200 0M10 76c50-20 150-20 200 0M10 92c50-20 150-20 200 0M10 108c50-20 150-20 200 0M10 124c50-20 150-20 200 0" opacity="0.7" />
+      <ellipse cx="60" cy="112" rx="10" ry="7" fill="currentColor" stroke="none" /><path d="M70 112V52" />
+      <ellipse cx="110" cy="96" rx="10" ry="7" fill="currentColor" stroke="none" /><path d="M120 96V40l40 8v54" />
+      <ellipse cx="150" cy="104" rx="10" ry="7" fill="currentColor" stroke="none" />
+      <path d="M30 150c20-10 40 10 60 0s40-10 60 0 40 10 50 0" />
+      <g transform={bird(168, 20)}><path d={sparrow} fill="currentColor" fill-rule="evenodd" stroke="none" /></g>
+    </>
+  )}
+  {name === 'musical-instruments' && (
+    <>
+      <path d="M60 170c-26 0-38-22-30-40 6-14 20-16 26-30 4-10 2-22 10-26 10-6 24 2 26 16 2 16-6 26 2 40 10 18-6 40-34 40z" />
+      <circle cx="62" cy="136" r="10" /><path d="M78 76l70-66M72 70l70-66M150 8l10 10" />
+      <ellipse cx="160" cy="130" rx="40" ry="12" /><path d="M120 130v26c0 8 18 14 40 14s40-6 40-14v-26M130 140l10 24M190 140l-10 24" />
+      <g transform={bird(150, 90)}><path d={sparrow} fill="currentColor" fill-rule="evenodd" stroke="none" /></g>
+    </>
+  )}
+  {(name === 'cooking' || name === 'life') && (
+    <>
+      <path d="M40 100h140v20c0 26-24 40-70 40s-70-14-70-40z" /><path d="M30 100h160M180 108h24M40 108H16" />
+      <path d="M80 86c-8-10 8-18 0-30M110 86c-8-10 8-18 0-30M140 86c-8-10 8-18 0-30" />
+      <path d="M172 20c12 0 16 18 4 26l-20 44" /><path d="M40 40c10-14 30-14 34 0-10 10-26 8-34 0z" />
+      <g transform={bird(88, 18)}><path d={sparrow} fill="currentColor" fill-rule="evenodd" stroke="none" /></g>
+    </>
+  )}
+  {(name === 'gardening' || name === 'earth') && (
+    <>
+      <path d="M110 170V90M110 110c-30 0-44-20-46-44 26 0 44 18 46 44zM110 96c4-30 24-46 52-44-2 30-22 44-52 44z" />
+      <path d="M40 170c40-12 100-12 140 0" />
+      <path d="M150 120h40l-6 50h-28zM150 120c-14-10-30-8-36 4" />
+      <path d="M30 60l10 6M26 76l12 2M34 90l10-4" stroke-dasharray="2 5" />
+      <g transform={bird(160, 30)}><path d={sparrow} fill="currentColor" fill-rule="evenodd" stroke="none" /></g>
+    </>
+  )}
+  {name === 'sports-and-games' && (
+    <>
+      <circle cx="70" cy="110" r="40" /><path d="M70 92l16 12-6 18H60l-6-18zM70 92V70M86 104l20-6M80 122l12 18M60 122l-12 18M54 104l-20-6" />
+      <path d="M150 20l40 120M190 140l10 30M146 18l12-4" /><rect x="150" y="136" width="60" height="36" rx="3" />
+      <path d="M162 136v36M174 136v36M186 136v36M198 136v36" opacity="0.6" />
+      <g transform={bird(30, 30)}><path d={sparrow} fill="currentColor" fill-rule="evenodd" stroke="none" /></g>
+    </>
+  )}
+  {(name === 'technology' || name === 'making') && (
+    <>
+      <circle cx="70" cy="90" r="26" /><circle cx="70" cy="90" r="10" />
+      <path d="M70 52v12M70 116v12M32 90h12M96 90h12M43 63l9 9M88 108l9 9M97 63l-9 9M52 108l-9 9" />
+      <rect x="130" y="40" width="56" height="100" rx="10" /><path d="M150 130h16M130 56h56" />
+      <path d="M96 90h20v-40h14M96 100h24v40h10" stroke-dasharray="3 4" />
+      <path d="M20 170l20-20h20" />
+      <g transform={bird(140, 10)}><path d={sparrow} fill="currentColor" fill-rule="evenodd" stroke="none" /></g>
+    </>
+  )}
+  {name === 'crochet' && (
+    <>
+      <circle cx="80" cy="110" r="46" /><path d="M40 90c30 10 60 10 84 0M36 112c32 12 62 12 90 0M44 134c26 10 54 10 76 0M60 70c-10 30-10 60 4 84M90 66c12 30 12 64-4 90" />
+      <path d="M140 160L196 20" /><path d="M196 20c6-4 10 4 4 8" />
+      <path d="M126 110c20 10 30 30 50 30" stroke-dasharray="3 5" />
+      <g transform={bird(160, 70)}><path d={sparrow} fill="currentColor" fill-rule="evenodd" stroke="none" /></g>
+    </>
+  )}
+  {name === 'knitting' && (
+    <>
+      <circle cx="140" cy="120" r="40" /><path d="M108 100c20 8 44 8 64 0M104 124c24 8 48 8 72 0M114 148c18 6 36 6 52 0" />
+      <path d="M20 40l120 80M40 20l110 100" /><circle cx="18" cy="38" r="5" /><circle cx="38" cy="18" r="5" />
+      <path d="M30 120l10 12 10-12 10 12 10-12M30 140l10 12 10-12 10 12 10-12M30 160l10 12 10-12 10 12 10-12" />
+      <g transform={bird(150, 30)}><path d={sparrow} fill="currentColor" fill-rule="evenodd" stroke="none" /></g>
+    </>
+  )}
+  {name === 'embroidery' && (
+    <>
+      <circle cx="100" cy="96" r="62" /><circle cx="100" cy="96" r="54" /><path d="M96 30h8v-10h-8z" />
+      <path d="M100 96c-10-20 0-30 0-30s10 10 0 30zM100 96c20-10 30 0 30 0s-10 10-30 0zM100 96c10 20 0 30 0 30s-10-10 0-30zM100 96c-20 10-30 0-30 0s10-10 30 0z" />
+      <path d="M60 130l8-6M72 140l6-8M130 130l-8-6" />
+      <path d="M170 30l40 130M174 40c-20 20-10 50 10 60" />
+      <g transform={bird(30, 140)}><path d={sparrow} fill="currentColor" fill-rule="evenodd" stroke="none" /></g>
+    </>
+  )}
+  {name === 'sewing' && (
+    <>
+      <circle cx="50" cy="140" r="14" /><circle cx="90" cy="140" r="14" /><path d="M60 130l90-100M80 130L30 40" />
+      <path d="M130 110h70v50h-70z" /><circle cx="152" cy="128" r="4" /><circle cx="176" cy="128" r="4" /><circle cx="152" cy="146" r="4" /><circle cx="176" cy="146" r="4" />
+      <path d="M190 20l-30 70M190 20l4-4" /><path d="M160 90c-20 20-60 0-90 30" stroke-dasharray="4 4" />
+      <g transform={bird(20, 14)}><path d={sparrow} fill="currentColor" fill-rule="evenodd" stroke="none" /></g>
+    </>
+  )}
+  {name === 'mind' && (
+    <>
+      <path d="M110 150c-20-20-24-50 0-80 24 30 20 60 0 80z" />
+      <path d="M110 150c-30-6-52-30-50-64 30 6 46 30 50 64zM110 150c30-6 52-30 50-64-30 6-46 30-50 64z" />
+      <path d="M40 168c40-12 100-12 140 0" /><circle cx="110" cy="40" r="4" /><path d="M110 30a10 10 0 1 1 10 10" />
+      <g transform={bird(150, 54)}><path d={sparrow} fill="currentColor" fill-rule="evenodd" stroke="none" /></g>
+    </>
+  )}
+  {name === 'society' && (
+    <>
+      <circle cx="60" cy="70" r="14" /><circle cx="110" cy="56" r="16" /><circle cx="160" cy="70" r="14" />
+      <path d="M34 140c0-30 12-46 26-46s26 16 26 46M80 140c0-36 14-56 30-56s30 20 30 56M134 140c0-30 12-46 26-46s26 16 26 46" />
+      <path d="M20 150h180M40 166h140" />
+      <g transform={bird(170, 16)}><path d={sparrow} fill="currentColor" fill-rule="evenodd" stroke="none" /></g>
+    </>
+  )}
+  {name === 'past' && (
+    <>
+      <path d="M30 60l50-30 50 30zM40 60v80M60 60v80M100 60v80M120 60v80M24 140h112v10H24z" />
+      <path d="M160 150c-16 0-22-14-18-30 4-14 10-20 8-34h28c-2 14 4 20 8 34 4 16-2 30-18 30z" /><path d="M150 86h28M150 120c10 4 18 4 28 0" />
+      <g transform={bird(150, 30)}><path d={sparrow} fill="currentColor" fill-rule="evenodd" stroke="none" /></g>
+    </>
+  )}
+</svg>

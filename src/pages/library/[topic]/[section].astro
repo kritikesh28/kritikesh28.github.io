@@ -5,6 +5,7 @@ import Contents from '../../../components/explore/Contents.astro';
 import MediaBlock from '../../../components/explore/MediaBlock.astro';
 import Progress from '../../../components/explore/Progress.astro';
 import { TOPICS, getTopic, flatSections, sectionSlug, minutes, isLeaf } from '../../../explore';
+import { SHELVES, fieldName, fieldUrl } from '../../../library-map';
 import '../../../styles/explore.css';
 import '../../../styles/explore-topics.css';
 
@@ -15,6 +16,7 @@ export function getStaticPaths() {
   });
 }
 const t = getTopic(Astro.params.topic!);
+const shelf = SHELVES.find((x) => x.slug === t.slug)!;
 const all = flatSections(t);
 const k = all.findIndex((s) => s.id === (Astro.props as { id: string }).id);
 const s = all[k];
@@ -36,9 +38,10 @@ const schema = [
   {
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Explore', item: new URL('/explore/', Astro.site).href },
-      { '@type': 'ListItem', position: 2, name: t.short, item: new URL(t.url, Astro.site).href },
-      { '@type': 'ListItem', position: 3, name: s.title, item: new URL(s.url, Astro.site).href },
+      { '@type': 'ListItem', position: 1, name: 'Library', item: new URL('/library/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: fieldName(shelf.field), item: new URL(fieldUrl(shelf.field), Astro.site).href },
+      { '@type': 'ListItem', position: 3, name: t.short, item: new URL(t.url, Astro.site).href },
+      { '@type': 'ListItem', position: 4, name: s.title, item: new URL(s.url, Astro.site).href },
     ],
   },
 ];
@@ -52,7 +55,8 @@ const ids = s.entries.map((e) => e.id);
       <article>
         <header class="x-head">
           <p class="x-crumbs">
-            <a href="/explore/">Explore</a><span aria-hidden="true">›</span>
+            <a href="/library/">Library</a><span aria-hidden="true">›</span>
+            <a href={fieldUrl(shelf.field)}>{fieldName(shelf.field)}</a><span aria-hidden="true">›</span>
             <a href={t.url}>{t.short}</a><span aria-hidden="true">›</span>
             <span>Part {s.part.num}: {s.part.title}</span>
           </p>

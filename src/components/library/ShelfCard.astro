@@ -1,0 +1,45 @@
+---
+// One open shelf (a written topic) as a card, in the same style as the long-read tree cards:
+// a faint line drawing behind, the topic's colour, where it sits in the tree, and a way in.
+import ShelfMotif from './ShelfMotif.astro';
+import '../../styles/explore-topics.css';
+import LevelIcon from '../LevelIcon.astro';
+import { fieldName, nodeName, themeOf, shelfTitle, type Shelf } from '../../library-map';
+import { langFromUrl, pick } from '../../i18n/config';
+interface Props { s: Shelf }
+const { s } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const T = pick({
+  en: { pages: (n: number) => `${n} pages`, course: 'Short course', index: 'Encyclopedic index', open: 'Start reading →', en: '' },
+  hi: { pages: (n: number) => `${n} पन्ने`, course: 'छोटा कोर्स', index: 'विश्वकोश सूचकांक', open: 'पढ़ना शुरू करें →', en: 'अंग्रेज़ी में' },
+}, lang);
+const where = [fieldName(s.field, lang), lang === 'en' ? nodeName(s.node) : undefined].filter(Boolean).join(' › ');
+---
+<article class:list={['shelf', `t-${s.slug}`]} data-c={themeOf(s.field).id} id={`shelf-${s.slug}`}>
+  <ShelfMotif name={s.slug} class="wm" />
+  <a class="shelf-link" href={s.url} hreflang="en">
+    <span class="shelf-top"><LevelIcon level="Twig" size={26} /><span class="small">{s.kind === 'course' ? T.course : T.index} · {T.pages(s.pages)}</span></span>
+    <h3>{shelfTitle(s, lang)}</h3>
+    <p class="small q" lang="en">{s.question}</p>
+    <p class="small where">{where}</p>
+    <span class="go small">{T.open}{T.en && <em> ({T.en})</em>}</span>
+  </a>
+</article>
+<style>
+  .shelf { --tree: var(--c1, var(--th)); position: relative; overflow: hidden; isolation: isolate; border-radius: 20px; border: 1px solid color-mix(in srgb, var(--tree) 30%, var(--line)); background: linear-gradient(165deg, color-mix(in srgb, var(--tree) 13%, var(--surface)) 0%, var(--surface) 58%); transition: transform 0.25s, box-shadow 0.25s; scroll-margin-top: 90px; }
+  .t-the-universe { --tree: #2f8f7a; }
+  :global([data-theme='dark']) .shelf { --tree: color-mix(in srgb, var(--c1, #2f8f7a) 45%, #fff); }
+  @media (prefers-color-scheme: dark) { :global(:root:not([data-theme='light'])) .shelf { --tree: color-mix(in srgb, var(--c1, #2f8f7a) 45%, #fff); } }
+  .shelf:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -22px color-mix(in srgb, var(--tree) 70%, transparent); }
+  .shelf :global(.wm) { position: absolute; z-index: -1; right: -16px; bottom: -12px; width: 220px; height: auto; color: var(--tree); opacity: 0.15; transition: opacity 0.3s, transform 0.6s; }
+  .shelf:hover :global(.wm) { opacity: 0.24; transform: scale(1.04) rotate(-1deg); }
+  .shelf-link { display: flex; flex-direction: column; height: 100%; padding: 1.2rem 1.25rem 1.1rem; text-decoration: none; color: var(--ink); }
+  .shelf-link:hover { color: var(--ink); }
+  .shelf-top { display: flex; align-items: center; gap: 0.5rem; color: var(--tree); font-weight: 600; }
+  h3 { margin: 0.55rem 0 0.25rem; font-size: 1.35rem; }
+  .q { margin: 0 0 0.5rem; color: var(--ink-soft); }
+  .where { margin: 0 0 0.9rem; color: var(--ink-soft); font-size: 0.78rem; letter-spacing: 0.02em; }
+  .where::before { content: '⌥ '; color: var(--tree); }
+  .go { margin-top: auto; font-weight: 600; color: var(--tree); }
+  .go em { font-weight: 400; color: var(--ink-soft); }
+</style>

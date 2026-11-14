@@ -58,6 +58,7 @@ const T = pick({
     verifyTitle: 'Find and verify me',
     verify: 'These are my only official profiles. Each one links back to this site, so you can confirm they are really me.',
     resume: 'Download my resume (PDF)', contact: 'Get in touch →',
+    storyEyebrow: 'My story', storyTitle: 'The long road: UPSC, RAS, NET and what they taught me', storyText: 'Years of preparing for India’s hardest exams shaped how I think, teach and build this library. I am writing that story, and my views along the way, in my own words.', storyLink: 'Read my story →',
   },
   hi: {
     title: 'मेरे बारे में', description: 'कृतिकेश राजपुरोहित के बारे में: भूविज्ञान और भूगोल की पढ़ाई, और अब AI सीखने का सफ़र।',
@@ -105,6 +106,7 @@ const T = pick({
     verifyTitle: 'मुझे ढूँढिए और पक्का कीजिए',
     verify: 'ये ही मेरी असली (ऑफ़िशियल) प्रोफ़ाइल हैं। हर एक में इस साइट का लिंक है, ताकि आप पक्का कर सकें कि ये सच में मेरी ही हैं।',
     resume: 'मेरा रिज़्यूमे (PDF) डाउनलोड करें', contact: 'मुझसे बात करें →',
+    storyEyebrow: 'मेरी कहानी', storyTitle: 'लंबा रास्ता: UPSC, RAS, NET और उनसे मिली सीख', storyText: 'देश की सबसे कठिन परीक्षाओं की सालों की तैयारी ने मेरे सोचने, पढ़ाने और यह लाइब्रेरी बनाने का तरीका गढ़ा। वह कहानी, और रास्ते में बने मेरे विचार, मैं अपने शब्दों में लिख रहा हूँ।', storyLink: 'मेरी कहानी पढ़ें →',
   },
 }, lang);
 ---
@@ -138,6 +140,13 @@ const T = pick({
     <h2>{T.teachTitle}</h2>
     <p>{T.teach}</p>
 
+    <a class="story card" href={L('/about/my-story/')}>
+      <span class="eyebrow">{T.storyEyebrow}</span>
+      <strong>{T.storyTitle}</strong>
+      <span class="muted">{T.storyText}</span>
+      <span class="go">{T.storyLink}</span>
+    </a>
+
     <h2>{T.outsideTitle}</h2>
     <ul>{T.outside.map((x) => <li set:html={x} />)}</ul>
 
@@ -161,5 +170,9 @@ const T = pick({
   .facts dt { font-weight: 600; color: var(--ink-soft); }
   .facts dd { margin: 0; }
   @media (max-width: 520px) { .facts dl { grid-template-columns: 1fr; } .facts dd { margin-bottom: 0.4rem; } }
+  .story { display: grid; gap: 0.35rem; margin: 1.6rem 0; padding: 1.2rem 1.3rem; text-decoration: none; color: var(--ink); border-left: 4px solid var(--gold); }
+  .story strong { font-family: var(--font-serif); font-size: 1.25rem; line-height: 1.3; }
+  .story .go { font-weight: 600; color: var(--accent); }
+  .story:hover { color: var(--ink); }
   .photo { width: 160px; height: 160px; border-radius: 50%; margin: 0 0 1rem; }
 </style>

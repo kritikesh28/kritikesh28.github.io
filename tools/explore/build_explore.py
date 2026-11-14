@@ -259,7 +259,7 @@ def main():
         raw[slug] = parts
         for p in parts:
             for s in p['sections']:
-                url = f'/explore/{slug}/{id_slug(s["id"])}-{slugify(s["title"], 48)}/'
+                url = f'/library/{slug}/{id_slug(s["id"])}-{slugify(s["title"], 48)}/'
                 s['url'] = url
                 linker.sections[s['id']] = url
                 for line in s['lines']:
@@ -295,14 +295,12 @@ def main():
             'edition': cfg['edition'].split(' · ')[0] + ' · ' + cfg['edition'].split(' · ')[1],
             'color1': '#' + cfg['color1'], 'color2': '#' + cfg['color2'], 'light': '#' + cfg['light'],
             'question': gq, 'entries': total_entries, 'words': total_words, 'sections': n_sections,
-            'pdf': f'/explore/pdf/{slug}-encyclopedic-index.pdf',
-            'pdfMB': round(pdf.stat().st_size / 1e6, 1) if (pdf := ROOT / 'public' / 'explore' / 'pdf' / f'{slug}-encyclopedic-index.pdf').exists() else None,
             'cover': media.get('cover'),
             'parts': parts_out,
         }
         (OUT / f'{slug}.json').write_text(json.dumps(topic, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
         index.append({k: topic[k] for k in ('slug', 'code', 'short', 'shelf', 'order', 'title', 'subtitle', 'edition', 'color1', 'color2', 'light', 'question', 'entries', 'words', 'sections', 'cover')} |
-                     {'url': f'/explore/{slug}/', 'leaves': [{'id': s['id'], 'title': s['title'], 'url': s['url']} for s in parts_out[0]['sections'][1:]]})
+                     {'url': f'/library/{slug}/', 'leaves': [{'id': s['id'], 'title': s['title'], 'url': s['url']} for s in parts_out[0]['sections'][1:]]})
         print(f'{slug:22} {code} parts={len(parts_out):2} sections={n_sections:3} entries={total_entries:4} words={total_words}')
     # one colour class per topic (the site's security rules do not allow inline style attributes)
     css = ['/* Made by tools/explore/build_explore.py from each booklet\'s cover colours. Do not edit by hand. */']

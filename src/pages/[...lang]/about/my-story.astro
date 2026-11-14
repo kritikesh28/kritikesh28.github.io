@@ -1,0 +1,76 @@
+---
+// My story: a separate page, linked from About, for Kritikesh's own story and views.
+// The chapters below are placeholders: he writes the text himself. To fill a chapter, replace its `text`
+// (and `textHi`) with paragraphs, and set `ready: true`. Guide: docs/04-edit-pages-and-settings.md, "My story".
+import Base from '../../../layouts/Base.astro';
+import { langFromUrl, langParams, localizePath, pick } from '../../../i18n/config';
+
+export const getStaticPaths = () => langParams().map((params) => ({ params }));
+const lang = langFromUrl(Astro.url);
+const L = (p: string) => localizePath(p, lang);
+
+const CHAPTERS: { id: string; en: string; hi: string; text: string[]; textHi: string[]; ready: boolean }[] = [
+  { id: 'where-it-began', en: 'Where it began', hi: 'शुरुआत कहाँ से हुई', text: [], textHi: [], ready: false },
+  { id: 'the-upsc-years', en: 'The UPSC years', hi: 'UPSC के साल', text: [], textHi: [], ready: false },
+  { id: 'ras-net-and-other-exams', en: 'RAS, UGC-NET and the other exams', hi: 'RAS, UGC-NET और बाक़ी परीक्षाएँ', text: [], textHi: [], ready: false },
+  { id: 'what-preparation-taught-me', en: 'What preparation taught me', hi: 'तैयारी ने मुझे क्या सिखाया', text: [], textHi: [], ready: false },
+  { id: 'why-curious-sparoows', en: 'Why I am building Curious Sparoows', hi: 'मैं Curious Sparoows क्यों बना रहा हूँ', text: [], textHi: [], ready: false },
+  { id: 'views', en: 'My views, now', hi: 'आज मेरे विचार', text: [], textHi: [], ready: false },
+];
+const T = pick({
+  en: {
+    title: 'My story', description: 'The story of Kritikesh Rajpurohit: years of preparing for UPSC, RAS and UGC-NET, what they taught him, and why he is building the Curious Sparoows library.',
+    eyebrow: 'My story · Kritikesh Rajpurohit', h1: 'The long road, told in my own words',
+    lede: 'For years my days were shaped by India’s toughest exams. This is where I will share that journey honestly: the hopes, the setbacks, what worked, what did not, and the views I hold today.',
+    soon: 'I am writing this chapter now.', contents: 'Chapters', back: '← Back to About', follow: 'Want to know when a new chapter is up?', followLink: 'Write to me',
+  },
+  hi: {
+    title: 'मेरी कहानी', description: 'कृतिकेश राजपुरोहित की कहानी: UPSC, RAS और UGC-NET की सालों की तैयारी, उससे मिली सीख, और Curious Sparoows लाइब्रेरी बनाने की वजह।',
+    eyebrow: 'मेरी कहानी · कृतिकेश राजपुरोहित', h1: 'लंबा रास्ता, मेरे अपने शब्दों में',
+    lede: 'कई सालों तक मेरे दिन देश की सबसे कठिन परीक्षाओं के हिसाब से चले। यहाँ मैं वह सफ़र ईमानदारी से बताऊँगा: उम्मीदें, ठोकरें, क्या काम आया, क्या नहीं, और आज मेरे विचार।',
+    soon: 'यह अध्याय मैं अभी लिख रहा हूँ।', contents: 'अध्याय', back: '← परिचय पर लौटें', follow: 'नया अध्याय आने पर जानना चाहते हैं?', followLink: 'मुझे लिखिए',
+  },
+}, lang);
+---
+
+<Base title={T.title} description={T.description} type="profile">
+  <article class="wrap story">
+    <p class="eyebrow">{T.eyebrow}</p>
+    <h1>{T.h1}</h1>
+    <p class="lede">{T.lede}</p>
+
+    <nav class="toc" aria-label={T.contents}>
+      <ol>{CHAPTERS.map((c, i) => <li><a href={`#${c.id}`}><span>{String(i + 1).padStart(2, '0')}</span>{lang === 'hi' ? c.hi : c.en}</a></li>)}</ol>
+    </nav>
+
+    {CHAPTERS.map((c, i) => {
+      const text = lang === 'hi' && c.textHi.length ? c.textHi : c.text;
+      return (
+        <section class:list={['ch', { ready: c.ready }]} id={c.id}>
+          <span class="num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <h2>{lang === 'hi' ? c.hi : c.en}</h2>
+          {c.ready && text.length > 0 ? text.map((p) => <p>{p}</p>) : <p class="soon">{T.soon}</p>}
+        </section>
+      );
+    })}
+
+    <p class="foot">{T.follow} <a href={L('/contact/')}>{T.followLink}</a> · <a href={L('/about/')}>{T.back}</a></p>
+  </article>
+</Base>
+
+<style>
+  .story { max-width: 46rem; margin-top: 1.5rem; }
+  .story h1 { margin: 0.2rem 0 0.7rem; }
+  .lede { font-family: var(--font-serif); font-size: 1.2rem; color: var(--ink-soft); }
+  .toc { margin: 1.8rem 0 2.4rem; padding: 1rem 1.2rem; border-radius: 16px; border: 1px solid var(--line); background: var(--surface); }
+  .toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; }
+  .toc a { display: flex; gap: 0.8rem; color: var(--ink); text-decoration: none; }
+  .toc a:hover { color: var(--accent); }
+  .toc span, .num { font: 600 0.8rem/1.6 var(--font-sans); letter-spacing: 0.1em; color: #8a6438; }
+  .ch { position: relative; padding: 1.4rem 0 1.4rem 3.2rem; border-top: 1px solid var(--line); scroll-margin-top: 90px; }
+  .ch .num { position: absolute; left: 0; top: 1.75rem; font-size: 1rem; }
+  .ch h2 { margin: 0 0 0.5rem; }
+  .soon { color: var(--ink-soft); font-style: italic; margin: 0; }
+  .soon::before { content: '✎ '; font-style: normal; }
+  .foot { margin: 2.4rem 0 1rem; color: var(--ink-soft); }
+</style>

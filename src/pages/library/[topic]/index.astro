@@ -3,6 +3,7 @@
 import Base from '../../../layouts/Base.astro';
 import Progress from '../../../components/explore/Progress.astro';
 import { TOPICS, getTopic, minutes, isLeaf } from '../../../explore';
+import { SHELVES, fieldName, fieldUrl, nodeName, themeOf } from '../../../library-map';
 import '../../../styles/explore.css';
 import '../../../styles/explore-topics.css';
 
@@ -10,6 +11,8 @@ export function getStaticPaths() {
   return TOPICS.map((t) => ({ params: { topic: t.slug } }));
 }
 const t = getTopic(Astro.params.topic!);
+const shelf = SHELVES.find((x) => x.slug === t.slug)!;
+const node = nodeName(shelf.node);
 const [part0, ...rest] = t.parts;
 const leaves = part0.sections.filter((s) => isLeaf(s.id));
 const gateway = part0.sections[0];
@@ -24,13 +27,13 @@ const schema = [
     bookEdition: t.edition,
     inLanguage: 'en',
     author: { '@id': new URL('/#person', Astro.site).href },
-    encoding: { '@type': 'MediaObject', encodingFormat: 'application/pdf', contentUrl: new URL(t.pdf, Astro.site).href },
   },
   {
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Explore', item: new URL('/explore/', Astro.site).href },
-      { '@type': 'ListItem', position: 2, name: t.short, item: new URL(t.url, Astro.site).href },
+      { '@type': 'ListItem', position: 1, name: 'Library', item: new URL('/library/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: fieldName(shelf.field), item: new URL(fieldUrl(shelf.field), Astro.site).href },
+      { '@type': 'ListItem', position: 3, name: t.short, item: new URL(t.url, Astro.site).href },
     ],
   },
 ];
@@ -42,7 +45,8 @@ const schema = [
       {t.cover && <img class="x-cover-img" src={t.cover.src} alt={t.cover.alt} decoding="async" />}
       <span class="x-code" aria-hidden="true">{t.code}</span>
       <div class="x-wrap">
-        <p class="x-crumbs"><a href="/explore/">Explore</a><span aria-hidden="true">›</span><span>The Encyclopedic Index</span></p>
+        <p class="x-crumbs"><a href="/library/">Library</a><span aria-hidden="true">›</span><a href={`/library/map/#${themeOf(shelf.field).id}`}>{themeOf(shelf.field).en}</a><span aria-hidden="true">›</span><a href={fieldUrl(shelf.field)}>{fieldName(shelf.field)}</a>{node && <><span aria-hidden="true">›</span><a href={`${fieldUrl(shelf.field)}#${shelf.node!.split('.').slice(0, 2).join('.')}`}>{node}</a></>}</p>
+        <p class="x-level">A twig of the Library · The Encyclopedic Index</p>
         <h1>{t.short}</h1>
         <p class="x-question">{t.subtitle}</p>
         <ul class="x-facts">
@@ -79,15 +83,7 @@ const schema = [
         ))}
       </ol>
 
-      <div class="x-section-title"><h2>Take it with you</h2></div>
-      <div class="x-download">
-        <div>
-          <h2>The printable booklet</h2>
-          <p>The whole index as one PDF with the same IDs and tick boxes, for reading offline, printing or teaching. The website is always the newest version.</p>
-        </div>
-        <a class="x-btn" href={t.pdf} download>Download the PDF{t.pdfMB && ` (${t.pdfMB} MB)`}</a>
-      </div>
-      <p class="x-edition"><small>{t.edition}. Compiled and edited by Kritikesh Rajpurohit with AI assistance; sources and credits are on the <a href={t.parts.at(-1)!.sections.find((s) => s.id.endsWith('-S'))?.url ?? '#'}>Sources page</a>.</small></p>
+      <p class="x-edition"><small>{t.edition}. More pictures, videos and the Hindi pages are on their way. Compiled and edited by Kritikesh Rajpurohit with AI assistance; sources and credits are on the <a href={t.parts.at(-1)!.sections.find((s) => s.id.endsWith('-S'))?.url ?? '#'}>Sources page</a>.</small></p>
     </div>
   </div>
 </Base>
@@ -98,5 +94,6 @@ const schema = [
 
 <style>
   .x-edition { color: var(--ink-soft); margin: 1.2rem 0 4rem; }
+  .x-level { margin: 0.35rem 0 0.4rem; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.8; }
   ol.x-questions { counter-reset: none; }
 </style>

@@ -115,11 +115,13 @@ export const getLevels = (lang: Lang = 'en') =>
 
 // What is being built, shown on the library page so readers (and I) can see the honest status.
 export const BUILD_STATUS: { name: string; status: 'live' | 'in-progress' | 'planned'; note: string }[] = [
-  { name: 'The Universe (12 Leaves)', status: 'live', note: 'The first full twig of the library.' },
-  { name: 'Search that never leaves you empty-handed', status: 'live', note: 'Shows the closest pages even when nothing matches exactly.' },
-  { name: 'Reading progress', status: 'live', note: 'Ticks off the Leaves you finish, saved only in your browser.' },
-  { name: 'Search suggestions as you type', status: 'live', note: 'Suggests real page titles while you type, and offers "Did you mean" for typos.' },
-  { name: 'How the Earth formed', status: 'in-progress', note: 'The next twig, being written now.' },
+  { name: 'The map of all knowledge', status: 'live', note: '46 disciplines and 3,126 topic names, from The Universal Index of Human Knowledge, planted first so the whole tree is visible.' },
+  { name: 'Twelve encyclopedic shelves', status: 'live', note: 'Movies, books, music, instruments, cooking, gardening, sports, technology, crochet, knitting, embroidery and sewing: 448 short pages with tick boxes.' },
+  { name: 'The Universe (12 Leaves)', status: 'live', note: 'The first full course of the library.' },
+  { name: 'Detailed pages for every topic', status: 'in-progress', note: 'Being written now and added shelf by shelf. A topic that shows only its name is waiting for its pages, not empty.' },
+  { name: 'The shelves in Hindi', status: 'in-progress', note: 'The first five questions of each shelf come first.' },
+  { name: 'How the Earth formed', status: 'in-progress', note: 'The next course, being written now.' },
+  { name: 'Search, suggestions and reading progress', status: 'live', note: 'Finds the closest pages even with typos, and remembers what you read, only in your browser.' },
   { name: 'Sparrow, the AI study assistant', status: 'planned', note: 'Will answer your questions using only this library, and always link the page it used. Not built yet.' },
 ];
 

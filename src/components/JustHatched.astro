@@ -1,0 +1,113 @@
+---
+// "Just hatched": new uploads on the home page, sliding slowly from right to left like a notice board.
+// 6 slides of 5 clickable lines. Lines live in src/data/fresh.ts. Pauses on hover, on focus and when you tap a dot.
+import { getFresh } from '../data/fresh';
+import { langFromUrl, pick } from '../i18n/config';
+const lang = langFromUrl(Astro.url);
+const slides = getFresh();
+const T = pick({
+  en: { title: 'Just hatched', sub: 'fresh from the nest', label: 'New in the Library', go: (n: number) => `Show slide ${n}`, of: (a: number, b: number) => `Slide ${a} of ${b}` },
+  hi: { title: 'नया-नया निकला', sub: 'घोंसले से ताज़ा', label: 'लाइब्रेरी में नया', go: (n: number) => `स्लाइड ${n} दिखाएँ`, of: (a: number, b: number) => `स्लाइड ${a} / ${b}` },
+}, lang);
+---
+
+<section class="jh" aria-roledescription="carousel" aria-label={T.label} data-jh>
+  <header class="jh-head">
+    <span class="jh-egg" aria-hidden="true">
+      <svg viewBox="0 0 32 32"><path d="M16 3c6 0 11 9 11 16a11 11 0 0 1-22 0C5 12 10 3 16 3z" fill="none" stroke="currentColor" stroke-width="1.8" /><path d="M7 18l4-3 4 3 4-3 4 3 3-2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" /></svg>
+    </span>
+    <span class="jh-title">{T.title}</span>
+    <span class="jh-sub">{T.sub}</span>
+  </header>
+  <div class="jh-view">
+    <div class="jh-track" data-track>
+      {slides.map((s, i) => (
+        <div class:list={['jh-slide', { on: i === 0 }]} role="group" aria-roledescription="slide" aria-label={T.of(i + 1, slides.length)} aria-hidden={i === 0 ? undefined : 'true'} data-slide>
+          <p class="jh-kicker">{lang === 'hi' ? s.hi : s.en}</p>
+          <ul>
+            {s.lines.map((l) => (
+              <li><a href={l.href} hreflang="en" tabindex={i === 0 ? undefined : '-1'}><span class="jh-b" aria-hidden="true"></span><span>{lang === 'hi' ? l.hi : l.en}</span></a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+  <div class="jh-dots">
+    {slides.map((_, i) => <button type="button" class:list={[{ on: i === 0 }]} aria-label={T.go(i + 1)} aria-current={i === 0 ? 'true' : undefined} data-dot={i}><span></span></button>)}
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-jh]').forEach((box) => {
+    const track = box.querySelector<HTMLElement>('[data-track]')!;
+    const slides = [...box.querySelectorAll<HTMLElement>('[data-slide]')];
+    const dots = [...box.querySelectorAll<HTMLButtonElement>('[data-dot]')];
+    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const STAY = 9000; // slow: about nine seconds a slide
+    let at = 0;
+    let timer: number | undefined;
+    let held = false;
+    const go = (i: number) => {
+      at = (i + slides.length) % slides.length;
+      track.style.transform = `translateX(-${at * 100}%)`;
+      slides.forEach((s, k) => {
+        const on = k === at;
+        s.classList.toggle('on', on);
+        if (on) s.removeAttribute('aria-hidden'); else s.setAttribute('aria-hidden', 'true');
+        s.querySelectorAll('a').forEach((a) => (on ? a.removeAttribute('tabindex') : a.setAttribute('tabindex', '-1')));
+      });
+      dots.forEach((d, k) => { d.classList.toggle('on', k === at); if (k === at) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); });
+    };
+    const run = () => {
+      clearInterval(timer);
+      if (still || held || document.hidden) return;
+      box.classList.add('running');
+      timer = window.setInterval(() => go(at + 1), STAY);
+    };
+    const hold = (h: boolean) => { held = h; box.classList.toggle('held', h); if (h) clearInterval(timer); else run(); };
+    dots.forEach((d) => d.addEventListener('click', () => { go(Number(d.dataset.dot)); run(); }));
+    box.addEventListener('pointerenter', () => hold(true));
+    box.addEventListener('pointerleave', () => hold(false));
+    box.addEventListener('focusin', () => hold(true));
+    box.addEventListener('focusout', () => hold(false));
+    // swipe on phones
+    let x0 = 0;
+    box.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    box.addEventListener('touchend', (e) => { const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) { go(at + (dx < 0 ? 1 : -1)); held = false; run(); } });
+    document.addEventListener('visibilitychange', run);
+    run();
+  });
+</script>
+
+<style>
+  .jh { --jh: #c98a2b; position: relative; overflow: hidden; border-radius: 20px; padding: 1rem 1.15rem 0.85rem; border: 1px solid color-mix(in srgb, var(--jh) 35%, var(--line)); background: linear-gradient(160deg, color-mix(in srgb, var(--jh) 10%, var(--surface)), var(--surface) 65%); }
+  .jh-head { display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.4rem; }
+  .jh-egg { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; color: #8a6438; background: color-mix(in srgb, var(--jh) 18%, transparent); }
+  .jh-egg svg { width: 18px; height: 18px; }
+  .running:not(.held) .jh-egg svg { animation: jh-wobble 4.5s ease-in-out infinite; transform-origin: 50% 90%; }
+  @keyframes jh-wobble { 0%, 80%, 100% { transform: none; } 85% { transform: rotate(-9deg); } 90% { transform: rotate(7deg); } 95% { transform: rotate(-4deg); } }
+  .jh-title { font-family: var(--font-serif); font-weight: 600; font-size: 1.2rem; color: var(--ink); }
+  .jh-sub { font: italic 500 1rem/1 var(--font-display); color: var(--ink-soft); }
+  .jh-view { overflow: hidden; }
+  .jh-track { display: flex; transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1); will-change: transform; }
+  .jh-slide { flex: 0 0 100%; min-width: 0; padding-right: 0.2rem; }
+  .jh-kicker { margin: 0.2rem 0 0.35rem; font: 600 0.7rem/1 var(--font-sans); letter-spacing: 0.18em; text-transform: uppercase; color: #8a6438; }
+  :global([data-theme='dark']) .jh-kicker, :global([data-theme='dark']) .jh-egg { color: #e0b45e; }
+  @media (prefers-color-scheme: dark) { :global(:root:not([data-theme='light'])) .jh-kicker, :global(:root:not([data-theme='light'])) .jh-egg { color: #e0b45e; } }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; }
+  li { border-top: 1px dashed color-mix(in srgb, var(--jh) 30%, var(--line)); }
+  li:first-child { border-top: 0; }
+  li a { display: flex; gap: 0.6rem; align-items: baseline; padding: 0.5rem 0.1rem; color: var(--ink); text-decoration: none; line-height: 1.4; font-size: 0.98rem; }
+  li a:hover { color: var(--accent); }
+  li a:hover .jh-b { transform: scale(1.4); background: var(--accent); }
+  .jh-b { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--jh); transform: translateY(-1px); transition: transform 0.2s; }
+  .on li { animation: jh-rise 0.7s ease both; }
+  .on li:nth-child(2) { animation-delay: 0.12s; } .on li:nth-child(3) { animation-delay: 0.24s; } .on li:nth-child(4) { animation-delay: 0.36s; } .on li:nth-child(5) { animation-delay: 0.48s; }
+  @keyframes jh-rise { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+  .jh-dots { display: flex; justify-content: center; gap: 0.2rem; margin-top: 0.5rem; }
+  .jh-dots button { display: grid; place-items: center; width: 26px; height: 26px; padding: 0; border: 0; background: none; cursor: pointer; }
+  .jh-dots span { width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid color-mix(in srgb, var(--jh) 70%, var(--ink-soft)); transition: background 0.3s, width 0.3s; }
+  .jh-dots .on span { width: 22px; border-radius: 999px; background: var(--jh); border-color: var(--jh); }
+  @media (prefers-reduced-motion: reduce) { .jh-track { transition: none; } .on li { animation: none; } }
+</style>
