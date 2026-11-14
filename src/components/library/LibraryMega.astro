@@ -65,27 +65,9 @@ const themes = THEMES.map((th) => ({
 </div>
 
 <script>
-  const mega = document.querySelector<HTMLElement>('[data-mega]');
-  const btn = document.querySelector<HTMLButtonElement>('[data-mega-btn]');
-  const item = btn?.closest('li');
-  if (mega && btn && item) {
-    let timer: number | undefined;
-    const set = (open: boolean) => {
-      clearTimeout(timer);
-      mega.hidden = !open;
-      btn.setAttribute('aria-expanded', String(open));
-      item.classList.toggle('mega-open', open);
-    };
-    btn.addEventListener('click', (e) => { e.stopPropagation(); set(mega.hidden); });
-    // mouse: open on hover with a small delay, so passing over the menu does not flash it
-    if (matchMedia('(hover: hover) and (min-width: 900px)').matches) {
-      item.addEventListener('pointerenter', () => { clearTimeout(timer); timer = window.setTimeout(() => set(true), 160); });
-      item.addEventListener('pointerleave', () => { clearTimeout(timer); timer = window.setTimeout(() => set(false), 260); });
-      mega.addEventListener('pointerenter', () => clearTimeout(timer));
-    }
-    document.addEventListener('click', (e) => { if (!mega.hidden && !mega.contains(e.target as Node)) set(false); });
-    addEventListener('keydown', (e) => { if (e.key === 'Escape' && !mega.hidden) { set(false); btn.focus(); } });
-    // themes: hover or tap shows that theme's disciplines
+  // Opening and closing is shared by every top-bar menu (src/scripts/mega.ts). This part only switches themes.
+  const mega = document.getElementById('lib-mega');
+  if (mega) {
     const themes = [...mega.querySelectorAll<HTMLElement>('[data-mg-theme]')];
     const pick = (t: HTMLElement, toggle = false) => {
       const wide = matchMedia('(min-width: 900px)').matches;

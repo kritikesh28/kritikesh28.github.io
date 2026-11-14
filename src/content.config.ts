@@ -33,6 +33,8 @@ const projects = defineCollection({
     image: z.string().optional(),
     imageAlt: z.string().optional(),
     links: z.array(z.object({ label: z.string(), href: z.string() })).default([]),
+    // Which Portfolio shelf it sits on (src/portfolio.config.ts)
+    section: z.enum(['ai-ml', 'data-python', 'maps-gis', 'web-code', 'research', 'sketches', 'kitchen', 'garden']).default('data-python'),
     // Lower numbers appear first
     order: z.number().default(100),
     // true embeds the live NYC taxi demo on the project page

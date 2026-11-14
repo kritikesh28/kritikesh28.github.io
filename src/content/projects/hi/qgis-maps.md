@@ -4,6 +4,7 @@ summary: "जियोरेफ़रेंस किए हुए और वे
 date: 2026-10-23
 status: in-progress
 tags: [QGIS, GIS, cartography]
+section: maps-gis
 order: 2
 ---
 

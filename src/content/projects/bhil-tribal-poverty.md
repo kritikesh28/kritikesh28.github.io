@@ -4,6 +4,7 @@ summary: "M.Sc. dissertation on poverty among the Bhil tribes, and a research pa
 date: 2025-09-09
 status: in-progress
 tags: [research, geography, fieldwork]
+section: research
 order: 3
 ---
 

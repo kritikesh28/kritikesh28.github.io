@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { SITE, SOCIALS } from '../../site.config';
+import { SITE, SOCIALS, BRAND_SOCIALS } from '../../site.config';
 import { langFromUrl, langParams, localizePath, pick } from '../../i18n/config';
 
 export const getStaticPaths = () => langParams().map((params) => ({ params }));
@@ -102,6 +102,7 @@ const words = { sending: T.sending, failed: T.failed, subject: T.subject, explai
         <a class="chip" href={`mailto:${SITE.email}`}>{SITE.email}</a>
         {SOCIALS.map((s) => <a class="chip" href={s.href} rel="me noopener noreferrer" target="_blank">{s.label}</a>)}
       </p>
+      {BRAND_SOCIALS.some((s) => s.href) && <p><strong>Curious Sparoows:</strong> {BRAND_SOCIALS.filter((s) => s.href).map((s) => <a class="chip" href={s.href} rel="me noopener noreferrer" target="_blank">{s.label}</a>)}</p>}
       {SITE.calUrl && <p><a class="btn ghost" href={SITE.calUrl} target="_blank" rel="noopener noreferrer">{T.call}</a></p>}
       <p class="muted small" set:html={T.hiringNote} />
       <p class="muted small" set:html={T.privacyNote} />

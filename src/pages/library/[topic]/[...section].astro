@@ -1,0 +1,162 @@
+---
+// One page of a shelf (an Encyclopedic Index), two to three minutes long.
+// Left: every Part as a drop-down. Middle: overview, the text, a summary, back and next.
+// Right: the starting questions and where you are in this Section.
+// Long Sections are cut into several pages by tools/explore/build_explore.py: /library/<topic>/<section>/, then .../2/, .../3/
+import Base from '../../../layouts/Base.astro';
+import Contents from '../../../components/explore/Contents.astro';
+import MediaBlock from '../../../components/explore/MediaBlock.astro';
+import Progress from '../../../components/explore/Progress.astro';
+import { TOPICS, getTopic, flatPages, sectionSlug, minutes, isLeaf, pageUrl, pageLabel } from '../../../explore';
+import { SHELVES, fieldName, fieldUrl } from '../../../library-map';
+import '../../../styles/explore.css';
+import '../../../styles/explore-topics.css';
+
+export function getStaticPaths() {
+  return TOPICS.flatMap((ts) => {
+    const t = getTopic(ts.slug);
+    return flatPages(t).map((pg) => ({
+      params: { topic: t.slug, section: pg.n === 0 ? sectionSlug(pg.sec) : `${sectionSlug(pg.sec)}/${pg.n + 1}` },
+      props: { url: pg.url },
+    }));
+  });
+}
+const t = getTopic(Astro.params.topic!);
+const shelf = SHELVES.find((x) => x.slug === t.slug)!;
+const all = flatPages(t);
+const k = all.findIndex((x) => x.url === (Astro.props as { url: string }).url);
+const pg = all[k];
+const s = pg.sec;
+const prev = all[k - 1];
+const next = all[k + 1];
+const leaf = isLeaf(s.id) || s.id.endsWith('-00');
+const many = pg.of > 1;
+const label = pageLabel(pg, 3);
+const title = leaf ? s.title : many ? `${s.title}: ${pageLabel(pg, 2)} (${t.short})` : `${s.title} (${t.short})`;
+const description = (many && pg.n > 0 ? `${s.title}, page ${pg.n + 1} of ${pg.of}: ${label}. ` : '') + (s.summary || `${s.title}: part of ${t.short}, The Encyclopedic Index by Curious Sparoows.`);
+const leaves = t.parts[0].sections.filter((x) => isLeaf(x.id));
+const firstOfPart = pg.n === 0 && t.parts.find((p) => p.num === s.part.num)!.sections[0].id === s.id;
+const ids = s.entries.map((e) => e.id);
+const SUM = 6;
+const schema = [
+  {
+    '@type': 'Article',
+    headline: many ? `${s.title}: ${label}` : s.title,
+    url: new URL(pg.url, Astro.site).href,
+    inLanguage: 'en',
+    isPartOf: { '@type': 'Book', name: `${t.short}: The Encyclopedic Index`, url: new URL(t.url, Astro.site).href },
+    author: { '@id': new URL('/#person', Astro.site).href },
+    wordCount: pg.words,
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Library', item: new URL('/library/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: fieldName(shelf.field), item: new URL(fieldUrl(shelf.field), Astro.site).href },
+      { '@type': 'ListItem', position: 3, name: t.short, item: new URL(t.url, Astro.site).href },
+      { '@type': 'ListItem', position: 4, name: s.title, item: new URL(s.url, Astro.site).href },
+    ],
+  },
+];
+const nextLabel = (x: (typeof all)[number]) => (x.sec.id === s.id ? pageLabel(x, 2) : x.sec.title);
+---
+
+<Base {title} description={description.slice(0, 300)} {schema} langs={['en']} type="article">
+  <div class={`t-${t.slug}`}>
+    <div class="x-wrap x-page x-3col">
+      <Contents t={t} current={s.id} page={pg.n} />
+
+      <article>
+        <header class="x-head">
+          <p class="x-crumbs">
+            <a href="/library/">Library</a><span aria-hidden="true">›</span>
+            <a href={fieldUrl(shelf.field)}>{fieldName(shelf.field)}</a><span aria-hidden="true">›</span>
+            <a href={t.url}>{t.short}</a><span aria-hidden="true">›</span>
+            <span>Part {s.part.num}: {s.part.title}</span>
+          </p>
+          <span class="x-idchip">{s.id}</span>
+          <h1>{s.title}</h1>
+          {many && pg.n > 0 && <p class="x-sub">{label}</p>}
+          <p class="x-meta">{minutes(pg.words)} min read{many && <> · page {pg.n + 1} of {pg.of}</>}</p>
+          {many && (
+            <ol class="x-dots" aria-label="Pages of this section">
+              {s.pages.map((p2, n) => <li><a href={pageUrl(s, n)} aria-current={n === pg.n ? 'page' : undefined} title={pageLabel(p2, 1)}><span class="sr-only">Page {n + 1}: {pageLabel(p2, 1)}</span></a></li>)}
+            </ol>
+          )}
+        </header>
+
+        {!leaf && (
+          <section class="x-over" aria-label="Overview">
+            <h2>Overview</h2>
+            {many && pg.n === 0 && <>
+              <p>This section is cut into {pg.of} short pages of two to three minutes each:</p>
+              <ol>{s.pages.map((p2, n) => <li>{n === 0 ? <strong>{pageLabel(p2, 3)} (this page)</strong> : <a href={pageUrl(s, n)}>{pageLabel(p2, 3)}</a>}</li>)}</ol>
+            </>}
+            {many && pg.n > 0 && <p>Page {pg.n + 1} of {pg.of}. On this page: <strong>{label}</strong>. <a href={s.url}>Back to the start of this section</a>.</p>}
+            {!many && (pg.heads.length > 0 || s.entries.length > 0) && (
+              <p>On this page: {pg.heads.length > 0 ? <strong>{pageLabel(pg, 4)}</strong> : <>{s.entries.length} entries, from <strong>{s.entries[0].name}</strong> to <strong>{s.entries.at(-1)!.name}</strong></>}.</p>
+            )}
+            {!many && pg.heads.length === 0 && s.entries.length === 0 && <p>{s.summary}</p>}
+          </section>
+        )}
+
+        <div class="x-body">
+          {firstOfPart && s.part.intro && s.part.num > 0 && <details class="x-partintro"><summary>About Part {s.part.num}: {s.part.title}</summary><Fragment set:html={s.part.intro} /></details>}
+          {firstOfPart && s.part.intro && s.part.num === 0 && <Fragment set:html={s.part.intro} />}
+          {pg.n === 0 && <MediaBlock items={s.media.filter((_, i) => i === 0)} />}
+          <Fragment set:html={pg.html} />
+          {pg.n === pg.of - 1 && <MediaBlock items={s.media.slice(1)} />}
+        </div>
+
+        {!leaf && (pg.summary.length > 0 || pg.cont) && (
+          <section class="x-sum" aria-label="Summary">
+            <h2>Summary</h2>
+            {pg.summary.length > 0 ? (
+              <ul>
+                {pg.summary.slice(0, SUM).map(([a, b]) => <li>{a && <strong>{a}</strong>}{a && b ? ': ' : ''}{b}</li>)}
+                {pg.summary.length > SUM && <li class="more">and {pg.summary.length - SUM} more on this page.</li>}
+              </ul>
+            ) : <p>This page carried on the <strong>{pg.cont}</strong> list.</p>}
+          </section>
+        )}
+
+        {ids.length > 2 && pg.n === pg.of - 1 && <Progress ids={ids} label="This section" />}
+
+        <nav class="x-pager" aria-label="Back and next">
+          {prev ? <a href={prev.url} data-prev><small>← Back{prev.sec.id === s.id ? ` · page ${prev.n + 1}` : ` · ${prev.sec.id}`}</small><span>{nextLabel(prev)}</span></a> : <a href={t.url} data-prev><small>← Back to</small><span>{t.short}</span></a>}
+          {next ? <a class="next" href={next.url} data-next><small>Next{next.sec.id === s.id ? ` · page ${next.n + 1}` : ` · ${next.sec.id}`} →</small><span>{nextLabel(next)}</span></a> : <a class="next" href="/library/#shelves" data-next><small>More shelves →</small><span>The Library</span></a>}
+        </nav>
+        <p class="x-keys">Tip: the ← and → keys also turn the pages.</p>
+      </article>
+
+      <aside class="x-rail" aria-label="Start here">
+        <div class="x-rail-box">
+          <h2>Start here</h2>
+          <p>Five short questions, about two minutes each.</p>
+          <ol>
+            {leaves.map((q) => <li><a href={q.url} aria-current={q.id === s.id ? 'page' : undefined}>{q.title.replace(/^Recap:\s*/, 'Recap: ')}</a></li>)}
+          </ol>
+        </div>
+        <div class="x-rail-box">
+          <h2>{t.short}</h2>
+          <p>{t.subtitle}.</p>
+          <p class="x-rail-facts">{t.parts.length - 1} Parts · {all.length} short pages · {t.entries} entries</p>
+          <a href={t.url}>Overview and map →</a>
+        </div>
+      </aside>
+    </div>
+
+    <button class="x-toc-btn" type="button" data-open-toc>
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+      Contents
+    </button>
+    <dialog class="toc-sheet" aria-label="Contents">
+      <div class="sheet-head"><strong>{t.short}</strong><button type="button" data-close-toc>Close</button></div>
+      <Contents t={t} current={s.id} page={pg.n} />
+    </dialog>
+  </div>
+</Base>
+
+<script>
+  import '../../../scripts/explore';
+</script>

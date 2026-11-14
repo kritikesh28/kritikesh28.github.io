@@ -71,3 +71,12 @@ sheet?.addEventListener('click', (e) => {
 });
 
 paint();
+
+// ← and → turn the pages (not while typing in a box)
+addEventListener('keydown', (e) => {
+  if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+  const el = e.target as HTMLElement;
+  if (el?.closest?.('input, textarea, select, [contenteditable], dialog[open]')) return;
+  const a = e.key === 'ArrowLeft' ? document.querySelector<HTMLAnchorElement>('[data-prev]') : e.key === 'ArrowRight' ? document.querySelector<HTMLAnchorElement>('[data-next]') : null;
+  if (a) location.href = a.href;
+});

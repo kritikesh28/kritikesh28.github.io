@@ -1,0 +1,44 @@
+---
+// "On the workbench": what a Portfolio shelf is getting next. Keeps a shelf with no work yet from looking empty.
+import { pfName, type PfSection } from '../../portfolio.config';
+import { langFromUrl, localizePath, pick } from '../../i18n/config';
+interface Props { s: PfSection; empty: boolean }
+const { s, empty } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const T = pick({
+  en: { label: 'On the workbench', lead: empty ? 'Nothing is pinned here yet, but the work has begun. Coming first:' : 'Next on this shelf:', foot: 'Each piece goes up as soon as it is ready.', go: 'Meanwhile, in the Library' },
+  hi: { label: 'अभी काम चल रहा है', lead: empty ? 'यहाँ अभी कुछ लगा नहीं है, पर काम शुरू हो चुका है। सबसे पहले आएगा:' : 'इस हिस्से में आगे:', foot: 'हर चीज़ तैयार होते ही यहाँ लगेगी।', go: 'तब तक, लाइब्रेरी में' },
+}, lang);
+const coming = lang === 'hi' ? s.comingHi : s.comingEn;
+---
+<section class:list={['wb', { empty }]} aria-label={`${T.label}: ${pfName(s, lang)}`}>
+  <div class="wb-art" aria-hidden="true">
+    <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 6" /><circle cx="60" cy="60" r="36" fill="none" stroke="currentColor" stroke-width="1" opacity="0.5" /></svg>
+    <span>{s.icon}</span>
+  </div>
+  <div>
+    <p class="wb-label"><span class="wb-pulse" aria-hidden="true"></span>{T.label}</p>
+    <p class="wb-lead">{T.lead}</p>
+    <ul>{coming.map((c) => <li>{c}</li>)}</ul>
+    <p class="wb-foot">{T.foot}</p>
+    {s.related && <p class="wb-rel">{T.go}: {s.related.map((r, i) => <>{i > 0 && ' · '}<a href={r.href.startsWith('/exam-prep/') ? localizePath(r.href, lang) : r.href} hreflang="en">{lang === 'hi' ? r.hi : r.en} →</a></>)}</p>}
+  </div>
+</section>
+<style>
+  .wb { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 1.2rem; align-items: start; padding: 1.2rem 1.3rem; border-radius: 18px; border: 1px dashed color-mix(in srgb, var(--gold) 55%, var(--line)); background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--gold) 5%, transparent) 0 12px, transparent 12px 24px), var(--surface); }
+  .wb-art { position: relative; width: 96px; height: 96px; color: color-mix(in srgb, var(--gold) 80%, var(--ink-soft)); }
+  .wb-art svg { position: absolute; inset: 0; animation: wb-turn 40s linear infinite; }
+  .wb-art span { position: absolute; inset: 0; display: grid; place-items: center; font-size: 1.7rem; font-weight: 700; color: var(--accent); }
+  @keyframes wb-turn { to { transform: rotate(360deg); } }
+  .wb-label { display: flex; align-items: center; gap: 0.5rem; margin: 0 0 0.3rem; font: 700 0.72rem/1 var(--font-sans); letter-spacing: 0.16em; text-transform: uppercase; color: #9a6b22; }
+  :global([data-theme='dark']) .wb-label { color: #e0b45e; }
+  @media (prefers-color-scheme: dark) { :global(:root:not([data-theme='light'])) .wb-label { color: #e0b45e; } }
+  .wb-pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); animation: wb-pulse 2.4s ease-in-out infinite; }
+  @keyframes wb-pulse { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--gold) 0%, transparent); opacity: 0.6; } 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--gold) 50%, transparent); } }
+  .wb-lead { margin: 0 0 0.4rem; }
+  .wb ul { margin: 0 0 0.6rem; padding-left: 1.1rem; display: grid; gap: 0.25rem; }
+  .wb-foot, .wb-rel { margin: 0; font-size: 0.88rem; color: var(--ink-soft); }
+  .wb-rel { margin-top: 0.35rem; }
+  @media (max-width: 560px) { .wb { grid-template-columns: minmax(0, 1fr); } .wb-art { width: 64px; height: 64px; } }
+  @media (prefers-reduced-motion: reduce) { .wb-art svg, .wb-pulse { animation: none; } }
+</style>

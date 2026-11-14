@@ -8,6 +8,7 @@ import { getLibraryPages, getPosts, getProjects, libraryUrl, plainText } from '.
 import { langFromPath, langParams, localizePath, pick } from '../../i18n/config';
 import { useT } from '../../i18n/ui';
 import { TOPICS, getTopic } from '../../explore';
+import { PF_SECTIONS, pfName } from '../../portfolio.config';
 
 export const getStaticPaths: GetStaticPaths = () => langParams().map((params) => ({ params }));
 
@@ -30,12 +31,9 @@ export async function GET({ url }: APIContext) {
     items.push({ t: p.data.title, d: p.data.summary, u: L(`/portfolio/${p.slug}/`), k: t('search.kind.project'), w: p.data.tags.join(' '), b: plainText(p.body).slice(0, 1500) });
   for (const q of getQuestions(lang))
     items.push({ t: q.q, d: q.a, u: q.link ?? '', k: t('search.kind.question', { topic: q.topic }), w: q.topic, b: '' });
-  for (const tree of trees)
-    items.push({ t: tree.title, d: tree.blurb, u: L(`/library/${tree.slug}/`), k: t('search.kind.subject'), w: tree.branches.map((b) => b.title).join(' '), b: '' });
-  for (const tree of trees)
-    for (const branch of tree.branches)
-      for (const twig of branch.twigs)
-        if (twig.status !== 'live') items.push({ t: twig.title, d: t('search.notWritten', { q: twig.question }), u: L(`/library/${tree.slug}/`), k: t('search.kind.planned'), w: `${tree.title} ${branch.title}`, b: '' });
+  // the old six subject trees now forward to the one Library tree, so they are not listed here (14 Nov 2026)
+  for (const ps of PF_SECTIONS)
+    items.push({ t: pfName(ps, lang), d: lang === 'hi' ? ps.blurbHi : ps.blurbEn, u: L(`/portfolio/${ps.slug}/`), k: t('search.kind.project'), w: (lang === 'hi' ? ps.comingHi : ps.comingEn).join(' '), b: '' });
   // Explore (English only for now): every topic and every page, with the names of its entries as keywords
   for (const ts of TOPICS) {
     const tp = getTopic(ts.slug);
@@ -50,6 +48,7 @@ export async function GET({ url }: APIContext) {
       { t: 'Portfolio', d: 'Applied AI, data and GIS projects.', u: '/portfolio/', w: 'projects work ai data gis qgis' },
       { t: 'Contact', d: 'Write to me, or suggest a question for the library.', u: '/contact/', w: 'contact email suggest question' },
       { t: 'The Library', d: 'Every course and question in the library.', u: '/library/', w: 'library courses learn topics' },
+      { t: 'My story', d: 'Who built Curious Sparoows, and why.', u: '/about/my-story/', w: 'story background journey kritikesh' },
     ],
     hi: [
       { t: 'कृतिकेश के बारे में', d: 'Curious Sparoows कौन लिखता है: पढ़ाई, हुनर और शौक।', u: '/about/', w: 'परिचय लेखक भूगोल भूविज्ञान AI शिक्षक about' },

@@ -11,6 +11,7 @@ links:
     href: https://github.com/kritikesh28/nyc-taxi-2023-eda
   - label: Live demand map
     href: https://huggingface.co/spaces/kritikesh28/nyc-taxi-demand-explorer
+section: data-python
 order: 1
 demo: true
 aiAssisted: true

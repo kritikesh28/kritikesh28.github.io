@@ -1,4 +1,7 @@
 ---
+// The home page: the poster, then one soft colour band per section, top to bottom:
+// About me · Library · Explore (the tree) · Exam Prep · Live project · Portfolio · Read deeper · next steps.
+// Band colours are the .b-* classes at the bottom of this file. Guide: docs/18-portfolio-and-menus.md
 import Base from '../../layouts/Base.astro';
 import PostCard from '../../components/PostCard.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
@@ -8,7 +11,9 @@ import JustHatched from '../../components/JustHatched.astro';
 import LiveDemo from '../../components/LiveDemo.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import QuestionCard from '../../components/QuestionCard.astro';
-import { SITE } from '../../site.config';
+import { SHELVES, shelfTitle } from '../../library-map';
+import { subjectsIn, GLYPH, STATS, fmt } from '../../exam-prep';
+import { PF_SECTIONS, pfName, pfUrl } from '../../portfolio.config';
 import { getPosts, getProjects } from '../../lib';
 import { langFromUrl, langParams, localizePath, pick } from '../../i18n/config';
 
@@ -18,24 +23,45 @@ const lang = langFromUrl(Astro.url);
 const L = (p: string) => localizePath(p, lang);
 const posts = (await getPosts(lang)).slice(0, 3);
 const projects = (await getProjects(lang)).slice(0, 3);
+const subjects = subjectsIn(lang);
 const T = pick({
   en: {
+    meEyebrow: 'Who is behind this', meTitle: "Hi, I'm Kritikesh", meAlt: 'Kritikesh Rajpurohit',
+    meText: 'A geographer and teacher from Rawatbhata, Rajasthan, now learning applied AI. I have spent years preparing for exams and teaching others, and this site is everything I wish I had found along the way.',
+    meChips: ['B.Sc. (Hons.) Geology, Delhi University', 'M.Sc. Geography', 'UGC-NET Geography', 'Applied AI, IIIT Bangalore'],
+    meStory: 'Read my story →', meAbout: 'More about me',
+    tl: [['2018', 'Started preparing for UPSC and RAS, and tutoring students'], ['2021', 'Finished B.Sc. (Hons.) Geology at Hansraj College'], ['2025', 'Field research on poverty among the Bhil tribes'], ['2026', 'Applied AI at IIIT Bangalore, and Curious Sparoows']],
     libEyebrow: 'The Library', libTitle: 'Every big idea begins as a small question',
     libText: 'A growing library of everything people study, told in short pages that start from zero. Ask anything, start anywhere, and leave knowing something real.',
     libStart: 'Open the Library →', libBrowse: 'See the whole tree',
     exEyebrow: 'Explore', exTitle: 'Pick a thread', exText: 'One trunk, eight great branches, every subject people study. Follow a branch to its twigs: the coloured ones are ready to read, and new ones grow every week.', exOpen: 'Climb the whole tree →',
+    shelves: 'Open shelves',
+    epEyebrow: 'Exam Prep', epTitle: 'Know what to study first', epText: 'For RPSC and RSSB aspirants: every topic of the syllabus, ranked by how often it really comes in past papers. Calm, clear and free.',
+    epStats: [[fmt(STATS.topics), 'topics mapped'], [fmt(STATS.questions), 'past questions ranked'], [String(STATS.exams), 'exams covered']],
+    epGo: 'Start Exam Prep →', epAll: 'All subjects',
     liveEyebrow: 'Live project', liveTitle: 'Where New York takes a taxi, hour by hour',
-    pfEyebrow: 'Portfolio', pfTitle: 'Projects', pfAll: 'All projects →',
-    lrEyebrow: `${SITE.blogBrand} Library`, lrTitle: 'Latest long reads', lrNone: 'The first posts are being written.',
+    pfEyebrow: 'Portfolio', pfTitle: 'Things I build, study and make', pfAll: 'All work →', pfSoon: 'coming soon',
+    rdEyebrow: 'Read deeper', rdTitle: 'A course, and long reads', rdText: 'When two minutes is not enough: a short course and longer essays, each now sitting on its own branch of the tree.',
+    rdCourseK: 'Short course · Astronomy', rdCourse: 'The Universe: from the first second to you', rdCourseX: 'Twelve short steps, from the Big Bang to the atoms in your body.', rdCourseGo: 'Start the course →',
   },
   hi: {
+    meEyebrow: 'इसके पीछे कौन है', meTitle: 'नमस्ते, मैं कृतिकेश', meAlt: 'कृतिकेश राजपुरोहित',
+    meText: 'रावतभाटा, राजस्थान से भूगोलवेत्ता और शिक्षक, अब अप्लाइड AI सीखने की राह पर। बरसों परीक्षाओं की तैयारी और दूसरों को पढ़ाने के बाद, यह साइट वह सब है जो उस सफ़र में मिल जाना चाहिए था।',
+    meChips: ['बी.एससी. (ऑनर्स) भूविज्ञान, दिल्ली विश्वविद्यालय', 'एम.एससी. भूगोल', 'UGC-NET भूगोल', 'अप्लाइड AI, IIIT बैंगलोर'],
+    meStory: 'मेरी कहानी पढ़िए →', meAbout: 'मेरे बारे में और',
+    tl: [['2018', 'UPSC और RAS की तैयारी, और विद्यार्थियों को पढ़ाना शुरू'], ['2021', 'हंसराज कॉलेज से बी.एससी. (ऑनर्स) भूविज्ञान पूरी'], ['2025', 'भील जनजातियों में गरीबी पर फ़ील्ड रिसर्च'], ['2026', 'IIIT बैंगलोर में अप्लाइड AI, और Curious Sparoows']],
     libEyebrow: 'लाइब्रेरी', libTitle: 'हर बड़ा विचार एक छोटे सवाल से शुरू होता है',
     libText: 'इंसान जो कुछ भी पढ़ता है, उसकी एक बढ़ती लाइब्रेरी, छोटे पन्नों में, बिल्कुल शुरुआत से। कुछ भी पूछिए, कहीं से भी शुरू कीजिए, और कुछ सच्चा सीखकर जाइए।',
     libStart: 'लाइब्रेरी खोलें →', libBrowse: 'पूरा पेड़ देखें',
     exEyebrow: 'घूमिए', exTitle: 'एक धागा चुनिए', exText: 'एक तना, आठ बड़ी शाखाएँ, पढ़ाई का हर विषय। किसी शाखा को उसकी टहनियों तक पकड़िए: रंगीन टहनियाँ पढ़ने के लिए तैयार हैं, और हर हफ़्ते नई उगती हैं।', exOpen: 'पूरे पेड़ पर चढ़िए →',
+    shelves: 'खुली अलमारियाँ',
+    epEyebrow: 'परीक्षा तैयारी', epTitle: 'जानिए पहले क्या पढ़ना है', epText: 'RPSC और RSSB की तैयारी करने वालों के लिए: पाठ्यक्रम का हर टॉपिक, इस हिसाब से रैंक किया हुआ कि पिछले पेपरों में वह सच में कितनी बार आया। शांत, साफ़ और मुफ़्त।',
+    epStats: [[fmt(STATS.topics), 'टॉपिक'], [fmt(STATS.questions), 'पिछले सवाल रैंक किए'], [String(STATS.exams), 'परीक्षाएँ']],
+    epGo: 'परीक्षा तैयारी शुरू करें →', epAll: 'सारे विषय',
     liveEyebrow: 'लाइव प्रोजेक्ट', liveTitle: 'न्यूयॉर्क में लोग टैक्सी कहाँ से लेते हैं, घंटे-दर-घंटे',
-    pfEyebrow: 'मेरा काम', pfTitle: 'प्रोजेक्ट', pfAll: 'सारे प्रोजेक्ट →',
-    lrEyebrow: 'Curious Sparoows लाइब्रेरी', lrTitle: 'नए लंबे लेख', lrNone: 'पहले लेख लिखे जा रहे हैं।',
+    pfEyebrow: 'मेरा काम', pfTitle: 'जो बनाया, पढ़ा और रचा', pfAll: 'सारा काम →', pfSoon: 'जल्द',
+    rdEyebrow: 'गहराई से पढ़िए', rdTitle: 'एक कोर्स, और लंबे लेख', rdText: 'जब दो मिनट काफ़ी न हों: एक छोटा कोर्स और लंबे लेख, हर एक अब पेड़ की अपनी शाखा पर।',
+    rdCourseK: 'छोटा कोर्स · खगोल विज्ञान', rdCourse: 'ब्रह्मांड: पहले पल से आप तक', rdCourseX: 'बिग बैंग से आपके शरीर के परमाणुओं तक, बारह छोटे कदम।', rdCourseGo: 'कोर्स शुरू करें →',
   },
 }, lang);
 ---
@@ -46,14 +72,36 @@ const T = pick({
   {/* keep Google's search snippet on the intro above: the demo and card text below should not be quoted */}
   <div data-nosnippet>
 
-  <section id="library" class="wrap section reveal">
-    <div class="lib">
+  <section id="me" class="band b-me">
+    <div class="wrap me reveal">
+      <div class="me-photo">
+        <img src="/images/kritikesh.jpg" alt={T.meAlt} width="220" height="220" loading="lazy" />
+        <span class="me-ring" aria-hidden="true"></span>
+      </div>
+      <div class="me-text">
+        <p class="eyebrow">{T.meEyebrow}</p>
+        <h2>{T.meTitle}</h2>
+        <p class="muted">{T.meText}</p>
+        <ul class="me-chips">{T.meChips.map((c) => <li>{c}</li>)}</ul>
+        <p class="me-links">
+          <a class="btn" href={L('/about/my-story/')}>{T.meStory}</a>
+          <a class="btn ghost" href={L('/about/')}>{T.meAbout}</a>
+        </p>
+      </div>
+      <ol class="me-tl">
+        {T.tl.map(([y, x]) => <li><b>{y}</b><span>{x}</span></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section id="library" class="band b-lib">
+    <div class="wrap lib reveal">
       <div>
         <p class="eyebrow">{T.libEyebrow}</p>
         <h2>{T.libTitle}</h2>
         <p class="muted">{T.libText}</p>
         <JustHatched />
-        <p class="lib-links">
+        <p class="row-links">
           <a class="btn" href={L('/library/')}>{T.libStart}</a>
           <a class="btn ghost" href="/library/map/" hreflang="en">{T.libBrowse}</a>
         </p>
@@ -62,37 +110,72 @@ const T = pick({
     </div>
   </section>
 
-  <section id="explore" class="wrap section reveal">
-    <div class="split">
-      <div>
-        <p class="eyebrow">{T.exEyebrow}</p>
-        <h2>{T.exTitle}</h2>
-        <p class="muted">{T.exText}</p>
-        <p><a href="/library/map/" hreflang="en">{T.exOpen}</a></p>
+  <section id="explore" class="band b-tree">
+    <div class="wrap reveal">
+      <div class="split">
+        <div>
+          <p class="eyebrow">{T.exEyebrow}</p>
+          <h2>{T.exTitle}</h2>
+          <p class="muted">{T.exText}</p>
+          <p><a href="/library/map/" hreflang="en">{T.exOpen}</a></p>
+        </div>
+        <LibraryTree />
       </div>
-      <LibraryTree />
+      <p class="shelf-row"><span class="small muted">{T.shelves}:</span> {SHELVES.map((s) => <a class="pill" href={s.url} hreflang="en">{shelfTitle(s, lang)}</a>)}</p>
     </div>
   </section>
 
-  <section id="live" class="wrap section reveal">
-    <p class="eyebrow">{T.liveEyebrow}</p>
-    <h2>{T.liveTitle}</h2>
-    <LiveDemo />
+  <section id="exam-prep" class="band b-exam">
+    <div class="wrap exam reveal">
+      <div>
+        <p class="eyebrow">{T.epEyebrow}</p>
+        <h2>{T.epTitle}</h2>
+        <p class="muted">{T.epText}</p>
+        <ul class="stats">{T.epStats.map(([n, l]) => <li><b>{n}</b><span>{l}</span></li>)}</ul>
+        <p><a class="btn" href={L('/exam-prep/')}>{T.epGo}</a></p>
+      </div>
+      <div class="subj">
+        <p class="small muted">{T.epAll}</p>
+        <ul>{subjects.map((s) => <li><a href={L(`/exam-prep/curriculum-index/${s.slug}/`)}><span aria-hidden="true">{GLYPH[s.slug]}</span>{s.name}</a></li>)}</ul>
+      </div>
+    </div>
   </section>
 
-  <section class="wrap section reveal">
-    <p class="eyebrow">{T.pfEyebrow}</p>
-    <h2>{T.pfTitle}</h2>
-    <div class="grid3">{projects.map((p) => <ProjectCard project={p} />)}</div>
-    <p><a href={L('/portfolio/')}>{T.pfAll}</a></p>
+  <section id="live" class="band b-live">
+    <div class="wrap reveal">
+      <p class="eyebrow">{T.liveEyebrow}</p>
+      <h2>{T.liveTitle}</h2>
+      <LiveDemo />
+    </div>
   </section>
 
-  <section class="wrap section reveal">
-    <p class="eyebrow">{T.lrEyebrow}</p>
-    <h2>{T.lrTitle}</h2>
-    {posts.length > 0
-      ? <div class="grid3">{posts.map((post) => <PostCard post={post} />)}</div>
-      : <p class="muted">{T.lrNone}</p>}
+  <section id="portfolio" class="band b-pf">
+    <div class="wrap reveal">
+      <p class="eyebrow">{T.pfEyebrow}</p>
+      <h2>{T.pfTitle}</h2>
+      <p class="pf-row">
+        {PF_SECTIONS.map((s) => <a class="pill" href={L(pfUrl(s))}><span aria-hidden="true">{s.icon}</span> {pfName(s, lang)}</a>)}
+      </p>
+      <div class="grid3">{projects.map((p) => <ProjectCard project={p} />)}</div>
+      <p><a href={L('/portfolio/')}>{T.pfAll}</a></p>
+    </div>
+  </section>
+
+  <section id="read" class="band b-read">
+    <div class="wrap reveal">
+      <p class="eyebrow">{T.rdEyebrow}</p>
+      <h2>{T.rdTitle}</h2>
+      <p class="muted narrow">{T.rdText}</p>
+      <div class="deep">
+        <a class="course" href={L('/library/the-universe/')}>
+          <span class="small k">{T.rdCourseK}</span>
+          <strong>{T.rdCourse}</strong>
+          <span class="small">{T.rdCourseX}</span>
+          <span class="go">{T.rdCourseGo}</span>
+        </a>
+        {posts.map((post) => <PostCard post={post} />)}
+      </div>
+    </div>
   </section>
 
   <div class="wrap"><CtaBand /></div>
@@ -100,14 +183,69 @@ const T = pick({
 </Base>
 
 <style>
-  .section { margin-top: 4rem; }
-  .split { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: 2rem; align-items: center; }
+  /* the bands: very light washes of the site's own colours, so each section reads as its own room */
+  .band { position: relative; padding-block: clamp(2.8rem, 6vw, 4.2rem); background: var(--band); border-top: 1px solid color-mix(in srgb, var(--band-edge) 18%, transparent); }
+  .band::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 90% at 100% 0%, color-mix(in srgb, var(--band-edge) 9%, transparent), transparent 70%); }
+  .band > .wrap { position: relative; }
+  .b-me { --band-edge: var(--gold); --band: color-mix(in srgb, var(--gold) 8%, var(--bg)); }
+  .b-lib { --band-edge: var(--accent); --band: color-mix(in srgb, var(--accent) 5%, var(--bg)); }
+  .b-tree { --band-edge: var(--teal); --band: color-mix(in srgb, var(--teal) 6%, var(--bg)); }
+  .b-exam { --band-edge: #c98a2b; --band: color-mix(in srgb, #c98a2b 7%, var(--bg)); }
+  .b-live { --band-edge: #3f7fc4; --band: color-mix(in srgb, #3f7fc4 6%, var(--bg)); }
+  .b-pf { --band-edge: var(--coral); --band: color-mix(in srgb, var(--coral) 6%, var(--bg)); }
+  .b-read { --band-edge: #8f7be8; --band: color-mix(in srgb, #8f7be8 8%, var(--bg)); border-bottom: 1px solid color-mix(in srgb, #8f7be8 18%, transparent); }
+  .band :global(.cta) { margin-top: 0; }
+
+  /* about me */
+  .me { display: grid; grid-template-columns: 220px minmax(0, 1.4fr) minmax(0, 1fr); gap: 2.4rem; align-items: center; }
+  .me-photo { position: relative; width: 220px; height: 220px; }
+  .me-photo img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; position: relative; z-index: 1; box-shadow: 0 20px 50px -24px rgb(42 35 80 / 0.6); }
+  .me-ring { position: absolute; inset: -12px; border-radius: 50%; border: 1.5px dashed color-mix(in srgb, var(--gold) 70%, transparent); animation: me-turn 50s linear infinite; }
+  @keyframes me-turn { to { transform: rotate(360deg); } }
+  .me-text h2 { margin: 0.2rem 0 0.5rem; }
+  .me-chips { list-style: none; padding: 0; margin: 1rem 0 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .me-chips li { font-size: 0.82rem; padding: 0.25rem 0.7rem; border-radius: 99px; background: var(--surface); border: 1px solid color-mix(in srgb, var(--gold) 35%, var(--line)); }
+  .me-links, .row-links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.2rem; }
+  .me-tl { list-style: none; margin: 0; padding: 0 0 0 1.2rem; border-left: 2px solid color-mix(in srgb, var(--gold) 45%, var(--line)); display: grid; gap: 1rem; }
+  .me-tl li { position: relative; display: grid; gap: 0.1rem; font-size: 0.92rem; line-height: 1.45; color: var(--ink-soft); }
+  .me-tl li::before { content: ''; position: absolute; left: calc(-1.2rem - 6px); top: 0.35rem; width: 10px; height: 10px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 3px var(--band); }
+  .me-tl b { font-family: var(--font-serif); font-size: 1.05rem; color: var(--ink); }
+
   .lib { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 2.5rem; align-items: center; }
   .lib h2 { margin-bottom: 0.4rem; }
-  .lib-links { margin-top: 1.1rem; }
-  .lib-links { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .split { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: 2rem; align-items: center; }
+  .shelf-row, .pf-row { display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: center; margin: 1.4rem 0 0; }
+  .pf-row { margin: 0.4rem 0 1.4rem; }
+  .pill { font-size: 0.88rem; padding: 0.3rem 0.8rem; border-radius: 99px; text-decoration: none; color: var(--ink); background: var(--surface); border: 1px solid color-mix(in srgb, var(--band-edge) 30%, var(--line)); transition: border-color 0.2s, transform 0.2s; }
+  .pill:hover { border-color: var(--band-edge); color: var(--ink); transform: translateY(-1px); }
+  .pill span { color: var(--band-edge); }
+
+  .exam { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2.5rem; align-items: center; }
+  .stats { list-style: none; padding: 0; margin: 1.2rem 0 1.4rem; display: flex; flex-wrap: wrap; gap: 1rem 2rem; }
+  .stats li { display: grid; }
+  .stats b { font-family: var(--font-serif); font-size: 1.8rem; line-height: 1.1; color: var(--ink); }
+  .stats span { font-size: 0.85rem; color: var(--ink-soft); }
+  .subj { padding: 1.2rem; border-radius: 20px; background: var(--surface); border: 1px solid color-mix(in srgb, #c98a2b 25%, var(--line)); }
+  .subj > p { margin: 0 0 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .subj ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.15rem 1rem; }
+  .subj a { display: flex; gap: 0.5rem; align-items: center; padding: 0.35rem 0.4rem; border-radius: 8px; text-decoration: none; color: var(--ink); font-size: 0.93rem; }
+  .subj a:hover { background: color-mix(in srgb, #c98a2b 10%, transparent); }
+  .subj a span { width: 1.4em; text-align: center; }
+
   .grid3 { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  .deep { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); margin-top: 1rem; }
+  .course { display: flex; flex-direction: column; gap: 0.4rem; padding: 1.3rem; border-radius: 20px; text-decoration: none; color: #f6e7c8; background: radial-gradient(120% 120% at 100% 0%, #3a2c6b, #1d1636 60%, #15112b); transition: transform 0.25s; }
+  .course:hover { color: #f6e7c8; transform: translateY(-3px); }
+  .course strong { font-family: var(--font-serif); font-size: 1.3rem; color: #fff3dc; line-height: 1.25; }
+  .course .k { letter-spacing: 0.12em; text-transform: uppercase; color: #e8c584; }
+  .course .go { margin-top: auto; padding-top: 0.6rem; font-weight: 600; color: #f2d7a6; }
+
+  @media (max-width: 1080px) { .me { grid-template-columns: 180px minmax(0, 1fr); } .me-photo { width: 180px; height: 180px; } .me-tl { grid-column: 1 / -1; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); border-left: 0; padding-left: 0; } .me-tl li::before { display: none; } }
   @media (max-width: 860px) {
-    .split, .lib { grid-template-columns: minmax(0, 1fr); }
+    .split, .lib, .exam { grid-template-columns: minmax(0, 1fr); }
+    .me { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; text-align: left; }
+    .me-photo { width: 140px; height: 140px; }
   }
+  @media (max-width: 480px) { .subj ul { grid-template-columns: minmax(0, 1fr); } }
+  @media (prefers-reduced-motion: reduce) { .me-ring { animation: none; } }
 </style>

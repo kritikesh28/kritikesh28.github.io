@@ -1,4 +1,4 @@
-// The sound of the nest: a very soft background of sparrow chirps, a breeze and a slow cosmic hum.
+// The sound of the nest: soft sparrow chirps now and then, nothing else (no wind or hum, his choice on 14 Nov 2026).
 // Everything is made live in the browser with the Web Audio API: no sound files, nothing downloaded, nothing tracked.
 // Browsers only allow sound after a tap or key press, so it fades in on the visitor's first tap.
 // The speaker button in the top bar pauses it; that choice is remembered in this browser only (see /privacy/).
@@ -15,20 +15,6 @@ const pref = () => { try { return localStorage.getItem(KEY); } catch { return nu
 const remember = (v: 'on' | 'off') => { try { localStorage.setItem(KEY, v); } catch {} };
 const rand = (a: number, b: number) => a + Math.random() * (b - a);
 
-function noiseBuffer(ctx: AudioContext, seconds: number) {
-  // brown-ish noise: soft like wind, not hiss
-  const buf = ctx.createBuffer(2, ctx.sampleRate * seconds, ctx.sampleRate);
-  for (let ch = 0; ch < 2; ch++) {
-    const d = buf.getChannelData(ch);
-    let last = 0;
-    for (let i = 0; i < d.length; i++) {
-      last = (last + 0.02 * (Math.random() * 2 - 1)) / 1.02;
-      d[i] = last * 3.2;
-    }
-  }
-  return buf;
-}
-
 function build(): Nodes {
   const Ctx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
   const ctx = new Ctx();
@@ -37,43 +23,7 @@ function build(): Nodes {
   master.connect(ctx.destination);
   const timers: number[] = [];
 
-  // 1. Breeze: looping noise through a slowly moving low-pass filter
-  const breeze = ctx.createBufferSource();
-  breeze.buffer = noiseBuffer(ctx, 8);
-  breeze.loop = true;
-  const lp = ctx.createBiquadFilter();
-  lp.type = 'lowpass'; lp.frequency.value = 700; lp.Q.value = 0.4;
-  const lfo = ctx.createOscillator(); lfo.frequency.value = 0.06;
-  const lfoAmt = ctx.createGain(); lfoAmt.gain.value = 320;
-  lfo.connect(lfoAmt).connect(lp.frequency);
-  const breezeGain = ctx.createGain(); breezeGain.gain.value = 0.32;
-  breeze.connect(lp).connect(breezeGain).connect(master);
-  breeze.start(); lfo.start();
-
-  // 2. Cosmos: a low, slowly breathing chord
-  const hum = ctx.createGain(); hum.gain.value = 0.16;
-  const humLp = ctx.createBiquadFilter(); humLp.type = 'lowpass'; humLp.frequency.value = 420;
-  hum.connect(humLp).connect(master);
-  [55, 82.4, 110.3, 164.8].forEach((f, i) => {
-    const o = ctx.createOscillator(); o.type = i % 2 ? 'triangle' : 'sine'; o.frequency.value = f;
-    const g = ctx.createGain(); g.gain.value = 0.25 / (i + 1);
-    const t = ctx.createOscillator(); t.frequency.value = 0.03 + i * 0.017;
-    const tg = ctx.createGain(); tg.gain.value = 0.12 / (i + 1);
-    t.connect(tg).connect(g.gain);
-    o.connect(g).connect(hum);
-    o.start(); t.start();
-  });
-
-  // 3. A distant twinkle now and then: a soft, slow bell
-  const twinkle = () => {
-    const t0 = ctx.currentTime;
-    const o = ctx.createOscillator(); o.type = 'sine'; o.frequency.value = [880, 1046.5, 1318.5, 1568][Math.floor(rand(0, 4))];
-    const g = ctx.createGain(); g.gain.setValueAtTime(0, t0); g.gain.linearRampToValueAtTime(0.05, t0 + 1.2); g.gain.exponentialRampToValueAtTime(0.0001, t0 + 6);
-    o.connect(g).connect(master); o.start(t0); o.stop(t0 + 6.2);
-    timers.push(window.setTimeout(twinkle, rand(9000, 18000)));
-  };
-
-  // 4. Sparrows: short rising-falling chirps in little groups, from left and right
+  // Sparrows: short rising-falling chirps in little groups, from left and right
   const chirp = (t0: number, pan: number) => {
     const o = ctx.createOscillator(); o.type = 'sine';
     const f = rand(3400, 4600);
@@ -94,7 +44,7 @@ function build(): Nodes {
     for (let i = 0; i < k; i++) chirp(t0 + i * rand(0.11, 0.2), pan + rand(-0.1, 0.1));
     timers.push(window.setTimeout(flock, rand(3500, 11000)));
   };
-  timers.push(window.setTimeout(flock, 1800), window.setTimeout(twinkle, 5000));
+  timers.push(window.setTimeout(flock, 1800));
   return { ctx, master, timers };
 }
 

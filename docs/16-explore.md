@@ -12,10 +12,14 @@ The 12 Encyclopedic Indexes: Movies, Books, Music, Musical Instruments, Cooking,
 | --- | --- | --- |
 | Shelf cards | `/library/#shelves` | Every shelf as a card with a line drawing behind it |
 | Topic page (a Twig) | `/library/<topic>/` | Cover, where it sits in the tree, the five starting questions, the map of Parts, the reader's progress |
-| Reading page (a Leaf) | `/library/<topic>/<id>-<title>/` | One Section (for example SEW-07), with tick boxes, contents and Previous/Next |
+| Reading page (a Leaf) | `/library/<topic>/<id>-<title>/`, then `.../2/`, `.../3/` | One page of a Section, **two to three minutes long**: an Overview box, the text, a Summary box, tick boxes, Back/Next (and the ← → keys) |
 | Old addresses | `/explore/...` | Forwarding pages only (`src/pages/explore/[...path].astro`), not indexed |
 
-There are about 450 reading pages, in **English only** for now; Hindi pages link to the English ones.
+There are about 540 reading pages, in **English only** for now; Hindi pages link to the English ones.
+
+**The reading layout (14 Nov 2026).** Every topic and reading page has three columns: on the left, every Part as a drop-down with its Sections (and the pages of the Section you are in); in the middle, the page; on the right, the five starting questions and the topic at a glance. On phones the left bar opens from the **Contents** button and the right bar moves below the text.
+
+**How long Sections are cut into pages.** `build_explore.py` cuts each Section (except the short question pages of Part 0) into pages of about 380 words, never more than about 480, cutting before a heading where it can and between list items or table rows only when one heading's block is too long (`PAGE_TARGET`, `PAGE_MAX`, `PAGE_MIN` near the top of `paginate()`). The first page keeps the Section's old address, so no link breaks. For each page the script also writes its headings (used in the Overview and the left bar) and a Summary: each heading or named entry with the first sentence of its explainer. The question pages keep their own "Short answer" (shown as **Overview**) and "Remember this" (shown as **Summary**).
 
 ## 2. Where the files are
 
@@ -27,7 +31,7 @@ There are about 450 reading pages, in **English only** for now; Hindi pages link
 | `src/data/explore/` | The website data the script writes. **Never edit by hand** |
 | `src/styles/explore-topics.css` | Each topic's colours, written by the script from the booklet cover colours |
 | `src/explore.ts` | Reading the shelf data. Where each shelf sits in the tree is in `src/library-map.ts` (`PLACE`) |
-| `src/pages/library/[topic]/` | The topic and reading pages |
+| `src/pages/library/[topic]/` | The topic page (`index.astro`) and the reading pages (`[...section].astro`) |
 | `src/components/explore/` | Contents, progress bar, pictures and videos (the shelf card is `src/components/library/ShelfCard.astro`) |
 | `src/scripts/explore.ts` | Tick boxes, progress, the phone contents sheet, tap-to-play videos |
 | `src/styles/explore.css` | The look of Explore |
