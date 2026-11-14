@@ -1,0 +1,7 @@
+---
+// One Encyclopedic Index on the Hindi site: Hindi frame and links, English text with a note, so switching language keeps the reader on the same page.
+import ShelfIndex from '../../../../components/explore/pages/ShelfIndex.astro';
+import { TOPICS } from '../../../../explore';
+export const getStaticPaths = () => TOPICS.map((t) => ({ params: { topic: t.slug } }));
+---
+<ShelfIndex topic={Astro.params.topic!} />

@@ -1,0 +1,178 @@
+---
+// One page of a shelf (an Encyclopedic Index), two to three minutes long. Used by both languages:
+// src/pages/library/[topic]/[...section].astro and src/pages/hi/library/[topic]/[...section].astro.
+// The text itself is English for now; on the Hindi site the frame, buttons and links are Hindi and a note says so.
+// Left: every Part as a drop-down. Middle: overview, the text, a summary, back and next.
+// Right: the starting questions and where you are in this Section.
+import Base from '../../../layouts/Base.astro';
+import Contents from '../Contents.astro';
+import MediaBlock from '../MediaBlock.astro';
+import Progress from '../Progress.astro';
+import { getTopic, flatPages, minutes, isLeaf, pageUrl, pageLabel } from '../../../explore';
+import { SHELVES, fieldName, fieldUrl, shelfTitle } from '../../../library-map';
+import { langFromUrl, localizePath, pick } from '../../../i18n/config';
+import '../../../styles/explore.css';
+import '../../../styles/explore-topics.css';
+
+interface Props { topic: string; url: string }
+const { topic, url } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const L = (p: string) => localizePath(p, lang);
+const T = pick({
+  en: { lib: 'Library', part: 'Part', minRead: 'min read', pageOf: (n: number, of: number) => `page ${n} of ${of}`, dots: 'Pages of this section', pageN: 'Page',
+    over: 'Overview', cut: (n: number) => `This section is cut into ${n} short pages of two to three minutes each:`, thisPage: '(this page)',
+    pageLine: (n: number, of: number) => `Page ${n} of ${of}. On this page:`, backStart: 'Back to the start of this section', onPage: 'On this page:',
+    entries: (n: number) => `${n} entries, from`, to: 'to', about: 'About Part', sum: 'Summary', more: (n: number) => `and ${n} more on this page.`, carried: (x: string) => ['This page carried on the', x, 'list.'],
+    thisSec: 'This section', nav: 'Back and next', back: '← Back', backTo: '← Back to', next: 'Next', more2: 'More shelves →', theLib: 'The Library', page: 'page',
+    keys: 'Tip: the ← and → keys also turn the pages.', start: 'Start here', startP: 'Five short questions, about two minutes each.', recap: 'Recap: ',
+    parts: 'Parts', pages: 'short pages', entriesW: 'entries', overMap: 'Overview and map →', contents: 'Contents', close: 'Close' },
+  hi: { lib: 'लाइब्रेरी', part: 'भाग', minRead: 'मिनट का पाठ', pageOf: (n: number, of: number) => `${of} में से पन्ना ${n}`, dots: 'इस हिस्से के पन्ने', pageN: 'पन्ना',
+    over: 'एक नज़र में', cut: (n: number) => `यह हिस्सा ${n} छोटे पन्नों में बँटा है, हर एक दो-तीन मिनट का:`, thisPage: '(यही पन्ना)',
+    pageLine: (n: number, of: number) => `${of} में से पन्ना ${n}। इस पन्ने पर:`, backStart: 'इस हिस्से की शुरुआत पर लौटें', onPage: 'इस पन्ने पर:',
+    entries: (n: number) => `${n} प्रविष्टियाँ,`, to: 'से लेकर', about: 'भाग के बारे में:', sum: 'सार', more: (n: number) => `और इस पन्ने पर ${n} बातें और।`, carried: (x: string) => ['यह पन्ना', x, 'वाली सूची को आगे बढ़ाता है।'],
+    thisSec: 'यह हिस्सा', nav: 'पीछे और आगे', back: '← पीछे', backTo: '← वापस', next: 'आगे', more2: 'और अलमारियाँ →', theLib: 'लाइब्रेरी', page: 'पन्ना',
+    keys: 'सुझाव: ← और → बटन से भी पन्ने पलटते हैं।', start: 'यहाँ से शुरू करें', startP: 'पाँच छोटे सवाल, हर एक लगभग दो मिनट का।', recap: 'दोहराव: ',
+    parts: 'भाग', pages: 'छोटे पन्ने', entriesW: 'प्रविष्टियाँ', overMap: 'एक नज़र में और नक्शा →', contents: 'विषय-सूची', close: 'बंद करें' },
+}, lang);
+const hi = lang === 'hi';
+const t = getTopic(topic);
+const shelf = SHELVES.find((x) => x.slug === t.slug)!;
+const tUrl = L(shelf.url);
+const all = flatPages(t);
+const k = all.findIndex((x) => x.url === url);
+const pg = all[k];
+const s = pg.sec;
+const prev = all[k - 1];
+const next = all[k + 1];
+const leaf = isLeaf(s.id) || s.id.endsWith('-00');
+const many = pg.of > 1;
+const label = pageLabel(pg, 3);
+const title = leaf ? s.title : many ? `${s.title}: ${pageLabel(pg, 2)} (${t.short})` : `${s.title} (${t.short})`;
+const description = (many && pg.n > 0 ? `${s.title}, page ${pg.n + 1} of ${pg.of}: ${label}. ` : '') + (s.summary || `${s.title}: part of ${t.short}, The Encyclopedic Index by Curious Sparoows.`);
+const leaves = t.parts[0].sections.filter((x) => isLeaf(x.id));
+const firstOfPart = pg.n === 0 && t.parts.find((p) => p.num === s.part.num)!.sections[0].id === s.id;
+const ids = s.entries.map((e) => e.id);
+const SUM = 6;
+const schema = [
+  {
+    '@type': 'Article',
+    headline: many ? `${s.title}: ${label}` : s.title,
+    url: new URL(pg.url, Astro.site).href,
+    inLanguage: 'en',
+    isPartOf: { '@type': 'Book', name: `${t.short}: The Encyclopedic Index`, url: new URL(shelf.url, Astro.site).href },
+    author: { '@id': new URL('/#person', Astro.site).href },
+    wordCount: pg.words,
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Library', item: new URL('/library/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: fieldName(shelf.field), item: new URL(fieldUrl(shelf.field), Astro.site).href },
+      { '@type': 'ListItem', position: 3, name: t.short, item: new URL(shelf.url, Astro.site).href },
+      { '@type': 'ListItem', position: 4, name: s.title, item: new URL(s.url, Astro.site).href },
+    ],
+  },
+];
+const nextLabel = (x: (typeof all)[number]) => (x.sec.id === s.id ? pageLabel(x, 2) : x.sec.title);
+const carried = T.carried(pg.cont ?? '');
+---
+
+<Base {title} description={description.slice(0, 300)} {schema} translated={['en']} type="article">
+  <div class={`t-${t.slug}`}>
+    <div class="x-wrap x-page x-3col">
+      <Contents t={t} current={s.id} page={pg.n} />
+
+      <article lang={hi ? 'en' : undefined}>
+        <header class="x-head">
+          <p class="x-crumbs" lang={hi ? 'hi' : undefined}>
+            <a href={L('/library/')}>{T.lib}</a><span aria-hidden="true">›</span>
+            <a href={L(fieldUrl(shelf.field))}>{fieldName(shelf.field, lang)}</a><span aria-hidden="true">›</span>
+            <a href={tUrl}>{hi ? shelfTitle(shelf, lang) : t.short}</a><span aria-hidden="true">›</span>
+            <span>{T.part} {s.part.num}: <span lang={hi ? 'en' : undefined}>{s.part.title}</span></span>
+          </p>
+          <span class="x-idchip">{s.id}</span>
+          <h1>{s.title}</h1>
+          {many && pg.n > 0 && <p class="x-sub">{label}</p>}
+          <p class="x-meta" lang={hi ? 'hi' : undefined}>{minutes(pg.words)} {T.minRead}{many && <> · {T.pageOf(pg.n + 1, pg.of)}</>}</p>
+          {many && (
+            <ol class="x-dots" aria-label={T.dots}>
+              {s.pages.map((p2, n) => <li><a href={L(pageUrl(s, n))} aria-current={n === pg.n ? 'page' : undefined} title={pageLabel(p2, 1)}><span class="sr-only">{T.pageN} {n + 1}: {pageLabel(p2, 1)}</span></a></li>)}
+            </ol>
+          )}
+        </header>
+
+        {!leaf && (
+          <section class="x-over" aria-label={T.over}>
+            <h2 lang={hi ? 'hi' : undefined}>{T.over}</h2>
+            {many && pg.n === 0 && <>
+              <p lang={hi ? 'hi' : undefined}>{T.cut(pg.of)}</p>
+              <ol>{s.pages.map((p2, n) => <li>{n === 0 ? <strong>{pageLabel(p2, 3)} <span lang={hi ? 'hi' : undefined}>{T.thisPage}</span></strong> : <a href={L(pageUrl(s, n))}>{pageLabel(p2, 3)}</a>}</li>)}</ol>
+            </>}
+            {many && pg.n > 0 && <p><span lang={hi ? 'hi' : undefined}>{T.pageLine(pg.n + 1, pg.of)}</span> <strong>{label}</strong>. <a href={L(s.url)} lang={hi ? 'hi' : undefined}>{T.backStart}</a>.</p>}
+            {!many && (pg.heads.length > 0 || s.entries.length > 0) && (
+              <p><span lang={hi ? 'hi' : undefined}>{T.onPage}</span> {pg.heads.length > 0 ? <strong>{pageLabel(pg, 4)}</strong> : <><span lang={hi ? 'hi' : undefined}>{T.entries(s.entries.length)}</span> <strong>{s.entries[0].name}</strong> <span lang={hi ? 'hi' : undefined}>{T.to}</span> <strong>{s.entries.at(-1)!.name}</strong></>}.</p>
+            )}
+            {!many && pg.heads.length === 0 && s.entries.length === 0 && <p>{s.summary}</p>}
+          </section>
+        )}
+
+        <div class="x-body">
+          {firstOfPart && s.part.intro && s.part.num > 0 && <details class="x-partintro"><summary><span lang={hi ? 'hi' : undefined}>{T.about}</span> {hi ? '' : `${s.part.num}: `}{s.part.title}</summary><Fragment set:html={s.part.intro} /></details>}
+          {firstOfPart && s.part.intro && s.part.num === 0 && <Fragment set:html={s.part.intro} />}
+          {pg.n === 0 && <MediaBlock items={s.media.filter((_, i) => i === 0)} />}
+          <Fragment set:html={pg.html} />
+          {pg.n === pg.of - 1 && <MediaBlock items={s.media.slice(1)} />}
+        </div>
+
+        {!leaf && (pg.summary.length > 0 || pg.cont) && (
+          <section class="x-sum" aria-label={T.sum}>
+            <h2 lang={hi ? 'hi' : undefined}>{T.sum}</h2>
+            {pg.summary.length > 0 ? (
+              <ul>
+                {pg.summary.slice(0, SUM).map(([a, b]) => <li>{a && <strong>{a}</strong>}{a && b ? ': ' : ''}{b}</li>)}
+                {pg.summary.length > SUM && <li class="more" lang={hi ? 'hi' : undefined}>{T.more(pg.summary.length - SUM)}</li>}
+              </ul>
+            ) : <p>{carried[0]} <strong>{carried[1]}</strong> {carried[2]}</p>}
+          </section>
+        )}
+
+        {ids.length > 2 && pg.n === pg.of - 1 && <Progress ids={ids} label={T.thisSec} />}
+
+        <nav class="x-pager" aria-label={T.nav} lang={hi ? 'hi' : undefined}>
+          {prev ? <a href={L(prev.url)} data-prev><small>{T.back}{prev.sec.id === s.id ? ` · ${T.page} ${prev.n + 1}` : ` · ${prev.sec.id}`}</small><span lang={hi ? 'en' : undefined}>{nextLabel(prev)}</span></a> : <a href={tUrl} data-prev><small>{T.backTo}</small><span>{hi ? shelfTitle(shelf, lang) : t.short}</span></a>}
+          {next ? <a class="next" href={L(next.url)} data-next><small>{T.next}{next.sec.id === s.id ? ` · ${T.page} ${next.n + 1}` : ` · ${next.sec.id}`} →</small><span lang={hi ? 'en' : undefined}>{nextLabel(next)}</span></a> : <a class="next" href={`${L('/library/')}#shelves`} data-next><small>{T.more2}</small><span>{T.theLib}</span></a>}
+        </nav>
+        <p class="x-keys" lang={hi ? 'hi' : undefined}>{T.keys}</p>
+      </article>
+
+      <aside class="x-rail" aria-label={T.start}>
+        <div class="x-rail-box">
+          <h2>{T.start}</h2>
+          <p>{T.startP}</p>
+          <ol lang={hi ? 'en' : undefined}>
+            {leaves.map((q) => <li><a href={L(q.url)} aria-current={q.id === s.id ? 'page' : undefined}>{q.title.replace(/^Recap:\s*/, 'Recap: ')}</a></li>)}
+          </ol>
+        </div>
+        <div class="x-rail-box">
+          <h2>{hi ? shelfTitle(shelf, lang) : t.short}</h2>
+          <p lang={hi ? 'en' : undefined}>{t.subtitle}.</p>
+          <p class="x-rail-facts">{t.parts.length - 1} {T.parts} · {all.length} {T.pages} · {t.entries} {T.entriesW}</p>
+          <a href={tUrl}>{T.overMap}</a>
+        </div>
+      </aside>
+    </div>
+
+    <button class="x-toc-btn" type="button" data-open-toc>
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+      {T.contents}
+    </button>
+    <dialog class="toc-sheet" aria-label={T.contents}>
+      <div class="sheet-head"><strong>{hi ? shelfTitle(shelf, lang) : t.short}</strong><button type="button" data-close-toc>{T.close}</button></div>
+      <Contents t={t} current={s.id} page={pg.n} />
+    </dialog>
+  </div>
+</Base>
+
+<script>
+  import '../../../scripts/explore';
+</script>

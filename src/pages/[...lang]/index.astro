@@ -103,7 +103,7 @@ const T = pick({
         <JustHatched />
         <p class="row-links">
           <a class="btn" href={L('/library/')}>{T.libStart}</a>
-          <a class="btn ghost" href="/library/map/" hreflang="en">{T.libBrowse}</a>
+          <a class="btn ghost" href={L('/library/map/')}>{T.libBrowse}</a>
         </p>
       </div>
       <QuestionCard />
@@ -117,11 +117,11 @@ const T = pick({
           <p class="eyebrow">{T.exEyebrow}</p>
           <h2>{T.exTitle}</h2>
           <p class="muted">{T.exText}</p>
-          <p><a href="/library/map/" hreflang="en">{T.exOpen}</a></p>
+          <p><a href={L('/library/map/')}>{T.exOpen}</a></p>
         </div>
         <LibraryTree />
       </div>
-      <p class="shelf-row"><span class="small muted">{T.shelves}:</span> {SHELVES.map((s) => <a class="pill" href={s.url} hreflang="en">{shelfTitle(s, lang)}</a>)}</p>
+      <p class="shelf-row"><span class="small muted">{T.shelves}:</span> {SHELVES.map((s) => <a class="pill" href={L(s.url)}>{shelfTitle(s, lang)}</a>)}</p>
     </div>
   </section>
 

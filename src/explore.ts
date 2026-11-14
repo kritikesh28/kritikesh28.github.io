@@ -63,3 +63,13 @@ export const flatPages = (t: Topic) =>
 /** What a page is about, in a few words: its headings, or "more of ..." for a page that carries on a long list */
 export const pageLabel = (pg: Page, max = 2) =>
   pg.heads.length ? pg.heads.slice(0, max).join(', ') + (pg.heads.length > max ? ` and ${pg.heads.length - max} more` : '') : pg.cont ? `${pg.cont}, continued` : 'More';
+
+/** Every short page of every shelf, for the [...section] routes in both languages */
+export const shelfPagePaths = () =>
+  TOPICS.flatMap((ts) => {
+    const t = getTopic(ts.slug);
+    return flatPages(t).map((pg) => ({
+      params: { topic: t.slug, section: pg.n === 0 ? sectionSlug(pg.sec) : `${sectionSlug(pg.sec)}/${pg.n + 1}` },
+      props: { url: pg.url },
+    }));
+  });

@@ -1,0 +1,83 @@
+---
+// The whole Library tree: every theme and discipline of The Universal Index of Human Knowledge,
+// with the written topics placed on their branches. Guide: docs/17-library-map.md
+import LibraryLayout from '../../../../layouts/LibraryLayout.astro';
+import LibraryTree from '../../../../components/library/LibraryTree.astro';
+import ThemeGrid from '../../../../components/library/ThemeGrid.astro';
+import LevelIcon from '../../../../components/LevelIcon.astro';
+import { BOOK, SHELVES, LINKS, THEMES, fieldUrl, FIELDS } from '../../../../library-map';
+import { langFromUrl, langParams, localizePath, pick } from '../../../../i18n/config';
+
+export const getStaticPaths = () => langParams().map((params) => ({ params }));
+const lang = langFromUrl(Astro.url);
+const L = (p: string) => localizePath(p, lang);
+const n = BOOK.nodes.toLocaleString('en-IN');
+const T = pick({
+  en: { title: 'The Library tree', eyebrow: 'The Curious Sparoows Library · the whole tree', h1: 'Everything people study, on one tree',
+    lede: `${BOOK.fields} disciplines and ${n} named topics, from Accounting to Veterinary science, grouped into ${THEMES.length} themes. The coloured twigs are shelves you can read today. Every other name is planted first and filled with pages next, so you can watch the forest grow.`,
+    themesH: 'The eight themes and their disciplines', themesP: 'Open a discipline to see all its branches and topics. A solid outline means pages are ready; a dashed one means the names are here and the pages are on their way.',
+    howH: 'How the tree is organised', linksH: 'Where branches meet', linksP: 'Big questions grow across many disciplines at once. A few examples from the Index:',
+    levels: [['Forest', 'Forest', 'The whole Library'], ['Tree', 'Theme and Tree', `8 themes group ${BOOK.fields} disciplines, like Arts & Crafts`], ['Branch', 'Branch', 'A main area, like Crafts and material practice'], ['Twig', 'Twig', 'A topic told in short pages, like Crochet'], ['Leaf', 'Leaf', 'One page, one question, a few minutes']],
+    src1: 'The map is', src2: `, ${BOOK.edition}, compiled by Kritikesh Rajpurohit. It draws on UNESCO ISCED-F, the OECD Fields of Research and Development and the Library of Congress Classification outline, and it is checked and extended edition by edition. Spot a missing field?`, tell: 'Tell me' },
+  hi: { title: 'लाइब्रेरी का पेड़', eyebrow: 'Curious Sparoows लाइब्रेरी · पूरा पेड़', h1: 'इंसान जो कुछ भी पढ़ता है, सब एक पेड़ पर',
+    lede: `${BOOK.fields} विषय और ${n} नाम वाले टॉपिक, लेखांकन से पशु चिकित्सा तक, ${THEMES.length} बड़े समूहों में। रंगीन टहनियाँ वे अलमारियाँ हैं जो आज पढ़ी जा सकती हैं। बाक़ी हर नाम पहले रोपा गया है, पन्ने उसके बाद आएँगे, ताकि आप जंगल को बढ़ता देख सकें।`,
+    themesH: 'आठ बड़े समूह और उनके विषय', themesP: 'किसी विषय को खोलिए और उसकी सारी डालें और टॉपिक देखिए। भरी हुई रेखा का मतलब पन्ने तैयार हैं; टूटी रेखा का मतलब नाम आ गए हैं, पन्ने रास्ते में हैं।',
+    howH: 'पेड़ कैसे बना है', linksH: 'जहाँ डालें आपस में मिलती हैं', linksP: 'बड़े सवाल कई विषयों में एक साथ उगते हैं। सूचकांक से कुछ उदाहरण (अंग्रेज़ी में):',
+    levels: [['Forest', 'जंगल', 'पूरी लाइब्रेरी'], ['Tree', 'समूह और पेड़', `8 समूहों में ${BOOK.fields} विषय, जैसे कला और शिल्प`], ['Branch', 'डाल', 'एक मुख्य हिस्सा, जैसे शिल्प और सामग्री से काम'], ['Twig', 'टहनी', 'छोटे पन्नों में कहा गया एक टॉपिक, जैसे क्रोशिया'], ['Leaf', 'पत्ता', 'एक पन्ना, एक सवाल, कुछ मिनट']],
+    src1: 'यह नक्शा', src2: ` (${BOOK.edition}) पर बना है, जिसे कृतिकेश राजपुरोहित ने तैयार किया है। इसका आधार UNESCO ISCED-F, OECD के शोध और विकास क्षेत्र, और लाइब्रेरी ऑफ़ कांग्रेस का वर्गीकरण है, और हर संस्करण में इसे जाँचा और बढ़ाया जाता है। कोई विषय छूट गया दिखे?`, tell: 'मुझे बताइए' },
+}, lang);
+
+const description = `The whole Curious Sparoows Library as one tree: ${BOOK.fields} disciplines and ${BOOK.nodes.toLocaleString('en-IN')} topics of human knowledge in 8 themes, with the ${SHELVES.length} shelves you can read today.`;
+const schema = [
+  { '@type': 'CollectionPage', name: 'The Library tree', url: new URL('/library/map/', Astro.site).href, description, inLanguage: 'en',
+    hasPart: FIELDS.map((f) => ({ '@type': 'CreativeWork', name: f.name, url: new URL(fieldUrl(f.code), Astro.site).href })) },
+];
+---
+
+<LibraryLayout title={T.title} {description} {schema} section="map" translated={['en']}>
+  <header class="mh">
+    <p class="eyebrow">{T.eyebrow}</p>
+    <h1>{T.h1}</h1>
+    <p class="lede">{T.lede}</p>
+  </header>
+
+  <LibraryTree big />
+
+  <section class="blk">
+    <h2>{T.themesH}</h2>
+    <p class="muted">{T.themesP}</p>
+    <ThemeGrid detail />
+  </section>
+
+  <section class="blk">
+    <h2>{T.howH}</h2>
+    <ol class="lv">
+      {T.levels.map(([lv, nm, means]) => <li><LevelIcon level={lv as 'Forest'} size={36} /><strong>{nm}</strong><span class="small muted">{means}</span></li>)}
+    </ol>
+  </section>
+
+  <section class="blk" id="links">
+    <h2>{T.linksH}</h2>
+    <p class="muted">{T.linksP}</p>
+    <dl class="links" lang={lang === 'hi' ? 'en' : undefined}>
+      {LINKS.map((k) => <div><dt>{k.topic}</dt><dd>{k.fields}</dd></div>)}
+    </dl>
+  </section>
+
+  <p class="src small muted">{T.src1} <em>{BOOK.title}</em>{T.src2} <a href={L('/contact/')}>{T.tell}</a>.</p>
+</LibraryLayout>
+
+<style>
+  .mh { max-width: 52rem; }
+  .mh h1 { margin: 0.2rem 0 0.6rem; }
+  .lede { font-size: 1.1rem; color: var(--ink-soft); }
+  .blk { margin-top: 3.2rem; }
+  .lv { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: 0.7rem; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+  .lv li { display: grid; gap: 0.2rem; padding: 0.9rem; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); color: #8a6a3b; }
+  .lv strong { color: var(--ink); }
+  .links { display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); margin: 1rem 0 0; }
+  .links div { padding: 0.8rem 0.9rem; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); }
+  .links dt { font-weight: 600; }
+  .links dd { margin: 0.2rem 0 0; color: var(--ink-soft); font-size: 0.86rem; line-height: 1.45; }
+  .src { margin: 3rem 0 2rem; max-width: 52rem; }
+</style>

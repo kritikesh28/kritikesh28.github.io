@@ -48,7 +48,7 @@ The website never reads Google directly. When a sheet changes, the website only 
 
 `src/data/exam-catalogue.ts` lists 62 major government and entrance exams in 10 groups, by who conducts them: UPSC, SSC, banking and insurance (RBI, SEBI, NABARD, SBI, IBPS, LIC), railways (RRB, RPF), NTA (UGC-NET, CSIR-NET, NEET, JEE, CUET, NCET), CAT and postgraduate entrances (CAT, GATE, XAT, CMAT, JAM), defence, teaching, Rajasthan (RPSC and RSSB, the only group marked `live`) and other state commissions. Inside each group the order runs from the highest post down to entry level. Each exam has an English and Hindi name and a one-line note.
 
-It feeds five places: the `/exam-prep/all-exams/` page, the exam picker at the top of `/exam-prep/`, the "All exams of India" column of the Exam Prep menu, the sidebar link in `ExamLayout.astro`, and site search (one entry per exam). To add an exam, add one line to its group. When a group gets its own past-paper rankings, set `live: true` and give its exams an `href`.
+It feeds six places: the Exam Mentor's Government › Agency › Exam choosers (each exam is added under its body in `exam-guide/index.astro` and uses that body's overall ranking until its own papers are added), the `/exam-prep/all-exams/` page, the exam picker at the top of `/exam-prep/`, the "All exams of India" column of the Exam Prep menu, the sidebar link in `ExamLayout.astro`, and site search (one entry per exam). To add an exam, add one line to its group. When a group gets its own past-paper rankings, set `live: true` and give its exams an `href`.
 
 Pages in square brackets (`[subject]`, `[major]`, `[exam]`) are templates: one file makes hundreds of pages, one per subject, topic or exam in the data. About 950 pages in all.
 

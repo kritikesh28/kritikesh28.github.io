@@ -2,12 +2,14 @@
 // "12 of 98 ticked" with a bar. Ticks live only in the reader's browser (src/scripts/explore.ts).
 interface Props { ids: string[]; label: string; clear?: string }
 const { ids, label, clear } = Astro.props;
+import { langFromUrl } from '../../i18n/config';
+const hi = langFromUrl(Astro.url) === 'hi';
 ---
 <div class="x-progress" data-progress data-ids={JSON.stringify(ids)}>
-  <div class="row"><strong>{label}</strong><span data-count>0 of {ids.length} ticked</span></div>
+  <div class="row"><strong>{label}</strong><span data-count>{hi ? `${ids.length} में से 0 पर निशान` : `0 of ${ids.length} ticked`}</span></div>
   <div class="bar"><i data-bar></i></div>
   <div class="row">
-    <small>Tick a box when you have learned or tried something. Saved only on this device.</small>
-    {clear && <button type="button" data-clear={clear}>Clear my ticks</button>}
+    <small>{hi ? 'कुछ सीख लिया या करके देख लिया, तो उसके आगे निशान लगाइए। यह सिर्फ़ इसी डिवाइस में रहता है।' : 'Tick a box when you have learned or tried something. Saved only on this device.'}</small>
+    {clear && <button type="button" data-clear={clear}>{hi ? 'मेरे निशान हटाएँ' : 'Clear my ticks'}</button>}
   </div>
 </div>

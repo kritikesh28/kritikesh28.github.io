@@ -10,7 +10,7 @@ On 14 Nov 2026 the Library became one tree for all knowledge. Its map is **The U
 | --- | --- | --- | --- |
 | Forest | The whole Library | `/library/` | `src/pages/[...lang]/library/index.astro` |
 | Theme | One of 8 groups of disciplines, for finding your way | Words, Arts & Media | `THEMES` in `src/library-map.ts` |
-| Tree | A discipline (a principal field of the Index) | ACP Arts & Crafts, `/library/map/arts-and-crafts/` | `src/pages/library/map/[field].astro` |
+| Tree | A discipline (a principal field of the Index) | ACP Arts & Crafts, `/library/map/arts-and-crafts/` | `src/pages/[...lang]/library/map/[field].astro` |
 | Branch | Its main areas, and their topics | ACP.02 Crafts and material practice › ACP.02.02 Fibre arts and textiles | from the Index |
 | Twig | A topic with pages: a **shelf** | Crochet, `/library/crochet/`; The Universe, `/library/the-universe/` | Encyclopedic Indexes ([16](16-explore.md)) and courses ([13](13-add-to-the-library.md)) |
 | Leaf | One short page | "Why can't a machine crochet the way it knits?" | |

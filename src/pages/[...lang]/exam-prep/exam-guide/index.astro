@@ -4,11 +4,31 @@
 import ExamLayout from '../../../../layouts/ExamLayout.astro';
 import { subjectsIn, paths, STATS, fmt } from '../../../../exam-prep';
 import { langFromUrl, langParams, pick } from '../../../../i18n/config';
+import { EXAM_CATALOGUE } from '../../../../data/exam-catalogue';
 
 export const getStaticPaths = () => langParams().map((params) => ({ params }));
 const lang = langFromUrl(Astro.url);
 const SUBJECTS = subjectsIn(lang);
 const { BASE, GUIDE, CI } = paths(lang);
+// Every exam of India (src/data/exam-catalogue.ts) as a choice under its conducting body, so picking UPSC, SSC, a bank and so on
+// lists its exams. Until their own papers are added, each one uses that body's overall ranking (key GENERAL).
+const hiL = lang === 'hi';
+const BODY: Record<string, [string, string, string]> = {
+  upsc: ['Central Govt', 'UPSC', 'UPSC'], ssc: ['Central Govt', 'SSC', 'SSC'], banking: ['Central Govt', 'Bank', 'Bank'],
+  railways: ['Central Govt', 'Railway (RRB)', 'Railway (RRB)'], nta: ['Central Govt', 'NTA', 'NTA'],
+  mba: ['Central Govt', 'CAT, GATE and PG entrances', 'CAT, GATE और स्नातकोत्तर प्रवेश'], defence: ['Central Govt', 'Defence', 'रक्षा सेवाएँ'],
+  teaching: ['Central Govt', 'Teaching', 'शिक्षक भर्ती'], states: ['Other states', 'State commissions', 'राज्यों के आयोग'],
+};
+const bankOf = (en: string) => en.match(/^(RBI|SEBI|NABARD|SIDBI|SBI|IBPS|LIC)/)?.[1] ?? 'IBPS';
+const extraExams = EXAM_CATALOGUE.filter((g) => BODY[g.id]).flatMap((g) => g.exams.map((e) => {
+  const [gov, agEn, agHi] = BODY[g.id];
+  return {
+    gov, govLabel: gov === 'Other states' ? (hiL ? 'दूसरे राज्य' : 'Other states') : undefined,
+    agency: hiL && agEn !== agHi && !['UPSC', 'SSC', 'NTA', 'Bank', 'Railway (RRB)'].includes(agEn) ? agHi : agEn,
+    bank: g.id === 'banking' ? bankOf(e.en) : '', name: hiL ? e.hi : e.en, key: 'GENERAL', alias: `${e.en} ${e.hi} ${g.en} ${g.hi}`,
+    papers: 0, years: '—', questions: 0, syllabus: false, qpp: 100, page: '', extra: true,
+  };
+}));
 const P = pick({
   en: {
     quick: [['RAS Pre', 'RAS-PRE'], ['Patwari', 'PATWARI'], ['CET Graduate', 'CET-GRAD'], ['School Lecturer', 'SCH-LECT'], ['Jail Prahari', 'PRAHARI'], ['All RPSC exams', 'RPSC-ALL']],
@@ -75,7 +95,7 @@ const quick = P.quick;
       <p class="or"><span>{P.or}</span></p>
       <div class="sel">
         <label><span>{P.gov}</span><select data-eg-gov></select></label>
-        <label><span>{P.agency}</span><select data-eg-agency></select></label>
+        <label><span>{P.agency}</span><select data-eg-agency data-eg-extra={JSON.stringify(extraExams)}></select></label>
         <label hidden data-eg-bankwrap><span>{P.bank}</span><select data-eg-bank></select></label>
         <label class="wide"><span>{P.exam}</span><select data-eg-exam><option value="">{P.loading}</option></select></label>
       </div>
@@ -201,6 +221,11 @@ const quick = P.quick;
   };
 
   loadGuide().then((g) => {
+    // add every exam of India under its conducting body (built in the page from src/data/exam-catalogue.ts)
+    if (!(g as { _extra?: boolean })._extra) {
+      try { g.exams.push(...JSON.parse(el.agency.dataset.egExtra || '[]')); } catch {}
+      (g as { _extra?: boolean })._extra = true;
+    }
     const uniq = <T,>(a: T[]) => [...new Set(a)];
     const opt = (sel: HTMLSelectElement, items: [string, string][]) => sel.replaceChildren(...items.map(([v, t]) => new Option(t, v)));
     let plan: Plan | undefined;
@@ -219,7 +244,7 @@ const quick = P.quick;
     }
     function fillExam() {
       const list = g.exams.map((e, i) => [e, i] as const).filter(([e]) => e.gov === el.gov.value && e.agency === el.agency.value && (!e.bank || e.bank === el.bank.value));
-      opt(el.exam, [['', W.choose], ...list.map(([e, i]) => [String(i), e.name.replace(/^(RPSC|RSSB) · /, '') + (e.papers ? '' : W.sylOnly)] as [string, string])]);
+      opt(el.exam, [['', W.choose], ...list.map(([e, i]) => [String(i), e.name.replace(/^(RPSC|RSSB) · /, '') + (e.papers || e.key === 'GENERAL' ? '' : W.sylOnly)] as [string, string])]);
     }
     function selectExam(i: number) {
       const e = g.exams[i];
