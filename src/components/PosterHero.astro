@@ -101,191 +101,196 @@ const words = { tour: T.tour, stop: T.stop, again: T.again, closer: T.closer, mo
 </section>
 
 <script>
-  // Geometry from the banner generator (curious_v2.py, cosmic, re-rendered at 2560x1600 with the artwork about 1.7x larger).
-  const X0 = 38.5, Y0 = 475.0, H = 650;         // band origin and band height in image px
-  const LC = [3.36, 0.36], LA = 0.24;           // infinity centre and size, in band units
-  const SC = 0.08 * H / 100;                    // sparrow scale, relative to the infinity
-  const GAP = 0.14;                             // the second bird follows this fraction of a round behind
-  const PERIOD = 24000;                         // one full round, ms
-  const FLAP = 430;                             // one wing beat, ms
+  import { onPage } from '../scripts/page';
+  // runs on every page (pages change without reloading: see src/scripts/page.ts)
+  onPage((signal) => {
+    // Geometry from the banner generator (curious_v2.py, cosmic, re-rendered at 2560x1600 with the artwork about 1.7x larger).
+    const X0 = 38.5, Y0 = 475.0, H = 650;         // band origin and band height in image px
+    const LC = [3.36, 0.36], LA = 0.24;           // infinity centre and size, in band units
+    const SC = 0.08 * H / 100;                    // sparrow scale, relative to the infinity
+    const GAP = 0.14;                             // the second bird follows this fraction of a round behind
+    const PERIOD = 24000;                         // one full round, ms
+    const FLAP = 430;                             // one wing beat, ms
 
-  // the banner's two wing poses (up, down) as [shoulder, tip, root, bumps, amp, c1, c2]; any pose between is a blend
-  const W: Record<string, any[][]> = {"far":[[[0.02,-0.08],[-0.42,-0.92],[-0.38,-0.02],5,0.06,[0.08,-0.35],[0.18,0.05]],[[0.08,-0.06],[-0.14,0.72],[-0.16,0.06],5,-0.05,[0.16,0.26],[0.22,-0.04]]],"wing":[[[0.12,-0.1],[-0.18,-1.0],[-0.2,-0.04],5,0.07,[0.08,-0.35],[0.18,0.05]],[[0.14,-0.06],[-0.5,0.8],[-0.32,-0.04],5,-0.08,[0.14,0.32],[0.3,-0.02]]],"covert":[[[0.1,-0.12],[-0.02,-0.55],[-0.06,-0.1],2,0.04,[0.08,-0.35],[0.18,0.05]],[[0.12,-0.08],[-0.12,0.34],[-0.22,-0.04],2,-0.04,[0.1,0.2],[0.14,-0.02]]]};
-  const mix = (a: any, b: any, k: number): any => (Array.isArray(a) ? a.map((v, i) => mix(v, b[i], k)) : a + (b - a) * k);
-  const wing = (name: string, k: number) => {
-    const [sh, tp, root, bumps, amp, c1, c2] = mix(W[name][0], W[name][1], k);
-    const nb = Math.round(bumps), out: string[] = [];
-    const b1 = [sh[0] + c1[0], sh[1] + c1[1]], b2 = [tp[0] + c2[0], tp[1] + c2[1]];
-    for (let i = 0; i < 40; i++) {
-      const t = i / 39, u = 1 - t;
-      const x = u * u * u * sh[0] + 3 * u * u * t * b1[0] + 3 * u * t * t * b2[0] + t * t * t * tp[0];
-      const y = u * u * u * sh[1] + 3 * u * u * t * b1[1] + 3 * u * t * t * b2[1] + t * t * t * tp[1];
-      out.push(`${(x * 100).toFixed(1)},${(y * 100).toFixed(1)}`);
-    }
-    const dx = root[0] - tp[0], dy = root[1] - tp[1], n = Math.hypot(dx, dy) || 1;
-    for (let i = 0, m = nb * 12; i <= m; i++) {
-      const q = i / m, o = -amp * Math.abs(Math.sin(Math.PI * nb * q));
-      out.push(`${((tp[0] + dx * q - (dy / n) * o) * 100).toFixed(1)},${((tp[1] + dy * q + (dx / n) * o) * 100).toFixed(1)}`);
-    }
-    return out.join(' ');
-  };
-
-  const P = (t: number) => {
-    const d = 1 + Math.sin(t) ** 2;
-    return [X0 + H * (LC[0] + LA * Math.cos(t) / d), Y0 + H * (LC[1] + LA * Math.sin(t) * Math.cos(t) / d)];
-  };
-  // sample the loop by arc length so the birds fly at an even speed
-  const N = 1200, pts: number[][] = [], cum = [0];
-  for (let i = 0; i <= N; i++) pts.push(P((-2 * Math.PI * i) / N));
-  for (let i = 1; i <= N; i++) cum.push(cum[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
-  const L = cum[N];
-  const atS = (s: number) => {
-    s = ((s % L) + L) % L;
-    let lo = 0, hi = N;
-    while (hi - lo > 1) { const m = (lo + hi) >> 1; if (cum[m] <= s) lo = m; else hi = m; }
-    const f = (s - cum[lo]) / (cum[hi] - cum[lo] || 1);
-    return [pts[lo][0] + f * (pts[hi][0] - pts[lo][0]), pts[lo][1] + f * (pts[hi][1] - pts[lo][1])];
-  };
-
-  const svg = document.querySelector<SVGSVGElement>('.poster .flight');
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (svg && !reduce) {
-    // the first bird starts where the banner shows it (top of the left loop); the second keeps a steady distance behind
-    const i0 = Math.round((3.7575 / (2 * Math.PI)) * N);
-    const birds = [...svg.querySelectorAll<SVGGElement>('.sp')].map((el, i) => ({
-      el, s0: cum[i0] - i * GAP * L, ang: NaN, beat: i * 0.37,
-      far: el.querySelector('.far')!, near: el.querySelector('.wing')!, cov: el.querySelector('.covert')!,
-    }));
-    let last = 0, el = 0, visible = true;
-    new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(svg);
-    const frame = (now: number) => {
-      const dt = last ? Math.min(100, now - last) : 0;
-      last = now;
-      if (visible) {
-        // the birds hold still while the Morse secret is being read
-        if (!(window as any).__sparrowsPaused) el += dt;
-        for (const b of birds) {
-          const s = b.s0 + (el / PERIOD) * L;
-          const p = atS(s), q = atS(s + 8);
-          // heading along the line, kept continuous so it never jumps a full turn
-          let a = (Math.atan2(q[1] - p[1], q[0] - p[0]) * 180) / Math.PI;
-          if (!isNaN(b.ang)) a += 360 * Math.round((b.ang - a) / 360);
-          b.ang = a;
-          // roll through the turns at each end so the belly stays down whichever way the bird is going
-          let roll = Math.max(-1, Math.min(1, 5 * Math.cos((a * Math.PI) / 180)));
-          if (Math.abs(roll) < 0.15) roll = roll < 0 ? -0.15 : 0.15;
-          // steady wing beat: a quicker downstroke, a softer upstroke
-          const u = ((el / FLAP + b.beat) % 1 + 1) % 1;
-          const v = u < 0.42 ? u / 0.42 : 1 - (u - 0.42) / 0.58;
-          const k = v * v * (3 - 2 * v);
-          b.far.setAttribute('points', wing('far', k));
-          b.near.setAttribute('points', wing('wing', k));
-          b.cov.setAttribute('points', wing('covert', k));
-          b.el.setAttribute('transform', `translate(${p[0].toFixed(1)} ${p[1].toFixed(1)}) rotate(${a.toFixed(1)}) scale(${SC.toFixed(4)} ${(roll * SC).toFixed(4)})`);
-        }
+    // the banner's two wing poses (up, down) as [shoulder, tip, root, bumps, amp, c1, c2]; any pose between is a blend
+    const W: Record<string, any[][]> = {"far":[[[0.02,-0.08],[-0.42,-0.92],[-0.38,-0.02],5,0.06,[0.08,-0.35],[0.18,0.05]],[[0.08,-0.06],[-0.14,0.72],[-0.16,0.06],5,-0.05,[0.16,0.26],[0.22,-0.04]]],"wing":[[[0.12,-0.1],[-0.18,-1.0],[-0.2,-0.04],5,0.07,[0.08,-0.35],[0.18,0.05]],[[0.14,-0.06],[-0.5,0.8],[-0.32,-0.04],5,-0.08,[0.14,0.32],[0.3,-0.02]]],"covert":[[[0.1,-0.12],[-0.02,-0.55],[-0.06,-0.1],2,0.04,[0.08,-0.35],[0.18,0.05]],[[0.12,-0.08],[-0.12,0.34],[-0.22,-0.04],2,-0.04,[0.1,0.2],[0.14,-0.02]]]};
+    const mix = (a: any, b: any, k: number): any => (Array.isArray(a) ? a.map((v, i) => mix(v, b[i], k)) : a + (b - a) * k);
+    const wing = (name: string, k: number) => {
+      const [sh, tp, root, bumps, amp, c1, c2] = mix(W[name][0], W[name][1], k);
+      const nb = Math.round(bumps), out: string[] = [];
+      const b1 = [sh[0] + c1[0], sh[1] + c1[1]], b2 = [tp[0] + c2[0], tp[1] + c2[1]];
+      for (let i = 0; i < 40; i++) {
+        const t = i / 39, u = 1 - t;
+        const x = u * u * u * sh[0] + 3 * u * u * t * b1[0] + 3 * u * t * t * b2[0] + t * t * t * tp[0];
+        const y = u * u * u * sh[1] + 3 * u * u * t * b1[1] + 3 * u * t * t * b2[1] + t * t * t * tp[1];
+        out.push(`${(x * 100).toFixed(1)},${(y * 100).toFixed(1)}`);
       }
-      requestAnimationFrame(frame);
+      const dx = root[0] - tp[0], dy = root[1] - tp[1], n = Math.hypot(dx, dy) || 1;
+      for (let i = 0, m = nb * 12; i <= m; i++) {
+        const q = i / m, o = -amp * Math.abs(Math.sin(Math.PI * nb * q));
+        out.push(`${((tp[0] + dx * q - (dy / n) * o) * 100).toFixed(1)},${((tp[1] + dy * q + (dx / n) * o) * 100).toFixed(1)}`);
+      }
+      return out.join(' ');
     };
-    requestAnimationFrame(frame);
-  }
 
-  // ---- the infinity's Morse code: CURIOUS plus a word gap, laid out exactly as the banner generator draws it
-  const MORSE: Record<string, string> = { C: '-.-.', U: '..-', R: '.-.', I: '..', O: '---', S: '...' };
-  const WORD = 'CURIOUS';
-  const morseG = svg?.querySelector('.morse');
-  const letters: SVGGElement[] = [];
-  if (morseG) {
-    const ns = 'http://www.w3.org/2000/svg';
-    let units = 7;
-    [...WORD].forEach((ch, li) => { for (const m of MORSE[ch]) units += m === '-' ? 3 : 1; units += MORSE[ch].length - 1 + (li < WORD.length - 1 ? 3 : 0); });
-    const U = L / units;
-    let pos = 3.5 * U;
-    [...WORD].forEach((ch, li) => {
-      const g = document.createElementNS(ns, 'g');
-      [...MORSE[ch]].forEach((m, mi) => {
-        if (m === '.') {
-          const [x, y] = atS(pos + 0.5 * U), c = document.createElementNS(ns, 'circle');
-          c.setAttribute('cx', x.toFixed(1)); c.setAttribute('cy', y.toFixed(1)); c.setAttribute('r', (0.55 * U).toFixed(1));
-          g.append(c);
-        } else {
-          const d: string[] = [];
-          for (let k = 0; k <= 12; k++) { const [x, y] = atS(pos + 0.5 * U + (2 * U * k) / 12); d.push(`${x.toFixed(1)},${y.toFixed(1)}`); }
-          const l = document.createElementNS(ns, 'polyline');
-          l.setAttribute('points', d.join(' ')); l.setAttribute('stroke-width', (1.1 * U).toFixed(1));
-          g.append(l);
+    const P = (t: number) => {
+      const d = 1 + Math.sin(t) ** 2;
+      return [X0 + H * (LC[0] + LA * Math.cos(t) / d), Y0 + H * (LC[1] + LA * Math.sin(t) * Math.cos(t) / d)];
+    };
+    // sample the loop by arc length so the birds fly at an even speed
+    const N = 1200, pts: number[][] = [], cum = [0];
+    for (let i = 0; i <= N; i++) pts.push(P((-2 * Math.PI * i) / N));
+    for (let i = 1; i <= N; i++) cum.push(cum[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
+    const L = cum[N];
+    const atS = (s: number) => {
+      s = ((s % L) + L) % L;
+      let lo = 0, hi = N;
+      while (hi - lo > 1) { const m = (lo + hi) >> 1; if (cum[m] <= s) lo = m; else hi = m; }
+      const f = (s - cum[lo]) / (cum[hi] - cum[lo] || 1);
+      return [pts[lo][0] + f * (pts[hi][0] - pts[lo][0]), pts[lo][1] + f * (pts[hi][1] - pts[lo][1])];
+    };
+
+    const svg = document.querySelector<SVGSVGElement>('.poster .flight');
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (svg && !reduce) {
+      // the first bird starts where the banner shows it (top of the left loop); the second keeps a steady distance behind
+      const i0 = Math.round((3.7575 / (2 * Math.PI)) * N);
+      const birds = [...svg.querySelectorAll<SVGGElement>('.sp')].map((el, i) => ({
+        el, s0: cum[i0] - i * GAP * L, ang: NaN, beat: i * 0.37,
+        far: el.querySelector('.far')!, near: el.querySelector('.wing')!, cov: el.querySelector('.covert')!,
+      }));
+      let last = 0, el = 0, visible = true;
+      new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(svg);
+      const frame = (now: number) => {
+        const dt = last ? Math.min(100, now - last) : 0;
+        last = now;
+        if (visible) {
+          // the birds hold still while the Morse secret is being read
+          if (!(window as any).__sparrowsPaused) el += dt;
+          for (const b of birds) {
+            const s = b.s0 + (el / PERIOD) * L;
+            const p = atS(s), q = atS(s + 8);
+            // heading along the line, kept continuous so it never jumps a full turn
+            let a = (Math.atan2(q[1] - p[1], q[0] - p[0]) * 180) / Math.PI;
+            if (!isNaN(b.ang)) a += 360 * Math.round((b.ang - a) / 360);
+            b.ang = a;
+            // roll through the turns at each end so the belly stays down whichever way the bird is going
+            let roll = Math.max(-1, Math.min(1, 5 * Math.cos((a * Math.PI) / 180)));
+            if (Math.abs(roll) < 0.15) roll = roll < 0 ? -0.15 : 0.15;
+            // steady wing beat: a quicker downstroke, a softer upstroke
+            const u = ((el / FLAP + b.beat) % 1 + 1) % 1;
+            const v = u < 0.42 ? u / 0.42 : 1 - (u - 0.42) / 0.58;
+            const k = v * v * (3 - 2 * v);
+            b.far.setAttribute('points', wing('far', k));
+            b.near.setAttribute('points', wing('wing', k));
+            b.cov.setAttribute('points', wing('covert', k));
+            b.el.setAttribute('transform', `translate(${p[0].toFixed(1)} ${p[1].toFixed(1)}) rotate(${a.toFixed(1)}) scale(${SC.toFixed(4)} ${(roll * SC).toFixed(4)})`);
+          }
         }
-        pos += (m === '-' ? 3 : 1) * U + (mi < MORSE[ch].length - 1 ? U : 0);
+        if (!signal.aborted) requestAnimationFrame(frame);
+      };
+      requestAnimationFrame(frame);
+    }
+
+    // ---- the infinity's Morse code: CURIOUS plus a word gap, laid out exactly as the banner generator draws it
+    const MORSE: Record<string, string> = { C: '-.-.', U: '..-', R: '.-.', I: '..', O: '---', S: '...' };
+    const WORD = 'CURIOUS';
+    const morseG = svg?.querySelector('.morse');
+    const letters: SVGGElement[] = [];
+    if (morseG) {
+      const ns = 'http://www.w3.org/2000/svg';
+      let units = 7;
+      [...WORD].forEach((ch, li) => { for (const m of MORSE[ch]) units += m === '-' ? 3 : 1; units += MORSE[ch].length - 1 + (li < WORD.length - 1 ? 3 : 0); });
+      const U = L / units;
+      let pos = 3.5 * U;
+      [...WORD].forEach((ch, li) => {
+        const g = document.createElementNS(ns, 'g');
+        [...MORSE[ch]].forEach((m, mi) => {
+          if (m === '.') {
+            const [x, y] = atS(pos + 0.5 * U), c = document.createElementNS(ns, 'circle');
+            c.setAttribute('cx', x.toFixed(1)); c.setAttribute('cy', y.toFixed(1)); c.setAttribute('r', (0.55 * U).toFixed(1));
+            g.append(c);
+          } else {
+            const d: string[] = [];
+            for (let k = 0; k <= 12; k++) { const [x, y] = atS(pos + 0.5 * U + (2 * U * k) / 12); d.push(`${x.toFixed(1)},${y.toFixed(1)}`); }
+            const l = document.createElementNS(ns, 'polyline');
+            l.setAttribute('points', d.join(' ')); l.setAttribute('stroke-width', (1.1 * U).toFixed(1));
+            g.append(l);
+          }
+          pos += (m === '-' ? 3 : 1) * U + (mi < MORSE[ch].length - 1 ? U : 0);
+        });
+        pos += li < WORD.length - 1 ? 3 * U : 0;
+        morseG.append(g);
+        letters.push(g);
       });
-      pos += li < WORD.length - 1 ? 3 * U : 0;
-      morseG.append(g);
-      letters.push(g);
-    });
-  }
+    }
 
-  const poster = document.querySelector<HTMLElement>('.poster');
-  const spots = [...(poster?.querySelectorAll<SVGGElement>('.hot') ?? [])];
-  const capTitle = poster?.querySelector<HTMLElement>('.cap .title');
-  const capText = poster?.querySelector<HTMLElement>('.cap .text');
-  const tourBtn = poster?.querySelector<HTMLButtonElement>('.tour');
-  const tourLabel = poster?.querySelector<HTMLElement>('.tour-label');
-  const LOOP = spots.length - 1;
-  const words = JSON.parse(poster?.dataset.words ?? '{}');
-  let timers: number[] = [], touring = false, morseOn = false, pinned = -1;
-  const later = (fn: () => void, ms: number) => { timers.push(window.setTimeout(fn, ms)); };
-  const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
+    const poster = document.querySelector<HTMLElement>('.poster');
+    const spots = [...(poster?.querySelectorAll<SVGGElement>('.hot') ?? [])];
+    const capTitle = poster?.querySelector<HTMLElement>('.cap .title');
+    const capText = poster?.querySelector<HTMLElement>('.cap .text');
+    const tourBtn = poster?.querySelector<HTMLButtonElement>('.tour');
+    const tourLabel = poster?.querySelector<HTMLElement>('.tour-label');
+    const LOOP = spots.length - 1;
+    const words = JSON.parse(poster?.dataset.words ?? '{}');
+    let timers: number[] = [], touring = false, morseOn = false, pinned = -1;
+    const later = (fn: () => void, ms: number) => { timers.push(window.setTimeout(fn, ms)); };
+    const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
 
-  const show = (i: number) => {
-    spots.forEach((h, j) => h.classList.toggle('on', j === i));
-    poster?.classList.toggle('reading', i >= 0);
-    if (!capTitle || !capText) return;
-    if (i < 0) { capTitle.textContent = ''; capText.textContent = ''; return; }
-    capTitle.textContent = spots[i].dataset.title ?? '';
-    capText.textContent = spots[i].dataset.text ?? '';
-  };
-  const endMorse = () => {
-    morseOn = false; (window as any).__sparrowsPaused = false;
-    letters.forEach((g) => g.classList.remove('lit'));
-    poster?.classList.remove('decoding');
-  };
-  // light the loop one letter at a time, reading C U R I O U S from the word gap at the right tip
-  const decode = (then?: () => void) => {
-    morseOn = true; (window as any).__sparrowsPaused = true;
-    poster?.classList.add('decoding');
-    show(LOOP);
-    if (capTitle) capTitle.textContent = words.closer;
-    if (capText) capText.textContent = '';
-    letters.forEach((g, li) => later(() => {
-      g.classList.add('lit');
-      if (capText) capText.textContent = WORD.slice(0, li + 1).split('').join(' ');
-    }, 700 + li * 650));
-    later(() => { if (capText) capText.textContent = words.morse; }, 700 + WORD.length * 650 + 300);
-    later(() => { endMorse(); then?.(); }, 700 + WORD.length * 650 + 4200);
-  };
-  const stop = () => {
-    clearTimers(); endMorse(); touring = false; pinned = -1; show(-1);
-    if (tourLabel) tourLabel.textContent = words.tour;
-    tourBtn?.setAttribute('aria-pressed', 'false');
-  };
-  const tour = () => {
-    stop(); touring = true;
-    if (tourLabel) tourLabel.textContent = words.stop;
-    tourBtn?.setAttribute('aria-pressed', 'true');
-    spots.forEach((_, i) => later(() => show(i), i * 5200));
-    later(() => decode(() => { stop(); if (tourLabel) tourLabel.textContent = words.again; }), LOOP * 5200 + 5200);
-  };
-  tourBtn?.addEventListener('click', () => (touring ? stop() : tour()));
-  spots.forEach((h, i) => {
-    const pick = () => {
-      stop(); pinned = i;
-      if (i === LOOP) decode(() => { pinned = -1; show(-1); });
-      else show(i);
+    const show = (i: number) => {
+      spots.forEach((h, j) => h.classList.toggle('on', j === i));
+      poster?.classList.toggle('reading', i >= 0);
+      if (!capTitle || !capText) return;
+      if (i < 0) { capTitle.textContent = ''; capText.textContent = ''; return; }
+      capTitle.textContent = spots[i].dataset.title ?? '';
+      capText.textContent = spots[i].dataset.text ?? '';
     };
-    h.addEventListener('click', pick);
-    h.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
-    h.addEventListener('mouseenter', () => { if (!touring && !morseOn) show(i); });
-    h.addEventListener('mouseleave', () => { if (!touring && !morseOn) show(pinned); });
+    const endMorse = () => {
+      morseOn = false; (window as any).__sparrowsPaused = false;
+      letters.forEach((g) => g.classList.remove('lit'));
+      poster?.classList.remove('decoding');
+    };
+    // light the loop one letter at a time, reading C U R I O U S from the word gap at the right tip
+    const decode = (then?: () => void) => {
+      morseOn = true; (window as any).__sparrowsPaused = true;
+      poster?.classList.add('decoding');
+      show(LOOP);
+      if (capTitle) capTitle.textContent = words.closer;
+      if (capText) capText.textContent = '';
+      letters.forEach((g, li) => later(() => {
+        g.classList.add('lit');
+        if (capText) capText.textContent = WORD.slice(0, li + 1).split('').join(' ');
+      }, 700 + li * 650));
+      later(() => { if (capText) capText.textContent = words.morse; }, 700 + WORD.length * 650 + 300);
+      later(() => { endMorse(); then?.(); }, 700 + WORD.length * 650 + 4200);
+    };
+    const stop = () => {
+      clearTimers(); endMorse(); touring = false; pinned = -1; show(-1);
+      if (tourLabel) tourLabel.textContent = words.tour;
+      tourBtn?.setAttribute('aria-pressed', 'false');
+    };
+    const tour = () => {
+      stop(); touring = true;
+      if (tourLabel) tourLabel.textContent = words.stop;
+      tourBtn?.setAttribute('aria-pressed', 'true');
+      spots.forEach((_, i) => later(() => show(i), i * 5200));
+      later(() => decode(() => { stop(); if (tourLabel) tourLabel.textContent = words.again; }), LOOP * 5200 + 5200);
+    };
+    tourBtn?.addEventListener('click', () => (touring ? stop() : tour()));
+    spots.forEach((h, i) => {
+      const pick = () => {
+        stop(); pinned = i;
+        if (i === LOOP) decode(() => { pinned = -1; show(-1); });
+        else show(i);
+      };
+      h.addEventListener('click', pick);
+      h.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+      h.addEventListener('mouseenter', () => { if (!touring && !morseOn) show(i); });
+      h.addEventListener('mouseleave', () => { if (!touring && !morseOn) show(pinned); });
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && (touring || morseOn || pinned >= 0)) stop(); }, { signal });
+    signal.addEventListener('abort', () => { clearTimers(); (window as any).__sparrowsPaused = false; });
   });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && (touring || morseOn || pinned >= 0)) stop(); });
 </script>
 
 <style>

@@ -65,24 +65,28 @@ const themes = THEMES.map((th) => ({
 </div>
 
 <script>
-  // Opening and closing is shared by every top-bar menu (src/scripts/mega.ts). This part only switches themes.
-  const mega = document.getElementById('lib-mega');
-  if (mega) {
-    const themes = [...mega.querySelectorAll<HTMLElement>('[data-mg-theme]')];
-    const pick = (t: HTMLElement, toggle = false) => {
-      const wide = matchMedia('(min-width: 900px)').matches;
-      const on = wide || !toggle ? true : !t.classList.contains('active');
-      themes.forEach((x) => { x.classList.toggle('active', x === t && on); x.querySelector('[data-mg-tab]')?.setAttribute('aria-expanded', String(x === t && on)); });
-    };
-    // phones: start with every theme folded, so all eight are visible
-    if (!matchMedia('(min-width: 900px)').matches) themes.forEach((x) => { x.classList.remove('active'); x.querySelector('[data-mg-tab]')?.setAttribute('aria-expanded', 'false'); });
-    themes.forEach((t) => {
-      const tab = t.querySelector<HTMLElement>('[data-mg-tab]')!;
-      tab.addEventListener('click', () => pick(t, true));
-      tab.addEventListener('pointerenter', (e) => { if ((e as PointerEvent).pointerType === 'mouse') pick(t); });
-      tab.addEventListener('focus', () => matchMedia('(min-width: 900px)').matches && pick(t));
-    });
-  }
+  import { onPage } from '../../scripts/page';
+  // runs on every page (pages change without reloading: see src/scripts/page.ts)
+  onPage((signal) => {
+    // Opening and closing is shared by every top-bar menu (src/scripts/mega.ts). This part only switches themes.
+    const mega = document.getElementById('lib-mega');
+    if (mega) {
+      const themes = [...mega.querySelectorAll<HTMLElement>('[data-mg-theme]')];
+      const pick = (t: HTMLElement, toggle = false) => {
+        const wide = matchMedia('(min-width: 900px)').matches;
+        const on = wide || !toggle ? true : !t.classList.contains('active');
+        themes.forEach((x) => { x.classList.toggle('active', x === t && on); x.querySelector('[data-mg-tab]')?.setAttribute('aria-expanded', String(x === t && on)); });
+      };
+      // phones: start with every theme folded, so all eight are visible
+      if (!matchMedia('(min-width: 900px)').matches) themes.forEach((x) => { x.classList.remove('active'); x.querySelector('[data-mg-tab]')?.setAttribute('aria-expanded', 'false'); });
+      themes.forEach((t) => {
+        const tab = t.querySelector<HTMLElement>('[data-mg-tab]')!;
+        tab.addEventListener('click', () => pick(t, true));
+        tab.addEventListener('pointerenter', (e) => { if ((e as PointerEvent).pointerType === 'mouse') pick(t); });
+        tab.addEventListener('focus', () => matchMedia('(min-width: 900px)').matches && pick(t));
+      });
+    }
+  });
 </script>
 
 <style>

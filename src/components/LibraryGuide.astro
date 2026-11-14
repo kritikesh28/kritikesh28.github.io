@@ -29,14 +29,17 @@ const end = lang === 'hi' ? '।' : '.';
 </details>
 
 <script>
+  import { onPage } from '../scripts/page';
   // Open by default on first visit; afterwards it remembers if you closed it.
-  const g = document.querySelector<HTMLDetailsElement>('[data-guide]');
-  if (g) {
-    try {
-      if (localStorage.getItem('cs-guide') === 'closed') g.open = false;
-      g.addEventListener('toggle', () => localStorage.setItem('cs-guide', g.open ? 'open' : 'closed'));
-    } catch {}
-  }
+  onPage(() => {
+    const g = document.querySelector<HTMLDetailsElement>('[data-guide]');
+    if (g) {
+      try {
+        if (localStorage.getItem('cs-guide') === 'closed') g.open = false;
+        g.addEventListener('toggle', () => localStorage.setItem('cs-guide', g.open ? 'open' : 'closed'));
+      } catch {}
+    }
+  });
 </script>
 
 <style>

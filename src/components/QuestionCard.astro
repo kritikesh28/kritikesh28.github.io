@@ -36,64 +36,69 @@ const T = pick({
 </section>
 
 <script>
-  type Q = { q: string; a: string; t: string; l?: string };
-  const STAY = 16000; // very slow: time to read, think, and decide whether to peek
-  document.querySelectorAll<HTMLElement>('[data-qcard]').forEach(async (card) => {
-    const $ = <E extends HTMLElement>(s: string) => card.querySelector<E>(s)!;
-    let data: Q[] = [];
-    try { data = await (await fetch(card.dataset.src!)).json(); } catch { return; }
-    if (!data.length) return;
-    // A shuffled deck kept in this browser, so no question repeats until all have been seen
-    const KEY = `cs-q-deck-${card.dataset.lang}`;
-    type Deck = { n: number; order: number[]; at: number };
-    let deck: Deck | null = null;
-    try { deck = JSON.parse(localStorage.getItem(KEY) ?? 'null'); } catch {}
-    const shuffle = () => { const o = data.map((_, i) => i); for (let i = o.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [o[i], o[j]] = [o[j], o[i]]; } return o; };
-    if (!deck || deck.n !== data.length || !Array.isArray(deck.order) || deck.order.length !== data.length) deck = { n: data.length, order: shuffle(), at: -1 };
-    const save = () => { try { localStorage.setItem(KEY, JSON.stringify(deck)); } catch {} };
-    const details = $<HTMLDetailsElement>('[data-details]');
-    const link = $<HTMLAnchorElement>('[data-link]');
-    const bar = $('[data-bar]');
-    const toggle = $<HTMLButtonElement>('[data-toggle]');
-    const show = (i: number) => {
-      const item = data[deck!.order[i]];
-      $('[data-q]').textContent = item.q;
-      $('[data-a]').textContent = item.a;
-      $('[data-topic]').textContent = item.t;
-      link.hidden = !item.l;
-      if (item.l) link.href = item.l;
-      details.open = false;
-      card.classList.remove('flip'); void card.offsetWidth; card.classList.add('flip');
-    };
-    const step = (d: number) => {
-      let at = deck!.at + d;
-      if (at >= data.length) { deck = { n: data.length, order: shuffle(), at: 0 }; at = 0; }
-      if (at < 0) at = 0;
-      deck!.at = at; save(); show(at); restart();
-    };
-    let timer: number | undefined;
-    let paused = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let hover = false;
-    const running = () => !paused && !hover && !details.open && !document.hidden;
-    const restart = () => {
-      clearTimeout(timer);
-      bar.classList.remove('go'); void bar.offsetWidth;
-      if (running()) { bar.style.setProperty('--stay', `${STAY}ms`); bar.classList.add('go'); timer = window.setTimeout(() => step(1), STAY); }
-    };
-    const paint = () => {
-      toggle.setAttribute('aria-pressed', String(paused));
-      toggle.setAttribute('aria-label', paused ? card.dataset.play! : card.dataset.pause!);
-      card.classList.toggle('paused', paused);
-    };
-    toggle.addEventListener('click', () => { paused = !paused; paint(); restart(); });
-    $('[data-next]').addEventListener('click', () => step(1));
-    $('[data-prev]').addEventListener('click', () => step(-1));
-    details.addEventListener('toggle', restart);
-    card.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') { hover = true; restart(); } });
-    card.addEventListener('pointerleave', () => { hover = false; restart(); });
-    document.addEventListener('visibilitychange', restart);
-    paint();
-    step(1);
+  import { onPage } from '../scripts/page';
+  // runs on every page (pages change without reloading: see src/scripts/page.ts)
+  onPage((signal) => {
+    type Q = { q: string; a: string; t: string; l?: string };
+    const STAY = 16000; // very slow: time to read, think, and decide whether to peek
+    document.querySelectorAll<HTMLElement>('[data-qcard]').forEach(async (card) => {
+      const $ = <E extends HTMLElement>(s: string) => card.querySelector<E>(s)!;
+      let data: Q[] = [];
+      try { data = await (await fetch(card.dataset.src!)).json(); } catch { return; }
+      if (!data.length) return;
+      // A shuffled deck kept in this browser, so no question repeats until all have been seen
+      const KEY = `cs-q-deck-${card.dataset.lang}`;
+      type Deck = { n: number; order: number[]; at: number };
+      let deck: Deck | null = null;
+      try { deck = JSON.parse(localStorage.getItem(KEY) ?? 'null'); } catch {}
+      const shuffle = () => { const o = data.map((_, i) => i); for (let i = o.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [o[i], o[j]] = [o[j], o[i]]; } return o; };
+      if (!deck || deck.n !== data.length || !Array.isArray(deck.order) || deck.order.length !== data.length) deck = { n: data.length, order: shuffle(), at: -1 };
+      const save = () => { try { localStorage.setItem(KEY, JSON.stringify(deck)); } catch {} };
+      const details = $<HTMLDetailsElement>('[data-details]');
+      const link = $<HTMLAnchorElement>('[data-link]');
+      const bar = $('[data-bar]');
+      const toggle = $<HTMLButtonElement>('[data-toggle]');
+      const show = (i: number) => {
+        const item = data[deck!.order[i]];
+        $('[data-q]').textContent = item.q;
+        $('[data-a]').textContent = item.a;
+        $('[data-topic]').textContent = item.t;
+        link.hidden = !item.l;
+        if (item.l) link.href = item.l;
+        details.open = false;
+        card.classList.remove('flip'); void card.offsetWidth; card.classList.add('flip');
+      };
+      const step = (d: number) => {
+        let at = deck!.at + d;
+        if (at >= data.length) { deck = { n: data.length, order: shuffle(), at: 0 }; at = 0; }
+        if (at < 0) at = 0;
+        deck!.at = at; save(); show(at); restart();
+      };
+      let timer: number | undefined;
+      let paused = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let hover = false;
+      const running = () => !paused && !hover && !details.open && !document.hidden;
+      const restart = () => {
+        clearTimeout(timer);
+        bar.classList.remove('go'); void bar.offsetWidth;
+        if (running()) { bar.style.setProperty('--stay', `${STAY}ms`); bar.classList.add('go'); timer = window.setTimeout(() => step(1), STAY); }
+      };
+      const paint = () => {
+        toggle.setAttribute('aria-pressed', String(paused));
+        toggle.setAttribute('aria-label', paused ? card.dataset.play! : card.dataset.pause!);
+        card.classList.toggle('paused', paused);
+      };
+      toggle.addEventListener('click', () => { paused = !paused; paint(); restart(); });
+      $('[data-next]').addEventListener('click', () => step(1));
+      $('[data-prev]').addEventListener('click', () => step(-1));
+      details.addEventListener('toggle', restart);
+      card.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') { hover = true; restart(); } });
+      card.addEventListener('pointerleave', () => { hover = false; restart(); });
+      document.addEventListener('visibilitychange', restart, { signal });
+      signal.addEventListener('abort', () => clearTimeout(timer));
+      paint();
+      step(1);
+    });
   });
 </script>
 

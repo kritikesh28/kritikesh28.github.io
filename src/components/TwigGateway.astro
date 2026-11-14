@@ -99,7 +99,8 @@ const schema = [
 
 <script>
   import { paintProgress } from '../scripts/library-progress';
-  paintProgress();
+  import { onPage } from '../scripts/page';
+  onPage(() => paintProgress());
 </script>
 
 <style>

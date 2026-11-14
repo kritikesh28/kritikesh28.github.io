@@ -40,44 +40,49 @@ const T = pick({
 </section>
 
 <script>
-  document.querySelectorAll<HTMLElement>('[data-jh]').forEach((box) => {
-    const track = box.querySelector<HTMLElement>('[data-track]')!;
-    const slides = [...box.querySelectorAll<HTMLElement>('[data-slide]')];
-    const dots = [...box.querySelectorAll<HTMLButtonElement>('[data-dot]')];
-    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const STAY = 9000; // slow: about nine seconds a slide
-    let at = 0;
-    let timer: number | undefined;
-    let held = false;
-    const go = (i: number) => {
-      at = (i + slides.length) % slides.length;
-      track.style.transform = `translateX(-${at * 100}%)`;
-      slides.forEach((s, k) => {
-        const on = k === at;
-        s.classList.toggle('on', on);
-        if (on) s.removeAttribute('aria-hidden'); else s.setAttribute('aria-hidden', 'true');
-        s.querySelectorAll('a').forEach((a) => (on ? a.removeAttribute('tabindex') : a.setAttribute('tabindex', '-1')));
-      });
-      dots.forEach((d, k) => { d.classList.toggle('on', k === at); if (k === at) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); });
-    };
-    const run = () => {
-      clearInterval(timer);
-      if (still || held || document.hidden) return;
-      box.classList.add('running');
-      timer = window.setInterval(() => go(at + 1), STAY);
-    };
-    const hold = (h: boolean) => { held = h; box.classList.toggle('held', h); if (h) clearInterval(timer); else run(); };
-    dots.forEach((d) => d.addEventListener('click', () => { go(Number(d.dataset.dot)); run(); }));
-    box.addEventListener('pointerenter', () => hold(true));
-    box.addEventListener('pointerleave', () => hold(false));
-    box.addEventListener('focusin', () => hold(true));
-    box.addEventListener('focusout', () => hold(false));
-    // swipe on phones
-    let x0 = 0;
-    box.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
-    box.addEventListener('touchend', (e) => { const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) { go(at + (dx < 0 ? 1 : -1)); held = false; run(); } });
-    document.addEventListener('visibilitychange', run);
-    run();
+  import { onPage } from '../scripts/page';
+  // runs on every page (pages change without reloading: see src/scripts/page.ts)
+  onPage((signal) => {
+    document.querySelectorAll<HTMLElement>('[data-jh]').forEach((box) => {
+      const track = box.querySelector<HTMLElement>('[data-track]')!;
+      const slides = [...box.querySelectorAll<HTMLElement>('[data-slide]')];
+      const dots = [...box.querySelectorAll<HTMLButtonElement>('[data-dot]')];
+      const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const STAY = 9000; // slow: about nine seconds a slide
+      let at = 0;
+      let timer: number | undefined;
+      let held = false;
+      const go = (i: number) => {
+        at = (i + slides.length) % slides.length;
+        track.style.transform = `translateX(-${at * 100}%)`;
+        slides.forEach((s, k) => {
+          const on = k === at;
+          s.classList.toggle('on', on);
+          if (on) s.removeAttribute('aria-hidden'); else s.setAttribute('aria-hidden', 'true');
+          s.querySelectorAll('a').forEach((a) => (on ? a.removeAttribute('tabindex') : a.setAttribute('tabindex', '-1')));
+        });
+        dots.forEach((d, k) => { d.classList.toggle('on', k === at); if (k === at) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); });
+      };
+      const run = () => {
+        clearInterval(timer);
+        if (still || held || document.hidden) return;
+        box.classList.add('running');
+        timer = window.setInterval(() => go(at + 1), STAY);
+      };
+      const hold = (h: boolean) => { held = h; box.classList.toggle('held', h); if (h) clearInterval(timer); else run(); };
+      dots.forEach((d) => d.addEventListener('click', () => { go(Number(d.dataset.dot)); run(); }));
+      box.addEventListener('pointerenter', () => hold(true));
+      box.addEventListener('pointerleave', () => hold(false));
+      box.addEventListener('focusin', () => hold(true));
+      box.addEventListener('focusout', () => hold(false));
+      // swipe on phones
+      let x0 = 0;
+      box.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+      box.addEventListener('touchend', (e) => { const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) { go(at + (dx < 0 ? 1 : -1)); held = false; run(); } });
+      document.addEventListener('visibilitychange', run, { signal });
+      signal.addEventListener('abort', () => clearInterval(timer));
+      run();
+    });
   });
 </script>
 

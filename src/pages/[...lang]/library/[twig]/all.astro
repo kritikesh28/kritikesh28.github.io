@@ -55,8 +55,8 @@ const recap = all.find((p) => p.data.kind === 'recap');
 
 <script>
   import { paintProgress, watchLeafEnds } from '../../../../scripts/library-progress';
-  paintProgress();
-  watchLeafEnds();
+  import { onPage } from '../../../../scripts/page';
+  onPage(() => { paintProgress(); watchLeafEnds(); });
 </script>
 
 <style>

@@ -123,35 +123,39 @@ const allSchema = [...crumbSchema, ...(schema ?? [])];
 </Base>
 
 <script>
-  const btn = document.querySelector<HTMLButtonElement>('[data-ex-menu]');
-  const side = document.getElementById('ex-side');
-  const scrim = document.querySelector<HTMLElement>('[data-ex-scrim]');
-  const setOpen = (open: boolean) => {
-    if (!btn || !side || !scrim) return;
-    btn.setAttribute('aria-expanded', String(open));
-    side.classList.toggle('open', open);
-    scrim.hidden = !open;
-    document.body.classList.toggle('ex-lock', open);
-  };
-  btn?.addEventListener('click', () => setOpen(btn.getAttribute('aria-expanded') !== 'true'));
-  scrim?.addEventListener('click', () => setOpen(false));
-  addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false));
+  import { onPage } from '../scripts/page';
+  // runs on every page (pages change without reloading: see src/scripts/page.ts)
+  onPage((signal) => {
+    const btn = document.querySelector<HTMLButtonElement>('[data-ex-menu]');
+    const side = document.getElementById('ex-side');
+    const scrim = document.querySelector<HTMLElement>('[data-ex-scrim]');
+    const setOpen = (open: boolean) => {
+      if (!btn || !side || !scrim) return;
+      btn.setAttribute('aria-expanded', String(open));
+      side.classList.toggle('open', open);
+      scrim.hidden = !open;
+      document.body.classList.toggle('ex-lock', open);
+    };
+    btn?.addEventListener('click', () => setOpen(btn.getAttribute('aria-expanded') !== 'true'));
+    scrim?.addEventListener('click', () => setOpen(false));
+    addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false), { signal });
 
-  // Keep the current topic visible inside the sidebar
-  side?.querySelector('.side-majors [aria-current="page"]')?.scrollIntoView({ block: 'center' });
+    // Keep the current topic visible inside the sidebar
+    side?.querySelector('.side-majors [aria-current="page"]')?.scrollIntoView({ block: 'center' });
 
-  // Filter the major topics of this subject
-  const input = document.querySelector<HTMLInputElement>('[data-side-filter]');
-  const none = document.querySelector<HTMLElement>('[data-side-none]');
-  input?.addEventListener('input', () => {
-    const q = input.value.trim().toLowerCase();
-    let shown = 0;
-    document.querySelectorAll<HTMLAnchorElement>('[data-side-list] a').forEach((a) => {
-      const ok = !q || (a.dataset.t ?? '').includes(q);
-      a.parentElement!.hidden = !ok;
-      if (ok) shown++;
+    // Filter the major topics of this subject
+    const input = document.querySelector<HTMLInputElement>('[data-side-filter]');
+    const none = document.querySelector<HTMLElement>('[data-side-none]');
+    input?.addEventListener('input', () => {
+      const q = input.value.trim().toLowerCase();
+      let shown = 0;
+      document.querySelectorAll<HTMLAnchorElement>('[data-side-list] a').forEach((a) => {
+        const ok = !q || (a.dataset.t ?? '').includes(q);
+        a.parentElement!.hidden = !ok;
+        if (ok) shown++;
+      });
+      if (none) none.hidden = shown > 0;
     });
-    if (none) none.hidden = shown > 0;
   });
 </script>
 

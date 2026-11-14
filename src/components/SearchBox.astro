@@ -34,70 +34,74 @@ const searchUrl = localizePath('/search/', lang);
 
 <script>
   import { loadIndex, suggest, didYouMean, type Item } from '../scripts/search-engine';
+  import { navigate } from 'astro:transitions/client';
+  import { onPage } from '../scripts/page';
+  // runs on every page (pages change without reloading: see src/scripts/page.ts)
+  onPage((signal) => {
+    document.querySelectorAll<HTMLFormElement>('[data-sbox]').forEach((form) => {
+      const input = form.querySelector<HTMLInputElement>('input')!;
+      const list = form.querySelector<HTMLUListElement>('.suggest')!;
+      let options: { el: HTMLLIElement; go: () => void }[] = [];
+      let active = -1;
+      let timer: number | undefined;
 
-  document.querySelectorAll<HTMLFormElement>('[data-sbox]').forEach((form) => {
-    const input = form.querySelector<HTMLInputElement>('input')!;
-    const list = form.querySelector<HTMLUListElement>('.suggest')!;
-    let options: { el: HTMLLIElement; go: () => void }[] = [];
-    let active = -1;
-    let timer: number | undefined;
+      const close = () => {
+        list.hidden = true;
+        input.setAttribute('aria-expanded', 'false');
+        input.removeAttribute('aria-activedescendant');
+        active = -1;
+      };
+      const highlight = (i: number) => {
+        options.forEach((o, j) => o.el.setAttribute('aria-selected', String(j === i)));
+        active = i;
+        if (i >= 0) input.setAttribute('aria-activedescendant', options[i].el.id);
+        else input.removeAttribute('aria-activedescendant');
+      };
+      const option = (main: string, sub: string, go: () => void, cls = '') => {
+        const li = document.createElement('li');
+        li.id = `${list.id}-${options.length}`;
+        li.setAttribute('role', 'option');
+        li.className = cls;
+        const a = document.createElement('span'); a.className = 'main'; a.textContent = main;
+        const b = document.createElement('span'); b.className = 'sub'; b.textContent = sub;
+        li.append(a, b);
+        li.addEventListener('mousedown', (e) => { e.preventDefault(); go(); });
+        list.append(li);
+        options.push({ el: li, go });
+      };
+      const words = JSON.parse(form.dataset.words ?? '{}');
+      const searchUrl = form.getAttribute('action') ?? '/search/';
+      const openItem = (item: Item) => { navigate(item.u || `${searchUrl}?q=${encodeURIComponent(item.t)}`); };
+      const searchFor = (q: string) => { navigate(`${searchUrl}?q=${encodeURIComponent(q)}`); };
 
-    const close = () => {
-      list.hidden = true;
-      input.setAttribute('aria-expanded', 'false');
-      input.removeAttribute('aria-activedescendant');
-      active = -1;
-    };
-    const highlight = (i: number) => {
-      options.forEach((o, j) => o.el.setAttribute('aria-selected', String(j === i)));
-      active = i;
-      if (i >= 0) input.setAttribute('aria-activedescendant', options[i].el.id);
-      else input.removeAttribute('aria-activedescendant');
-    };
-    const option = (main: string, sub: string, go: () => void, cls = '') => {
-      const li = document.createElement('li');
-      li.id = `${list.id}-${options.length}`;
-      li.setAttribute('role', 'option');
-      li.className = cls;
-      const a = document.createElement('span'); a.className = 'main'; a.textContent = main;
-      const b = document.createElement('span'); b.className = 'sub'; b.textContent = sub;
-      li.append(a, b);
-      li.addEventListener('mousedown', (e) => { e.preventDefault(); go(); });
-      list.append(li);
-      options.push({ el: li, go });
-    };
-    const words = JSON.parse(form.dataset.words ?? '{}');
-    const searchUrl = form.getAttribute('action') ?? '/search/';
-    const openItem = (item: Item) => { location.href = item.u || `${searchUrl}?q=${encodeURIComponent(item.t)}`; };
-    const searchFor = (q: string) => { location.href = `${searchUrl}?q=${encodeURIComponent(q)}`; };
+      const render = async () => {
+        const q = input.value;
+        await loadIndex();
+        if (q !== input.value) return;
+        list.replaceChildren();
+        options = [];
+        active = -1;
+        if (q.trim().length < 2) return close();
+        const fix = didYouMean(q);
+        if (fix) option(words.dym.replace('{q}', fix), words.instead, () => searchFor(fix), 'fix');
+        suggest(fix ?? q).forEach((item) => option(item.t, item.k, () => openItem(item)));
+        option(words.all.replace('{q}', q), words.allSub, () => searchFor(q), 'all');
+        list.hidden = false;
+        input.setAttribute('aria-expanded', 'true');
+      };
 
-    const render = async () => {
-      const q = input.value;
-      await loadIndex();
-      if (q !== input.value) return;
-      list.replaceChildren();
-      options = [];
-      active = -1;
-      if (q.trim().length < 2) return close();
-      const fix = didYouMean(q);
-      if (fix) option(words.dym.replace('{q}', fix), words.instead, () => searchFor(fix), 'fix');
-      suggest(fix ?? q).forEach((item) => option(item.t, item.k, () => openItem(item)));
-      option(words.all.replace('{q}', q), words.allSub, () => searchFor(q), 'all');
-      list.hidden = false;
-      input.setAttribute('aria-expanded', 'true');
-    };
-
-    input.addEventListener('focus', () => { loadIndex(); });
-    input.addEventListener('input', () => { clearTimeout(timer); timer = window.setTimeout(render, 90); });
-    input.addEventListener('keydown', (e) => {
-      if (list.hidden) return;
-      if (e.key === 'ArrowDown') { e.preventDefault(); highlight((active + 1) % options.length); }
-      else if (e.key === 'ArrowUp') { e.preventDefault(); highlight(active <= 0 ? options.length - 1 : active - 1); }
-      else if (e.key === 'Enter' && active >= 0) { e.preventDefault(); options[active].go(); }
-      else if (e.key === 'Escape') close();
+      input.addEventListener('focus', () => { loadIndex(); });
+      input.addEventListener('input', () => { clearTimeout(timer); timer = window.setTimeout(render, 90); });
+      input.addEventListener('keydown', (e) => {
+        if (list.hidden) return;
+        if (e.key === 'ArrowDown') { e.preventDefault(); highlight((active + 1) % options.length); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); highlight(active <= 0 ? options.length - 1 : active - 1); }
+        else if (e.key === 'Enter' && active >= 0) { e.preventDefault(); options[active].go(); }
+        else if (e.key === 'Escape') close();
+      });
+      input.addEventListener('blur', () => window.setTimeout(close, 120));
+      form.addEventListener('submit', close);
     });
-    input.addEventListener('blur', () => window.setTimeout(close, 120));
-    form.addEventListener('submit', close);
   });
 </script>
 

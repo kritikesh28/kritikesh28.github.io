@@ -51,67 +51,71 @@ const words = {
 
 <script>
   import { loadIndex, search, didYouMean, type Item } from '../../scripts/search-engine';
+  import { onPage } from '../../scripts/page';
+  // runs on every page (pages change without reloading: see src/scripts/page.ts)
+  onPage((signal) => {
+    if (!document.querySelector('.search-page')) return; // only on the search page
+    const $ = <T extends HTMLElement>(s: string) => document.querySelector<T>(s)!;
+    const results = $('[data-results]');
+    const status = $('[data-status]');
+    const nothing = $('[data-nothing]');
+    const dym = $('[data-dym]');
+    const dymLink = $<HTMLAnchorElement>('[data-dym-link]');
+    const input = $<HTMLInputElement>('#q');
+    const words = JSON.parse($('.search-page').dataset.words ?? '{}');
+    const fill = (s: string, v: Record<string, string | number>) => s.replace(/\{(\w+)\}/g, (_, k) => String(v[k] ?? ''));
 
-  const $ = <T extends HTMLElement>(s: string) => document.querySelector<T>(s)!;
-  const results = $('[data-results]');
-  const status = $('[data-status]');
-  const nothing = $('[data-nothing]');
-  const dym = $('[data-dym]');
-  const dymLink = $<HTMLAnchorElement>('[data-dym-link]');
-  const input = $<HTMLInputElement>('#q');
-  const words = JSON.parse($('.search-page').dataset.words ?? '{}');
-  const fill = (s: string, v: Record<string, string | number>) => s.replace(/\{(\w+)\}/g, (_, k) => String(v[k] ?? ''));
-
-  function card(item: Item) {
-    const li = document.createElement('li');
-    const inner = document.createElement(item.u ? 'a' : 'div');
-    if (item.u) (inner as HTMLAnchorElement).href = item.u;
-    inner.className = 'hit';
-    const k = document.createElement('span'); k.className = 'kind'; k.textContent = item.k;
-    const t = document.createElement('strong'); t.textContent = item.t;
-    const d = document.createElement('span'); d.className = 'desc'; d.textContent = item.d;
-    inner.append(k, t, d);
-    li.append(inner);
-    return li;
-  }
-  function heading(text: string) {
-    const li = document.createElement('li'); li.className = 'group'; li.textContent = text; return li;
-  }
-
-  function run(q: string) {
-    results.replaceChildren();
-    nothing.hidden = true;
-    dym.hidden = true;
-    if (!q.trim()) { status.textContent = words.typeHint; return; }
-    const fix = didYouMean(q);
-    if (fix) { dymLink.textContent = fix; dymLink.href = `${words.search}?q=${encodeURIComponent(fix)}`; dym.hidden = false; }
-    const { exact, close } = search(q);
-    if (exact.length) {
-      status.textContent = fill(exact.length === 1 ? words.matches1 : words.matchesN, { n: exact.length, q });
-      exact.forEach((r) => results.append(card(r.item)));
-      if (close.length) { results.append(heading(words.alsoLike)); close.forEach((r) => results.append(card(r.item))); }
-      if (exact.length < 3) nothing.hidden = false;
-    } else {
-      status.textContent = fill(words.closest, { q });
-      close.forEach((r) => results.append(card(r.item)));
-      nothing.hidden = false;
+    function card(item: Item) {
+      const li = document.createElement('li');
+      const inner = document.createElement(item.u ? 'a' : 'div');
+      if (item.u) (inner as HTMLAnchorElement).href = item.u;
+      inner.className = 'hit';
+      const k = document.createElement('span'); k.className = 'kind'; k.textContent = item.k;
+      const t = document.createElement('strong'); t.textContent = item.t;
+      const d = document.createElement('span'); d.className = 'desc'; d.textContent = item.d;
+      inner.append(k, t, d);
+      li.append(inner);
+      return li;
     }
-    if (!nothing.hidden) $<HTMLAnchorElement>('[data-suggest]').href = `${words.contact}?intent=learning&topic=${encodeURIComponent(q)}`;
-  }
+    function heading(text: string) {
+      const li = document.createElement('li'); li.className = 'group'; li.textContent = text; return li;
+    }
 
-  loadIndex().then(() => {
-    const q = new URLSearchParams(location.search).get('q') ?? '';
-    input.value = q;
-    run(q);
-  }).catch(() => { status.textContent = words.failed; });
+    function run(q: string) {
+      results.replaceChildren();
+      nothing.hidden = true;
+      dym.hidden = true;
+      if (!q.trim()) { status.textContent = words.typeHint; return; }
+      const fix = didYouMean(q);
+      if (fix) { dymLink.textContent = fix; dymLink.href = `${words.search}?q=${encodeURIComponent(fix)}`; dym.hidden = false; }
+      const { exact, close } = search(q);
+      if (exact.length) {
+        status.textContent = fill(exact.length === 1 ? words.matches1 : words.matchesN, { n: exact.length, q });
+        exact.forEach((r) => results.append(card(r.item)));
+        if (close.length) { results.append(heading(words.alsoLike)); close.forEach((r) => results.append(card(r.item))); }
+        if (exact.length < 3) nothing.hidden = false;
+      } else {
+        status.textContent = fill(words.closest, { q });
+        close.forEach((r) => results.append(card(r.item)));
+        nothing.hidden = false;
+      }
+      if (!nothing.hidden) $<HTMLAnchorElement>('[data-suggest]').href = `${words.contact}?intent=learning&topic=${encodeURIComponent(q)}`;
+    }
 
-  let timer: number | undefined;
-  input.addEventListener('input', () => {
-    clearTimeout(timer);
-    timer = window.setTimeout(() => {
-      run(input.value);
-      history.replaceState(null, '', input.value ? `?q=${encodeURIComponent(input.value)}` : location.pathname);
-    }, 150);
+    loadIndex().then(() => {
+      const q = new URLSearchParams(location.search).get('q') ?? '';
+      input.value = q;
+      run(q);
+    }).catch(() => { status.textContent = words.failed; });
+
+    let timer: number | undefined;
+    input.addEventListener('input', () => {
+      clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        run(input.value);
+        history.replaceState(null, '', input.value ? `?q=${encodeURIComponent(input.value)}` : location.pathname);
+      }, 150);
+    });
   });
 </script>
 

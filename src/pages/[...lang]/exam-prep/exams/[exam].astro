@@ -168,7 +168,8 @@ const schema = [
 
 <script>
   // widths are set from data attributes (the site's security policy blocks inline styles)
-  document.querySelectorAll<HTMLElement>('.fill[data-w]').forEach((el) => (el.style.width = `${el.dataset.w}%`));
+  import { onPage } from '../../../../scripts/page';
+  onPage(() => document.querySelectorAll<HTMLElement>('.fill[data-w]').forEach((el) => (el.style.width = `${el.dataset.w}%`)));
 </script>
 
 <style>
