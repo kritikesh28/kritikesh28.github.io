@@ -43,11 +43,12 @@ The whole tree is at `/library/map/`. The six older trees of long reads (AI & ML
 
 ## 4. The background sound
 
-`src/scripts/ambient.ts` plays soft background music on every page: a slow bansuri (bamboo flute) in Raag Bhupali (Sa Re Ga Pa Dha, tonic D) over a quiet tanpura-like drone, with sparrows chirping now and then (flute added 14 Nov 2026 at Kritikesh's request; keep the chirp timing as it is). It is all made live in the browser with the Web Audio API: no sound files, nothing downloaded, and no one else's recording, so there is no copyright question. The melody is made up fresh on every visit from short phrases that rest on Sa, Ga or Pa.
+`src/scripts/ambient.ts` plays soft background music on every page: a bamboo-flute track with birdsong, `public/audio/flute-and-birds.mp3` (5 min 13 s, looped). Kritikesh chose it on 14 Nov 2026 to play very quietly, the way music plays in the background of a cinema foyer. It replaced the flute that was made live in the browser.
 
-- **On by default.** It starts at once where the browser allows it. Most browsers allow sound only after a tap, click or key press, so otherwise it fades in on the visitor's first one. The speaker button in the top bar switches it off, and that choice is remembered in the browser (`cs-ambient` in localStorage).
-- **Loudness.** `LEVEL` (now `0.3`) sets the overall level: about -24 dBFS on average, the loudest chirps about -10 dBFS, so it is clearly audible but stays under speech. `MIX` sets the balance of flute, drone, sparrows and room echo.
-- **Checking a change.** `compose()` also works on an `OfflineAudioContext`, so a minute can be rendered to a WAV file in a headless browser and measured before going live.
+- **The track.** "Nature Bird Bamboo Flute Morning Relaxing Music", shared as copyright-free by its creator, Sujan. Before replacing it, check that the new track's licence allows use on a website, and keep the creator's name here. The file was levelled to about -16 LUFS with a 1 s fade-in and 3 s fade-out (so the loop has no click) and saved as an 80 kbps MP3 (about 3 MB):
+  `ffmpeg -i in.mp3 -map_metadata -1 -af "loudnorm=I=-16:TP=-1.5:LRA=11,afade=t=in:d=1,afade=t=out:st=<length-3>:d=3" -c:a libmp3lame -b:a 80k public/audio/flute-and-birds.mp3`
+- **On by default.** It starts at once where the browser allows it. Most browsers allow sound only after a tap, click or key press, so otherwise it fades in on the visitor's first one. The file is fetched only when it starts. The speaker button in the top bar switches it off, and that choice is remembered in the browser (`cs-ambient` in localStorage). It pauses while the tab is hidden.
+- **Loudness.** `LEVEL` (now `0.2`, on a 0 to 1 scale) is the volume: about -30 LUFS on average, low and in the background. Raise it for louder, lower it for softer.
 - **Turning it off for everyone.** Delete the `import('../scripts/ambient')` line in `src/layouts/Base.astro`.
 
 ## 5. My story
