@@ -1,5 +1,76 @@
 [
  {
+  "slug": "books",
+  "code": "BOK",
+  "short": "किताबें",
+  "shelf": "stories",
+  "order": 1,
+  "title": "किताबें",
+  "subtitle": "ताड़-पत्रों से ई-बुक तक, विश्व साहित्य का पूरा नक्शा",
+  "edition": "संस्करण 1 · 14 नवंबर 2026",
+  "color1": "#1F3A5F",
+  "color2": "#A0522D",
+  "light": "#F3EFE6",
+  "question": "पन्ने पर बने कुछ निशान किसी दूसरे इंसान का मन आपके भीतर कैसे उतार देते हैं?",
+  "entries": 643,
+  "words": 19520,
+  "sections": 41,
+  "cover": null,
+  "url": "/library/books/",
+  "leaves": [
+   {
+    "id": "BOK-00.01",
+    "title": "लेखन से पहले इंसान कहानियाँ कैसे सुनाते थे?",
+    "url": "/library/books/bok-00-01-how-did-humans-tell-stories-before-writing/"
+   },
+   {
+    "id": "BOK-00.02",
+    "title": "पहली किताब किसने लिखी?",
+    "url": "/library/books/bok-00-02-who-wrote-the-first-book/"
+   },
+   {
+    "id": "BOK-00.03",
+    "title": "भारत ताड़-पत्रों पर क्यों लिखता था?",
+    "url": "/library/books/bok-00-03-why-did-india-write-on-palm-leaves/"
+   },
+   {
+    "id": "BOK-00.04",
+    "title": "छपाई ने दुनिया को कैसे बदला?",
+    "url": "/library/books/bok-00-04-how-did-printing-change-the-world/"
+   },
+   {
+    "id": "BOK-00.05",
+    "title": "उपन्यास को कभी ख़तरनाक क्यों कहा गया?",
+    "url": "/library/books/bok-00-05-why-was-the-novel-once-called-dangerous/"
+   },
+   {
+    "id": "BOK-00.06",
+    "title": "क्या कविता गद्य से पुरानी है?",
+    "url": "/library/books/bok-00-06-is-poetry-older-than-prose/"
+   },
+   {
+    "id": "BOK-00.07",
+    "title": "कुछ किताबें साम्राज्यों से ज़्यादा क्यों जीती हैं?",
+    "url": "/library/books/bok-00-07-why-do-some-books-outlive-empires/"
+   },
+   {
+    "id": "BOK-00.08",
+    "title": "पढ़ते समय आपके दिमाग़ में क्या होता है?",
+    "url": "/library/books/bok-00-08-what-happens-in-your-brain-when-you-read/"
+   },
+   {
+    "id": "BOK-00.09",
+    "title": "क्या ई-बुक और AI किताबों की जगह ले लेंगे?",
+    "url": "/library/books/bok-00-09-will-e-books-and-ai-replace-books/"
+   },
+   {
+    "id": "BOK-00.10",
+    "title": "दोहराव: एक पन्ने में किताब की कहानी",
+    "url": "/library/books/bok-00-10-recap-the-story-of-the-book-in-one-page/"
+   }
+  ]
+ },
+ {
   "slug": "music",
   "code": "MUS",
   "short": "संगीत",
