@@ -1,5 +1,66 @@
 [
  {
+  "slug": "technology",
+  "code": "TEC",
+  "short": "तकनीक",
+  "shelf": "how",
+  "order": 7,
+  "title": "तकनीक",
+  "subtitle": "एक नुकीला पत्थर स्मार्टफ़ोन कैसे बन गया",
+  "edition": "संस्करण 1 · 13 नवंबर 2026",
+  "color1": "#1F3A5F",
+  "color2": "#E07A1F",
+  "light": "#EEF2F7",
+  "question": "एक नुकीला पत्थर स्मार्टफ़ोन कैसे बन गया?",
+  "entries": 203,
+  "words": 10040,
+  "sections": 39,
+  "cover": null,
+  "url": "/library/technology/",
+  "leaves": [
+   {
+    "id": "TEC-00.01",
+    "title": "पहली तकनीक क्या थी?",
+    "url": "/library/technology/tec-00-01-what-was-the-first-technology/"
+   },
+   {
+    "id": "TEC-00.02",
+    "title": "पहिये के आविष्कार में इतनी देर क्यों लगी?",
+    "url": "/library/technology/tec-00-02-why-did-the-wheel-take-so-long-to-invent/"
+   },
+   {
+    "id": "TEC-00.03",
+    "title": "पेंच चीज़ों को जोड़ कर कैसे रखता है?",
+    "url": "/library/technology/tec-00-03-how-does-a-screw-hold-things-together/"
+   },
+   {
+    "id": "TEC-00.04",
+    "title": "बिजली ने सब कुछ क्यों बदल दिया?",
+    "url": "/library/technology/tec-00-04-why-did-electricity-change-everything/"
+   },
+   {
+    "id": "TEC-00.05",
+    "title": "फ़्रिज ठंडक कैसे बनाता है?",
+    "url": "/library/technology/tec-00-05-how-does-a-fridge-make-cold/"
+   },
+   {
+    "id": "TEC-00.06",
+    "title": "इंटरनेट आपके फ़ोन तक कैसे पहुँचता है?",
+    "url": "/library/technology/tec-00-06-how-does-the-internet-reach-your-phone/"
+   },
+   {
+    "id": "TEC-00.07",
+    "title": "आज की सबसे नई तकनीक क्या है?",
+    "url": "/library/technology/tec-00-07-what-is-the-newest-technology-today/"
+   },
+   {
+    "id": "TEC-00.08",
+    "title": "दोहराव: पत्थर की धार से सोचने वाली मशीन तक",
+    "url": "/library/technology/tec-00-08-recap-from-a-stone-edge-to-a-thinking-machine/"
+   }
+  ]
+ },
+ {
   "slug": "crochet",
   "code": "CRO",
   "short": "क्रोशिया",
