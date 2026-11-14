@@ -172,279 +172,284 @@ const quick = P.quick;
 
 <script>
   import { loadGuide, findExams, buildPlan, topicUrl, type Plan, type Item } from '../../../../scripts/exam-guide';
+  import { onPage } from '../../../../scripts/page';
+  // runs on every page (pages change without reloading: see src/scripts/page.ts)
+  onPage((signal) => {
+    if (!document.querySelector('[data-eg-find]')) return; // only on the Exam Guide page
+    const $ = <T extends HTMLElement = HTMLElement>(s: string) => document.querySelector<T>(s)!;
+    const el = {
+      find: $<HTMLInputElement>('[data-eg-find]'), findList: $('[data-eg-findlist]'),
+      gov: $<HTMLSelectElement>('[data-eg-gov]'), agency: $<HTMLSelectElement>('[data-eg-agency]'), bank: $<HTMLSelectElement>('[data-eg-bank]'),
+      bankWrap: $('[data-eg-bankwrap]'), exam: $<HTMLSelectElement>('[data-eg-exam]'),
+      date: $<HTMLInputElement>('[data-eg-date]'), left: $<HTMLInputElement>('[data-eg-left]'), unit: $<HTMLSelectElement>('[data-eg-unit]'),
+      hours: $<HTMLInputElement>('[data-eg-hours]'), topn: $<HTMLInputElement>('[data-eg-topn]'),
+      empty: $('[data-eg-empty]'), result: $('[data-eg-result]'), count: $('[data-eg-count]'), say: $('[data-eg-say]'),
+      bars: $('[data-eg-bars]'), subject: $<HTMLSelectElement>('[data-eg-subject]'), stars: $<HTMLSelectElement>('[data-eg-stars]'),
+      filter: $<HTMLInputElement>('[data-eg-filter]'), all: $<HTMLInputElement>('[data-eg-all]'), list: $('[data-eg-list]'),
+      more: $<HTMLButtonElement>('[data-eg-more]'), shown: $('[data-eg-shown]'),
+    };
+    const fmt = (n: number) => n.toLocaleString('en-IN');
+    const HI = document.documentElement.lang === 'hi';
+    const dateFmt = new Intl.DateTimeFormat(HI ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short' });
+    const W = HI ? {
+      choose: 'अपनी परीक्षा चुनिए…', sylOnly: ' (सिर्फ़ सिलेबस)', noExam: 'इस नाम की परीक्षा अभी नहीं है। पूरा पैटर्न देखने के लिए "RPSC की सभी परीक्षाएँ" या "RSSB की सभी परीक्षाएँ" चुनिए।',
+      srcPapers: (p: number, q: string, y: string) => `${p} पेपर · ${q} सवाल${y !== 'all' ? ` · ${y}` : ''}`, srcAll: 'RPSC + RSSB के सभी पेपर', srcSyl: (a: string) => `सिलेबस + ${a} के दूसरे पेपर`,
+      pageLink: 'इस परीक्षा का पूरा पुराने-पेपर विश्लेषण पढ़िए →', bar: (n: number, q: string) => `${n} टॉपिक · ≈${q} सवाल`,
+      day0: 'आज आपकी परीक्षा का दिन है। अब कुछ नया शुरू मत कीजिए: अपने ★★★★★ टॉपिक एक बार दोहराइए, अच्छी नींद लीजिए और शांत मन से जाइए। आप तैयार हैं।',
+      general: (b: string) => `${b} के पेपर अभी नहीं जुड़े हैं, इसलिए यह सूची RPSC और RSSB के सभी पढ़े गए पेपरों का पैटर्न दिखाती है। सामान्य अध्ययन (GS) काफ़ी हद तक मिलता-जुलता है, पर पूरा नहीं, इसलिए इसे पहला नक्शा मानिए।`,
+      noPapers: (a: string) => `इस परीक्षा के पुराने पेपर अभी हमारे पास नहीं हैं। सूची इसके आधिकारिक सिलेबस और ${a} की दूसरी परीक्षाओं के सवालों पर टिकी है, इसलिए इसे अच्छा पहला नक्शा मानिए, बिल्कुल सटीक नहीं।`,
+      few: (n: number, a: string) => `यह सूची इस परीक्षा के ${n === 1 ? 'एक पेपर' : 'दो पेपरों'} और ${a} के दूसरे पेपरों से बनी है। यह छोटा नमूना है, इसलिए आधिकारिक सिलेबस पर भी नज़र रखिए।`,
+      tight: (n: string, c: number) => `समय कम है, इसलिए सूची सीधे सबसे ज़्यादा पूछे गए टॉपिकों पर जाती है। आपके ${n} टॉपिकों से पुराने सवालों का लगभग ${c}% हिस्सा आया, और जो भी टॉपिक आप पूरा करते हैं, वह पक्की कमाई है। एक-एक कदम।`,
+      room: (n: string, c: number) => `आपके पास साँस लेने की जगह है। इन ${n} टॉपिकों से पुराने सवालों का लगभग ${c}% हिस्सा आया, और आख़िरी पाँचवाँ हिस्सा दिन रिवीज़न और मॉक टेस्ट के लिए ख़ाली रखा गया है।`,
+      plain: (n: string, c: number) => `इन ${n} टॉपिकों से मिलकर पुराने सवालों का लगभग ${c}% हिस्सा आया। ऊपर से शुरू कीजिए; अच्छा करने के लिए पूरा सिलेबस ज़रूरी नहीं।`,
+      shown: (n: string, all: boolean, r: string, sub: string) => `${n} टॉपिक${all ? `, ${r} के पूरे क्रम में` : ' आपकी सूची में'}${sub ? ` · ${sub}` : ''}।`,
+      noneAll: 'कुछ नहीं मिला। कोई और शब्द आज़माइए या फ़िल्टर हटाइए।', noneList: 'आपकी सूची में कुछ नहीं मिला। आगे देखने के लिए "पूरा क्रम दिखाएँ" पर टिक कीजिए।',
+      by: (d: string) => ` · ${d} तक पढ़ें`, inMajor: (m: string) => `${m} में`, whole: 'पूरा मुख्य टॉपिक', imp: (n: number) => `महत्व 5 में से ${n}`,
+      q: (q: string, h: number, l: number) => `≈${q} सवाल/पेपर` + (h ? ` · ${h} बार पूछा${l ? ` (आख़िरी ${l})` : ''}` : ''),
+    } : {
+      choose: 'Choose your exam…', sylOnly: ' (syllabus only)', noExam: 'No exam by that name yet. Pick "All RPSC exams" or "All RSSB exams" for the overall pattern.',
+      srcPapers: (p: number, q: string, y: string) => `${p} paper${p > 1 ? 's' : ''} · ${q} questions${y !== 'all' ? ` · ${y}` : ''}`, srcAll: 'All RPSC + RSSB papers', srcSyl: (a: string) => `Syllabus + other ${a} papers`,
+      pageLink: 'Read the full past-paper analysis for this exam →', bar: (n: number, q: string) => `${n} topic${n > 1 ? 's' : ''} · ≈${q} Qs`,
+      day0: 'Your exam day has come. Don\'t start anything new now: go over your ★★★★★ topics once, sleep well and walk in calm. आप तैयार हैं।',
+      general: (b: string) => `We haven't added ${b} papers yet, so this list shows the pattern across every RPSC and RSSB paper we read. General studies overlap a lot, but not completely, so treat it as a first map.`,
+      noPapers: (a: string) => `We don't have past papers for this exam yet. The list leans on its official syllabus and on what other ${a} exams asked, so treat it as a good first map, not a precise one.`,
+      few: (n: number, a: string) => `This list is built from ${n === 1 ? 'one paper' : 'two papers'} of this exam plus other ${a} papers. That is a small sample, so keep an eye on the official syllabus too.`,
+      tight: (n: string, c: number) => `Time is tight, so the list goes straight to the topics asked most. Your ${n} topics covered about ${c}% of past questions, and every one you finish is real ground gained. एक-एक कदम।`,
+      room: (n: string, c: number) => `You have room to breathe. These ${n} topics covered about ${c}% of past questions, and the last fifth of your days is left free for revision and mock tests.`,
+      plain: (n: string, c: number) => `These ${n} topics together covered about ${c}% of past questions. Start at the top; you don't need the whole syllabus to do well.`,
+      shown: (n: string, all: boolean, r: string, sub: string) => `${n} topic${n === '1' ? '' : 's'}${all ? ` in the full ranking of ${r}` : ' in your list'}${sub ? ` · ${sub}` : ''}.`,
+      noneAll: 'Nothing matches. Try another word or clear the filters.', noneList: 'Nothing in your list matches. Tick "Show the full ranking" to look further.',
+      by: (d: string) => ` · study by ${d}`, inMajor: (m: string) => `in ${m}`, whole: 'Whole major topic', imp: (n: number) => `Importance ${n} of 5`,
+      q: (q: string, h: number, l: number) => `≈${q} Qs/paper` + (h ? ` · asked ${h}×${l ? ` (last ${l})` : ''}` : ''),
+    };
 
-  const $ = <T extends HTMLElement = HTMLElement>(s: string) => document.querySelector<T>(s)!;
-  const el = {
-    find: $<HTMLInputElement>('[data-eg-find]'), findList: $('[data-eg-findlist]'),
-    gov: $<HTMLSelectElement>('[data-eg-gov]'), agency: $<HTMLSelectElement>('[data-eg-agency]'), bank: $<HTMLSelectElement>('[data-eg-bank]'),
-    bankWrap: $('[data-eg-bankwrap]'), exam: $<HTMLSelectElement>('[data-eg-exam]'),
-    date: $<HTMLInputElement>('[data-eg-date]'), left: $<HTMLInputElement>('[data-eg-left]'), unit: $<HTMLSelectElement>('[data-eg-unit]'),
-    hours: $<HTMLInputElement>('[data-eg-hours]'), topn: $<HTMLInputElement>('[data-eg-topn]'),
-    empty: $('[data-eg-empty]'), result: $('[data-eg-result]'), count: $('[data-eg-count]'), say: $('[data-eg-say]'),
-    bars: $('[data-eg-bars]'), subject: $<HTMLSelectElement>('[data-eg-subject]'), stars: $<HTMLSelectElement>('[data-eg-stars]'),
-    filter: $<HTMLInputElement>('[data-eg-filter]'), all: $<HTMLInputElement>('[data-eg-all]'), list: $('[data-eg-list]'),
-    more: $<HTMLButtonElement>('[data-eg-more]'), shown: $('[data-eg-shown]'),
-  };
-  const fmt = (n: number) => n.toLocaleString('en-IN');
-  const HI = document.documentElement.lang === 'hi';
-  const dateFmt = new Intl.DateTimeFormat(HI ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short' });
-  const W = HI ? {
-    choose: 'अपनी परीक्षा चुनिए…', sylOnly: ' (सिर्फ़ सिलेबस)', noExam: 'इस नाम की परीक्षा अभी नहीं है। पूरा पैटर्न देखने के लिए "RPSC की सभी परीक्षाएँ" या "RSSB की सभी परीक्षाएँ" चुनिए।',
-    srcPapers: (p: number, q: string, y: string) => `${p} पेपर · ${q} सवाल${y !== 'all' ? ` · ${y}` : ''}`, srcAll: 'RPSC + RSSB के सभी पेपर', srcSyl: (a: string) => `सिलेबस + ${a} के दूसरे पेपर`,
-    pageLink: 'इस परीक्षा का पूरा पुराने-पेपर विश्लेषण पढ़िए →', bar: (n: number, q: string) => `${n} टॉपिक · ≈${q} सवाल`,
-    day0: 'आज आपकी परीक्षा का दिन है। अब कुछ नया शुरू मत कीजिए: अपने ★★★★★ टॉपिक एक बार दोहराइए, अच्छी नींद लीजिए और शांत मन से जाइए। आप तैयार हैं।',
-    general: (b: string) => `${b} के पेपर अभी नहीं जुड़े हैं, इसलिए यह सूची RPSC और RSSB के सभी पढ़े गए पेपरों का पैटर्न दिखाती है। सामान्य अध्ययन (GS) काफ़ी हद तक मिलता-जुलता है, पर पूरा नहीं, इसलिए इसे पहला नक्शा मानिए।`,
-    noPapers: (a: string) => `इस परीक्षा के पुराने पेपर अभी हमारे पास नहीं हैं। सूची इसके आधिकारिक सिलेबस और ${a} की दूसरी परीक्षाओं के सवालों पर टिकी है, इसलिए इसे अच्छा पहला नक्शा मानिए, बिल्कुल सटीक नहीं।`,
-    few: (n: number, a: string) => `यह सूची इस परीक्षा के ${n === 1 ? 'एक पेपर' : 'दो पेपरों'} और ${a} के दूसरे पेपरों से बनी है। यह छोटा नमूना है, इसलिए आधिकारिक सिलेबस पर भी नज़र रखिए।`,
-    tight: (n: string, c: number) => `समय कम है, इसलिए सूची सीधे सबसे ज़्यादा पूछे गए टॉपिकों पर जाती है। आपके ${n} टॉपिकों से पुराने सवालों का लगभग ${c}% हिस्सा आया, और जो भी टॉपिक आप पूरा करते हैं, वह पक्की कमाई है। एक-एक कदम।`,
-    room: (n: string, c: number) => `आपके पास साँस लेने की जगह है। इन ${n} टॉपिकों से पुराने सवालों का लगभग ${c}% हिस्सा आया, और आख़िरी पाँचवाँ हिस्सा दिन रिवीज़न और मॉक टेस्ट के लिए ख़ाली रखा गया है।`,
-    plain: (n: string, c: number) => `इन ${n} टॉपिकों से मिलकर पुराने सवालों का लगभग ${c}% हिस्सा आया। ऊपर से शुरू कीजिए; अच्छा करने के लिए पूरा सिलेबस ज़रूरी नहीं।`,
-    shown: (n: string, all: boolean, r: string, sub: string) => `${n} टॉपिक${all ? `, ${r} के पूरे क्रम में` : ' आपकी सूची में'}${sub ? ` · ${sub}` : ''}।`,
-    noneAll: 'कुछ नहीं मिला। कोई और शब्द आज़माइए या फ़िल्टर हटाइए।', noneList: 'आपकी सूची में कुछ नहीं मिला। आगे देखने के लिए "पूरा क्रम दिखाएँ" पर टिक कीजिए।',
-    by: (d: string) => ` · ${d} तक पढ़ें`, inMajor: (m: string) => `${m} में`, whole: 'पूरा मुख्य टॉपिक', imp: (n: number) => `महत्व 5 में से ${n}`,
-    q: (q: string, h: number, l: number) => `≈${q} सवाल/पेपर` + (h ? ` · ${h} बार पूछा${l ? ` (आख़िरी ${l})` : ''}` : ''),
-  } : {
-    choose: 'Choose your exam…', sylOnly: ' (syllabus only)', noExam: 'No exam by that name yet. Pick "All RPSC exams" or "All RSSB exams" for the overall pattern.',
-    srcPapers: (p: number, q: string, y: string) => `${p} paper${p > 1 ? 's' : ''} · ${q} questions${y !== 'all' ? ` · ${y}` : ''}`, srcAll: 'All RPSC + RSSB papers', srcSyl: (a: string) => `Syllabus + other ${a} papers`,
-    pageLink: 'Read the full past-paper analysis for this exam →', bar: (n: number, q: string) => `${n} topic${n > 1 ? 's' : ''} · ≈${q} Qs`,
-    day0: 'Your exam day has come. Don\'t start anything new now: go over your ★★★★★ topics once, sleep well and walk in calm. आप तैयार हैं।',
-    general: (b: string) => `We haven't added ${b} papers yet, so this list shows the pattern across every RPSC and RSSB paper we read. General studies overlap a lot, but not completely, so treat it as a first map.`,
-    noPapers: (a: string) => `We don't have past papers for this exam yet. The list leans on its official syllabus and on what other ${a} exams asked, so treat it as a good first map, not a precise one.`,
-    few: (n: number, a: string) => `This list is built from ${n === 1 ? 'one paper' : 'two papers'} of this exam plus other ${a} papers. That is a small sample, so keep an eye on the official syllabus too.`,
-    tight: (n: string, c: number) => `Time is tight, so the list goes straight to the topics asked most. Your ${n} topics covered about ${c}% of past questions, and every one you finish is real ground gained. एक-एक कदम।`,
-    room: (n: string, c: number) => `You have room to breathe. These ${n} topics covered about ${c}% of past questions, and the last fifth of your days is left free for revision and mock tests.`,
-    plain: (n: string, c: number) => `These ${n} topics together covered about ${c}% of past questions. Start at the top; you don't need the whole syllabus to do well.`,
-    shown: (n: string, all: boolean, r: string, sub: string) => `${n} topic${n === '1' ? '' : 's'}${all ? ` in the full ranking of ${r}` : ' in your list'}${sub ? ` · ${sub}` : ''}.`,
-    noneAll: 'Nothing matches. Try another word or clear the filters.', noneList: 'Nothing in your list matches. Tick "Show the full ranking" to look further.',
-    by: (d: string) => ` · study by ${d}`, inMajor: (m: string) => `in ${m}`, whole: 'Whole major topic', imp: (n: number) => `Importance ${n} of 5`,
-    q: (q: string, h: number, l: number) => `≈${q} Qs/paper` + (h ? ` · asked ${h}×${l ? ` (last ${l})` : ''}` : ''),
-  };
-
-  loadGuide().then((g) => {
-    // add every exam of India under its conducting body (built in the page from src/data/exam-catalogue.ts)
-    if (!(g as { _extra?: boolean })._extra) {
-      try { g.exams.push(...JSON.parse(el.agency.dataset.egExtra || '[]')); } catch {}
-      (g as { _extra?: boolean })._extra = true;
-    }
-    const uniq = <T,>(a: T[]) => [...new Set(a)];
-    const opt = (sel: HTMLSelectElement, items: [string, string][]) => sel.replaceChildren(...items.map(([v, t]) => new Option(t, v)));
-    let plan: Plan | undefined;
-    let visible: Item[] = [];
-    let shown = 0;
-
-    function fillAgency() {
-      opt(el.agency, uniq(g.exams.filter((e) => e.gov === el.gov.value).map((e) => e.agency)).map((a) => [a, a]));
-      fillBank();
-    }
-    function fillBank() {
-      const banks = uniq(g.exams.filter((e) => e.agency === el.agency.value && e.bank).map((e) => e.bank));
-      el.bankWrap.hidden = banks.length === 0;
-      opt(el.bank, banks.map((b) => [b, b]));
-      fillExam();
-    }
-    function fillExam() {
-      const list = g.exams.map((e, i) => [e, i] as const).filter(([e]) => e.gov === el.gov.value && e.agency === el.agency.value && (!e.bank || e.bank === el.bank.value));
-      opt(el.exam, [['', W.choose], ...list.map(([e, i]) => [String(i), e.name.replace(/^(RPSC|RSSB) · /, '') + (e.papers || e.key === 'GENERAL' ? '' : W.sylOnly)] as [string, string])]);
-    }
-    function selectExam(i: number) {
-      const e = g.exams[i];
-      el.gov.value = e.gov; fillAgency();
-      el.agency.value = e.agency; fillBank();
-      if (e.bank) { el.bank.value = e.bank; fillExam(); }
-      el.exam.value = String(i);
-      update();
-    }
-    opt(el.gov, uniq(g.exams.map((e) => e.gov)).map((x) => [x, g.exams.find((e) => e.gov === x)?.govLabel ?? x]));
-    fillAgency();
-    el.gov.addEventListener('change', fillAgency);
-    el.agency.addEventListener('change', fillBank);
-    el.bank.addEventListener('change', fillExam);
-    el.exam.addEventListener('change', update);
-
-    // typo-tolerant finder
-    el.find.addEventListener('input', () => {
-      const res = findExams(g, el.find.value);
-      el.findList.replaceChildren(...res.map(({ i, e }) => {
-        const li = document.createElement('li');
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.textContent = e.name;
-        b.addEventListener('click', () => { el.find.value = ''; el.findList.hidden = true; selectExam(i); });
-        li.append(b);
-        return li;
-      }));
-      if (!res.length && el.find.value.trim().length > 2) {
-        const li = document.createElement('li');
-        li.className = 'none';
-        li.textContent = W.noExam;
-        el.findList.append(li);
+    loadGuide().then((g) => {
+      // add every exam of India under its conducting body (built in the page from src/data/exam-catalogue.ts)
+      if (!(g as { _extra?: boolean })._extra) {
+        try { g.exams.push(...JSON.parse(el.agency.dataset.egExtra || '[]')); } catch {}
+        (g as { _extra?: boolean })._extra = true;
       }
-      el.findList.hidden = !el.findList.children.length;
-    });
-    el.find.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); el.findList.querySelector('button')?.click(); } });
-    document.querySelectorAll<HTMLButtonElement>('[data-eg-quick] [data-key]').forEach((b) =>
-      b.addEventListener('click', () => { const i = g.exams.findIndex((e) => e.key === b.dataset.key); if (i >= 0) selectExam(i); }));
+      const uniq = <T,>(a: T[]) => [...new Set(a)];
+      const opt = (sel: HTMLSelectElement, items: [string, string][]) => sel.replaceChildren(...items.map(([v, t]) => new Option(t, v)));
+      let plan: Plan | undefined;
+      let visible: Item[] = [];
+      let shown = 0;
 
-    [el.date, el.hours, el.topn].forEach((x) => x.addEventListener('input', update));
-    el.left.addEventListener('input', () => { if (el.left.value) el.date.value = ''; update(); });
-    el.unit.addEventListener('change', update);
-    el.date.addEventListener('change', () => { if (el.date.value) el.left.value = ''; update(); });
-    [el.subject, el.stars, el.all].forEach((x) => x.addEventListener('change', () => { syncUrl(); renderList(); }));
-    el.filter.addEventListener('input', renderList);
-    el.more.addEventListener('click', more);
+      function fillAgency() {
+        opt(el.agency, uniq(g.exams.filter((e) => e.gov === el.gov.value).map((e) => e.agency)).map((a) => [a, a]));
+        fillBank();
+      }
+      function fillBank() {
+        const banks = uniq(g.exams.filter((e) => e.agency === el.agency.value && e.bank).map((e) => e.bank));
+        el.bankWrap.hidden = banks.length === 0;
+        opt(el.bank, banks.map((b) => [b, b]));
+        fillExam();
+      }
+      function fillExam() {
+        const list = g.exams.map((e, i) => [e, i] as const).filter(([e]) => e.gov === el.gov.value && e.agency === el.agency.value && (!e.bank || e.bank === el.bank.value));
+        opt(el.exam, [['', W.choose], ...list.map(([e, i]) => [String(i), e.name.replace(/^(RPSC|RSSB) · /, '') + (e.papers || e.key === 'GENERAL' ? '' : W.sylOnly)] as [string, string])]);
+      }
+      function selectExam(i: number) {
+        const e = g.exams[i];
+        el.gov.value = e.gov; fillAgency();
+        el.agency.value = e.agency; fillBank();
+        if (e.bank) { el.bank.value = e.bank; fillExam(); }
+        el.exam.value = String(i);
+        update();
+      }
+      opt(el.gov, uniq(g.exams.map((e) => e.gov)).map((x) => [x, g.exams.find((e) => e.gov === x)?.govLabel ?? x]));
+      fillAgency();
+      el.gov.addEventListener('change', fillAgency);
+      el.agency.addEventListener('change', fillBank);
+      el.bank.addEventListener('change', fillExam);
+      el.exam.addEventListener('change', update);
 
-    function deadline(): Date | undefined {
-      if (el.date.value) return new Date(`${el.date.value}T10:00:00`);
-      const n = Number(el.left.value);
-      if (n > 0) return new Date(Date.now() + n * { days: 1, weeks: 7, months: 30.44 }[el.unit.value as 'days'] * 864e5);
-      return undefined;
-    }
+      // typo-tolerant finder
+      el.find.addEventListener('input', () => {
+        const res = findExams(g, el.find.value);
+        el.findList.replaceChildren(...res.map(({ i, e }) => {
+          const li = document.createElement('li');
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.textContent = e.name;
+          b.addEventListener('click', () => { el.find.value = ''; el.findList.hidden = true; selectExam(i); });
+          li.append(b);
+          return li;
+        }));
+        if (!res.length && el.find.value.trim().length > 2) {
+          const li = document.createElement('li');
+          li.className = 'none';
+          li.textContent = W.noExam;
+          el.findList.append(li);
+        }
+        el.findList.hidden = !el.findList.children.length;
+      });
+      el.find.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); el.findList.querySelector('button')?.click(); } });
+      document.querySelectorAll<HTMLButtonElement>('[data-eg-quick] [data-key]').forEach((b) =>
+        b.addEventListener('click', () => { const i = g.exams.findIndex((e) => e.key === b.dataset.key); if (i >= 0) selectExam(i); }));
 
-    function syncUrl() {
-      const u = new URL(location.href);
-      const set = (k: string, v: string) => (v ? u.searchParams.set(k, v) : u.searchParams.delete(k));
-      set('exam', el.exam.value ? g.exams[Number(el.exam.value)].key + (g.exams[Number(el.exam.value)].key === 'GENERAL' ? `~${el.exam.value}` : '') : '');
-      set('date', el.date.value); set('left', el.left.value ? el.left.value + el.unit.value[0] : '');
-      set('h', el.hours.value !== '6' ? el.hours.value : ''); set('n', el.topn.value);
-      set('s', el.subject.value !== '-1' ? g.subjects[Number(el.subject.value)][0] : '');
-      history.replaceState(null, '', u);
-    }
+      [el.date, el.hours, el.topn].forEach((x) => x.addEventListener('input', update));
+      el.left.addEventListener('input', () => { if (el.left.value) el.date.value = ''; update(); });
+      el.unit.addEventListener('change', update);
+      el.date.addEventListener('change', () => { if (el.date.value) el.left.value = ''; update(); });
+      [el.subject, el.stars, el.all].forEach((x) => x.addEventListener('change', () => { syncUrl(); renderList(); }));
+      el.filter.addEventListener('input', renderList);
+      el.more.addEventListener('click', more);
 
-    function update() {
-      syncUrl();
-      if (!el.exam.value) { el.result.hidden = true; el.empty.hidden = false; return; }
-      plan = buildPlan(g, Number(el.exam.value), { deadline: deadline(), hours: Math.max(1, Number(el.hours.value) || 6), topN: Number(el.topn.value) || undefined });
-      el.empty.hidden = true;
-      el.result.hidden = false;
-      const p = plan;
-      // countdown
-      el.count.hidden = p.msLeft === undefined || p.msLeft <= 0;
-      tick();
-      // message
-      el.say.textContent = message(p);
-      // tiles
-      $('[data-t="n"]').textContent = fmt(p.n);
-      $('[data-t="cov"]').textContent = `${Math.round(p.covered * 100)}%`;
-      $('[data-t="pd"]').textContent = p.perDay ? p.perDay.toFixed(1) : '–';
-      $('[data-t="src"]').textContent = p.exam.papers
-        ? W.srcPapers(p.exam.papers, fmt(p.exam.questions), p.exam.years)
-        : p.exam.key === 'GENERAL' ? W.srcAll : W.srcSyl(p.exam.agency);
-      // link to the exam's own analysis page
-      const pl = $('[data-eg-page]');
-      const pg = (p.exam as { page?: string }).page;
-      pl.hidden = !pg;
-      if (pg) { const a = pl.querySelector('a')!; a.href = `${HI ? '/hi' : ''}/exam-prep/exams/${pg}/`; a.textContent = W.pageLink; }
-      // bars
-      const inPlan = p.items.slice(0, p.n);
-      const by = new Map<number, { n: number; q: number }>();
-      for (const it of inPlan) { const b = by.get(it.s) ?? { n: 0, q: 0 }; b.n++; b.q += it.q; by.set(it.s, b); }
-      const rows = [...by.entries()].sort((a, b) => b[1].q - a[1].q);
-      const maxQ = Math.max(...rows.map(([, b]) => b.q), 0.01);
-      el.bars.replaceChildren(...rows.map(([s, b]) => {
-        const li = document.createElement('li');
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.innerHTML = '<span class="nm"></span><span class="track"><span class="fill"></span></span><span class="val"></span>';
-        btn.querySelector<HTMLElement>('.fill')!.style.width = `${Math.max(3, (b.q / maxQ) * 100).toFixed(1)}%`;
-        btn.querySelector('.nm')!.textContent = g.subjects[s][1];
-        btn.querySelector('.val')!.textContent = W.bar(b.n, b.q.toFixed(1));
-        btn.setAttribute('aria-pressed', String(el.subject.value === String(s)));
-        btn.addEventListener('click', () => {
-          el.subject.value = el.subject.value === String(s) ? '-1' : String(s);
-          syncUrl(); renderList();
-          el.bars.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === btn && el.subject.value !== '-1')));
-          document.getElementById('list')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-        li.append(btn);
-        return li;
-      }));
-      renderList();
-    }
+      function deadline(): Date | undefined {
+        if (el.date.value) return new Date(`${el.date.value}T10:00:00`);
+        const n = Number(el.left.value);
+        if (n > 0) return new Date(Date.now() + n * { days: 1, weeks: 7, months: 30.44 }[el.unit.value as 'days'] * 864e5);
+        return undefined;
+      }
 
-    function message(p: Plan) {
-      const e = p.exam;
-      const cov = Math.round(p.covered * 100);
-      const parts: string[] = [];
-      if (p.msLeft !== undefined && p.msLeft <= 0) {
-        parts.push(W.day0);
+      function syncUrl() {
+        const u = new URL(location.href);
+        const set = (k: string, v: string) => (v ? u.searchParams.set(k, v) : u.searchParams.delete(k));
+        set('exam', el.exam.value ? g.exams[Number(el.exam.value)].key + (g.exams[Number(el.exam.value)].key === 'GENERAL' ? `~${el.exam.value}` : '') : '');
+        set('date', el.date.value); set('left', el.left.value ? el.left.value + el.unit.value[0] : '');
+        set('h', el.hours.value !== '6' ? el.hours.value : ''); set('n', el.topn.value);
+        set('s', el.subject.value !== '-1' ? g.subjects[Number(el.subject.value)][0] : '');
+        history.replaceState(null, '', u);
+      }
+
+      function update() {
+        syncUrl();
+        if (!el.exam.value) { el.result.hidden = true; el.empty.hidden = false; return; }
+        plan = buildPlan(g, Number(el.exam.value), { deadline: deadline(), hours: Math.max(1, Number(el.hours.value) || 6), topN: Number(el.topn.value) || undefined });
+        el.empty.hidden = true;
+        el.result.hidden = false;
+        const p = plan;
+        // countdown
+        el.count.hidden = p.msLeft === undefined || p.msLeft <= 0;
+        tick();
+        // message
+        el.say.textContent = message(p);
+        // tiles
+        $('[data-t="n"]').textContent = fmt(p.n);
+        $('[data-t="cov"]').textContent = `${Math.round(p.covered * 100)}%`;
+        $('[data-t="pd"]').textContent = p.perDay ? p.perDay.toFixed(1) : '–';
+        $('[data-t="src"]').textContent = p.exam.papers
+          ? W.srcPapers(p.exam.papers, fmt(p.exam.questions), p.exam.years)
+          : p.exam.key === 'GENERAL' ? W.srcAll : W.srcSyl(p.exam.agency);
+        // link to the exam's own analysis page
+        const pl = $('[data-eg-page]');
+        const pg = (p.exam as { page?: string }).page;
+        pl.hidden = !pg;
+        if (pg) { const a = pl.querySelector('a')!; a.href = `${HI ? '/hi' : ''}/exam-prep/exams/${pg}/`; a.textContent = W.pageLink; }
+        // bars
+        const inPlan = p.items.slice(0, p.n);
+        const by = new Map<number, { n: number; q: number }>();
+        for (const it of inPlan) { const b = by.get(it.s) ?? { n: 0, q: 0 }; b.n++; b.q += it.q; by.set(it.s, b); }
+        const rows = [...by.entries()].sort((a, b) => b[1].q - a[1].q);
+        const maxQ = Math.max(...rows.map(([, b]) => b.q), 0.01);
+        el.bars.replaceChildren(...rows.map(([s, b]) => {
+          const li = document.createElement('li');
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.innerHTML = '<span class="nm"></span><span class="track"><span class="fill"></span></span><span class="val"></span>';
+          btn.querySelector<HTMLElement>('.fill')!.style.width = `${Math.max(3, (b.q / maxQ) * 100).toFixed(1)}%`;
+          btn.querySelector('.nm')!.textContent = g.subjects[s][1];
+          btn.querySelector('.val')!.textContent = W.bar(b.n, b.q.toFixed(1));
+          btn.setAttribute('aria-pressed', String(el.subject.value === String(s)));
+          btn.addEventListener('click', () => {
+            el.subject.value = el.subject.value === String(s) ? '-1' : String(s);
+            syncUrl(); renderList();
+            el.bars.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === btn && el.subject.value !== '-1')));
+            document.getElementById('list')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+          li.append(btn);
+          return li;
+        }));
+        renderList();
+      }
+
+      function message(p: Plan) {
+        const e = p.exam;
+        const cov = Math.round(p.covered * 100);
+        const parts: string[] = [];
+        if (p.msLeft !== undefined && p.msLeft <= 0) {
+          parts.push(W.day0);
+          return parts.join(' ');
+        }
+        if (e.key === 'GENERAL') parts.push(W.general(e.bank || e.agency));
+        else if (!e.papers) parts.push(W.noPapers(e.agency));
+        else if (e.papers < 3) parts.push(W.few(e.papers, e.agency));
+        if (p.cap !== undefined && p.cap < p.n85 && !Number(el.topn.value)) parts.push(W.tight(fmt(p.n), cov));
+        else if (p.days !== undefined && !Number(el.topn.value)) parts.push(W.room(fmt(p.n), cov));
+        else parts.push(W.plain(fmt(p.n), cov));
         return parts.join(' ');
       }
-      if (e.key === 'GENERAL') parts.push(W.general(e.bank || e.agency));
-      else if (!e.papers) parts.push(W.noPapers(e.agency));
-      else if (e.papers < 3) parts.push(W.few(e.papers, e.agency));
-      if (p.cap !== undefined && p.cap < p.n85 && !Number(el.topn.value)) parts.push(W.tight(fmt(p.n), cov));
-      else if (p.days !== undefined && !Number(el.topn.value)) parts.push(W.room(fmt(p.n), cov));
-      else parts.push(W.plain(fmt(p.n), cov));
-      return parts.join(' ');
-    }
 
-    function tick() {
-      if (!plan || plan.msLeft === undefined) return;
-      const ms = (deadline()?.getTime() ?? 0) - Date.now();
-      if (ms <= 0) return;
-      $('[data-c="d"]').textContent = fmt(Math.floor(ms / 864e5));
-      $('[data-c="h"]').textContent = String(Math.floor((ms % 864e5) / 36e5));
-      $('[data-c="m"]').textContent = String(Math.floor((ms % 36e5) / 6e4));
-    }
-    setInterval(tick, 30000);
-
-    function renderList() {
-      if (!plan) return;
-      const s = Number(el.subject.value);
-      const st = Number(el.stars.value);
-      const f = el.filter.value.trim().toLowerCase();
-      const pool = el.all.checked ? plan.items : plan.items.slice(0, plan.n);
-      visible = pool.filter((it) => (s < 0 || it.s === s) && it.stars >= st && (!f || `${it.t} ${it.major}`.toLowerCase().includes(f)));
-      el.shown.textContent = W.shown(fmt(visible.length), el.all.checked, fmt(plan.ranked), s >= 0 ? g.subjects[s][1] : '');
-      el.list.replaceChildren();
-      shown = 0;
-      if (!visible.length) {
-        const li = document.createElement('li');
-        li.className = 'none';
-        li.textContent = el.all.checked ? W.noneAll : W.noneList;
-        el.list.append(li);
+      function tick() {
+        if (!plan || plan.msLeft === undefined) return;
+        const ms = (deadline()?.getTime() ?? 0) - Date.now();
+        if (ms <= 0) return;
+        $('[data-c="d"]').textContent = fmt(Math.floor(ms / 864e5));
+        $('[data-c="h"]').textContent = String(Math.floor((ms % 864e5) / 36e5));
+        $('[data-c="m"]').textContent = String(Math.floor((ms % 36e5) / 6e4));
       }
-      more();
-    }
+      const ticker = setInterval(tick, 30000);
+      signal.addEventListener('abort', () => clearInterval(ticker));
 
-    function more() {
-      const next = visible.slice(shown, shown + 50);
-      el.list.append(...next.map((it) => {
-        const li = document.createElement('li');
-        li.className = it.rank > (plan?.n ?? 0) ? 'beyond' : '';
-        const a = document.createElement('a');
-        a.href = topicUrl(g, it.id, it.s);
-        a.innerHTML = `<span class="rk"></span><span class="mid"><span class="meta"></span><strong></strong><span class="maj"></span></span><span class="num"><span class="st"></span><span class="q"></span></span>`;
-        a.querySelector('.rk')!.textContent = String(it.rank);
-        a.querySelector('.meta')!.textContent = g.subjects[it.s][1] + (it.due ? W.by(dateFmt.format(it.due)) : '');
-        a.querySelector('strong')!.textContent = it.t;
-        a.querySelector('.maj')!.textContent = it.major ? W.inMajor(it.major) : W.whole;
-        if (HI && !/[\u0900-\u097F]/.test(it.t)) a.querySelector('strong')!.setAttribute('lang', 'en');
-        a.querySelector('.st')!.textContent = '★'.repeat(it.stars) + '☆'.repeat(5 - it.stars);
-        a.querySelector('.st')!.setAttribute('aria-label', W.imp(it.stars));
-        a.querySelector('.q')!.textContent = W.q(it.q.toFixed(2), it.here, it.last);
-        li.append(a);
-        return li;
-      }));
-      shown += next.length;
-      el.more.hidden = shown >= visible.length;
-    }
+      function renderList() {
+        if (!plan) return;
+        const s = Number(el.subject.value);
+        const st = Number(el.stars.value);
+        const f = el.filter.value.trim().toLowerCase();
+        const pool = el.all.checked ? plan.items : plan.items.slice(0, plan.n);
+        visible = pool.filter((it) => (s < 0 || it.s === s) && it.stars >= st && (!f || `${it.t} ${it.major}`.toLowerCase().includes(f)));
+        el.shown.textContent = W.shown(fmt(visible.length), el.all.checked, fmt(plan.ranked), s >= 0 ? g.subjects[s][1] : '');
+        el.list.replaceChildren();
+        shown = 0;
+        if (!visible.length) {
+          const li = document.createElement('li');
+          li.className = 'none';
+          li.textContent = el.all.checked ? W.noneAll : W.noneList;
+          el.list.append(li);
+        }
+        more();
+      }
 
-    // restore from the address (?exam=RAS-PRE&left=90d&h=5&s=history)
-    const sp = new URL(location.href).searchParams;
-    const ex = sp.get('exam');
-    if (sp.get('date')) el.date.value = sp.get('date')!;
-    const left = sp.get('left')?.match(/^(\d+)([dwm])$/);
-    if (left) { el.left.value = left[1]; el.unit.value = { d: 'days', w: 'weeks', m: 'months' }[left[2] as 'd']; }
-    if (sp.get('h')) el.hours.value = sp.get('h')!;
-    if (sp.get('n')) el.topn.value = sp.get('n')!;
-    const si = g.subjects.findIndex(([slug]) => slug === sp.get('s'));
-    if (si >= 0) el.subject.value = String(si);
-    if (ex) {
-      const [key, idx] = ex.split('~');
-      const i = idx ? Number(idx) : g.exams.findIndex((e) => e.key === key);
-      if (i >= 0 && g.exams[i]) selectExam(i);
-    }
+      function more() {
+        const next = visible.slice(shown, shown + 50);
+        el.list.append(...next.map((it) => {
+          const li = document.createElement('li');
+          li.className = it.rank > (plan?.n ?? 0) ? 'beyond' : '';
+          const a = document.createElement('a');
+          a.href = topicUrl(g, it.id, it.s);
+          a.innerHTML = `<span class="rk"></span><span class="mid"><span class="meta"></span><strong></strong><span class="maj"></span></span><span class="num"><span class="st"></span><span class="q"></span></span>`;
+          a.querySelector('.rk')!.textContent = String(it.rank);
+          a.querySelector('.meta')!.textContent = g.subjects[it.s][1] + (it.due ? W.by(dateFmt.format(it.due)) : '');
+          a.querySelector('strong')!.textContent = it.t;
+          a.querySelector('.maj')!.textContent = it.major ? W.inMajor(it.major) : W.whole;
+          if (HI && !/[\u0900-\u097F]/.test(it.t)) a.querySelector('strong')!.setAttribute('lang', 'en');
+          a.querySelector('.st')!.textContent = '★'.repeat(it.stars) + '☆'.repeat(5 - it.stars);
+          a.querySelector('.st')!.setAttribute('aria-label', W.imp(it.stars));
+          a.querySelector('.q')!.textContent = W.q(it.q.toFixed(2), it.here, it.last);
+          li.append(a);
+          return li;
+        }));
+        shown += next.length;
+        el.more.hidden = shown >= visible.length;
+      }
+
+      // restore from the address (?exam=RAS-PRE&left=90d&h=5&s=history)
+      const sp = new URL(location.href).searchParams;
+      const ex = sp.get('exam');
+      if (sp.get('date')) el.date.value = sp.get('date')!;
+      const left = sp.get('left')?.match(/^(\d+)([dwm])$/);
+      if (left) { el.left.value = left[1]; el.unit.value = { d: 'days', w: 'weeks', m: 'months' }[left[2] as 'd']; }
+      if (sp.get('h')) el.hours.value = sp.get('h')!;
+      if (sp.get('n')) el.topn.value = sp.get('n')!;
+      const si = g.subjects.findIndex(([slug]) => slug === sp.get('s'));
+      if (si >= 0) el.subject.value = String(si);
+      if (ex) {
+        const [key, idx] = ex.split('~');
+        const i = idx ? Number(idx) : g.exams.findIndex((e) => e.key === key);
+        if (i >= 0 && g.exams[i]) selectExam(i);
+      }
+    });
   });
 </script>
 

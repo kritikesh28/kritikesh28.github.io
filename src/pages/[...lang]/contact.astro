@@ -111,58 +111,62 @@ const words = { sending: T.sending, failed: T.failed, subject: T.subject, explai
 </Base>
 
 <script>
-  const form = document.querySelector<HTMLFormElement>('#contact');
-  if (form) {
-    const hint = form.querySelector<HTMLElement>('.hint');
-    const status = form.querySelector<HTMLElement>('.status');
-    const subject = form.querySelector<HTMLInputElement>('[name=_subject]')!;
-    const radios = [...form.querySelectorAll<HTMLInputElement>('[name=intent]')];
-    const words = JSON.parse(form.dataset.words ?? '{}');
+  import { onPage } from '../../scripts/page';
+  // runs on every page (pages change without reloading: see src/scripts/page.ts)
+  onPage((signal) => {
+    const form = document.querySelector<HTMLFormElement>('#contact');
+    if (form) {
+      const hint = form.querySelector<HTMLElement>('.hint');
+      const status = form.querySelector<HTMLElement>('.status');
+      const subject = form.querySelector<HTMLInputElement>('[name=_subject]')!;
+      const radios = [...form.querySelectorAll<HTMLInputElement>('[name=intent]')];
+      const words = JSON.parse(form.dataset.words ?? '{}');
 
-    // Where did this visitor come from? (e.g. ?utm_source=linkedin), remembered for this visit only
-    let source = '';
-    try {
-      const p = new URLSearchParams(location.search);
-      source = p.get('utm_source') || sessionStorage.getItem('source') || '';
-      if (!source && document.referrer && !document.referrer.startsWith(location.origin)) source = new URL(document.referrer).hostname;
-      if (source) sessionStorage.setItem('source', source);
-    } catch {}
-    form.querySelector<HTMLInputElement>('[name=source]')!.value = source || 'direct';
-
-    const pick = (id: string) => {
-      const r = radios.find((x) => x.value === id) ?? radios[0];
-      r.checked = true;
-      if (hint) hint.textContent = r.dataset.hint ?? '';
-      subject.value = `${words.subject}: ${r.parentElement?.textContent?.trim()}`;
-    };
-    radios.forEach((r) => r.addEventListener('change', () => pick(r.value)));
-    pick(new URLSearchParams(location.search).get('intent') ?? 'hiring');
-    // From the library search: ?intent=learning&topic=... prefills the question
-    const topic = new URLSearchParams(location.search).get('topic');
-    const message = form.querySelector<HTMLTextAreaElement>('[name=message]');
-    if (topic && message && !message.value) message.value = `${words.explain} ${topic.slice(0, 200)}`;
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if ((form.elements.namedItem('_gotcha') as HTMLInputElement).value) return;
-      const data = new FormData(form);
-      const endpoint = form.dataset.endpoint;
-      if (!endpoint) {
-        const body = `${data.get('message')}\n\n${data.get('name')}\n${data.get('organisation') || ''}\n(via website, ${data.get('intent')}, source: ${data.get('source')})`;
-        location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(String(data.get('_subject')))}&body=${encodeURIComponent(body)}`;
-        return;
-      }
-      if (status) status.textContent = words.sending;
+      // Where did this visitor come from? (e.g. ?utm_source=linkedin), remembered for this visit only
+      let source = '';
       try {
-        const res = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
-        if (!res.ok) throw new Error(String(res.status));
-        form.hidden = true;
-        document.querySelector<HTMLElement>('.done')!.hidden = false;
-      } catch {
-        if (status) status.textContent = words.failed;
-      }
-    });
-  }
+        const p = new URLSearchParams(location.search);
+        source = p.get('utm_source') || sessionStorage.getItem('source') || '';
+        if (!source && document.referrer && !document.referrer.startsWith(location.origin)) source = new URL(document.referrer).hostname;
+        if (source) sessionStorage.setItem('source', source);
+      } catch {}
+      form.querySelector<HTMLInputElement>('[name=source]')!.value = source || 'direct';
+
+      const pick = (id: string) => {
+        const r = radios.find((x) => x.value === id) ?? radios[0];
+        r.checked = true;
+        if (hint) hint.textContent = r.dataset.hint ?? '';
+        subject.value = `${words.subject}: ${r.parentElement?.textContent?.trim()}`;
+      };
+      radios.forEach((r) => r.addEventListener('change', () => pick(r.value)));
+      pick(new URLSearchParams(location.search).get('intent') ?? 'hiring');
+      // From the library search: ?intent=learning&topic=... prefills the question
+      const topic = new URLSearchParams(location.search).get('topic');
+      const message = form.querySelector<HTMLTextAreaElement>('[name=message]');
+      if (topic && message && !message.value) message.value = `${words.explain} ${topic.slice(0, 200)}`;
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if ((form.elements.namedItem('_gotcha') as HTMLInputElement).value) return;
+        const data = new FormData(form);
+        const endpoint = form.dataset.endpoint;
+        if (!endpoint) {
+          const body = `${data.get('message')}\n\n${data.get('name')}\n${data.get('organisation') || ''}\n(via website, ${data.get('intent')}, source: ${data.get('source')})`;
+          location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(String(data.get('_subject')))}&body=${encodeURIComponent(body)}`;
+          return;
+        }
+        if (status) status.textContent = words.sending;
+        try {
+          const res = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+          if (!res.ok) throw new Error(String(res.status));
+          form.hidden = true;
+          document.querySelector<HTMLElement>('.done')!.hidden = false;
+        } catch {
+          if (status) status.textContent = words.failed;
+        }
+      });
+    }
+  });
 </script>
 
 <style>

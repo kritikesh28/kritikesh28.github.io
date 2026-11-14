@@ -137,7 +137,9 @@ const desc = head.d ? head.d.slice(0, 150) : P.descFallback;
 </ExamLayout>
 
 <script>
+  import { onPage } from '../../../../../scripts/page';
   // Open the folded group that holds a linked point (#com-12-3-4) and show it
+  onPage((signal) => {
   const open = () => {
     const el = location.hash && document.getElementById(location.hash.slice(1));
     if (!el) return;
@@ -147,7 +149,8 @@ const desc = head.d ? head.d.slice(0, 150) : P.descFallback;
     el.scrollIntoView({ block: 'center' });
   };
   open();
-  addEventListener('hashchange', open);
+  addEventListener('hashchange', open, { signal });
+  });
 </script>
 
 <style>

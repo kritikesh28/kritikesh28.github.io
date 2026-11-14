@@ -167,8 +167,8 @@ if (answer) schema.push({ '@type': 'FAQPage', mainEntity: [{ '@type': 'Question'
 
 <script>
   import { paintProgress, watchLeafEnds } from '../../../../scripts/library-progress';
-  paintProgress();
-  watchLeafEnds();
+  import { onPage } from '../../../../scripts/page';
+  onPage(() => { paintProgress(); watchLeafEnds(); });
 </script>
 
 <style>

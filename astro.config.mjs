@@ -13,6 +13,10 @@ const hiddenExamPages = JSON.parse(readFileSync(new URL('./src/data/exam-prep/ex
 export default defineConfig({
   site: 'https://curioussparoows.com',
   integrations: [sitemap({ i18n: { defaultLocale: 'en', locales: { en: 'en', hi: 'hi' } }, filter: (page) => !page.includes('/thanks/') && !page.endsWith('/all/') && !page.includes('/blog/') && !hiddenExamPages.some((p) => page.endsWith(p)) })],
+  // Every script and stylesheet is a separate file (none written into the page), so the security policy below can stay the same
+  // on every page: pages change without reloading (ClientRouter, for the continuous sound), and the policy of the first page then covers them all.
+  build: { inlineStylesheets: 'never' },
+  vite: { build: { assetsInlineLimit: 0 } },
   security: {
     // Content Security Policy: the browser only runs scripts and loads content from the sources listed here.
     csp: {

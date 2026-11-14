@@ -100,23 +100,27 @@ const where = shelf ? shelfTitle(SHELVES.find((s) => s.slug === shelf)!, lang) :
 </Base>
 
 <script>
-  const btn = document.querySelector<HTMLButtonElement>('[data-lx-menu]');
-  const side = document.getElementById('lx-side');
-  const scrim = document.querySelector<HTMLElement>('[data-lx-scrim]');
-  const setOpen = (open: boolean) => {
-    if (!btn || !side || !scrim) return;
-    btn.setAttribute('aria-expanded', String(open));
-    side.classList.toggle('open', open);
-    scrim.hidden = !open;
-    document.body.classList.toggle('ex-lock', open);
-  };
-  btn?.addEventListener('click', () => setOpen(btn.getAttribute('aria-expanded') !== 'true'));
-  scrim?.addEventListener('click', () => setOpen(false));
-  side?.addEventListener('click', (e) => { if ((e.target as HTMLElement).closest('a')) setOpen(false); });
-  addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false));
-  // keep the current item in view inside the sidebar
-  const here = side?.querySelector<HTMLElement>('.side-fields [aria-current="page"], .side-fields .here, .side-shelves [aria-current="page"]');
-  if (here && side && matchMedia('(min-width: 961px)').matches) side.scrollTop = here.offsetTop - side.clientHeight / 2;
+  import { onPage } from '../scripts/page';
+  // runs on every page (pages change without reloading: see src/scripts/page.ts)
+  onPage((signal) => {
+    const btn = document.querySelector<HTMLButtonElement>('[data-lx-menu]');
+    const side = document.getElementById('lx-side');
+    const scrim = document.querySelector<HTMLElement>('[data-lx-scrim]');
+    const setOpen = (open: boolean) => {
+      if (!btn || !side || !scrim) return;
+      btn.setAttribute('aria-expanded', String(open));
+      side.classList.toggle('open', open);
+      scrim.hidden = !open;
+      document.body.classList.toggle('ex-lock', open);
+    };
+    btn?.addEventListener('click', () => setOpen(btn.getAttribute('aria-expanded') !== 'true'));
+    scrim?.addEventListener('click', () => setOpen(false));
+    side?.addEventListener('click', (e) => { if ((e.target as HTMLElement).closest('a')) setOpen(false); });
+    addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false), { signal });
+    // keep the current item in view inside the sidebar
+    const here = side?.querySelector<HTMLElement>('.side-fields [aria-current="page"], .side-fields .here, .side-shelves [aria-current="page"]');
+    if (here && side && matchMedia('(min-width: 961px)').matches) side.scrollTop = here.offsetTop - side.clientHeight / 2;
+  });
 </script>
 
 <style>

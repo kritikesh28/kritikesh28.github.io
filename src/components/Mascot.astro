@@ -60,31 +60,36 @@ import { CURIOUS_FACTS } from '../site.config';
 </style>
 
 <script>
-  const box = document.querySelector<HTMLElement>('.mascot');
-  if (box) {
-    let hidden = false;
-    try { hidden = localStorage.getItem('sparrows') === 'away'; } catch {}
-    if (hidden) box.classList.add('gone');
-    const facts: string[] = JSON.parse(box.dataset.facts ?? '[]');
-    const bubble = box.querySelector<HTMLElement>('.bubble')!;
-    let i = Math.floor(Math.random() * facts.length);
-    let timer: number | undefined;
-    box.querySelector('.perch')?.addEventListener('click', () => {
-      i = (i + 1) % facts.length;
-      bubble.textContent = facts[i];
-      bubble.hidden = false;
-      bubble.style.animation = 'none';
-      void bubble.offsetWidth;
-      bubble.style.animation = '';
-      box.classList.remove('hop');
-      void box.offsetWidth;
-      box.classList.add('hop');
-      clearTimeout(timer);
-      timer = window.setTimeout(() => { bubble.hidden = true; }, 7000);
-    });
-    box.querySelector('.shoo')?.addEventListener('click', () => {
-      box.classList.add('gone');
-      try { localStorage.setItem('sparrows', 'away'); } catch {}
-    });
-  }
+  import { onPage } from '../scripts/page';
+  // runs on every page (pages change without reloading: see src/scripts/page.ts)
+  onPage((signal) => {
+    const box = document.querySelector<HTMLElement>('.mascot');
+    if (box) {
+      let hidden = false;
+      try { hidden = localStorage.getItem('sparrows') === 'away'; } catch {}
+      if (hidden) box.classList.add('gone');
+      const facts: string[] = JSON.parse(box.dataset.facts ?? '[]');
+      const bubble = box.querySelector<HTMLElement>('.bubble')!;
+      let i = Math.floor(Math.random() * facts.length);
+      let timer: number | undefined;
+      box.querySelector('.perch')?.addEventListener('click', () => {
+        i = (i + 1) % facts.length;
+        bubble.textContent = facts[i];
+        bubble.hidden = false;
+        bubble.style.animation = 'none';
+        void bubble.offsetWidth;
+        bubble.style.animation = '';
+        box.classList.remove('hop');
+        void box.offsetWidth;
+        box.classList.add('hop');
+        clearTimeout(timer);
+        timer = window.setTimeout(() => { bubble.hidden = true; }, 7000);
+      });
+      signal.addEventListener('abort', () => clearTimeout(timer));
+      box.querySelector('.shoo')?.addEventListener('click', () => {
+        box.classList.add('gone');
+        try { localStorage.setItem('sparrows', 'away'); } catch {}
+      });
+    }
+  });
 </script>

@@ -1,7 +1,8 @@
 // The drop-down menus of the top bar (Library, Exam Prep, Portfolio, About, Contact).
 // Each [data-mega-btn] opens the panel named in its aria-controls. Only one is open at a time.
 // Mouse: opens on hover after a short pause. Touch and keyboard: tap or Enter on the small arrow. Esc closes.
-export function initMegas() {
+// Runs on every page (the top bar is new on each page); signal ends when the visitor leaves it (see ./page.ts)
+export function initMegas(signal?: AbortSignal) {
   const btns = [...document.querySelectorAll<HTMLButtonElement>('[data-mega-btn]')];
   const pairs = btns
     .map((btn) => ({ btn, mega: document.getElementById(btn.getAttribute('aria-controls') ?? ''), item: btn.closest('li') }))
@@ -26,10 +27,10 @@ export function initMegas() {
       p.mega.addEventListener('pointerleave', () => { clearTimeout(timer); timer = window.setTimeout(() => set(null), 260); });
     }
   });
-  document.addEventListener('click', (e) => { if (!pairs.some((p) => p.mega.contains(e.target as Node))) set(null); });
+  document.addEventListener('click', (e) => { if (!pairs.some((p) => p.mega.contains(e.target as Node))) set(null); }, { signal });
   addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
     const open = pairs.find((p) => !p.mega.hidden);
     if (open) { set(null); open.btn.focus(); }
-  });
+  }, { signal });
 }
