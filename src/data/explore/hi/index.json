@@ -66,6 +66,67 @@
   ]
  },
  {
+  "slug": "musical-instruments",
+  "code": "INS",
+  "short": "वाद्य",
+  "shelf": "stories",
+  "order": 3,
+  "title": "वाद्य यंत्र",
+  "subtitle": "इंसान ने लकड़ी, खाल, धातु और हवा को गाना कैसे सिखाया",
+  "edition": "संस्करण 1 · 14 नवंबर 2026",
+  "color1": "#7A3E10",
+  "color2": "#1E7A6E",
+  "light": "#F7F1E8",
+  "question": "इंसान ने लकड़ी, खाल, धातु और हवा को गाना कैसे सिखाया?",
+  "entries": 511,
+  "words": 18618,
+  "sections": 47,
+  "cover": null,
+  "url": "/library/musical-instruments/",
+  "leaves": [
+   {
+    "id": "INS-00.01",
+    "title": "अब तक मिला सबसे पुराना वाद्य कौन-सा है?",
+    "url": "/library/musical-instruments/ins-00-01-what-is-the-oldest-instrument-ever-found/"
+   },
+   {
+    "id": "INS-00.02",
+    "title": "गिटार का तार स्वर बनाता ही क्यों है?",
+    "url": "/library/musical-instruments/ins-00-02-why-does-a-guitar-string-make-a-note-at-all/"
+   },
+   {
+    "id": "INS-00.03",
+    "title": "एक ही स्वर पर बाँसुरी और वायलिन अलग क्यों सुनाई देते हैं?",
+    "url": "/library/musical-instruments/ins-00-03-why-do-a-flute-and-a-violin-sound-different-on/"
+   },
+   {
+    "id": "INS-00.04",
+    "title": "भारत ने 2,000 साल पहले वाद्यों का वर्गीकरण कैसे किया?",
+    "url": "/library/musical-instruments/ins-00-04-how-did-india-classify-instruments-2-000-years/"
+   },
+   {
+    "id": "INS-00.05",
+    "title": "सितार झनझनाता क्यों है?",
+    "url": "/library/musical-instruments/ins-00-05-why-does-a-sitar-buzz/"
+   },
+   {
+    "id": "INS-00.06",
+    "title": "बिजली ने वाद्यों को कैसे बदला?",
+    "url": "/library/musical-instruments/ins-00-06-how-did-electricity-change-instruments/"
+   },
+   {
+    "id": "INS-00.07",
+    "title": "पहले कौन-सा वाद्य सीखें?",
+    "url": "/library/musical-instruments/ins-00-07-which-instrument-should-you-learn-first/"
+   },
+   {
+    "id": "INS-00.08",
+    "title": "दोहराव: वाद्यों की कहानी एक पन्ने में",
+    "url": "/library/musical-instruments/ins-00-08-recap-the-story-of-instruments-in-one-page/"
+   }
+  ]
+ },
+ {
   "slug": "cooking",
   "code": "COK",
   "short": "खाना पकाना",
