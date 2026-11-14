@@ -89,6 +89,8 @@ Every page is then built in the new language at `/ta/...`, the switcher shows it
 ## 5. What stays English for now
 
 - **Deeper Exam Prep topic lines.** Every Exam Prep page, the Exam Mentor (परीक्षा मार्गदर्शक), search, all 15 subjects, every major topic and the most-asked topics are in Hindi. The deeper lines (about 30,000) are still English and show in English on Hindi pages until their batch is done (see part 6).
+- **The 12 Encyclopedic Index shelves** (`/library/<shelf>/`, about 130,000 words) and the `/library/map/` discipline pages are English only for now. The Hindi Library already shows the 46 disciplines and all 336 branch names in Hindi (`src/data/library/branches.hi.json`, keyed by branch code; used through `branchName()` in `src/library-map.ts`). The shelves will be translated one at a time, starting with their Part 0 question pages.
+- Exam paper names on `how-it-works` are shown in Hindi on the Hindi page through two small maps in that file (`EXN_HI`, `PAPER_HI`).
 - The contact form sends the visitor's language with each message, so you know which language to reply in.
 
 ## 6. Exam Prep translations

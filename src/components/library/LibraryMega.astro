@@ -1,7 +1,7 @@
 ---
 // The Library menu in the top bar of every page: 8 themes > 46 disciplines > their main branches.
 // Data: src/library-map.ts (from The Universal Index of Human Knowledge). Guide: docs/17-library-map.md
-import { THEMES, BOOK, getField, fieldName, fieldUrl, shelvesIn, shelfTitle, themeName } from '../../library-map';
+import { THEMES, BOOK, getField, fieldName, fieldUrl, shelvesIn, shelfTitle, themeName, branchName } from '../../library-map';
 import { langFromUrl, localizePath, pick } from '../../i18n/config';
 
 const lang = langFromUrl(Astro.url);
@@ -44,7 +44,7 @@ const themes = THEMES.map((th) => ({
                   )}
                   {lang === 'en' && (
                     <span class="mg-br">
-                      {f.branches.slice(0, 4).map((b) => <a href={`${f.url}#${b.code}`}>{b.name}</a>)}
+                      {f.branches.slice(0, 4).map((b) => <a href={`${f.url}#${b.code}`}>{branchName(b, lang)}</a>)}
                       {f.branches.length > 4 && <a class="mg-more" href={f.url}>{T.more(f.branches.length - 4)}</a>}
                     </span>
                   )}

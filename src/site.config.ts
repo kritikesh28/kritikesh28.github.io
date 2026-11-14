@@ -44,10 +44,10 @@ export const NAV = [
 // Curious Sparoows brand pages. Paste each full address between the quotes; an empty one stays hidden everywhere.
 // They show in the footer, the Contact page, the About menu and the Portfolio side bar.
 export const BRAND_SOCIALS = [
-  { label: 'Instagram', href: '' },
-  { label: 'Facebook', href: '' },
-  { label: 'X (Twitter)', href: '' },
-  { label: 'YouTube', href: '' },
+  { label: 'Instagram', href: 'https://www.instagram.com/curioussparoows/' },
+  { label: 'Facebook', href: 'https://www.facebook.com/kritikesh.rajpurohit' },
+  { label: 'X (Twitter)', href: 'https://x.com/CuriousSparoow' },
+  { label: 'YouTube', href: 'https://www.youtube.com/@curioussparoows' },
 ];
 
 // Kritikesh's professional profiles

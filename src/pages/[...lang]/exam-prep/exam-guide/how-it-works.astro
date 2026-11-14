@@ -10,6 +10,31 @@ const lang = langFromUrl(Astro.url);
 const { BASE, GUIDE, CI } = paths(lang);
 
 const { papers, missing } = papersJson as { papers: [string, string, number, string, string, number][]; missing: [string, string, number, string][] };
+// Hindi names of the exams in the papers table (official English names stay on the English page)
+const EXN_HI: Record<string, string> = {
+  'Animal Attendant (Pashu Parichar)': 'पशु परिचर', 'Assistant Agriculture Officer': 'सहायक कृषि अधिकारी',
+  'Assistant Engineer (AEN) Comb. Comp. Exam': 'सहायक अभियंता (AEN) संयुक्त प्रतियोगी परीक्षा', 'Assistant Prosecution Officer (APO)': 'सहायक अभियोजन अधिकारी (APO)',
+  'Assistant Public Relations Officer (APRO)': 'सहायक जनसंपर्क अधिकारी (APRO)', 'Asst. Conservator of Forest and Forest Range Officer': 'सहायक वन संरक्षक और वनक्षेत्रपाल (ACF, RFO)',
+  'CET Graduate Level': 'CET स्नातक स्तर', 'CET Senior Secondary (12th) Level': 'CET सीनियर सेकेंडरी (12वीं) स्तर', 'Class IV Employees (4th Grade)': 'चतुर्थ श्रेणी कर्मचारी',
+  'Clerk Grade II / LDC Comb. Comp. Exam': 'लिपिक ग्रेड II / LDC संयुक्त प्रतियोगी परीक्षा', 'Forester and Forest Guard': 'वनपाल और वनरक्षक',
+  'Hostel Superintendent Grade II (SJED)': 'छात्रावास अधीक्षक ग्रेड II (SJED)', 'Jail Prahari': 'जेल प्रहरी', 'Motor Vehicle Sub Inspector': 'मोटर वाहन उप-निरीक्षक',
+  'Motor Vehicle Sub Inspector (RSSB)': 'मोटर वाहन उप-निरीक्षक (RSSB)', 'NHM Contractual Posts': 'NHM संविदा पद', 'Patwari': 'पटवारी',
+  'RAS/RTS Combined Competitive Exam (Mains)': 'RAS/RTS संयुक्त प्रतियोगी परीक्षा (मुख्य)', 'RAS/RTS Combined Competitive Exam (Pre)': 'RAS/RTS संयुक्त प्रतियोगी परीक्षा (प्रारंभिक)',
+  'Rajasthan State Eligibility Test (RSET)': 'राजस्थान राज्य पात्रता परीक्षा (RSET)', 'School Lecturer (School Education)': 'स्कूल व्याख्याता (स्कूल शिक्षा)',
+  'School Lecturer (Special Education)': 'स्कूल व्याख्याता (विशेष शिक्षा)', 'Senior Teacher Grade II (Secondary Education)': 'वरिष्ठ अध्यापक ग्रेड II (माध्यमिक शिक्षा)',
+  'Stenographer Comp. Exam': 'आशुलिपिक प्रतियोगी परीक्षा', 'Sub Inspector / Platoon Commander Comb. Comp. Exam': 'उप-निरीक्षक / प्लाटून कमांडर संयुक्त प्रतियोगी परीक्षा',
+  'Surveyor and Mine Foreman (Class II)': 'सर्वेयर और माइन फ़ोरमैन (द्वितीय श्रेणी)', 'Village Development Officer (VDO)': 'ग्राम विकास अधिकारी (VDO)',
+};
+// Paper labels: the common words in Hindi, dates and booklet codes left as they are
+const PAPER_HI: [RegExp, string][] = [
+  [/Revised scheme and syllabus/i, 'संशोधित योजना और सिलेबस'], [/Mains scheme and syllabus/i, 'मुख्य परीक्षा की योजना और सिलेबस'], [/Scheme (and|&) Syllabus/i, 'योजना और सिलेबस'],
+  [/Question paper/, 'प्रश्न-पत्र'], [/General Knowledge/, 'सामान्य ज्ञान'], [/General Awareness/, 'सामान्य जागरूकता'], [/General Science/, 'सामान्य विज्ञान'],
+  [/General Hindi/, 'सामान्य हिंदी'], [/General English/, 'सामान्य अंग्रेज़ी'], [/Gen\. Hindi/, 'सामान्य हिंदी'], [/GK of Rajasthan, Society, Art and Culture/, 'राजस्थान का सामान्य ज्ञान, समाज, कला और संस्कृति'],
+  [/\(Compulsory\)/, '(अनिवार्य)'], [/\bMains\b/, 'मुख्य'], [/\bPre\b/g, 'प्रारंभिक'], [/\(Mains\)/, '(मुख्य)'], [/\bPaper\b/, 'पेपर'], [/\bBooklet\b/, 'बुकलेट'],
+  [/\bMaths\b/, 'गणित'], [/\bScience\b/, 'विज्ञान'], [/\bLanguage\b/, 'भाषा'], [/\bHindi\b/g, 'हिंदी'], [/\bEnglish\b/g, 'अंग्रेज़ी'], [/\band\b/g, 'और'], [/\bGroup\b/g, 'ग्रुप'],
+];
+const exName = (x: string) => (lang === 'hi' ? EXN_HI[x] ?? x : x);
+const paperName = (x: string) => (lang === 'hi' ? PAPER_HI.reduce((s, [re, h]) => s.replace(re, h), x) : x);
 const sorted = [...papers].sort((a, b) => a[0].localeCompare(b[0]) || a[1].localeCompare(b[1]) || a[2] - b[2]);
 const qaEn: [string, string][] = [
   ['Where does the list come from?', `From ${STATS.papers} RPSC and RSSB question papers and ${STATS.syllabi} official syllabi. Each scanned paper was read by machine in Hindi and English, every question was matched to a topic in the <a href="${CI}/">Curriculum Index</a>, and the matches were counted. ${fmt(STATS.questions)} questions were matched in all.`],
@@ -66,7 +91,7 @@ const P = pick({
       <tbody>
         {sorted.map(([ag, ex, yr, paper, type, n]) => (
           <tr class:list={[{ syl: type !== 'pyq' }]}>
-            <td>{ag}</td><td>{ex}</td><td>{yr}</td><td>{paper}{type !== 'pyq' && <span class="tag">{P.syl}</span>}</td><td class="r">{type === 'pyq' ? n : '–'}</td>
+            <td>{ag}</td><td>{exName(ex)}</td><td>{yr}</td><td>{paperName(paper)}{type !== 'pyq' && <span class="tag">{P.syl}</span>}</td><td class="r">{type === 'pyq' ? n : '–'}</td>
           </tr>
         ))}
       </tbody>
