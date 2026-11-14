@@ -1,5 +1,71 @@
 [
  {
+  "slug": "music",
+  "code": "MUS",
+  "short": "संगीत",
+  "shelf": "stories",
+  "order": 2,
+  "title": "संगीत",
+  "subtitle": "हड्डी की बाँसुरी से स्ट्रीमिंग तक, दुनिया के संगीत का पूरा नक्शा",
+  "edition": "संस्करण 1 · 14 नवंबर 2026",
+  "color1": "#4B2C6F",
+  "color2": "#C2185B",
+  "light": "#F5EFF8",
+  "question": "काँपती हवा का एक ढर्रा आपको रुलाता, नचाता या प्रार्थना में क्यों झुका देता है?",
+  "entries": 398,
+  "words": 14138,
+  "sections": 41,
+  "cover": null,
+  "url": "/library/music/",
+  "leaves": [
+   {
+    "id": "MUS-00.01",
+    "title": "पहला संगीत कौन-सा था?",
+    "url": "/library/music/mus-00-01-what-was-the-first-music/"
+   },
+   {
+    "id": "MUS-00.02",
+    "title": "क्या संगीत भाषा से पुराना है?",
+    "url": "/library/music/mus-00-02-is-music-older-than-language/"
+   },
+   {
+    "id": "MUS-00.03",
+    "title": "राग दिन के समय के साथ क्यों बदलता है?",
+    "url": "/library/music/mus-00-03-why-does-a-raga-change-with-the-time-of-day/"
+   },
+   {
+    "id": "MUS-00.04",
+    "title": "कुछ सुर ख़ुश और कुछ उदास क्यों लगते हैं?",
+    "url": "/library/music/mus-00-04-why-do-some-notes-sound-happy-and-others-sad/"
+   },
+   {
+    "id": "MUS-00.05",
+    "title": "संगीत एक डिब्बे में क़ैद कैसे हुआ?",
+    "url": "/library/music/mus-00-05-how-did-music-get-trapped-in-a-box/"
+   },
+   {
+    "id": "MUS-00.06",
+    "title": "कोई गीत दिमाग़ में अटक क्यों जाता है?",
+    "url": "/library/music/mus-00-06-why-does-a-song-get-stuck-in-your-head/"
+   },
+   {
+    "id": "MUS-00.07",
+    "title": "अब पूरी दुनिया एक पॉप चार्ट कैसे साझा करती है?",
+    "url": "/library/music/mus-00-07-how-does-the-world-share-one-pop-chart-now/"
+   },
+   {
+    "id": "MUS-00.08",
+    "title": "क्या AI ऐसा संगीत बना सकता है जो हमें छू जाए?",
+    "url": "/library/music/mus-00-08-can-ai-make-music-that-moves-us/"
+   },
+   {
+    "id": "MUS-00.09",
+    "title": "दोहराव: संगीत की कहानी एक पन्ने में",
+    "url": "/library/music/mus-00-09-recap-the-story-of-music-in-one-page/"
+   }
+  ]
+ },
+ {
   "slug": "cooking",
   "code": "COK",
   "short": "खाना पकाना",
