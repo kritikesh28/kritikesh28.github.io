@@ -39,7 +39,7 @@ Projects are grouped by what they do rather than by programming language, becaus
 
 ## 3. Social links
 
-`BRAND_SOCIALS` in `src/site.config.ts` holds the Curious Sparoows Instagram, Facebook, X (Twitter) and YouTube addresses. An empty address stays hidden. Once filled, each one appears in the footer, on the Contact page, on the About page, in the About and Contact menus, and in the Portfolio side bar. `SOCIALS` (LinkedIn, GitHub, Hugging Face) are Kritikesh's own profiles.
+`BRAND_SOCIALS` in `src/site.config.ts` holds the Curious Sparoows Instagram, Facebook, X (Twitter) and YouTube addresses. An empty address stays hidden. Once filled, each one appears in the footer, on the Contact page, on the About page, in the About and Contact menus, and in the Portfolio side bar. `SOCIALS` (LinkedIn, GitHub, Hugging Face) are Kritikesh's own profiles. All four were filled on 14 Nov 2026 (Facebook points to Kritikesh's personal profile, as he asked). The Exam Prep menu has an "All exams of India" column fed by `src/data/exam-catalogue.ts` (see [14](14-exam-prep.md)).
 
 ## 4. The home page
 

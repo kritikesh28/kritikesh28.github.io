@@ -38,10 +38,17 @@ The website never reads Google directly. When a sheet changes, the website only 
 | One major topic (Level 1) with everything inside | /exam-prep/curriculum-index/SUBJECT/ID/ | same | `.../curriculum-index/[subject]/[major].astro` |
 | Exam Mentor (pick exam and time, get ranked topics) | /exam-prep/exam-guide/ (old address kept on purpose, see the note below) | Exam Guide sheet and export.json | `src/pages/[...lang]/exam-prep/exam-guide/index.astro` + `src/scripts/exam-guide.ts` |
 | How the ranking works, papers analysed | /exam-prep/exam-guide/how-it-works/ | same | `.../exam-guide/how-it-works.astro` |
-| All exams | /exam-prep/exams/ | export.json | `src/pages/[...lang]/exam-prep/exams/index.astro` |
+| All exams of India (UPSC, SSC, banking, railways, NTA, CAT, defence, teaching, states) | /exam-prep/all-exams/ | `src/data/exam-catalogue.ts` | `src/pages/[...lang]/exam-prep/all-exams.astro` |
+| RPSC and RSSB exams (anchors `#rpsc`, `#rssb`) | /exam-prep/exams/ | export.json | `src/pages/[...lang]/exam-prep/exams/index.astro` |
 | One exam (for example RSSB Patwari) | /exam-prep/exams/rssb-patwari/ | same | `src/pages/[...lang]/exam-prep/exams/[exam].astro` |
 
 **Name vs address (3 November 2026).** The planner tool is called **Exam Mentor** in English and **परीक्षा मार्गदर्शक** in Hindi on every page. Its address stays `/exam-prep/exam-guide/` because links to it were already shared on LinkedIn and Instagram; changing it would break them. The Google Sheet behind it is still named "Exam Guide", so the docs call it "the Exam Guide sheet". If the address is ever renamed, add redirects from every old `/exam-guide/` page first.
+
+### All exams of India (added 14 Nov 2026)
+
+`src/data/exam-catalogue.ts` lists 62 major government and entrance exams in 10 groups, by who conducts them: UPSC, SSC, banking and insurance (RBI, SEBI, NABARD, SBI, IBPS, LIC), railways (RRB, RPF), NTA (UGC-NET, CSIR-NET, NEET, JEE, CUET, NCET), CAT and postgraduate entrances (CAT, GATE, XAT, CMAT, JAM), defence, teaching, Rajasthan (RPSC and RSSB, the only group marked `live`) and other state commissions. Inside each group the order runs from the highest post down to entry level. Each exam has an English and Hindi name and a one-line note.
+
+It feeds five places: the `/exam-prep/all-exams/` page, the exam picker at the top of `/exam-prep/`, the "All exams of India" column of the Exam Prep menu, the sidebar link in `ExamLayout.astro`, and site search (one entry per exam). To add an exam, add one line to its group. When a group gets its own past-paper rankings, set `live: true` and give its exams an `href`.
 
 Pages in square brackets (`[subject]`, `[major]`, `[exam]`) are templates: one file makes hundreds of pages, one per subject, topic or exam in the data. About 950 pages in all.
 

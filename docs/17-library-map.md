@@ -23,6 +23,7 @@ The whole tree is at `/library/map/`. The six older trees of long reads (AI & ML
 | --- | --- |
 | `tools/library-index/source/universal-index.md` | The Index book as text (**the master**) |
 | `tools/library-index/build_taxonomy.py` | Turns it into `src/data/library/taxonomy.json`. Never edit the JSON by hand |
+| `src/data/library/branches.hi.json` | Hindi names of the 336 branches (keyed by code, e.g. `PPS.01`). If a new edition adds a branch, add its Hindi name here; until then the English name shows |
 | `src/library-map.ts` | Short names and Hindi names of the 46 disciplines, the 8 themes and their colours, **where each shelf sits** (`PLACE`) and planned topics (`PLANNED`) |
 | `src/components/library/LibraryMega.astro` | The big Library menu in the top bar of every page (the other menus: [18](18-portfolio-and-menus.md)) |
 | `src/layouts/LibraryLayout.astro` | The left sidebar (themes › disciplines › branches) on Library pages; a drawer on phones |
@@ -42,7 +43,7 @@ The whole tree is at `/library/map/`. The six older trees of long reads (AI & ML
 
 ## 4. The background sound
 
-`src/scripts/ambient.ts` makes a very soft sound of sparrow chirps only (the wind and hum were removed on 14 Nov 2026 at Kritikesh's request; keep the chirp timing as it is), live in the browser (no sound files). Browsers allow sound only after a tap, so it fades in on the visitor's first tap or key press. The speaker button in the top bar pauses it, and that choice is remembered in the browser. To make it louder or softer, change `LEVEL` (now `0.05`). To turn it off for everyone, delete the `import('../scripts/ambient')` line in `src/layouts/Base.astro`.
+`src/scripts/ambient.ts` makes a very soft sound of sparrow chirps only (the wind and hum were removed on 14 Nov 2026 at Kritikesh's request; keep the chirp timing as it is), live in the browser (no sound files). Browsers allow sound only after a tap, so it fades in on the visitor's first tap or key press. The speaker button in the top bar pauses it, and that choice is remembered in the browser. To make it louder or softer, change `LEVEL` (now `0.025`, halved on 14 Nov 2026 so it never pulls attention from reading). To turn it off for everyone, delete the `import('../scripts/ambient')` line in `src/layouts/Base.astro`.
 
 ## 5. My story
 

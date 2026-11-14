@@ -9,6 +9,7 @@ import { langFromPath, langParams, localizePath, pick } from '../../i18n/config'
 import { useT } from '../../i18n/ui';
 import { TOPICS, getTopic } from '../../explore';
 import { PF_SECTIONS, pfName } from '../../portfolio.config';
+import { EXAM_CATALOGUE } from '../../data/exam-catalogue';
 
 export const getStaticPaths: GetStaticPaths = () => langParams().map((params) => ({ params }));
 
@@ -55,8 +56,18 @@ export async function GET({ url }: APIContext) {
       { t: 'मेरा काम (पोर्टफ़ोलियो)', d: 'AI, डेटा और GIS (कंप्यूटर पर नक्शे) के प्रोजेक्ट।', u: '/portfolio/', w: 'प्रोजेक्ट काम AI डेटा नक्शा GIS QGIS portfolio' },
       { t: 'संपर्क', d: 'मुझे लिखिए, या लाइब्रेरी के लिए कोई सवाल सुझाइए।', u: '/contact/', w: 'संपर्क ईमेल सुझाव सवाल contact' },
       { t: 'लाइब्रेरी', d: 'लाइब्रेरी के सारे कोर्स और सवाल।', u: '/library/', w: 'लाइब्रेरी कोर्स पढ़ाई सीखें विषय library' },
+      { t: 'मेरी कहानी', d: 'Curious Sparoows किसने बनाया, और क्यों।', u: '/about/my-story/', w: 'कहानी सफ़र परिचय कृतिकेश story' },
     ],
   }, lang);
+  // every exam of India (src/data/exam-catalogue.ts), so "SSC CGL" or "RBI Grade B" finds its place
+  const hi = lang === 'hi';
+  const exK = hi ? 'परीक्षा' : 'Exam';
+  for (const g of EXAM_CATALOGUE) {
+    for (const e of g.exams) {
+      items.push({ t: hi ? e.hi : e.en, d: `${hi ? g.hi : g.en}: ${hi ? e.noteHi : e.noteEn}`, u: L(e.href ?? `/exam-prep/all-exams/#${g.id}`), k: `${exK} · ${hi ? g.hi : g.en}`, w: `${e.en} ${e.hi} ${g.en} ${g.hi} exam परीक्षा`, b: '' });
+    }
+  }
+  items.push({ t: hi ? 'भारत की सभी सरकारी परीक्षाएँ' : 'All government exams of India', d: hi ? 'UPSC, SSC, बैंक, रेलवे, NTA, CAT, रक्षा, शिक्षक और राज्य आयोग, एक सूची में।' : 'UPSC, SSC, banking, railways, NTA, CAT, defence, teaching and state commissions, in one list.', u: L('/exam-prep/all-exams/'), k: t('search.kind.page'), w: 'upsc ssc bank rbi ibps sbi railway rrb nta net cat gate nda cds sarkari naukri सरकारी नौकरी परीक्षा', b: '' });
   for (const p of pages) items.push({ ...p, u: L(p.u), k: t('search.kind.page'), b: '' });
   return new Response(JSON.stringify(items), { headers: { 'Content-Type': 'application/json; charset=utf-8' } });
 }

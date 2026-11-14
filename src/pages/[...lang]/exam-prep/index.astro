@@ -4,6 +4,7 @@
 // Text rules: docs/VISION.md (no guarantees, no pressure). Guide: docs/14-exam-prep.md
 import ExamLayout from '../../../layouts/ExamLayout.astro';
 import { STATS, paths, fmt } from '../../../exam-prep';
+import { EXAM_CATALOGUE, catalogueCount } from '../../../data/exam-catalogue';
 import { langFromUrl, langParams, pick, localizePath } from '../../../i18n/config';
 
 export const getStaticPaths = () => langParams().map((params) => ({ params }));
@@ -187,7 +188,7 @@ const P = pick({
     kick: 'Exam Prep · Curious Sparoows', h1: 'Preparing for a government exam shouldn\'t feel like drowning.',
     sub: 'If the syllabus feels endless, the advice keeps changing and you\'re not sure what to study first, read on. Each answer below takes less than a minute.',
     painsLabel: 'Common feelings', pains: ['“Where do I even start?”', '“I\'ve bought five books.”', '“Everyone says something different.”', '“Am I studying the right things?”'],
-    short: 'Read the short version', skip: 'Skip to my exam', secRead: 'sec read', part4: 'Part 4', steps: 'Where do I start? Three small steps',
+    pickH: 'Pick your exam', pickAll: `All ${catalogueCount} exams →`, pickLive: 'ready', short: 'Read the short version', skip: 'Skip to my exam', secRead: 'sec read', part4: 'Part 4', steps: 'Where do I start? Three small steps',
     t1: 'Open the Exam Mentor', d1: 'Pick your exam and your date. Two minutes. You get your list, most important first.', g1: 'Find my topics →',
     t2: 'Study from the top of your list', d2: 'Every topic opens in the Curriculum Index, with what sits inside it and what it links to.', g2: 'Open the index →',
     t3: 'Come back when you\'re unsure', d3: 'Search any word, even misspelled, to see where it fits. Nothing here needs a login, and nothing is tracked.',
@@ -201,7 +202,7 @@ const P = pick({
     kick: 'परीक्षा तैयारी · Curious Sparoows', h1: 'सरकारी परीक्षा की तैयारी में डूबने जैसा महसूस नहीं होना चाहिए।',
     sub: 'अगर सिलेबस कभी ख़त्म न होने वाला लगता है, सलाह बदलती रहती है और समझ नहीं आता कि पहले क्या पढ़ें, तो आगे पढ़िए। नीचे का हर जवाब एक मिनट से कम का है।',
     painsLabel: 'आम उलझनें', pains: ['“शुरू कहाँ से करूँ?”', '“पाँच किताबें ख़रीद लीं।”', '“हर कोई अलग बात कहता है।”', '“क्या मेरी पढ़ाई सही दिशा में है?”'],
-    short: 'छोटा जवाब पढ़ें', skip: 'सीधे मेरी परीक्षा पर चलें', secRead: 'सेकंड में पढ़ें', part4: 'भाग 4', steps: 'शुरू कहाँ से करूँ? तीन छोटे क़दम',
+    pickH: 'अपनी परीक्षा चुनिए', pickAll: `सभी ${catalogueCount} परीक्षाएँ →`, pickLive: 'तैयार', short: 'छोटा जवाब पढ़ें', skip: 'सीधे मेरी परीक्षा पर चलें', secRead: 'सेकंड में पढ़ें', part4: 'भाग 4', steps: 'शुरू कहाँ से करूँ? तीन छोटे क़दम',
     t1: 'परीक्षा मार्गदर्शक खोलिए', d1: 'अपनी परीक्षा और तारीख़ चुनिए। दो मिनट। आपकी सूची मिल जाएगी, सबसे ज़रूरी सबसे ऊपर।', g1: 'मेरे टॉपिक बताओ →',
     t2: 'अपनी सूची में ऊपर से पढ़ना शुरू कीजिए', d2: 'हर टॉपिक पाठ्यक्रम सूचकांक में खुलता है: उसके अंदर क्या-क्या है और वह किन टॉपिकों से जुड़ा है।', g2: 'सूचकांक खोलें →',
     t3: 'जब उलझन हो, वापस आइए', d3: 'कोई भी शब्द खोजिए, ग़लत स्पेलिंग भी चलेगी, और देखिए कि वह कहाँ आता है। यहाँ न लॉग-इन चाहिए, न कुछ ट्रैक होता है।',
@@ -234,6 +235,18 @@ const faqSchema = [{ '@type': 'FAQPage', mainEntity: chapters.flatMap((c) => c.q
       <a class="btn ghost light" href={`${GUIDE}/`}>{P.skip}</a>
     </div>
   </header>
+
+  <nav class="picker" aria-label={P.pickH}>
+    <strong>{P.pickH}</strong>
+    <div>
+      {EXAM_CATALOGUE.map((g) => (
+        <a href={g.live ? `${BASE}/exams/` : `${BASE}/all-exams/#${g.id}`} class:list={[{ live: g.live }]}>
+          {lang === 'hi' ? g.hi : g.en}{g.live && <small>{P.pickLive}</small>}
+        </a>
+      ))}
+      <a class="all" href={`${BASE}/all-exams/`}>{P.pickAll}</a>
+    </div>
+  </nav>
 
   {chapters.map((c, ci) => (
     <section class="chapter" id={`part-${ci + 1}`}>
@@ -305,6 +318,14 @@ const faqSchema = [{ '@type': 'FAQPage', mainEntity: chapters.flatMap((c) => c.q
   .cta { display: flex; flex-wrap: wrap; gap: 0.6rem; position: relative; z-index: 1; }
   .cta .btn { background: #e8b65a; border-color: #e8b65a; color: #1d1636; }
   .cta .btn.ghost.light { background: transparent; color: #f2d7a6; border-color: rgb(242 215 166 / 0.5); }
+  .picker { margin: 1.2rem 0 0; padding: 1rem 1.1rem; border-radius: 18px; border: 1px solid var(--line); background: var(--surface); display: grid; gap: 0.6rem; }
+  .picker > strong { font: 600 1.05rem var(--font-serif); }
+  .picker div { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .picker a { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.3rem 0.75rem; border-radius: 99px; border: 1px solid var(--line); color: var(--ink); text-decoration: none; font-size: 0.88rem; }
+  .picker a:hover { border-color: var(--tree); }
+  .picker a.live { border-color: var(--tree); background: color-mix(in srgb, var(--tree) 12%, transparent); font-weight: 600; }
+  .picker a small { font-size: 0.68rem; padding: 0 0.4rem; border-radius: 99px; background: var(--tree); color: #fff; font-weight: 600; }
+  .picker a.all { border-style: dashed; color: var(--tree); font-weight: 600; }
   .chapter { margin-top: 3rem; scroll-margin-top: 140px; }
   .chapter > h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 0.2rem 0 1.2rem; max-width: 30rem; }
   .path { list-style: none; margin: 0; padding: 0; position: relative; }

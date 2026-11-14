@@ -4,6 +4,7 @@
 // Guide: docs/18-portfolio-and-menus.md
 import { SITE, SOCIALS, BRAND_SOCIALS } from '../site.config';
 import { SUBJECTS, GLYPH, EXAM_PAGES, subjectsIn, examTitleIn, STATS, fmt } from '../exam-prep';
+import { EXAM_CATALOGUE, catalogueCount } from '../data/exam-catalogue';
 import { PF_GROUPS, PF_SECTIONS, pfName, pfUrl } from '../portfolio.config';
 import { langFromUrl, localizePath, pick } from '../i18n/config';
 
@@ -20,17 +21,18 @@ const social: Link[] = [...BRAND_SOCIALS.filter((s) => s.href), ...SOCIALS].map(
 
 if (kind === 'exam') {
   const subs = subjectsIn(lang);
-  const big = EXAM_PAGES.filter((e) => !e.key.endsWith('-ALL')).sort((a, b) => b.questions - a.questions).slice(0, 7);
+  const big = EXAM_PAGES.filter((e) => !e.key.endsWith('-ALL')).sort((a, b) => b.questions - a.questions).slice(0, 6);
   feature = {
     kicker: hi ? 'परीक्षा तैयारी' : 'Exam Prep',
-    title: hi ? 'RPSC और RSSB की तैयारी, बिना तनाव' : 'RPSC and RSSB, without the panic',
-    text: hi ? `${fmt(STATS.topics)} टॉपिक, ${fmt(STATS.questions)} पिछले सवालों से रैंक किए हुए। पहले क्या पढ़ें, यह साफ़ दिखता है।` : `${fmt(STATS.topics)} topics, ranked by ${fmt(STATS.questions)} past questions, so you can see what to study first.`,
+    title: hi ? 'सरकारी परीक्षा की तैयारी, बिना घबराहट' : 'Government exams, without the panic',
+    text: hi ? `${fmt(STATS.topics)} टॉपिक, ${fmt(STATS.questions)} पिछले सवालों के हिसाब से क्रम में। पहले क्या पढ़ना है, साफ़ दिख जाता है।` : `${fmt(STATS.topics)} topics, ranked by ${fmt(STATS.questions)} past questions, so you can see what to study first.`,
     cta: { href: L('/exam-prep/'), label: hi ? 'यहाँ से शुरू करें →' : 'Start here →' },
   };
   cols = [
     { title: hi ? 'पाठ्यक्रम सूची: विषय' : 'Curriculum Index: subjects', wide: true, links: subs.map((s) => ({ href: L(`/exam-prep/curriculum-index/${s.slug}/`), label: s.name, icon: GLYPH[s.slug] })) },
-    { title: hi ? 'परीक्षाएँ' : 'Exams', links: [...big.map((e) => ({ href: L(`/exam-prep/exams/${e.slug}/`), label: examTitleIn(e, lang) })), { href: L('/exam-prep/exams/'), label: hi ? `सारी ${EXAM_PAGES.length} परीक्षाएँ →` : `All ${EXAM_PAGES.length} exams →` }] },
-    { title: hi ? 'परीक्षा मार्गदर्शक' : 'Exam Guide', links: [
+    { title: hi ? 'राजस्थान: अभी तैयार' : 'Rajasthan: ready now', links: [...big.map((e) => ({ href: L(`/exam-prep/exams/${e.slug}/`), label: examTitleIn(e, lang) })), { href: L('/exam-prep/exams/'), label: hi ? `RPSC और RSSB की सारी ${EXAM_PAGES.length} →` : `All ${EXAM_PAGES.length} RPSC and RSSB →` }] },
+    { title: hi ? 'भारत की सभी परीक्षाएँ' : 'All exams of India', wide: true, links: [...EXAM_CATALOGUE.filter((g) => !g.live).map((g) => ({ href: L(`/exam-prep/all-exams/#${g.id}`), label: hi ? g.hi : g.en })), { href: L('/exam-prep/all-exams/'), label: hi ? `पूरी सूची, ${catalogueCount} परीक्षाएँ →` : `The full list, ${catalogueCount} exams →` }] },
+    { title: hi ? 'परीक्षा मार्गदर्शक' : 'Exam Mentor', links: [
       { href: L('/exam-prep/exam-guide/'), label: hi ? 'क्या पढ़ें, किस क्रम में' : 'What to study, in what order', note: hi ? 'पिछले सवालों से रैंकिंग' : 'Ranked by past papers' },
       { href: L('/exam-prep/exam-guide/how-it-works/'), label: hi ? 'यह कैसे काम करता है' : 'How it works' },
       { href: L('/exam-prep/curriculum-index/'), label: hi ? 'पूरी पाठ्यक्रम सूची' : 'The whole Curriculum Index', note: `${SUBJECTS.length} ${hi ? 'विषय' : 'subjects'}` },

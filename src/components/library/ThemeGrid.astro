@@ -2,7 +2,7 @@
 // The 8 themes as cards, each listing its disciplines. Disciplines with pages show their shelves;
 // the others are named and marked "pages coming", so readers see the whole library and what is next.
 import ShelfMotif from './ShelfMotif.astro';
-import { THEMES, getField, fieldName, fieldUrl, shelvesIn, plannedIn, shelfTitle, topicCount } from '../../library-map';
+import { THEMES, getField, fieldName, fieldUrl, shelvesIn, plannedIn, shelfTitle, topicCount, branchName } from '../../library-map';
 import { langFromUrl, pick } from '../../i18n/config';
 interface Props { detail?: boolean }
 const { detail = false } = Astro.props;
@@ -35,7 +35,7 @@ const T = pick({
               {live.length > 0
                 ? <span class="chips">{live.map((s) => <a href={s.url} hreflang="en">{shelfTitle(s, lang)}</a>)}</span>
                 : <span class="soon">{planned.some((p) => p.status === 'next') ? T.next : T.soon}</span>}
-              {detail && lang === 'en' && <span class="brs">{f.branches.map((b) => b.name).join(' · ')}</span>}
+              {detail && <span class="brs">{f.branches.map((b) => branchName(b, lang)).join(' · ')}</span>}
             </li>
           );
         })}

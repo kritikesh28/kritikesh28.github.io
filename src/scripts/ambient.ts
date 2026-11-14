@@ -5,7 +5,7 @@
 // Guide: docs/17-library-map.md, "The background sound".
 
 const KEY = 'cs-ambient';
-const LEVEL = 0.05; // overall loudness: very dim on purpose
+const LEVEL = 0.025; // overall loudness: very dim on purpose, so it never pulls attention from reading (halved 14 Nov 2026)
 
 type Nodes = { ctx: AudioContext; master: GainNode; timers: number[] };
 let n: Nodes | null = null;

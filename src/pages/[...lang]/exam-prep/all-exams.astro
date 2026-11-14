@@ -1,0 +1,105 @@
+---
+// Every major government and entrance exam in India on one page, grouped by who conducts it, highest post first.
+// The list lives in src/data/exam-catalogue.ts. Rajasthan is live today; the other groups get their own pages later.
+// Guide: docs/14-exam-prep.md, "All exams of India".
+import ExamLayout from '../../../layouts/ExamLayout.astro';
+import { EXAM_CATALOGUE, catalogueCount } from '../../../data/exam-catalogue';
+import { paths } from '../../../exam-prep';
+import { langFromUrl, langParams, localizePath, pick } from '../../../i18n/config';
+
+export const getStaticPaths = () => langParams().map((params) => ({ params }));
+const lang = langFromUrl(Astro.url);
+const { BASE, GUIDE, CI } = paths(lang);
+const hi = lang === 'hi';
+const P = pick({
+  en: {
+    title: 'All Government Exams of India: UPSC, SSC, Banking, Railways, NTA, CAT and State PSCs',
+    description: `${catalogueCount} major government and entrance exams of India in one list: UPSC Civil Services, SSC CGL to MTS, RBI, SBI and IBPS, RRB NTPC to Group D, UGC-NET, CAT, defence, teaching and state commissions.`,
+    home: 'Exam Prep', crumb: 'All exams of India', eyebrow: 'All exams of India',
+    h1: 'Every government exam, in one place',
+    lede: `${catalogueCount} major exams, grouped by who conducts them. Inside each group the list runs from the highest post down to entry level, so you can see where your exam sits.`,
+    jump: 'Jump to', live: 'Ready now', soon: 'Detailed pages coming',
+    liveNote: 'Topic rankings from past papers are ready for these.',
+    soonNote: 'The list is here first. Topic rankings from past papers will follow, one group at a time.',
+    open: 'Open', meanwhile: 'Meanwhile, most of these exams share the same subjects. The',
+    ci: 'Curriculum Index', and: 'maps every topic, and the', mentor: 'Exam Mentor', end: 'shows what is asked most often.',
+  },
+  hi: {
+    title: 'भारत की सभी सरकारी परीक्षाएँ: UPSC, SSC, बैंक, रेलवे, NTA, CAT और राज्य आयोग',
+    description: `भारत की ${catalogueCount} बड़ी सरकारी और प्रवेश परीक्षाएँ एक सूची में: UPSC सिविल सेवा, SSC CGL से MTS तक, RBI, SBI और IBPS, RRB NTPC से ग्रुप D तक, UGC-NET, CAT, रक्षा, शिक्षक भर्ती और राज्यों के आयोग।`,
+    home: 'परीक्षा तैयारी', crumb: 'भारत की सभी परीक्षाएँ', eyebrow: 'भारत की सभी परीक्षाएँ',
+    h1: 'हर सरकारी परीक्षा, एक ही जगह',
+    lede: `${catalogueCount} बड़ी परीक्षाएँ, आयोजित करने वाली संस्था के हिसाब से। हर समूह में सबसे ऊँचे पद से शुरुआती पद तक का क्रम है, ताकि दिख जाए कि आपकी परीक्षा कहाँ आती है।`,
+    jump: 'सीधे जाएँ', live: 'अभी तैयार', soon: 'विस्तृत पन्ने जल्द',
+    liveNote: 'इनके लिए पिछले पेपरों से टॉपिक-रैंकिंग तैयार है।',
+    soonNote: 'पहले सूची आ गई है। पिछले पेपरों से टॉपिक-रैंकिंग एक-एक समूह करके जुड़ेगी।',
+    open: 'खोलें', meanwhile: 'तब तक काम की बात: इनमें से ज़्यादातर परीक्षाओं के विषय एक जैसे हैं।',
+    ci: 'पाठ्यक्रम सूचकांक', and: 'हर टॉपिक का नक्शा देता है, और', mentor: 'परीक्षा मार्गदर्शक', end: 'बताता है कि सबसे ज़्यादा क्या पूछा जाता है।',
+  },
+}, lang);
+const groups = EXAM_CATALOGUE;
+const schema = [{
+  '@type': 'ItemList', name: P.crumb, numberOfItems: catalogueCount,
+  itemListElement: EXAM_CATALOGUE.flatMap((g) => g.exams).map((e, i) => ({ '@type': 'ListItem', position: i + 1, name: hi ? e.hi : e.en })),
+}];
+---
+
+<ExamLayout title={P.title} description={P.description} section="all" {schema} crumbs={[{ href: `${BASE}/`, label: P.home }, { label: P.crumb }]}>
+  <header>
+    <p class="eyebrow">{P.eyebrow}</p>
+    <h1>{P.h1}</h1>
+    <p class="lede">{P.lede}</p>
+  </header>
+
+  <nav class="jump" aria-label={P.jump}>
+    {groups.map((g) => <a href={`#${g.id}`} class:list={[{ live: g.live }]}>{hi ? g.hi : g.en}</a>)}
+  </nav>
+
+  {groups.map((g) => (
+    <section id={g.id} class:list={['grp', { live: g.live }]}>
+      <div class="gh">
+        <h2>{hi ? g.hi : g.en}</h2>
+        <span class:list={['badge', { live: g.live }]}>{g.live ? P.live : P.soon}</span>
+      </div>
+      <p class="gb">{hi ? g.bodyHi : g.bodyEn}. <span class="muted">{g.live ? P.liveNote : P.soonNote}</span></p>
+      <ol class="list">
+        {g.exams.map((e) => (
+          <li>
+            {e.href ? (
+              <a href={localizePath(e.href, lang)}><strong>{hi ? e.hi : e.en}</strong><span>{hi ? e.noteHi : e.noteEn}</span><em>{P.open} →</em></a>
+            ) : (
+              <div><strong>{hi ? e.hi : e.en}</strong><span>{hi ? e.noteHi : e.noteEn}</span></div>
+            )}
+          </li>
+        ))}
+      </ol>
+    </section>
+  ))}
+
+  <p class="small muted foot">{P.meanwhile} <a href={`${CI}/`}>{P.ci}</a> {P.and} <a href={`${GUIDE}/`}>{P.mentor}</a> {P.end}</p>
+</ExamLayout>
+
+<style>
+  h1 { font-size: clamp(1.9rem, 4.2vw, 2.7rem); }
+  .lede { font-size: 1.1rem; color: var(--ink-soft); max-width: 44rem; margin: 0; }
+  .jump { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1.4rem 0 0.6rem; }
+  .jump a { padding: 0.3rem 0.75rem; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; font-size: 0.86rem; }
+  .jump a:hover { border-color: var(--tree); }
+  .jump a.live { border-color: var(--tree); background: color-mix(in srgb, var(--tree) 12%, transparent); font-weight: 600; }
+  .grp { margin-top: 2rem; scroll-margin-top: 90px; }
+  .gh { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem; }
+  .gh h2 { margin: 0; }
+  .badge { font-size: 0.72rem; padding: 0.1rem 0.55rem; border-radius: 99px; border: 1px dashed var(--line); color: var(--ink-soft); font-style: italic; }
+  .badge.live { border: 0; background: var(--tree); color: #fff; font-style: normal; font-weight: 600; }
+  .gb { margin: 0.3rem 0 0; color: var(--ink); max-width: 46rem; }
+  .list { list-style: none; margin: 0.8rem 0 0; padding: 0; display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); counter-reset: n; }
+  .list li { margin: 0; counter-increment: n; }
+  .list a, .list div { position: relative; height: 100%; display: grid; gap: 0.2rem; align-content: start; padding: 0.8rem 1rem 0.8rem 2.6rem; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; }
+  .list a::before, .list div::before { content: counter(n); position: absolute; left: 0.9rem; top: 0.85rem; font: 600 0.8rem var(--font-sans); color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .list a { border-color: var(--tree); transition: transform 0.2s; }
+  .list a:hover { transform: translateY(-2px); }
+  .list strong { font: 600 1.02rem/1.3 var(--font-serif); }
+  .list span { font-size: 0.84rem; color: var(--ink-soft); line-height: 1.4; }
+  .list em { font-style: normal; font-size: 0.84rem; color: var(--tree); font-weight: 600; }
+  .foot { margin-top: 2rem; }
+</style>

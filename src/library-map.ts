@@ -15,6 +15,7 @@
 import taxonomy from './data/library/taxonomy.json';
 import { TOPICS } from './explore';
 import type { Lang } from './i18n/config';
+import BRANCH_HI from './data/library/branches.hi.json';
 
 export interface Unit { code: string; name: string; more?: string[] }
 export interface Topic { code: string; name: string; units: Unit[] }
@@ -127,6 +128,8 @@ export const SHELVES: Shelf[] = [
 ];
 
 export const fieldName = (code: string, lang: Lang = 'en') => (lang === 'hi' ? NAMES[code]?.[2] : NAMES[code]?.[0]) ?? code;
+/** A branch's name in a language (Hindi names: src/data/library/branches.hi.json) */
+export const branchName = (b: { code: string; name: string }, lang: Lang = 'en') => (lang === 'hi' ? (BRANCH_HI as Record<string, string>)[b.code] ?? b.name : b.name);
 export const fieldSlug = (code: string) => NAMES[code][1];
 export const fieldUrl = (code: string) => `/library/map/${NAMES[code][1]}/`;
 export const shelfTitle = (s: Shelf, lang: Lang = 'en') => (lang === 'hi' ? s.titleHi : s.title);

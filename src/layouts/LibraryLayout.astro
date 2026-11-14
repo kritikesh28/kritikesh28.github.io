@@ -3,7 +3,7 @@
 // discipline and branch (dropdown › sub-dropdown › sub-dropdown, like Exam Prep), and the page itself.
 // On phones the sidebar opens as a drawer. Data: src/library-map.ts. Guide: docs/17-library-map.md
 import Base from './Base.astro';
-import { THEMES, SHELVES, getField, fieldName, fieldUrl, shelvesIn, shelfTitle, themeOf, BOOK } from '../library-map';
+import { THEMES, SHELVES, getField, fieldName, fieldUrl, shelvesIn, shelfTitle, themeOf, BOOK, branchName } from '../library-map';
 import { langFromUrl, localizePath, pick, type Lang } from '../i18n/config';
 
 interface Props {
@@ -75,7 +75,7 @@ const where = shelf ? shelfTitle(SHELVES.find((s) => s.slug === shelf)!, lang) :
                           <ul class="side-branches">
                             <li><a class="open" href={fieldUrl(code)} hreflang="en" aria-current={code === field && section === 'field' ? 'page' : undefined}>{T.open}: {fieldName(code, lang)} →</a></li>
                             {live.map((s) => <li><a class="live" href={s.url} hreflang="en" aria-current={s.slug === shelf ? 'page' : undefined}>● {shelfTitle(s, lang)}</a></li>)}
-                            {f.branches.map((b) => <li><a href={`${fieldUrl(code)}#${b.code}`} hreflang="en" lang="en">{b.name}</a></li>)}
+                            {f.branches.map((b) => <li><a href={`${fieldUrl(code)}#${b.code}`} hreflang="en" lang={lang === 'hi' ? undefined : 'en'}>{branchName(b, lang)}</a></li>)}
                           </ul>
                         </details>
                       </li>
