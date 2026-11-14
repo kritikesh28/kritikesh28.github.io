@@ -1,5 +1,86 @@
 [
  {
+  "slug": "movies",
+  "code": "MOV",
+  "short": "फ़िल्में",
+  "shelf": "stories",
+  "order": 0,
+  "title": "फ़िल्में",
+  "subtitle": "छाया-कठपुतली से स्ट्रीमिंग तक, विश्व सिनेमा का पूरा नक्शा",
+  "edition": "संस्करण 1 · 14 नवंबर 2026",
+  "color1": "#7B1E3A",
+  "color2": "#B8860B",
+  "light": "#FBF3E4",
+  "question": "अँधेरे कमरे में चलती रोशनी के कुछ घंटे हमारी ज़िंदगी देखने का ढंग क्यों बदल देते हैं?",
+  "entries": 624,
+  "words": 23412,
+  "sections": 41,
+  "cover": null,
+  "url": "/library/movies/",
+  "leaves": [
+   {
+    "id": "MOV-00.01",
+    "title": "फ़िल्मों से पहले लोग कहानियों के लिए क्या करते थे?",
+    "url": "/library/movies/mov-00-01-what-did-people-do-for-stories-before-the-movies/"
+   },
+   {
+    "id": "MOV-00.02",
+    "title": "पहली फ़िल्म किसने बनाई, और क्या दर्शक सचमुच ट्रेन से डरकर भागे थे?",
+    "url": "/library/movies/mov-00-02-who-made-the-first-movie-and-did-audiences/"
+   },
+   {
+    "id": "MOV-00.03",
+    "title": "स्थिर तस्वीरों की एक कतार चलती हुई क्यों दिखती है?",
+    "url": "/library/movies/mov-00-03-why-does-a-row-of-still-pictures-look-like-it-is/"
+   },
+   {
+    "id": "MOV-00.04",
+    "title": "भारत को उसकी पहली फ़िल्म कैसे मिली?",
+    "url": "/library/movies/mov-00-04-how-did-india-get-its-first-film/"
+   },
+   {
+    "id": "MOV-00.05",
+    "title": "मूक फ़िल्में कभी मूक क्यों नहीं थीं?",
+    "url": "/library/movies/mov-00-05-why-were-silent-films-never-silent/"
+   },
+   {
+    "id": "MOV-00.06",
+    "title": "फ़िल्मों के बोलना सीखने पर क्या बदला?",
+    "url": "/library/movies/mov-00-06-what-changed-when-movies-learned-to-talk/"
+   },
+   {
+    "id": "MOV-00.07",
+    "title": "हम उन लोगों के लिए क्यों रोते हैं जो हैं ही नहीं?",
+    "url": "/library/movies/mov-00-07-why-do-we-cry-for-people-who-do-not-exist/"
+   },
+   {
+    "id": "MOV-00.08",
+    "title": "फ़िल्में दुनिया का सबसे बड़ा सपनों का कारख़ाना कैसे बनीं?",
+    "url": "/library/movies/mov-00-08-how-did-movies-become-the-world-s-biggest-dream/"
+   },
+   {
+    "id": "MOV-00.09",
+    "title": "हर देश अपनी फ़िल्में अलग तरह से क्यों बनाता है?",
+    "url": "/library/movies/mov-00-09-why-does-every-country-make-its-films/"
+   },
+   {
+    "id": "MOV-00.10",
+    "title": "क्या टेलीविज़न, वीडियो और स्ट्रीमिंग ने सिनेमा को मारने की कोशिश की?",
+    "url": "/library/movies/mov-00-10-did-television-video-and-streaming-try-to-kill/"
+   },
+   {
+    "id": "MOV-00.11",
+    "title": "एक फ़िल्म असल में कितना कमाती है?",
+    "url": "/library/movies/mov-00-11-how-much-money-does-a-movie-really-make/"
+   },
+   {
+    "id": "MOV-00.12",
+    "title": "फ़िल्मों का भविष्य क्या है?",
+    "url": "/library/movies/mov-00-12-what-is-the-future-of-the-movies/"
+   }
+  ]
+ },
+ {
   "slug": "books",
   "code": "BOK",
   "short": "किताबें",
