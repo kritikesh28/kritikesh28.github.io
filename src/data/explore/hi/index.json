@@ -1,5 +1,61 @@
 [
  {
+  "slug": "cooking",
+  "code": "COK",
+  "short": "खाना पकाना",
+  "shelf": "living",
+  "order": 4,
+  "title": "खाना पकाना",
+  "subtitle": "क्या खाना पकाने ने हमें इंसान बनाया?",
+  "edition": "संस्करण 1 · 13 नवंबर 2026",
+  "color1": "#9C2A12",
+  "color2": "#C98A0B",
+  "light": "#FBF3E6",
+  "question": "क्या खाना पकाने ने हमें इंसान बनाया?",
+  "entries": 286,
+  "words": 12121,
+  "sections": 43,
+  "cover": null,
+  "url": "/library/cooking/",
+  "leaves": [
+   {
+    "id": "COK-00.01",
+    "title": "आग से पहले इंसान क्या खाते थे?",
+    "url": "/library/cooking/cok-00-01-what-did-humans-eat-before-fire/"
+   },
+   {
+    "id": "COK-00.02",
+    "title": "जलाने वाला तीखा खाना हमें क्यों पसंद है?",
+    "url": "/library/cooking/cok-00-02-why-do-we-love-spicy-food-that-hurts/"
+   },
+   {
+    "id": "COK-00.03",
+    "title": "अगर मिर्च अमेरिका से आई, तो भारत कैसे पहुँची?",
+    "url": "/library/cooking/cok-00-03-how-did-the-chilli-reach-india-if-it-came-from/"
+   },
+   {
+    "id": "COK-00.04",
+    "title": "हर संस्कृति में चपटी रोटी क्यों होती है?",
+    "url": "/library/cooking/cok-00-04-why-does-every-culture-have-a-flatbread/"
+   },
+   {
+    "id": "COK-00.05",
+    "title": "उमामी किससे बनता है?",
+    "url": "/library/cooking/cok-00-05-what-makes-umami/"
+   },
+   {
+    "id": "COK-00.06",
+    "title": "दादी का खाना ज़्यादा स्वादिष्ट क्यों लगता है?",
+    "url": "/library/cooking/cok-00-06-why-does-grandma-s-food-taste-better/"
+   },
+   {
+    "id": "COK-00.07",
+    "title": "दोहराव: पहली आग से परिवार की थाली तक",
+    "url": "/library/cooking/cok-00-07-recap-from-the-first-fire-to-the-family-table/"
+   }
+  ]
+ },
+ {
   "slug": "technology",
   "code": "TEC",
   "short": "तकनीक",
