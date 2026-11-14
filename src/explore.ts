@@ -9,8 +9,10 @@ export type Media =
   | { type: 'video'; youtube: string; title: string; caption?: string; credit?: string };
 
 export type Entry = { id: string; name: string };
+/** One web page of a Section: two to three minutes of reading. Long Sections have several (made by build_explore.py). */
+export type Page = { html: string; words: number; heads: string[]; summary: [string, string][]; cont?: string };
 export type Section = {
-  id: string; title: string; url: string; html: string; entries: Entry[]; words: number; summary: string; media: Media[];
+  id: string; title: string; url: string; pages: Page[]; entries: Entry[]; words: number; summary: string; media: Media[];
 };
 export type Part = { num: number; title: string; intro: string; sections: Section[] };
 export type Cover = { src: string; alt: string; credit?: string } | null;
@@ -50,3 +52,14 @@ export const sectionSlug = (s: Section) => s.url.split('/').filter(Boolean).at(-
 
 /** Every Section of a topic in reading order, with its Part */
 export const flatSections = (t: Topic) => t.parts.flatMap((p) => p.sections.map((s) => ({ ...s, part: p })));
+
+/** Address of page n (counted from 0) of a Section: the first page keeps the Section's address, the rest add 2/, 3/ ... */
+export const pageUrl = (s: Section, n: number) => (n === 0 ? s.url : `${s.url}${n + 1}/`);
+
+/** Every web page of a topic in reading order */
+export const flatPages = (t: Topic) =>
+  flatSections(t).flatMap((s) => s.pages.map((pg, n) => ({ ...pg, n, of: s.pages.length, url: pageUrl(s, n), sec: s, part: s.part })));
+
+/** What a page is about, in a few words: its headings, or "more of ..." for a page that carries on a long list */
+export const pageLabel = (pg: Page, max = 2) =>
+  pg.heads.length ? pg.heads.slice(0, max).join(', ') + (pg.heads.length > max ? ` and ${pg.heads.length - max} more` : '') : pg.cont ? `${pg.cont}, continued` : 'More';

@@ -4,6 +4,7 @@ summary: "Retrieval and agent projects built during the IIIT Bangalore programme
 date: 2026-10-23
 status: planned
 tags: [LLM, RAG, agents]
+section: ai-ml
 order: 4
 ---
 

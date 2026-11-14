@@ -26,6 +26,7 @@ This folder explains, step by step, every task needed to keep the website **curi
 | Help aspirants find the site on Google and AI assistants (sitemaps, IndexNow, structured data) | [14 · Exam Prep section](14-exam-prep.md), part 8 |
 | Correct an Encyclopedic Index (a Library shelf), or add pictures or videos to it | [16 · Library shelves](16-explore.md) |
 | Update the Library tree from the Universal Index, place a new shelf, announce new uploads on the home page, add curious questions, the background sound, My story | [17 · The Library map](17-library-map.md) |
+| The top-bar drop-down menus, the Portfolio shelves (projects, research, sketches, kitchen, garden), the home page bands and the About me band, the Curious Sparoows social links | [18 · Portfolio, menus and home page](18-portfolio-and-menus.md) |
 | Translate a page into Hindi, follow the easy-Hindi rules, or add a new language | [15 · Languages and Hindi](15-languages-and-hindi.md) |
 | Understand the plan for the library | [11 · Library plan](11-library-plan.md) |
 | See what is waiting to be done, and what to do first | [12 · Pending task list](12-task-list.md) |
@@ -43,4 +44,4 @@ This folder explains, step by step, every task needed to keep the website **curi
 - **Backup copy:** Google Drive, folder "Digital Ecosystem - Claude Project Files" › "Curious Sparoows Website (backup)". See [09 · Backup and restore](09-backup-and-restore.md).
 - **Exam Prep data source:** the Curriculum Index and Exam Guide Google Sheets, in the Drive library folder `06_EXAM_GUIDE_RPSC_RSSB`. See [14](14-exam-prep.md).
 
-_Last updated: 2 November 2026 (Exam Prep section added; site made bilingual, English and Hindi). When you change how something works, update the guide for it and the date here._
+_Last updated: 14 November 2026 (guide 18 added). Before that: 2 November 2026 (Exam Prep section added; site made bilingual, English and Hindi). When you change how something works, update the guide for it and the date here._

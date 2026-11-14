@@ -129,11 +129,31 @@ def parse_table(rows):
     return cells[0], cells[1:]
 
 
+def words_of(h):
+    return len(re.findall(r'\w+', html.unescape(re.sub(r'<[^>]+>', ' ', h))))
+
+
+def gist_of(text, n=150):
+    """The first sentence of a plain-text explainer, for the summary box at the end of a page."""
+    t = re.sub(r'\s+', ' ', text).strip().lstrip(':;,. ').strip()
+    m = re.match(r'(.+?[.!?;])(\s|$)', t)
+    t = m.group(1).rstrip(';') if m else t
+    return t if len(t) <= n else t[:n].rsplit(' ', 1)[0] + '…'
+
+
 def render_blocks(lines, topic, linker, current):
-    """Markdown lines of one Section -> (html, entries, words)."""
+    """Markdown lines of one Section -> (atoms, entries, words).
+
+    An atom is one piece of the page that may start a new web page: a paragraph, a heading, a box,
+    one row of a table or one item of a list. Rows and items carry `wrap` so they can be put back
+    inside their table or list (see join_atoms). Pages are cut from atoms by paginate()."""
     out, entries = [], []
     i, n = 0, len(lines)
     para = []
+    uid = [0]
+
+    def add(h, **kw):
+        out.append({'html': h, 'words': words_of(h), **kw})
 
     def flush():
         if para:
@@ -141,9 +161,13 @@ def render_blocks(lines, topic, linker, current):
             cls = ''
             if txt.startswith('**Remember this:**'):
                 cls = ' class="remember"'
-            elif re.match(r'\*\*(Short answer|Web address|Keywords|Next)', txt):
-                cls = ' class="meta"' if txt.startswith(('**Web address', '**Keywords')) else ''
-            out.append(f'<p{cls}>{inline(txt, linker, current)}</p>')
+            elif txt.startswith('**Short answer'):
+                cls = ' class="short"'
+            elif re.match(r'\*\*(Web address|Keywords)', txt):
+                cls = ' class="meta"'
+            elif txt.startswith('**Next'):
+                cls = ' class="next-q"'
+            add(f'<p{cls}>{inline(txt, linker, current)}</p>', kind='p', text=plain(txt))
             para.clear()
 
     while i < n:
@@ -158,16 +182,16 @@ def render_blocks(lines, topic, linker, current):
             if m:
                 eid, rest = m.group(1), m.group(2)
                 entries.append({'id': eid, 'name': plain(rest)})
-                out.append(f'<h3 class="tick-h" id="{id_slug(eid)}"><label><input type="checkbox" data-tick="{eid}"><span class="eid">{eid}</span> {inline(rest, linker, current)}</label></h3>')
+                add(f'<h3 class="tick-h" id="{id_slug(eid)}"><label><input type="checkbox" data-tick="{eid}"><span class="eid">{eid}</span> {inline(rest, linker, current)}</label></h3>', kind='h3', label=plain(rest))
             else:
-                out.append(f'<h3 id="{slugify(plain(h), 40)}">{inline(h.replace("☐", "").strip(), linker, current)}</h3>')
+                add(f'<h3 id="{slugify(plain(h), 40)}">{inline(h.replace("☐", "").strip(), linker, current)}</h3>', kind='h3', label=plain(h))
             i += 1; continue
         if s.startswith('>'):
             flush()
             box = []
             while i < n and lines[i].strip().startswith('>'):
                 box.append(lines[i].strip()[1:].strip()); i += 1
-            out.append(f'<aside class="note">{inline(" ".join(box), linker, current)}</aside>')
+            add(f'<aside class="note">{inline(" ".join(box), linker, current)}</aside>', kind='aside')
             continue
         if s.startswith('|'):
             flush()
@@ -176,14 +200,13 @@ def render_blocks(lines, topic, linker, current):
                 rows.append(lines[i]); i += 1
             head, body = parse_table(rows)
             th = ''.join(f'<th scope="col">{inline(h, linker, current)}</th>' for h in head)
-            trs = []
+            uid[0] += 1
             for r in body:
                 tds = ''.join(
                     (f'<th scope="row" data-label="{html.escape(plain(head[k]) if k < len(head) else "")}">{inline(c, linker, current)}</th>' if k == 0 else
                      f'<td data-label="{html.escape(plain(head[k]) if k < len(head) else "")}">{inline(c, linker, current)}</td>')
                     for k, c in enumerate(r))
-                trs.append(f'<tr>{tds}</tr>')
-            out.append(f'<div class="reg"><table><thead><tr>{th}</tr></thead><tbody>{"".join(trs)}</tbody></table></div>')
+                add(f'<tr>{tds}</tr>', kind='row', wrap=['table', th, uid[0]], label=plain(r[0]) if r else '')
             continue
         if re.match(r'^-\s', s):
             flush()
@@ -197,18 +220,25 @@ def render_blocks(lines, topic, linker, current):
                 if m:
                     eid, name, rest = m.group(1), m.group(2).strip(), m.group(3)
                     entries.append({'id': eid, 'name': plain(name).rstrip(':')})
-                    items.append(
+                    items.append((
                         f'<li class="entry" id="{id_slug(eid)}"><label class="tick"><input type="checkbox" data-tick="{eid}" aria-label="Mark {eid} as learned"></label>'
-                        f'<div><span class="eid">{eid}</span> <strong class="ename">{inline(name)}</strong>{inline(rest, linker, current)}</div></li>')
+                        f'<div><span class="eid">{eid}</span> <strong class="ename">{inline(name)}</strong>{inline(rest, linker, current)}</div></li>',
+                        plain(name).rstrip(':'), plain(rest)))
                 elif item.startswith('☐'):
                     body = item[1:].strip()
                     key = f'{current}#{len(entries) + 1}'
                     entries.append({'id': key, 'name': plain(body)[:80]})
-                    items.append(f'<li class="entry"><label class="tick"><input type="checkbox" data-tick="{key}" aria-label="Mark as learned"></label><div>{inline(body, linker, current)}</div></li>')
+                    lm = re.match(r'\*\*([^*]{2,70})\*\*\s*:?\s*(.*)', body)
+                    items.append((f'<li class="entry"><label class="tick"><input type="checkbox" data-tick="{key}" aria-label="Mark as learned"></label><div>{inline(body, linker, current)}</div></li>',
+                                  plain(lm.group(1)).rstrip(':') if lm else '', plain(lm.group(2)) if lm else plain(body)))
                 else:
-                    items.append(f'<li>{inline(item, linker, current)}</li>')
-            cls = 'entries' if any('class="entry"' in x for x in items) else 'bullets'
-            out.append(f'<ul class="{cls}">{"".join(items)}</ul>')
+                    # "**Silent era (1913–1931)**: ..." -> label "Silent era (1913–1931)"
+                    lm = re.match(r'\*\*([^*]{2,70})\*\*\s*:?\s*(.*)', item)
+                    items.append((f'<li>{inline(item, linker, current)}</li>', plain(lm.group(1)).rstrip(':') if lm else '', plain(lm.group(2)) if lm else plain(item)))
+            cls = 'entries' if any('class="entry"' in x[0] for x in items) else 'bullets'
+            uid[0] += 1
+            for h, label, text in items:
+                add(h, kind='li', wrap=['ul', cls, uid[0]], label=label, text=text)
             continue
         if re.match(r'^\d+\.\s', s):
             flush()
@@ -217,13 +247,105 @@ def render_blocks(lines, topic, linker, current):
                 items.append(re.sub(r'^\s*\d+\.\s+', '', lines[i].rstrip())); i += 1
                 while i < n and lines[i].startswith('   ') and lines[i].strip() and not re.match(r'^\s*\d+\.\s', lines[i]):
                     items[-1] += ' ' + lines[i].strip(); i += 1
-            out.append('<ol>' + ''.join(f'<li>{inline(x, linker, current)}</li>' for x in items) + '</ol>')
+            olitems = []
+            for x in items:
+                lm = re.match(r'\*\*([^*]{2,70})\*\*\s*:?\s*(.*)', x)
+                olitems.append([plain(lm.group(1)).rstrip(':'), plain(lm.group(2))] if lm else ['', plain(x)])
+            add('<ol>' + ''.join(f'<li>{inline(x, linker, current)}</li>' for x in items) + '</ol>', kind='ol', items=olitems)
             continue
         para.append(s); i += 1
     flush()
     text = ' '.join(lines)
     words = len(re.findall(r'\w+', plain(text)))
-    return '\n'.join(out), entries, words
+    return out, entries, words
+
+
+def join_atoms(atoms):
+    """Atoms -> HTML, putting rows back in their table and items back in their list."""
+    out, k = [], 0
+    while k < len(atoms):
+        a = atoms[k]
+        w = a.get('wrap')
+        if not w:
+            out.append(a['html']); k += 1; continue
+        group = []
+        while k < len(atoms) and atoms[k].get('wrap') == w:
+            group.append(atoms[k]['html']); k += 1
+        if w[0] == 'table':
+            out.append(f'<div class="reg"><table><thead><tr>{w[1]}</tr></thead><tbody>{"".join(group)}</tbody></table></div>')
+        else:
+            out.append(f'<ul class="{w[1]}">{"".join(group)}</ul>')
+    return '\n'.join(out)
+
+
+# A web page should take two to three minutes to read (about 200 words a minute).
+PAGE_TARGET, PAGE_MAX, PAGE_MIN = 380, 480, 140
+
+
+def paginate(atoms):
+    """Cut a Section's atoms into short pages. Prefer cutting before a heading; cut inside
+    a heading's block (between list items or table rows) only when that block alone is too long."""
+    # words of the whole block that each heading starts
+    block = [0] * len(atoms)
+    k = 0
+    while k < len(atoms):
+        if atoms[k].get('kind') == 'h3':
+            j = k + 1
+            while j < len(atoms) and atoms[j].get('kind') != 'h3':
+                j += 1
+            block[k] = sum(a['words'] for a in atoms[k:j]); k = j
+        else:
+            k += 1
+    pages, cur, cw = [], [], 0
+    in_block = False
+    for k, a in enumerate(atoms):
+        if a.get('kind') == 'h3':
+            in_block = True
+            if cur and cw >= PAGE_MIN and cw + min(block[k], PAGE_TARGET) > PAGE_TARGET:
+                pages.append(cur); cur, cw = [], 0
+        elif cur and cw >= PAGE_MIN and a.get('kind') in ('li', 'row', 'p', 'ol', 'aside'):
+            prev = cur[-1].get('kind')
+            limit = PAGE_MAX if in_block else PAGE_TARGET
+            if prev != 'h3' and cw + a['words'] > limit:
+                pages.append(cur); cur, cw = [], 0
+        cur.append(a); cw += a['words']
+    if cur:
+        # a very short last page joins the one before
+        if pages and cw < PAGE_MIN * 0.75 and sum(x['words'] for x in pages[-1]) + cw <= PAGE_MAX + 80:
+            pages[-1] += cur
+        else:
+            pages.append(cur)
+    out, last = [], ''
+    for pg in pages:
+        cont = last if pg[0].get('kind') != 'h3' and last else ''
+        for a in pg:
+            if a.get('kind') == 'h3' and a.get('label'):
+                last = a['label']
+        heads = [a['label'] for a in pg if a.get('kind') == 'h3' and a.get('label')]
+        named = [a for a in pg if a.get('kind') == 'li' and a.get('label') and a['wrap'][1] == 'entries']
+        if not heads:
+            heads = [a['label'] for a in named]
+        # summary: each heading (or named entry) with the first sentence of what follows it
+        summary = []
+        for j, a in enumerate(pg):
+            if a.get('kind') == 'h3' and a.get('label'):
+                nxt = next((b for b in pg[j + 1:j + 3] if b.get('kind') in ('p', 'li') and b.get('text')), None)
+                summary.append([a['label'], gist_of(nxt['text']) if nxt else ''])
+        if len(summary) < 3:
+            for a in pg:
+                if a.get('kind') == 'li' and a.get('label') and len(summary) < 7:
+                    summary.append([a['label'], gist_of(a.get('text', ''), 110)])
+        if not summary:
+            rows = [a['label'] for a in pg if a.get('kind') == 'row' and a.get('label')]
+            if rows:
+                summary.append(['Listed here', ', '.join(rows[:8]) + (f' and {len(rows) - 8} more' if len(rows) > 8 else '') + '.'])
+            else:
+                txt = [a['text'] for a in pg if a.get('kind') in ('p', 'li') and a.get('text')]
+                summary += [['', gist_of(x, 160)] for x in txt[:3]]
+            if not summary:
+                summary += [[a, gist_of(b, 110)] for o in pg if o.get('kind') == 'ol' for a, b in o['items']][:6]
+        out.append({'html': join_atoms(pg), 'words': sum(a['words'] for a in pg), 'heads': heads, 'summary': summary, 'cont': cont})
+    return out
 
 
 def split_topic(slug):
@@ -273,14 +395,16 @@ def main():
         code = raw[slug][0]['sections'][0]['id'][:3]
         parts_out, total_entries, total_words, n_sections = [], 0, 0, 0
         for p in raw[slug]:
-            intro_html = render_blocks(p['intro'], slug, linker, None)[0] if any(x.strip() for x in p['intro']) else ''
+            intro_html = join_atoms(render_blocks(p['intro'], slug, linker, None)[0]) if any(x.strip() for x in p['intro']) else ''
             secs = []
             for s in p['sections']:
-                body, entries, words = render_blocks(s['lines'], slug, linker, s['id'])
+                atoms, entries, words = render_blocks(s['lines'], slug, linker, s['id'])
+                # the short question pages of Part 0 stay whole; longer Sections are cut into 2-3 minute pages
+                pages = paginate(atoms) if p['num'] else [{'html': join_atoms(atoms), 'words': words, 'heads': [], 'summary': []}]
                 first = next((plain(x) for x in s['lines'] if x.strip() and not x.startswith(('#', '|', '>'))), '')
                 first = re.sub(r'^(Short answer:|Web address:.*?Keywords:)\s*', '', first)
                 secs.append({
-                    'id': s['id'], 'title': s['title'], 'url': s['url'], 'html': body,
+                    'id': s['id'], 'title': s['title'], 'url': s['url'], 'pages': pages,
                     'entries': entries, 'words': words,
                     'summary': (first[:220] + '…') if len(first) > 220 else first,
                     'media': media.get('sections', {}).get(s['id'], []),

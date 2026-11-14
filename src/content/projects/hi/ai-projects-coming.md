@@ -4,6 +4,7 @@ summary: "IIIT बेंगलुरु की पढ़ाई के दौर�
 date: 2026-10-23
 status: planned
 tags: [LLM, RAG, agents]
+section: ai-ml
 order: 4
 ---
 

@@ -200,3 +200,59 @@ html[lang='hi'] .x-hub-hero h1, html[lang='hi'] .x-topic-hero h1 { letter-spacin
 
 @media (max-width: 600px) { .x-card .x-cover { aspect-ratio: 2 / 1; } .x-card .x-code { font-size: 5.5rem; } }
 dialog.toc-sheet .x-toc .x-toc-topic { display: none; }
+
+/* ---------- reading page, three columns (14 Nov 2026): Parts | page | start here ---------- */
+.x-3col { max-width: 1380px; }
+@media (min-width: 1000px) { .x-3col { grid-template-columns: 260px minmax(0, 1fr); gap: 2.6rem; } .x-3col .x-rail { grid-column: 2; } }
+@media (min-width: 1260px) { .x-3col { grid-template-columns: 260px minmax(0, 1fr) 250px; } .x-3col .x-rail { grid-column: 3; position: sticky; top: 84px; align-self: start; } }
+.x-toc .x-toc-topic small { display: block; font: 500 0.78rem/1.3 var(--font-sans); color: var(--ink-soft); margin-top: 0.1rem; }
+.x-toc summary .pt { flex: 1; }
+.x-toc summary .ct { font-size: 0.72rem; font-weight: 500; color: var(--ink-soft); font-variant-numeric: tabular-nums; padding-top: 0.15rem; }
+.x-toc summary::after { content: '▾'; color: var(--ink-soft); font-weight: 400; transition: transform 0.2s; }
+.x-toc details[open] > summary::after { transform: rotate(180deg); }
+.x-toc li a[aria-current='true'] { color: var(--c1); font-weight: 600; }
+.x-toc .pp { display: block; font-size: 0.72rem; color: var(--ink-soft); font-weight: 400; }
+.x-toc ol.x-toc-pages { list-style: none; margin: 0.2rem 0 0.4rem 0.6rem; padding: 0 0 0 0.6rem; border-left: 2px solid color-mix(in srgb, var(--c1) 30%, var(--line)); display: grid; gap: 0.05rem; }
+.x-toc ol.x-toc-pages a { font-size: 0.82rem; padding: 0.15rem 0.4rem; }
+
+.x-head .x-sub { margin: -0.2rem 0 0.5rem; font-family: var(--font-display); font-style: italic; font-size: 1.3rem; color: var(--c1); }
+.x-dots { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0.8rem 0 0; padding: 0; }
+.x-dots a { display: block; width: 26px; height: 6px; border-radius: 99px; background: color-mix(in srgb, var(--c1) 22%, var(--line)); transition: background 0.2s; }
+.x-dots a:hover { background: color-mix(in srgb, var(--c1) 55%, var(--line)); }
+.x-dots a[aria-current='page'] { background: var(--c1); width: 40px; }
+
+.x-over, .x-sum { margin: 0 0 1.8rem; padding: 1.1rem 1.3rem; border-radius: 16px; font-size: 1rem; line-height: 1.6; max-width: 70ch; }
+.x-over { background: color-mix(in srgb, var(--c1) 7%, var(--surface)); border: 1px solid color-mix(in srgb, var(--c1) 22%, var(--line)); }
+.x-sum { margin-top: 2rem; background: color-mix(in srgb, var(--c2) 9%, var(--surface)); border: 1px solid color-mix(in srgb, var(--c2) 25%, var(--line)); }
+.x-over h2, .x-sum h2 { margin: 0 0 0.45rem; font: 700 0.74rem/1 var(--font-sans); letter-spacing: 0.16em; text-transform: uppercase; color: var(--c1); }
+.x-sum h2 { color: color-mix(in srgb, var(--c2) 80%, var(--ink)); }
+.x-over p, .x-sum p { margin: 0 0 0.4rem; }
+.x-over ol { margin: 0.2rem 0 0; padding-left: 1.3rem; display: grid; gap: 0.15rem; }
+.x-sum ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.35rem; }
+.x-sum li.more { list-style: none; margin-left: -1.1rem; color: var(--ink-soft); font-style: italic; }
+
+/* the short answer opens a question page; "Remember this" closes it */
+.x-body p.short { padding: 1rem 1.2rem; border-radius: 14px; background: color-mix(in srgb, var(--c1) 7%, var(--surface)); border: 1px solid color-mix(in srgb, var(--c1) 22%, var(--line)); }
+.x-body p.short::before, .x-body p.remember::before { display: block; margin-bottom: 0.35rem; font: 700 0.72rem/1 var(--font-sans); letter-spacing: 0.16em; text-transform: uppercase; color: var(--c1); }
+.x-body p.short::before { content: 'Overview'; }
+.x-body p.remember::before { content: 'Summary'; }
+.x-body p.next-q { font-style: italic; color: var(--ink-soft); }
+.x-body > ul.entries > li.entry > div { font-size: 1.02rem; }
+
+.x-keys { margin: 0.8rem 0 0; font-size: 0.8rem; color: var(--ink-soft); text-align: center; }
+@media (hover: none) { .x-keys { display: none; } }
+
+.x-rail { display: grid; gap: 1rem; align-content: start; font-size: 0.9rem; }
+.x-rail-box { padding: 1rem 1.1rem; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
+.x-rail-box h2 { margin: 0 0 0.3rem; font-size: 1.05rem; color: var(--c1); }
+.x-rail-box p { margin: 0 0 0.6rem; color: var(--ink-soft); line-height: 1.45; }
+.x-rail-box ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.45rem; line-height: 1.4; }
+.x-rail-box ol a { color: var(--ink); text-decoration: none; }
+.x-rail-box ol a:hover { color: var(--c1); text-decoration: underline; }
+.x-rail-box ol a[aria-current='page'] { color: var(--c1); font-weight: 600; }
+.x-rail-box > a { font-weight: 600; color: var(--c1); text-decoration: none; }
+.x-rail-facts { font-size: 0.8rem; }
+.x-body details.x-partintro { margin: 0 0 1.4rem; border: 1px dashed color-mix(in srgb, var(--c1) 30%, var(--line)); border-radius: 12px; padding: 0.6rem 1rem; font-size: 0.95rem; }
+.x-body details.x-partintro summary { cursor: pointer; font-weight: 600; color: var(--c1); }
+.x-body details.x-partintro[open] summary { margin-bottom: 0.6rem; }
+.x-body details.x-partintro aside.note { margin-bottom: 0.8rem; }

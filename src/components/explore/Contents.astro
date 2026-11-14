@@ -1,17 +1,25 @@
 ---
-// The contents of one topic: every Part and its pages. Shown beside the text on laptops and in a sheet on phones.
-import type { Topic } from '../../explore';
-interface Props { t: Topic; current?: string }
-const { t, current } = Astro.props;
+// The left bar of a shelf: every Part as a drop-down, its Sections inside, and the pages of the Section you are reading.
+// Shown beside the text on laptops and in a sheet on phones.
+import { pageUrl, pageLabel, type Topic } from '../../explore';
+interface Props { t: Topic; current?: string; page?: number }
+const { t, current, page = 0 } = Astro.props;
 ---
 <nav class="x-toc" aria-label={`${t.short} contents`}>
-  <a class="x-toc-topic" href={t.url}>{t.short}</a>
+  <a class="x-toc-topic" href={t.url}>{t.short}<small>Overview and map</small></a>
   {t.parts.map((p) => (
     <details open={p.sections.some((s) => s.id === current) || undefined}>
-      <summary><span class="n">{p.num}</span><span>{p.title}</span></summary>
+      <summary><span class="n">{p.num}</span><span class="pt">{p.title}</span><span class="ct">{p.sections.reduce((a, s) => a + s.pages.length, 0)}</span></summary>
       <ul>
         {p.sections.map((s) => (
-          <li><a href={s.url} aria-current={s.id === current ? 'page' : undefined}>{s.title}</a></li>
+          <li>
+            <a href={s.url} aria-current={s.id === current && page === 0 ? 'page' : s.id === current ? 'true' : undefined}>{s.title.replace(/^The Gateway:\s*/, 'Gateway: ')}{s.pages.length > 1 && <span class="pp">{s.pages.length} pages</span>}</a>
+            {s.id === current && s.pages.length > 1 && (
+              <ol class="x-toc-pages">
+                {s.pages.map((pg, n) => <li><a href={pageUrl(s, n)} aria-current={n === page ? 'page' : undefined}>{pageLabel(pg, 1)}</a></li>)}
+              </ol>
+            )}
+          </li>
         ))}
       </ul>
     </details>

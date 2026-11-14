@@ -1,0 +1,23 @@
+---
+// One Portfolio shelf, e.g. /portfolio/kitchen/: its projects, what is coming, and links into the Library.
+import ProjectCard from '../ProjectCard.astro';
+import Workbench from './Workbench.astro';
+import { getProjects } from '../../lib';
+import { pfName, type PfSection } from '../../portfolio.config';
+import { langFromUrl, localizePath, pick } from '../../i18n/config';
+interface Props { s: PfSection }
+const { s } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const mine = (await getProjects(lang)).filter((p) => p.data.section === s.slug);
+const T = pick({ en: { back: '← All work' }, hi: { back: '← सारा काम' } }, lang);
+---
+<p class="small muted"><a href={localizePath('/portfolio/', lang)}>{T.back}</a></p>
+<h1><span class="ic" aria-hidden="true">{s.icon}</span> {pfName(s, lang)}</h1>
+<p class="muted lede">{lang === 'hi' ? s.blurbHi : s.blurbEn}</p>
+{mine.length > 0 && <div class="grid">{mine.map((p) => <ProjectCard project={p} />)}</div>}
+<div class="wbw"><Workbench s={s} empty={mine.length === 0} /></div>
+<style>
+  h1 .ic { color: var(--accent); font-size: 0.75em; }
+  .lede { max-width: 60ch; margin-bottom: 1.6rem; }
+  .wbw { margin-top: 1.8rem; }
+</style>

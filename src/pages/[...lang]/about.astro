@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { SITE, SOCIALS } from '../../site.config';
+import { SITE, SOCIALS, BRAND_SOCIALS } from '../../site.config';
 import CtaBand from '../../components/CtaBand.astro';
 import { langFromUrl, langParams, localizePath, pick } from '../../i18n/config';
 
@@ -152,7 +152,7 @@ const T = pick({
 
     <h2>{T.verifyTitle}</h2>
     <p>{T.verify}</p>
-    <p>{SOCIALS.map((s) => <a class="chip" href={s.href} rel="me noopener noreferrer" target="_blank">{s.label} ✓</a>)}</p>
+    <p>{[...SOCIALS, ...BRAND_SOCIALS.filter((s) => s.href)].map((s) => <a class="chip" href={s.href} rel="me noopener noreferrer" target="_blank">{s.label} ✓</a>)}</p>
     {SITE.resumePdf && <p><a class="btn" href={SITE.resumePdf}>{T.resume}</a></p>}
     <p><a href={L('/contact/')}>{T.contact}</a></p>
     <CtaBand />

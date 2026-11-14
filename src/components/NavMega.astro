@@ -1,0 +1,154 @@
+---
+// The drop-down panels of Exam Prep, Portfolio, About and Contact in the top bar, in the style of the Library menu:
+// a coloured feature card on the left, columns of links on the right. Opening and closing: src/scripts/mega.ts
+// Guide: docs/18-portfolio-and-menus.md
+import { SITE, SOCIALS, BRAND_SOCIALS } from '../site.config';
+import { SUBJECTS, GLYPH, EXAM_PAGES, subjectsIn, examTitleIn, STATS, fmt } from '../exam-prep';
+import { PF_GROUPS, PF_SECTIONS, pfName, pfUrl } from '../portfolio.config';
+import { langFromUrl, localizePath, pick } from '../i18n/config';
+
+interface Props { kind: 'exam' | 'portfolio' | 'about' | 'contact' }
+const { kind } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const L = (p: string) => localizePath(p, lang);
+const hi = lang === 'hi';
+type Link = { href: string; label: string; note?: string; icon?: string; ext?: boolean };
+type Col = { title: string; links: Link[]; wide?: boolean };
+let feature: { kicker: string; title: string; text: string; cta: Link; img?: string };
+let cols: Col[] = [];
+const social: Link[] = [...BRAND_SOCIALS.filter((s) => s.href), ...SOCIALS].map((s) => ({ href: s.href, label: s.label, ext: true }));
+
+if (kind === 'exam') {
+  const subs = subjectsIn(lang);
+  const big = EXAM_PAGES.filter((e) => !e.key.endsWith('-ALL')).sort((a, b) => b.questions - a.questions).slice(0, 7);
+  feature = {
+    kicker: hi ? 'परीक्षा तैयारी' : 'Exam Prep',
+    title: hi ? 'RPSC और RSSB की तैयारी, बिना तनाव' : 'RPSC and RSSB, without the panic',
+    text: hi ? `${fmt(STATS.topics)} टॉपिक, ${fmt(STATS.questions)} पिछले सवालों से रैंक किए हुए। पहले क्या पढ़ें, यह साफ़ दिखता है।` : `${fmt(STATS.topics)} topics, ranked by ${fmt(STATS.questions)} past questions, so you can see what to study first.`,
+    cta: { href: L('/exam-prep/'), label: hi ? 'यहाँ से शुरू करें →' : 'Start here →' },
+  };
+  cols = [
+    { title: hi ? 'पाठ्यक्रम सूची: विषय' : 'Curriculum Index: subjects', wide: true, links: subs.map((s) => ({ href: L(`/exam-prep/curriculum-index/${s.slug}/`), label: s.name, icon: GLYPH[s.slug] })) },
+    { title: hi ? 'परीक्षाएँ' : 'Exams', links: [...big.map((e) => ({ href: L(`/exam-prep/exams/${e.slug}/`), label: examTitleIn(e, lang) })), { href: L('/exam-prep/exams/'), label: hi ? `सारी ${EXAM_PAGES.length} परीक्षाएँ →` : `All ${EXAM_PAGES.length} exams →` }] },
+    { title: hi ? 'परीक्षा मार्गदर्शक' : 'Exam Guide', links: [
+      { href: L('/exam-prep/exam-guide/'), label: hi ? 'क्या पढ़ें, किस क्रम में' : 'What to study, in what order', note: hi ? 'पिछले सवालों से रैंकिंग' : 'Ranked by past papers' },
+      { href: L('/exam-prep/exam-guide/how-it-works/'), label: hi ? 'यह कैसे काम करता है' : 'How it works' },
+      { href: L('/exam-prep/curriculum-index/'), label: hi ? 'पूरी पाठ्यक्रम सूची' : 'The whole Curriculum Index', note: `${SUBJECTS.length} ${hi ? 'विषय' : 'subjects'}` },
+    ] },
+  ];
+} else if (kind === 'portfolio') {
+  feature = {
+    kicker: hi ? 'मेरा काम' : 'Portfolio',
+    title: hi ? 'खुले में बना काम' : 'Work, made in the open',
+    text: hi ? 'AI, डेटा और नक्शों के प्रोजेक्ट, मैदान से शोध, और हाथ से बनी चीज़ें। हर काम बताता है कि क्या पूरा हुआ और क्या बन रहा है।' : 'AI, data and map projects, research from the field, and things made by hand. Each says what is finished and what is still being built.',
+    cta: { href: L('/portfolio/'), label: hi ? 'सारा काम देखें →' : 'See all work →' },
+  };
+  cols = PF_GROUPS.map((g) => ({
+    title: hi ? g.hi : g.en,
+    links: PF_SECTIONS.filter((s) => s.group === g.id).map((s) => ({ href: L(pfUrl(s)), label: pfName(s, lang), icon: s.icon, note: (hi ? s.blurbHi : s.blurbEn).split(/[,.]/)[0] })),
+  }));
+} else if (kind === 'about') {
+  feature = {
+    kicker: hi ? 'मेरे बारे में' : 'About',
+    title: hi ? 'कृतिकेश राजपुरोहित' : 'Kritikesh Rajpurohit',
+    text: hi ? 'रावतभाटा, राजस्थान से भूगोलवेत्ता, शिक्षक और अप्लाइड AI सीखने वाला। यह साइट क्यों और कैसे बनी, सब यहाँ है।' : 'Geographer, teacher and applied AI learner from Rawatbhata, Rajasthan. Why this site exists, and who is behind it.',
+    cta: { href: L('/about/my-story/'), label: hi ? 'मेरी कहानी पढ़िए →' : 'Read my story →' },
+    img: '/images/kritikesh.jpg',
+  };
+  cols = [
+    { title: hi ? 'मैं' : 'Me', links: [
+      { href: L('/about/'), label: hi ? 'मेरे बारे में' : 'About me', note: hi ? 'पढ़ाई, काम और रुचियाँ' : 'Study, work and interests' },
+      { href: L('/about/my-story/'), label: hi ? 'मेरी कहानी' : 'My story', note: hi ? 'यह सब कहाँ से शुरू हुआ' : 'Where all this began' },
+      { href: L('/now/'), label: hi ? 'अभी का काम' : "What I'm doing now" },
+      { href: SITE.resumePdf, label: hi ? 'रिज़्यूमे (PDF)' : 'Résumé (PDF)' },
+    ] },
+    { title: hi ? 'यह साइट' : 'This site', links: [
+      { href: L('/start/'), label: hi ? 'यहाँ से शुरू करें' : 'Start here', note: hi ? 'नए हैं? दो मिनट का रास्ता' : 'New here? A two-minute path' },
+      { href: '/library/map/', label: hi ? 'लाइब्रेरी का पूरा पेड़' : 'The whole Library tree' },
+      { href: L('/search/'), label: hi ? 'खोजें' : 'Search' },
+      { href: L('/privacy/'), label: hi ? 'निजता' : 'Privacy', note: hi ? 'कोई ट्रैकिंग कुकी नहीं' : 'No tracking cookies' },
+    ] },
+    { title: hi ? 'जुड़िए' : 'Connect', links: [{ href: L('/contact/'), label: hi ? 'मुझे लिखिए' : 'Write to me' }, ...social] },
+  ];
+} else {
+  feature = {
+    kicker: hi ? 'संपर्क' : 'Contact',
+    title: hi ? 'नमस्ते कहिए' : 'Say hello',
+    text: hi ? 'सवाल, सुझाव, कोई ग़लती दिखी, या साथ काम करना है? हर संदेश ध्यान से पढ़ा जाता है।' : 'A question, an idea, a mistake you spotted, or work together? I read every message myself.',
+    cta: { href: L('/contact/'), label: hi ? 'संदेश भेजें →' : 'Send a message →' },
+  };
+  cols = [
+    { title: hi ? 'लिखिए' : 'Write', links: [
+      { href: L('/contact/'), label: hi ? 'संपर्क फ़ॉर्म' : 'Contact form' },
+      { href: `mailto:${SITE.email}`, label: SITE.email },
+    ] },
+    { title: 'Curious Sparoows', links: BRAND_SOCIALS.some((s) => s.href) ? BRAND_SOCIALS.filter((s) => s.href).map((s) => ({ href: s.href, label: s.label, ext: true })) : [{ href: L('/contact/'), label: hi ? 'सोशल पेज जल्द आ रहे हैं' : 'Social pages coming soon' }] },
+    { title: hi ? 'पेशेवर' : 'Professional', links: SOCIALS.map((s) => ({ href: s.href, label: s.label, ext: true })) },
+  ];
+}
+---
+
+<div class="nm" id={`mega-${kind}`} hidden>
+  <div class="wrap nm-in">
+    <a class="nm-feat" href={feature.cta.href}>
+      {feature.img && <img src={feature.img} alt="" width="64" height="64" loading="lazy" />}
+      <span class="nm-kick">{feature.kicker}</span>
+      <strong class="nm-ft">{feature.title}</strong>
+      <span class="nm-fx">{feature.text}</span>
+      <span class="nm-cta">{feature.cta.label}</span>
+    </a>
+    <div class="nm-cols">
+      {cols.map((c) => (
+        <div class:list={['nm-col', { wide: c.wide }]}>
+          <p class="nm-ct">{c.title}</p>
+          <ul>
+            {c.links.map((l) => (
+              <li><a href={l.href} {...(l.ext ? { target: '_blank', rel: 'me noopener noreferrer' } : {})}>
+                {l.icon && <span class="nm-ic" aria-hidden="true">{l.icon}</span>}
+                <span><span class="nm-l">{l.label}{l.ext && <span aria-hidden="true"> ↗</span>}</span>{l.note && <small>{l.note}</small>}</span>
+              </a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .nm {
+    position: fixed; left: 0; right: 0; top: 100%; z-index: 40; max-height: calc(100vh - 80px); overflow-y: auto; overscroll-behavior: contain;
+    background: var(--bg); border-bottom: 1px solid var(--line); box-shadow: 0 30px 60px -30px rgb(18 15 36 / 0.45); animation: nm-in 0.22s ease both;
+  }
+  .nm[hidden] { display: none; }
+  @keyframes nm-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+  .nm-in { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 2rem; padding-block: 1.3rem 1.4rem; }
+  .nm-feat {
+    display: flex; flex-direction: column; gap: 0.5rem; padding: 1.3rem 1.3rem 1.2rem; border-radius: 18px; text-decoration: none; color: #f6e7c8;
+    background: radial-gradient(120% 120% at 100% 0%, #3a2c6b 0%, #1d1636 60%, #15112b 100%); border: 1px solid rgb(242 215 166 / 0.2);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .nm-feat:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -20px rgb(18 15 36 / 0.7); color: #f6e7c8; }
+  .nm-feat img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 3px rgb(242 215 166 / 0.5); }
+  .nm-kick { font: 700 0.7rem/1 var(--font-sans); letter-spacing: 0.18em; text-transform: uppercase; color: #e8c584; }
+  .nm-ft { font-family: var(--font-serif); font-size: 1.3rem; line-height: 1.25; color: #fff3dc; }
+  .nm-fx { font-size: 0.88rem; line-height: 1.5; color: rgb(246 231 200 / 0.8); }
+  .nm-cta { margin-top: auto; padding-top: 0.4rem; font-weight: 600; color: #f2d7a6; }
+  .nm-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem 1.8rem; align-content: start; }
+  .nm-col.wide { grid-column: span 2; }
+  .nm-col.wide ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.1rem 1rem; }
+  .nm-ct { margin: 0 0 0.6rem; padding-bottom: 0.45rem; border-bottom: 1px solid var(--line); font: 700 0.72rem/1 var(--font-sans); letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+  .nm-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.1rem; }
+  .nm-col a { display: flex; gap: 0.55rem; align-items: flex-start; padding: 0.38rem 0.5rem; margin-inline: -0.5rem; border-radius: 10px; color: var(--ink); text-decoration: none; font-size: 0.93rem; line-height: 1.3; }
+  .nm-col a:hover { background: var(--accent-soft); }
+  .nm-col small { display: block; margin-top: 0.12rem; color: var(--ink-soft); font-size: 0.78rem; }
+  .nm-ic { flex: none; width: 1.5em; text-align: center; color: var(--accent); font-weight: 700; font-size: 0.9rem; }
+  @media (max-width: 899px) {
+    .nm { max-height: calc(100vh - 120px); }
+    .nm-in { grid-template-columns: minmax(0, 1fr); gap: 1.2rem; padding-block: 1rem; }
+    .nm-feat { padding: 1rem; }
+    .nm-col.wide { grid-column: auto; }
+  }
+  @media (max-width: 520px) { .nm-col.wide ul { grid-template-columns: minmax(0, 1fr); } }
+  @media (prefers-reduced-motion: reduce) { .nm { animation: none; } }
+</style>

@@ -1,8 +1,9 @@
 ---
 // /library/<slug>/ is either a tree (one of the six subjects) or a twig's Gateway (a short course).
 // Tree and twig slugs must never be the same. Guide: docs/13-add-to-the-library.md
+// 14 Nov 2026: the six old trees were folded into the one Library tree; their addresses now forward to the matching discipline.
 import TwigGateway from '../../../../components/TwigGateway.astro';
-import TreePage from '../../../../components/TreePage.astro';
+import Redirect from '../../../../layouts/Redirect.astro';
 import { getTrees } from '../../../../library.config';
 import { getLibraryPages, splitLibraryId } from '../../../../lib';
 import { LANGS, DEFAULT_LANG } from '../../../../i18n/config';
@@ -21,6 +22,10 @@ export async function getStaticPaths() {
 }
 
 const { tree, gateway } = Astro.props;
+const MOVED: Record<string, string> = {
+  'ai-ml': '/library/map/computing-and-ai/', 'geography-earth': '/library/map/geography/', 'exam-prep': '/exam-prep/',
+  'mind-ideas': '/library/map/psychology/', 'stories-films': '/library/map/media/', 'life-skills': '/library/#shelves',
+};
 ---
 
-{tree ? <TreePage {tree} /> : gateway && <TwigGateway {gateway} />}
+{tree ? <Redirect to={MOVED[tree.slug] ?? '/library/'} title={tree.title} /> : gateway && <TwigGateway {gateway} />}

@@ -4,6 +4,7 @@ summary: "भील जनजाति में ग़रीबी पर M.Sc.
 date: 2025-09-09
 status: in-progress
 tags: [research, geography, fieldwork]
+section: research
 order: 3
 ---
 

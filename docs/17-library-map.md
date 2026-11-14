@@ -15,7 +15,7 @@ On 14 Nov 2026 the Library became one tree for all knowledge. Its map is **The U
 | Twig | A topic with pages: a **shelf** | Crochet, `/library/crochet/`; The Universe, `/library/the-universe/` | Encyclopedic Indexes ([16](16-explore.md)) and courses ([13](13-add-to-the-library.md)) |
 | Leaf | One short page | "Why can't a machine crochet the way it knits?" | |
 
-The whole tree is at `/library/map/`. The six older trees of long reads (AI & ML, Geography & Earth ...) stay on the Library page under "Long reads and courses".
+The whole tree is at `/library/map/`. The six older trees of long reads (AI & ML, Geography & Earth ...) were folded into this tree on 14 Nov 2026: their old addresses (`/library/ai-ml/` ...) forward to the matching discipline (list `MOVED` in `src/pages/[...lang]/library/[twig]/index.astro`), and the Library page shows the one course and the published long reads under "Courses and long reads".
 
 ## 2. Where the files are
 
@@ -24,7 +24,7 @@ The whole tree is at `/library/map/`. The six older trees of long reads (AI & ML
 | `tools/library-index/source/universal-index.md` | The Index book as text (**the master**) |
 | `tools/library-index/build_taxonomy.py` | Turns it into `src/data/library/taxonomy.json`. Never edit the JSON by hand |
 | `src/library-map.ts` | Short names and Hindi names of the 46 disciplines, the 8 themes and their colours, **where each shelf sits** (`PLACE`) and planned topics (`PLANNED`) |
-| `src/components/library/LibraryMega.astro` | The big Library menu in the top bar of every page |
+| `src/components/library/LibraryMega.astro` | The big Library menu in the top bar of every page (the other menus: [18](18-portfolio-and-menus.md)) |
 | `src/layouts/LibraryLayout.astro` | The left sidebar (themes › disciplines › branches) on Library pages; a drawer on phones |
 | `src/components/library/LibraryTree.astro` | The drawn tree with sparrows (home page "Pick a thread", Library page, `/library/map/`) |
 | `src/components/library/ShelfCard.astro`, `ShelfMotif.astro` | Shelf cards and their line drawings |
@@ -42,7 +42,7 @@ The whole tree is at `/library/map/`. The six older trees of long reads (AI & ML
 
 ## 4. The background sound
 
-`src/scripts/ambient.ts` makes a very soft sound of sparrow chirps, a breeze and a slow cosmic hum, live in the browser (no sound files). Browsers allow sound only after a tap, so it fades in on the visitor's first tap or key press. The speaker button in the top bar pauses it, and that choice is remembered in the browser. To make it louder or softer, change `LEVEL` (now `0.05`). To turn it off for everyone, delete the `import('../scripts/ambient')` line in `src/layouts/Base.astro`.
+`src/scripts/ambient.ts` makes a very soft sound of sparrow chirps only (the wind and hum were removed on 14 Nov 2026 at Kritikesh's request; keep the chirp timing as it is), live in the browser (no sound files). Browsers allow sound only after a tap, so it fades in on the visitor's first tap or key press. The speaker button in the top bar pauses it, and that choice is remembered in the browser. To make it louder or softer, change `LEVEL` (now `0.05`). To turn it off for everyone, delete the `import('../scripts/ambient')` line in `src/layouts/Base.astro`.
 
 ## 5. My story
 

@@ -1,6 +1,8 @@
 ---
 import { render } from 'astro:content';
-import Base from '../../../layouts/Base.astro';
+import PortfolioLayout from '../../../layouts/PortfolioLayout.astro';
+import ShelfPage from '../../../components/portfolio/ShelfPage.astro';
+import { PF_SECTIONS, pfSection, pfName } from '../../../portfolio.config';
 import FormattedDate from '../../../components/FormattedDate.astro';
 import LiveDemo from '../../../components/LiveDemo.astro';
 import CtaBand from '../../../components/CtaBand.astro';
@@ -11,15 +13,18 @@ import { useT } from '../../../i18n/ui';
 
 export async function getStaticPaths() {
   const all = await Promise.all(LANGS.map(async (lang) => ({ lang, projects: await getProjects(lang) })));
-  return all.flatMap(({ lang, projects }) =>
-    projects.map((project) => ({
+  return all.flatMap(({ lang, projects }) => [
+    ...projects.map((project) => ({
       params: { lang: lang === DEFAULT_LANG ? undefined : lang, id: project.slug },
-      props: { project },
+      props: { project, shelf: undefined },
     })),
-  );
+    // the shelves: /portfolio/ai-ml/, /portfolio/kitchen/ ...
+    ...PF_SECTIONS.map((s) => ({ params: { lang: lang === DEFAULT_LANG ? undefined : lang, id: s.slug }, props: { project: undefined, shelf: s.slug } })),
+  ]);
 }
 
-const { project } = Astro.props;
+const shelf = pfSection(Astro.props.shelf);
+const project = Astro.props.project ?? (await getProjects())[0];
 // which languages this project is really written in (for the language switch and search engines)
 const translated = await translatedLangs('projects', project.slug);
 const lang = langFromUrl(Astro.url);
@@ -29,6 +34,7 @@ const { Content } = await render(project);
 const { title, summary, date, tags, links, image, imageAlt, status, demo, aiAssisted } = project.data;
 const statusLabel = t(`status.${status}`);
 const T = pick({ en: { back: '← Portfolio', try: 'Try it' }, hi: { back: '← मेरा काम', try: 'ख़ुद चलाकर देखिए' } }, lang);
+const sec = pfSection(project.data.section);
 const code = links.find((l) => l.href.includes('github.com'));
 const schema = [
   {
@@ -46,10 +52,15 @@ const schema = [
 ];
 ---
 
-<Base title={title} description={summary} image={image} {schema} {translated}>
-  <article class="wrap">
+{shelf ? (
+<PortfolioLayout title={pfName(shelf, lang)} description={lang === 'hi' ? shelf.blurbHi : shelf.blurbEn} current={shelf.slug}>
+  <ShelfPage s={shelf} />
+</PortfolioLayout>
+) : (
+<PortfolioLayout title={title} description={summary} image={image} {schema} {translated} current={project.data.section}>
+  <article>
     <div class="prose" lang={project.lang}>
-      <p class="small muted"><a href={L('/portfolio/')}>{T.back}</a></p>
+      <p class="small muted"><a href={L('/portfolio/')}>{T.back}</a>{sec && <> › <a href={L(`/portfolio/${sec.slug}/`)}>{pfName(sec, lang)}</a></>}</p>
       <h1>{title}</h1>
       <p class="muted">{summary}</p>
       <p><span class={`chip ${status}`}>{statusLabel}</span> <span class="small muted"><FormattedDate date={date} /></span></p>
@@ -62,9 +73,9 @@ const schema = [
       {image && !demo && <img src={image} alt={imageAlt ?? ''} />}
       <Content />
     </div>
-    <CtaBand />
   </article>
-</Base>
+</PortfolioLayout>
+)}
 
 <style>
   .links { display: flex; gap: 0.6rem; flex-wrap: wrap; }

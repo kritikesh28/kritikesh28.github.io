@@ -4,6 +4,7 @@ summary: "Georeferenced and vector maps down to village level, plus watershed, r
 date: 2026-10-23
 status: in-progress
 tags: [QGIS, GIS, cartography]
+section: maps-gis
 order: 2
 ---
 
