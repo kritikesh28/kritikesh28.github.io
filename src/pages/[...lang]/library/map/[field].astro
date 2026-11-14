@@ -1,14 +1,31 @@
 ---
 // One discipline (a Tree of the Library) with all its branches and topics from The Universal Index of Human Knowledge.
 // Written topics show as shelves; the rest are named and marked "pages coming". Guide: docs/17-library-map.md
-import LibraryLayout from '../../../layouts/LibraryLayout.astro';
-import ShelfCard from '../../../components/library/ShelfCard.astro';
-import LevelIcon from '../../../components/LevelIcon.astro';
-import { FIELDS, fieldSlug, fieldName, fieldUrl, themeOf, shelvesIn, plannedIn, topicCount, branchOf, type Field } from '../../../library-map';
+import LibraryLayout from '../../../../layouts/LibraryLayout.astro';
+import ShelfCard from '../../../../components/library/ShelfCard.astro';
+import LevelIcon from '../../../../components/LevelIcon.astro';
+import { FIELDS, fieldSlug, fieldName, fieldUrl, themeOf, shelvesIn, plannedIn, topicCount, branchOf, branchName, shelfTitle, type Field } from '../../../../library-map';
+
+import { langFromUrl, langParams, localizePath, pick } from '../../../../i18n/config';
 
 export function getStaticPaths() {
-  return FIELDS.map((f) => ({ params: { field: fieldSlug(f.code) }, props: { code: f.code } }));
+  return langParams().flatMap(({ lang }) => FIELDS.map((f) => ({ params: { lang, field: fieldSlug(f.code) }, props: { code: f.code } })));
 }
+const lang = langFromUrl(Astro.url);
+const hi = lang === 'hi';
+const L = (p: string) => localizePath(p, lang);
+const T = pick({
+  en: { lib: 'Library', where: 'Where you are', lvl: 'A tree of the Library', branches: 'branches', topics: 'topics', entries: 'entries in all',
+    today: (n: number) => `${n} ${n > 1 ? 'shelves' : 'shelf'} to read today`, names: 'Names first, pages coming', read: 'Read today',
+    growT: 'This tree is planted, and its pages are growing.', grow: (p: string) => `Every branch and topic below is named so you can see the whole subject at a glance. The short, question-led pages for it are being written${p ? `, starting with ${p}` : ''}. Want this one sooner?`, tell: 'Tell me',
+    allH: 'All branches', allP: 'Tap a topic to see its smaller study units. Codes match', ready: 'pages ready', readShelf: (t: string) => `● Read the ${t} shelf →`,
+    others: 'Other disciplines', prev: '← Previous tree', next: 'Next tree →', whole: 'The whole tree', and: ' and ' },
+  hi: { lib: 'लाइब्रेरी', where: 'आप यहाँ हैं', lvl: 'लाइब्रेरी का एक पेड़', branches: 'डालें', topics: 'टॉपिक', entries: 'कुल प्रविष्टियाँ',
+    today: (n: number) => `${n} ${n > 1 ? 'अलमारियाँ' : 'अलमारी'} आज पढ़ने के लिए`, names: 'पहले नाम, पन्ने आ रहे हैं', read: 'आज पढ़िए',
+    growT: 'यह पेड़ रोपा जा चुका है, और इसके पन्ने उग रहे हैं।', grow: (p: string) => `नीचे हर डाल और टॉपिक का नाम लिखा है, ताकि पूरा विषय एक नज़र में दिख जाए। इसके छोटे, सवालों से शुरू होने वाले पन्ने लिखे जा रहे हैं${p ? `, शुरुआत ${p} से` : ''}। यह जल्दी चाहिए?`, tell: 'मुझे बताइए',
+    allH: 'सारी डालें', allP: 'किसी टॉपिक को छूकर उसकी छोटी इकाइयाँ देखिए (ये अभी अंग्रेज़ी में हैं)। कोड इस किताब से मेल खाते हैं:', ready: 'पन्ने तैयार', readShelf: (t: string) => `● ${t} की अलमारी पढ़िए →`,
+    others: 'दूसरे विषय', prev: '← पिछला पेड़', next: 'अगला पेड़ →', whole: 'पूरा पेड़', and: ' और ' },
+}, lang);
 const { code } = Astro.props as { code: string };
 const f = FIELDS.find((x) => x.code === code) as Field;
 const th = themeOf(code);
@@ -17,7 +34,7 @@ const planned = plannedIn(code);
 const i = FIELDS.indexOf(f);
 const prev = FIELDS[i - 1];
 const next = FIELDS[i + 1];
-const name = fieldName(code);
+const name = fieldName(code, lang);
 const description = `${f.name}: ${f.scope}`.slice(0, 300);
 const schema = [
   { '@type': 'CollectionPage', name: `${f.name} in the Curious Sparoows Library`, url: new URL(fieldUrl(code), Astro.site).href, description, inLanguage: 'en' },
@@ -29,46 +46,46 @@ const schema = [
 ];
 ---
 
-<LibraryLayout title={`${name}: the Library tree`} {description} {schema} section="field" field={code} langs={['en']}>
+<LibraryLayout title={`${name}: the Library tree`} {description} {schema} section="field" field={code} translated={['en']}>
   <div class="fp" data-c={th.id}>
-    <nav class="crumbs small" aria-label="Where you are">
-      <a href="/library/">Library</a><span aria-hidden="true">›</span><a href={`/library/map/#${th.id}`}>{th.en}</a><span aria-hidden="true">›</span><span aria-current="page">{name}</span>
+    <nav class="crumbs small" aria-label={T.where}>
+      <a href={L('/library/')}>{T.lib}</a><span aria-hidden="true">›</span><a href={`${L('/library/map/')}#${th.id}`}>{hi ? th.hi : th.en}</a><span aria-hidden="true">›</span><span aria-current="page">{name}</span>
     </nav>
     <header class="fh">
-      <span class="lvl"><LevelIcon level="Tree" size={30} /> A tree of the Library · {f.code}</span>
-      <h1>{f.name}</h1>
-      <p class="lede">{f.scope}</p>
+      <span class="lvl"><LevelIcon level="Tree" size={30} /> {T.lvl} · {f.code}</span>
+      <h1>{name}</h1>{hi && <p class="small muted" lang="en">{f.name}</p>}
+      <p class="lede" lang={hi ? 'en' : undefined}>{f.scope}</p>
       <ul class="facts">
-        <li><b>{f.branches.length}</b> branches</li><li><b>{topicCount(f)}</b> topics</li><li><b>{f.nodes}</b> entries in all</li>
-        <li class:list={['st', { on: live.length > 0 }]}>{live.length > 0 ? `${live.length} ${live.length > 1 ? 'shelves' : 'shelf'} to read today` : 'Names first, pages coming'}</li>
+        <li><b>{f.branches.length}</b> {T.branches}</li><li><b>{topicCount(f)}</b> {T.topics}</li><li><b>{f.nodes}</b> {T.entries}</li>
+        <li class:list={['st', { on: live.length > 0 }]}>{live.length > 0 ? T.today(live.length) : T.names}</li>
       </ul>
     </header>
 
     {live.length > 0 && (
       <section class="blk">
-        <h2>Read today</h2>
+        <h2>{T.read}</h2>
         <div class="cards">{live.map((s) => <ShelfCard s={s} />)}</div>
       </section>
     )}
 
     {live.length === 0 && (
       <aside class="grow">
-        <strong>This tree is planted, and its pages are growing.</strong>
-        <p>Every branch and topic below is named so you can see the whole subject at a glance. The short, question-led pages for it are being written{planned.length > 0 ? `, starting with ${planned.map((p) => p.title).join(' and ')}` : ''}. Want this one sooner? <a href="/contact/">Tell me</a>.</p>
+        <strong>{T.growT}</strong>
+        <p>{T.grow(planned.map((p) => hi ? p.titleHi : p.title).join(T.and))} <a href={L('/contact/')}>{T.tell}</a>.</p>
       </aside>
     )}
 
     <section class="blk">
-      <h2>All branches</h2>
-      <p class="muted small">Tap a topic to see its smaller study units. Codes match <em>The Universal Index of Human Knowledge</em>.</p>
+      <h2>{T.allH}</h2>
+      <p class="muted small">{T.allP} <em>The Universal Index of Human Knowledge</em>.</p>
       <ol class="brs">
         {f.branches.map((b) => {
           const bShelves = live.filter((s) => s.node && (s.node === b.code || s.node.startsWith(b.code + '.')));
           return (
             <li id={b.code} class:list={['br', { has: bShelves.length > 0 }]}>
-              <header><span class="bc">{b.code}</span><h3>{b.name}</h3>{bShelves.length > 0 && <span class="pill">pages ready</span>}</header>
-              {bShelves.filter((s) => s.node === b.code).map((s) => <a class="shelf-link" href={s.url}>● Read the {s.title} shelf →</a>)}
-              <ul class="tps">
+              <header><span class="bc">{b.code}</span><h3>{branchName(b, lang)}</h3>{bShelves.length > 0 && <span class="pill">{T.ready}</span>}</header>
+              {bShelves.filter((s) => s.node === b.code).map((s) => <a class="shelf-link" href={L(s.url)}>{T.readShelf(shelfTitle(s, lang))}</a>)}
+              <ul class="tps" lang={hi ? 'en' : undefined}>
                 {b.topics.map((tp) => {
                   const here = live.filter((s) => s.node === tp.code);
                   return (
@@ -81,7 +98,7 @@ const schema = [
                           </details>
                         )
                         : <div class="row"><span class="tc">{tp.code}</span><span class="tn">{tp.name}</span></div>}
-                      {here.map((s) => <a class="shelf-link" href={s.url}>● Read the {s.title} shelf →</a>)}
+                      {here.map((s) => <a class="shelf-link" href={L(s.url)}>{T.readShelf(shelfTitle(s, lang))}</a>)}
                     </li>
                   );
                 })}
@@ -92,10 +109,10 @@ const schema = [
       </ol>
     </section>
 
-    <nav class="pager" aria-label="Other disciplines">
-      {prev ? <a href={fieldUrl(prev.code)}><small>← Previous tree</small><span>{fieldName(prev.code)}</span></a> : <span></span>}
-      <a class="mid" href="/library/map/">The whole tree</a>
-      {next ? <a class="nx" href={fieldUrl(next.code)}><small>Next tree →</small><span>{fieldName(next.code)}</span></a> : <span></span>}
+    <nav class="pager" aria-label={T.others}>
+      {prev ? <a href={L(fieldUrl(prev.code))}><small>{T.prev}</small><span>{fieldName(prev.code, lang)}</span></a> : <span></span>}
+      <a class="mid" href={L('/library/map/')}>{T.whole}</a>
+      {next ? <a class="nx" href={L(fieldUrl(next.code))}><small>{T.next}</small><span>{fieldName(next.code, lang)}</span></a> : <span></span>}
     </nav>
   </div>
 </LibraryLayout>

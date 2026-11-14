@@ -21,7 +21,7 @@ const coming = lang === 'hi' ? s.comingHi : s.comingEn;
     <p class="wb-lead">{T.lead}</p>
     <ul>{coming.map((c) => <li>{c}</li>)}</ul>
     <p class="wb-foot">{T.foot}</p>
-    {s.related && <p class="wb-rel">{T.go}: {s.related.map((r, i) => <>{i > 0 && ' · '}<a href={r.href.startsWith('/exam-prep/') ? localizePath(r.href, lang) : r.href} hreflang="en">{lang === 'hi' ? r.hi : r.en} →</a></>)}</p>}
+    {s.related && <p class="wb-rel">{T.go}: {s.related.map((r, i) => <>{i > 0 && ' · '}<a href={localizePath(r.href, lang)}>{lang === 'hi' ? r.hi : r.en} →</a></>)}</p>}
   </div>
 </section>
 <style>

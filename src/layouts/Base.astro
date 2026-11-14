@@ -52,8 +52,9 @@ const path = Astro.url.pathname;
 const bare = stripLang(path);
 const L = (href: string) => localizePath(href, lang);
 const isActive = (href: string) => (href === '/' ? bare === '/' : bare.startsWith(href));
-// this page in every language (or that language's home page, when the page does not exist there yet)
-const switcher = LANGS.map((l) => ({ lang: l, ...LOCALES[l], href: langs.includes(l) ? localizePath(bare, l) : localizePath('/', l), exists: langs.includes(l) }));
+// this page in every language; when a page has no twin there (a few tag pages), the closest section page instead of the home page
+const section = ['/library/', '/exam-prep/', '/portfolio/', '/about/'].find((x) => bare.startsWith(x)) ?? '/';
+const switcher = LANGS.map((l) => ({ lang: l, ...LOCALES[l], href: localizePath(langs.includes(l) ? bare : section, l), exists: langs.includes(l) }));
 const alternates = translated.filter((l) => langs.includes(l)).map((l) => ({ hreflang: LOCALES[l].hreflang, href: localizePath(bare, l) }));
 const fallback = !translated.includes(lang);
 // top-bar items that open a drop-down panel, and the id of that panel
@@ -156,7 +157,7 @@ const MENUS: Record<string, string> = { '/library/': 'lib-mega', '/exam-prep/': 
             <h2>{t('footer.explore')}</h2>
             <ul>
               {NAV.filter((n) => n.href !== '/').map((n) => <li><a href={L(n.href)}>{t(n.key)}</a></li>)}
-              <li><a href="/library/map/" hreflang="en">{t('footer.map')}</a></li>
+              <li><a href={L('/library/map/')}>{t('footer.map')}</a></li>
             </ul>
           </div>
           <div>
@@ -215,9 +216,27 @@ const MENUS: Record<string, string> = { '/library/': 'lib-mega', '/exam-prep/': 
   import('../scripts/ambient').then((m) => m.initAmbient());
 
   // Language switcher: remember the choice, so the next visit opens in the same language (public/lang-init.js)
+  // It also keeps the reader's place: how far down the page they were is carried over to the same page in the other language.
   document.querySelectorAll<HTMLAnchorElement>('.langs a[data-lang]').forEach((a) =>
-    a.addEventListener('click', () => { try { localStorage.setItem('lang', a.dataset.lang!); } catch {} }),
+    a.addEventListener('click', () => {
+      try {
+        localStorage.setItem('lang', a.dataset.lang!);
+        const max = document.documentElement.scrollHeight - innerHeight;
+        if (a.pathname !== location.pathname && scrollY > 0) sessionStorage.setItem('langPlace', JSON.stringify({ to: a.pathname, at: max > 0 ? scrollY / max : 0 }));
+      } catch {}
+    }),
   );
+  try {
+    const place = JSON.parse(sessionStorage.getItem('langPlace') || 'null') as { to: string; at: number } | null;
+    if (place) {
+      sessionStorage.removeItem('langPlace');
+      if (place.to === location.pathname && !location.hash) {
+        const go = () => scrollTo({ top: place.at * (document.documentElement.scrollHeight - innerHeight), behavior: 'instant' as ScrollBehavior });
+        go();
+        addEventListener('load', go, { once: true });
+      }
+    }
+  } catch {}
 
   // Reading progress bar
   const bar = document.querySelector<HTMLElement>('.progress');

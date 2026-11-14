@@ -2,8 +2,9 @@
 // "Just hatched": new uploads on the home page, sliding slowly from right to left like a notice board.
 // 6 slides of 5 clickable lines. Lines live in src/data/fresh.ts. Pauses on hover, on focus and when you tap a dot.
 import { getFresh } from '../data/fresh';
-import { langFromUrl, pick } from '../i18n/config';
+import { langFromUrl, pick, localizePath } from '../i18n/config';
 const lang = langFromUrl(Astro.url);
+const L = (p: string) => localizePath(p, lang);
 const slides = getFresh();
 const T = pick({
   en: { title: 'Just hatched', sub: 'fresh from the nest', label: 'New in the Library', go: (n: number) => `Show slide ${n}`, of: (a: number, b: number) => `Slide ${a} of ${b}` },
@@ -26,7 +27,7 @@ const T = pick({
           <p class="jh-kicker">{lang === 'hi' ? s.hi : s.en}</p>
           <ul>
             {s.lines.map((l) => (
-              <li><a href={l.href} hreflang="en" tabindex={i === 0 ? undefined : '-1'}><span class="jh-b" aria-hidden="true"></span><span>{lang === 'hi' ? l.hi : l.en}</span></a></li>
+              <li><a href={L(l.href)} tabindex={i === 0 ? undefined : '-1'}><span class="jh-b" aria-hidden="true"></span><span>{lang === 'hi' ? l.hi : l.en}</span></a></li>
             ))}
           </ul>
         </div>

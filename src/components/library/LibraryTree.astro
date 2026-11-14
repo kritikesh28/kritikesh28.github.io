@@ -85,7 +85,7 @@ const mapHref = '/library/map/';
       const y = b.ey + 40 + k * 30;
       const x = b.ex;
       return (
-        <a href={tw.href} hreflang="en" class="lt-twig">
+        <a href={L(tw.href)} class="lt-twig">
           <path d={`M${x} ${b.ey + 14} L${x} ${y}`} stroke={b.color} />
           <circle cx={x} cy={y} r="5.5" fill={b.color} />
           <text x={b.left ? x + 12 : x - 12} y={y + 4.5} text-anchor={b.left ? 'start' : 'end'}>{tw.label}</text>
@@ -98,7 +98,7 @@ const mapHref = '/library/map/';
     ))}
     {/* the theme names at the branch tips */}
     {wide.map((b) => (
-      <a href={`${mapHref}#${b.id}`} hreflang="en" class="lt-pill">
+      <a href={`${L(mapHref)}#${b.id}`} class="lt-pill">
         <rect x={b.ex - b.w / 2} y={b.ey - 15} width={b.w} height="30" rx="15" fill={b.color} />
         <text x={b.ex} y={b.ey + 5} text-anchor="middle">{b.name}</text>
       </a>
@@ -127,7 +127,7 @@ const mapHref = '/library/map/';
       const w = Math.round(b.name.length * 8.6 + 26);
       const x = b.left ? Math.max(4, b.ex - w + 40) : Math.min(TW - 4 - w, b.ex - 40);
       return (
-        <a href={`${mapHref}#${b.id}`} hreflang="en" class="lt-pill">
+        <a href={`${L(mapHref)}#${b.id}`} class="lt-pill">
           <rect x={x} y={b.ey - 16} width={w} height="32" rx="16" fill={b.color} />
           <text x={x + w / 2} y={b.ey + 5} text-anchor="middle">{b.name}</text>
           <text class="lt-n" x={x + w / 2} y={b.ey + 32} text-anchor="middle">{b.n === 0 ? T.growing : b.n === 1 ? T.shelf : T.shelves(b.n)}</text>

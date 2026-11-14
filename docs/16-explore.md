@@ -31,7 +31,7 @@ There are about 540 reading pages, in **English only** for now; Hindi pages link
 | `src/data/explore/` | The website data the script writes. **Never edit by hand** |
 | `src/styles/explore-topics.css` | Each topic's colours, written by the script from the booklet cover colours |
 | `src/explore.ts` | Reading the shelf data. Where each shelf sits in the tree is in `src/library-map.ts` (`PLACE`) |
-| `src/pages/library/[topic]/` | The topic page (`index.astro`) and the reading pages (`[...section].astro`) |
+| `src/components/explore/pages/ShelfIndex.astro`, `ShelfSection.astro` | The topic page and the reading pages. Used by two thin route folders: `src/pages/library/[topic]/` (English) and `src/pages/hi/library/[topic]/` (Hindi frame, English text with a note, so the language switch keeps the reader on the same page) |
 | `src/components/explore/` | Contents, progress bar, pictures and videos (the shelf card is `src/components/library/ShelfCard.astro`) |
 | `src/scripts/explore.ts` | Tick boxes, progress, the phone contents sheet, tap-to-play videos |
 | `src/styles/explore.css` | The look of Explore |

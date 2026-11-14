@@ -3,10 +3,11 @@
 // the others are named and marked "pages coming", so readers see the whole library and what is next.
 import ShelfMotif from './ShelfMotif.astro';
 import { THEMES, getField, fieldName, fieldUrl, shelvesIn, plannedIn, shelfTitle, topicCount, branchName } from '../../library-map';
-import { langFromUrl, pick } from '../../i18n/config';
+import { langFromUrl, pick, localizePath } from '../../i18n/config';
 interface Props { detail?: boolean }
 const { detail = false } = Astro.props;
 const lang = langFromUrl(Astro.url);
+const L = (p: string) => localizePath(p, lang);
 const T = pick({
   en: { topics: (n: number) => `${n} topics`, soon: 'pages coming', next: 'being written', live: 'read now' },
   hi: { topics: (n: number) => `${n} टॉपिक`, soon: 'पन्ने आएँगे', next: 'लिखा जा रहा है', live: 'अभी पढ़ें' },
@@ -27,13 +28,13 @@ const T = pick({
           const planned = plannedIn(code);
           return (
             <li class:list={[{ has: live.length > 0 }]}>
-              <a class="fl" href={fieldUrl(code)} hreflang="en">
+              <a class="fl" href={L(fieldUrl(code))}>
                 <span class="code">{code}</span>
                 <span class="nm">{fieldName(code, lang)}</span>
                 <span class="ct">{T.topics(topicCount(f))}</span>
               </a>
               {live.length > 0
-                ? <span class="chips">{live.map((s) => <a href={s.url} hreflang="en">{shelfTitle(s, lang)}</a>)}</span>
+                ? <span class="chips">{live.map((s) => <a href={L(s.url)}>{shelfTitle(s, lang)}</a>)}</span>
                 : <span class="soon">{planned.some((p) => p.status === 'next') ? T.next : T.soon}</span>}
               {detail && <span class="brs">{f.branches.map((b) => branchName(b, lang)).join(' · ')}</span>}
             </li>

@@ -23,7 +23,9 @@ function paint() {
     const n = ids.filter((id) => ticks.has(id)).length;
     const count = el.querySelector<HTMLElement>('[data-count]');
     const bar = el.querySelector<HTMLElement>('[data-bar]');
-    if (count) count.textContent = n === 0 ? `0 of ${total} ticked` : n >= total ? `All ${total} ticked` : `${n} of ${total} ticked`;
+    if (count) count.textContent = document.documentElement.lang === 'hi'
+      ? (n >= total && n > 0 ? `सभी ${total} पर निशान` : `${total} में से ${n} पर निशान`)
+      : n === 0 ? `0 of ${total} ticked` : n >= total ? `All ${total} ticked` : `${n} of ${total} ticked`;
     if (bar) bar.style.setProperty('--done', `${total ? (n / total) * 100 : 0}%`);
     el.classList.toggle('started', n > 0);
   });

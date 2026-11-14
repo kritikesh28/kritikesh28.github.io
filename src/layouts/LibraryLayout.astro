@@ -14,10 +14,11 @@ interface Props {
   shelf?: string; // shelf slug being read, e.g. crochet
   schema?: Record<string, unknown>[];
   langs?: Lang[];
+  translated?: Lang[]; // languages the text is really written in (others show the page with a note)
   image?: string;
   wide?: boolean; // main column without the sidebar width limit
 }
-const { title, description, section, field, shelf, schema, langs, image } = Astro.props;
+const { title, description, section, field, shelf, schema, langs, translated, image } = Astro.props;
 const lang = langFromUrl(Astro.url);
 const L = (p: string) => localizePath(p, lang);
 const T = pick({
@@ -29,7 +30,7 @@ const currentField = field ?? SHELVES.find((s) => s.slug === shelf)?.field;
 const where = shelf ? shelfTitle(SHELVES.find((s) => s.slug === shelf)!, lang) : field ? fieldName(field, lang) : undefined;
 ---
 
-<Base {title} {description} {schema} {langs} {image}>
+<Base {title} {description} {schema} {langs} {translated} {image}>
   <div class="lx wrap">
     <button class="lx-menu" type="button" aria-expanded="false" aria-controls="lx-side" data-lx-menu>
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
@@ -43,7 +44,7 @@ const where = shelf ? shelfTitle(SHELVES.find((s) => s.slug === shelf)!, lang) :
         <span class="side-mark" aria-hidden="true">✦</span>
         <span><strong>{T.home}</strong><small>{T.start}</small></span>
       </a>
-      <a class="side-tree" href="/library/map/" hreflang="en" aria-current={section === 'map' ? 'page' : undefined}>
+      <a class="side-tree" href={L('/library/map/')} aria-current={section === 'map' ? 'page' : undefined}>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22v-8M12 14l-5-5M12 14l5-5M12 10V4M7 9l-3-2M17 9l3-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
         {T.tree}
       </a>
@@ -52,7 +53,7 @@ const where = shelf ? shelfTitle(SHELVES.find((s) => s.slug === shelf)!, lang) :
         <summary class="side-title"><span class="num" aria-hidden="true">1</span> {T.shelves} <span class="ct">{SHELVES.length}</span></summary>
         <ul class="side-shelves">
           {SHELVES.map((s) => (
-            <li><a href={s.url} hreflang="en" aria-current={s.slug === shelf ? 'page' : undefined} data-c={themeOf(s.field).id}><span class="dot" aria-hidden="true"></span>{shelfTitle(s, lang)}<span class="ct">{s.pages}</span></a></li>
+            <li><a href={L(s.url)} aria-current={s.slug === shelf ? 'page' : undefined} data-c={themeOf(s.field).id}><span class="dot" aria-hidden="true"></span>{shelfTitle(s, lang)}<span class="ct">{s.pages}</span></a></li>
           ))}
         </ul>
       </details>
@@ -73,9 +74,9 @@ const where = shelf ? shelfTitle(SHELVES.find((s) => s.slug === shelf)!, lang) :
                         <details open={code === currentField}>
                           <summary class:list={[{ here: code === field }]}><span class:list={['dot', 'sm', { hollow: live.length === 0 }]} aria-hidden="true"></span><span class="nm">{fieldName(code, lang)}</span></summary>
                           <ul class="side-branches">
-                            <li><a class="open" href={fieldUrl(code)} hreflang="en" aria-current={code === field && section === 'field' ? 'page' : undefined}>{T.open}: {fieldName(code, lang)} →</a></li>
-                            {live.map((s) => <li><a class="live" href={s.url} hreflang="en" aria-current={s.slug === shelf ? 'page' : undefined}>● {shelfTitle(s, lang)}</a></li>)}
-                            {f.branches.map((b) => <li><a href={`${fieldUrl(code)}#${b.code}`} hreflang="en" lang={lang === 'hi' ? undefined : 'en'}>{branchName(b, lang)}</a></li>)}
+                            <li><a class="open" href={L(fieldUrl(code))} aria-current={code === field && section === 'field' ? 'page' : undefined}>{T.open}: {fieldName(code, lang)} →</a></li>
+                            {live.map((s) => <li><a class="live" href={L(s.url)} aria-current={s.slug === shelf ? 'page' : undefined}>● {shelfTitle(s, lang)}</a></li>)}
+                            {f.branches.map((b) => <li><a href={`${L(fieldUrl(code))}#${b.code}`}>{branchName(b, lang)}</a></li>)}
                           </ul>
                         </details>
                       </li>

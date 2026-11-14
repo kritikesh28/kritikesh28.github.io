@@ -1,0 +1,7 @@
+---
+// One short page of a shelf on the Hindi site (see src/pages/library/[topic]/[...section].astro)
+import ShelfSection from '../../../../components/explore/pages/ShelfSection.astro';
+import { shelfPagePaths } from '../../../../explore';
+export const getStaticPaths = shelfPagePaths;
+---
+<ShelfSection topic={Astro.params.topic!} url={(Astro.props as { url: string }).url} />

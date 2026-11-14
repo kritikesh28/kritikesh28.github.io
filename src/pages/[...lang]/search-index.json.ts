@@ -38,10 +38,10 @@ export async function GET({ url }: APIContext) {
   // Explore (English only for now): every topic and every page, with the names of its entries as keywords
   for (const ts of TOPICS) {
     const tp = getTopic(ts.slug);
-    items.push({ t: `${tp.short}: The Encyclopedic Index`, d: tp.subtitle, u: tp.url, k: 'Library · Encyclopedic Index', w: `${tp.short} ${tp.code} ${tp.tagline}`, b: '' });
+    items.push({ t: `${tp.short}: The Encyclopedic Index`, d: tp.subtitle, u: L(ts.url), k: 'Library · Encyclopedic Index', w: `${tp.short} ${tp.code} ${tp.tagline}`, b: '' });
     for (const p of tp.parts)
       for (const sec of p.sections)
-        items.push({ t: sec.title, d: sec.summary, u: sec.url, k: `Library · ${tp.short} · ${sec.id}`, w: sec.entries.map((e) => e.name).join(' ').slice(0, 600), b: '' });
+        items.push({ t: sec.title, d: sec.summary, u: L(sec.url), k: `Library · ${tp.short} · ${sec.id}`, w: sec.entries.map((e) => e.name).join(' ').slice(0, 600), b: '' });
   }
   const pages = pick({
     en: [

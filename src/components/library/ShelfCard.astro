@@ -5,10 +5,11 @@ import ShelfMotif from './ShelfMotif.astro';
 import '../../styles/explore-topics.css';
 import LevelIcon from '../LevelIcon.astro';
 import { fieldName, nodeName, themeOf, shelfTitle, type Shelf } from '../../library-map';
-import { langFromUrl, pick } from '../../i18n/config';
+import { langFromUrl, pick, localizePath } from '../../i18n/config';
 interface Props { s: Shelf }
 const { s } = Astro.props;
 const lang = langFromUrl(Astro.url);
+const L = (p: string) => localizePath(p, lang);
 const T = pick({
   en: { pages: (n: number) => `${n} pages`, course: 'Short course', index: 'Encyclopedic index', open: 'Start reading →', en: '' },
   hi: { pages: (n: number) => `${n} पन्ने`, course: 'छोटा कोर्स', index: 'विश्वकोश सूचकांक', open: 'पढ़ना शुरू करें →', en: 'अंग्रेज़ी में' },
@@ -17,7 +18,7 @@ const where = [fieldName(s.field, lang), lang === 'en' ? nodeName(s.node) : unde
 ---
 <article class:list={['shelf', `t-${s.slug}`]} data-c={themeOf(s.field).id} id={`shelf-${s.slug}`}>
   <ShelfMotif name={s.slug} class="wm" />
-  <a class="shelf-link" href={s.url} hreflang="en">
+  <a class="shelf-link" href={L(s.url)}>
     <span class="shelf-top"><LevelIcon level="Twig" size={26} /><span class="small">{s.kind === 'course' ? T.course : T.index} · {T.pages(s.pages)}</span></span>
     <h3>{shelfTitle(s, lang)}</h3>
     <p class="small q" lang="en">{s.question}</p>

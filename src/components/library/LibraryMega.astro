@@ -36,15 +36,15 @@ const themes = THEMES.map((th) => ({
             <ul class="mg-fields">
               {th.fields.map((f) => (
                 <li class:list={['mg-field', { has: f.shelves.length > 0 }]}>
-                  <a class="mg-fname" href={f.url} hreflang="en"><span class="mg-code">{f.code}</span>{f.name}</a>
+                  <a class="mg-fname" href={L(f.url)}><span class="mg-code">{f.code}</span>{f.name}</a>
                   {f.shelves.length > 0 && (
                     <span class="mg-live">
-                      {f.shelves.map((s) => <a href={s.url} hreflang="en" title={T.live}>{shelfTitle(s, lang)}</a>)}
+                      {f.shelves.map((s) => <a href={L(s.url)} title={T.live}>{shelfTitle(s, lang)}</a>)}
                     </span>
                   )}
                   {lang === 'en' && (
                     <span class="mg-br">
-                      {f.branches.slice(0, 4).map((b) => <a href={`${f.url}#${b.code}`}>{branchName(b, lang)}</a>)}
+                      {f.branches.slice(0, 4).map((b) => <a href={`${L(f.url)}#${b.code}`}>{branchName(b, lang)}</a>)}
                       {f.branches.length > 4 && <a class="mg-more" href={f.url}>{T.more(f.branches.length - 4)}</a>}
                     </span>
                   )}
@@ -56,7 +56,7 @@ const themes = THEMES.map((th) => ({
       ))}
     </div>
     <div class="mg-foot">
-      <a class="mg-cta" href="/library/map/" hreflang="en">{T.tree} →</a>
+      <a class="mg-cta" href={L('/library/map/')}>{T.tree} →</a>
       <a href={L('/library/') + '#shelves'}>{T.shelves}</a>
       <a href={L('/exam-prep/')}>{T.exam}</a>
       <span class="mg-count">{T.count}</span>
