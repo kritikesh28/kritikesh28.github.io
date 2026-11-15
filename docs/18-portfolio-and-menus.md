@@ -48,6 +48,7 @@ Projects are grouped by what they do rather than by programming language, becaus
 | Band | Colour class | What it holds |
 | --- | --- | --- |
 | About me | `b-me` (gold) | Photo, short bio, four facts, a four-step timeline, buttons to My story and About |
+| My story card | `b-story` (gold) | The dark invitation card to My story, leading with the struggle (`src/components/StoryTeaser.astro`; see [17](17-library-map.md), section 5) |
 | Library | `b-lib` (lavender) | "Just hatched" carousel and the curious-question card |
 | Explore | `b-tree` (teal) | The drawn tree and every open shelf |
 | Exam Prep | `b-exam` (amber) | Three numbers and all 15 subjects |
