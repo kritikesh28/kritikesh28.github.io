@@ -34,8 +34,9 @@ const T = pick({
     eyebrow: 'My story · Kritikesh Rajpurohit', h1: 'My story, one question at a time',
     lede: 'Hello, I’m Kritikesh. This is not a CV; it is the story behind it, told the way I would tell you over a cup of tea. Pick any question from the lists, or simply start at the beginning.',
     meta: `${N} questions · about ${minutes} minutes`, start: 'Start at the beginning', all: 'Read it all at once', slides: 'One question at a time',
-    jump: `All ${N} questions`, of: 'of', q: 'Question', prev: '← Previous', next: 'Next →', nextQ: 'Next:', end: 'That’s my story so far.',
+    jump: `All ${N} questions`, of: 'of', q: 'Question', prev: '← Previous', next: 'Next →', nextQ: 'Next:', end: 'To be continued… much more is coming.',
     rail1: 'Questions, part 1', rail2: 'Questions, part 2',
+    moreT: 'This is only the beginning', more: 'What you just read is the short version. The minute details are still to come: every mistake, every wrong turn, the exact moments that cost me months, and the 100-page booklet of my teachers’ advice. I will keep sharing them here, one story at a time, so that you can learn from my mistakes and save the time I lost. Stay tuned.',
     close: 'Thank you for reading this far. If any part of it feels like your story too, I would love to hear from you.',
     contact: 'Write to me', about: 'About me', portfolio: 'My work',
     ai: 'Told in my own words; arranged and lightly edited with AI help.',
@@ -45,8 +46,9 @@ const T = pick({
     eyebrow: 'मेरी कहानी · कृतिकेश राजपुरोहित', h1: 'मेरी कहानी, एक-एक सवाल करके',
     lede: 'नमस्ते, मैं कृतिकेश हूँ। यह बायोडाटा नहीं, उसके पीछे की कहानी है, वैसे ही जैसे चाय पर आपको सुनाता। सूची से कोई भी सवाल चुनिए, या बस शुरू से पढ़िए।',
     meta: `${N} सवाल · लगभग ${minutes} मिनट`, start: 'शुरू से पढ़िए', all: 'सब एक साथ पढ़िए', slides: 'एक-एक सवाल करके',
-    jump: `सारे ${N} सवाल`, of: 'में से', q: 'सवाल', prev: '← पिछला', next: 'अगला →', nextQ: 'अगला:', end: 'अब तक की मेरी कहानी यही है।',
+    jump: `सारे ${N} सवाल`, of: 'में से', q: 'सवाल', prev: '← पिछला', next: 'अगला →', nextQ: 'अगला:', end: 'कहानी जारी है… बहुत कुछ आना बाक़ी है।',
     rail1: 'सवाल, भाग 1', rail2: 'सवाल, भाग 2',
+    moreT: 'यह तो बस शुरुआत है', more: 'आपने अभी जो पढ़ा, वह छोटा रूप है। बारीक बातें अभी आनी हैं: हर ग़लती, हर ग़लत मोड़, वे पल जिनमें मेरे महीने गए, और टीचरों की सलाहों वाली 100 पन्नों की पुस्तिका। मैं इन्हें यहाँ एक-एक करके बाँटता रहूँगा, ताकि आप मेरी ग़लतियों से सीखें और वह समय बचाएँ जो मैंने खोया। जुड़े रहिए।',
     close: 'यहाँ तक पढ़ने के लिए शुक्रिया। अगर इसका कोई हिस्सा आपको अपनी कहानी जैसा लगे, तो मुझे ज़रूर बताइए।',
     contact: 'मुझे लिखिए', about: 'मेरे बारे में', portfolio: 'मेरा काम',
     ai: 'मेरे अपने शब्दों में; AI की मदद से सजाया और हल्का-सा सँवारा गया।',
@@ -128,6 +130,7 @@ const schema = [{
     </div>
 
     <footer class="ms-foot">
+      <div class="more"><p class="more-t"><span class="dot" aria-hidden="true"></span>{T.moreT}</p><p>{T.more}</p></div>
       <p class="thanks">{T.close}</p>
       <p class="links"><a class="btn" href={L('/contact/')}>{T.contact}</a> <a class="btn ghost" href={L('/about/')}>{T.about}</a> <a class="btn ghost" href={L('/portfolio/')}>{T.portfolio}</a></p>
       <p class="ai">{T.ai}</p>
@@ -300,6 +303,13 @@ const schema = [{
   }
 
   .ms-foot { max-width: 46rem; margin: 2.4rem auto 1rem; text-align: center; }
+  .more { margin: 0 0 1.8rem; padding: 1.1rem 1.3rem; border-radius: 18px; text-align: left; border: 1px dashed color-mix(in srgb, var(--coral) 60%, transparent);
+    background: color-mix(in srgb, var(--gold) 10%, var(--bg)); }
+  .more p { margin: 0; line-height: 1.65; }
+  .more .more-t { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.4rem; font: 600 0.8rem/1.4 var(--font-sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--coral); }
+  .more .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--coral); animation: ms-pulse 2.2s infinite; }
+  @keyframes ms-pulse { 50% { opacity: 0.3; } }
+  @media (prefers-reduced-motion: reduce) { .more .dot { animation: none; } }
   .thanks { font-family: var(--font-serif); font-size: 1.1rem; }
   .links { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; }
   .ai { font-size: 0.8rem; color: var(--ink-soft); margin-top: 1.2rem; }

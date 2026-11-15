@@ -2,7 +2,7 @@
 // He told it in his own words on 15 Nov 2026. Every date comes from his "My Life History" Google Sheet on Drive
 // (Life Log tab): it is the reference for dates. If a date here and the sheet differ, the sheet wins; check it before changing one.
 // Tone (his wish): one person talking warmly to another (students, parents, teachers, recruiters), honest and human,
-// still clear and professional. Keep each answer short: the whole page is meant to be a 2 to 3 minute read.
+// still clear and professional. Keep each answer short (about 40 to 60 words): many small questions, each one a feeling or a moment, rather than long answers.
 // To edit: change the text here (English `en`, Hindi `hi`; the Hindi keeps the meaning, not word for word,
 // and the narrator is masculine: "मैं गया", "मैंने सीखा"). Paragraphs are separate strings. To add a question,
 // add an item with a new, unique `id` (it becomes the link #id). Guide: docs/17-library-map.md, section 5, "My story".
@@ -33,6 +33,14 @@ export const STORY: Milestone[] = [
         },
       },
       {
+        id: 'what-did-it-cost',
+        q: { en: 'Did that change cost you anything?', hi: 'क्या उस बदलाव की कोई क़ीमत भी चुकानी पड़ी?' },
+        a: {
+          en: ["It did. The loud boy went quiet. I had fewer friends, I spoke less, and for years I believed I was not very intelligent, just someone who had to work harder than everyone else. So every small rise in my marks felt like proof that I could, and every word of praise from a teacher felt like oxygen."],
+          hi: ["हाँ। शोर मचाने वाला लड़का चुप हो गया। दोस्त कम हो गए, मैं कम बोलने लगा, और बरसों तक मानता रहा कि मैं ज़्यादा होशियार नहीं, बस ऐसा कोई हूँ जिसे सबसे ज़्यादा मेहनत करनी है। इसलिए नंबरों में हर छोटी बढ़त सबूत लगती थी कि मैं कर सकता हूँ, और टीचर की हर तारीफ़ साँस जैसी।"],
+        },
+      },
+      {
         id: 'why-ias',
         q: { en: 'Where did the dream of becoming an IAS officer come from?', hi: 'IAS बनने का सपना कहाँ से आया?' },
         a: {
@@ -51,8 +59,16 @@ export const STORY: Milestone[] = [
         id: 'how-did-you-plan',
         q: { en: 'How does a 15-year-old plan for something that big?', hi: 'पंद्रह साल का बच्चा इतने बड़े सपने की योजना कैसे बनाता है?' },
         a: {
-          en: ["I cut my life into chunks, like a project plan. Target one: 10/10 CGPA in Class 10, achieved on 28 May 2016. Target two: above 95% in Class 12, to reach Delhi University. While my classmates left for Kota to prepare for JEE or NEET, I stayed home on purpose, sure that a seat at DU would make me an IAS officer, no exam needed. A 15-year-old’s logic, but it kept me focused."],
-          hi: ["मैंने अपनी ज़िंदगी को एक प्रोजेक्ट की तरह टुकड़ों में बाँटा। पहला लक्ष्य: दसवीं में 10/10 CGPA, जो 28 मई 2016 को मिला। दूसरा: बारहवीं में 95% से ऊपर, ताकि दिल्ली विश्वविद्यालय पहुँचूँ। साथी JEE या NEET के लिए कोटा गए, मैं जान-बूझकर घर रुका, यह मानकर कि DU में दाख़िला मिलते ही IAS बन जाऊँगा, कोई परीक्षा नहीं। पंद्रह साल के बच्चे का तर्क था, पर उसने मुझे भटकने नहीं दिया।"],
+          en: ["I cut my life into chunks, like a project plan. Target one: 10/10 CGPA in Class 10, achieved on 28 May 2016. Target two: above 95% in Class 12, to reach Delhi University, because I was sure a seat at DU would make me an IAS officer, no exam needed. A 15-year-old’s logic, but it kept me focused."],
+          hi: ["मैंने अपनी ज़िंदगी को एक प्रोजेक्ट की तरह टुकड़ों में बाँटा। पहला लक्ष्य: दसवीं में 10/10 CGPA, जो 28 मई 2016 को मिला। दूसरा: बारहवीं में 95% से ऊपर, ताकि दिल्ली विश्वविद्यालय पहुँचूँ, क्योंकि मुझे पक्का यक़ीन था कि DU में दाख़िला मिलते ही IAS बन जाऊँगा, कोई परीक्षा नहीं। पंद्रह साल के बच्चे का तर्क था, पर उसने मुझे भटकने नहीं दिया।"],
+        },
+      },
+      {
+        id: 'staying-back',
+        q: { en: 'How did it feel when your friends left for Kota?', hi: 'जब दोस्त कोटा चले गए, तब कैसा लगा?' },
+        a: {
+          en: ["Lonely, and a little scary. Kota was so close, and almost everyone I knew went there for JEE or NEET. Some days I wondered if I was the one making the mistake. But my mother was clear, and so was I. I let go of almost everything else and gave those two years to one goal."],
+          hi: ["अकेलापन, और थोड़ा डर भी। कोटा इतना पास था, और लगभग हर जानने वाला JEE या NEET के लिए वहीं चला गया। कुछ दिन लगता था कि कहीं ग़लती मैं ही तो नहीं कर रहा। पर माँ साफ़ थीं, और मैं भी। मैंने लगभग बाक़ी सब छोड़ दिया और वे दो साल एक ही लक्ष्य को दिए।"],
         },
       },
       {
@@ -74,8 +90,24 @@ export const STORY: Milestone[] = [
         id: 'why-geology',
         q: { en: 'Why geology, of all subjects?', hi: 'इतने विषयों में भूविज्ञान ही क्यों?' },
         a: {
-          en: ["Strategy first, love later. With 89%, humanities cut-offs of 98 to 99% were out of reach, so I chose the college over the course: in August 2018 I joined B.Sc. (Hons) Geology at Hansraj College, which opened at exactly my 95%, and it sits close to geography, a big part of UPSC. I also learnt there is no shortcut, only graduation, then Prelims, Mains and an interview. But I fell in love with rocks, rivers and the deep history of the Earth, and from 21 June 2019 weekend coaching at Beacon polished my knowledge and my personality."],
-          hi: ["पहले रणनीति, प्यार बाद में। 89% पर मानविकी के 98 से 99% वाले कट-ऑफ़ पहुँच से बाहर थे, तो मैंने कोर्स से पहले कॉलेज चुना: अगस्त 2018 में मैंने हंसराज कॉलेज में B.Sc. (ऑनर्स) भूविज्ञान में दाख़िला लिया, जो ठीक मेरे 95% पर खुला, और यह भूगोल के क़रीब है, जो UPSC का बड़ा हिस्सा है। यह भी पता चला कि कोई शॉर्टकट नहीं, पहले ग्रेजुएशन, फिर प्रीलिम्स, मेन्स और इंटरव्यू। पर मुझे चट्टानों, नदियों और धरती के गहरे इतिहास से प्यार हो गया, और 21 जून 2019 से Beacon की वीकेंड कोचिंग ने मेरे ज्ञान और व्यक्तित्व को निखारा।"],
+          en: ["Strategy first, love later. With 89%, humanities cut-offs of 98 to 99% were out of reach, so I chose the college over the course: in August 2018 I joined B.Sc. (Hons) Geology at Hansraj College, which opened at exactly my 95%, and it sits close to geography, a big part of UPSC. And slowly I fell in love with rocks, rivers and the deep history of the Earth, and from 21 June 2019 weekend coaching at Beacon polished my knowledge and my personality."],
+          hi: ["पहले रणनीति, प्यार बाद में। 89% पर मानविकी के 98 से 99% वाले कट-ऑफ़ पहुँच से बाहर थे, तो मैंने कोर्स से पहले कॉलेज चुना: अगस्त 2018 में मैंने हंसराज कॉलेज में B.Sc. (ऑनर्स) भूविज्ञान में दाख़िला लिया, जो ठीक मेरे 95% पर खुला, और यह भूगोल के क़रीब है, जो UPSC का बड़ा हिस्सा है। और धीरे-धीरे मुझे चट्टानों, नदियों और धरती के गहरे इतिहास से प्यार हो गया, और 21 जून 2019 से Beacon की वीकेंड कोचिंग ने मेरे ज्ञान और व्यक्तित्व को निखारा।"],
+        },
+      },
+      {
+        id: 'first-day',
+        q: { en: 'What was your first day in Delhi like?', hi: 'दिल्ली में आपका पहला दिन कैसा था?' },
+        a: {
+          en: ["On 4 August 2018 I walked into Hansraj College, a small-town boy in a huge city, and honestly, I was so scared. I even skipped the unofficial freshers’ party. It got easier slowly, and a field trip to Dehradun and Mussoorie in February 2019, among rocks and new friends, helped me find my feet."],
+          hi: ["4 अगस्त 2018 को मैं हंसराज कॉलेज पहुँचा, बड़े शहर में एक छोटे शहर का लड़का, और सच कहूँ, बहुत डरा हुआ था। अनौपचारिक फ़्रेशर्स पार्टी में भी नहीं गया। धीरे-धीरे सब आसान हुआ, और फ़रवरी 2019 में देहरादून और मसूरी की फ़ील्ड ट्रिप ने, चट्टानों और नए दोस्तों के बीच, मुझे पैरों पर खड़ा किया।"],
+        },
+      },
+      {
+        id: 'no-shortcut',
+        q: { en: 'When did you find out there was no shortcut to IAS?', hi: 'कब पता चला कि IAS का कोई शॉर्टकट नहीं है?' },
+        a: {
+          en: ["Soon after I reached DU. I learnt the real path: graduation first, then Prelims, Mains and an interview, often over many years. I was shocked, and deeply disappointed. My dream of IAS at 21 quietly broke that day. But I did not stop. I picked up the books again, a little older inside."],
+          hi: ["DU पहुँचने के कुछ ही समय बाद। असली रास्ता समझ आया: पहले ग्रेजुएशन, फिर प्रीलिम्स, मेन्स और इंटरव्यू, अक्सर कई सालों में। मैं हैरान रह गया, और बहुत निराश भी। 21 साल में IAS का सपना उस दिन चुपचाप टूट गया। पर मैं रुका नहीं। मैंने फिर से किताबें उठाईं, अंदर से थोड़ा बड़ा होकर।"],
         },
       },
       {
@@ -102,8 +134,16 @@ export const STORY: Milestone[] = [
         },
       },
       {
+        id: 'after-prelims',
+        q: { en: 'What goes on in your head after a Prelims result?', hi: 'प्रीलिम्स के नतीजे के बाद दिमाग़ में क्या चलता है?' },
+        a: {
+          en: ["Doubt, about everything. An aspirant’s mind looks for a reason: maybe the books, maybe the medium, maybe it is because I never joined a big Delhi coaching. You replay every choice late at night. That doubt is exactly what took me to Delhi."],
+          hi: ["हर चीज़ पर शक। एक अभ्यर्थी का मन कोई वजह ढूँढता है: शायद किताबें, शायद माध्यम, शायद इसलिए कि मैंने कभी दिल्ली की कोई बड़ी कोचिंग नहीं की। देर रात तक हर फ़ैसला दिमाग़ में दोहराया जाता है। वही शक मुझे दिल्ली ले गया।"],
+        },
+      },
+      {
         id: 'delhi-coaching',
-        q: { en: 'Did moving to Delhi for coaching help?', hi: 'कोचिंग के लिए दिल्ली जाने से फ़ायदा हुआ?' },
+        q: { en: 'So did a big Delhi coaching help?', hi: 'तो क्या दिल्ली की बड़ी कोचिंग से फ़ायदा हुआ?' },
         a: {
           en: ["In July 2022 I moved to Delhi for Vajiram and Ravi and joined the 5 a.m. batch. Writing down every word my teachers said taught me to capture spoken ideas fast and accurately. I also collected their passing advice, the do’s and don’ts, into a 100-page booklet. I will share it here soon, to spare others the mistakes that cost me time."],
           hi: ["जुलाई 2022 में मैं वाजीराम एंड रवि के लिए दिल्ली गया और सुबह 5 बजे वाले बैच में जुड़ा। टीचरों का हर शब्द लिखते-लिखते मैंने बोली हुई बात को तेज़ी और सटीकता से पकड़ना सीखा। उनकी बीच-बीच की सलाहें, क्या करें और क्या न करें, मैंने 100 पन्नों की पुस्तिका में जोड़ीं। जल्द ही उसे यहाँ बाँटूँगा, ताकि दूसरों का वह समय बचे जो मेरी ग़लतियों में गया।"],
@@ -117,19 +157,43 @@ export const STORY: Milestone[] = [
     title: { en: 'M.Sc. Geography, NET and research', hi: 'M.Sc. भूगोल, NET और रिसर्च' },
     qs: [
       {
-        id: 'after-graduation',
-        q: { en: 'What came after graduation?', hi: 'ग्रेजुएशन के बाद क्या हुआ?' },
+        id: 'one-percent',
+        q: { en: 'How did it feel to miss DU by 1%?', hi: 'DU से 1% से चूकना कैसा लगा?' },
         a: {
-          en: ["I missed the M.Sc. at DU by about 1%, so in September 2023 I joined an M.Sc. in Geography at IGNOU: after the inside of the Earth, its outside. I wrote CUET PG in March 2024, and in June 2024 the Central University of Punjab offered me a seat, but I stayed on my path. I presented my dissertation on tribal poverty among the Bhil of southern Rajasthan on 9 September 2025, and it is becoming a research paper. My M.Sc. result came on 7 May 2026, and I qualified UGC-NET Geography."],
-          hi: ["DU में M.Sc. का दाख़िला मैं क़रीब 1% से चूका, तो सितंबर 2023 में IGNOU से भूगोल में M.Sc. में दाख़िला लिया: धरती के अंदर के बाद, अब उसका बाहर। मार्च 2024 में CUET PG दिया, और जून 2024 में सेंट्रल यूनिवर्सिटी ऑफ़ पंजाब ने सीट दी, पर मैं अपने रास्ते पर टिका रहा। दक्षिणी राजस्थान के भीलों की ग़रीबी पर अपना शोध-प्रबंध मैंने 9 सितंबर 2025 को प्रस्तुत किया, और अब वह रिसर्च पेपर बन रहा है। 7 मई 2026 को M.Sc. का परिणाम आया, और मैंने UGC-NET भूगोल पास किया।"],
+          en: ["It hurt. I scored 79%, and the M.Sc. cut-off sat just above it, one small step away. Moving from Delhi University to an open university felt like a step down at first. Then I swallowed my pride, and IGNOU gave me exactly what I needed: time to study, prepare and research together."],
+          hi: ["दुख हुआ। मेरे 79% आए, और M.Sc. का कट-ऑफ़ ठीक उसके ऊपर था, बस एक छोटा-सा क़दम दूर। दिल्ली विश्वविद्यालय से ओपन यूनिवर्सिटी जाना पहले नीचे उतरने जैसा लगा। फिर मैंने अपना अहं छोड़ा, और IGNOU ने वही दिया जिसकी मुझे ज़रूरत थी: पढ़ाई, तैयारी और रिसर्च, तीनों के लिए समय।"],
+        },
+      },
+      {
+        id: 'after-graduation',
+        q: { en: 'What did the M.Sc. years look like?', hi: 'M.Sc. के साल कैसे रहे?' },
+        a: {
+          en: ["In September 2023 I joined an M.Sc. in Geography at IGNOU: after the inside of the Earth, its outside. I wrote CUET PG in March 2024, and in June 2024 the Central University of Punjab offered me a seat, but I stayed on my path. I presented my dissertation on tribal poverty among the Bhil of southern Rajasthan on 9 September 2025, and it is becoming a research paper. My M.Sc. result came on 7 May 2026, and I qualified UGC-NET Geography."],
+          hi: ["सितंबर 2023 में मैंने IGNOU से भूगोल में M.Sc. में दाख़िला लिया: धरती के अंदर के बाद, अब उसका बाहर। मार्च 2024 में CUET PG दिया, और जून 2024 में सेंट्रल यूनिवर्सिटी ऑफ़ पंजाब ने सीट दी, पर मैं अपने रास्ते पर टिका रहा। दक्षिणी राजस्थान के भीलों की ग़रीबी पर अपना शोध-प्रबंध मैंने 9 सितंबर 2025 को प्रस्तुत किया, और अब वह रिसर्च पेपर बन रहा है। 7 मई 2026 को M.Sc. का परिणाम आया, और मैंने UGC-NET भूगोल पास किया।"],
         },
       },
       {
         id: 'hard-days',
         q: { en: 'Were there days you wanted to give up?', hi: 'क्या ऐसे दिन भी आए जब हार मानने का मन हुआ?' },
         a: {
-          en: ["Many. Some years I felt hopeless: what if I never clear it, and have no other skill? What changed was understanding. Studying ethics, society, history and polity opened my mind. I had wanted the IAS to prove I was special; I see now that was ego born of knowing too little. Administration is one way, among many, to serve people, and knowledge itself is a skill. I would not change a single day, even the worst ones: they made me who I am."],
-          hi: ["बहुत। कुछ साल ऐसे थे जब निराशा घेर लेती थी: अगर कभी नहीं निकला, और कोई दूसरा हुनर भी नहीं? जो बदला, वह समझ थी। नीतिशास्त्र, समाज, इतिहास और राजव्यवस्था पढ़ते-पढ़ते मन खुला। मैं IAS इसलिए चाहता था कि दिखा सकूँ कि मैं ख़ास हूँ; अब समझता हूँ कि वह कम जानकारी से उपजा अहंकार था। प्रशासन सेवा के कई रास्तों में से एक है, और ज्ञान अपने आप में हुनर। मैं एक भी दिन नहीं बदलूँगा, सबसे बुरे दिन भी नहीं: उन्हीं ने मुझे आज का इंसान बनाया।"],
+          en: ["Many. Some years I felt hopeless and low: what if I never clear it, and I have no other skill? Those nights were heavy, and I did not always have an answer for myself. What kept me going was small: one more chapter, one more test, one more day."],
+          hi: ["बहुत। कुछ साल ऐसे थे जब निराशा और उदासी घेर लेती थी: अगर कभी नहीं निकला, और कोई दूसरा हुनर भी नहीं? वे रातें भारी थीं, और कई बार ख़ुद को भी जवाब नहीं दे पाता था। जो चलाता रहा, वह छोटा-सा था: एक और अध्याय, एक और टेस्ट, एक और दिन।"],
+        },
+      },
+      {
+        id: 'what-changed-inside',
+        q: { en: 'What changed inside you over those years?', hi: 'उन सालों में आपके अंदर क्या बदला?' },
+        a: {
+          en: ["My reason. Studying ethics, society, history and polity opened my mind. I had wanted the IAS to prove I was special; I see now that was ego, born of knowing too little. I went from narrow-minded to welfare-minded. Administration is one way, among many, to serve people, and knowledge itself is a skill."],
+          hi: ["मेरी वजह। नीतिशास्त्र, समाज, इतिहास और राजव्यवस्था पढ़ते-पढ़ते मन खुला। मैं IAS इसलिए चाहता था कि दिखा सकूँ कि मैं ख़ास हूँ; अब समझता हूँ कि वह कम जानकारी से उपजा अहंकार था। सोच संकीर्ण से लोक-कल्याण वाली बनी। प्रशासन सेवा के कई रास्तों में से एक है, और ज्ञान अपने आप में हुनर।"],
+        },
+      },
+      {
+        id: 'regret',
+        q: { en: 'Do you regret the years you gave?', hi: 'क्या दिए हुए सालों का पछतावा है?' },
+        a: {
+          en: ["No. For a while I was not proud of myself; I felt I had nothing to show for all those years. Today I am proud of every one of them, even the worst, because they made me who I am. I would not change a single day. And the exam was one way to serve, never the only one."],
+          hi: ["नहीं। कुछ समय तक मुझे ख़ुद पर गर्व नहीं था; लगता था इतने सालों के बदले दिखाने को कुछ नहीं। आज मुझे उनमें से हर साल पर गर्व है, सबसे बुरे पर भी, क्योंकि उन्हीं ने मुझे आज का इंसान बनाया। मैं एक भी दिन नहीं बदलूँगा। और परीक्षा सेवा का एक रास्ता थी, इकलौता कभी नहीं।"],
         },
       },
     ],
@@ -168,6 +232,22 @@ export const STORY: Milestone[] = [
         a: {
           en: ["Years of disciplined, self-driven study across almost every subject; the habit of turning a big goal into a plan and seeing it through; and resilience after setbacks. I learn new tools quickly, write clearly, and connect fields that rarely meet: Earth science, society, data and AI. And values I never bargain on: integrity, objectivity, empathy and accountability. Whatever I work on gets my whole heart."],
           hi: ["लगभग हर विषय में सालों की अनुशासित, ख़ुद से चलाई पढ़ाई; बड़े लक्ष्य को योजना में बदलकर पूरा करने की आदत; और ठोकरों के बाद भी चलते रहने का धैर्य। मैं नए टूल जल्दी सीखता हूँ, साफ़ लिखता हूँ, और उन क्षेत्रों को जोड़ता हूँ जो कम ही मिलते हैं: पृथ्वी विज्ञान, समाज, डेटा और AI। और कुछ मूल्य जिन पर कभी समझौता नहीं: सत्यनिष्ठा, निष्पक्षता, सहानुभूति और जवाबदेही। जिस काम में लगता हूँ, उसमें पूरा मन लगाता हूँ।"],
+        },
+      },
+      {
+        id: 'to-younger-me',
+        q: { en: 'What would you tell your 15-year-old self?', hi: 'पंद्रह साल के अपने आप से क्या कहेंगे?' },
+        a: {
+          en: ["Check your sources, twice. There is no shortcut, so learn to love the long road. You are not less intelligent; you are still learning. Ask people who have walked the path. And chase the work, not the title: serve, don’t prove."],
+          hi: ["हर जानकारी दो बार जाँचो। कोई शॉर्टकट नहीं है, तो लंबे रास्ते से प्यार करना सीखो। तुम कम होशियार नहीं हो; तुम अभी सीख रहे हो। उनसे पूछो जो यह रास्ता चल चुके हैं। और पद के पीछे नहीं, काम के पीछे भागो: साबित मत करो, सेवा करो।"],
+        },
+      },
+      {
+        id: 'to-be-continued',
+        q: { en: 'Is that the whole story?', hi: 'क्या कहानी बस इतनी ही है?' },
+        a: {
+          en: ["Not even close. Every answer here hides ten smaller stories: the mistakes, the wrong turns, the people who helped me up. They are coming, one by one, right here."],
+          hi: ["बिल्कुल नहीं। यहाँ के हर जवाब के पीछे दस छोटी कहानियाँ छिपी हैं: ग़लतियाँ, ग़लत मोड़, और वे लोग जिन्होंने मुझे उठाया। वे सब आएँगी, एक-एक करके, यहीं।"],
         },
       },
     ],
