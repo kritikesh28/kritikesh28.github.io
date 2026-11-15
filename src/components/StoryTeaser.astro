@@ -3,7 +3,7 @@
 // It leads with the struggle, because people connect to the struggle, and every question on it opens that exact
 // answer on /about/my-story/ (so the card never promises something the story does not answer).
 // The questions are picked by id from src/data/my-story.ts; the numbers come from his Life History sheet
-// (2 UPSC Prelims: Oct 2021, Jun 2022; 3 RAS Prelims: Oct 2021, Oct 2023, Feb 2025; preparing since 2018).
+// (3 UPSC Prelims: 10 Oct 2021, 5 Jun 2022, 24 May 2026; 3 RAS Prelims: Oct 2021, Oct 2023, Feb 2025; preparing since 2018).
 // Guide: docs/17-library-map.md, section 5, "My story".
 import { STORY } from '../data/my-story';
 import { langFromUrl, localizePath, pick } from '../i18n/config';
@@ -26,16 +26,17 @@ const HOOKS: { id: string; en: string; hi: string }[] = [
   { id: 'no-shortcut', en: 'What did it feel like when my dream of IAS at 21 broke?', hi: '21 साल में IAS का सपना टूटा, तब कैसा लगा?' },
   { id: 'delhi-coaching', en: 'What did 5 a.m. mornings in Delhi teach me?', hi: 'दिल्ली की सुबह 5 बजे वाली सुबहों ने मुझे क्या सिखाया?' },
   { id: 'one-percent', en: 'How does it feel to miss a dream by 1%?', hi: 'किसी सपने से 1% से चूकना कैसा लगता है?' },
-  { id: 'why-ai', en: 'Why AI now, after years of preparation?', hi: 'सालों की तैयारी के बाद अब AI क्यों?' },
 ].filter((h) => all.some((q) => q.id === h.id));
+// the one question shown larger and bolder than the rest (his wish, 15 Nov 2026)
+const FEATURE = all.find((q) => q.id === 'why-ai');
 
 const T = pick({
   en: {
     eyebrow: 'My story', time: `${N} questions · about ${minutes} minutes`,
     h: 'I didn’t clear the exam I gave years to.', h2: 'Here’s why I wouldn’t change a single day.',
     text: 'From the naughtiest boy in class in Rawatbhata, to UPSC and RAS attempts, 5 a.m. mornings for Delhi coaching, two degrees and now applied AI. No filter, no shortcuts: just what the struggle taught me, and what it can save you.',
-    stats: [['8', 'years of preparation'], ['2', 'UPSC attempts'], ['3', 'RAS attempts'], ['1', 'reason to keep going']],
-    ask: 'Pick a question, I’ll answer it:', gainedT: 'If I could go back, would I change anything?', gainedA: 'Not a single day. The struggle gave me:', why: 'Here’s why →',
+    stats: [['8', 'years of preparation'], ['3', 'UPSC attempts'], ['3', 'RAS attempts'], ['1', 'reason to keep going']],
+    ask: 'Pick a question, I’ll answer it:', gainedT: 'If I could go back, would I change anything?', gainedA: 'Not a single day. The struggle gave me:', why: 'Here’s why →', featA: 'My answer →',
     gained: ['Discipline that runs without a boss', 'A plan for every big goal', 'Calm after every “no”', 'A reason bigger than myself'],
     go: 'Read my story →', sub: 'Talk to me like a friend would: one question at a time.',
   },
@@ -43,8 +44,8 @@ const T = pick({
     eyebrow: 'मेरी कहानी', time: `${N} सवाल · लगभग ${minutes} मिनट`,
     h: 'जिस परीक्षा को बरसों दिए, वह मैं पास नहीं कर पाया।', h2: 'फिर भी मैं एक भी दिन क्यों नहीं बदलूँगा।',
     text: 'रावतभाटा में क्लास के सबसे शरारती लड़के से, UPSC और RAS के प्रयासों, दिल्ली कोचिंग के लिए सुबह 5 बजे की सुबहों, दो डिग्रियों और अब अप्लाइड AI तक। कोई दिखावा नहीं, कोई शॉर्टकट नहीं: बस वह जो संघर्ष ने मुझे सिखाया, और जो आपका समय बचा सकता है।',
-    stats: [['8', 'साल की तैयारी'], ['2', 'UPSC प्रयास'], ['3', 'RAS प्रयास'], ['1', 'चलते रहने की वजह']],
-    ask: 'कोई सवाल चुनिए, जवाब मैं दूँगा:', gainedT: 'अगर पीछे जा सकूँ, तो क्या कुछ बदलूँगा?', gainedA: 'एक भी दिन नहीं। संघर्ष ने मुझे दिया:', why: 'वजह पढ़िए →',
+    stats: [['8', 'साल की तैयारी'], ['3', 'UPSC प्रयास'], ['3', 'RAS प्रयास'], ['1', 'चलते रहने की वजह']],
+    ask: 'कोई सवाल चुनिए, जवाब मैं दूँगा:', gainedT: 'अगर पीछे जा सकूँ, तो क्या कुछ बदलूँगा?', gainedA: 'एक भी दिन नहीं। संघर्ष ने मुझे दिया:', why: 'वजह पढ़िए →', featA: 'मेरा जवाब →',
     gained: ['बिना किसी के कहे चलने वाला अनुशासन', 'हर बड़े लक्ष्य के लिए एक योजना', 'हर “ना” के बाद भी शांत मन', 'अपने से बड़ी एक वजह'],
     go: 'मेरी कहानी पढ़िए →', sub: 'जैसे कोई दोस्त बात करे: एक-एक सवाल करके।',
   },
@@ -62,14 +63,15 @@ const url = L('/about/my-story/');
     <p class="st-cta"><a class="st-btn" href={url}>{T.go}</a><span>{T.sub}</span></p>
   </div>
   <div class="st-side">
-    <p class="st-ask">{T.ask}</p>
-    <ul class="st-qs">{HOOKS.map((h, i) => <li><a href={`${url}#${h.id}`}><span class="qn" aria-hidden="true">?</span>{hi ? h.hi : h.en}<span class="arr" aria-hidden="true">→</span></a></li>)}</ul>
+    {FEATURE && <a class="st-feat" href={`${url}#${FEATURE.id}`}><b>{hi ? FEATURE.q.hi : FEATURE.q.en}</b><span>{T.featA}</span></a>}
     <div class="st-gained">
       <p class="gq">{T.gainedT}</p>
       <p class="ga">{T.gainedA}</p>
       <ul>{T.gained.map((g) => <li>{g}</li>)}</ul>
       <a class="gw" href={`${url}#would-you-change-anything`}>{T.why}</a>
     </div>
+    <p class="st-ask">{T.ask}</p>
+    <ul class="st-qs">{HOOKS.map((h) => <li><a href={`${url}#${h.id}`}><span class="qn" aria-hidden="true">?</span>{hi ? h.hi : h.en}<span class="arr" aria-hidden="true">→</span></a></li>)}</ul>
   </div>
 </section>
 
@@ -103,10 +105,15 @@ const url = L('/about/my-story/');
     background: linear-gradient(90deg, #e0b45e, #f08e70); box-shadow: 0 10px 26px rgb(240 142 112 / 0.35); transition: transform 0.2s, box-shadow 0.2s; }
   .st-btn:hover { color: #1d1636; transform: translateY(-2px) scale(1.02); box-shadow: 0 14px 32px rgb(240 142 112 / 0.5); }
 
-  .st-ask { margin: 0 0 0.6rem; font-weight: 600; color: #fff; }
-  .st-qs { list-style: none; margin: 0 0 1.2rem; padding: 0; display: grid; gap: 0.5rem; }
+  .st-feat { display: block; margin: 0 0 1rem; padding: 1rem 1.1rem; border-radius: 18px; text-decoration: none;
+    background: linear-gradient(135deg, rgb(224 180 94 / 0.22), rgb(240 142 112 / 0.16)); border: 2px solid #e0b45e; transition: transform 0.2s, background 0.2s; }
+  .st-feat b { display: block; font: 800 clamp(1.3rem, 2.6vw, 1.7rem)/1.25 var(--font-serif); color: #fff; }
+  .st-feat span { display: block; margin-top: 0.35rem; font-weight: 700; color: #e0b45e; }
+  .st-feat:hover, .st-feat:focus-visible { transform: translateY(-2px); background: linear-gradient(135deg, rgb(224 180 94 / 0.32), rgb(240 142 112 / 0.24)); }
+  .st-ask { margin: 1.1rem 0 0.6rem; font-weight: 600; color: #fff; }
+  .st-qs { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
   .st-qs a { display: flex; align-items: center; gap: 0.7rem; padding: 0.65rem 0.8rem; border-radius: 14px; color: #f3eefc; text-decoration: none;
-    background: rgb(255 255 255 / 0.06); border: 1px solid rgb(255 255 255 / 0.12); font-size: 0.95rem; line-height: 1.35;
+    background: rgb(255 255 255 / 0.06); border: 1px solid rgb(255 255 255 / 0.12); font-size: 0.88rem; line-height: 1.35;
     transition: background 0.2s, border-color 0.2s, transform 0.2s; }
   .st-qs a:hover, .st-qs a:focus-visible { background: rgb(255 255 255 / 0.13); border-color: #e0b45e; transform: translateX(4px); color: #fff; }
   .qn { flex: none; display: grid; place-items: center; width: 1.7rem; height: 1.7rem; border-radius: 50%; background: #8f7be8; color: #fff; font: 700 0.9rem/1 var(--font-serif); }

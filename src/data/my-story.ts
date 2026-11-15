@@ -129,8 +129,8 @@ export const STORY: Milestone[] = [
         id: 'upsc-attempts',
         q: { en: 'How did your UPSC attempts go?', hi: 'UPSC के प्रयास कैसे रहे?' },
         a: {
-          en: ["My first Prelims, on 10 October 2021, did not go through. The second came just months later, on 5 June 2022: I cleared CSAT, but General Studies stayed just out of reach. I also wrote RAS Prelims in October 2021, October 2023 and February 2025, and many other exams. I am still trying, and if I get the chance, I will serve with complete honesty and integrity."],
-          hi: ["10 अक्टूबर 2021 का मेरा पहला प्रीलिम्स नहीं निकला। दूसरा कुछ ही महीनों बाद, 5 जून 2022 को आया: CSAT पार हुआ, पर सामान्य अध्ययन (GS) ज़रा-सा दूर रह गया। मैंने अक्टूबर 2021, अक्टूबर 2023 और फ़रवरी 2025 में RAS प्रीलिम्स भी दिया, और कई दूसरी परीक्षाएँ भी। मैं अब भी कोशिश कर रहा हूँ, और मौक़ा मिला तो पूरी ईमानदारी और निष्ठा से सेवा करूँगा।"],
+          en: ["My first Prelims, on 10 October 2021, did not go through. The second came just months later, on 5 June 2022: I cleared CSAT, but General Studies stayed just out of reach. My third attempt, on 24 May 2026, did not clear either. I also wrote RAS Prelims in October 2021, October 2023 and February 2025, and many other exams. I am still trying, and if I get the chance, I will serve with complete honesty and integrity."],
+          hi: ["10 अक्टूबर 2021 का मेरा पहला प्रीलिम्स नहीं निकला। दूसरा कुछ ही महीनों बाद, 5 जून 2022 को आया: CSAT पार हुआ, पर सामान्य अध्ययन (GS) ज़रा-सा दूर रह गया। 24 मई 2026 का तीसरा प्रयास भी नहीं निकला। मैंने अक्टूबर 2021, अक्टूबर 2023 और फ़रवरी 2025 में RAS प्रीलिम्स भी दिया, और कई दूसरी परीक्षाएँ भी। मैं अब भी कोशिश कर रहा हूँ, और मौक़ा मिला तो पूरी ईमानदारी और निष्ठा से सेवा करूँगा।"],
         },
       },
       {
@@ -216,14 +216,14 @@ export const STORY: Milestone[] = [
         q: { en: 'Why AI now, after so many years of preparation?', hi: 'इतने साल की तैयारी के बाद अब AI क्यों?' },
         a: {
           en: [
-            "Fair question. For years I had no job title, only preparation. But those years were not empty: I learnt how society, land, the economy and government actually work, and I learnt to study anything, alone, every single day.",
-            "I also kept seeing everyday problems around me, and solutions in my head, but had no tools to build them. AI is that tool. So in June 2026 I joined the Executive PG Programme in Applied AI and Agentic AI at IIIT Bangalore.",
-            "For a team, that means someone who brings the real-world context many AI projects lack (geography, GIS and remote sensing, governance, rural India), the discipline to learn fast, and the ethics to build responsibly. That is the bridge I am building: from the humanities to AI, for people.",
+            "Because of the problems I kept seeing. Geography taught me how much of daily life depends on land, water, weather and where people live: a farmer guessing when the rain will come, a village far from the nearest hospital, the tribal villages of southern Rajasthan I studied for my dissertation.",
+            "Each time I could picture a way to help, but I had no tools to build it. AI can read satellite images, find patterns in data and answer people in their own language. Joined with what I learnt about land, society and government, I feel it could help with problems like these, a little better each time. So in June 2026 I joined the Executive PG Programme in Applied AI and Agentic AI at IIIT Bangalore.",
+            "I am a beginner here. Many people understand both fields far better than I do, and I learn from them every day. Even after all these years of study, I feel I know very little, and that is exactly why I keep learning.",
           ],
           hi: [
-            "सही सवाल है। सालों तक मेरे पास कोई नौकरी का पद नहीं था, सिर्फ़ तैयारी थी। पर वे साल ख़ाली नहीं थे: मैंने समझा कि समाज, धरती, अर्थव्यवस्था और सरकार असल में कैसे चलते हैं, और यह भी सीखा कि कुछ भी, अकेले, हर दिन कैसे पढ़ा जाता है।",
-            "मुझे आस-पास रोज़ की परेशानियाँ दिखती थीं, और दिमाग़ में उनके हल भी, पर उन्हें बनाने के औज़ार नहीं थे। AI वही औज़ार है। इसलिए जून 2026 में मैंने IIIT बेंगलुरु के अप्लाइड AI और एजेंटिक AI के एग्ज़िक्यूटिव PG प्रोग्राम में दाख़िला लिया।",
-            "किसी टीम के लिए इसका मतलब है ऐसा साथी जो वह ज़मीनी समझ लाए जिसकी कई AI प्रोजेक्ट्स में कमी होती है (भूगोल, GIS और रिमोट सेंसिंग, शासन, ग्रामीण भारत), जल्दी सीखने का अनुशासन, और ज़िम्मेदारी से बनाने की नैतिकता। मैं यही पुल बना रहा हूँ: मानविकी से AI तक, लोगों के लिए।",
+            "उन समस्याओं की वजह से जो मुझे बार-बार दिखती रहीं। भूगोल ने सिखाया कि रोज़ की ज़िंदगी कितनी ज़मीन, पानी, मौसम और लोगों के रहने की जगह पर टिकी है: बारिश कब आएगी, इसका अंदाज़ा लगाता किसान, सबसे पास के अस्पताल से दूर बसा गाँव, दक्षिणी राजस्थान के वे आदिवासी गाँव जिन पर मैंने अपना शोध-प्रबंध लिखा।",
+            "हर बार मुझे मदद का कोई रास्ता दिखता, पर उसे बनाने के औज़ार नहीं थे। AI उपग्रह की तस्वीरें पढ़ सकता है, डेटा में पैटर्न ढूँढ सकता है और लोगों को उनकी अपनी भाषा में जवाब दे सकता है। ज़मीन, समाज और शासन के बारे में जो सीखा, उसके साथ जुड़कर मुझे लगता है कि यह ऐसी समस्याओं में, हर बार थोड़ा बेहतर, मदद कर सकता है। इसलिए जून 2026 में मैंने IIIT बेंगलुरु के अप्लाइड AI और एजेंटिक AI के एग्ज़िक्यूटिव PG प्रोग्राम में दाख़िला लिया।",
+            "यहाँ मैं अभी शुरुआत कर रहा हूँ। बहुत से लोग दोनों क्षेत्रों को मुझसे कहीं बेहतर समझते हैं, और मैं रोज़ उनसे सीखता हूँ। इतने सालों की पढ़ाई के बाद भी मुझे लगता है कि मैं बहुत कम जानता हूँ, और इसीलिए सीखता रहता हूँ।",
           ],
         },
       },
@@ -238,16 +238,16 @@ export const STORY: Milestone[] = [
         id: 'why-curious-sparoows',
         q: { en: 'Why did you build Curious Sparoows?', hi: 'आपने Curious Sparoows क्यों बनाया?' },
         a: {
-          en: ["As an aspirant I often wished for someone to guide me closely and honestly, like a personal mentor. This site and its YouTube channel are my attempt to be that for others: what I have learnt, shared freely, from the basics up, without tricks or pressure. Knowledge comes from nature and belongs to everyone, and a skill passed on can change a life."],
-          hi: ["तैयारी के दिनों में मैं अक्सर चाहता था कि कोई निजी मार्गदर्शक की तरह मुझे पास से और ईमानदारी से राह दिखाए। यह साइट और इसका YouTube चैनल दूसरों के लिए वही बनने की कोशिश है: जो सीखा, बुनियाद से, बिना किसी चाल या दबाव के, मुफ़्त में बाँटना। ज्ञान प्रकृति से आता है और सबका है, और सौंपा गया एक हुनर किसी की ज़िंदगी बदल सकता है।"],
+          en: ["As an aspirant I often wished for someone to guide me closely and honestly, like a personal mentor. This site and its YouTube channel are my attempt to be that for others: what I have learnt, shared freely, from the basics up, without tricks or pressure. Knowledge comes from nature and belongs to everyone, and a skill passed on can change a life. It is my hobby, not my job: I build it in my own time because helping people is simply who I am. Whatever work I take up will always come first."],
+          hi: ["तैयारी के दिनों में मैं अक्सर चाहता था कि कोई निजी मार्गदर्शक की तरह मुझे पास से और ईमानदारी से राह दिखाए। यह साइट और इसका YouTube चैनल दूसरों के लिए वही बनने की कोशिश है: जो सीखा, बुनियाद से, बिना किसी चाल या दबाव के, मुफ़्त में बाँटना। ज्ञान प्रकृति से आता है और सबका है, और सौंपा गया एक हुनर किसी की ज़िंदगी बदल सकता है। यह मेरा शौक़ है, मेरी नौकरी नहीं: मैं इसे अपने ख़ाली समय में बनाता हूँ, क्योंकि लोगों की मदद करना मेरा स्वभाव है। जो भी काम मैं हाथ में लूँगा, वह हमेशा पहले रहेगा।"],
         },
       },
       {
         id: 'what-i-bring',
-        q: { en: 'What would you bring to a team?', hi: 'आप किसी टीम को क्या दे सकते हैं?' },
+        q: { en: 'What did those years leave you with?', hi: 'उन सालों ने आपको क्या दिया?' },
         a: {
-          en: ["Years of disciplined, self-driven study across almost every subject; the habit of turning a big goal into a plan and seeing it through; and resilience after setbacks. I learn new tools quickly, write clearly, and connect fields that rarely meet: Earth science, society, data and AI. And values I never bargain on: integrity, objectivity, empathy and accountability. Whatever I work on gets my whole heart."],
-          hi: ["लगभग हर विषय में सालों की अनुशासित, ख़ुद से चलाई पढ़ाई; बड़े लक्ष्य को योजना में बदलकर पूरा करने की आदत; और ठोकरों के बाद भी चलते रहने का धैर्य। मैं नए टूल जल्दी सीखता हूँ, साफ़ लिखता हूँ, और उन क्षेत्रों को जोड़ता हूँ जो कम ही मिलते हैं: पृथ्वी विज्ञान, समाज, डेटा और AI। और कुछ मूल्य जिन पर कभी समझौता नहीं: सत्यनिष्ठा, निष्पक्षता, सहानुभूति और जवाबदेही। जिस काम में लगता हूँ, उसमें पूरा मन लगाता हूँ।"],
+          en: ["Years of disciplined, self-driven study across almost every subject; the habit of turning a big goal into a plan and seeing it through; and resilience after setbacks. I love learning new tools and joining the dots between Earth science, society, data and AI. Values I never bargain on: integrity, objectivity, empathy and accountability. And the humility to know how much I still have to learn. Whatever I work on gets my whole heart."],
+          hi: ["लगभग हर विषय में सालों की अनुशासित, ख़ुद से चलाई पढ़ाई; बड़े लक्ष्य को योजना में बदलकर पूरा करने की आदत; और ठोकरों के बाद भी चलते रहने का धैर्य। मुझे नए टूल सीखना और पृथ्वी विज्ञान, समाज, डेटा और AI के बीच कड़ियाँ जोड़ना अच्छा लगता है। कुछ मूल्य जिन पर कभी समझौता नहीं: सत्यनिष्ठा, निष्पक्षता, सहानुभूति और जवाबदेही। और यह विनम्रता कि अभी कितना कुछ सीखना बाक़ी है। जिस काम में लगता हूँ, उसमें पूरा मन लगाता हूँ।"],
         },
       },
       {
