@@ -12,7 +12,7 @@ export const SITE = {
   tagline: 'Curious, without end. Notes on AI, the Earth and everything in between.',
   description:
     'Curious Sparoows: explainers on AI, geography and ideas that start from the basics, with applied AI and data projects and QGIS maps by Kritikesh Rajpurohit.',
-  jobTitle: 'Applied AI learner, geographer and teacher',
+  jobTitle: 'Applied AI learner, geographer and educator',
   location: 'Rawatbhata, Rajasthan (near Kota), India',
   email: 'hello@curioussparoows.com',
   // Free form at formspree.io; paste its URL here. Until then the contact form opens the visitor's email app.
