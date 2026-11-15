@@ -1,6 +1,6 @@
 ---
 // The home page: the poster, then one soft colour band per section, top to bottom:
-// About me · Library · Explore (the tree) · Exam Prep · Live project · Portfolio · Read deeper · next steps.
+// About me · My story (the invitation card) · Library · Explore (the tree) · Exam Prep · Live project · Portfolio · Read deeper · next steps.
 // Band colours are the .b-* classes at the bottom of this file. Guide: docs/18-portfolio-and-menus.md
 import Base from '../../layouts/Base.astro';
 import PostCard from '../../components/PostCard.astro';
@@ -11,6 +11,7 @@ import JustHatched from '../../components/JustHatched.astro';
 import LiveDemo from '../../components/LiveDemo.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import QuestionCard from '../../components/QuestionCard.astro';
+import StoryTeaser from '../../components/StoryTeaser.astro';
 import { SHELVES, shelfTitle } from '../../library-map';
 import { subjectsIn, GLYPH, STATS, fmt } from '../../exam-prep';
 import { PF_SECTIONS, pfName, pfUrl } from '../../portfolio.config';
@@ -92,6 +93,11 @@ const T = pick({
         {T.tl.map(([y, x]) => <li><b>{y}</b><span>{x}</span></li>)}
       </ol>
     </div>
+  </section>
+
+  {/* the invitation to read "My story": it leads with the struggle (src/components/StoryTeaser.astro) */}
+  <section id="story" class="band b-story">
+    <div class="wrap"><StoryTeaser /></div>
   </section>
 
   <section id="library" class="band b-lib">
@@ -188,6 +194,7 @@ const T = pick({
   .band::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 90% at 100% 0%, color-mix(in srgb, var(--band-edge) 9%, transparent), transparent 70%); }
   .band > .wrap { position: relative; }
   .b-me { --band-edge: var(--gold); --band: color-mix(in srgb, var(--gold) 8%, var(--bg)); }
+  .b-story { --band-edge: var(--coral); --band: color-mix(in srgb, var(--gold) 8%, var(--bg)); border-top: 0; padding-top: 0; }
   .b-lib { --band-edge: var(--accent); --band: color-mix(in srgb, var(--accent) 5%, var(--bg)); }
   .b-tree { --band-edge: var(--teal); --band: color-mix(in srgb, var(--teal) 6%, var(--bg)); }
   .b-exam { --band-edge: #c98a2b; --band: color-mix(in srgb, #c98a2b 7%, var(--bg)); }

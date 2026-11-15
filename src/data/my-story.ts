@@ -1,5 +1,6 @@
 // "My story" (/about/my-story/): Kritikesh's life story as questions and answers, grouped under milestones.
-// He told it in his own words on 15 Nov 2026; dates come from his "My Life History" sheet on Drive.
+// He told it in his own words on 15 Nov 2026. Every date comes from his "My Life History" Google Sheet on Drive
+// (Life Log tab): it is the reference for dates. If a date here and the sheet differ, the sheet wins; check it before changing one.
 // Tone (his wish): one person talking warmly to another (students, parents, teachers, recruiters), honest and human,
 // still clear and professional. Keep each answer short: the whole page is meant to be a 2 to 3 minute read.
 // To edit: change the text here (English `en`, Hindi `hi`; the Hindi keeps the meaning, not word for word,
@@ -73,16 +74,16 @@ export const STORY: Milestone[] = [
         id: 'why-geology',
         q: { en: 'Why geology, of all subjects?', hi: 'इतने विषयों में भूविज्ञान ही क्यों?' },
         a: {
-          en: ["Strategy first, love later. With 89%, humanities cut-offs of 98 to 99% were out of reach, so I chose the college over the course: Geology at Hansraj College opened at exactly my 95%, and it sits close to geography, a big part of UPSC. I also learnt there is no shortcut, only graduation, then Prelims, Mains and an interview. But I fell in love with rocks, rivers and the deep history of the Earth, and from June 2019 weekend coaching at Beacon polished my knowledge and my personality."],
-          hi: ["पहले रणनीति, प्यार बाद में। 89% पर मानविकी के 98 से 99% वाले कट-ऑफ़ पहुँच से बाहर थे, तो मैंने कोर्स से पहले कॉलेज चुना: हंसराज कॉलेज में भूविज्ञान ठीक मेरे 95% पर खुला, और यह भूगोल के क़रीब है, जो UPSC का बड़ा हिस्सा है। यह भी पता चला कि कोई शॉर्टकट नहीं, पहले ग्रेजुएशन, फिर प्रीलिम्स, मेन्स और इंटरव्यू। पर मुझे चट्टानों, नदियों और धरती के गहरे इतिहास से प्यार हो गया, और जून 2019 से Beacon की वीकेंड कोचिंग ने मेरे ज्ञान और व्यक्तित्व को निखारा।"],
+          en: ["Strategy first, love later. With 89%, humanities cut-offs of 98 to 99% were out of reach, so I chose the college over the course: in August 2018 I joined B.Sc. (Hons) Geology at Hansraj College, which opened at exactly my 95%, and it sits close to geography, a big part of UPSC. I also learnt there is no shortcut, only graduation, then Prelims, Mains and an interview. But I fell in love with rocks, rivers and the deep history of the Earth, and from 21 June 2019 weekend coaching at Beacon polished my knowledge and my personality."],
+          hi: ["पहले रणनीति, प्यार बाद में। 89% पर मानविकी के 98 से 99% वाले कट-ऑफ़ पहुँच से बाहर थे, तो मैंने कोर्स से पहले कॉलेज चुना: अगस्त 2018 में मैंने हंसराज कॉलेज में B.Sc. (ऑनर्स) भूविज्ञान में दाख़िला लिया, जो ठीक मेरे 95% पर खुला, और यह भूगोल के क़रीब है, जो UPSC का बड़ा हिस्सा है। यह भी पता चला कि कोई शॉर्टकट नहीं, पहले ग्रेजुएशन, फिर प्रीलिम्स, मेन्स और इंटरव्यू। पर मुझे चट्टानों, नदियों और धरती के गहरे इतिहास से प्यार हो गया, और 21 जून 2019 से Beacon की वीकेंड कोचिंग ने मेरे ज्ञान और व्यक्तित्व को निखारा।"],
         },
       },
       {
         id: 'covid',
         q: { en: 'What happened when COVID sent everyone home?', hi: 'जब कोविड ने सबको घर भेज दिया, तब क्या हुआ?' },
         a: {
-          en: ["In April 2020 I was back in Rawatbhata, studying online. I joined Utkarsh’s Hindi-medium UPSC course, about ₹15,000 to 20,000, chosen almost at random. It turned out to be a gift: S. Shahi sir, Rajesh Mishra sir and Narendra sir built most of my foundation. I finished my B.Sc. on 9 July 2021, with a 9 CGPA in the final year."],
-          hi: ["अप्रैल 2020 में मैं रावतभाटा लौटा और पढ़ाई ऑनलाइन चली। मैंने Utkarsh का हिंदी माध्यम वाला UPSC कोर्स लिया, क़रीब ₹15,000 से 20,000 का, लगभग यूँ ही चुना हुआ। वह तोहफ़ा निकला: एस. शाही सर, राजेश मिश्रा सर और नरेंद्र सर ने मेरी नींव का बड़ा हिस्सा बनाया। 9 जुलाई 2021 को मेरी B.Sc. पूरी हुई, आख़िरी साल में 9 CGPA के साथ।"],
+          en: ["In April 2020 I was back in Rawatbhata, studying online. I joined Utkarsh’s Hindi-medium UPSC course, about ₹15,000 to 20,000, chosen almost at random. It turned out to be a gift: S. Shahi sir, Rajesh Mishra sir and Narendra sir built most of my foundation. My B.Sc. final result came on 9 July 2021, with a 9 CGPA in the final year."],
+          hi: ["अप्रैल 2020 में मैं रावतभाटा लौटा और पढ़ाई ऑनलाइन चली। मैंने Utkarsh का हिंदी माध्यम वाला UPSC कोर्स लिया, क़रीब ₹15,000 से 20,000 का, लगभग यूँ ही चुना हुआ। वह तोहफ़ा निकला: एस. शाही सर, राजेश मिश्रा सर और नरेंद्र सर ने मेरी नींव का बड़ा हिस्सा बनाया। 9 जुलाई 2021 को मेरी B.Sc. का अंतिम परिणाम आया, आख़िरी साल में 9 CGPA के साथ।"],
         },
       },
     ],
@@ -96,8 +97,8 @@ export const STORY: Milestone[] = [
         id: 'upsc-attempts',
         q: { en: 'How did your UPSC attempts go?', hi: 'UPSC के प्रयास कैसे रहे?' },
         a: {
-          en: ["My first Prelims, on 10 October 2021, did not go through. The second came just months later, on 5 June 2022: I cleared CSAT, but General Studies stayed just out of reach. I also wrote RAS Prelims in 2021, 2023 and 2025, and many other exams. I am still trying, and if I get the chance, I will serve with complete honesty and integrity."],
-          hi: ["10 अक्टूबर 2021 का मेरा पहला प्रीलिम्स नहीं निकला। दूसरा कुछ ही महीनों बाद, 5 जून 2022 को आया: CSAT पार हुआ, पर सामान्य अध्ययन (GS) ज़रा-सा दूर रह गया। मैंने 2021, 2023 और 2025 में RAS प्रीलिम्स भी दिया, और कई दूसरी परीक्षाएँ भी। मैं अब भी कोशिश कर रहा हूँ, और मौक़ा मिला तो पूरी ईमानदारी और निष्ठा से सेवा करूँगा।"],
+          en: ["My first Prelims, on 10 October 2021, did not go through. The second came just months later, on 5 June 2022: I cleared CSAT, but General Studies stayed just out of reach. I also wrote RAS Prelims in October 2021, October 2023 and February 2025, and many other exams. I am still trying, and if I get the chance, I will serve with complete honesty and integrity."],
+          hi: ["10 अक्टूबर 2021 का मेरा पहला प्रीलिम्स नहीं निकला। दूसरा कुछ ही महीनों बाद, 5 जून 2022 को आया: CSAT पार हुआ, पर सामान्य अध्ययन (GS) ज़रा-सा दूर रह गया। मैंने अक्टूबर 2021, अक्टूबर 2023 और फ़रवरी 2025 में RAS प्रीलिम्स भी दिया, और कई दूसरी परीक्षाएँ भी। मैं अब भी कोशिश कर रहा हूँ, और मौक़ा मिला तो पूरी ईमानदारी और निष्ठा से सेवा करूँगा।"],
         },
       },
       {
@@ -119,8 +120,8 @@ export const STORY: Milestone[] = [
         id: 'after-graduation',
         q: { en: 'What came after graduation?', hi: 'ग्रेजुएशन के बाद क्या हुआ?' },
         a: {
-          en: ["I missed the M.Sc. at DU by about 1%, so in 2023 I began an M.Sc. in Geography at IGNOU: after the inside of the Earth, its outside. In 2024 I cleared CUET PG and was offered a seat at the Central University of Punjab, but stayed on my path. My dissertation on tribal poverty among the Bhil of southern Rajasthan is becoming a research paper. I completed the M.Sc. in May 2026 and qualified UGC-NET Geography."],
-          hi: ["DU में M.Sc. का दाख़िला मैं क़रीब 1% से चूका, तो 2023 में IGNOU से भूगोल में M.Sc. शुरू की: धरती के अंदर के बाद, अब उसका बाहर। 2024 में CUET PG पास किया और सेंट्रल यूनिवर्सिटी ऑफ़ पंजाब में सीट मिली, पर मैं अपने रास्ते पर टिका रहा। दक्षिणी राजस्थान के भीलों की ग़रीबी पर मेरा शोध-प्रबंध अब रिसर्च पेपर बन रहा है। मई 2026 में M.Sc. पूरी हुई और मैंने UGC-NET भूगोल पास किया।"],
+          en: ["I missed the M.Sc. at DU by about 1%, so in September 2023 I joined an M.Sc. in Geography at IGNOU: after the inside of the Earth, its outside. I wrote CUET PG in March 2024, and in June 2024 the Central University of Punjab offered me a seat, but I stayed on my path. I presented my dissertation on tribal poverty among the Bhil of southern Rajasthan on 9 September 2025, and it is becoming a research paper. My M.Sc. result came on 7 May 2026, and I qualified UGC-NET Geography."],
+          hi: ["DU में M.Sc. का दाख़िला मैं क़रीब 1% से चूका, तो सितंबर 2023 में IGNOU से भूगोल में M.Sc. में दाख़िला लिया: धरती के अंदर के बाद, अब उसका बाहर। मार्च 2024 में CUET PG दिया, और जून 2024 में सेंट्रल यूनिवर्सिटी ऑफ़ पंजाब ने सीट दी, पर मैं अपने रास्ते पर टिका रहा। दक्षिणी राजस्थान के भीलों की ग़रीबी पर अपना शोध-प्रबंध मैंने 9 सितंबर 2025 को प्रस्तुत किया, और अब वह रिसर्च पेपर बन रहा है। 7 मई 2026 को M.Sc. का परिणाम आया, और मैंने UGC-NET भूगोल पास किया।"],
         },
       },
       {
@@ -142,8 +143,8 @@ export const STORY: Milestone[] = [
         id: 'why-ai',
         q: { en: 'Why AI, after so many years of humanities?', hi: 'इतने साल मानविकी पढ़ने के बाद AI क्यों?' },
         a: {
-          en: ["Because I kept seeing everyday problems around me, and solutions in my head, but had no tools to build them: small, local problems no product solves. So in 2026 I joined the Executive PG Programme in Applied AI and Agentic AI at IIIT Bangalore. My aim: combine a deep understanding of society, geography and governance with AI, and build solutions that actually work for people."],
-          hi: ["क्योंकि मुझे आस-पास रोज़ की परेशानियाँ दिखती थीं, और दिमाग़ में उनके हल भी, पर उन्हें बनाने के औज़ार नहीं थे: छोटी, स्थानीय समस्याएँ, जिनका कोई हल बाज़ार में नहीं। इसलिए 2026 में मैंने IIIT बेंगलुरु के अप्लाइड AI और एजेंटिक AI के एग्ज़िक्यूटिव PG प्रोग्राम में दाख़िला लिया। मेरा लक्ष्य: समाज, भूगोल और शासन की गहरी समझ को AI से जोड़कर ऐसे हल बनाना जो सच में लोगों के काम आएँ।"],
+          en: ["Because I kept seeing everyday problems around me, and solutions in my head, but had no tools to build them: small, local problems no product solves. So in June 2026 I joined the Executive PG Programme in Applied AI and Agentic AI at IIIT Bangalore. My aim: combine a deep understanding of society, geography and governance with AI, and build solutions that actually work for people."],
+          hi: ["क्योंकि मुझे आस-पास रोज़ की परेशानियाँ दिखती थीं, और दिमाग़ में उनके हल भी, पर उन्हें बनाने के औज़ार नहीं थे: छोटी, स्थानीय समस्याएँ, जिनका कोई हल बाज़ार में नहीं। इसलिए जून 2026 में मैंने IIIT बेंगलुरु के अप्लाइड AI और एजेंटिक AI के एग्ज़िक्यूटिव PG प्रोग्राम में दाख़िला लिया। मेरा लक्ष्य: समाज, भूगोल और शासन की गहरी समझ को AI से जोड़कर ऐसे हल बनाना जो सच में लोगों के काम आएँ।"],
         },
       },
     ],

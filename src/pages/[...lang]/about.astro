@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import { SITE, SOCIALS, BRAND_SOCIALS } from '../../site.config';
 import CtaBand from '../../components/CtaBand.astro';
+import StoryTeaser from '../../components/StoryTeaser.astro';
 import { langFromUrl, langParams, localizePath, pick } from '../../i18n/config';
 
 export const getStaticPaths = () => langParams().map((params) => ({ params }));
@@ -58,7 +59,6 @@ const T = pick({
     verifyTitle: 'Find and verify me',
     verify: 'These are my only official profiles. Each one links back to this site, so you can confirm they are really me.',
     resume: 'Download my resume (PDF)', contact: 'Get in touch →',
-    storyEyebrow: 'My story', storyTitle: 'The long road: UPSC, RAS, NET and what they taught me', storyText: 'From a naughty boy in Rawatbhata to years of UPSC preparation, geology, geography, research and now applied AI: my story, told one question at a time, in about four minutes.', storyLink: 'Read my story →',
   },
   hi: {
     title: 'मेरे बारे में', description: 'कृतिकेश राजपुरोहित के बारे में: भूविज्ञान और भूगोल की पढ़ाई, और अब AI सीखने का सफ़र।',
@@ -106,7 +106,6 @@ const T = pick({
     verifyTitle: 'मुझे ढूँढिए और पक्का कीजिए',
     verify: 'ये ही मेरी असली (ऑफ़िशियल) प्रोफ़ाइल हैं। हर एक में इस साइट का लिंक है, ताकि आप पक्का कर सकें कि ये सच में मेरी ही हैं।',
     resume: 'मेरा रिज़्यूमे (PDF) डाउनलोड करें', contact: 'मुझसे बात करें →',
-    storyEyebrow: 'मेरी कहानी', storyTitle: 'लंबा रास्ता: UPSC, RAS, NET और उनसे मिली सीख', storyText: 'रावतभाटा के एक शरारती लड़के से UPSC की सालों की तैयारी, भूविज्ञान, भूगोल, रिसर्च और अब अप्लाइड AI तक: मेरी कहानी, एक-एक सवाल करके, लगभग चार मिनट में।', storyLink: 'मेरी कहानी पढ़ें →',
   },
 }, lang);
 ---
@@ -118,6 +117,8 @@ const T = pick({
     <p class="lead">{T.lead}</p>
     <ul class="what">{T.what.map((w) => <li>{w}</li>)}</ul>
     <p class="motto">{T.motto}</p>
+
+    <StoryTeaser stack />
 
     <aside class="facts card">
       <h2>{T.factsTitle}</h2>
@@ -139,13 +140,6 @@ const T = pick({
 
     <h2>{T.teachTitle}</h2>
     <p>{T.teach}</p>
-
-    <a class="story card" href={L('/about/my-story/')}>
-      <span class="eyebrow">{T.storyEyebrow}</span>
-      <strong>{T.storyTitle}</strong>
-      <span class="muted">{T.storyText}</span>
-      <span class="go">{T.storyLink}</span>
-    </a>
 
     <h2>{T.outsideTitle}</h2>
     <ul>{T.outside.map((x) => <li set:html={x} />)}</ul>
@@ -170,9 +164,5 @@ const T = pick({
   .facts dt { font-weight: 600; color: var(--ink-soft); }
   .facts dd { margin: 0; }
   @media (max-width: 520px) { .facts dl { grid-template-columns: 1fr; } .facts dd { margin-bottom: 0.4rem; } }
-  .story { display: grid; gap: 0.35rem; margin: 1.6rem 0; padding: 1.2rem 1.3rem; text-decoration: none; color: var(--ink); border-left: 4px solid var(--gold); }
-  .story strong { font-family: var(--font-serif); font-size: 1.25rem; line-height: 1.3; }
-  .story .go { font-weight: 600; color: var(--accent); }
-  .story:hover { color: var(--ink); }
   .photo { width: 160px; height: 160px; border-radius: 50%; margin: 0 0 1rem; }
 </style>
