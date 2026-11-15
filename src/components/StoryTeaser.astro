@@ -15,20 +15,23 @@ const L = (p: string) => localizePath(p, lang);
 const hi = lang === 'hi';
 const all = STORY.flatMap((m) => m.qs);
 const N = all.length;
+// reading time, worked out the same way as on the story page
+const words = all.reduce((s, q) => s + (hi ? q.a.hi : q.a.en).join(' ').split(/\s+/).length, 0);
+const minutes = Math.max(2, Math.round(words / 230));
 
 // the hooks: a short, honest teaser for a question, and the question it opens
 const HOOKS: { id: string; en: string; hi: string }[] = [
   { id: 'miranda-house', en: 'Why did I study two years for a women’s college?', hi: 'मैं दो साल लड़कियों के कॉलेज के लिए क्यों पढ़ता रहा?' },
   { id: 'what-changed-you', en: 'How did one friend change the naughtiest boy in class?', hi: 'एक दोस्त ने क्लास के सबसे शरारती लड़के को कैसे बदल दिया?' },
-  { id: 'how-did-you-plan', en: 'What does a 15-year-old’s life plan look like?', hi: 'पंद्रह साल के बच्चे की ज़िंदगी की योजना कैसी होती है?' },
+  { id: 'no-shortcut', en: 'What did it feel like when my dream of IAS at 21 broke?', hi: '21 साल में IAS का सपना टूटा, तब कैसा लगा?' },
   { id: 'delhi-coaching', en: 'What did a 5 a.m. batch in Delhi teach me?', hi: 'दिल्ली के सुबह 5 बजे वाले बैच ने मुझे क्या सिखाया?' },
-  { id: 'hard-days', en: 'Why would I not change a single day, not even the worst?', hi: 'मैं एक भी दिन क्यों नहीं बदलूँगा, सबसे बुरा भी नहीं?' },
+  { id: 'regret', en: 'Why would I not change a single day, not even the worst?', hi: 'मैं एक भी दिन क्यों नहीं बदलूँगा, सबसे बुरा भी नहीं?' },
   { id: 'why-ai', en: 'Why AI, after years of history and geography?', hi: 'बरसों इतिहास और भूगोल के बाद AI क्यों?' },
 ].filter((h) => all.some((q) => q.id === h.id));
 
 const T = pick({
   en: {
-    eyebrow: 'My story', time: `${N} questions · about 4 minutes`,
+    eyebrow: 'My story', time: `${N} questions · about ${minutes} minutes`,
     h: 'I didn’t clear the exam I gave years to.', h2: 'Here’s why I wouldn’t change a single day.',
     text: 'From the naughtiest boy in class in Rawatbhata, to UPSC and RAS attempts, Delhi coaching at 5 a.m., two degrees and now applied AI. No filter, no shortcuts: just what the struggle taught me, and what it can save you.',
     stats: [['8', 'years of preparation'], ['2', 'UPSC attempts'], ['3', 'RAS attempts'], ['1', 'reason to keep going']],
@@ -37,7 +40,7 @@ const T = pick({
     go: 'Read my story →', sub: 'Talk to me like a friend would: one question at a time.',
   },
   hi: {
-    eyebrow: 'मेरी कहानी', time: `${N} सवाल · लगभग 4 मिनट`,
+    eyebrow: 'मेरी कहानी', time: `${N} सवाल · लगभग ${minutes} मिनट`,
     h: 'जिस परीक्षा को बरसों दिए, वह मैं पास नहीं कर पाया।', h2: 'फिर भी मैं एक भी दिन क्यों नहीं बदलूँगा।',
     text: 'रावतभाटा में क्लास के सबसे शरारती लड़के से, UPSC और RAS के प्रयासों, दिल्ली में सुबह 5 बजे की कोचिंग, दो डिग्रियों और अब अप्लाइड AI तक। कोई दिखावा नहीं, कोई शॉर्टकट नहीं: बस वह जो संघर्ष ने मुझे सिखाया, और जो आपका समय बचा सकता है।',
     stats: [['8', 'साल की तैयारी'], ['2', 'UPSC प्रयास'], ['3', 'RAS प्रयास'], ['1', 'चलते रहने की वजह']],
