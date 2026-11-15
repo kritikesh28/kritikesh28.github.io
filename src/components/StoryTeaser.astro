@@ -33,7 +33,7 @@ const FEATURE = all.find((q) => q.id === 'why-ai');
 const T = pick({
   en: {
     eyebrow: 'My story', time: `${N} questions · about ${minutes} minutes`,
-    h: 'I didn’t clear the exam I gave years to.', h2: 'Here’s why I wouldn’t change a single day.',
+    h: 'I didn’t clear the exam I gave years to.',
     text: 'From the naughtiest boy in class in Rawatbhata, to UPSC and RAS attempts, 5 a.m. mornings for Delhi coaching, two degrees and now applied AI. No filter, no shortcuts: just what the struggle taught me, and what it can save you.',
     stats: [['8', 'years of preparation'], ['3', 'UPSC attempts'], ['3', 'RAS attempts'], ['1', 'reason to keep going']],
     ask: 'Pick a question, I’ll answer it:', gainedT: 'If I could go back, would I change anything?', gainedA: 'Not a single day. The struggle gave me:', why: 'Here’s why →', featA: 'My answer →',
@@ -42,7 +42,7 @@ const T = pick({
   },
   hi: {
     eyebrow: 'मेरी कहानी', time: `${N} सवाल · लगभग ${minutes} मिनट`,
-    h: 'जिस परीक्षा को बरसों दिए, वह मैं पास नहीं कर पाया।', h2: 'फिर भी मैं एक भी दिन क्यों नहीं बदलूँगा।',
+    h: 'जिस परीक्षा को बरसों दिए, वह मैं पास नहीं कर पाया।',
     text: 'रावतभाटा में क्लास के सबसे शरारती लड़के से, UPSC और RAS के प्रयासों, दिल्ली कोचिंग के लिए सुबह 5 बजे की सुबहों, दो डिग्रियों और अब अप्लाइड AI तक। कोई दिखावा नहीं, कोई शॉर्टकट नहीं: बस वह जो संघर्ष ने मुझे सिखाया, और जो आपका समय बचा सकता है।',
     stats: [['8', 'साल की तैयारी'], ['3', 'UPSC प्रयास'], ['3', 'RAS प्रयास'], ['1', 'चलते रहने की वजह']],
     ask: 'कोई सवाल चुनिए, जवाब मैं दूँगा:', gainedT: 'अगर पीछे जा सकूँ, तो क्या कुछ बदलूँगा?', gainedA: 'एक भी दिन नहीं। संघर्ष ने मुझे दिया:', why: 'वजह पढ़िए →', featA: 'मेरा जवाब →',
@@ -57,19 +57,19 @@ const url = L('/about/my-story/');
   <div class="st-glow" aria-hidden="true"></div>
   <div class="st-main">
     <p class="st-eyebrow"><span class="dot" aria-hidden="true"></span>{T.eyebrow} · {T.time}</p>
-    <h2 id="st-h"><a href={`${url}#would-you-change-anything`}><span class="h1">{T.h}</span> <span class="h2">{T.h2}</span></a></h2>
-    <p class="st-text">{T.text}</p>
-    <ul class="st-stats">{T.stats.map(([n, l]) => <li><b>{n}</b><span>{l}</span></li>)}</ul>
-    <p class="st-cta"><a class="st-btn" href={url}>{T.go}</a><span>{T.sub}</span></p>
-  </div>
-  <div class="st-side">
-    {FEATURE && <a class="st-feat" href={`${url}#${FEATURE.id}`}><b>{hi ? FEATURE.q.hi : FEATURE.q.en}</b><span>{T.featA}</span></a>}
+    <h2 id="st-h"><a href={url}><span class="h1">{T.h}</span></a></h2>
     <div class="st-gained">
       <p class="gq">{T.gainedT}</p>
       <p class="ga">{T.gainedA}</p>
       <ul>{T.gained.map((g) => <li>{g}</li>)}</ul>
       <a class="gw" href={`${url}#would-you-change-anything`}>{T.why}</a>
     </div>
+    <p class="st-text">{T.text}</p>
+    <ul class="st-stats">{T.stats.map(([n, l]) => <li><b>{n}</b><span>{l}</span></li>)}</ul>
+    <p class="st-cta"><a class="st-btn" href={url}>{T.go}</a><span>{T.sub}</span></p>
+  </div>
+  <div class="st-side">
+    {FEATURE && <a class="st-feat" href={`${url}#${FEATURE.id}`}><b>{hi ? FEATURE.q.hi : FEATURE.q.en}</b><span>{T.featA}</span></a>}
     <p class="st-ask">{T.ask}</p>
     <ul class="st-qs">{HOOKS.map((h) => <li><a href={`${url}#${h.id}`}><span class="qn" aria-hidden="true">?</span>{hi ? h.hi : h.en}<span class="arr" aria-hidden="true">→</span></a></li>)}</ul>
   </div>
@@ -92,7 +92,6 @@ const url = L('/about/my-story/');
   @keyframes st-pulse { 70% { box-shadow: 0 0 0 10px rgb(240 142 112 / 0); } 100% { box-shadow: 0 0 0 0 rgb(240 142 112 / 0); } }
   .story-teaser h2 { margin: 0 0 0.9rem; font-size: clamp(1.6rem, 3.6vw, 2.5rem); line-height: 1.15; }
   .story-teaser h2 a { color: inherit; text-decoration: none; }
-  .story-teaser h2 .h2 { display: block; margin-top: 0.3rem; font-family: var(--font-display); font-style: italic; font-weight: 500; color: #e0b45e; }
   .story-teaser h2 a:hover .h1 { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; }
   .st-text { margin: 0 0 1.2rem; font-family: var(--font-serif); font-size: 1.06rem; line-height: 1.7; color: #d9d2ee; max-width: 36rem; }
   .st-stats { list-style: none; margin: 0 0 1.4rem; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.6rem; }
@@ -110,7 +109,7 @@ const url = L('/about/my-story/');
   .st-feat b { display: block; font: 800 clamp(1.3rem, 2.6vw, 1.7rem)/1.25 var(--font-serif); color: #fff; }
   .st-feat span { display: block; margin-top: 0.35rem; font-weight: 700; color: #e0b45e; }
   .st-feat:hover, .st-feat:focus-visible { transform: translateY(-2px); background: linear-gradient(135deg, rgb(224 180 94 / 0.32), rgb(240 142 112 / 0.24)); }
-  .st-ask { margin: 1.1rem 0 0.6rem; font-weight: 600; color: #fff; }
+  .st-ask { margin: 0 0 0.6rem; font-weight: 600; color: #fff; }
   .st-qs { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
   .st-qs a { display: flex; align-items: center; gap: 0.7rem; padding: 0.65rem 0.8rem; border-radius: 14px; color: #f3eefc; text-decoration: none;
     background: rgb(255 255 255 / 0.06); border: 1px solid rgb(255 255 255 / 0.12); font-size: 0.88rem; line-height: 1.35;
@@ -119,7 +118,7 @@ const url = L('/about/my-story/');
   .qn { flex: none; display: grid; place-items: center; width: 1.7rem; height: 1.7rem; border-radius: 50%; background: #8f7be8; color: #fff; font: 700 0.9rem/1 var(--font-serif); }
   .arr { margin-left: auto; color: #e0b45e; opacity: 0; transition: opacity 0.2s; }
   .st-qs a:hover .arr, .st-qs a:focus-visible .arr { opacity: 1; }
-  .st-gained { padding: 0.9rem 1rem; border-radius: 16px; background: rgb(224 180 94 / 0.1); border: 1px dashed rgb(224 180 94 / 0.5); }
+  .st-gained { margin: 0 0 1.2rem; padding: 0.9rem 1rem; border-radius: 16px; background: rgb(224 180 94 / 0.1); border: 1px dashed rgb(224 180 94 / 0.5); }
   .st-gained .gq { margin: 0 0 0.25rem; font: 600 1.25rem/1.3 var(--font-display); font-style: italic; color: #e0b45e; }
   .st-gained .ga { margin: 0 0 0.5rem; font-weight: 700; color: #fff; }
   .st-gained .gw { display: inline-block; margin-top: 0.6rem; font-weight: 700; color: #e0b45e; text-decoration: none; }

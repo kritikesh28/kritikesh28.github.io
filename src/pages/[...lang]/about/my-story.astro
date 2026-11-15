@@ -41,7 +41,6 @@ const T = pick({
     moreT: 'This is only the beginning', more: 'What you just read is the short version. The minute details are still to come: every mistake, every wrong turn, the exact moments that cost me months, and the 100-page booklet of my teachers’ advice. I will keep sharing them here, one story at a time, so that you can learn from my mistakes and save the time I lost. Stay tuned.',
     close: 'Thank you for reading this far. If any part of it feels like your story too, I would love to hear from you.',
     contact: 'Write to me', about: 'About me', portfolio: 'My work',
-    featQ: 'Why AI now, after so many years of preparation?', featA: 'My answer →',
     ai: 'Told in my own words; arranged and lightly edited with AI help.',
   },
   hi: {
@@ -54,7 +53,6 @@ const T = pick({
     moreT: 'यह तो बस शुरुआत है', more: 'आपने अभी जो पढ़ा, वह छोटा रूप है। बारीक बातें अभी आनी हैं: हर ग़लती, हर ग़लत मोड़, वे पल जिनमें मेरे महीने गए, और टीचरों की सलाहों वाली 100 पन्नों की पुस्तिका। मैं इन्हें यहाँ एक-एक करके बाँटता रहूँगा, ताकि आप मेरी ग़लतियों से सीखें और वह समय बचाएँ जो मैंने खोया। जुड़े रहिए।',
     close: 'यहाँ तक पढ़ने के लिए शुक्रिया। अगर इसका कोई हिस्सा आपको अपनी कहानी जैसा लगे, तो मुझे ज़रूर बताइए।',
     contact: 'मुझे लिखिए', about: 'मेरे बारे में', portfolio: 'मेरा काम',
-    featQ: 'इतने साल की तैयारी के बाद अब AI क्यों?', featA: 'मेरा जवाब →',
     ai: 'मेरे अपने शब्दों में; AI की मदद से सजाया और हल्का-सा सँवारा गया।',
   },
 }, lang);
@@ -74,7 +72,6 @@ const schema = [{
       <h1>{T.h1}</h1>
       <p class="lede">{T.lede}</p>
       <p class="meta">{T.meta}</p>
-      {flat.some((q) => q.id === FEATURE) && <a class="feat" href={`#${FEATURE}`} data-go={FEATURE}><b>{T.featQ}</b><span>{T.featA}</span></a>}
       <p class="modes">
         <a class="btn" href={`#${flat[0].id}`} data-go={flat[0].id}>{T.start}</a>
         <button class="btn ghost" type="button" data-mode aria-pressed="false">{T.all}</button>
@@ -307,11 +304,6 @@ const schema = [{
     .controls .btn { padding-inline: 0.9rem; }
   }
 
-  .feat { display: block; max-width: 40rem; margin: 0.4rem auto 1.2rem; padding: 0.9rem 1.2rem; border-radius: 18px; text-decoration: none;
-    background: color-mix(in srgb, var(--gold) 12%, var(--bg)); border: 2px solid color-mix(in srgb, var(--gold) 55%, transparent); transition: transform 0.2s, border-color 0.2s; }
-  .feat b { display: block; font: 800 clamp(1.3rem, 3vw, 1.75rem)/1.25 var(--font-serif); color: var(--ink); }
-  .feat span { display: block; margin-top: 0.3rem; font-weight: 700; color: var(--coral); }
-  .feat:hover, .feat:focus-visible { transform: translateY(-2px); border-color: var(--coral); }
   .rail a.big, .jump a.big { font-weight: 800; font-size: 1.08em; color: var(--ink); }
   .slide h2.big { font-size: clamp(1.7rem, 3.4vw, 2.3rem); font-weight: 800; }
 
