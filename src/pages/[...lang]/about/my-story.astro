@@ -39,6 +39,15 @@ const T = pick({
     moreT: 'This is only the beginning', more: 'What you just read is the short version. The minute details are still to come: every mistake, every wrong turn, the exact moments that cost me months, and the 100-page booklet of my teachers’ advice. I will keep sharing them here, one story at a time, so that you can learn from my mistakes and save the time I lost. Stay tuned.',
     close: 'Thank you for reading this far. If any part of it feels like your story too, I would love to hear from you.',
     contact: 'Write to me', about: 'About me', portfolio: 'My work',
+    hireE: 'For recruiters', hireH: 'Years of preparation, no job title.', hireH2: 'So why AI now, and why me?',
+    hireP: 'Short answer: those years built exactly what many AI teams lack. Here is what they bring to yours.',
+    hire: [
+      ['Real-world context', 'Geography, geology, GIS and remote sensing, governance, the economy and rural India: the ground truth that AI for real people needs.'],
+      ['Research into answers', 'Eight years of turning huge syllabi into clear notes, and a field dissertation on tribal poverty. I read deeply, check sources and summarise fast.'],
+      ['Self-driven discipline', 'Up at 5 a.m. for years, with no boss and no salary to push me. I learn new tools quickly and finish what I start.'],
+      ['Ethics built in', 'Integrity, objectivity and empathy, studied for years as a subject and practised as a habit: the base of responsible AI.'],
+    ],
+    hireGo: 'Read my full answer', hireWork: 'See my work',
     ai: 'Told in my own words; arranged and lightly edited with AI help.',
   },
   hi: {
@@ -51,6 +60,15 @@ const T = pick({
     moreT: 'यह तो बस शुरुआत है', more: 'आपने अभी जो पढ़ा, वह छोटा रूप है। बारीक बातें अभी आनी हैं: हर ग़लती, हर ग़लत मोड़, वे पल जिनमें मेरे महीने गए, और टीचरों की सलाहों वाली 100 पन्नों की पुस्तिका। मैं इन्हें यहाँ एक-एक करके बाँटता रहूँगा, ताकि आप मेरी ग़लतियों से सीखें और वह समय बचाएँ जो मैंने खोया। जुड़े रहिए।',
     close: 'यहाँ तक पढ़ने के लिए शुक्रिया। अगर इसका कोई हिस्सा आपको अपनी कहानी जैसा लगे, तो मुझे ज़रूर बताइए।',
     contact: 'मुझे लिखिए', about: 'मेरे बारे में', portfolio: 'मेरा काम',
+    hireE: 'रिक्रूटर्स के लिए', hireH: 'सालों की तैयारी, कोई नौकरी का पद नहीं।', hireH2: 'तो अब AI क्यों, और मैं ही क्यों?',
+    hireP: 'छोटा जवाब: उन सालों ने ठीक वही बनाया जिसकी कई AI टीमों में कमी होती है। यह आपकी टीम को मिलेगा।',
+    hire: [
+      ['ज़मीनी समझ', 'भूगोल, भूविज्ञान, GIS और रिमोट सेंसिंग, शासन, अर्थव्यवस्था और ग्रामीण भारत: वह ज़मीनी सच जिसकी असली लोगों के लिए बने AI को ज़रूरत है।'],
+      ['रिसर्च से जवाब तक', 'आठ साल तक विशाल सिलेबस को साफ़ नोट्स में बदलना, और आदिवासी ग़रीबी पर फ़ील्ड शोध-प्रबंध। मैं गहराई से पढ़ता हूँ, स्रोत जाँचता हूँ और जल्दी सार निकालता हूँ।'],
+      ['ख़ुद से चलने वाला अनुशासन', 'सालों तक सुबह 5 बजे उठना, बिना किसी बॉस या तनख़्वाह के। मैं नए टूल जल्दी सीखता हूँ और जो शुरू करता हूँ, पूरा करता हूँ।'],
+      ['नैतिकता शुरू से', 'सत्यनिष्ठा, निष्पक्षता और सहानुभूति, सालों तक विषय के रूप में पढ़ी और आदत के रूप में जी: ज़िम्मेदार AI की नींव।'],
+    ],
+    hireGo: 'मेरा पूरा जवाब पढ़िए', hireWork: 'मेरा काम देखिए',
     ai: 'मेरे अपने शब्दों में; AI की मदद से सजाया और हल्का-सा सँवारा गया।',
   },
 }, lang);
@@ -75,6 +93,14 @@ const schema = [{
         <button class="btn ghost" type="button" data-mode aria-pressed="false">{T.all}</button>
       </p>
     </header>
+
+    <section class="hire" id="for-recruiters" aria-labelledby="hire-h">
+      <p class="hire-e">{T.hireE}</p>
+      <h2 id="hire-h">{T.hireH} <span>{T.hireH2}</span></h2>
+      <p class="hire-p">{T.hireP}</p>
+      <ul>{T.hire.map(([t, d]) => <li><b>{t}</b><span>{d}</span></li>)}</ul>
+      <p class="hire-go"><a class="btn" href="#why-ai" data-go="why-ai">{T.hireGo} →</a> <a class="btn ghost" href={L('/portfolio/')}>{T.hireWork}</a></p>
+    </section>
 
     <div class="ms-grid">
       {[{ ms: leftM, label: T.rail1, side: 'left' }, { ms: rightM, label: T.rail2, side: 'right' }].map((r) => (
@@ -301,6 +327,23 @@ const schema = [{
     .slide { padding: 1.3rem 1.1rem 1.1rem; }
     .controls .btn { padding-inline: 0.9rem; }
   }
+
+  .hire { position: relative; overflow: hidden; max-width: 64rem; margin: 0 auto 2rem; padding: clamp(1.2rem, 3vw, 2rem); border-radius: 22px;
+    background: linear-gradient(135deg, #1d1636 0%, #2c1f52 60%, #3b2546 100%); color: #f3eefc; box-shadow: 0 18px 44px rgb(29 22 54 / 0.3); }
+  .hire::after { content: ''; position: absolute; inset: auto 0 0 0; height: 4px; background: linear-gradient(90deg, #8f7be8, #f08e70, #e0b45e); }
+  .hire-e { margin: 0 0 0.5rem; font: 600 0.78rem/1.4 var(--font-sans); letter-spacing: 0.1em; text-transform: uppercase; color: #e0b45e; }
+  .hire h2 { margin: 0 0 0.6rem; font-size: clamp(1.4rem, 3vw, 2.1rem); line-height: 1.2; color: #fff; }
+  .hire h2 span { display: block; font-family: var(--font-display); font-style: italic; font-weight: 500; color: #e0b45e; }
+  .hire-p { margin: 0 0 1rem; color: #d9d2ee; max-width: 42rem; }
+  .hire ul { list-style: none; margin: 0 0 1.1rem; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.7rem; }
+  .hire li { padding: 0.8rem 0.9rem; border-radius: 14px; background: rgb(255 255 255 / 0.07); border: 1px solid rgb(255 255 255 / 0.13); }
+  .hire li b { display: block; margin-bottom: 0.3rem; color: #fff; }
+  .hire li span { display: block; font-size: 0.88rem; line-height: 1.5; color: #d9d2ee; }
+  .hire-go { display: flex; gap: 0.6rem; flex-wrap: wrap; margin: 0; }
+  .hire-go .btn { background: linear-gradient(90deg, #e0b45e, #f08e70); border-color: transparent; color: #1d1636; }
+  .hire-go .btn.ghost { background: transparent; border-color: rgb(255 255 255 / 0.5); color: #fff; }
+  @media (max-width: 900px) { .hire ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 520px) { .hire ul { grid-template-columns: 1fr; } }
 
   .ms-foot { max-width: 46rem; margin: 2.4rem auto 1rem; text-align: center; }
   .more { margin: 0 0 1.8rem; padding: 1.1rem 1.3rem; border-radius: 18px; text-align: left; border: 1px dashed color-mix(in srgb, var(--coral) 60%, transparent);

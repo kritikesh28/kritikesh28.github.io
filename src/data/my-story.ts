@@ -145,8 +145,8 @@ export const STORY: Milestone[] = [
         id: 'delhi-coaching',
         q: { en: 'So did a big Delhi coaching help?', hi: 'तो क्या दिल्ली की बड़ी कोचिंग से फ़ायदा हुआ?' },
         a: {
-          en: ["In July 2022 I moved to Delhi for Vajiram and Ravi and joined the 5 a.m. batch. Writing down every word my teachers said taught me to capture spoken ideas fast and accurately. I also collected their passing advice, the do’s and don’ts, into a 100-page booklet. I will share it here soon, to spare others the mistakes that cost me time."],
-          hi: ["जुलाई 2022 में मैं वाजीराम एंड रवि के लिए दिल्ली गया और सुबह 5 बजे वाले बैच में जुड़ा। टीचरों का हर शब्द लिखते-लिखते मैंने बोली हुई बात को तेज़ी और सटीकता से पकड़ना सीखा। उनकी बीच-बीच की सलाहें, क्या करें और क्या न करें, मैंने 100 पन्नों की पुस्तिका में जोड़ीं। जल्द ही उसे यहाँ बाँटूँगा, ताकि दूसरों का वह समय बचे जो मेरी ग़लतियों में गया।"],
+          en: ["In July 2022 I moved to Delhi for Vajiram and Ravi. I woke at 5 a.m. every day to reach the 7:30 a.m. batch on time. Writing down every word my teachers said taught me to capture spoken ideas fast and accurately. I also collected their passing advice, the do’s and don’ts, into a 100-page booklet. I will share it here soon, to spare others the mistakes that cost me time."],
+          hi: ["जुलाई 2022 में मैं वाजीराम एंड रवि के लिए दिल्ली गया। सुबह 7:30 के बैच में समय पर पहुँचने के लिए रोज़ सुबह 5 बजे उठता था। टीचरों का हर शब्द लिखते-लिखते मैंने बोली हुई बात को तेज़ी और सटीकता से पकड़ना सीखा। उनकी बीच-बीच की सलाहें, क्या करें और क्या न करें, मैंने 100 पन्नों की पुस्तिका में जोड़ीं। जल्द ही उसे यहाँ बाँटूँगा, ताकि दूसरों का वह समय बचे जो मेरी ग़लतियों में गया।"],
         },
       },
     ],
@@ -189,11 +189,19 @@ export const STORY: Milestone[] = [
         },
       },
       {
-        id: 'regret',
-        q: { en: 'Do you regret the years you gave?', hi: 'क्या दिए हुए सालों का पछतावा है?' },
+        id: 'would-you-change-anything',
+        q: { en: 'If you could go back, would you change anything?', hi: 'अगर पीछे जा सकें, तो क्या कुछ बदलेंगे?' },
         a: {
-          en: ["No. For a while I was not proud of myself; I felt I had nothing to show for all those years. Today I am proud of every one of them, even the worst, because they made me who I am. I would not change a single day. And the exam was one way to serve, never the only one."],
-          hi: ["नहीं। कुछ समय तक मुझे ख़ुद पर गर्व नहीं था; लगता था इतने सालों के बदले दिखाने को कुछ नहीं। आज मुझे उनमें से हर साल पर गर्व है, सबसे बुरे पर भी, क्योंकि उन्हीं ने मुझे आज का इंसान बनाया। मैं एक भी दिन नहीं बदलूँगा। और परीक्षा सेवा का एक रास्ता थी, इकलौता कभी नहीं।"],
+          en: [
+            "No. I would walk the same road again, and here is why. For a while I was not proud of myself; I felt I had nothing to show for all those years. Today I am proud of every one of them, because each gave me something I use every day:",
+            "The wrong college target taught me to check my sources. The failed attempts taught me to stay calm after a “no” and start again. The years of study gave me a deep understanding of society, land and government that no shortcut could. And the struggle turned a wish to prove myself into a wish to serve.",
+            "The exam was one way to serve, never the only one. Without those years I would not be the person, or the professional, I am today.",
+          ],
+          hi: [
+            "नहीं। मैं वही रास्ता फिर से चलूँगा, और वजह यह है। कुछ समय तक मुझे ख़ुद पर गर्व नहीं था; लगता था इतने सालों के बदले दिखाने को कुछ नहीं। आज मुझे उनमें से हर साल पर गर्व है, क्योंकि हर साल ने मुझे कुछ ऐसा दिया जो मैं रोज़ काम में लेता हूँ:",
+            "ग़लत कॉलेज वाले लक्ष्य ने जानकारी जाँचना सिखाया। असफल प्रयासों ने हर “ना” के बाद शांत रहकर फिर शुरू करना सिखाया। सालों की पढ़ाई ने समाज, धरती और शासन की ऐसी गहरी समझ दी जो कोई शॉर्टकट नहीं दे सकता। और संघर्ष ने ख़ुद को साबित करने की चाह को सेवा की चाह में बदल दिया।",
+            "परीक्षा सेवा का एक रास्ता थी, इकलौता कभी नहीं। उन सालों के बिना मैं आज जैसा इंसान, और जैसा पेशेवर हूँ, वैसा नहीं होता।",
+          ],
         },
       },
     ],
@@ -205,10 +213,18 @@ export const STORY: Milestone[] = [
     qs: [
       {
         id: 'why-ai',
-        q: { en: 'Why AI, after so many years of humanities?', hi: 'इतने साल मानविकी पढ़ने के बाद AI क्यों?' },
+        q: { en: 'Why AI now, after so many years of preparation?', hi: 'इतने साल की तैयारी के बाद अब AI क्यों?' },
         a: {
-          en: ["Because I kept seeing everyday problems around me, and solutions in my head, but had no tools to build them: small, local problems no product solves. So in June 2026 I joined the Executive PG Programme in Applied AI and Agentic AI at IIIT Bangalore. My aim: combine a deep understanding of society, geography and governance with AI, and build solutions that actually work for people."],
-          hi: ["क्योंकि मुझे आस-पास रोज़ की परेशानियाँ दिखती थीं, और दिमाग़ में उनके हल भी, पर उन्हें बनाने के औज़ार नहीं थे: छोटी, स्थानीय समस्याएँ, जिनका कोई हल बाज़ार में नहीं। इसलिए जून 2026 में मैंने IIIT बेंगलुरु के अप्लाइड AI और एजेंटिक AI के एग्ज़िक्यूटिव PG प्रोग्राम में दाख़िला लिया। मेरा लक्ष्य: समाज, भूगोल और शासन की गहरी समझ को AI से जोड़कर ऐसे हल बनाना जो सच में लोगों के काम आएँ।"],
+          en: [
+            "Fair question. For years I had no job title, only preparation. But those years were not empty: I learnt how society, land, the economy and government actually work, and I learnt to study anything, alone, every single day.",
+            "I also kept seeing everyday problems around me, and solutions in my head, but had no tools to build them. AI is that tool. So in June 2026 I joined the Executive PG Programme in Applied AI and Agentic AI at IIIT Bangalore.",
+            "For a team, that means someone who brings the real-world context many AI projects lack (geography, GIS and remote sensing, governance, rural India), the discipline to learn fast, and the ethics to build responsibly. That is the bridge I am building: from the humanities to AI, for people.",
+          ],
+          hi: [
+            "सही सवाल है। सालों तक मेरे पास कोई नौकरी का पद नहीं था, सिर्फ़ तैयारी थी। पर वे साल ख़ाली नहीं थे: मैंने समझा कि समाज, धरती, अर्थव्यवस्था और सरकार असल में कैसे चलते हैं, और यह भी सीखा कि कुछ भी, अकेले, हर दिन कैसे पढ़ा जाता है।",
+            "मुझे आस-पास रोज़ की परेशानियाँ दिखती थीं, और दिमाग़ में उनके हल भी, पर उन्हें बनाने के औज़ार नहीं थे। AI वही औज़ार है। इसलिए जून 2026 में मैंने IIIT बेंगलुरु के अप्लाइड AI और एजेंटिक AI के एग्ज़िक्यूटिव PG प्रोग्राम में दाख़िला लिया।",
+            "किसी टीम के लिए इसका मतलब है ऐसा साथी जो वह ज़मीनी समझ लाए जिसकी कई AI प्रोजेक्ट्स में कमी होती है (भूगोल, GIS और रिमोट सेंसिंग, शासन, ग्रामीण भारत), जल्दी सीखने का अनुशासन, और ज़िम्मेदारी से बनाने की नैतिकता। मैं यही पुल बना रहा हूँ: मानविकी से AI तक, लोगों के लिए।",
+          ],
         },
       },
     ],

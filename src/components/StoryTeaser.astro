@@ -24,27 +24,27 @@ const HOOKS: { id: string; en: string; hi: string }[] = [
   { id: 'miranda-house', en: 'Why did I study two years for a women’s college?', hi: 'मैं दो साल लड़कियों के कॉलेज के लिए क्यों पढ़ता रहा?' },
   { id: 'what-changed-you', en: 'How did one friend change the naughtiest boy in class?', hi: 'एक दोस्त ने क्लास के सबसे शरारती लड़के को कैसे बदल दिया?' },
   { id: 'no-shortcut', en: 'What did it feel like when my dream of IAS at 21 broke?', hi: '21 साल में IAS का सपना टूटा, तब कैसा लगा?' },
-  { id: 'delhi-coaching', en: 'What did a 5 a.m. batch in Delhi teach me?', hi: 'दिल्ली के सुबह 5 बजे वाले बैच ने मुझे क्या सिखाया?' },
-  { id: 'regret', en: 'Why would I not change a single day, not even the worst?', hi: 'मैं एक भी दिन क्यों नहीं बदलूँगा, सबसे बुरा भी नहीं?' },
-  { id: 'why-ai', en: 'Why AI, after years of history and geography?', hi: 'बरसों इतिहास और भूगोल के बाद AI क्यों?' },
+  { id: 'delhi-coaching', en: 'What did 5 a.m. mornings in Delhi teach me?', hi: 'दिल्ली की सुबह 5 बजे वाली सुबहों ने मुझे क्या सिखाया?' },
+  { id: 'one-percent', en: 'How does it feel to miss a dream by 1%?', hi: 'किसी सपने से 1% से चूकना कैसा लगता है?' },
+  { id: 'why-ai', en: 'Why AI now, after years of preparation?', hi: 'सालों की तैयारी के बाद अब AI क्यों?' },
 ].filter((h) => all.some((q) => q.id === h.id));
 
 const T = pick({
   en: {
     eyebrow: 'My story', time: `${N} questions · about ${minutes} minutes`,
     h: 'I didn’t clear the exam I gave years to.', h2: 'Here’s why I wouldn’t change a single day.',
-    text: 'From the naughtiest boy in class in Rawatbhata, to UPSC and RAS attempts, Delhi coaching at 5 a.m., two degrees and now applied AI. No filter, no shortcuts: just what the struggle taught me, and what it can save you.',
+    text: 'From the naughtiest boy in class in Rawatbhata, to UPSC and RAS attempts, 5 a.m. mornings for Delhi coaching, two degrees and now applied AI. No filter, no shortcuts: just what the struggle taught me, and what it can save you.',
     stats: [['8', 'years of preparation'], ['2', 'UPSC attempts'], ['3', 'RAS attempts'], ['1', 'reason to keep going']],
-    ask: 'Pick a question, I’ll answer it:', gainedT: 'What the struggle gave me',
+    ask: 'Pick a question, I’ll answer it:', gainedT: 'If I could go back, would I change anything?', gainedA: 'Not a single day. The struggle gave me:', why: 'Here’s why →',
     gained: ['Discipline that runs without a boss', 'A plan for every big goal', 'Calm after every “no”', 'A reason bigger than myself'],
     go: 'Read my story →', sub: 'Talk to me like a friend would: one question at a time.',
   },
   hi: {
     eyebrow: 'मेरी कहानी', time: `${N} सवाल · लगभग ${minutes} मिनट`,
     h: 'जिस परीक्षा को बरसों दिए, वह मैं पास नहीं कर पाया।', h2: 'फिर भी मैं एक भी दिन क्यों नहीं बदलूँगा।',
-    text: 'रावतभाटा में क्लास के सबसे शरारती लड़के से, UPSC और RAS के प्रयासों, दिल्ली में सुबह 5 बजे की कोचिंग, दो डिग्रियों और अब अप्लाइड AI तक। कोई दिखावा नहीं, कोई शॉर्टकट नहीं: बस वह जो संघर्ष ने मुझे सिखाया, और जो आपका समय बचा सकता है।',
+    text: 'रावतभाटा में क्लास के सबसे शरारती लड़के से, UPSC और RAS के प्रयासों, दिल्ली कोचिंग के लिए सुबह 5 बजे की सुबहों, दो डिग्रियों और अब अप्लाइड AI तक। कोई दिखावा नहीं, कोई शॉर्टकट नहीं: बस वह जो संघर्ष ने मुझे सिखाया, और जो आपका समय बचा सकता है।',
     stats: [['8', 'साल की तैयारी'], ['2', 'UPSC प्रयास'], ['3', 'RAS प्रयास'], ['1', 'चलते रहने की वजह']],
-    ask: 'कोई सवाल चुनिए, जवाब मैं दूँगा:', gainedT: 'संघर्ष ने मुझे क्या दिया',
+    ask: 'कोई सवाल चुनिए, जवाब मैं दूँगा:', gainedT: 'अगर पीछे जा सकूँ, तो क्या कुछ बदलूँगा?', gainedA: 'एक भी दिन नहीं। संघर्ष ने मुझे दिया:', why: 'वजह पढ़िए →',
     gained: ['बिना किसी के कहे चलने वाला अनुशासन', 'हर बड़े लक्ष्य के लिए एक योजना', 'हर “ना” के बाद भी शांत मन', 'अपने से बड़ी एक वजह'],
     go: 'मेरी कहानी पढ़िए →', sub: 'जैसे कोई दोस्त बात करे: एक-एक सवाल करके।',
   },
@@ -56,7 +56,7 @@ const url = L('/about/my-story/');
   <div class="st-glow" aria-hidden="true"></div>
   <div class="st-main">
     <p class="st-eyebrow"><span class="dot" aria-hidden="true"></span>{T.eyebrow} · {T.time}</p>
-    <h2 id="st-h"><a href={url}><span class="h1">{T.h}</span> <span class="h2">{T.h2}</span></a></h2>
+    <h2 id="st-h"><a href={`${url}#would-you-change-anything`}><span class="h1">{T.h}</span> <span class="h2">{T.h2}</span></a></h2>
     <p class="st-text">{T.text}</p>
     <ul class="st-stats">{T.stats.map(([n, l]) => <li><b>{n}</b><span>{l}</span></li>)}</ul>
     <p class="st-cta"><a class="st-btn" href={url}>{T.go}</a><span>{T.sub}</span></p>
@@ -65,8 +65,10 @@ const url = L('/about/my-story/');
     <p class="st-ask">{T.ask}</p>
     <ul class="st-qs">{HOOKS.map((h, i) => <li><a href={`${url}#${h.id}`}><span class="qn" aria-hidden="true">?</span>{hi ? h.hi : h.en}<span class="arr" aria-hidden="true">→</span></a></li>)}</ul>
     <div class="st-gained">
-      <p>{T.gainedT}</p>
+      <p class="gq">{T.gainedT}</p>
+      <p class="ga">{T.gainedA}</p>
       <ul>{T.gained.map((g) => <li>{g}</li>)}</ul>
+      <a class="gw" href={`${url}#would-you-change-anything`}>{T.why}</a>
     </div>
   </div>
 </section>
@@ -111,7 +113,10 @@ const url = L('/about/my-story/');
   .arr { margin-left: auto; color: #e0b45e; opacity: 0; transition: opacity 0.2s; }
   .st-qs a:hover .arr, .st-qs a:focus-visible .arr { opacity: 1; }
   .st-gained { padding: 0.9rem 1rem; border-radius: 16px; background: rgb(224 180 94 / 0.1); border: 1px dashed rgb(224 180 94 / 0.5); }
-  .st-gained p { margin: 0 0 0.4rem; font: 600 0.78rem/1.4 var(--font-sans); letter-spacing: 0.08em; text-transform: uppercase; color: #e0b45e; }
+  .st-gained .gq { margin: 0 0 0.25rem; font: 600 1.25rem/1.3 var(--font-display); font-style: italic; color: #e0b45e; }
+  .st-gained .ga { margin: 0 0 0.5rem; font-weight: 700; color: #fff; }
+  .st-gained .gw { display: inline-block; margin-top: 0.6rem; font-weight: 700; color: #e0b45e; text-decoration: none; }
+  .st-gained .gw:hover, .st-gained .gw:focus-visible { color: #fff; text-decoration: underline; }
   .st-gained ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem 0.9rem; }
   .st-gained li { position: relative; padding-left: 1.3rem; font-size: 0.9rem; color: #e9e3f7; }
   .st-gained li::before { content: '✓'; position: absolute; left: 0; color: #6cc9b0; font-weight: 700; }
