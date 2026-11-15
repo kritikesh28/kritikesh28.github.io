@@ -1,0 +1,41 @@
+---
+// "Practise past questions on this" box. Give it a Curriculum Index major-topic id (ci) to list the exact PYQ pages
+// for that topic (from CI_LINKS in src/pyq.ts), or bank keys (banks) to point to whole question banks.
+// Shown on Curriculum Index topic and subject pages, RPSC/RSSB exam pages and the Exam Prep intro. Guide: docs/19-pyq-practice.md
+import { BANKS, pyqLinksFor, pyqPath, type Bank } from '../../pyq';
+import { langFromUrl, pick } from '../../i18n/config';
+import '../../styles/pyq.css';
+
+interface Props { ci?: string; banks?: Bank['key'][]; max?: number }
+const { ci, banks, max = 10 } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const T = pick({
+  en: { h: '🃏 Practise the past questions on this', p: 'Flip cards, a 5-question quiz and the real exam MCQs, five minutes at a time.', hb: '🃏 PYQ practice: past questions, five minutes at a time', pb: 'Flip cards, quick quizzes and the real exam MCQs, topic by topic.', more: (n: number) => `+${n} more` },
+  hi: { h: '🃏 इस टॉपिक के पुराने सवालों का अभ्यास', p: 'फ़्लिप कार्ड, 5 सवालों की क्विज़ और असली परीक्षा के MCQ, एक बार में पाँच मिनट।', hb: '🃏 PYQ अभ्यास: पुराने सवाल, एक बार में पाँच मिनट', pb: 'फ़्लिप कार्ड, झटपट क्विज़ और असली परीक्षा के MCQ, टॉपिक-दर-टॉपिक।', more: (n: number) => `+${n} और` },
+}, lang);
+const links = ci ? pyqLinksFor(ci, lang) : [];
+const bankList = banks ? BANKS.filter((b) => banks.includes(b.key)) : [];
+const shown = links.slice(0, max);
+const extra = links.length - shown.length;
+const bankOf = links[0]?.bank;
+---
+
+{links.length > 0 && (
+  <aside class="pyq-box">
+    <h2>{T.h}</h2>
+    <p>{T.p}</p>
+    <ul>
+      {shown.map((l) => <li><a href={l.href}><span lang={l.contentLang}>{l.label}</span><small>{l.note}</small></a></li>)}
+      {extra > 0 && bankOf && <li><a href={pyqPath(lang, bankOf.slug)}>{T.more(extra)} →</a></li>}
+    </ul>
+  </aside>
+)}
+{bankList.length > 0 && (
+  <aside class="pyq-box">
+    <h2>{T.hb}</h2>
+    <p>{T.pb}</p>
+    <ul>
+      {bankList.map((b) => <li><a href={pyqPath(lang, b.slug)}>{b.icon} {b.name[lang]}<small>{b.exams[lang].split(',')[0]}</small></a></li>)}
+    </ul>
+  </aside>
+)}

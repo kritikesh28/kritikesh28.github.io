@@ -3,6 +3,7 @@
 import ExamLayout from '../../../../../layouts/ExamLayout.astro';
 import { SUBJECTS, subjectsIn, paths, fmt, partIn, topicsIn, topicUrlIn, subjectOf, slugId, type Topic } from '../../../../../exam-prep';
 import { langFromUrl, withLangs, pick } from '../../../../../i18n/config';
+import PyqBox from '../../../../../components/exam/PyqBox.astro';
 
 type LTopic = Topic & { en?: boolean };
 type Node = LTopic & { kids: Node[] };
@@ -79,6 +80,8 @@ const desc = head.d ? head.d.slice(0, 150) : P.descFallback;
       <p class="rel">{P.also} {head.rel.map(([id, label]) => <a href={topicUrl(id)}>{sname(id)}: {label || id}</a>)}</p>
     )}
   </header>
+
+  <PyqBox ci={major.id} />
 
   {root.kids.length === 0 && <p class="muted">{P.alone}</p>}
 

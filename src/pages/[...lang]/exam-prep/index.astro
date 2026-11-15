@@ -3,6 +3,7 @@
 // and only then introduces the two tools. Short Q&A, every answer well under 2 minutes.
 // Text rules: docs/VISION.md (no guarantees, no pressure). Guide: docs/14-exam-prep.md
 import ExamLayout from '../../../layouts/ExamLayout.astro';
+import PyqBox from '../../../components/exam/PyqBox.astro';
 import { STATS, paths, fmt } from '../../../exam-prep';
 import { EXAM_CATALOGUE, catalogueCount } from '../../../data/exam-catalogue';
 import { langFromUrl, langParams, pick, localizePath } from '../../../i18n/config';
@@ -247,6 +248,8 @@ const faqSchema = [{ '@type': 'FAQPage', mainEntity: chapters.flatMap((c) => c.q
       <a class="all" href={`${BASE}/all-exams/`}>{P.pickAll}</a>
     </div>
   </nav>
+
+  <PyqBox banks={['raj', 'net']} />
 
   {chapters.map((c, ci) => (
     <section class="chapter" id={`part-${ci + 1}`}>

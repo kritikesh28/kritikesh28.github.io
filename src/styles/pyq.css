@@ -1,0 +1,136 @@
+/* PYQ practice pages (/exam-prep/pyq/). Colours come from global.css. Guide: docs/19-pyq-practice.md */
+
+.pq-hero { padding-bottom: 1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--line); }
+.pq-hero h1 { font-size: clamp(1.6rem, 3.6vw, 2.3rem); margin-bottom: 0.3rem; }
+.pq-hero .sub { color: var(--ink-soft); margin: 0; font-size: 0.98rem; }
+.pq-facts { display: flex; flex-wrap: wrap; gap: 0.4rem 0.8rem; margin: 0.7rem 0 0; padding: 0; list-style: none; font-size: 0.9rem; color: var(--ink-soft); }
+.pq-facts li { background: var(--accent-soft); border-radius: 999px; padding: 0.15rem 0.7rem; }
+
+/* ---- meter: "12 of 40 mastered" */
+.pq-meter { display: flex; align-items: center; gap: 0.7rem; font-size: 0.9rem; color: var(--ink-soft); margin: 0.6rem 0; }
+.pq-meter .track { flex: 1; height: 8px; border-radius: 99px; background: var(--line); overflow: hidden; max-width: 320px; }
+.pq-meter .fill { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--teal), var(--accent)); transition: width 0.5s ease; }
+
+/* ---- mode tabs */
+.pq-modes { display: flex; gap: 0.4rem; flex-wrap: wrap; margin: 0.8rem 0 1rem; }
+.pq-modes button, .pq-modes a { font: inherit; font-size: 0.92rem; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 0.35rem 0.9rem; cursor: pointer; text-decoration: none; }
+.pq-modes [aria-selected='true'], .pq-modes [aria-current='page'] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.pq-modes { display: none; }
+.js .pq-modes { display: flex; }
+
+/* ---- flip cards */
+.pq-cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.8rem; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+.pq-card { position: relative; perspective: 900px; min-height: 9.5rem; }
+.pq-card .in { position: relative; width: 100%; height: 100%; min-height: inherit; transition: transform 0.5s cubic-bezier(.2,.7,.2,1); transform-style: preserve-3d; }
+.pq-card .face { border: 1px solid var(--line); border-radius: var(--radius); padding: 0.8rem 0.9rem 0.7rem; background: var(--surface); display: flex; flex-direction: column; gap: 0.4rem; min-height: inherit; }
+.pq-card .q { font-weight: 600; line-height: 1.45; margin: 0; }
+.pq-card .a { margin: 0; font-size: 1.12rem; font-weight: 700; color: var(--teal); }
+.pq-card .a::before { content: '→ '; color: var(--ink-soft); font-weight: 400; }
+.pq-card .num { font-size: 0.75rem; color: var(--ink-soft); }
+.pq-card .chips { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: auto; }
+.pq-chip { font-size: 0.72rem; line-height: 1.5; border-radius: 999px; padding: 0 0.5rem; background: var(--accent-soft); color: var(--ink-soft); }
+.pq-chip.hot { background: color-mix(in srgb, var(--coral) 18%, transparent); color: var(--coral); font-weight: 600; }
+.pq-chip.kind { background: transparent; border: 1px solid var(--line); }
+.pq-card .flag { font-size: 0.82rem; color: var(--coral); font-style: italic; margin: 0; }
+.pq-card .mark { display: none; gap: 0.4rem; margin-top: 0.3rem; }
+/* no JavaScript: question and answer are both shown, as a plain list */
+.pq-card .back { margin-top: 0.4rem; }
+.js .pq-card .front { cursor: pointer; backface-visibility: hidden; }
+.js .pq-card .front::after { content: attr(data-tap); font-size: 0.75rem; color: var(--accent); margin-top: auto; }
+.js .pq-card .back { position: absolute; inset: 0; margin: 0; transform: rotateY(180deg); backface-visibility: hidden; background: color-mix(in srgb, var(--teal) 7%, var(--surface)); overflow: auto; }
+.js .pq-card.flipped .in { transform: rotateY(180deg); }
+.js .pq-card .mark { display: flex; }
+.pq-card .mark button { flex: 1; font: inherit; font-size: 0.82rem; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); padding: 0.3rem 0.4rem; cursor: pointer; color: var(--ink); }
+.pq-card .mark .ok { border-color: color-mix(in srgb, var(--teal) 60%, var(--line)); }
+.pq-card.known .front { border-color: var(--teal); box-shadow: inset 4px 0 0 var(--teal); }
+.pq-card.known .front .num::after { content: ' ✓'; color: var(--teal); font-weight: 700; }
+.pq-card .back .q { font-weight: 500; font-size: 0.88rem; color: var(--ink-soft); }
+@media (prefers-reduced-motion: reduce) { .pq-card .in { transition: none; } }
+
+/* ---- screens: one screenful at a time, with tabs */
+.js [data-screen][hidden] { display: none; }
+.pq-pager { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; margin: 1.1rem 0 0.4rem; flex-wrap: wrap; }
+.pq-pager { display: none; }
+.js .pq-pager { display: flex; }
+.pq-dots { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+.pq-dots button { width: 2rem; height: 2rem; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); font: inherit; font-size: 0.8rem; cursor: pointer; color: var(--ink); }
+.pq-dots button[aria-current='true'] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.pq-dots button.done { border-color: var(--teal); }
+.pq-pager .btn[disabled] { opacity: 0.4; pointer-events: none; }
+
+/* ---- quiz */
+.pq-quiz { display: none; }
+.pq-quiz.on { display: block; }
+.pq-qcard { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 1rem 1.1rem; max-width: 40rem; }
+.pq-qcard .q { font-weight: 600; font-size: 1.08rem; margin: 0 0 0.8rem; }
+.pq-opts { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
+.pq-opts button { width: 100%; text-align: left; font: inherit; border: 1px solid var(--line); border-radius: 12px; padding: 0.55rem 0.8rem; background: var(--bg); color: var(--ink); cursor: pointer; display: flex; gap: 0.6rem; align-items: baseline; }
+.pq-opts button:hover:not([disabled]) { border-color: var(--accent); }
+.pq-opts button .k { font-size: 0.8rem; color: var(--ink-soft); min-width: 1.2rem; }
+.pq-opts button.right { border-color: var(--teal); background: color-mix(in srgb, var(--teal) 14%, var(--surface)); }
+.pq-opts button.wrong { border-color: var(--coral); background: color-mix(in srgb, var(--coral) 12%, var(--surface)); }
+.pq-opts button[disabled] { cursor: default; }
+.pq-qtop { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 0.5rem; }
+.pq-score { text-align: center; padding: 1.5rem 1rem; border: 1px dashed var(--line); border-radius: var(--radius); max-width: 40rem; }
+.pq-score .big { font-family: var(--font-serif); font-size: 2.6rem; margin: 0; color: var(--accent); }
+.pq-say { min-height: 1.6rem; margin: 0.7rem 0 0; font-weight: 600; }
+.pq-say.good { color: var(--teal); }
+.pq-say.bad { color: var(--coral); }
+
+/* ---- real exam question */
+.pq-mcq { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 1rem 1.1rem; max-width: 44rem; margin-bottom: 1rem; }
+.pq-mcq .stem p { margin: 0 0 0.45rem; }
+.pq-mcq .stem p:first-child { font-weight: 600; font-size: 1.05rem; }
+.pq-mcq .stem table { font-size: 0.88rem; margin: 0.4rem 0 0.7rem; }
+.pq-mcq .stem td { padding: 0.25rem 0.5rem; }
+.pq-mcq .stem img { margin: 0.5rem 0; border-radius: 8px; border: 1px solid var(--line); background: #fff; max-height: 360px; width: auto; }
+.pq-mcq .tag { font-size: 0.8rem; color: var(--ink-soft); margin: 0 0 0.6rem; }
+.pq-mcq .ans { margin-top: 0.8rem; }
+.pq-mcq .ans summary { cursor: pointer; color: var(--accent); font-weight: 600; }
+.js .pq-mcq .ans.has-opts { display: none; }
+.js .pq-mcq .ans.has-opts.shown { display: block; }
+.pq-facts-behind { margin: 0.8rem 0 0; padding: 0.7rem 0.9rem; background: color-mix(in srgb, var(--teal) 7%, var(--surface)); border-radius: 12px; font-size: 0.92rem; }
+.pq-facts-behind h3 { margin: 0 0 0.35rem; font-size: 0.95rem; font-family: var(--font-sans); }
+.pq-facts-behind ul { margin: 0; padding-left: 1.1rem; }
+.pq-facts-behind b { color: var(--teal); }
+.js .pq-mcq .behind { display: none; }
+.js .pq-mcq.answered .behind { display: block; }
+
+/* ---- bank home */
+.pq-groups { display: grid; gap: 1.2rem; }
+.pq-group h2 { font-size: 1.2rem; margin: 0 0 0.6rem; }
+.pq-tiles { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.7rem; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+.pq-tile a { display: flex; flex-direction: column; gap: 0.25rem; height: 100%; border: 1px solid var(--line); border-radius: var(--radius); padding: 0.75rem 0.9rem; background: var(--surface); color: var(--ink); text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+.pq-tile a:hover { border-color: var(--accent); transform: translateY(-2px); color: var(--ink); }
+.pq-tile strong { line-height: 1.35; }
+.pq-tile small { color: var(--ink-soft); font-size: 0.8rem; line-height: 1.35; }
+.pq-tile .meta { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: auto; padding-top: 0.3rem; }
+.pq-tile .mini { height: 5px; border-radius: 99px; background: var(--line); overflow: hidden; margin-top: 0.3rem; }
+.pq-tile .mini span { display: block; height: 100%; width: 0; background: var(--teal); }
+.pq-how { display: grid; gap: 0.7rem; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); margin: 0.6rem 0 1.4rem; padding: 0; list-style: none; }
+.pq-how li { border-radius: var(--radius); padding: 0.7rem 0.9rem; background: var(--accent-soft); font-size: 0.92rem; }
+.pq-how b { display: block; font-size: 1rem; }
+.pq-banks { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
+.pq-bank { border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem; background: var(--surface); display: flex; flex-direction: column; gap: 0.5rem; }
+.pq-bank .ic { font-size: 2rem; }
+.pq-bank h2 { margin: 0; font-size: 1.3rem; }
+.pq-bank p { margin: 0; }
+.pq-bank .btn { align-self: flex-start; margin-top: auto; }
+.pq-soon { font-size: 0.85rem; color: var(--ink-soft); background: color-mix(in srgb, var(--gold) 12%, transparent); border-radius: 10px; padding: 0.5rem 0.8rem; }
+
+/* ---- next / previous */
+.pq-pn { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin: 2rem 0 0.5rem; }
+.pq-pn a { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: var(--radius); padding: 0.7rem 0.9rem; text-decoration: none; color: var(--ink); background: var(--surface); }
+.pq-pn a:hover { border-color: var(--accent); }
+.pq-pn small { color: var(--ink-soft); }
+.pq-pn .nx { text-align: right; }
+.pq-note { font-size: 0.82rem; color: var(--ink-soft); margin-top: 1.2rem; }
+
+/* ---- the box on Curriculum Index and exam pages */
+.pyq-box { margin: 1.4rem 0; padding: 1rem 1.1rem; border-radius: var(--radius); border: 1px solid color-mix(in srgb, var(--teal) 40%, var(--line)); background: color-mix(in srgb, var(--teal) 6%, var(--surface)); }
+.pyq-box h2 { margin: 0 0 0.3rem; font-size: 1.15rem; }
+.pyq-box p { margin: 0 0 0.6rem; font-size: 0.93rem; color: var(--ink-soft); }
+.pyq-box ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.pyq-box li a { display: inline-flex; gap: 0.4rem; align-items: baseline; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 0.25rem 0.8rem; text-decoration: none; font-size: 0.9rem; }
+.pyq-box li small { color: var(--ink-soft); font-size: 0.75rem; }
+.pq-chip:empty { display: none; }

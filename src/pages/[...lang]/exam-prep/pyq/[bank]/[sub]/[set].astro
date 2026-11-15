@@ -1,0 +1,136 @@
+---
+// One page of flip cards (about 40, five minutes), shown 8 to a screen, with a quick quiz over the same cards.
+// Without JavaScript the page is a plain list of questions and answers. Guide: docs/19-pyq-practice.md
+import ExamLayout from '../../../../../../layouts/ExamLayout.astro';
+import { BANKS, qaSets, pyqPath, splitTitle, heat, KIND, SCREEN, type Bank } from '../../../../../../pyq';
+import { paths, topicUrlIn } from '../../../../../../exam-prep';
+import { CI_LINKS } from '../../../../../../pyq';
+import { langFromUrl, withLangs, pick } from '../../../../../../i18n/config';
+import '../../../../../../styles/pyq.css';
+
+export function getStaticPaths() {
+  return withLangs(BANKS.flatMap((b) => qaSets(b).map((s) => ({ params: { bank: b.slug, sub: s.sub.slug, set: String(s.set) }, props: { key: b.key, seq: s.seq } }))));
+}
+const lang = langFromUrl(Astro.url);
+const { key, seq } = Astro.props as { key: Bank['key']; seq: number };
+const b = BANKS.find((x) => x.key === key)!;
+const all = qaSets(b);
+const S = all[seq];
+const prev = all[seq - 1];
+const next = all[seq + 1];
+const cl = b.content;
+const { BASE } = paths(lang);
+const [title, note] = splitTitle(S.sub.t);
+const [gTitle] = splitTitle(S.group.t);
+const T = pick({
+  en: {
+    home: 'Exam Prep', pyq: 'PYQ', page: (a: number, n: number) => (n > 1 ? `page ${a} of ${n}` : ''), cards: (n: number) => `${n} flip cards · about 5 minutes`,
+    meter: '{n} of {t} mastered', modes: 'How do you want to practise?', flip: '🃏 Flip cards', quiz: '⚡ Quick quiz (5)', tap: 'Tap to see the answer', ok: '✓ I knew it', again: '↻ Again',
+    screen: 'Screen', prev: '← Back', next: 'Next →', hotT: (n: number) => `Asked in ${n} exams`, exams: 'Exams:',
+    qT: 'Question', right: 'Right! ✓', wrong: 'Not quite. The answer is', qNext: 'Next question →', qAgain: 'Play 5 more', score: 'You got {s} out of {t}.',
+    pPrev: '← Previous page', pNext: 'Next page →', back: 'All topics', done: 'You reached the end of this bank 🎉',
+    tryReal: 'Ready for the real thing?', tryRealP: 'Try the questions exactly as the exam asked them.', real: 'Real exam questions →', ci: 'Study this topic:',
+    titleTail: 'PYQ Flip Cards and Quiz', descMid: 'one-line questions and answers from past papers', kindLegend: 'What the small tags mean',
+  },
+  hi: {
+    home: 'परीक्षा तैयारी', pyq: 'PYQ', page: (a: number, n: number) => (n > 1 ? `पेज ${n} में से ${a}` : ''), cards: (n: number) => `${n} फ़्लिप कार्ड · लगभग 5 मिनट`,
+    meter: '{t} में से {n} याद हो गए', modes: 'कैसे अभ्यास करना है?', flip: '🃏 फ़्लिप कार्ड', quiz: '⚡ झटपट क्विज़ (5)', tap: 'उत्तर देखने के लिए टैप करें', ok: '✓ याद था', again: '↻ फिर से',
+    screen: 'स्क्रीन', prev: '← पीछे', next: 'आगे →', hotT: (n: number) => `${n} परीक्षाओं में पूछा गया`, exams: 'परीक्षाएँ:',
+    qT: 'सवाल', right: 'सही! ✓', wrong: 'नहीं, सही उत्तर है', qNext: 'अगला सवाल →', qAgain: '5 और खेलें', score: '{t} में से {s} सही।',
+    pPrev: '← पिछला पेज', pNext: 'अगला पेज →', back: 'सारे टॉपिक', done: 'आप इस प्रश्न-बैंक के आख़िर तक पहुँच गए 🎉',
+    tryReal: 'असली सवाल के लिए तैयार?', tryRealP: 'सवाल ठीक वैसे कीजिए जैसे परीक्षा में आए थे।', real: 'असली परीक्षा के सवाल →', ci: 'यह टॉपिक पढ़िए:',
+    titleTail: 'PYQ फ़्लिप कार्ड और क्विज़', descMid: 'पुराने पेपरों से एक-लाइन सवाल-जवाब', kindLegend: 'छोटे टैग का मतलब',
+  },
+}, lang);
+const screens: (typeof S.rows)[] = [];
+for (let i = 0; i < S.rows.length; i += SCREEN) screens.push(S.rows.slice(i, i + SCREEN));
+const pageLabel = T.page(S.set, S.sets);
+const ciIds = Object.entries(CI_LINKS).filter(([, refs]) => refs.some(([k, kind, id]) => k === b.key && kind === 'qa' && (id === S.sub.id || id === S.group.id))).map(([id]) => id);
+const firstPaper = b.papers.find((p) => S.rows.some((r) => r.i?.some((i) => i.startsWith(b.key === 'raj' ? `RB${p.no}-` : `${p.code}-`))));
+const desc = `${b.short[lang]} · ${title}: ${T.descMid}. ${S.rows.slice(0, 3).map((r) => `${r.q} ${r.a}.`).join(' ')}`.slice(0, 160);
+const schema = [{
+  '@type': 'Quiz', name: `${title} ${pageLabel}`, inLanguage: cl, about: b.short[lang], educationalUse: 'Practice',
+  hasPart: S.rows.slice(0, 20).map((r) => ({ '@type': 'Question', name: r.q, acceptedAnswer: { '@type': 'Answer', text: r.a } })),
+}];
+---
+
+<ExamLayout
+  title={`${title}${pageLabel ? ` (${pageLabel})` : ''}: ${b.short[lang]} ${T.titleTail}`}
+  description={desc}
+  section="pyq"
+  pyqBank={b.slug}
+  {schema}
+  crumbs={[{ href: `${BASE}/`, label: T.home }, { href: pyqPath(lang), label: T.pyq }, { href: pyqPath(lang, b.slug), label: b.short[lang] }, { label: `${title}${pageLabel ? ` · ${pageLabel}` : ''}` }]}
+>
+  <div data-pyq-set data-bank={b.key} data-meter={T.meter}>
+    <header class="pq-hero">
+      <p class="eyebrow" lang={cl}>{b.icon} {gTitle}</p>
+      <h1 lang={cl}>{title}</h1>
+      {note && <p class="sub" lang={cl}>{note}</p>}
+      <ul class="pq-facts"><li>{T.cards(S.rows.length)}</li>{pageLabel && <li>{pageLabel}</li>}</ul>
+      <div class="pq-meter"><span class="track"><span class="fill" data-meter-fill></span></span><span data-meter-text></span></div>
+    </header>
+
+    <div class="pq-modes" role="tablist" aria-label={T.modes}>
+      <button type="button" role="tab" data-mode="cards" aria-selected="true">{T.flip}</button>
+      <button type="button" role="tab" data-mode="quiz" aria-selected="false">{T.quiz}</button>
+    </div>
+
+    <div data-flip data-screen-label={T.screen}>
+      {screens.map((sc, si) => (
+        <ul class="pq-cards" data-screen={si}>
+          {sc.map((r) => {
+            const h = heat(r);
+            const key2 = `${S.sub.slug}:${r.n}`;
+            return (
+              <li class="pq-card" data-card data-key={key2} data-q={r.q} data-a={r.a} id={`q${r.n}`}>
+                <div class="in">
+                  <div class="face front" role="button" tabindex="0" data-tap={T.tap} aria-label={`${r.q} (${T.tap})`}>
+                    <span class="num">#{r.n}</span>
+                    <p class="q" lang={cl}>{r.q}</p>
+                    <span class="chips">
+                      {h > 1 && <span class="pq-chip hot" title={T.hotT(h)}>🔥 {h}×</span>}
+                      <span class="pq-chip kind">{KIND[r.k]?.[lang] ?? r.k}</span>
+                    </span>
+                  </div>
+                  <div class="face back">
+                    <p class="q" lang={cl}>{r.q}</p>
+                    <p class="a" lang={cl}>{r.a}</p>
+                    {r.f && <p class="flag" lang={cl}>({r.f})</p>}
+                    {r.x && <span class="chips">{r.x.slice(0, 4).map((x) => <span class="pq-chip">{x}</span>)}{r.x.length > 4 && <span class="pq-chip">+{r.x.length - 4}</span>}</span>}
+                    <span class="mark"><button type="button" class="ok" data-ok>{T.ok}</button><button type="button" data-again>{T.again}</button></span>
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      ))}
+      <nav class="pq-pager" aria-label={T.screen}>
+        <button class="btn ghost" type="button" data-prev>{T.prev}</button>
+        <span class="pq-dots" data-dots></span>
+        <button class="btn" type="button" data-next>{T.next}</button>
+      </nav>
+    </div>
+
+    <div class="pq-quiz" data-quiz data-t-q={T.qT} data-t-right={T.right} data-t-wrong={T.wrong} data-t-next={T.qNext} data-t-again={T.qAgain} data-t-score={T.score} lang={cl}></div>
+
+    {firstPaper && (
+      <aside class="pyq-box">
+        <h2>{T.tryReal}</h2>
+        <p>{T.tryRealP}</p>
+        <a class="btn" href={pyqPath(lang, b.slug, 'paper', firstPaper.id, 1)}>{T.real}</a>
+      </aside>
+    )}
+
+    <nav class="pq-pn">
+      {prev ? <a href={pyqPath(lang, b.slug, prev.sub.slug, prev.set)} rel="prev"><small>{T.pPrev}</small><span lang={cl}>{splitTitle(prev.sub.t)[0]}{prev.sets > 1 ? ` · ${prev.set}` : ''}</span></a> : <a href={pyqPath(lang, b.slug)}><small>←</small><span>{T.back}</span></a>}
+      {next ? <a class="nx" href={pyqPath(lang, b.slug, next.sub.slug, next.set)} rel="next"><small>{T.pNext}</small><span lang={cl}>{splitTitle(next.sub.t)[0]}{next.sets > 1 ? ` · ${next.set}` : ''}</span></a> : <a class="nx" href={pyqPath(lang, b.slug)}><small>{T.done}</small><span>{T.back}</span></a>}
+    </nav>
+    {ciIds.length > 0 && <p class="pq-note">{T.ci} {ciIds.map((id, i) => <>{i > 0 && ' · '}<a href={topicUrlIn(id, lang)}>{id}</a></>)}</p>}
+  </div>
+</ExamLayout>
+
+<script>
+  import '../../../../../../scripts/pyq';
+</script>

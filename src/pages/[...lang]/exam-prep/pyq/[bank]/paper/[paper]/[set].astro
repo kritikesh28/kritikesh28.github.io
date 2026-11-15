@@ -1,0 +1,117 @@
+---
+// Ten real exam questions, exactly as they were asked, one to a screen. Pick an option: right or wrong shows at once,
+// then "the facts behind it" (the Q&A rows made from this MCQ). Without JavaScript all ten show with a "Show answer".
+// Guide: docs/19-pyq-practice.md
+import ExamLayout from '../../../../../../../layouts/ExamLayout.astro';
+import { BANKS, mcqSets, pyqPath, rowsForMcq, setOfRow, type Bank, type Mcq } from '../../../../../../../pyq';
+import { paths } from '../../../../../../../exam-prep';
+import { langFromUrl, withLangs, pick } from '../../../../../../../i18n/config';
+import '../../../../../../../styles/pyq.css';
+
+export function getStaticPaths() {
+  return withLangs(BANKS.flatMap((b) => mcqSets(b).map((s) => ({ params: { bank: b.slug, paper: s.paper.id, set: String(s.set) }, props: { key: b.key, seq: s.seq } }))));
+}
+const lang = langFromUrl(Astro.url);
+const { key, seq } = Astro.props as { key: Bank['key']; seq: number };
+const b = BANKS.find((x) => x.key === key)!;
+const all = mcqSets(b);
+const S = all[seq];
+const prev = all[seq - 1];
+const next = all[seq + 1];
+const cl = b.content;
+const { BASE } = paths(lang);
+const P = S.paper;
+const chap = P.code ?? (cl === 'hi' ? `अध्याय ${P.no}` : `Chapter ${P.no}`);
+const T = pick({
+  en: {
+    home: 'Exam Prep', pyq: 'PYQ', real: 'Real exam questions', page: `questions ${(S.set - 1) * 10 + 1}–${(S.set - 1) * 10 + S.m.length} of ${P.m.length}`,
+    lede: 'Exactly as the exam asked them. Choose an option: you will see at once if it is right, and the small facts behind the question.',
+    right: 'Right! ✓', wrong: 'Not this one. The answer is option', score: 'Score', show: 'Show answer', ans: 'Answer: option', starred: 'The book marked this answer as doubtful or changed since.',
+    behind: 'The facts behind this question', cards: 'Practise these as flip cards →', q: 'Question', prev: '← Back', next: 'Next →',
+    pPrev: '← Previous 10', pNext: 'Next 10 →', back: 'All chapters', end: 'End of the real questions 🎉', partA: 'Assistant Professor paper', partN: 'NTA UGC-NET/JRF',
+    titleTail: 'Previous Year Questions with Answers', descMid: 'real past-paper MCQs with answers',
+  },
+  hi: {
+    home: 'परीक्षा तैयारी', pyq: 'PYQ', real: 'असली परीक्षा के सवाल', page: `${P.m.length} में से सवाल ${(S.set - 1) * 10 + 1}–${(S.set - 1) * 10 + S.m.length}`,
+    lede: 'ठीक वैसे जैसे परीक्षा में पूछे गए। कोई विकल्प चुनिए: तुरंत दिखेगा कि सही है या नहीं, और सवाल के पीछे के छोटे तथ्य भी।',
+    right: 'सही! ✓', wrong: 'यह नहीं। सही उत्तर है विकल्प', score: 'स्कोर', show: 'उत्तर दिखाओ', ans: 'उत्तर: विकल्प', starred: 'किताब ने इस उत्तर को संदिग्ध बताया है या बाद में बदला है।',
+    behind: 'इस सवाल के पीछे के तथ्य', cards: 'इन्हें फ़्लिप कार्ड में दोहराइए →', q: 'सवाल', prev: '← पीछे', next: 'आगे →',
+    pPrev: '← पिछले 10', pNext: 'अगले 10 →', back: 'सारे अध्याय', end: 'असली सवाल पूरे हुए 🎉', partA: 'असिस्टेंट प्रोफ़ेसर पेपर', partN: 'NTA UGC-NET/JRF',
+    titleTail: 'पुराने सालों के सवाल उत्तर सहित', descMid: 'पुराने पेपरों के असली MCQ, उत्तर सहित',
+  },
+}, lang);
+const idOf = (m: Mcq) => b.idPrefix(P, m);
+const facts = (m: Mcq) => rowsForMcq(b, idOf(m)).slice(0, 6);
+const plain = (m: Mcq) => m.s.find((x) => x.p)?.p ?? '';
+const desc = `${b.short[lang]} · ${chap} ${P.t}: ${T.descMid}. ${plain(S.m[0])}`.slice(0, 160);
+const schema = [{
+  '@type': 'Quiz', name: `${chap} · ${P.t} (${T.page})`, inLanguage: cl, about: b.short[lang], educationalUse: 'Practice',
+  hasPart: S.m.filter((m) => m.o && m.a).map((m) => ({ '@type': 'Question', eduQuestionType: 'Multiple choice', name: plain(m), acceptedAnswer: { '@type': 'Answer', text: m.o![m.a - 1] } })),
+}];
+---
+
+<ExamLayout
+  title={`${chap} ${P.t} (${T.page}): ${b.short[lang]} ${T.titleTail}`}
+  description={desc}
+  section="pyq"
+  pyqBank={b.slug}
+  {schema}
+  crumbs={[{ href: `${BASE}/`, label: T.home }, { href: pyqPath(lang), label: T.pyq }, { href: pyqPath(lang, b.slug), label: b.short[lang] }, { href: `${pyqPath(lang, b.slug)}#real`, label: T.real }, { label: `${chap} · ${S.set}` }]}
+>
+  <div data-pyq-mcq data-bank={b.key} data-t-right={T.right} data-t-wrong={T.wrong} data-t-score={T.score}>
+    <header class="pq-hero">
+      <p class="eyebrow">{b.icon} {T.real} · {T.page}</p>
+      <h1 lang={cl}>{chap} · {P.t}</h1>
+      <p class="sub">{T.lede}</p>
+      <ul class="pq-facts"><li data-score></li></ul>
+    </header>
+
+    <div data-run data-screen-label={T.q}>
+      {S.m.map((m, i) => {
+        const f = facts(m);
+        const keys = f.map(({ row, sub }) => `${sub.slug}:${row.n}`).join(' ');
+        const firstFact = f[0] && setOfRow(b, f[0].sub, f[0].row.n);
+        return (
+          <article class="pq-mcq" data-mcq data-a={m.a} data-keys={keys} data-screen={i} id={`m${m.n}`}>
+            <p class="tag">#{m.n}{m.p && ` · ${m.p === 'A' ? T.partA : T.partN}`}{m.x && <> · <span lang={cl}>{m.x}</span></>}</p>
+            <div class="stem" lang={cl}>
+              {m.s.map((x) => x.p ? <p>{x.p}</p> : x.img ? <img src={x.img} alt="" loading="lazy" decoding="async" /> : x.tb ? <table><tbody>{x.tb.map((r) => <tr>{r.map((c) => <td>{c}</td>)}</tr>)}</tbody></table> : null)}
+            </div>
+            {m.o ? (
+              <>
+                <ul class="pq-opts" lang={cl}>
+                  {m.o.map((o, k) => <li><button type="button" data-opt={k + 1}><span class="k">({k + 1})</span><span>{o}</span></button></li>)}
+                </ul>
+                <p class="pq-say" aria-live="polite"></p>
+                <details class="ans has-opts"><summary>{T.show}</summary><p>{T.ans} ({m.a}){m.a ? <>: <span lang={cl}>{m.o[m.a - 1]}</span></> : ''}</p>{m.star && <p class="small muted">{T.starred}</p>}</details>
+              </>
+            ) : (
+              <details class="ans"><summary>{T.show}</summary><p>{T.ans} ({m.a})</p>{m.star && <p class="small muted">{T.starred}</p>}</details>
+            )}
+            {f.length > 0 && (
+              <div class="pq-facts-behind behind">
+                <h3>{T.behind}</h3>
+                <ul lang={cl}>{f.map(({ row }) => <li>{row.q} <b>{row.a}</b></li>)}</ul>
+                {firstFact && <a class="small" href={`${pyqPath(lang, b.slug, firstFact.sub.slug, firstFact.set)}#q${f[0].row.n}`}>{T.cards}</a>}
+              </div>
+            )}
+          </article>
+        );
+      })}
+      <nav class="pq-pager" aria-label={T.q}>
+        <button class="btn ghost" type="button" data-prev>{T.prev}</button>
+        <span class="pq-dots" data-dots></span>
+        <button class="btn" type="button" data-next>{T.next}</button>
+      </nav>
+    </div>
+
+    <nav class="pq-pn">
+      {prev ? <a href={pyqPath(lang, b.slug, 'paper', prev.paper.id, prev.set)} rel="prev"><small>{T.pPrev}</small><span lang={cl}>{prev.paper.t} · {prev.set}</span></a> : <a href={`${pyqPath(lang, b.slug)}#real`}><small>←</small><span>{T.back}</span></a>}
+      {next ? <a class="nx" href={pyqPath(lang, b.slug, 'paper', next.paper.id, next.set)} rel="next"><small>{T.pNext}</small><span lang={cl}>{next.paper.t} · {next.set}</span></a> : <a class="nx" href={`${pyqPath(lang, b.slug)}#real`}><small>{T.end}</small><span>{T.back}</span></a>}
+    </nav>
+  </div>
+</ExamLayout>
+
+<script>
+  import '../../../../../../../scripts/pyq';
+</script>
