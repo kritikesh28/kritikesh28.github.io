@@ -238,8 +238,8 @@ export const STORY: Milestone[] = [
         id: 'why-curious-sparoows',
         q: { en: 'Why did you build Curious Sparoows?', hi: 'आपने Curious Sparoows क्यों बनाया?' },
         a: {
-          en: ["As an aspirant I often wished for someone to guide me closely and honestly, like a personal mentor. This site and its YouTube channel are my attempt to be that for others: what I have learnt, shared freely, from the basics up, without tricks or pressure. Knowledge comes from nature and belongs to everyone, and a skill passed on can change a life. It is my hobby, not my job: I build it in my own time because helping people is simply who I am. Whatever work I take up will always come first."],
-          hi: ["तैयारी के दिनों में मैं अक्सर चाहता था कि कोई निजी मार्गदर्शक की तरह मुझे पास से और ईमानदारी से राह दिखाए। यह साइट और इसका YouTube चैनल दूसरों के लिए वही बनने की कोशिश है: जो सीखा, बुनियाद से, बिना किसी चाल या दबाव के, मुफ़्त में बाँटना। ज्ञान प्रकृति से आता है और सबका है, और सौंपा गया एक हुनर किसी की ज़िंदगी बदल सकता है। यह मेरा शौक़ है, मेरी नौकरी नहीं: मैं इसे अपने ख़ाली समय में बनाता हूँ, क्योंकि लोगों की मदद करना मेरा स्वभाव है। जो भी काम मैं हाथ में लूँगा, वह हमेशा पहले रहेगा।"],
+          en: ["As an aspirant I often wished for someone to guide me closely and honestly, like a personal mentor. This site and its YouTube channel are my attempt to be that for others: what I have learnt, shared freely, from the basics up, without tricks or pressure. Knowledge comes from nature and belongs to everyone, and a skill passed on can change a life."],
+          hi: ["तैयारी के दिनों में मैं अक्सर चाहता था कि कोई निजी मार्गदर्शक की तरह मुझे पास से और ईमानदारी से राह दिखाए। यह साइट और इसका YouTube चैनल दूसरों के लिए वही बनने की कोशिश है: जो सीखा, बुनियाद से, बिना किसी चाल या दबाव के, मुफ़्त में बाँटना। ज्ञान प्रकृति से आता है और सबका है, और सौंपा गया एक हुनर किसी की ज़िंदगी बदल सकता है।"],
         },
       },
       {
