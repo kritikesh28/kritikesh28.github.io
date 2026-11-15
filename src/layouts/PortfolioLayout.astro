@@ -14,8 +14,8 @@ const L = (p: string) => localizePath(p, lang);
 const projects = await getProjects(lang);
 const count = (slug: string) => projects.filter((p) => p.data.section === slug).length;
 const T = pick({
-  en: { all: 'All work', allSub: 'Everything in one place', shelves: 'Portfolio shelves', soon: 'soon', me: 'Kritikesh Rajpurohit', meText: 'Geographer, teacher and applied AI learner from Rawatbhata, Rajasthan. I build things in the open and write down what I learn.', story: 'Read my story →', follow: 'Follow along', followText: 'New work goes up here first. Say hello any time.', write: 'Write to me', resume: 'Résumé (PDF)', alt: 'Kritikesh Rajpurohit' },
-  hi: { all: 'सारा काम', allSub: 'सब एक जगह', shelves: 'पोर्टफ़ोलियो के हिस्से', soon: 'जल्द', me: 'कृतिकेश राजपुरोहित', meText: 'रावतभाटा, राजस्थान से भूगोलवेत्ता, शिक्षक और अप्लाइड AI सीखने वाला। यहाँ का हर काम खुले में बना है, और हर सीख लिखकर रखी गई है।', story: 'मेरी कहानी पढ़िए →', follow: 'साथ जुड़िए', followText: 'नया काम सबसे पहले यहीं आता है। कभी भी नमस्ते कहिए।', write: 'मुझे लिखिए', resume: 'रिज़्यूमे (PDF)', alt: 'कृतिकेश राजपुरोहित' },
+  en: { all: 'All work', allSub: 'Everything in one place', shelves: 'Portfolio shelves', soon: 'soon', me: 'Kritikesh Rajpurohit', meText: 'Geographer, educator and applied AI learner from Rawatbhata, Rajasthan. I build things in the open and write down what I learn.', story: 'Read my story →', follow: 'Follow along', followText: 'New work goes up here first. Say hello any time.', write: 'Write to me', resume: 'Résumé (PDF)', alt: 'Kritikesh Rajpurohit' },
+  hi: { all: 'सारा काम', allSub: 'सब एक जगह', shelves: 'पोर्टफ़ोलियो के हिस्से', soon: 'जल्द', me: 'कृतिकेश राजपुरोहित', meText: 'रावतभाटा, राजस्थान से भूगोलवेत्ता, एजुकेटर और अप्लाइड AI सीखने वाला। यहाँ का हर काम खुले में बना है, और हर सीख लिखकर रखी गई है।', story: 'मेरी कहानी पढ़िए →', follow: 'साथ जुड़िए', followText: 'नया काम सबसे पहले यहीं आता है। कभी भी नमस्ते कहिए।', write: 'मुझे लिखिए', resume: 'रिज़्यूमे (PDF)', alt: 'कृतिकेश राजपुरोहित' },
 }, lang);
 const links = [...BRAND_SOCIALS.filter((s) => s.href), ...SOCIALS];
 ---

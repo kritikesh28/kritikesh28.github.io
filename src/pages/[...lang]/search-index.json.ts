@@ -46,7 +46,7 @@ export async function GET({ url }: APIContext) {
   }
   const pages = pick({
     en: [
-      { t: 'About Kritikesh', d: 'Who writes Curious Sparoows: background, skills and interests.', u: '/about/', w: 'about author geography geology ai teacher' },
+      { t: 'About Kritikesh', d: 'Who writes Curious Sparoows: background, skills and interests.', u: '/about/', w: 'about author geography geology ai teacher educator' },
       { t: 'Portfolio', d: 'Applied AI, data and GIS projects.', u: '/portfolio/', w: 'projects work ai data gis qgis' },
       { t: 'Contact', d: 'Write to me, or suggest a question for the library.', u: '/contact/', w: 'contact email suggest question' },
       { t: 'The Library', d: 'Every course and question in the library.', u: '/library/', w: 'library courses learn topics' },
