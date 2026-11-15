@@ -5,6 +5,7 @@
 import ExamLayout from '../../../../layouts/ExamLayout.astro';
 import { EXAM_PAGES, subjectsIn, paths, topicUrlIn, examTitleIn, tt, isEnglish, fmt, type ExamPage } from '../../../../exam-prep';
 import { langFromUrl, withLangs } from '../../../../i18n/config';
+import PyqBox from '../../../../components/exam/PyqBox.astro';
 
 export function getStaticPaths() {
   return withLangs(EXAM_PAGES.map((e) => ({ params: { exam: e.slug }, props: { e } })));
@@ -110,6 +111,8 @@ const schema = [
       <a class="btn ghost" href="#topics">{W.seeTop}</a>
     </div>
   </header>
+
+  {(e.agency === 'RPSC' || e.agency === 'RSSB') && !e.langOnly && <PyqBox banks={['raj']} />}
 
   <h2>{W.weight}</h2>
   <p class="muted small">{W.avg}</p>

@@ -50,6 +50,10 @@ The website never reads Google directly. When a sheet changes, the website only 
 
 It feeds six places: the Exam Mentor's Government › Agency › Exam choosers (each exam is added under its body in `exam-guide/index.astro` and uses that body's overall ranking until its own papers are added), the `/exam-prep/all-exams/` page, the exam picker at the top of `/exam-prep/`, the "All exams of India" column of the Exam Prep menu, the sidebar link in `ExamLayout.astro`, and site search (one entry per exam). To add an exam, add one line to its group. When a group gets its own past-paper rankings, set `live: true` and give its exams an `href`.
 
+### PYQ practice (added 15 Nov 2026)
+
+Past-paper question banks (Rajasthan Geography, UGC-NET Geography) as flip cards, quick quizzes and real MCQs live at /exam-prep/pyq/, group 3 of the sidebar. Everything about them is in guide [19 · PYQ practice](19-pyq-practice.md). Curriculum Index topic pages show a "Practise the past questions on this" box when `CI_LINKS` in `src/pyq.ts` lists them.
+
 Pages in square brackets (`[subject]`, `[major]`, `[exam]`) are templates: one file makes hundreds of pages, one per subject, topic or exam in the data. About 950 pages in all.
 
 ## 3. Every file of the section

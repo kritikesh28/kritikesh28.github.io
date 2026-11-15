@@ -1,6 +1,7 @@
 // Everything the site search can find, built fresh on every deploy, once per language
 // (/search-index.json for English, /hi/search-index.json for Hindi). Used by /search/ and the search boxes.
 import type { GetStaticPaths, APIContext } from 'astro';
+import { BANKS, splitTitle } from '../../pyq';
 import { getQuestions } from '../../data/curious-questions';
 import { getTrees } from '../../library.config';
 import { categoryLabel } from '../../site.config';
@@ -69,6 +70,20 @@ export async function GET({ url }: APIContext) {
     }
   }
   items.push({ t: hi ? 'भारत की सभी सरकारी परीक्षाएँ' : 'All government exams of India', d: hi ? 'UPSC, SSC, बैंक, रेलवे, NTA, CAT, रक्षा, शिक्षक और राज्य आयोग, एक सूची में।' : 'UPSC, SSC, banking, railways, NTA, CAT, defence, teaching and state commissions, in one list.', u: L('/exam-prep/all-exams/'), k: t('search.kind.page'), w: 'upsc ssc bank rbi ibps sbi railway rrb nta net cat gate nda cds sarkari naukri सरकारी नौकरी परीक्षा', b: '' });
+  // PYQ practice: each bank, each sub-topic (its questions as keywords) and each chapter of real questions
+  const pk = hi ? 'PYQ अभ्यास' : 'PYQ practice';
+  items.push({ t: hi ? 'PYQ अभ्यास: पुराने सवाल' : 'PYQ practice: previous year questions', d: hi ? 'फ़्लिप कार्ड, झटपट क्विज़ और असली परीक्षा के MCQ।' : 'Flip cards, quick quizzes and real exam MCQs.', u: L('/exam-prep/pyq/'), k: pk, w: 'pyq previous year questions old papers mcq quiz flash cards पुराने प्रश्न प्रश्नपत्र', b: '' });
+  for (const bk of BANKS) {
+    const nm = bk.name[lang];
+    items.push({ t: nm, d: bk.blurb[lang], u: L(`/exam-prep/pyq/${bk.slug}/`), k: pk, w: `${bk.name.en} ${bk.name.hi} ${bk.exams.en} ${bk.key === 'net' ? 'ugc net jrf geography paper 2 code 80 assistant professor set slet भूगोल नेट' : 'rajasthan geography rajasthan bhugol राजस्थान भूगोल ras patwari rpsc rssb'} pyq`, b: '' });
+    for (const g of bk.groups) for (const s of g.subs) {
+      const [st] = splitTitle(s.t);
+      items.push({ t: `${st} · ${bk.short[lang]} PYQ`, d: `${s.rows.length} ${hi ? 'फ़्लिप कार्ड' : 'flip cards'} · ${splitTitle(g.t)[0]}`, u: L(`/exam-prep/pyq/${bk.slug}/${s.slug}/1/`), k: pk, w: `${s.t} ${bk.short.en} pyq`, b: s.rows.slice(0, 120).map((r) => `${r.q} ${r.a}`).join(' ').slice(0, 2500) });
+    }
+    for (const p of bk.papers) {
+      items.push({ t: `${p.code ?? (hi ? `अध्याय ${p.no}` : `Chapter ${p.no}`)} ${p.t} · ${bk.short[lang]} ${hi ? 'असली सवाल' : 'real questions'}`, d: `${p.m.length} ${hi ? 'MCQ, उत्तर सहित' : 'MCQs with answers'}`, u: L(`/exam-prep/pyq/${bk.slug}/paper/${p.id}/1/`), k: pk, w: `${p.t} ${bk.short.en} mcq pyq`, b: p.m.slice(0, 60).map((m) => m.s[0]?.p ?? '').join(' ').slice(0, 2000) });
+    }
+  }
   for (const p of pages) items.push({ ...p, u: L(p.u), k: t('search.kind.page'), b: '' });
   return new Response(JSON.stringify(items), { headers: { 'Content-Type': 'application/json; charset=utf-8' } });
 }

@@ -3,6 +3,7 @@ import { SITE, SOCIALS, CATEGORIES } from '../site.config';
 import { getPosts, getProjects, getLibraryPages, libraryUrl } from '../lib';
 import { EXAM_PAGES, SUBJECTS, STATS, examTitle } from '../exam-prep';
 import { TOPICS } from '../explore';
+import { BANKS } from '../pyq';
 
 // A plain summary for AI assistants (the llms.txt convention), built from the same data as the site.
 export async function GET({ site }: APIContext) {
@@ -35,6 +36,8 @@ export async function GET({ site }: APIContext) {
     `- [How the ranking works](${url('/exam-prep/exam-guide/how-it-works/')}): method, papers used and limits`,
     `- [All government exams of India](${url('/exam-prep/all-exams/')}): UPSC, SSC, banking (RBI, SBI, IBPS), railways (RRB), NTA (UGC-NET, NEET, JEE, CUET), CAT and GATE, defence, teaching and state commissions, highest post to entry level`,
     `- [Most asked topics, exam by exam](${url('/exam-prep/exams/')})`,
+    `- [PYQ practice](${url('/exam-prep/pyq/')}): previous year questions as one-line flip cards, 5-question quizzes and the real exam MCQs with answers`,
+    ...BANKS.map((b) => `- [${b.name.en}](${url(`/exam-prep/pyq/${b.slug}/`)}): ${b.blurb.en} For ${b.exams.en}. Questions in ${b.content === 'hi' ? 'Hindi' : 'English'}.`),
     ...EXAM_PAGES.filter((e) => !e.langOnly).map((e) => `- [${examTitle(e)}: most asked topics](${url(`/exam-prep/exams/${e.slug}/`)}): ${e.papers ? `from ${e.papers} past paper(s), ${e.years}` : 'from the syllabus and related papers'}; top topics: ${e.top.slice(0, 3).map((t) => t.t).join(', ')}`),
     ...SUBJECTS.map((sub) => `- [${sub.name} syllabus, all topics](${url(`/exam-prep/curriculum-index/${sub.slug}/`)}): ${sub.blurb}`),
     '',

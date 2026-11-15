@@ -5,24 +5,26 @@
 import Base from './Base.astro';
 import { subjectsIn, paths, GLYPH, fmt } from '../exam-prep';
 import { langFromUrl, pick } from '../i18n/config';
+import { BANKS, pyqPath } from '../pyq';
 
 interface Props {
   title: string;
   description: string;
-  section: 'home' | 'ci' | 'guide' | 'how' | 'exams' | 'all';
+  section: 'home' | 'ci' | 'guide' | 'how' | 'exams' | 'all' | 'pyq';
+  pyqBank?: string; // slug of the PYQ bank being practised
   subject?: string; // slug of the subject being read
   major?: string; // slug of the major topic being read
   crumbs?: { href?: string; label: string }[];
   schema?: Record<string, unknown>[];
   noindex?: boolean;
 }
-const { title, description, section, subject, major, crumbs = [], schema, noindex } = Astro.props;
+const { title, description, section, subject, major, pyqBank, crumbs = [], schema, noindex } = Astro.props;
 const lang = langFromUrl(Astro.url);
 const SUBJECTS = subjectsIn(lang);
 const { BASE, CI, GUIDE } = paths(lang);
 const T = pick({
-  en: { menu: 'Exam Prep menu', sections: 'Exam Prep sections', home: 'Exam Prep', start: 'Start here', ci: 'Exhaustive Curriculum Index', filterLabel: 'Filter the topics of', filterPh: (n: number) => `Filter ${n} major topics…`, none: 'No major topic has that word. Try the full search above.', guide: 'Exam Mentor', find: 'Find my topics', byExam: 'Most asked topics, exam by exam', how: 'How the ranking works', papers: 'Papers analysed', note: 'Just for reading. Nothing you type or pick here is saved, sent anywhere or tracked.', where: 'Where you are', all: 'All exams of India', allSub: 'UPSC, SSC, banks, railways, NET and more' },
-  hi: { menu: 'परीक्षा तैयारी मेनू', sections: 'परीक्षा तैयारी के हिस्से', home: 'परीक्षा तैयारी', start: 'यहाँ से शुरू करें', ci: 'पूरा पाठ्यक्रम सूचकांक (सिलेबस का नक्शा)', filterLabel: 'इन टॉपिकों में छाँटें:', filterPh: (n: number) => `${n} मुख्य टॉपिकों में ढूँढें…`, none: 'किसी मुख्य टॉपिक में यह शब्द नहीं है। ऊपर वाली पूरी खोज आज़माएँ।', guide: 'परीक्षा मार्गदर्शक', find: 'मेरे टॉपिक बताओ', byExam: 'हर परीक्षा के सबसे ज़्यादा पूछे गए टॉपिक', how: 'क्रम (रैंकिंग) कैसे बनता है', papers: 'जिन पेपरों को पढ़ा गया', note: 'सिर्फ़ देखने के लिए। आप यहाँ जो लिखते या चुनते हैं, वह न सेव होता है, न कहीं भेजा जाता है, न ट्रैक होता है।', where: 'आप यहाँ हैं', all: 'भारत की सभी परीक्षाएँ', allSub: 'UPSC, SSC, बैंक, रेलवे, NET और बाक़ी' },
+  en: { menu: 'Exam Prep menu', sections: 'Exam Prep sections', home: 'Exam Prep', start: 'Start here', ci: 'Exhaustive Curriculum Index', filterLabel: 'Filter the topics of', filterPh: (n: number) => `Filter ${n} major topics…`, none: 'No major topic has that word. Try the full search above.', guide: 'Exam Mentor', find: 'Find my topics', byExam: 'Most asked topics, exam by exam', how: 'How the ranking works', papers: 'Papers analysed', note: 'Just for reading. Nothing you type or pick here is saved, sent anywhere or tracked.', where: 'Where you are', all: 'All exams of India', allSub: 'UPSC, SSC, banks, railways, NET and more', pyq: 'PYQ practice', pyqAll: 'All question banks', pyqNote: 'Your “mastered” cards are remembered only in this browser, on this device. Nothing is sent anywhere.' },
+  hi: { menu: 'परीक्षा तैयारी मेनू', sections: 'परीक्षा तैयारी के हिस्से', home: 'परीक्षा तैयारी', start: 'यहाँ से शुरू करें', ci: 'पूरा पाठ्यक्रम सूचकांक (सिलेबस का नक्शा)', filterLabel: 'इन टॉपिकों में छाँटें:', filterPh: (n: number) => `${n} मुख्य टॉपिकों में ढूँढें…`, none: 'किसी मुख्य टॉपिक में यह शब्द नहीं है। ऊपर वाली पूरी खोज आज़माएँ।', guide: 'परीक्षा मार्गदर्शक', find: 'मेरे टॉपिक बताओ', byExam: 'हर परीक्षा के सबसे ज़्यादा पूछे गए टॉपिक', how: 'क्रम (रैंकिंग) कैसे बनता है', papers: 'जिन पेपरों को पढ़ा गया', note: 'सिर्फ़ देखने के लिए। आप यहाँ जो लिखते या चुनते हैं, वह न सेव होता है, न कहीं भेजा जाता है, न ट्रैक होता है।', where: 'आप यहाँ हैं', all: 'भारत की सभी परीक्षाएँ', allSub: 'UPSC, SSC, बैंक, रेलवे, NET और बाक़ी', pyq: 'PYQ अभ्यास (पुराने सवाल)', pyqAll: 'सारे प्रश्न-बैंक', pyqNote: 'आपके “याद हो गया” कार्ड सिर्फ़ इसी ब्राउज़र में, इसी डिवाइस पर याद रहते हैं। कुछ भी कहीं भेजा नहीं जाता।' },
 }, lang);
 const current = SUBJECTS.find((s) => s.slug === subject);
 // Breadcrumbs for search engines, built from the visible crumbs
@@ -103,7 +105,19 @@ const allSchema = [...crumbSchema, ...(schema ?? [])];
         </ul>
       </div>
 
-      <p class="side-note">{T.note}</p>
+      <div class="side-group">
+        <a class="side-title" href={pyqPath(lang)} aria-current={section === 'pyq' && !pyqBank ? 'page' : undefined}>
+          <span class="num" aria-hidden="true">3</span> {T.pyq}
+        </a>
+        <ul class="side-links">
+          {BANKS.map((b) => (
+            <li><a href={pyqPath(lang, b.slug)} aria-current={pyqBank === b.slug ? 'page' : undefined}>{b.icon} {b.short[lang]}</a></li>
+          ))}
+          <li><a href={pyqPath(lang)}>{T.pyqAll}</a></li>
+        </ul>
+      </div>
+
+      <p class="side-note">{section === 'pyq' ? T.pyqNote : T.note}</p>
     </aside>
 
     <div class="ex-main">
