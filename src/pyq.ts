@@ -3,6 +3,7 @@
 // Guide: docs/19-pyq-practice.md
 import raj from './data/pyq/raj.json';
 import net from './data/pyq/net.json';
+import ciMatch from './data/pyq/ci-match.json';
 import type { Lang } from './i18n/config';
 import { localizePath } from './i18n/config';
 
@@ -203,4 +204,54 @@ export function pyqLinksFor(ciId: string, lang: Lang): PyqLink[] {
     }
   }
   return out;
+}
+
+// ---- Curriculum Index topic ↔ PYQ cards (made by tools/pyq/link_ci.py; SUB_MAP there is the hand-checked part) ----
+type CiMatch = { topics: Record<string, [Bank['key'], string[], string[], string[]]>; rows: Record<Bank['key'], Record<string, string>> };
+const CM = ciMatch as unknown as CiMatch;
+export type CiCard = { key: string; sub: Sub; row: Row };
+export type CiPack = { id: string; bank: Bank; cards: CiCard[]; subs: Sub[]; total: number };
+const subBySlug = (b: Bank) => new Map(b.groups.flatMap((g) => g.subs).map((s) => [s.slug, s]));
+const packCache = new Map<string, CiPack | undefined>();
+/** The PYQ cards for one Curriculum Index topic (any level): up to SET_SIZE cards for its practice page, and the whole decks that match it */
+export function ciPack(id: string): CiPack | undefined {
+  if (packCache.has(id)) return packCache.get(id);
+  const m = CM.topics[id];
+  let out: CiPack | undefined;
+  if (m) {
+    const [key, keys, , slugs] = m;
+    const b = BANKS.find((x) => x.key === key)!;
+    const bySlug = subBySlug(b);
+    const card = (k: string): CiCard | undefined => {
+      const [sl, n] = k.split(':');
+      const sub = bySlug.get(sl);
+      const row = sub?.rows.find((r) => r.n === Number(n));
+      return sub && row ? { key: k, sub, row } : undefined;
+    };
+    const subs = slugs.map((s) => bySlug.get(s)!).filter(Boolean);
+    const cards = keys.map(card).filter((c): c is CiCard => !!c);
+    const seen = new Set(cards.map((c) => c.key));
+    // a hand-matched deck tops the page up with its most-asked cards
+    const extra = subs.flatMap((s) => s.rows.map((row) => ({ key: `${s.slug}:${row.n}`, sub: s, row }))).filter((c) => !seen.has(c.key)).sort((a, z) => heat(z.row) - heat(a.row));
+    const all = [...cards, ...extra];
+    const inSubs = new Set(subs.map((s) => s.slug));
+    const total = subs.reduce((a, s) => a + s.rows.length, 0) + cards.filter((c) => !inSubs.has(c.sub.slug)).length;
+    out = { id, bank: b, cards: all.slice(0, SET_SIZE), subs, total };
+  }
+  packCache.set(id, out);
+  return out;
+}
+export const CI_PACK_IDS = Object.keys(CM.topics);
+export const ciPackPath = (lang: Lang, id: string) => pyqPath(lang, 'topic', id.toLowerCase().replaceAll('.', '-'));
+/** Syllabus topics that this PYQ deck page covers: hand-matched ones first, then the topics its cards were matched to */
+export function ciTopicsFor(b: Bank, sub: Sub, rows: Row[]): string[] {
+  const out = new Set<string>();
+  for (const [id, [key, , , slugs]] of Object.entries(CM.topics)) if (key === b.key && slugs.includes(sub.slug)) out.add(id);
+  const counts = new Map<string, number>();
+  for (const r of rows) {
+    const id = CM.rows[b.key]?.[`${sub.slug}:${r.n}`];
+    if (id) counts.set(id, (counts.get(id) ?? 0) + 1);
+  }
+  [...counts].sort((a, z) => z[1] - a[1]).forEach(([id]) => out.add(id));
+  return [...out];
 }

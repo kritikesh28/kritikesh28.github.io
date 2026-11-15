@@ -4,6 +4,8 @@ import ExamLayout from '../../../../../layouts/ExamLayout.astro';
 import { SUBJECTS, subjectsIn, paths, fmt, partIn, topicsIn, topicUrlIn, subjectOf, slugId, type Topic } from '../../../../../exam-prep';
 import { langFromUrl, withLangs, pick } from '../../../../../i18n/config';
 import PyqBox from '../../../../../components/exam/PyqBox.astro';
+import { ciPack, ciPackPath, pyqLinksFor, pyqPath } from '../../../../../pyq';
+import '../../../../../styles/pyq.css';
 
 type LTopic = Topic & { en?: boolean };
 type Node = LTopic & { kids: Node[] };
@@ -28,6 +30,10 @@ const P = pick({
     asked: (n: number) => `Asked ${n}×`, last: (y: number) => ` · last ${y}`, more: (n: number) => `${n} more point${n === 1 ? '' : 's'}`,
     nudge: 'Not sure if this topic matters for your exam?', nudge2: 'The Exam Mentor ranks every topic by how often it was asked.', find: 'Find my topics',
     pn: 'Next and previous major topics', prev: '← Previous', next: 'Next →', done: `Done with ${s.name} →`, all: 'All subjects',
+    soon: '📝 Notes for these topics are being prepared and will be uploaded soon.',
+    soonPyq: (n: number) => `Meanwhile, you don't have to leave empty-handed: ${n > 0 ? `${n} topics below have past-exam questions to practise. Tap a 🃏 button next to a topic, or start with the decks just below.` : 'practise the past-exam questions on this just below.'}`,
+    soonNone: 'Meanwhile, the Exam Mentor shows how often each topic was asked in past papers. Past-question practice is ready for Geography and Rajasthan Geography so far, with more subjects to come.',
+    mentor: 'Exam Mentor', pyqHub: 'PYQ practice', chip: (n: number) => `🃏 ${fmt(n)} PYQ cards`, chipT: 'Practise the past-exam questions on this topic',
   },
   hi: {
     tail: `टॉपिक, उप-टॉपिक और पुराने प्रश्न (PYQ) | ${s.name}`, descFallback: `${major.t}: अंदर का हर टॉपिक, क्रम से, प्रतियोगी परीक्षाओं के लिए।`, home: 'परीक्षा तैयारी', ci: 'पाठ्यक्रम सूचकांक',
@@ -37,6 +43,10 @@ const P = pick({
     asked: (n: number) => `${n} बार पूछा गया`, last: (y: number) => ` · आख़िरी बार ${y}`, more: (n: number) => `${n} और बातें`,
     nudge: 'पक्का नहीं कि यह टॉपिक आपकी परीक्षा के लिए ज़रूरी है?', nudge2: 'परीक्षा मार्गदर्शक हर टॉपिक को इस हिसाब से क्रम में रखता है कि वह कितनी बार पूछा गया।', find: 'मेरे टॉपिक बताओ',
     pn: 'अगला और पिछला मुख्य टॉपिक', prev: '← पिछला', next: 'अगला →', done: `${s.name} पूरा हुआ →`, all: 'सभी विषय',
+    soon: '📝 इन टॉपिक के नोट्स तैयार हो रहे हैं और जल्द ही अपलोड होंगे।',
+    soonPyq: (n: number) => `तब तक ख़ाली हाथ मत लौटिए: ${n > 0 ? `नीचे ${n} टॉपिक पर पुरानी परीक्षाओं के सवाल अभ्यास के लिए हैं। टॉपिक के पास 🃏 बटन दबाइए, या ठीक नीचे वाले डेक से शुरू कीजिए।` : 'इस पर पुरानी परीक्षाओं के सवालों का अभ्यास ठीक नीचे कीजिए।'}`,
+    soonNone: 'तब तक परीक्षा मार्गदर्शक में देखिए कि पुराने पेपरों में कौन-सा टॉपिक कितनी बार पूछा गया। पुराने सवालों का अभ्यास अभी भूगोल और राजस्थान भूगोल के लिए तैयार है, बाक़ी विषय आगे आएँगे।',
+    mentor: 'परीक्षा मार्गदर्शक', pyqHub: 'PYQ अभ्यास', chip: (n: number) => `🃏 ${fmt(n)} PYQ कार्ड`, chipT: 'इस टॉपिक के पुराने सवालों का अभ्यास कीजिए',
   },
 }, lang);
 const head: LTopic = rows.find((r) => r.lvl === 1) ?? ({ id: major.id, lvl: 1, t: major.t, l1: major.id, en: major.en } as LTopic);
@@ -55,6 +65,10 @@ const next = s.majors[i + 1];
 const asked = rows.reduce((a, r) => a + (r.lvl <= 2 ? r.q ?? 0 : 0), 0);
 const lastYear = Math.max(0, ...rows.map((r) => r.y ?? 0));
 const count = (n: Node): number => n.kids.reduce((a, k) => a + 1 + count(k), 0);
+// PYQ practice for each topic on this page (🃏 buttons), and whether the major topic has any at all
+const packOf = (id: string) => ciPack(id);
+const packed = rows.filter((r) => r.lvl > 1 && packOf(r.id)).length;
+const hasPyq = packed > 0 || pyqLinksFor(major.id, lang).length > 0 || !!packOf(major.id);
 const desc = head.d ? head.d.slice(0, 150) : P.descFallback;
 ---
 
@@ -81,6 +95,10 @@ const desc = head.d ? head.d.slice(0, 150) : P.descFallback;
     )}
   </header>
 
+  <aside class="pq-soonbox">
+    <p><strong>{P.soon}</strong> {hasPyq ? P.soonPyq(packed) : <>{P.soonNone} <a href={`${GUIDE}/`}>{P.mentor}</a> · <a href={pyqPath(lang)}>{P.pyqHub}</a></>}</p>
+    {packOf(major.id) && <a class="ci-pyq" href={ciPackPath(lang, major.id)} title={P.chipT}>{P.chip(packOf(major.id)!.total)}</a>}
+  </aside>
   <PyqBox ci={major.id} />
 
   {root.kids.length === 0 && <p class="muted">{P.alone}</p>}
@@ -94,6 +112,7 @@ const desc = head.d ? head.d.slice(0, 150) : P.descFallback;
             <h2 lang={ln(k)}>{k.t}</h2>
             {k.p && <span class="period">{k.p}</span>}
             {k.d && <p class="d" lang={ln(k)}>{k.d}</p>}
+            {packOf(k.id) && <a class="ci-pyq" href={ciPackPath(lang, k.id)} title={P.chipT}>{P.chip(packOf(k.id)!.total)}</a>}
             {(k.q || k.rel) && (
               <p class="tags">
                 {k.q && <span class="ask">{P.asked(k.q)}{k.y && P.last(k.y)}</span>}
@@ -108,12 +127,13 @@ const desc = head.d ? head.d.slice(0, 150) : P.descFallback;
                     {c.p && <span class="period sm">{c.p}</span>}
                     {c.d && <span class="d sm" lang={ln(c)}>{c.d}</span>}
                     {c.q && <span class="ask sm">{P.asked(c.q)}</span>}
+                    {packOf(c.id) && <a class="ci-pyq sm" href={ciPackPath(lang, c.id)} title={P.chipT}>{P.chip(packOf(c.id)!.total)}</a>}
                     {c.kids.length > 0 && (
                       <details class="l4s">
                         <summary>{P.more(count(c))}</summary>
                         <ul>
                           {c.kids.flatMap((g) => [g, ...g.kids]).map((g) => (
-                            <li id={slugId(g.id)} lang={ln(g)}><span>{g.t}</span>{g.d && <span class="d sm"> · {g.d}</span>}</li>
+                            <li id={slugId(g.id)} lang={ln(g)}><span>{g.t}</span>{g.d && <span class="d sm"> · {g.d}</span>}{packOf(g.id) && <> <a class="ci-pyq sm" href={ciPackPath(lang, g.id)} title={P.chipT}>{P.chip(packOf(g.id)!.total)}</a></>}</li>
                           ))}
                         </ul>
                       </details>

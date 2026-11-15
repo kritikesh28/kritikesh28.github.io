@@ -92,7 +92,7 @@ const schema = [{
               <div class="pq-facts-behind behind">
                 <h3>{T.behind}</h3>
                 <ul lang={cl}>{f.map(({ row }) => <li>{row.q} <b>{row.a}</b></li>)}</ul>
-                {firstFact && <a class="small" href={`${pyqPath(lang, b.slug, firstFact.sub.slug, firstFact.set)}#q${f[0].row.n}`}>{T.cards}</a>}
+                {firstFact && <a class="small" href={`${pyqPath(lang, b.slug, firstFact.sub.slug, firstFact.set)}#q${f[0].sub.slug}-${f[0].row.n}`}>{T.cards}</a>}
               </div>
             )}
           </article>

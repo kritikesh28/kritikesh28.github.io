@@ -5,6 +5,7 @@ import ExamSearch from '../../../../../components/exam/ExamSearch.astro';
 import { SUBJECTS, subjectsIn, paths, GLYPH, fmt, partIn, type LSubject } from '../../../../../exam-prep';
 import { langFromUrl, withLangs, pick } from '../../../../../i18n/config';
 import PyqBox from '../../../../../components/exam/PyqBox.astro';
+import { pyqLinksFor, ciPack, CI_PACK_IDS } from '../../../../../pyq';
 
 export function getStaticPaths() {
   return withLangs(SUBJECTS.map((s) => ({ params: { subject: s.slug } })));
@@ -25,17 +26,19 @@ const P = pick({
     description: `${s.blurb} ${fmt(s.total)} topics of ${s.name} for competitive exams, in order, from the basics up.`,
     home: 'Exam Prep', ci: 'Curriculum Index', eyebrow: 'Curriculum Index · Subject', levels: ['', 'major topics', 'topics', 'subtopics', 'details'], items: 'items',
     search: `Search ${s.name}`, most: 'Most asked in the papers we analysed', want: 'Want this ranked for your own exam?', open: 'Open the Exam Mentor',
-    inside: (n: string) => `${n} inside`, one: 'one page', askedN: (n: number) => ` · asked ${n}×`,
+    inside: (n: string) => `${n} inside`, pyqT: 'Has past-exam questions to practise', one: 'one page', askedN: (n: number) => ` · asked ${n}×`,
   },
   hi: {
     title: `प्रतियोगी परीक्षाओं के लिए ${s.name} का सिलेबस: सभी ${fmt(s.total)} टॉपिक क्रम से`,
     description: `${s.blurb} प्रतियोगी परीक्षाओं के लिए ${s.name} के ${fmt(s.total)} टॉपिक, क्रम से, बुनियाद से ऊपर तक।`,
     home: 'परीक्षा तैयारी', ci: 'पाठ्यक्रम सूचकांक', eyebrow: 'पाठ्यक्रम सूचकांक · विषय', levels: ['', 'मुख्य टॉपिक', 'टॉपिक', 'उप-टॉपिक', 'बारीक बातें'], items: 'चीज़ें',
     search: `${s.name} में खोजें`, most: 'पढ़े गए पेपरों में सबसे ज़्यादा पूछे गए', want: 'अपनी परीक्षा के हिसाब से क्रम चाहिए?', open: 'परीक्षा मार्गदर्शक खोलिए',
-    inside: (n: string) => `अंदर ${n}`, one: 'एक पेज', askedN: (n: number) => ` · ${n} बार पूछा गया`,
+    inside: (n: string) => `अंदर ${n}`, pyqT: 'इसमें पुराने सवालों का अभ्यास है', one: 'एक पेज', askedN: (n: number) => ` · ${n} बार पूछा गया`,
   },
 }, lang);
 const levelNames = P.levels;
+// majors with past questions to practise get a 🃏 mark
+const withPyq = new Set([...s.majors.filter((m) => pyqLinksFor(m.id, lang).length > 0 || ciPack(m.id)).map((m) => m.id), ...CI_PACK_IDS.map((id) => id.match(/^[A-Z]{3}-\d+/)?.[0] ?? id)]);
 const asked = s.majors.filter((m) => m.q > 0).sort((a, b) => b.q - a.q).slice(0, 5);
 ---
 
@@ -83,7 +86,7 @@ const asked = s.majors.filter((m) => m.q > 0).sort((a, b) => b.q - a.q).slice(0,
             <a href={`${CI}/${s.slug}/${m.slug}/`}>
               <span class="i">{m.i + 1}</span>
               <span class="t" lang={m.en ? 'en' : undefined}>{m.t}</span>
-              <span class="n">{m.n > 0 ? P.inside(fmt(m.n)) : P.one}{m.q > 0 && <em>{P.askedN(m.q)}</em>}</span>
+              <span class="n">{m.n > 0 ? P.inside(fmt(m.n)) : P.one}{m.q > 0 && <em>{P.askedN(m.q)}</em>}{withPyq.has(m.id) && <b class="pq" title={P.pyqT}> · 🃏 PYQ</b>}</span>
             </a>
           </li>
         ))}
@@ -118,6 +121,7 @@ const asked = s.majors.filter((m) => m.q > 0).sort((a, b) => b.q - a.q).slice(0,
   .majors .t { font-weight: 500; line-height: 1.4; }
   .majors .n { font-size: 0.8rem; color: var(--ink-soft); white-space: nowrap; }
   .majors .n em { font-style: normal; color: var(--tree); font-weight: 600; }
+  .majors .n .pq { color: var(--teal); font-weight: 600; }
   @media (max-width: 560px) {
     .sub-hero .g { width: 48px; height: 48px; font-size: 1.4rem; }
     .majors a { grid-template-columns: 1.8rem 1fr; }

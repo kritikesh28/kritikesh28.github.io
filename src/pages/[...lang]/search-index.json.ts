@@ -1,7 +1,8 @@
 // Everything the site search can find, built fresh on every deploy, once per language
 // (/search-index.json for English, /hi/search-index.json for Hindi). Used by /search/ and the search boxes.
 import type { GetStaticPaths, APIContext } from 'astro';
-import { BANKS, splitTitle } from '../../pyq';
+import { BANKS, splitTitle, CI_PACK_IDS, ciPack } from '../../pyq';
+import { ciTopic } from '../../exam-prep';
 import { getQuestions } from '../../data/curious-questions';
 import { getTrees } from '../../library.config';
 import { categoryLabel } from '../../site.config';
@@ -83,6 +84,13 @@ export async function GET({ url }: APIContext) {
     for (const p of bk.papers) {
       items.push({ t: `${p.code ?? (hi ? `अध्याय ${p.no}` : `Chapter ${p.no}`)} ${p.t} · ${bk.short[lang]} ${hi ? 'असली सवाल' : 'real questions'}`, d: `${p.m.length} ${hi ? 'MCQ, उत्तर सहित' : 'MCQs with answers'}`, u: L(`/exam-prep/pyq/${bk.slug}/paper/${p.id}/1/`), k: pk, w: `${p.t} ${bk.short.en} mcq pyq`, b: p.m.slice(0, 60).map((m) => m.s[0]?.p ?? '').join(' ').slice(0, 2000) });
     }
+  }
+  // practice pages of syllabus topics (PYQ cards on one Curriculum Index topic)
+  for (const id of CI_PACK_IDS) {
+    const tp = ciTopic(id, lang);
+    const pk2 = ciPack(id);
+    if (!tp || !pk2) continue;
+    items.push({ t: `${tp.t} · PYQ`, d: `${pk2.cards.length} ${hi ? 'फ़्लिप कार्ड' : 'flip cards'} · ${id}`, u: L(`/exam-prep/pyq/topic/${id.toLowerCase().replaceAll('.', '-')}/`), k: pk, w: `${id} ${tp.t} pyq`, b: pk2.cards.slice(0, 40).map((c) => `${c.row.q} ${c.row.a}`).join(' ').slice(0, 1500) });
   }
   for (const p of pages) items.push({ ...p, u: L(p.u), k: t('search.kind.page'), b: '' });
   return new Response(JSON.stringify(items), { headers: { 'Content-Type': 'application/json; charset=utf-8' } });
