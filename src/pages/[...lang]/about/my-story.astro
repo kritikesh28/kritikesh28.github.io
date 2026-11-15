@@ -1,76 +1,306 @@
 ---
-// My story: a separate page, linked from About, for Kritikesh's own story and views.
-// The chapters below are placeholders: he writes the text himself. To fill a chapter, replace its `text`
-// (and `textHi`) with paragraphs, and set `ready: true`. Guide: docs/04-edit-pages-and-settings.md, "My story".
+// My story: Kritikesh's life story as questions and answers, one at a time, with the milestones of his life.
+// The words are in src/data/my-story.ts (English and Hindi). Layout: the questions are listed down the left and right,
+// grouped under milestones, so a reader can jump straight to any of them; the middle shows one answer at a time
+// (Previous / Next, the ← → keys, or a swipe on phones). "Read it all at once" shows every answer as one long page.
+// Without JavaScript every answer simply shows, one below the other. Guide: docs/17-library-map.md, section 5, "My story".
 import Base from '../../../layouts/Base.astro';
+import { STORY } from '../../../data/my-story';
 import { langFromUrl, langParams, localizePath, pick } from '../../../i18n/config';
 
 export const getStaticPaths = () => langParams().map((params) => ({ params }));
 const lang = langFromUrl(Astro.url);
 const L = (p: string) => localizePath(p, lang);
+const hi = lang === 'hi';
+const tr = (x: { en: string; hi: string }) => (hi ? x.hi : x.en);
+const tra = (x: { en: string[]; hi: string[] }) => (hi && x.hi.length ? x.hi : x.en);
 
-const CHAPTERS: { id: string; en: string; hi: string; text: string[]; textHi: string[]; ready: boolean }[] = [
-  { id: 'where-it-began', en: 'Where it began', hi: 'शुरुआत कहाँ से हुई', text: [], textHi: [], ready: false },
-  { id: 'the-upsc-years', en: 'The UPSC years', hi: 'UPSC के साल', text: [], textHi: [], ready: false },
-  { id: 'ras-net-and-other-exams', en: 'RAS, UGC-NET and the other exams', hi: 'RAS, UGC-NET और बाक़ी परीक्षाएँ', text: [], textHi: [], ready: false },
-  { id: 'what-preparation-taught-me', en: 'What preparation taught me', hi: 'तैयारी ने मुझे क्या सिखाया', text: [], textHi: [], ready: false },
-  { id: 'why-curious-sparoows', en: 'Why I am building Curious Sparoows', hi: 'Curious Sparoows क्यों: इस साइट के पीछे की वजह', text: [], textHi: [], ready: false },
-  { id: 'views', en: 'My views, now', hi: 'आज मेरे विचार', text: [], textHi: [], ready: false },
-];
+// every question in order, with the milestone it belongs to
+const flat = STORY.flatMap((m) => m.qs.map((q) => ({ ...q, m })));
+const N = flat.length;
+const num = (id: string) => flat.findIndex((q) => q.id === id) + 1;
+// the milestones are shared between the two side lists, about half the questions on each side
+const half = N / 2;
+let count = 0;
+const leftM: typeof STORY = [];
+const rightM: typeof STORY = [];
+for (const m of STORY) { (count < half ? leftM : rightM).push(m); count += m.qs.length; }
+const words = flat.reduce((s, q) => s + tra(q.a).join(' ').split(/\s+/).length, 0);
+const minutes = Math.max(2, Math.round(words / 230));
+
 const T = pick({
   en: {
-    title: 'My story', description: 'The story of Kritikesh Rajpurohit: years of preparing for UPSC, RAS and UGC-NET, what they taught him, and why he is building the Curious Sparoows library.',
-    eyebrow: 'My story · Kritikesh Rajpurohit', h1: 'The long road, told in my own words',
-    lede: 'For years my days were shaped by India’s toughest exams. This is where I will share that journey honestly: the hopes, the setbacks, what worked, what did not, and the views I hold today.',
-    soon: 'I am writing this chapter now.', contents: 'Chapters', back: '← Back to About', follow: 'Want to know when a new chapter is up?', followLink: 'Write to me',
+    title: 'My story', description: 'The story of Kritikesh Rajpurohit, told question by question: from a naughty boy in Rawatbhata to years of UPSC preparation, geology, geography, research and applied AI.',
+    eyebrow: 'My story · Kritikesh Rajpurohit', h1: 'My story, one question at a time',
+    lede: 'Hello, I’m Kritikesh. This is not a CV; it is the story behind it, told the way I would tell you over a cup of tea. Pick any question from the lists, or simply start at the beginning.',
+    meta: `${N} questions · about ${minutes} minutes`, start: 'Start at the beginning', all: 'Read it all at once', slides: 'One question at a time',
+    jump: `All ${N} questions`, of: 'of', q: 'Question', prev: '← Previous', next: 'Next →', nextQ: 'Next:', end: 'That’s my story so far.',
+    rail1: 'Questions, part 1', rail2: 'Questions, part 2',
+    close: 'Thank you for reading this far. If any part of it feels like your story too, I would love to hear from you.',
+    contact: 'Write to me', about: 'About me', portfolio: 'My work',
+    ai: 'Told in my own words; arranged and lightly edited with AI help.',
   },
   hi: {
-    title: 'मेरी कहानी', description: 'कृतिकेश राजपुरोहित की कहानी: UPSC, RAS और UGC-NET की सालों की तैयारी, उससे मिली सीख, और Curious Sparoows लाइब्रेरी बनाने की वजह।',
-    eyebrow: 'मेरी कहानी · कृतिकेश राजपुरोहित', h1: 'लंबा रास्ता, मेरे अपने शब्दों में',
-    lede: 'कई सालों तक मेरे दिन देश की सबसे कठिन परीक्षाओं के हिसाब से चले। यहाँ मैं वह सफ़र ईमानदारी से बताऊँगा: उम्मीदें, ठोकरें, क्या काम आया, क्या नहीं, और आज मेरे विचार।',
-    soon: 'यह अध्याय अभी लिखा जा रहा है।', contents: 'अध्याय', back: '← परिचय पर लौटें', follow: 'नया अध्याय आने पर जानना चाहते हैं?', followLink: 'मुझे लिखिए',
+    title: 'मेरी कहानी', description: 'कृतिकेश राजपुरोहित की कहानी, सवाल-दर-सवाल: रावतभाटा के एक शरारती लड़के से UPSC की सालों की तैयारी, भूविज्ञान, भूगोल, रिसर्च और अप्लाइड AI तक।',
+    eyebrow: 'मेरी कहानी · कृतिकेश राजपुरोहित', h1: 'मेरी कहानी, एक-एक सवाल करके',
+    lede: 'नमस्ते, मैं कृतिकेश हूँ। यह बायोडाटा नहीं, उसके पीछे की कहानी है, वैसे ही जैसे चाय पर आपको सुनाता। सूची से कोई भी सवाल चुनिए, या बस शुरू से पढ़िए।',
+    meta: `${N} सवाल · लगभग ${minutes} मिनट`, start: 'शुरू से पढ़िए', all: 'सब एक साथ पढ़िए', slides: 'एक-एक सवाल करके',
+    jump: `सारे ${N} सवाल`, of: 'में से', q: 'सवाल', prev: '← पिछला', next: 'अगला →', nextQ: 'अगला:', end: 'अब तक की मेरी कहानी यही है।',
+    rail1: 'सवाल, भाग 1', rail2: 'सवाल, भाग 2',
+    close: 'यहाँ तक पढ़ने के लिए शुक्रिया। अगर इसका कोई हिस्सा आपको अपनी कहानी जैसा लगे, तो मुझे ज़रूर बताइए।',
+    contact: 'मुझे लिखिए', about: 'मेरे बारे में', portfolio: 'मेरा काम',
+    ai: 'मेरे अपने शब्दों में; AI की मदद से सजाया और हल्का-सा सँवारा गया।',
   },
 }, lang);
+
+// for search engines: the questions and answers of this page
+const schema = [{
+  '@type': 'FAQPage',
+  url: new URL(L('/about/my-story/'), Astro.site).href,
+  mainEntity: flat.map((q) => ({ '@type': 'Question', name: tr(q.q), acceptedAnswer: { '@type': 'Answer', text: tra(q.a).join(' ') } })),
+}];
 ---
 
-<Base title={T.title} description={T.description} type="profile">
-  <article class="wrap story">
-    <p class="eyebrow">{T.eyebrow}</p>
-    <h1>{T.h1}</h1>
-    <p class="lede">{T.lede}</p>
+<Base title={T.title} description={T.description} type="profile" {schema}>
+  <article class="wrap mystory" data-story data-words={JSON.stringify({ all: T.all, slides: T.slides, nextQ: T.nextQ, end: T.end })}>
+    <header class="ms-head">
+      <p class="eyebrow">{T.eyebrow}</p>
+      <h1>{T.h1}</h1>
+      <p class="lede">{T.lede}</p>
+      <p class="meta">{T.meta}</p>
+      <p class="modes">
+        <a class="btn" href={`#${flat[0].id}`} data-go={flat[0].id}>{T.start}</a>
+        <button class="btn ghost" type="button" data-mode aria-pressed="false">{T.all}</button>
+      </p>
+    </header>
 
-    <nav class="toc" aria-label={T.contents}>
-      <ol>{CHAPTERS.map((c, i) => <li><a href={`#${c.id}`}><span>{String(i + 1).padStart(2, '0')}</span>{lang === 'hi' ? c.hi : c.en}</a></li>)}</ol>
-    </nav>
+    <div class="ms-grid">
+      {[{ ms: leftM, label: T.rail1, side: 'left' }, { ms: rightM, label: T.rail2, side: 'right' }].map((r) => (
+        <nav class:list={['rail', r.side]} aria-label={r.label}>
+          <ol>
+            {r.ms.map((m) => (
+              <li class="mile">
+                <span class="when">{tr(m.when)}</span>
+                <span class="mt">{tr(m.title)}</span>
+                <ol>
+                  {m.qs.map((q) => <li><a href={`#${q.id}`} data-go={q.id}><span class="n">{num(q.id)}</span>{tr(q.q)}</a></li>)}
+                </ol>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      ))}
 
-    {CHAPTERS.map((c, i) => {
-      const text = lang === 'hi' && c.textHi.length ? c.textHi : c.text;
-      return (
-        <section class:list={['ch', { ready: c.ready }]} id={c.id}>
-          <span class="num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-          <h2>{lang === 'hi' ? c.hi : c.en}</h2>
-          {c.ready && text.length > 0 ? text.map((p) => <p>{p}</p>) : <p class="soon">{T.soon}</p>}
-        </section>
-      );
-    })}
+      <div class="stage">
+        <details class="jump">
+          <summary>{T.jump}</summary>
+          <ol>
+            {STORY.map((m) => (
+              <li class="mile">
+                <span class="when">{tr(m.when)}</span> <span class="mt">{tr(m.title)}</span>
+                <ol>{m.qs.map((q) => <li><a href={`#${q.id}`} data-go={q.id}><span class="n">{num(q.id)}</span>{tr(q.q)}</a></li>)}</ol>
+              </li>
+            ))}
+          </ol>
+        </details>
 
-    <p class="foot">{T.follow} <a href={L('/contact/')}>{T.followLink}</a> · <a href={L('/about/')}>{T.back}</a></p>
+        <div class="slides" data-slides>
+          {flat.map((q, i) => (
+            <section class="slide" id={q.id} data-slide={i} aria-labelledby={`${q.id}-h`}>
+              <p class="chip"><span class="when">{tr(q.m.when)}</span> {tr(q.m.title)}</p>
+              <p class="count">{T.q} {i + 1} {T.of} {N}</p>
+              <h2 id={`${q.id}-h`} tabindex="-1">{tr(q.q)}</h2>
+              {tra(q.a).map((p) => <p>{p}</p>)}
+            </section>
+          ))}
+        </div>
+
+        <div class="controls" data-controls hidden>
+          <button class="btn ghost" type="button" data-step="-1">{T.prev}</button>
+          <div class="where">
+            <span class="track" aria-hidden="true"><span class="fill" data-fill></span></span>
+            <span class="pos" data-pos aria-live="polite"></span>
+          </div>
+          <button class="btn" type="button" data-step="1">{T.next}</button>
+        </div>
+        <p class="upnext" data-upnext></p>
+      </div>
+    </div>
+
+    <footer class="ms-foot">
+      <p class="thanks">{T.close}</p>
+      <p class="links"><a class="btn" href={L('/contact/')}>{T.contact}</a> <a class="btn ghost" href={L('/about/')}>{T.about}</a> <a class="btn ghost" href={L('/portfolio/')}>{T.portfolio}</a></p>
+      <p class="ai">{T.ai}</p>
+    </footer>
   </article>
 </Base>
 
+<script>
+  import { onPage } from '../../../scripts/page';
+  // runs on every page (pages change without reloading: see src/scripts/page.ts)
+  onPage((signal) => {
+    const root = document.querySelector<HTMLElement>('[data-story]');
+    if (!root) return;
+    const slides = [...root.querySelectorAll<HTMLElement>('[data-slide]')];
+    const links = [...root.querySelectorAll<HTMLAnchorElement>('[data-go]')];
+    const controls = root.querySelector<HTMLElement>('[data-controls]')!;
+    const pos = root.querySelector<HTMLElement>('[data-pos]')!;
+    const fill = root.querySelector<HTMLElement>('[data-fill]')!;
+    const upnext = root.querySelector<HTMLElement>('[data-upnext]')!;
+    const mode = root.querySelector<HTMLButtonElement>('[data-mode]')!;
+    const jump = root.querySelector<HTMLDetailsElement>('details.jump');
+    const prevBtn = root.querySelector<HTMLButtonElement>('[data-step="-1"]')!;
+    const nextBtn = root.querySelector<HTMLButtonElement>('[data-step="1"]')!;
+    const w = JSON.parse(root.dataset.words ?? '{}');
+    let at = 0;
+    let allMode = false;
+
+    const show = (i: number, focus = false, mark = true) => {
+      at = Math.max(0, Math.min(slides.length - 1, i));
+      slides.forEach((s, k) => s.classList.toggle('on', k === at));
+      const id = slides[at].id;
+      links.forEach((a) => { if (a.dataset.go === id) a.setAttribute('aria-current', 'step'); else a.removeAttribute('aria-current'); });
+      pos.textContent = `${at + 1} / ${slides.length}`;
+      fill.style.transform = `scaleX(${(at + 1) / slides.length})`;
+      prevBtn.disabled = at === 0;
+      nextBtn.disabled = at === slides.length - 1;
+      const nxt = slides[at + 1]?.querySelector('h2')?.textContent;
+      upnext.textContent = nxt ? `${w.nextQ} ${nxt}` : w.end;
+      if (mark) history.replaceState(history.state, '', `#${id}`);
+      if (focus) {
+        slides[at].querySelector<HTMLElement>('h2')?.focus({ preventScroll: true });
+        // keep the question in view (mainly on phones, where the lists sit above it)
+        const top = slides[at].getBoundingClientRect().top;
+        if (top < 70 || top > innerHeight * 0.6) slides[at].scrollIntoView({ block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      }
+    };
+
+    const setMode = (all: boolean) => {
+      allMode = all;
+      root.classList.toggle('slider', !all);
+      controls.hidden = all;
+      upnext.hidden = all;
+      mode.setAttribute('aria-pressed', String(all));
+      mode.textContent = all ? w.slides : w.all;
+      if (!all) show(at, false, !!location.hash);
+    };
+
+    links.forEach((a) => a.addEventListener('click', (e) => {
+      const i = slides.findIndex((s) => s.id === a.dataset.go);
+      if (i < 0) return;
+      if (jump) jump.open = false;
+      if (allMode) { history.replaceState(history.state, '', `#${slides[i].id}`); return; } // let the browser scroll to it
+      e.preventDefault();
+      show(i, true);
+    }));
+    prevBtn.addEventListener('click', () => show(at - 1));
+    nextBtn.addEventListener('click', () => show(at + 1));
+    mode.addEventListener('click', () => setMode(!allMode));
+
+    // ← and → move between questions (not while typing, and not in "read it all" mode)
+    addEventListener('keydown', (e) => {
+      if (allMode || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      if ((e.target as HTMLElement)?.closest?.('input, textarea, select, [contenteditable]')) return;
+      if (e.key === 'ArrowRight') { e.preventDefault(); show(at + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); show(at - 1); }
+    }, { signal });
+
+    // swipe on phones
+    const box = root.querySelector<HTMLElement>('[data-slides]')!;
+    let x0 = 0, y0 = 0;
+    box.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+    box.addEventListener('touchend', (e) => {
+      if (allMode) return;
+      const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) show(at + (dx < 0 ? 1 : -1));
+    });
+
+    // a link to one question (#why-geology) from elsewhere on the page or the address bar
+    addEventListener('hashchange', () => {
+      const i = slides.findIndex((s) => `#${s.id}` === location.hash);
+      if (i >= 0 && !allMode && i !== at) show(i, true);
+    }, { signal });
+
+    // open at the question named in the address (#why-geology), if any
+    const start = slides.findIndex((s) => `#${s.id}` === location.hash);
+    at = start >= 0 ? start : 0;
+    setMode(false);
+  });
+</script>
+
 <style>
-  .story { max-width: 46rem; margin-top: 1.5rem; }
-  .story h1 { margin: 0.2rem 0 0.7rem; }
-  .lede { font-family: var(--font-serif); font-size: 1.2rem; color: var(--ink-soft); }
-  .toc { margin: 1.8rem 0 2.4rem; padding: 1rem 1.2rem; border-radius: 16px; border: 1px solid var(--line); background: var(--surface); }
-  .toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; }
-  .toc a { display: flex; gap: 0.8rem; color: var(--ink); text-decoration: none; }
-  .toc a:hover { color: var(--accent); }
-  .toc span, .num { font: 600 0.8rem/1.6 var(--font-sans); letter-spacing: 0.1em; color: #8a6438; }
-  .ch { position: relative; padding: 1.4rem 0 1.4rem 3.2rem; border-top: 1px solid var(--line); scroll-margin-top: 90px; }
-  .ch .num { position: absolute; left: 0; top: 1.75rem; font-size: 1rem; }
-  .ch h2 { margin: 0 0 0.5rem; }
-  .soon { color: var(--ink-soft); font-style: italic; margin: 0; }
-  .soon::before { content: '✎ '; font-style: normal; }
-  .foot { margin: 2.4rem 0 1rem; color: var(--ink-soft); }
+  .mystory { max-width: 1240px; margin-top: 1.5rem; }
+  .ms-head { max-width: 46rem; margin: 0 auto 1.6rem; text-align: center; }
+  .ms-head h1 { margin: 0.2rem 0 0.7rem; }
+  .lede { font-family: var(--font-serif); font-size: 1.15rem; color: var(--ink-soft); margin: 0 0 0.6rem; }
+  .meta { font-size: 0.88rem; color: var(--ink-soft); margin: 0 0 1rem; }
+  .modes { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin: 0; }
+  /* without JavaScript the "read it all" switch does nothing, so it is only shown when the slider is working */
+  .mystory:not(.slider) .modes [data-mode][aria-pressed='false'] { display: none; }
+
+  .ms-grid { display: grid; grid-template-columns: 1fr; gap: 1.2rem; align-items: start; }
+  .rail { display: none; }
+  @media (min-width: 1100px) {
+    .ms-grid { grid-template-columns: 250px minmax(0, 1fr) 250px; gap: 1.6rem; }
+    .rail { display: block; position: sticky; top: 84px; max-height: calc(100vh - 100px); overflow: auto; }
+    .rail.left { grid-column: 1; grid-row: 1; }
+    .stage { grid-column: 2; grid-row: 1; }
+    .rail.right { grid-column: 3; grid-row: 1; }
+    .jump { display: none; }
+  }
+
+  /* the side lists: a thin line of milestones, each with its questions */
+  .rail ol, .jump ol { list-style: none; margin: 0; padding: 0; }
+  .rail > ol { border-left: 2px solid var(--line); margin-left: 6px; }
+  .mile { position: relative; padding: 0 0 0.9rem 1rem; }
+  .rail .mile::before { content: ''; position: absolute; left: -7px; top: 0.25rem; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 3px var(--bg); }
+  .when { display: inline-block; font: 700 0.72rem/1.4 var(--font-sans); letter-spacing: 0.08em; text-transform: uppercase; color: #8a6438; }
+  :global([data-theme='dark']) .when { color: var(--gold); }
+  @media (prefers-color-scheme: dark) { :global(:root:not([data-theme='light'])) .when { color: var(--gold); } }
+  .mt { display: block; font-family: var(--font-serif); font-weight: 600; font-size: 0.95rem; color: var(--ink); margin: 0.05rem 0 0.35rem; }
+  .mile ol li a { display: flex; gap: 0.5rem; padding: 0.32rem 0.5rem; margin-left: -0.5rem; border-radius: 10px; color: var(--ink-soft); text-decoration: none; font-size: 0.88rem; line-height: 1.35; transition: background 0.2s, color 0.2s; }
+  .mile ol li a:hover { background: var(--accent-soft); color: var(--ink); }
+  .mile ol li a[aria-current] { background: var(--accent-soft); color: var(--ink); font-weight: 600; }
+  .n { flex: none; min-width: 1.4rem; font: 600 0.75rem/1.6 var(--font-sans); color: var(--accent); }
+
+  /* phones and tablets: all questions in one fold-out list */
+  .jump { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 0.2rem 1rem; margin-bottom: 1rem; }
+  .jump summary { cursor: pointer; padding: 0.6rem 0; font-weight: 600; }
+  .jump > ol { padding-bottom: 0.6rem; }
+  .jump .mile { padding-left: 0; }
+  .jump .mt { display: inline; }
+
+  /* the answer cards */
+  .slide { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 1.6rem 1.6rem 1.3rem; margin-bottom: 1.2rem; scroll-margin-top: 90px; box-shadow: 0 10px 30px rgb(42 35 80 / 0.06); }
+  .slide::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 4px; border-radius: 20px 20px 0 0; background: linear-gradient(90deg, #8f7be8, var(--coral), var(--gold)); }
+  .chip { display: inline-flex; gap: 0.5rem; align-items: baseline; flex-wrap: wrap; margin: 0 0 0.6rem; padding: 0.25rem 0.75rem; border-radius: 999px; background: var(--accent-soft); font-size: 0.85rem; color: var(--ink); }
+  .count { margin: 0 0 0.3rem; font-size: 0.8rem; color: var(--ink-soft); }
+  .slide h2 { margin: 0 0 0.8rem; font-size: clamp(1.35rem, 2.6vw, 1.8rem); line-height: 1.25; outline: none; }
+  .slide p:not(.chip):not(.count) { font-family: var(--font-serif); font-size: 1.08rem; line-height: 1.75; margin: 0 0 0.85rem; }
+  .slide p:last-child { margin-bottom: 0; }
+
+  .mystory.slider .slide { display: none; margin-bottom: 0; }
+  .mystory.slider .slide.on { display: block; animation: ms-in 0.35s ease; }
+  @keyframes ms-in { from { opacity: 0; transform: translateY(8px); } }
+  @media (prefers-reduced-motion: reduce) { .mystory.slider .slide.on { animation: none; } }
+
+  .controls { display: flex; align-items: center; gap: 0.8rem; margin-top: 1rem; }
+  .controls[hidden] { display: none; }
+  .controls .btn:disabled { opacity: 0.4; pointer-events: none; }
+  .where { flex: 1; display: flex; align-items: center; gap: 0.6rem; min-width: 0; }
+  .track { flex: 1; height: 6px; border-radius: 999px; background: var(--line); overflow: hidden; }
+  .fill { display: block; height: 100%; background: linear-gradient(90deg, #8f7be8, var(--coral), var(--gold)); transform-origin: 0 50%; transform: scaleX(0); transition: transform 0.35s ease; }
+  .pos { font-size: 0.85rem; color: var(--ink-soft); white-space: nowrap; }
+  .upnext { margin: 0.7rem 0 0; font-size: 0.9rem; color: var(--ink-soft); text-align: center; }
+  .upnext:empty { display: none; }
+  @media (max-width: 720px) { .slide { scroll-margin-top: 125px; } }
+  @media (max-width: 520px) {
+    .slide { padding: 1.3rem 1.1rem 1.1rem; }
+    .controls .btn { padding-inline: 0.9rem; }
+  }
+
+  .ms-foot { max-width: 46rem; margin: 2.4rem auto 1rem; text-align: center; }
+  .thanks { font-family: var(--font-serif); font-size: 1.1rem; }
+  .links { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; }
+  .ai { font-size: 0.8rem; color: var(--ink-soft); margin-top: 1.2rem; }
 </style>

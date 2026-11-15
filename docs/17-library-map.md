@@ -55,4 +55,8 @@ The whole tree is at `/library/map/`. The six older trees of long reads (AI & ML
 
 ## 5. My story
 
-`/about/my-story/` (`src/pages/[...lang]/about/my-story.astro`) has six chapter placeholders. To publish a chapter, write its paragraphs in `text` (and `textHi` for Hindi) and set `ready: true`. It is linked from the About page and the footer.
+`/about/my-story/` tells Kritikesh's life story as 14 questions and answers under 7 milestones (from "Before 2016, Rawatbhata" to "Now, Curious Sparoows"), in English and Hindi. He told the story in his own words on 15 Nov 2026; the dates come from his "My Life History" sheet on Drive. It is written as one person talking warmly to another (students, parents, teachers and recruiters alike): honest about the setbacks, and clear about what they taught him. The page says that it was arranged with AI help.
+
+- **The words** are in `src/data/my-story.ts`: each milestone has `when`, `title` and its questions; each question has `q` (the question) and `a` (the answer, one string per paragraph), each with `en` and `hi`. The Hindi keeps the meaning, not word for word, and the narrator is masculine. Keep answers short: the page shows the reading time it works out from the word count (now about 4 minutes).
+- **Adding a question:** add an item with a new, unique `id` (it becomes the link, for example `/about/my-story/#why-geology`). The numbering, the side lists, the "Next:" line and the search-engine data (FAQPage) all follow by themselves.
+- **The page** (`src/pages/[...lang]/about/my-story.astro`): on wide screens the questions are listed down the left and right, grouped under the milestones, and the middle shows one answer at a time (Previous / Next, the ← → keys, or a swipe on phones). On phones the lists fold into one "All questions" list above the answer. "Read it all at once" shows every answer as one page; without JavaScript every answer simply shows, one below the other.
