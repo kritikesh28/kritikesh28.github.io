@@ -126,3 +126,14 @@ export const examTitleIn = (e: ExamPage, lang: Lang) => {
   return e.key.endsWith('-ALL') ? `${e.agency} की सभी परीक्षाएँ` : `${e.agency} ${EX_HI.names[e.key] ?? FRIENDLY[e.key] ?? e.short}`;
 };
 export const EXAM_HI = EX_HI;
+const topicIndex = new Map<Lang, Map<string, Topic & { en?: boolean }>>();
+/** One topic by id, in a language (any subject, any level) */
+export function ciTopic(id: string, lang: Lang): (Topic & { en?: boolean }) | undefined {
+  if (!topicIndex.has(lang)) topicIndex.set(lang, new Map());
+  const m = topicIndex.get(lang)!;
+  if (!m.has(id)) {
+    const s = subjectOf(id);
+    if (s) for (const t of topicsIn(s.slug, lang)) m.set(t.id, t);
+  }
+  return m.get(id);
+}

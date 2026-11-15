@@ -23,6 +23,7 @@ The Q&A of Rajasthan chapter 5 (Climate) and of the other NET chapters comes lat
 | One bank: topic map with "mastered" meters, list of real-question chapters | /exam-prep/pyq/BANK/ | `.../pyq/[bank]/index.astro` |
 | One page of flip cards (about 40) with Flip cards / Quick quiz tabs | /exam-prep/pyq/BANK/SUBTOPIC/N/ | `.../pyq/[bank]/[sub]/[set].astro` |
 | Ten real exam questions, one to a screen | /exam-prep/pyq/BANK/paper/CHAPTER/N/ | `.../pyq/[bank]/paper/[paper]/[set].astro` |
+| Practice page of one syllabus topic: up to 40 matching flip cards with the quiz, "notes coming soon" note, links to the full decks and back to the topic | /exam-prep/pyq/topic/CI-ID/ (for example `raj-34-5`) | `.../pyq/topic/[id].astro` |
 
 Every page exists in English and Hindi (`/hi/...`). The page frame (buttons, menus, help text) follows the reader's language; the questions stay in the language they were asked in (Hindi for Rajasthan, English for NET) and are marked with `lang`. Translating the questions themselves is a later job.
 
@@ -47,8 +48,16 @@ Without JavaScript every page still works: cards show question and answer togeth
 | `src/scripts/pyq.ts` | Flip, quiz, real-question checking, meters | With care |
 | `src/styles/pyq.css` | Look of the section | Yes |
 | `src/components/exam/PyqBox.astro` | The "Practise the past questions on this" box | Yes, the words |
+| `src/components/exam/PyqDeck.astro` | The flip-card deck and quiz, shared by set pages and topic practice pages | With care |
+| `tools/pyq/link_ci.py` | Matches every Curriculum Index topic (all levels) with the PYQ cards on it, writes `src/data/pyq/ci-match.json` | Yes: `SUB_MAP` (hand-checked whole decks) and `DROP` (off-topic matches) |
+| `src/data/pyq/ci-match.json` | The matches | **Never by hand**: re-run `link_ci.py` |
 
-**Where the section is linked from:** the Exam Prep sidebar (group 3, "PYQ practice"), the Exam Prep menu in the top bar, the Exam Prep intro page, every RPSC/RSSB exam page, the Rajasthan GK and Geography subject pages, every Curriculum Index topic listed in `CI_LINKS` (for example RAJ-31 to RAJ-41, GEO-18, GEO-25), site search (each bank, sub-topic and chapter, with the questions as search words) and `llms.txt`.
+**Syllabus ↔ PYQ links (15 November 2026).** Every Curriculum Index major-topic page now opens with a note: "Notes for these topics are being prepared and will be uploaded soon", followed by where to practise meanwhile. Each topic, subtopic and detail that has matching past questions gets a 🃏 "N PYQ cards" button that opens its practice page; subjects without PYQs yet point to the Exam Mentor. Subject pages mark major topics that have PYQs with "🃏 PYQ". The other way round, every flip-card page ends with "Where this sits in the syllabus", linking to the matching topics. The matching: `link_ci.py` uses words that are rare across the cards (Hindi text of the Rajasthan GK topics for Rajasthan cards; English text of Geography topics for NET cards; a one-word title alone is not enough), plus `SUB_MAP` for whole decks that are the same as a syllabus topic (for example RAJ-32.2 Aravalli = deck G1.5, GEO-25.6.4 Boundary = NET deck "Boundaries and Frontiers"). About 100 topics are linked. Re-run it after `build_pyq.py` or after the Curriculum Index data changes:
+```
+python3 tools/pyq/link_ci.py
+```
+
+**Where the section is linked from:** the Exam Prep sidebar (group 3, "PYQ practice"), the Exam Prep menu in the top bar, the Exam Prep intro page, every RPSC/RSSB exam page, the Rajasthan GK and Geography subject pages, every Curriculum Index topic listed in `CI_LINKS` (for example RAJ-31 to RAJ-41, GEO-18, GEO-25) and every topic matched in `ci-match.json` (🃏 buttons), site search (each bank, sub-topic and chapter, with the questions as search words) and `llms.txt`.
 
 ## 4. Update after Kritikesh changes a Word file
 
@@ -59,6 +68,7 @@ Without JavaScript every page still works: cards show question and answer togeth
    python3 tools/pyq/build_pyq.py net "NET Geo PYQ QA - Topic Wise.docx" "NET Geography_ALL_Combined.docx"
    ```
    It prints how many rows and MCQs it found. Rajasthan should show all 544 MCQs.
+   Then run `python3 tools/pyq/link_ci.py` so the syllabus links follow the new cards.
 3. Build and look (guide [07](07-run-on-your-computer.md)), then open a pull request.
 
 **What the builder expects in the Q&A file:** Heading 1 = group (`G1: …` or `Unit I — …`), Heading 2 = sub-topic (`G1.1 …`; "— अन्य/Other" means the group's other questions), then two-column tables `प्रश्न | उत्तर` (or `Question | Answer`) whose question cell ends with a tag `[KIND exams · ids]`. A flag such as `(पुस्तक: X)` or `(disputed: Y)` at the end of the answer cell is shown in red under the answer.

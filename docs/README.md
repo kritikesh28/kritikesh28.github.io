@@ -45,4 +45,4 @@ This folder explains, step by step, every task needed to keep the website **curi
 - **Backup copy:** Google Drive, folder "Digital Ecosystem - Claude Project Files" › "Curious Sparoows Website (backup)". See [09 · Backup and restore](09-backup-and-restore.md).
 - **Exam Prep data source:** the Curriculum Index and Exam Guide Google Sheets, in the Drive library folder `06_EXAM_GUIDE_RPSC_RSSB`. See [14](14-exam-prep.md).
 
-_Last updated: 15 November 2026 (guide 19, PYQ practice, added). Before that: 14 November 2026 (guide 18 added). Before that: 2 November 2026 (Exam Prep section added; site made bilingual, English and Hindi). When you change how something works, update the guide for it and the date here._
+_Last updated: 15 November 2026 (guide 19, PYQ practice, added; then Curriculum Index topics linked to PYQ cards with "notes coming soon" notes). Before that: 14 November 2026 (guide 18 added). Before that: 2 November 2026 (Exam Prep section added; site made bilingual, English and Hindi). When you change how something works, update the guide for it and the date here._

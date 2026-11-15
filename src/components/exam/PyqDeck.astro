@@ -1,0 +1,80 @@
+---
+// A deck of PYQ flip cards (8 to a screen) with the quick quiz over the same cards. Used by the PYQ set pages and
+// the syllabus-topic practice pages. Put the page's header in the "hero" slot (it may hold the mastery meter), and
+// anything after the deck in the default slot. The behaviour is in src/scripts/pyq.ts. Guide: docs/19-pyq-practice.md
+import { heat, KIND, SCREEN, type Bank, type Row } from '../../pyq';
+import { langFromUrl, pick } from '../../i18n/config';
+import '../../styles/pyq.css';
+
+interface Props { bank: Bank; cards: { key: string; row: Row }[] }
+const { bank: b, cards } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const cl = b.content;
+const T = pick({
+  en: {
+    meter: '{n} of {t} mastered', modes: 'How do you want to practise?', flip: '🃏 Flip cards', quiz: '⚡ Quick quiz (5)', tap: 'Tap to see the answer', ok: '✓ I knew it', again: '↻ Again',
+    screen: 'Screen', prev: '← Back', next: 'Next →', hotT: (n: number) => `Asked in ${n} exams`,
+    qT: 'Question', right: 'Right! ✓', wrong: 'Not quite. The answer is', qNext: 'Next question →', qAgain: 'Play 5 more', score: 'You got {s} out of {t}.',
+  },
+  hi: {
+    meter: '{t} में से {n} याद हो गए', modes: 'कैसे अभ्यास करना है?', flip: '🃏 फ़्लिप कार्ड', quiz: '⚡ झटपट क्विज़ (5)', tap: 'उत्तर देखने के लिए टैप करें', ok: '✓ याद था', again: '↻ फिर से',
+    screen: 'स्क्रीन', prev: '← पीछे', next: 'आगे →', hotT: (n: number) => `${n} परीक्षाओं में पूछा गया`,
+    qT: 'सवाल', right: 'सही! ✓', wrong: 'नहीं, सही उत्तर है', qNext: 'अगला सवाल →', qAgain: '5 और खेलें', score: '{t} में से {s} सही।',
+  },
+}, lang);
+const screens: (typeof cards)[] = [];
+for (let i = 0; i < cards.length; i += SCREEN) screens.push(cards.slice(i, i + SCREEN));
+---
+
+<div data-pyq-set data-bank={b.key} data-meter={T.meter}>
+  <slot name="hero" />
+
+  <div class="pq-modes" role="tablist" aria-label={T.modes}>
+    <button type="button" role="tab" data-mode="cards" aria-selected="true">{T.flip}</button>
+    <button type="button" role="tab" data-mode="quiz" aria-selected="false">{T.quiz}</button>
+  </div>
+
+  <div data-flip data-screen-label={T.screen}>
+    {screens.map((sc, si) => (
+      <ul class="pq-cards" data-screen={si}>
+        {sc.map(({ key, row: r }) => {
+          const h = heat(r);
+          return (
+            <li class="pq-card" data-card data-key={key} data-q={r.q} data-a={r.a} id={`q${key.replace(':', '-')}`}>
+              <div class="in">
+                <div class="face front" role="button" tabindex="0" data-tap={T.tap} aria-label={`${r.q} (${T.tap})`}>
+                  <span class="num">#{r.n}</span>
+                  <p class="q" lang={cl}>{r.q}</p>
+                  <span class="chips">
+                    {h > 1 && <span class="pq-chip hot" title={T.hotT(h)}>🔥 {h}×</span>}
+                    <span class="pq-chip kind">{KIND[r.k]?.[lang] ?? r.k}</span>
+                  </span>
+                </div>
+                <div class="face back">
+                  <p class="q" lang={cl}>{r.q}</p>
+                  <p class="a" lang={cl}>{r.a}</p>
+                  {r.f && <p class="flag" lang={cl}>({r.f})</p>}
+                  {r.x && <span class="chips">{r.x.slice(0, 4).map((x) => <span class="pq-chip">{x}</span>)}{r.x.length > 4 && <span class="pq-chip">+{r.x.length - 4}</span>}</span>}
+                  <span class="mark"><button type="button" class="ok" data-ok>{T.ok}</button><button type="button" data-again>{T.again}</button></span>
+                </div>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    ))}
+    <nav class="pq-pager" aria-label={T.screen}>
+      <button class="btn ghost" type="button" data-prev>{T.prev}</button>
+      <span class="pq-dots" data-dots></span>
+      <button class="btn" type="button" data-next>{T.next}</button>
+    </nav>
+  </div>
+
+  <div class="pq-quiz" data-quiz data-t-q={T.qT} data-t-right={T.right} data-t-wrong={T.wrong} data-t-next={T.qNext} data-t-again={T.qAgain} data-t-score={T.score} lang={cl}></div>
+
+  <slot />
+</div>
+
+<script>
+  import '../../scripts/pyq';
+</script>
