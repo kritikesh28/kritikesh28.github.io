@@ -37,8 +37,8 @@ const projects = defineCollection({
     section: z.enum(['ai-ml', 'data-python', 'maps-gis', 'web-code', 'research', 'sketches', 'kitchen', 'garden']).default('data-python'),
     // Lower numbers appear first
     order: z.number().default(100),
-    // true embeds the live NYC taxi demo on the project page
-    demo: z.boolean().default(false),
+    // Embeds a live demo from public/demos/ on the project page: true = the NYC taxi demo, or a demo folder name
+    demo: z.union([z.boolean(), z.enum(['nyc-taxi', 'predictive-maintenance'])]).default(false),
     aiAssisted: z.boolean().default(false),
     draft: z.boolean().default(false),
   }),

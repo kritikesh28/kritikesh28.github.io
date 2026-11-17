@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Machine Failure Predictor</title>
+<meta name="robots" content="noindex">
+<style>
+  :root { --bg:#ffffff; --fg:#1f1b3a; --muted:#625e7a; --line:#e6e3f0; --soft:#f6f4fb; --accent:#5b45c9; --good:#2f8f5b; --warn:#c0392b; --track:#ece9f5;
+    --c0:#4C72B0; --c1:#DD8452; --c2:#55A868; --c3:#C44E52; --c4:#8172B3; --pos:#c9474b; --neg:#4a73b5; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#16141f; --fg:#ece9f7; --muted:#a39fb8; --line:#312d42; --soft:#1e1b2b; --accent:#a998ff; --good:#5cc48c; --warn:#ff7a6e; --track:#2a2639; --pos:#ef6f73; --neg:#7ea4ea; } }
+  :root[data-theme="dark"] { --bg:#16141f; --fg:#ece9f7; --muted:#a39fb8; --line:#312d42; --soft:#1e1b2b; --accent:#a998ff; --good:#5cc48c; --warn:#ff7a6e; --track:#2a2639; --pos:#ef6f73; --neg:#7ea4ea; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:15px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans Devanagari",sans-serif; }
+  main { max-width:1040px; margin:0 auto; padding:20px 16px 36px; }
+  h1 { font-size:1.45rem; margin:0 0 4px; }
+  h2 { font-size:1.12rem; margin:0 0 4px; }
+  h3 { font-size:.95rem; margin:0 0 8px; }
+  p { margin:0 0 10px; }
+  .muted { color:var(--muted); }
+  .small { font-size:.85rem; }
+  section.card { border:1px solid var(--line); border-radius:16px; padding:18px; margin-top:18px; background:var(--bg); }
+  .step { display:inline-block; font-size:.75rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin-bottom:4px; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 4px; }
+  .chip { font:inherit; font-size:.85rem; border:1px solid var(--line); background:var(--soft); color:var(--fg); border-radius:999px; padding:6px 12px; cursor:pointer; display:inline-flex; align-items:center; gap:6px; }
+  .chip:hover, .chip[aria-pressed="true"] { border-color:var(--accent); }
+  .chip[aria-pressed="true"] { background:color-mix(in srgb, var(--accent) 14%, var(--bg)); }
+  .dot { width:9px; height:9px; border-radius:50%; display:inline-block; flex:none; }
+  .grid { display:grid; grid-template-columns: minmax(0,1fr) minmax(0,1.15fr); gap:22px; margin-top:12px; }
+  .ctl { margin-bottom:12px; }
+  .ctl .row { display:flex; justify-content:space-between; align-items:baseline; gap:8px; }
+  .ctl label { font-size:.9rem; }
+  .ctl output { font-variant-numeric:tabular-nums; font-weight:600; }
+  .ctl .hint { font-size:.78rem; color:var(--muted); }
+  input[type=range] { width:100%; accent-color:var(--accent); margin:4px 0 0; }
+  .seg { display:inline-flex; border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  .seg button { font:inherit; font-size:.88rem; border:0; background:var(--bg); color:var(--fg); padding:6px 14px; cursor:pointer; }
+  .seg button + button { border-left:1px solid var(--line); }
+  .seg button[aria-pressed="true"] { background:var(--accent); color:#fff; }
+  .verdict { border-radius:14px; padding:14px 16px; background:var(--soft); border-left:6px solid var(--vc, var(--c0)); }
+  .verdict .lbl { font-size:.78rem; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+  .verdict .name { font-size:1.35rem; font-weight:700; line-height:1.25; }
+  .verdict .why { font-size:.88rem; color:var(--muted); margin-top:2px; }
+  .truth { font-size:.82rem; margin-top:6px; }
+  .bars { margin-top:12px; display:grid; gap:6px; }
+  .bar { display:grid; grid-template-columns: 9.5em 1fr 3.4em; align-items:center; gap:8px; font-size:.86rem; cursor:pointer; border-radius:8px; padding:2px 4px; border:1px solid transparent; background:none; color:inherit; font-family:inherit; text-align:left; }
+  .bar:hover { background:var(--soft); }
+  .bar.sel { border-color:var(--line); background:var(--soft); }
+  .bar .t { height:10px; border-radius:6px; background:var(--track); overflow:hidden; }
+  .bar .f { height:100%; border-radius:6px; transition:width .35s ease; }
+  .bar .v { text-align:right; font-variant-numeric:tabular-nums; }
+  .tiles { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-top:14px; }
+  .tile { border:1px solid var(--line); border-radius:12px; padding:8px 10px; }
+  .tile .k { font-size:.75rem; color:var(--muted); line-height:1.3; }
+  .tile .n { font-size:1.08rem; font-weight:700; font-variant-numeric:tabular-nums; }
+  .meter { position:relative; height:10px; border-radius:6px; background:linear-gradient(to right, var(--good) 0 50%, #e0b45e 50% 55%, var(--warn) 55% 100%); margin:8px 0 2px; opacity:.85; }
+  .meter i { position:absolute; top:-4px; width:3px; height:18px; background:var(--fg); border-radius:2px; transform:translateX(-1px); transition:left .35s ease; }
+  .meter-lbl { display:flex; justify-content:space-between; font-size:.72rem; color:var(--muted); }
+  .alert { margin-top:10px; padding:8px 12px; border-radius:10px; font-size:.88rem; }
+  .alert.on { background:color-mix(in srgb, var(--warn) 14%, var(--bg)); color:var(--fg); border:1px solid color-mix(in srgb, var(--warn) 45%, var(--bg)); }
+  .alert.off { background:color-mix(in srgb, var(--good) 10%, var(--bg)); border:1px solid color-mix(in srgb, var(--good) 35%, var(--bg)); }
+  .shap { margin-top:16px; }
+  .shap svg { width:100%; height:auto; display:block; }
+  .shap text { fill:var(--fg); font-size:12px; }
+  .shap .axis { stroke:var(--muted); stroke-width:1; }
+  .legend { display:flex; gap:14px; font-size:.78rem; color:var(--muted); margin-top:4px; flex-wrap:wrap; }
+  .duo { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin-top:12px; }
+  .hist svg { width:100%; height:auto; display:block; }
+  .hist text { fill:var(--muted); font-size:11px; }
+  .stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin-top:14px; }
+  .stat { border:1px solid var(--line); border-radius:12px; padding:10px; }
+  .stat .k { font-size:.75rem; color:var(--muted); line-height:1.3; }
+  .stat .n { font-size:1.25rem; font-weight:700; font-variant-numeric:tabular-nums; }
+  .stat .d { font-size:.75rem; color:var(--muted); }
+  .stat.bad .n { color:var(--warn); }
+  .decision { margin-top:14px; padding:12px 14px; border-radius:12px; font-size:.92rem; }
+  .decision.keep { background:color-mix(in srgb, var(--good) 10%, var(--bg)); border:1px solid color-mix(in srgb, var(--good) 35%, var(--bg)); }
+  .decision.retrain { background:color-mix(in srgb, var(--warn) 12%, var(--bg)); border:1px solid color-mix(in srgb, var(--warn) 40%, var(--bg)); }
+  #loading { padding:30px 0; text-align:center; color:var(--muted); }
+  footer { margin-top:18px; font-size:.8rem; color:var(--muted); }
+  a { color:var(--accent); }
+  @media (max-width:760px) {
+    .grid, .duo { grid-template-columns:1fr; }
+    .stats { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .bar { grid-template-columns: 8em 1fr 3.2em; }
+  }
+  @media (prefers-reduced-motion: reduce) { .bar .f, .meter i { transition:none; } }
+</style>
+</head>
+<body>
+<main>
+  <h1 data-t="title"></h1>
+  <p class="muted" data-t="intro"></p>
+
+  <section class="card" aria-labelledby="s1">
+    <span class="step" data-t="step1"></span>
+    <h2 id="s1" data-t="s1title"></h2>
+    <p class="muted small" data-t="s1intro"></p>
+    <div class="chips" id="presets" role="group"></div>
+
+    <div id="loading" data-t="loading"></div>
+    <div class="grid" id="app" hidden>
+      <div>
+        <div class="ctl">
+          <div class="row"><label data-t="f_type"></label></div>
+          <div class="seg" id="type" role="group">
+            <button type="button" data-v="L">L</button><button type="button" data-v="M">M</button><button type="button" data-v="H">H</button>
+          </div>
+          <div class="hint" data-t="h_type"></div>
+        </div>
+        <div id="sliders"></div>
+      </div>
+
+      <div>
+        <div class="verdict" id="verdict">
+          <div class="lbl" data-t="verdict"></div>
+          <div class="name" id="vname"></div>
+          <div class="why" id="vwhy"></div>
+          <div class="truth" id="truth"></div>
+        </div>
+        <div class="bars" id="bars"></div>
+        <p class="small muted" style="margin-top:6px" data-t="clickbar"></p>
+
+        <div class="tiles">
+          <div class="tile"><div class="k" data-t="t_power"></div><div class="n" id="power"></div></div>
+          <div class="tile"><div class="k" data-t="t_gap"></div><div class="n" id="gap"></div></div>
+          <div class="tile"><div class="k" data-t="t_strain"></div><div class="n" id="strain"></div></div>
+        </div>
+        <div class="meter" aria-hidden="true"><i id="needle"></i></div>
+        <div class="meter-lbl"><span>0</span><span>10,000</span><span>20,000</span></div>
+        <div class="alert" id="alert"></div>
+
+        <div class="shap">
+          <h3 id="shapTitle"></h3>
+          <div id="shapChart"></div>
+          <div class="legend"><span><span class="dot" style="background:var(--pos)"></span> <span data-t="pushUp"></span></span><span><span class="dot" style="background:var(--neg)"></span> <span data-t="pushDown"></span></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" aria-labelledby="s2">
+    <span class="step" data-t="step2"></span>
+    <h2 id="s2" data-t="s2title"></h2>
+    <p class="muted small" data-t="s2intro"></p>
+    <div class="seg" id="batch" role="group" style="margin-top:8px">
+      <button type="button" data-v="stable" data-t="b_stable"></button><button type="button" data-v="heavy" data-t="b_heavy"></button>
+    </div>
+    <div class="duo">
+      <div class="hist"><h3 data-t="g_wear"></h3><div id="histWear"></div></div>
+      <div class="hist"><h3 data-t="g_torque"></h3><div id="histTorque"></div></div>
+    </div>
+    <div class="legend"><span><span class="dot" style="background:var(--muted);opacity:.45"></span> <span data-t="l_train"></span></span><span><span class="dot" id="batchDot"></span> <span id="batchLegend"></span></span></div>
+    <div class="stats" id="stats"></div>
+    <div class="decision" id="decision"></div>
+  </section>
+
+  <footer data-t="footer"></footer>
+</main>
+
+<script src="engine.js"></script>
+<script>
+(function () {
+  const qs = new URLSearchParams(location.search);
+  const lang = qs.get('lang') === 'hi' ? 'hi' : 'en';
+  document.documentElement.lang = lang;
+  if (qs.get('theme') === 'dark' || qs.get('theme') === 'light') document.documentElement.dataset.theme = qs.get('theme');
+
+  const T = {
+    en: {
+      title: 'Machine Failure Predictor',
+      intro: 'The tuned XGBoost model from this project, running right here in your browser. Nothing is sent anywhere.',
+      step1: 'Part 1', s1title: 'Test a machine reading',
+      s1intro: 'Start from a real reading of each type, then move the sliders and watch the prediction and its reasons change.',
+      loading: 'Loading the model…',
+      f_type: 'Machine type', h_type: 'L, M, H = low, medium, high quality variant',
+      f_air: 'Air temperature', f_proc: 'Process temperature', f_rpm: 'Rotational speed', f_torque: 'Torque', f_wear: 'Tool wear',
+      h_air: 'Temperature of the room air, in kelvin (300 K ≈ 27 °C)', h_proc: 'Temperature where the cutting happens, in kelvin',
+      h_rpm: 'Spindle turns per minute', h_torque: 'Turning force, in newton-metres', h_wear: 'Minutes the tool has already worked',
+      verdict: 'The model says', clickbar: 'Tap any row to see why the model scores that class.',
+      t_power: 'Mechanical power', t_gap: 'Temperature gap', t_strain: 'Strain index (wear × torque)',
+      alertOn: '<b>Overstrain alert:</b> tool wear × torque is above 10,000 min·Nm. Plan a tool change or reduce the load.',
+      alertOff: 'Strain index is below the 10,000 min·Nm alert line.',
+      shapTitle: 'Why "{c}"? The readings that pushed this score',
+      pushUp: 'pushes towards this class', pushDown: 'pushes away from it',
+      truthLbl: 'Real label of this reading:', match: 'the model got it right', miss: 'the model missed it',
+      sure: 'Confidence',
+      step2: 'Part 2', s2title: 'Normal days vs heavy-load days',
+      s2intro: 'Both new batches passed every data check. Compare each with the training data to see which one the model can still trust.',
+      b_stable: 'Stable batch', b_heavy: 'Heavy-load batch',
+      g_wear: 'Tool wear (minutes)', g_torque: 'Torque (Nm)', l_train: 'Training data',
+      s_drift: 'Features that drifted', s_f1: 'Macro F1 (all classes)', s_osf: 'Overstrain F1', s_share: 'Overstrain share',
+      vsTrain: 'validation: {v}', inTrain: 'training: {v}',
+      keep: '<b>Decision: keep the model.</b> No feature drifted, and scores stay close to validation.',
+      retrain: '<b>Decision: retrain.</b> Tool wear, torque and speed drifted. These drive overstrain, which became 4× more common, and the model\'s overstrain F1 fell to 0.63.',
+      footer: 'Data: AI4I 2020 Predictive Maintenance Dataset (UCI, CC BY 4.0). A learning demo, not for real safety decisions. Explanations are exact TreeSHAP values computed in the page.',
+      cls: ['No failure', 'Tool wear failure', 'Heat dissipation failure', 'Power failure', 'Overstrain failure'],
+      bar: ['No failure', 'TWF · tool wear', 'HDF · heat', 'PWF · power', 'OSF · overstrain'],
+      clsWhy: ['The machine looks healthy.', 'The tool is near the end of its life.', 'Heat cannot escape: small temperature gap and slow spindle.', 'Power is outside its safe band (too low or too high).', 'A worn tool under high load is past its strain limit.'],
+      feat: ['Machine type', 'Air temperature', 'Process temperature', 'Rotational speed', 'Torque', 'Tool wear', 'Mechanical power', 'Temperature gap'],
+      presets: ['Healthy', 'Tool wear', 'Heat', 'Power', 'Overstrain', 'Heavy-load miss'],
+    },
+    hi: {
+      title: 'मशीन ख़राबी का अंदाज़ा',
+      intro: 'इस प्रोजेक्ट का निखारा हुआ XGBoost मॉडल, यहीं आपके ब्राउज़र में चल रहा है। कोई जानकारी कहीं नहीं भेजी जाती।',
+      step1: 'भाग 1', s1title: 'मशीन की एक रीडिंग (नाप) जाँचिए',
+      s1intro: 'हर तरह की एक असली रीडिंग से शुरू कीजिए, फिर स्लाइडर खिसकाइए और देखिए कि मॉडल का जवाब और उसकी वजहें कैसे बदलती हैं।',
+      loading: 'मॉडल खुल रहा है…',
+      f_type: 'मशीन का प्रकार', h_type: 'L, M, H = कम, मध्यम, ऊँची क्वालिटी वाला मॉडल',
+      f_air: 'हवा का तापमान', f_proc: 'प्रोसेस (काम) का तापमान', f_rpm: 'घूमने की रफ़्तार', f_torque: 'टॉर्क', f_wear: 'टूल वियर',
+      h_air: 'कमरे की हवा का तापमान, केल्विन में (300 K यानी लगभग 27 °C)', h_proc: 'जहाँ कटाई होती है, वहाँ का तापमान, केल्विन में',
+      h_rpm: 'एक मिनट में कितने चक्कर (rpm)', h_torque: 'घुमाने वाला ज़ोर, न्यूटन-मीटर (Nm) में', h_wear: 'औज़ार कितने मिनट चल चुका है (घिसावट)',
+      verdict: 'मॉडल का जवाब', clickbar: 'किसी भी पंक्ति को दबाइए और देखिए कि मॉडल ने उसे इतना अंक क्यों दिया।',
+      t_power: 'यांत्रिक शक्ति (पावर)', t_gap: 'तापमान का अंतर', t_strain: 'खिंचाव सूचक (घिसावट × टॉर्क)',
+      alertOn: '<b>ओवरस्ट्रेन चेतावनी:</b> टूल वियर × टॉर्क 10,000 (मिनट·Nm) से ऊपर है। औज़ार बदलने की तैयारी कीजिए या मशीन का बोझ कम कीजिए।',
+      alertOff: 'खिंचाव सूचक 10,000 (मिनट·Nm) की चेतावनी रेखा से नीचे है।',
+      shapTitle: '"{c}" क्यों? किन नापों ने यह अंक बढ़ाया या घटाया (SHAP)',
+      pushUp: 'इस जवाब की ओर धकेलता है', pushDown: 'इससे दूर धकेलता है',
+      truthLbl: 'इस रीडिंग का असली नतीजा:', match: 'मॉडल ने सही पकड़ा', miss: 'मॉडल चूक गया',
+      sure: 'भरोसा',
+      step2: 'भाग 2', s2title: 'सामान्य दिन बनाम भारी काम (हेवी-लोड) के दिन',
+      s2intro: 'दोनों नए बैच (खेप) डेटा की हर जाँच में पास हुए। हर एक को सिखाने वाले डेटा से मिलाइए और देखिए कि किस पर मॉडल का भरोसा किया जा सकता है।',
+      b_stable: 'सामान्य बैच', b_heavy: 'भारी काम वाला बैच',
+      g_wear: 'टूल वियर (मिनट)', g_torque: 'टॉर्क (Nm)', l_train: 'सिखाने वाला डेटा',
+      s_drift: 'कितनी चीज़ें खिसकीं (ड्रिफ़्ट)', s_f1: 'मैक्रो F1 (सभी वर्ग)', s_osf: 'ओवरस्ट्रेन का F1', s_share: 'ओवरस्ट्रेन का हिस्सा',
+      vsTrain: 'जाँच में: {v}', inTrain: 'सिखाने वाले डेटा में: {v}',
+      keep: '<b>फ़ैसला: मॉडल चलने दो।</b> कोई चीज़ नहीं खिसकी, और अंक जाँच वाले अंकों के पास हैं।',
+      retrain: '<b>फ़ैसला: दोबारा सिखाओ (रीट्रेन)।</b> टूल वियर, टॉर्क और रफ़्तार खिसक गए। यही ओवरस्ट्रेन की वजहें हैं, जो 4 गुना बढ़ गया, और मॉडल का ओवरस्ट्रेन वाला F1 गिरकर 0.63 रह गया।',
+      footer: 'डेटा: AI4I 2020 प्रेडिक्टिव मेंटेनेंस डेटासेट (UCI, CC BY 4.0)। यह सीखने के लिए डेमो है, असली सुरक्षा फ़ैसलों के लिए नहीं। वजहें (SHAP) इसी पन्ने में सटीक TreeSHAP से निकाली जाती हैं।',
+      cls: ['कोई ख़राबी नहीं', 'औज़ार घिसने से ख़राबी', 'गर्मी न निकल पाने से ख़राबी', 'बिजली (पावर) की ख़राबी', 'ज़्यादा ज़ोर (ओवरस्ट्रेन) से ख़राबी'],
+      bar: ['कोई ख़राबी नहीं', 'TWF · घिसावट', 'HDF · गर्मी', 'PWF · बिजली', 'OSF · ज़्यादा ज़ोर'],
+      clsWhy: ['मशीन ठीक दिख रही है।', 'औज़ार की उम्र लगभग पूरी हो गई है।', 'गर्मी बाहर नहीं निकल पा रही: तापमान का अंतर कम और रफ़्तार धीमी।', 'शक्ति सुरक्षित दायरे से बाहर है (बहुत कम या बहुत ज़्यादा)।', 'घिसा हुआ औज़ार भारी ज़ोर के नीचे अपनी सीमा पार कर गया है।'],
+      feat: ['मशीन का प्रकार', 'हवा का तापमान', 'प्रोसेस तापमान', 'घूमने की रफ़्तार', 'टॉर्क', 'टूल वियर', 'यांत्रिक शक्ति', 'तापमान का अंतर'],
+      presets: ['ठीक मशीन', 'औज़ार घिसा', 'गर्मी', 'बिजली', 'ओवरस्ट्रेन', 'भारी काम में चूक'],
+    },
+  }[lang];
+
+  const fmt = (n, d = 0) => n.toLocaleString(lang === 'hi' ? 'en-IN' : 'en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+  const tpl = (s, o) => s.replace(/\{(\w+)\}/g, (_, k) => o[k]);
+  document.querySelectorAll('[data-t]').forEach((el) => { const v = T[el.dataset.t]; if (v != null) el.innerHTML = v; });
+  document.title = T.title;
+  const COL = ['var(--c0)', 'var(--c1)', 'var(--c2)', 'var(--c3)', 'var(--c4)'];
+
+  // Real readings from the data (type, air K, process K, rpm, torque Nm, wear min, true class)
+  const PRESETS = [
+    ['L', 300.9, 310.5, 1599, 40.5, 57, 0],
+    ['L', 298.5, 309.5, 1385, 46.3, 203, 1],
+    ['L', 302.7, 310.7, 1369, 47.5, 11, 2],
+    ['M', 303.6, 312.8, 2659, 11.4, 26, 3],
+    ['L', 297.7, 308.5, 1373, 56.7, 203, 4],
+    ['M', 298.0, 308.1, 1263, 57.0, 250, 4],
+  ];
+  const SL = [
+    { k: 'air', min: 295, max: 305, step: 0.1, d: 1, u: 'K' },
+    { k: 'proc', min: 305, max: 315, step: 0.1, d: 1, u: 'K' },
+    { k: 'rpm', min: 1000, max: 2900, step: 1, d: 0, u: 'rpm' },
+    { k: 'torque', min: 3, max: 80, step: 0.1, d: 1, u: 'Nm' },
+    { k: 'wear', min: 0, max: 253, step: 1, d: 0, u: 'min' },
+  ];
+  const state = { type: 'L', air: 300.9, proc: 310.5, rpm: 1599, torque: 40.5, wear: 57, truth: 0, preset: 0, focus: null };
+
+  // presets
+  const pre = document.getElementById('presets');
+  PRESETS.forEach((p, i) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip';
+    b.innerHTML = `<span class="dot" style="background:${COL[p[6]]}"></span>${T.presets[i]}`;
+    b.onclick = () => { Object.assign(state, { type: p[0], air: p[1], proc: p[2], rpm: p[3], torque: p[4], wear: p[5], truth: p[6], preset: i, focus: null }); syncControls(); run(); };
+    pre.appendChild(b);
+  });
+
+  // sliders
+  const sw = document.getElementById('sliders');
+  SL.forEach((s) => {
+    const id = 'in_' + s.k;
+    const div = document.createElement('div'); div.className = 'ctl';
+    div.innerHTML = `<div class="row"><label for="${id}">${T['f_' + s.k]}</label><output id="o_${s.k}"></output></div>
+      <input type="range" id="${id}" min="${s.min}" max="${s.max}" step="${s.step}"><div class="hint">${T['h_' + s.k]}</div>`;
+    sw.appendChild(div);
+    div.querySelector('input').addEventListener('input', (e) => { state[s.k] = +e.target.value; state.truth = null; state.preset = null; state.focus = null; run(); });
+  });
+  document.querySelectorAll('#type button').forEach((b) => b.onclick = () => { state.type = b.dataset.v; state.truth = null; state.preset = null; state.focus = null; syncControls(); run(); });
+
+  function syncControls() {
+    SL.forEach((s) => { document.getElementById('in_' + s.k).value = state[s.k]; });
+    document.querySelectorAll('#type button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.v === state.type));
+  }
+
+  let model = null;
+  function run() {
+    SL.forEach((s) => { document.getElementById('o_' + s.k).textContent = fmt(state[s.k], s.d) + ' ' + s.u; });
+    document.querySelectorAll('#presets .chip').forEach((c, i) => c.setAttribute('aria-pressed', i === state.preset));
+    if (!model) return;
+    const x = PM.features(state.type, state.air, state.proc, state.rpm, state.torque, state.wear);
+    const p = PM.softmax(PM.margins(model, x));
+    const top = p.indexOf(Math.max(...p));
+    const focus = state.focus == null ? top : state.focus;
+    const v = document.getElementById('verdict');
+    v.style.setProperty('--vc', COL[top]);
+    document.getElementById('vname').textContent = T.cls[top];
+    document.getElementById('vwhy').textContent = `${T.clsWhy[top]} ${T.sure}: ${fmt(p[top] * 100)}%`;
+    const tr = document.getElementById('truth');
+    if (state.truth == null) tr.textContent = '';
+    else tr.innerHTML = `${T.truthLbl} <b>${T.cls[state.truth]}</b> · ${state.truth === top ? '✓ ' + T.match : '✗ ' + T.miss}`;
+
+    const bars = document.getElementById('bars');
+    bars.innerHTML = '';
+    p.forEach((v2, i) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'bar' + (i === focus ? ' sel' : '');
+      b.innerHTML = `<span>${T.bar[i]}</span><span class="t"><span class="f" style="width:${Math.max(v2 * 100, 0.5)}%;background:${COL[i]}"></span></span><span class="v">${v2 < 0.01 ? '<1' : fmt(v2 * 100)}%</span>`;
+      b.title = T.cls[i];
+      b.onclick = () => { state.focus = i; run(); };
+      bars.appendChild(b);
+    });
+
+    const strain = state.wear * state.torque;
+    document.getElementById('power').textContent = fmt(x[6]) + ' W';
+    document.getElementById('gap').textContent = fmt(x[7], 1) + ' K';
+    document.getElementById('strain').textContent = fmt(strain);
+    document.getElementById('needle').style.left = Math.min(strain / 20000, 1) * 100 + '%';
+    const al = document.getElementById('alert');
+    const on = strain > 10000;
+    al.className = 'alert ' + (on ? 'on' : 'off');
+    al.innerHTML = on ? T.alertOn : T.alertOff;
+
+    // SHAP for the focused class
+    const phi = PM.shap(model, x)[focus];
+    document.getElementById('shapTitle').textContent = tpl(T.shapTitle, { c: T.cls[focus] });
+    drawShap(phi);
+  }
+
+  function drawShap(phi) {
+    const idx = phi.map((v, i) => i).sort((a, b) => Math.abs(phi[b]) - Math.abs(phi[a]));
+    const W = Math.round(Math.max(320, Math.min(560, document.getElementById('shapChart').clientWidth || 460))), rowH = 24, labW = lang === 'hi' ? 118 : 132, H = idx.length * rowH + 22;
+    const mx = Math.max(0.5, ...phi.map(Math.abs));
+    const half = (W - labW - 10) / 2, cx = labW + half;
+    let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="SHAP">`;
+    idx.forEach((i, r) => {
+      const y = r * rowH + 4, w = (Math.abs(phi[i]) / mx) * (half - 34);
+      const pos = phi[i] >= 0;
+      s += `<text x="${labW - 8}" y="${y + 14}" text-anchor="end">${T.feat[i]}</text>`;
+      s += `<rect x="${pos ? cx : cx - w}" y="${y + 3}" width="${Math.max(w, 1)}" height="15" rx="3" fill="${pos ? 'var(--pos)' : 'var(--neg)'}"/>`;
+      s += `<text x="${pos ? cx + w + 4 : cx - w - 4}" y="${y + 14}" text-anchor="${pos ? 'start' : 'end'}" style="font-size:11px;fill:var(--muted)">${(phi[i] >= 0 ? '+' : '−') + Math.abs(phi[i]).toFixed(2)}</text>`;
+    });
+    s += `<line class="axis" x1="${cx}" y1="0" x2="${cx}" y2="${H - 18}"/></svg>`;
+    document.getElementById('shapChart').innerHTML = s;
+  }
+
+  // ---- Part 2: drift ----
+  const H = {"wearBins":[0,20,40,60,80,100,120,140,160,180,200,220,240,260],"torqueBins":[0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80],"train":{"wear":[9.71,9.61,9.41,8.57,9.17,9.28,8.67,8.97,9.41,9.38,6.46,1.24,0.13],"torque":[0.03,0.09,0.47,1.77,4.42,8.89,14.91,18.82,19.12,15.6,9.38,4.03,1.89,0.5,0.06,0.01]},"stable":{"wear":[10.07,7.94,8.54,10.94,8.67,9.21,9.14,9.67,8.61,8.87,6.94,1.13,0.27],"torque":[0.07,0.07,0.33,1.0,5.07,8.54,13.94,19.75,20.35,15.48,9.94,3.0,1.4,0.67,0.33,0.07]},"heavy":{"wear":[0.0,1.07,7.67,8.87,9.14,9.07,9.21,9.54,8.74,10.87,8.61,9.01,8.21],"torque":[0.0,0.0,0.13,0.8,2.2,4.4,9.14,14.61,18.41,18.68,16.01,9.54,4.07,1.47,0.33,0.2]}};
+  const B = {
+    stable: { drift: '0 / 5', f1: '0.742', osf: '0.813', share: '1.00%', bad: false, col: 'var(--good)' },
+    heavy: { drift: '3 / 5', f1: '0.532', osf: '0.626', share: '3.87%', bad: true, col: 'var(--warn)' },
+  };
+  function hist(el, bins, base, cur, col) {
+    const W = Math.round(Math.max(320, Math.min(520, document.getElementById(el).clientWidth || 420))), Hh = 170, pad = 22, n = base.length, mx = Math.max(...base, ...cur) * 1.1;
+    const bw = (W - pad * 2) / n, y = (v) => Hh - pad - (v / mx) * (Hh - pad * 2);
+    let s = `<svg viewBox="0 0 ${W} ${Hh}" role="img">`;
+    base.forEach((v, i) => { s += `<rect x="${pad + i * bw + 1}" y="${y(v)}" width="${bw - 2}" height="${Hh - pad - y(v)}" fill="var(--muted)" opacity=".28" rx="2"/>`; });
+    cur.forEach((v, i) => { s += `<rect x="${pad + i * bw + bw * 0.25}" y="${y(v)}" width="${bw * 0.5}" height="${Hh - pad - y(v)}" fill="${col}" rx="2" style="transition:all .4s"/>`; });
+    s += `<line x1="${pad}" x2="${W - pad}" y1="${Hh - pad}" y2="${Hh - pad}" stroke="var(--line)"/>`;
+    [0, Math.floor(n / 2), n].forEach((i) => { s += `<text x="${pad + i * bw}" y="${Hh - 6}" text-anchor="middle">${bins[i]}</text>`; });
+    document.getElementById(el).innerHTML = s + '</svg>';
+  }
+  let curBatch = 'heavy';
+  function showBatch(k) {
+    curBatch = k;
+    document.querySelectorAll('#batch button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.v === k));
+    const b = B[k];
+    hist('histWear', H.wearBins, H.train.wear, H[k].wear, b.col);
+    hist('histTorque', H.torqueBins, H.train.torque, H[k].torque, b.col);
+    document.getElementById('batchDot').style.background = b.col;
+    document.getElementById('batchLegend').textContent = k === 'stable' ? T.b_stable : T.b_heavy;
+    const st = [
+      [T.s_drift, b.drift, ''],
+      [T.s_f1, b.f1, tpl(T.vsTrain, { v: '0.767' })],
+      [T.s_osf, b.osf, tpl(T.vsTrain, { v: '0.897' })],
+      [T.s_share, b.share, tpl(T.inTrain, { v: '0.99%' })],
+    ];
+    document.getElementById('stats').innerHTML = st.map(([k2, n, d]) => `<div class="stat ${b.bad ? 'bad' : ''}"><div class="k">${k2}</div><div class="n">${n}</div><div class="d">${d}</div></div>`).join('');
+    const dec = document.getElementById('decision');
+    dec.className = 'decision ' + (b.bad ? 'retrain' : 'keep');
+    dec.innerHTML = b.bad ? T.retrain : T.keep;
+  }
+  document.querySelectorAll('#batch button').forEach((b) => b.onclick = () => showBatch(b.dataset.v));
+  showBatch('heavy');
+
+  let rt;
+  window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { run(); showBatch(curBatch); }, 150); });
+  syncControls(); run();
+  fetch('model.json').then((r) => r.json()).then((m) => {
+    model = m;
+    document.getElementById('loading').hidden = true;
+    document.getElementById('app').hidden = false;
+    run();
+  }).catch(() => { document.getElementById('loading').textContent = '⚠ model.json'; });
+})();
+</script>
+</body>
+</html>

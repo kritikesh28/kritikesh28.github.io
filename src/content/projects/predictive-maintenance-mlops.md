@@ -9,6 +9,7 @@ imageAlt: "Four bar charts, one per failure type. Tool wear leads tool-wear fail
 section: ai-ml
 order: 1
 aiAssisted: true
+demo: predictive-maintenance
 ---
 
 ## The problem
@@ -84,6 +85,8 @@ The heavy-load batch passed every Pandera check, yet Evidently found drift in 3 
 | HDF | Temperature gap (2.70), then rotational speed (1.97) | A small temperature gap and a slow spindle: heat cannot escape. |
 | PWF | Mechanical power (3.24) | Power goes outside a safe band, too low (stall) or too high (overload). |
 | OSF | Torque (1.90), then tool wear (1.87) | A worn tool under high load goes past its strain limit. |
+
+![Four SHAP bar charts, one per failure type: tool wear leads tool-wear failure, temperature gap leads heat failure, mechanical power leads power failure, torque leads overstrain](/images/predmaint-shap-per-class.webp)
 
 Both engineered features came out on top: mechanical power for power failure (about 8 times raw torque), and the temperature gap for heat failure.
 

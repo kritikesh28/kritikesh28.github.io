@@ -1,31 +1,65 @@
 ---
-// The NYC taxi demand explorer, served from this site, with links to the Hugging Face Space and the code.
+// A live demo served from this site (public/demos/<which>/), framed like a small app window.
+// 'nyc-taxi': the NYC taxi demand explorer. 'predictive-maintenance': the machine failure predictor.
 import { langFromUrl } from '../i18n/config';
 import { useT } from '../i18n/ui';
-interface Props { height?: number }
-const { height = 760 } = Astro.props;
-const t = useT(langFromUrl(Astro.url));
+interface Props { height?: number; which?: 'nyc-taxi' | 'predictive-maintenance' }
+const { which = 'nyc-taxi' } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const t = useT(lang);
+const DEMOS = {
+  'nyc-taxi': {
+    src: '/demos/nyc-taxi/', height: 760, prefix: 'demo',
+    links: [
+      { key: 'demo.hf', href: 'https://huggingface.co/spaces/kritikesh28/nyc-taxi-demand-explorer' },
+      { key: 'demo.code', href: 'https://github.com/kritikesh28/nyc-taxi-2023-eda' },
+    ],
+  },
+  'predictive-maintenance': {
+    src: `/demos/predictive-maintenance/${lang === 'hi' ? '?lang=hi' : ''}`, height: 1500, prefix: 'demoPm',
+    links: [] as { key: string; href: string }[],
+  },
+} as const;
+const d = DEMOS[which];
+const height = Astro.props.height ?? d.height;
 ---
 
 <figure class="demo">
   <div class="frame">
-    <div class="chrome" aria-hidden="true"><span></span><span></span><span></span><em>{t('demo.chrome')}</em></div>
+    <div class="chrome" aria-hidden="true"><span></span><span></span><span></span><em>{t(`${d.prefix}.chrome`)}</em></div>
     <iframe
-      src="/demos/nyc-taxi/"
-      title={t('demo.title')}
+      src={d.src}
+      title={t(`${d.prefix}.title`)}
       loading="lazy"
       height={height}
+      data-autosize={which === 'predictive-maintenance' ? '' : undefined}
       referrerpolicy="strict-origin-when-cross-origin"
     ></iframe>
   </div>
   <figcaption>
-    <span class="muted small">{t('demo.caption')}</span>
-    <span class="links">
-      <a class="btn ghost" href="https://huggingface.co/spaces/kritikesh28/nyc-taxi-demand-explorer" target="_blank" rel="noopener noreferrer">{t('demo.hf')}</a>
-      <a class="btn ghost" href="https://github.com/kritikesh28/nyc-taxi-2023-eda" target="_blank" rel="noopener noreferrer">{t('demo.code')}</a>
-    </span>
+    <span class="muted small">{t(`${d.prefix}.caption`)}</span>
+    {d.links.length > 0 && (
+      <span class="links">
+        {d.links.map((l) => <a class="btn ghost" href={l.href} target="_blank" rel="noopener noreferrer">{t(l.key as any)}</a>)}
+      </span>
+    )}
   </figcaption>
 </figure>
+
+<script>
+  // Same-origin demos grow to fit their content, so there is no inner scrollbar
+  for (const f of document.querySelectorAll<HTMLIFrameElement>('iframe[data-autosize]')) {
+    const fit = () => {
+      const doc = f.contentDocument;
+      if (doc?.body) f.style.height = doc.documentElement.scrollHeight + 'px';
+    };
+    f.addEventListener('load', () => {
+      fit();
+      const doc = f.contentDocument;
+      if (doc && 'ResizeObserver' in window) new ResizeObserver(fit).observe(doc.body);
+    });
+  }
+</script>
 
 <style>
   .demo { margin: 0; }
@@ -38,5 +72,5 @@ const t = useT(langFromUrl(Astro.url));
   iframe { display: block; width: 100%; border: 0; background: #fff; }
   figcaption { display: flex; flex-wrap: wrap; gap: 0.8rem 1.5rem; align-items: center; justify-content: space-between; margin-top: 0.9rem; }
   .links { display: flex; gap: 0.6rem; flex-wrap: wrap; }
-  @media (max-width: 600px) { iframe { height: 980px; } }
+  @media (max-width: 600px) { iframe:not([data-autosize]) { height: 980px; } }
 </style>
