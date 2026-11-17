@@ -74,6 +74,8 @@ const en = {
   'demoPm.chrome': 'Machine Failure Predictor · live',
   'demoPm.title': 'Machine Failure Predictor: move the sensor sliders and see the model predict a failure type and explain why',
   'demoPm.caption': 'The real tuned model runs in your browser: pick a reading, move the sliders, and see the prediction, its SHAP reasons and the drift check.',
+  'demoPm.space': 'Open on Hugging Face',
+  'demoPm.model': 'Model card',
 
   // question card
   'q.eyebrow': 'A curious question',
@@ -218,6 +220,8 @@ const hi: Partial<Record<UiKey, string>> = {
   'demoPm.chrome': 'मशीन ख़राबी का अंदाज़ा · लाइव',
   'demoPm.title': 'मशीन ख़राबी का अंदाज़ा: सेंसर के स्लाइडर खिसकाइए और देखिए मॉडल कौन-सी ख़राबी बताता है और क्यों',
   'demoPm.caption': 'असली मॉडल आपके ब्राउज़र में चलता है: एक रीडिंग चुनिए, स्लाइडर खिसकाइए, और जवाब, उसकी वजहें (SHAP) और बदलाव (ड्रिफ़्ट) की जाँच देखिए।',
+  'demoPm.space': 'Hugging Face पर खोलें',
+  'demoPm.model': 'मॉडल कार्ड',
 
   'q.eyebrow': 'एक मज़ेदार सवाल',
   'q.reveal': 'जवाब देखने के लिए छुएँ',

@@ -17,7 +17,10 @@ const DEMOS = {
   },
   'predictive-maintenance': {
     src: `/demos/predictive-maintenance/${lang === 'hi' ? '?lang=hi' : ''}`, height: 1500, prefix: 'demoPm',
-    links: [] as { key: string; href: string }[],
+    links: [
+      { key: 'demoPm.space', href: 'https://huggingface.co/spaces/kritikesh28/machine-failure-predictor' },
+      { key: 'demoPm.model', href: 'https://huggingface.co/kritikesh28/predictive-maintenance-xgboost' },
+    ],
   },
 } as const;
 const d = DEMOS[which];

@@ -6,6 +6,11 @@ status: live
 tags: [Python, MLOps, XGBoost, MLflow, Optuna, Evidently, SHAP]
 image: /images/predmaint-shap-per-class.webp
 imageAlt: "Four bar charts, one per failure type. Tool wear leads tool-wear failure, temperature gap leads heat failure, mechanical power leads power failure, and torque leads overstrain failure."
+links:
+  - label: Live demo on Hugging Face
+    href: https://huggingface.co/spaces/kritikesh28/machine-failure-predictor
+  - label: Model card on Hugging Face
+    href: https://huggingface.co/kritikesh28/predictive-maintenance-xgboost
 section: ai-ml
 order: 1
 aiAssisted: true
