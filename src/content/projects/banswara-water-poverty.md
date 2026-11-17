@@ -7,6 +7,18 @@ tags: [research, geography, QGIS, Earth Engine, data, statistics]
 section: research
 order: 1
 aiAssisted: true
+qa: true
+tracker:
+  href: https://claude.ai/artifact/X1dNYVwAh81H2zQDkFappB
+  title: "The tracker behind this paper"
+  text: "I run this paper from a tracker I built for it. It is where I plan the work, log each session and decision, and check myself against the deadline."
+  points:
+    - "14 phases from setup to submission, 97 tasks, each phase with an exit test"
+    - "A decision log: 15 decisions so far, each with the reason behind it"
+    - "A data inventory of 20 indicators, with source, scale and status"
+    - "5 hypotheses, each with its test and decision rule, written before any result"
+    - "A risk watch of 11 risks, plus a literature finder and a journal finder"
+  cta: "Open the tracker"
 ---
 
 *Last updated 17 November 2026. I add to this page as the paper moves, so it shows the work while it happens, not only the finished result.*
