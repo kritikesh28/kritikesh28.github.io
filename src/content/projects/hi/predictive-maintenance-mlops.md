@@ -6,6 +6,11 @@ status: live
 tags: [Python, MLOps, XGBoost, MLflow, Optuna, Evidently, SHAP]
 image: /images/predmaint-shap-per-class.webp
 imageAlt: "चार बार चार्ट, हर ख़राबी के लिए एक। औज़ार की घिसावट वाली ख़राबी में टूल वियर सबसे आगे है, गर्मी वाली में तापमान का अंतर, बिजली वाली में यांत्रिक शक्ति, और ज़्यादा ज़ोर वाली में टॉर्क।"
+links:
+  - label: Hugging Face पर लाइव डेमो
+    href: https://huggingface.co/spaces/kritikesh28/machine-failure-predictor
+  - label: Hugging Face पर मॉडल कार्ड
+    href: https://huggingface.co/kritikesh28/predictive-maintenance-xgboost
 section: ai-ml
 order: 1
 aiAssisted: true
