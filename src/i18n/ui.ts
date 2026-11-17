@@ -71,6 +71,9 @@ const en = {
   'demo.caption': 'Pick a weekday and an hour; the map shows where New York taxi pickups happen. Built from about 1.8 million trips.',
   'demo.hf': 'Open on Hugging Face',
   'demo.code': 'Code on GitHub',
+  'demoPm.chrome': 'Machine Failure Predictor · live',
+  'demoPm.title': 'Machine Failure Predictor: move the sensor sliders and see the model predict a failure type and explain why',
+  'demoPm.caption': 'The real tuned model runs in your browser: pick a reading, move the sliders, and see the prediction, its SHAP reasons and the drift check.',
 
   // question card
   'q.eyebrow': 'A curious question',
@@ -212,6 +215,9 @@ const hi: Partial<Record<UiKey, string>> = {
   'demo.caption': 'हफ़्ते का एक दिन और एक घंटा चुनिए। नक्शा दिखाएगा कि न्यूयॉर्क में उस समय टैक्सी सबसे ज़्यादा कहाँ से पकड़ी जाती है। यह लगभग 18 लाख सफ़रों के आँकड़ों (डेटा) से बना है।',
   'demo.hf': 'Hugging Face पर खोलें',
   'demo.code': 'GitHub पर कोड देखें',
+  'demoPm.chrome': 'मशीन ख़राबी का अंदाज़ा · लाइव',
+  'demoPm.title': 'मशीन ख़राबी का अंदाज़ा: सेंसर के स्लाइडर खिसकाइए और देखिए मॉडल कौन-सी ख़राबी बताता है और क्यों',
+  'demoPm.caption': 'असली मॉडल आपके ब्राउज़र में चलता है: एक रीडिंग चुनिए, स्लाइडर खिसकाइए, और जवाब, उसकी वजहें (SHAP) और बदलाव (ड्रिफ़्ट) की जाँच देखिए।',
 
   'q.eyebrow': 'एक मज़ेदार सवाल',
   'q.reveal': 'जवाब देखने के लिए छुएँ',

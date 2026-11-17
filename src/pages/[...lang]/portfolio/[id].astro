@@ -68,7 +68,7 @@ const schema = [
       {aiAssisted && <p class="note small">{t('ai.project', { name: t('site.name') })}</p>}
       {links.length > 0 && <p class="links">{links.map((l) => <a class="btn ghost" href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a>)}</p>}
     </div>
-    {demo && <div class="demo-wrap reveal"><h2>{T.try}</h2><LiveDemo /></div>}
+    {demo && <div class="demo-wrap reveal"><h2>{T.try}</h2><LiveDemo which={demo === true ? 'nyc-taxi' : demo} /></div>}
     <div class="prose" lang={project.lang}>
       {image && !demo && <img src={image} alt={imageAlt ?? ''} />}
       <Content />
