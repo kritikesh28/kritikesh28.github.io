@@ -62,8 +62,8 @@ export const PF_SECTIONS: PfSection[] = [
     en: 'Research papers', hi: 'शोध पत्र',
     blurbEn: 'Fieldwork and papers in human geography, starting with poverty and water among the Bhil tribes of southern Rajasthan.',
     blurbHi: 'मानव भूगोल में फ़ील्डवर्क और शोध पत्र, शुरुआत दक्षिणी राजस्थान की भील जनजातियों में गरीबी और पानी से।',
-    comingEn: ['The Water Poverty Index paper for Banswara, with GIS maps'],
-    comingHi: ['बांसवाड़ा के जल-गरीबी सूचकांक का शोध पत्र, GIS नक्शों के साथ'],
+    comingEn: ['Village maps of water deprivation in Banswara, once the score is built', 'Results of the five tests: validation, hotspots, robustness, tribal gap and village types'],
+    comingHi: ['बाँसवाड़ा में पानी की कमी के गाँव-स्तर के नक्शे, स्कोर बनते ही', 'पाँचों जाँचों के नतीजे: परख, हॉटस्पॉट, मज़बूती, आदिवासी अंतर और गाँवों की क़िस्में'],
   },
   {
     slug: 'sketches', group: 'hands', icon: '✎',

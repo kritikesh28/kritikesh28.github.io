@@ -1,6 +1,6 @@
 ---
 title: "Tribal poverty and water in southern Rajasthan"
-summary: "M.Sc. dissertation on poverty among the Bhil tribes, and a research paper in progress on water poverty in Banswara."
+summary: "M.Sc. dissertation on poverty among the Bhil tribes of southern Rajasthan, the starting point for a new paper on water in Banswara."
 date: 2025-09-09
 status: in-progress
 tags: [research, geography, fieldwork]
@@ -14,4 +14,4 @@ order: 3
 
 ## Research paper in progress
 
-*Interlinking Poverty and Human Development: Water Poverty Index of Bhil Tribal Region in Banswara.* The work combines a literature review, public groundwater and poverty data, and interviews with residents about how their water conditions have changed over time. GIS and machine learning are planned for the analysis.
+The dissertation led to a new paper, written fresh: a water-deprivation score for every village in Banswara, built from free census and satellite data. The whole story, step by step, is on its own page: [Which villages of Banswara are shortest of water?](/portfolio/banswara-water-poverty/)

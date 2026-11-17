@@ -35,7 +35,7 @@ Projects are grouped by what they do rather than by programming language, becaus
 
 **Change what a shelf says or what is "coming".** Edit its block in `src/portfolio.config.ts` (`blurbEn`, `comingEn` and the Hindi lines). To add a shelf, add a block there and its address to the `section` list in `src/content.config.ts`.
 
-**Research paper link.** The Bhil research is `src/content/projects/bhil-tribal-poverty.md`. To link the published paper, add it under `links:` (label and address).
+**Research papers.** The Bhil dissertation is `src/content/projects/bhil-tribal-poverty.md`. The Banswara water paper has its own page, `src/content/projects/banswara-water-poverty.md` (Hindi in `hi/`), written as short questions and answers under six headings (The question, Designing the study, The data, The hardest moment so far, How I work, Where it stands). Added 17 Nov 2026. To update it, change the answers under "Where it stands" and the "Last updated" line at the top, in both languages; only write what has really been done and checked. Once the paper is published, add it under `links:` (label and address).
 
 ## 3. Social links
 
