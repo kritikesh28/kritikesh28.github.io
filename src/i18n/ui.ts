@@ -78,6 +78,7 @@ const en = {
   'demoPm.model': 'Model card',
   'demoPm.code': 'Code on GitHub',
   'demoPm.data': 'Data on Kaggle',
+  'demoPm.nb': 'Notebook on Kaggle',
 
   // question card
   'q.eyebrow': 'A curious question',
@@ -226,6 +227,7 @@ const hi: Partial<Record<UiKey, string>> = {
   'demoPm.model': 'मॉडल कार्ड',
   'demoPm.code': 'GitHub पर कोड',
   'demoPm.data': 'Kaggle पर डेटा',
+  'demoPm.nb': 'Kaggle पर नोटबुक',
 
   'q.eyebrow': 'एक मज़ेदार सवाल',
   'q.reveal': 'जवाब देखने के लिए छुएँ',
