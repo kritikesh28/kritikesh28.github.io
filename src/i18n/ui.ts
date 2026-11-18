@@ -76,6 +76,8 @@ const en = {
   'demoPm.caption': 'The real tuned model runs in your browser: pick a reading, move the sliders, and see the prediction, its SHAP reasons and the drift check.',
   'demoPm.space': 'Open on Hugging Face',
   'demoPm.model': 'Model card',
+  'demoPm.code': 'Code on GitHub',
+  'demoPm.data': 'Data on Kaggle',
 
   // question card
   'q.eyebrow': 'A curious question',
@@ -222,6 +224,8 @@ const hi: Partial<Record<UiKey, string>> = {
   'demoPm.caption': 'असली मॉडल आपके ब्राउज़र में चलता है: एक रीडिंग चुनिए, स्लाइडर खिसकाइए, और जवाब, उसकी वजहें (SHAP) और बदलाव (ड्रिफ़्ट) की जाँच देखिए।',
   'demoPm.space': 'Hugging Face पर खोलें',
   'demoPm.model': 'मॉडल कार्ड',
+  'demoPm.code': 'GitHub पर कोड',
+  'demoPm.data': 'Kaggle पर डेटा',
 
   'q.eyebrow': 'एक मज़ेदार सवाल',
   'q.reveal': 'जवाब देखने के लिए छुएँ',
