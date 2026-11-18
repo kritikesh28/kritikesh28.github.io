@@ -21,22 +21,22 @@ const next = all[seq + 1];
 const cl = b.content;
 const { BASE } = paths(lang);
 const P = S.paper;
-const chap = P.code ?? (cl === 'hi' ? `अध्याय ${P.no}` : `Chapter ${P.no}`);
+const chap = P.code ?? P.g ?? (cl === 'hi' ? `अध्याय ${P.no}` : `Chapter ${P.no}`);
 const T = pick({
   en: {
     home: 'Exam Prep', pyq: 'PYQ', real: 'Real exam questions', page: `questions ${(S.set - 1) * 10 + 1}–${(S.set - 1) * 10 + S.m.length} of ${P.m.length}`,
     lede: 'Exactly as the exam asked them. Choose an option: you will see at once if it is right, and the small facts behind the question.',
-    right: 'Right! ✓', wrong: 'Not this one. The answer is option', score: 'Score', show: 'Show answer', ans: 'Answer: option', starred: 'The book marked this answer as doubtful or changed since.',
+    right: 'Right! ✓', wrong: 'Not this one. The answer is option', score: 'Score', show: 'Show answer', ans: 'Answer: option', starred: 'This answer was disputed, or the official key changed it later.',
     behind: 'The facts behind this question', cards: 'Practise these as flip cards →', q: 'Question', prev: '← Back', next: 'Next →',
-    pPrev: '← Previous 10', pNext: 'Next 10 →', back: 'All chapters', end: 'End of the real questions 🎉', partA: 'Assistant Professor paper', partN: 'NTA UGC-NET/JRF',
+    pPrev: '← Previous 10', pNext: 'Next 10 →', back: 'All topics', end: 'End of the real questions 🎉', partA: 'Assistant Professor paper', partN: 'NTA UGC-NET/JRF',
     titleTail: 'Previous Year Questions with Answers', descMid: 'real past-paper MCQs with answers',
   },
   hi: {
     home: 'परीक्षा तैयारी', pyq: 'PYQ', real: 'असली परीक्षा के सवाल', page: `${P.m.length} में से सवाल ${(S.set - 1) * 10 + 1}–${(S.set - 1) * 10 + S.m.length}`,
     lede: 'ठीक वैसे जैसे परीक्षा में पूछे गए। कोई विकल्प चुनिए: तुरंत दिखेगा कि सही है या नहीं, और सवाल के पीछे के छोटे तथ्य भी।',
-    right: 'सही! ✓', wrong: 'यह नहीं। सही उत्तर है विकल्प', score: 'स्कोर', show: 'उत्तर दिखाओ', ans: 'उत्तर: विकल्प', starred: 'किताब ने इस उत्तर को संदिग्ध बताया है या बाद में बदला है।',
+    right: 'सही! ✓', wrong: 'यह नहीं। सही उत्तर है विकल्प', score: 'स्कोर', show: 'उत्तर दिखाओ', ans: 'उत्तर: विकल्प', starred: 'इस उत्तर पर विवाद रहा है, या आधिकारिक कुंजी ने बाद में इसे बदला।',
     behind: 'इस सवाल के पीछे के तथ्य', cards: 'इन्हें फ़्लिप कार्ड में दोहराइए →', q: 'सवाल', prev: '← पीछे', next: 'आगे →',
-    pPrev: '← पिछले 10', pNext: 'अगले 10 →', back: 'सारे अध्याय', end: 'असली सवाल पूरे हुए 🎉', partA: 'असिस्टेंट प्रोफ़ेसर पेपर', partN: 'NTA UGC-NET/JRF',
+    pPrev: '← पिछले 10', pNext: 'अगले 10 →', back: 'सारे टॉपिक', end: 'असली सवाल पूरे हुए 🎉', partA: 'असिस्टेंट प्रोफ़ेसर पेपर', partN: 'NTA UGC-NET/JRF',
     titleTail: 'पुराने सालों के सवाल उत्तर सहित', descMid: 'पुराने पेपरों के असली MCQ, उत्तर सहित',
   },
 }, lang);
@@ -109,6 +109,7 @@ const schema = [{
       {prev ? <a href={pyqPath(lang, b.slug, 'paper', prev.paper.id, prev.set)} rel="prev"><small>{T.pPrev}</small><span lang={cl}>{prev.paper.t} · {prev.set}</span></a> : <a href={`${pyqPath(lang, b.slug)}#real`}><small>←</small><span>{T.back}</span></a>}
       {next ? <a class="nx" href={pyqPath(lang, b.slug, 'paper', next.paper.id, next.set)} rel="next"><small>{T.pNext}</small><span lang={cl}>{next.paper.t} · {next.set}</span></a> : <a class="nx" href={`${pyqPath(lang, b.slug)}#real`}><small>{T.end}</small><span>{T.back}</span></a>}
     </nav>
+    <p class="pq-note small">{b.qsrc[lang]}</p>
   </div>
 </ExamLayout>
 

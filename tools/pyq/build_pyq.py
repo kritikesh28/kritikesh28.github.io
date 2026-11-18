@@ -9,7 +9,8 @@ fix the Word file, then run this again.
 
 What it keeps: every Q&A row (question, answer, kind, exams, MCQ ids, flag) grouped by syllabus
 group and sub-topic, and every original MCQ (stem, options, correct option, exam tag). It leaves
-out the printed book's explanation boxes (that text belongs to the publisher).
+out the printed book's explanation boxes (that text belongs to the publisher); src/pyq.ts also drops any stray
+"उत्तर:"/"व्याख्या" lines left inside a stem. For Rajasthan, run tools/pyq/regroup_raj.py next.
 """
 import json, re, sys, os, io
 import docx
