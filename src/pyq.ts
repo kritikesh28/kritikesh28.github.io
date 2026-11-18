@@ -7,6 +7,7 @@ import ciMatch from './data/pyq/ci-match.json';
 import quizRaj from './data/pyq/quiz/raj.json';
 import quizNet from './data/pyq/quiz/net.json';
 import rajTopics from './data/pyq/raj-topics.json';
+import reword from './data/pyq/reword.json';
 import type { Lang } from './i18n/config';
 import { localizePath } from './i18n/config';
 
@@ -39,8 +40,15 @@ export type Bank = {
   papers: Paper[];
 };
 
-const R = raj as unknown as Raw;
-const N = net as unknown as Raw;
+// A few cards whose wording stayed too close to a book's explanation sentence (audit of 18 Nov 2026) are reworded
+// here, keyed by bank and row number, until the Word file itself is changed. Guide: docs/19-pyq-practice.md part 6.
+type Reword = Record<string, Partial<Pick<Row, 'q' | 'a' | 'f'>>>;
+function applyReword(raw: Raw, key: 'raj' | 'net'): Raw {
+  const W = (reword as Record<string, Reword>)[key] ?? {};
+  return { ...raw, groups: raw.groups.map((g) => ({ ...g, subs: g.subs.map((s) => ({ ...s, rows: s.rows.map((r) => (W[r.n] ? { ...r, ...W[r.n] } : r)) })) })) };
+}
+const R = applyReword(raj as unknown as Raw, 'raj');
+const N = applyReword(net as unknown as Raw, 'net');
 
 // The source Word file still carries a few answer lines and printed-book explanation notes inside the stems
 // ("उत्तर: (*) व्याख्या : …"). The answer is shown on its own and the publisher's notes are not ours to show, so drop them.
