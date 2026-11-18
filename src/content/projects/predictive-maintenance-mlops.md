@@ -11,6 +11,10 @@ links:
     href: https://huggingface.co/spaces/kritikesh28/machine-failure-predictor
   - label: Model card on Hugging Face
     href: https://huggingface.co/kritikesh28/predictive-maintenance-xgboost
+  - label: Code on GitHub
+    href: https://github.com/kritikesh28/predictive-maintenance-mlops
+  - label: Data on Kaggle
+    href: https://www.kaggle.com/datasets/kritikesh28/predictive-maintenance-sensor-batches-ai4i-2020
 section: ai-ml
 order: 1
 aiAssisted: true
