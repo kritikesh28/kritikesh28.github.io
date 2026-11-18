@@ -97,10 +97,61 @@ function setPage(root: HTMLElement, signal: AbortSignal) {
   addEventListener('storage', refresh, { signal });
 }
 
+// ------------------------------------------------------------------ quick-quiz options
+// Every row should have hand-written wrong options (src/data/pyq/quiz/*.json). When one has none, pick wrong
+// options of the same kind as the answer, never a year for a place or a place for a number.
+const DIGITS = '०१२३४५६७८९';
+const toLatin = (t: string) => t.replace(/[०-९]/g, (d) => String(DIGITS.indexOf(d)));
+const YES = /^(हाँ|हां|नहीं|yes|no)$/i;
+type Kind = 'yn' | 'year' | 'num' | 'list' | 'word';
+function kindOf(a: string): Kind {
+  const t = toLatin(a.trim());
+  if (YES.test(t)) return 'yn';
+  if (/^(सन्\s*)?\d{4}(\s*(ई\.?|AD|CE))?$/i.test(t)) return 'year';
+  if (/^[~≈]?\s*\d[\d,.]*/.test(t)) return 'num';
+  if (/[,،]|\s(और|एवं|तथा|and|&)\s/.test(t)) return 'list';
+  return 'word';
+}
+/** "334 किमी." -> nearby numbers with the same unit and format: "298 किमी.", "362 किमी." … */
+function nearNumbers(a: string, n: number): string[] {
+  const t = toLatin(a);
+  const m = t.match(/\d[\d,]*(\.\d+)?/);
+  if (!m) return [];
+  const raw = m[0], v = Number(raw.replace(/,/g, '')), dec = m[1] ? m[1].length - 1 : 0;
+  const year = kindOf(a) === 'year';
+  const out = new Set<string>();
+  const steps = year ? [3, -5, 8, -11, 14, -2, 6] : [0.12, -0.15, 0.25, -0.3, 0.4, -0.08, 0.5];
+  for (const st of steps) {
+    if (out.size >= n) break;
+    let w = year ? v + st : v * (1 + st);
+    w = dec ? Number(w.toFixed(dec)) : Math.round(w);
+    if (w === v || w <= 0) continue;
+    const txt = dec ? w.toFixed(dec) : raw.includes(',') ? w.toLocaleString('en-IN') : String(w);
+    out.add(t.replace(raw, txt));
+  }
+  return [...out];
+}
+function wrongOptions(item: { a: string; o?: string[] }, all: { a: string }[]): string[] {
+  if (item.o?.length) return item.o.filter((x) => x !== item.a);
+  const k = kindOf(item.a);
+  if (k === 'yn') {
+    const hi = /[ऀ-ॿ]/.test(item.a);
+    return [hi ? (/नहीं/.test(item.a) ? 'हाँ' : 'नहीं') : (/^no$/i.test(item.a) ? 'Yes' : 'No')];
+  }
+  const same = [...new Set(all.map((x) => x.a))].filter((a) => a !== item.a && kindOf(a) === k);
+  if (k === 'num' || k === 'year') {
+    const unit = (x: string) => toLatin(x).replace(/[~≈\d,.\s]/g, '');
+    const near = same.filter((a) => unit(a) === unit(item.a));
+    return shuffle([...near]).slice(0, 3).concat(nearNumbers(item.a, 3)).slice(0, 3);
+  }
+  // words and lists: closest in length first, so a one-word answer gets one-word options
+  const len = item.a.length;
+  return shuffle(same).sort((x, z) => Math.abs(x.length - len) - Math.abs(z.length - len)).slice(0, 3);
+}
+
 function startQuiz(box: HTMLElement, cards: HTMLElement[], bank: string, refresh: () => void) {
   const W = { q: box.dataset.tQ ?? 'Question', right: box.dataset.tRight ?? 'Right!', wrong: box.dataset.tWrong ?? 'Not quite. The answer is', next: box.dataset.tNext ?? 'Next', again: box.dataset.tAgain ?? 'Play 5 more', score: box.dataset.tScore ?? 'You got {s} out of {t}.' };
-  const all = cards.map((c) => ({ key: c.dataset.key!, q: c.dataset.q!, a: c.dataset.a! }));
-  const answers = [...new Set(all.map((x) => x.a))];
+  const all = cards.map((c) => ({ key: c.dataset.key!, q: c.dataset.q!, a: c.dataset.a!, o: c.dataset.o ? c.dataset.o.split('\u241F') : undefined }));
   // the ones not mastered come first
   const k = known(bank);
   const pool = [...shuffle(all.filter((x) => !k[x.key])), ...shuffle(all.filter((x) => k[x.key]))].slice(0, 5);
@@ -116,8 +167,7 @@ function startQuiz(box: HTMLElement, cards: HTMLElement[], bank: string, refresh
       s.append(b); box.append(s); return;
     }
     const item = pool[i];
-    const wrong = shuffle(answers.filter((a) => a !== item.a)).slice(0, 3);
-    const opts = shuffle([item.a, ...wrong]);
+    const opts = shuffle([item.a, ...wrongOptions(item, all)]);
     const card = document.createElement('div'); card.className = 'pq-qcard';
     const top = document.createElement('div'); top.className = 'pq-qtop';
     top.innerHTML = '<span></span><span></span>';

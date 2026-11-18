@@ -30,7 +30,7 @@ Every page exists in English and Hindi (`/hi/...`). The page frame (buttons, men
 **How the three modes work**
 
 - **Flip cards:** tap a card to see the answer; "✓ I knew it" marks it mastered, "↻ Again" un-marks it. 🔥 N× = the fact was asked in N exams (the examiner's favourites). A small tag says where the fact came from (asked, asked the other way round, from the explanation, from an option, likely pair).
-- **Quick quiz:** five questions from the cards on the page, not-yet-mastered first; four choices made from other answers of the same sub-topic. A right answer marks the card mastered.
+- **Quick quiz:** five questions from the cards on the page, not-yet-mastered first. The wrong choices are written by hand for every question in `src/data/pyq/quiz/raj.json` and `net.json` (keyed by row number `n`), always the same kind as the answer (a district for a district, a height for a height, a year for a year), so the question is fair and moderately tough. Yes/no questions show only हाँ/नहीं (Yes/No). If a row has no entry, `src/scripts/pyq.ts` picks same-kind answers instead. When a bank is rebuilt and row numbers change, check these files again. A right answer marks the card mastered.
 - **Real PYQ:** the MCQ as printed. Pick an option, see right or wrong, then "The facts behind this question" (the Q&A rows made from that MCQ, found by the row's MCQ id such as `RB2-5` or `U7B-A26`) with a link to their flip cards.
 
 **Progress** is kept only in the reader's browser (localStorage key `cs-pyq-v1`), never sent anywhere. The sidebar note on PYQ pages says so.
