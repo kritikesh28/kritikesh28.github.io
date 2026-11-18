@@ -2,7 +2,7 @@
 // A deck of PYQ flip cards (8 to a screen) with the quick quiz over the same cards. Used by the PYQ set pages and
 // the syllabus-topic practice pages. Put the page's header in the "hero" slot (it may hold the mastery meter), and
 // anything after the deck in the default slot. The behaviour is in src/scripts/pyq.ts. Guide: docs/19-pyq-practice.md
-import { heat, KIND, SCREEN, type Bank, type Row } from '../../pyq';
+import { heat, KIND, quizOptions, SCREEN, type Bank, type Row } from '../../pyq';
 import { langFromUrl, pick } from '../../i18n/config';
 import '../../styles/pyq.css';
 
@@ -40,7 +40,7 @@ for (let i = 0; i < cards.length; i += SCREEN) screens.push(cards.slice(i, i + S
         {sc.map(({ key, row: r }) => {
           const h = heat(r);
           return (
-            <li class="pq-card" data-card data-key={key} data-q={r.q} data-a={r.a} id={`q${key.replace(':', '-')}`}>
+            <li class="pq-card" data-card data-key={key} data-q={r.q} data-a={r.a} data-o={quizOptions(b, r)?.join('\u241F')} id={`q${key.replace(':', '-')}`}>
               <div class="in">
                 <div class="face front" role="button" tabindex="0" data-tap={T.tap} aria-label={`${r.q} (${T.tap})`}>
                   <span class="num">#{r.n}</span>

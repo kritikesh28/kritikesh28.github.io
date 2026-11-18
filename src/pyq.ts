@@ -4,6 +4,8 @@
 import raj from './data/pyq/raj.json';
 import net from './data/pyq/net.json';
 import ciMatch from './data/pyq/ci-match.json';
+import quizRaj from './data/pyq/quiz/raj.json';
+import quizNet from './data/pyq/quiz/net.json';
 import type { Lang } from './i18n/config';
 import { localizePath } from './i18n/config';
 
@@ -68,6 +70,12 @@ export const BANKS: Bank[] = [
     groups: N.groups, papers: N.papers,
   },
 ];
+
+// Quick-quiz wrong options, written by hand for every row (same kind as the answer: a district for a district, a
+// height for a height) so the quiz is fair and moderately tough. Keyed by row number. Rows without an entry get
+// options picked by the quiz script from same-kind answers. Edit these files directly. Guide: docs/19-pyq-practice.md
+const QUIZ: Record<Bank['key'], Record<string, string[]>> = { raj: quizRaj as Record<string, string[]>, net: quizNet as Record<string, string[]> };
+export const quizOptions = (b: Bank, r: Row): string[] | undefined => QUIZ[b.key][String(r.n)];
 
 export const PYQ = '/exam-prep/pyq';
 export const bankBy = (slug: string) => BANKS.find((b) => b.slug === slug)!;
