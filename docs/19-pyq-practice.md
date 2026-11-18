@@ -10,7 +10,7 @@ The PYQ practice section lives at **curioussparoows.com/exam-prep/pyq/**. It put
 
 | Bank | Address | Questions in | Flip cards (Q&A rows) | Real MCQs |
 | --- | --- | --- | --- | --- |
-| Rajasthan Geography (RPSC/RSSB) | /exam-prep/pyq/rajasthan-geography/ | Hindi | 4,647 from book chapters 1–4 (rev4 file) | all 544 of chapters 1–5 |
+| Rajasthan Geography (RPSC/RSSB) | /exam-prep/pyq/rajasthan-geography/ | Hindi | 4,647 from book chapters 1–4 (rev4 file) | all 544, sorted into 15 official syllabus topics (G1.1–G2.6), not the book's chapters |
 | UGC-NET Geography | /exam-prep/pyq/ugc-net-geography/ | English | 2,207 from the Political Geography chapter (U7B), grouped by the official 10 units | 1,406 from 9 chapters (U5A–U7B) |
 
 The Q&A of Rajasthan chapter 5 (Climate) and of the other NET chapters comes later: re-run the builder (part 4) when the new Word file is ready and the pages appear by themselves.
@@ -20,9 +20,9 @@ The Q&A of Rajasthan chapter 5 (Climate) and of the other NET chapters comes lat
 | Page | Address | File |
 | --- | --- | --- |
 | Hub: all banks | /exam-prep/pyq/ | `src/pages/[...lang]/exam-prep/pyq/index.astro` |
-| One bank: topic map with "mastered" meters, list of real-question chapters | /exam-prep/pyq/BANK/ | `.../pyq/[bank]/index.astro` |
+| One bank: topic map with "mastered" meters, list of real-question topics | /exam-prep/pyq/BANK/ | `.../pyq/[bank]/index.astro` |
 | One page of flip cards (about 40) with Flip cards / Quick quiz tabs | /exam-prep/pyq/BANK/SUBTOPIC/N/ | `.../pyq/[bank]/[sub]/[set].astro` |
-| Ten real exam questions, one to a screen | /exam-prep/pyq/BANK/paper/CHAPTER/N/ | `.../pyq/[bank]/paper/[paper]/[set].astro` |
+| Ten real exam questions, one to a screen | /exam-prep/pyq/BANK/paper/TOPIC/N/ (Rajasthan: `g1-5`; NET: `u7b`) | `.../pyq/[bank]/paper/[paper]/[set].astro` |
 | Practice page of one syllabus topic: up to 40 matching flip cards with the quiz, "notes coming soon" note, links to the full decks and back to the topic | /exam-prep/pyq/topic/CI-ID/ (for example `raj-34-5`) | `.../pyq/topic/[id].astro` |
 
 Every page exists in English and Hindi (`/hi/...`). The page frame (buttons, menus, help text) follows the reader's language; the questions stay in the language they were asked in (Hindi for Rajasthan, English for NET) and are marked with `lang`. Translating the questions themselves is a later job.
@@ -68,6 +68,7 @@ python3 tools/pyq/link_ci.py
    python3 tools/pyq/build_pyq.py net "NET Geo PYQ QA - Topic Wise.docx" "NET Geography_ALL_Combined.docx"
    ```
    It prints how many rows and MCQs it found. Rajasthan should show all 544 MCQs.
+   For Rajasthan, then run `python3 tools/pyq/regroup_raj.py`: it sorts the 544 real questions into the syllabus topics (from the Q&A rows made from each one; climate questions by keywords; a short hand list at the top) and writes `src/data/pyq/raj-topics.json`. It prints how many went where.
    Then run `python3 tools/pyq/link_ci.py` so the syllabus links follow the new cards.
 3. Build and look (guide [07](07-run-on-your-computer.md)), then open a pull request.
 
@@ -75,7 +76,7 @@ python3 tools/pyq/link_ci.py
 
 **What it expects in the MCQ file:** Rajasthan: Heading 1 `अध्याय N` then the chapter title, questions `प्रश्न N. …`, options `(1) … (2) …`, `उत्तर: (N)`. NET: Heading 1 `Unit-7 B …`, Heading 2 for the Assistant Professor / NTA parts, questions `N.<tab>…`, options as lines or a 2×2 table, `Ans: (N)` or `Ans (B)` then the exam in brackets.
 
-**Left out on purpose:** the book's printed explanation boxes (that text belongs to the publisher). The Q&A rows already carry the facts from them, in Kritikesh's words. NET questions whose answer is printed as `(*)` or missing are skipped; questions whose options could not be read cleanly show a "Show answer" fold instead of buttons (about 160 of 1,406).
+**Left out on purpose:** the book's printed explanation boxes (that text belongs to the publisher). `src/pyq.ts` also drops any `उत्तर:` / `व्याख्या` / `Explanation` line that slipped into a question stem. The Q&A rows already carry the facts from them, in Kritikesh's words. NET questions whose answer is printed as `(*)` or missing are skipped; questions whose options could not be read cleanly show a "Show answer" fold instead of buttons (about 160 of 1,406).
 
 ## 5. Add a new bank (for example Indian History PYQs)
 
@@ -84,3 +85,10 @@ python3 tools/pyq/link_ci.py
 3. Add its Curriculum Index topics to `CI_LINKS`. Everything else (pages, menu, sidebar, search, llms.txt) picks it up by itself.
 
 _Last updated: 15 November 2026 (section built)._
+
+## 6. Copyright rules for this section (audit of 18 November 2026)
+
+- **The questions** are RPSC, RSSB and NTA exam questions. Every bank page names them as the question source, and every flip-card and real-question page carries one line saying so (`qsrc` in `src/pyq.ts`). The two books (Disha Publication, Dr. Rajeev; Shree Education & Publication, Dimpesh Saini and Swati Verma) are thanked as the help used to collect them.
+- **Order:** Rajasthan real questions follow the official syllabus topics, not the book's chapters (`tools/pyq/regroup_raj.py`). NET real questions follow the official UGC-NET units. The old chapter addresses (`/paper/ch1/1/` … `/paper/ch5/14/`) redirect to the new topic page (`.../pyq/rajasthan-geography/paper/[old]/[set].astro`).
+- **Never copy** the books' explanation text, tables or boxes. Facts are free to use; the book's sentences are not. New solutions and notes are written fresh.
+- **Audit:** a scan of every flip card against the books' explanation text found 229 of about 8,700 cards that share six or more words in a row with a book sentence. 67 of these are book titles, quotes or standard definitions (fine). 41 share eight or more words and should be reworded; the rest need a light touch. The list is `PYQ_audit/flagged-rows.csv` in the project files. Rewording is done in the Word file, then rebuild (part 4).

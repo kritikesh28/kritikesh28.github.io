@@ -1,0 +1,20 @@
+---
+// Old addresses from when the Rajasthan real exam questions were sorted by the source book's chapters
+// (/paper/ch1/1/ … /paper/ch5/14/). Each one now sends the reader to the syllabus topic that holds the
+// first question of that old page. Guide: docs/19-pyq-practice.md
+import { BANKS, MCQ_SET, mcqSets, pyqPath } from '../../../../../../../pyq';
+import { langFromUrl, withLangs } from '../../../../../../../i18n/config';
+
+export function getStaticPaths() {
+  // old chapter id, chapter number, how many questions it had
+  const OLD: [string, number, number][] = [['ch1', 1, 20], ['ch2', 2, 90], ['ch3', 3, 183], ['ch4', 4, 111], ['ch5', 5, 140]];
+  return withLangs(OLD.flatMap(([id, no, n]) => Array.from({ length: Math.ceil(n / MCQ_SET) }, (_, i) => ({ params: { old: id, set: String(i + 1) }, props: { no, first: i * MCQ_SET + 1 } }))));
+}
+const lang = langFromUrl(Astro.url);
+const { no, first } = Astro.props as { no: number; first: number };
+const b = BANKS.find((x) => x.key === 'raj')!;
+const want = `RB${no}-${first}`;
+const hit = mcqSets(b).find((s) => s.m.some((m) => m.r === want));
+const to = hit ? `${pyqPath(lang, b.slug, 'paper', hit.paper.id, hit.set)}#m${hit.m.find((m) => m.r === want)!.n}` : `${pyqPath(lang, b.slug)}#real`;
+return Astro.redirect(to, 301);
+---
