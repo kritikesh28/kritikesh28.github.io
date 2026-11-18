@@ -15,6 +15,7 @@ import Wordmark from '../components/Wordmark.astro';
 import LibraryMega from '../components/library/LibraryMega.astro';
 import NavMega from '../components/NavMega.astro';
 import SparrowSeal from '../components/SparrowSeal.astro';
+import CreditNote from '../components/CreditNote.astro';
 import { LANGS, LOCALES, DEFAULT_LANG, langFromUrl, localizePath, stripLang, type Lang } from '../i18n/config';
 import { useT } from '../i18n/ui';
 import { ClientRouter } from 'astro:transitions';
@@ -145,6 +146,8 @@ const MENUS: Record<string, string> = { '/library/': 'lib-mega', '/exam-prep/': 
     <div class="sig-wm" aria-hidden="true"><LogoMark height={400} /></div>
     <SparrowSeal />
 
+    {/* the grateful credit note at the end of every page: src/components/CreditNote.astro */}
+    <CreditNote />
     <footer class="site-footer">
       <div class="wrap foot">
         <div class="foot-brand">
@@ -169,6 +172,7 @@ const MENUS: Record<string, string> = { '/library/': 'lib-mega', '/exam-prep/': 
               <li><a href={L('/start/')}>{t('footer.start')}</a></li>
               <li><a href={L('/library/the-universe/')}>{t('footer.universe')}</a></li>
               <li><a href={L('/about/my-story/')}>{t('footer.story')}</a></li>
+              <li><a href={L('/aspirants/')} lang="hi">मन की सच्ची बातें</a></li>
               <li><a href={L('/search/')}>{t('footer.search')}</a></li>
               <li><a href={L('/now/')}>{t('footer.now')}</a></li>
             </ul>
@@ -183,7 +187,7 @@ const MENUS: Record<string, string> = { '/library/': 'lib-mega', '/exam-prep/': 
       </div>
       <div class="wrap foot-base">
         <p>© {new Date().getFullYear()} {t('site.name')}</p>
-        <p><a href={L('/privacy/')}>{t('footer.privacy')}</a><a href="#top" class="top">{t('footer.top')} <span aria-hidden="true">↑</span></a></p>
+        <p><a href={L('/credits/')}>{t('footer.credits')}</a><a href={L('/privacy/')}>{t('footer.privacy')}</a><a href="#top" class="top">{t('footer.top')} <span aria-hidden="true">↑</span></a></p>
       </div>
     </footer>
 
@@ -369,7 +373,7 @@ const MENUS: Record<string, string> = { '/library/': 'lib-mega', '/exam-prep/': 
   @media print { .sig-wm { display: none; } }
   /* footer: the poster's night sky, quiet type, three short columns */
   .site-footer {
-    margin-top: 4rem; color: rgb(246 231 200 / 0.72);
+    margin-top: 0; /* the credit note above it (CreditNote.astro) keeps the space */ color: rgb(246 231 200 / 0.72);
     background: radial-gradient(120% 140% at 85% 0%, #2a1f4d 0%, #17132e 55%, #120f24 100%);
     border-top: 1px solid rgb(242 215 166 / 0.16);
   }
@@ -390,7 +394,7 @@ const MENUS: Record<string, string> = { '/library/': 'lib-mega', '/exam-prep/': 
     display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; align-items: center;
     border-top: 1px solid rgb(242 215 166 / 0.12); padding-block: 1.3rem 1.6rem; font-size: 0.85rem; color: rgb(246 231 200 / 0.55);
   }
-  .foot-base p { margin: 0; display: flex; gap: 1.6rem; }
+  .foot-base p { margin: 0; display: flex; flex-wrap: wrap; gap: 0.6rem 1.6rem; }
   .foot-base a { font-size: 0.85rem; }
   @media (max-width: 760px) {
     .foot { grid-template-columns: 1fr; gap: 2.4rem; padding-block-start: 2.8rem; }

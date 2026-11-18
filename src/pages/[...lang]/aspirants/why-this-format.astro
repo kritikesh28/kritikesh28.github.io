@@ -1,0 +1,56 @@
+---
+// "Why this format?": why the same book content is shown on this site as flip cards, quizzes and short talks.
+// Questions and answers: WHY in src/data/aspirants/talks.ts. Guide: docs/20-aspirants-and-credits.md
+import Base from '../../../layouts/Base.astro';
+import TalkBook from '../../../components/aspirants/TalkBook.astro';
+import { WHY, allTalks } from '../../../data/aspirants/talks';
+import { langFromUrl, langParams, localizePath, pick } from '../../../i18n/config';
+
+export const getStaticPaths = () => langParams().map((params) => ({ params }));
+const lang = langFromUrl(Astro.url);
+const L = (p: string) => localizePath(p, lang);
+const flat = allTalks(WHY);
+
+const T = pick({
+  en: {
+    title: 'Why this format, when the books have the same content?',
+    description: 'Why Curious Sparoows shows the same exam content as flip cards, quizzes and short talks: the bored mind, habituation, edutainment, own words, AI help and free knowledge.',
+    eyebrow: 'मन की सच्ची बातें · the aspirants’ library', h1: 'Why this format, when the books already have it all?',
+    lede: 'The content on this site is not mine; it is the shared knowledge of authors, teachers and students. What I’m trying is only a new way to present it, so that a tired mind stays awake a little longer. Here is why, in my own words.',
+    back: '← Back to the talks', credits: 'Credits and sources →',
+  },
+  hi: {
+    title: 'जब किताबों में वही सामग्री है, तो यह ढंग क्यों?',
+    description: 'Curious Sparoows वही परीक्षा-सामग्री फ़्लिप कार्ड, क्विज़ और छोटी बातचीत के रूप में क्यों दिखाता है: ऊबा हुआ मन, आदत, एजुटेनमेंट, अपने शब्द, AI की मदद और मुफ़्त ज्ञान।',
+    eyebrow: 'मन की सच्ची बातें · अभ्यर्थियों की लाइब्रेरी', h1: 'जब किताबों में सब पहले से है, तो यह ढंग क्यों?',
+    lede: 'इस साइट की सामग्री मेरी नहीं; यह लेखकों, शिक्षकों और विद्यार्थियों का साझा ज्ञान है। मैं बस उसे पेश करने का एक नया ढंग आज़मा रहा हूँ, ताकि थका हुआ मन थोड़ी देर और जागा रहे। क्यों, यह मेरे अपने शब्दों में।',
+    back: '← बातों पर लौटिए', credits: 'आभार और स्रोत →',
+  },
+}, lang);
+
+const schema = [{
+  '@type': 'FAQPage',
+  url: new URL(L('/aspirants/why-this-format/'), Astro.site).href,
+  mainEntity: flat.map((q) => ({ '@type': 'Question', name: lang === 'hi' ? q.q.hi : q.q.en, acceptedAnswer: { '@type': 'Answer', text: (lang === 'hi' ? q.a.hi : q.a.en).join(' ') } })),
+}];
+---
+
+<Base title={T.title} description={T.description} {schema}>
+  <article class="wrap why">
+    <header class="why-head">
+      <p class="eyebrow">{T.eyebrow}</p>
+      <h1>{T.h1}</h1>
+      <p class="lede">{T.lede}</p>
+    </header>
+    <TalkBook topics={WHY} share={L('/aspirants/#share')} />
+    <p class="links"><a class="btn ghost" href={L('/aspirants/')}>{T.back}</a> <a class="btn ghost" href={L('/credits/')}>{T.credits}</a></p>
+  </article>
+</Base>
+
+<style>
+  .why { max-width: 1240px; margin-top: 1.5rem; }
+  .why-head { max-width: 46rem; margin: 0 auto 1rem; text-align: center; }
+  .why-head h1 { margin: 0.2rem 0 0.8rem; }
+  .lede { font-family: var(--font-serif); font-size: 1.12rem; line-height: 1.7; color: var(--ink-soft); }
+  .links { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin: 2.4rem 0 1rem; }
+</style>
