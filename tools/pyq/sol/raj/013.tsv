@@ -1,0 +1,150 @@
+RB4-33	en	w	From highest to lowest: Ser (1,597 m), Achalgarh (1,380 m), Khoh (near Jaipur) and Taragarh (about 873 m, Ajmer).
+RB4-33	en	o	Right: Ser, Achalgarh, Khoh, Taragarh ¦ Ascending, not descending ¦ Wrong order ¦ Ser is the highest, not the lowest
+RB4-33	en	t	Abu's peaks come first, then Jaipur's, then Ajmer's.
+RB4-33	hi	w	ऊँचे से नीचे: सेर (1,597 मी.), अचलगढ़ (1,380 मी.), खोह (जयपुर के पास) और तारागढ़ (लगभग 873 मी., अजमेर)।
+RB4-33	hi	o	सही: सेर, अचलगढ़, खोह, तारागढ़ ¦ यह बढ़ता क्रम है, घटता नहीं ¦ गलत क्रम ¦ सेर सबसे ऊँची है, सबसे नीची नहीं
+RB4-33	hi	t	पहले आबू की चोटियाँ, फिर जयपुर की, फिर अजमेर की।
+RB4-34	en	w	In decreasing order: Guru Shikhar (1,722 m), Ser (1,597 m), Dilwara (about 1,442 m), Achalgarh (1,380 m) and Kumbhalgarh (1,224 m).
+RB4-34	en	o	Right: 1, 4, 5, 2, 3 ¦ Ser and Dilwara are higher than Achalgarh ¦ Ascending, not decreasing ¦ Dilwara is higher than Achalgarh and Kumbhalgarh
+RB4-34	en	t	Abu's ladder: Guru Shikhar, Ser, Dilwara, Achalgarh.
+RB4-34	hi	w	घटते क्रम में: गुरु शिखर (1,722 मी.), सेर (1,597 मी.), दिलवाड़ा (लगभग 1,442 मी.), अचलगढ़ (1,380 मी.) और कुंभलगढ़ (1,224 मी.)।
+RB4-34	hi	o	सही: 1, 4, 5, 2, 3 ¦ सेर और दिलवाड़ा अचलगढ़ से ऊँचे हैं ¦ यह बढ़ता क्रम है ¦ दिलवाड़ा अचलगढ़ और कुंभलगढ़ से ऊँचा है
+RB4-34	hi	t	आबू की सीढ़ी: गुरु शिखर, सेर, दिलवाड़ा, अचलगढ़।
+RB4-35	en	w	In ascending order: Bairath (a low northern peak near Jaipur), Kumbhalgarh (1,224 m), Achalgarh (1,380 m) and Ser (1,597 m).
+RB4-35	en	o	Achalgarh is higher than Kumbhalgarh ¦ Right: 1, 3, 2, 4 ¦ Bairath is lower than Kumbhalgarh ¦ Descending, not ascending
+RB4-35	en	t	Northern peaks are low; southern peaks are high.
+RB4-35	hi	w	बढ़ते क्रम में: बैराठ (जयपुर के पास उत्तर की नीची चोटी), कुंभलगढ़ (1,224 मी.), अचलगढ़ (1,380 मी.) और सेर (1,597 मी.)।
+RB4-35	hi	o	अचलगढ़ कुंभलगढ़ से ऊँचा है ¦ सही: 1, 3, 2, 4 ¦ बैराठ कुंभलगढ़ से नीचा है ¦ यह घटता क्रम है
+RB4-35	hi	t	उत्तर की चोटियाँ नीची, दक्षिण की ऊँची।
+RB4-36	en	w	Barwara mountain is not in Ajmer, so that pair is wrong; it is counted with the northern Aravallis of the Jaipur area. Bilali is in Alwar, Dora in Jalore and Nagpani in Udaipur.
+RB4-36	en	o	Correct ¦ Right: wrongly matched ¦ Correct ¦ Correct
+RB4-36	en	t	Ajmer's peaks are Taragarh and Nag Pahar; Barwara is not one of them.
+RB4-36	hi	w	बरवाड़ा पर्वत अजमेर में नहीं है, इसलिए यह जोड़ी गलत है; इसे जयपुर क्षेत्र की उत्तरी अरावली में गिना जाता है। बिलाली अलवर में, डोरा जालोर में और नागपानी उदयपुर में है।
+RB4-36	hi	o	सही ¦ सही उत्तर: गलत मिलान ¦ सही ¦ सही
+RB4-36	hi	t	अजमेर की चोटियाँ तारागढ़ और नाग पहाड़ हैं; बरवाड़ा नहीं।
+RB4-37	en	w	This match question's lists were printed as a table in the original paper. The keyed code is A-2, B-1, C-4, D-3; check the pairs in the "see original" view.
+RB4-37	en	o	Right: A-2, B-1, C-4, D-3 ¦ Wrong order ¦ Wrong order ¦ Wrong order
+RB4-37	en	t	Fix the pair you are surest of first, then strike out the codes that disagree.
+RB4-37	hi	w	इस मिलान प्रश्न की सूचियाँ मूल पेपर में तालिका में छपी थीं। कुंजी का कोड A-2, B-1, C-4, D-3 है; "मूल देखें" में जोड़ियाँ जाँचिए।
+RB4-37	hi	o	सही: A-2, B-1, C-4, D-3 ¦ गलत क्रम ¦ गलत क्रम ¦ गलत क्रम
+RB4-37	hi	t	पहले सबसे पक्की जोड़ी तय करें, फिर उससे असहमत कोड काटें।
+RB4-38	en	w	Ser is in Sirohi (A-2), Jaigarh in Jaipur (B-1), Raghunathgarh in Sikar (C-4) and Kumbhalgarh in Rajsamand (D-3).
+RB4-38	en	o	Wrong order ¦ Wrong order ¦ Right: A-2, B-1, C-4, D-3 ¦ Wrong order
+RB4-38	en	t	Ser–Sirohi and Raghunathgarh–Sikar: the two to fix first.
+RB4-38	hi	w	सेर सिरोही में (A-2), जयगढ़ जयपुर में (B-1), रघुनाथगढ़ सीकर में (C-4) और कुंभलगढ़ राजसमंद में (D-3) है।
+RB4-38	hi	o	गलत क्रम ¦ गलत क्रम ¦ सही: A-2, B-1, C-4, D-3 ¦ गलत क्रम
+RB4-38	hi	t	सेर-सिरोही और रघुनाथगढ़-सीकर: पहले ये दो तय करें।
+RB4-39	en	w	This match question's lists were printed as a table in the original paper. The keyed code is A-4, B-3, C-2, D-1; check the pairs in the "see original" view.
+RB4-39	en	o	Right: A-4, B-3, C-2, D-1 ¦ Wrong order ¦ Wrong order ¦ Wrong order
+RB4-39	en	t	Fix the pair you are surest of first, then strike out the codes that disagree.
+RB4-39	hi	w	इस मिलान प्रश्न की सूचियाँ मूल पेपर में तालिका में छपी थीं। कुंजी का कोड A-4, B-3, C-2, D-1 है; "मूल देखें" में जोड़ियाँ जाँचिए।
+RB4-39	hi	o	सही: A-4, B-3, C-2, D-1 ¦ गलत क्रम ¦ गलत क्रम ¦ गलत क्रम
+RB4-39	hi	t	पहले सबसे पक्की जोड़ी तय करें, फिर उससे असहमत कोड काटें।
+RB4-40	en	w	Roja Bhakar (about 730 m) is one of the Jalore hills, with Israna Bhakar, Jharola Pahar and Dora mountain.
+RB4-40	en	o	Right: Jalore ¦ Kota is on the Hadoti plateau ¦ Alwar has the northern Aravallis ¦ Jaipur has the northern Aravallis
+RB4-40	en	t	Bhakar = rugged hill, a Jalore–Sirohi word.
+RB4-40	hi	w	रोज़ा भाकर (लगभग 730 मी.) जालोर की पहाड़ियों में से है, इसराना भाकर, झारोला पहाड़ और डोरा पर्वत के साथ।
+RB4-40	hi	o	सही: जालोर ¦ कोटा हाड़ौती पठार पर है ¦ अलवर में उत्तरी अरावली है ¦ जयपुर में उत्तरी अरावली है
+RB4-40	hi	t	भाकर = ऊबड़-खाबड़ पहाड़ी, जालोर-सिरोही का शब्द।
+RB4-41	en	w	In descending order: Jarga (about 1,431 m), Raghunathgarh (1,055 m), Sajjangarh (about 938 m) and Lilagarh (about 874 m).
+RB4-41	en	o	Ascending, not descending ¦ Right: Jarga – Raghunathgarh – Sajjangarh – Lilagarh ¦ Raghunathgarh is higher than Lilagarh and Sajjangarh ¦ Jarga is higher than Raghunathgarh
+RB4-41	en	t	Start with Jarga, the highest of the four.
+RB4-41	hi	w	घटते क्रम में: जरगा (लगभग 1,431 मी.), रघुनाथगढ़ (1,055 मी.), सज्जनगढ़ (लगभग 938 मी.) और लीलागढ़ (लगभग 874 मी.)।
+RB4-41	hi	o	यह बढ़ता क्रम है ¦ सही: जरगा - रघुनाथगढ़ - सज्जनगढ़ - लीलागढ़ ¦ रघुनाथगढ़ लीलागढ़ और सज्जनगढ़ से ऊँचा है ¦ जरगा रघुनाथगढ़ से ऊँचा है
+RB4-41	hi	t	चारों में सबसे ऊँचे जरगा से शुरू करें।
+RB4-42	en	w	In ascending order: Taragarh (about 873 m), Kamalnath (about 1,001 m), Raghunathgarh (1,055 m) and Achalgarh (1,380 m).
+RB4-42	en	o	Kamalnath is higher than Taragarh ¦ Achalgarh is the highest, so it comes last ¦ Descending-like order ¦ Right: 1, 3, 4, 2
+RB4-42	en	t	Kamalnath (1,001) and Raghunathgarh (1,055) are close: Raghunathgarh is a little higher.
+RB4-42	hi	w	बढ़ते क्रम में: तारागढ़ (लगभग 873 मी.), कमलनाथ (लगभग 1,001 मी.), रघुनाथगढ़ (1,055 मी.) और अचलगढ़ (1,380 मी.)।
+RB4-42	hi	o	कमलनाथ तारागढ़ से ऊँचा है ¦ अचलगढ़ सबसे ऊँचा है, इसलिए अंत में आएगा ¦ घटते जैसा क्रम ¦ सही: 1, 3, 4, 2
+RB4-42	hi	t	कमलनाथ (1,001) और रघुनाथगढ़ (1,055) पास-पास हैं: रघुनाथगढ़ थोड़ा ऊँचा।
+RB4-43	en	w	In descending order, as keyed: Jarga (about 1,431 m), Kumbhalgarh (1,224 m), Dhoniya Dungar and Kamalnath (about 1,001 m).
+RB4-43	en	o	Right: 2, 1, 3, 4 ¦ Jarga is higher than Kumbhalgarh ¦ Kamalnath is placed lowest in the key ¦ Kamalnath is not the highest
+RB4-43	en	t	Jarga leads every list it appears in, unless Guru Shikhar or Ser is there.
+RB4-43	hi	w	घटते क्रम में, कुंजी के अनुसार: जरगा (लगभग 1,431 मी.), कुंभलगढ़ (1,224 मी.), धोनिया डूंगर और कमलनाथ (लगभग 1,001 मी.)।
+RB4-43	hi	o	सही: 2, 1, 3, 4 ¦ जरगा कुंभलगढ़ से ऊँचा है ¦ कुंजी में कमलनाथ सबसे नीचे है ¦ कमलनाथ सबसे ऊँचा नहीं
+RB4-43	hi	t	गुरु शिखर या सेर न हों तो जरगा हर सूची में सबसे ऊपर।
+RB4-44	en	w	The keyed mismatch is Bhojgarh – Sikar, because Bhojgarh is in Jhunjhunu. The answer is starred because Babai is also in Jhunjhunu, not Jaipur, so option 2 is a mismatch too and two options look wrong.
+RB4-44	en	o	Correct ¦ Also arguably wrong: Babai is in Jhunjhunu ¦ Correct ¦ Right (as keyed): Bhojgarh is in Jhunjhunu
+RB4-44	en	t	Babai and Bhojgarh are both Jhunjhunu (Khetri area) peaks.
+RB4-44	hi	w	कुंजी में गलत जोड़ी भोजगढ़ - सीकर है, क्योंकि भोजगढ़ झुंझुनूं में है। उत्तर पर तारा है क्योंकि बबाई भी झुंझुनूं में है, जयपुर में नहीं, इसलिए विकल्प 2 भी गलत जोड़ी है और दो विकल्प गलत लगते हैं।
+RB4-44	hi	o	सही ¦ यह भी गलत माना जा सकता है: बबाई झुंझुनूं में है ¦ सही ¦ सही (कुंजी अनुसार): भोजगढ़ झुंझुनूं में है
+RB4-44	hi	t	बबाई और भोजगढ़ दोनों झुंझुनूं (खेतड़ी क्षेत्र) की चोटियाँ हैं।
+RB4-45	en	w	Ser and Dilwara are on Mount Abu and Kamalnath is in Udaipur, all in the southern Aravallis. Bilali is in Alwar, in the north.
+RB4-45	en	o	Southern, Abu ¦ Southern, Abu ¦ Southern, Udaipur ¦ Right: Bilali is in the north
+RB4-45	en	t	Bilali, Bhangarh, Sirawas: Alwar's trio in the north.
+RB4-45	hi	w	सेर और दिलवाड़ा माउंट आबू पर हैं और कमलनाथ उदयपुर में, तीनों दक्षिणी अरावली में। बिलाली अलवर में, उत्तर में है।
+RB4-45	hi	o	दक्षिणी, आबू ¦ दक्षिणी, आबू ¦ दक्षिणी, उदयपुर ¦ सही: बिलाली उत्तर में है
+RB4-45	hi	t	बिलाली, भानगढ़, सिरावास: उत्तर में अलवर की तिकड़ी।
+RB4-46	en	w	As keyed, the descending order is Nag Pahar, Bhairach, Babai and Bairath. These are low northern and central peaks, all within a few hundred metres of each other, so the order is a pure memory item.
+RB4-46	en	o	Wrong order ¦ Right: Nag Pahar, Bhairach, Babai, Bairath ¦ Wrong order ¦ Wrong order
+RB4-46	en	t	Nag Pahar tops this group; Bairath is the lowest.
+RB4-46	hi	w	कुंजी के अनुसार घटता क्रम है: नाग पहाड़, भैराच, बबाई और बैराठ। ये उत्तर और मध्य की नीची चोटियाँ हैं, ऊँचाई में बहुत पास-पास, इसलिए यह क्रम केवल याद करने की बात है।
+RB4-46	hi	o	गलत क्रम ¦ सही: नाग पहाड़, भैराच, बबाई, बैराठ ¦ गलत क्रम ¦ गलत क्रम
+RB4-46	hi	t	इस समूह में नाग पहाड़ सबसे ऊपर, बैराठ सबसे नीचे।
+RB4-47	en	w	In descending order: Sayra (Udaipur), Taragarh (about 873 m), Dora mountain (about 869 m) and Nag Pahar.
+RB4-47	en	o	Sayra is higher than Taragarh ¦ Dora is higher than Nag Pahar ¦ Right: Sayra – Taragarh – Dora – Nag Pahar ¦ Taragarh is higher than Nag Pahar
+RB4-47	en	t	Taragarh 873 just beats Dora 869.
+RB4-47	hi	w	घटते क्रम में: सायरा (उदयपुर), तारागढ़ (लगभग 873 मी.), डोरा पर्वत (लगभग 869 मी.) और नाग पहाड़।
+RB4-47	hi	o	सायरा तारागढ़ से ऊँचा है ¦ डोरा नाग पहाड़ से ऊँचा है ¦ सही: सायरा - तारागढ़ - डोरा - नाग पहाड़ ¦ तारागढ़ नाग पहाड़ से ऊँचा है
+RB4-47	hi	t	तारागढ़ 873, डोरा 869 से ज़रा ऊपर।
+RB4-48	en	w	In descending order: Ser (1,597 m), Delwara (about 1,442 m), Jarga (about 1,431 m) and Achalgarh (1,380 m).
+RB4-48	en	o	Ascending, not descending ¦ Right: Ser, Delwara, Jarga, Achalgarh ¦ Ser is the highest ¦ Ser is higher than Jarga
+RB4-48	en	t	Delwara (1,442) edges out Jarga (1,431) by about 11 m.
+RB4-48	hi	w	घटते क्रम में: सेर (1,597 मी.), देलवाड़ा (लगभग 1,442 मी.), जरगा (लगभग 1,431 मी.) और अचलगढ़ (1,380 मी.)।
+RB4-48	hi	o	यह बढ़ता क्रम है ¦ सही: सेर, देलवाड़ा, जरगा, अचलगढ़ ¦ सेर सबसे ऊँचा है ¦ सेर जरगा से ऊँचा है
+RB4-48	hi	t	देलवाड़ा (1,442) जरगा (1,431) से लगभग 11 मी. ऊपर।
+RB4-49	en	w	As keyed, the descending order is Todgarh, Khoh, Nag Pahar and Bhairach. Todgarh (in the Ajmer–Rajsamand–Pali area) stands highest of these.
+RB4-49	en	o	Todgarh is higher than Khoh ¦ Right: Todgarh, Khoh, Nag Pahar, Bhairach ¦ Wrong order ¦ Khoh is higher than Nag Pahar
+RB4-49	en	t	T-K-N-B: Todgarh, Khoh, Nag, Bhairach.
+RB4-49	hi	w	कुंजी के अनुसार घटता क्रम है: टॉडगढ़, खोह, नाग पहाड़ और भैराच। टॉडगढ़ (अजमेर-राजसमंद-पाली क्षेत्र) इनमें सबसे ऊँचा है।
+RB4-49	hi	o	टॉडगढ़ खोह से ऊँचा है ¦ सही: टॉडगढ़, खोह, नाग पहाड़, भैराच ¦ गलत क्रम ¦ खोह नाग पहाड़ से ऊँचा है
+RB4-49	hi	t	टॉ-खो-ना-भै: टॉडगढ़, खोह, नाग, भैराच।
+RB4-50	en	w	Jharola is in Jalore (A-2), Barwara in Jaipur (B-1), Bhangarh in Alwar (C-4) and Raghunathgarh in Sikar (D-3).
+RB4-50	en	o	Right: A-2, B-1, C-4, D-3 ¦ Wrong order ¦ Wrong order ¦ Wrong order
+RB4-50	en	t	Bhangarh–Alwar and Raghunathgarh–Sikar are the sure pairs.
+RB4-50	hi	w	झारोला जालोर में (A-2), बरवाड़ा जयपुर में (B-1), भानगढ़ अलवर में (C-4) और रघुनाथगढ़ सीकर में (D-3) है।
+RB4-50	hi	o	सही: A-2, B-1, C-4, D-3 ¦ गलत क्रम ¦ गलत क्रम ¦ गलत क्रम
+RB4-50	hi	t	भानगढ़-अलवर और रघुनाथगढ़-सीकर पक्की जोड़ियाँ हैं।
+RB4-51	en	w	This match question's lists were printed as a table in the original paper. The keyed code is A-2, B-3, C-4, D-1; check the pairs in the "see original" view.
+RB4-51	en	o	Right: A-2, B-3, C-4, D-1 ¦ Wrong order ¦ Wrong order ¦ Wrong order
+RB4-51	en	t	Fix the pair you are surest of first, then strike out the codes that disagree.
+RB4-51	hi	w	इस मिलान प्रश्न की सूचियाँ मूल पेपर में तालिका में छपी थीं। कुंजी का कोड A-2, B-3, C-4, D-1 है; "मूल देखें" में जोड़ियाँ जाँचिए।
+RB4-51	hi	o	सही: A-2, B-3, C-4, D-1 ¦ गलत क्रम ¦ गलत क्रम ¦ गलत क्रम
+RB4-51	hi	t	पहले सबसे पक्की जोड़ी तय करें, फिर उससे असहमत कोड काटें।
+RB4-52	en	w	Taragarh, above Ajmer, is the main peak of the central Aravallis between Ajmer and Jaipur. Raghunathgarh is in the north, and Dilwara and Achalgarh are on Abu in the south.
+RB4-52	en	o	Right: Taragarh ¦ Northern, Sikar ¦ Southern, Abu ¦ Southern, Abu
+RB4-52	en	t	Taragarh = the crown of Ajmer.
+RB4-52	hi	w	अजमेर के ऊपर तारागढ़, अजमेर और जयपुर के बीच फैली मध्य अरावली की मुख्य चोटी है। रघुनाथगढ़ उत्तर में है, और दिलवाड़ा व अचलगढ़ दक्षिण में आबू पर हैं।
+RB4-52	hi	o	सही: तारागढ़ ¦ उत्तरी, सीकर ¦ दक्षिणी, आबू ¦ दक्षिणी, आबू
+RB4-52	hi	t	तारागढ़ = अजमेर का मुकुट।
+RB4-53	en	w	In descending order: Sayra (Udaipur), Dora Parvat (about 869 m, Jalore), Nag Pahar (Ajmer) and Bilali (Alwar).
+RB4-53	en	o	Right: Sayra, Dora, Nag Pahar, Bilali ¦ Dora is higher than Nag Pahar ¦ Ascending, not descending ¦ Wrong order
+RB4-53	en	t	Southern peaks high, northern peaks low: Sayra first, Bilali last.
+RB4-53	hi	w	घटते क्रम में: सायरा (उदयपुर), डोरा पर्वत (लगभग 869 मी., जालोर), नाग पहाड़ (अजमेर) और बिलाली (अलवर)।
+RB4-53	hi	o	सही: सायरा, डोरा, नाग पहाड़, बिलाली ¦ डोरा नाग पहाड़ से ऊँचा है ¦ यह बढ़ता क्रम है ¦ गलत क्रम
+RB4-53	hi	t	दक्षिण की चोटियाँ ऊँची, उत्तर की नीची: सायरा पहले, बिलाली अंत में।
+RB4-54	en	w	Nag Pahar lies west of Ajmer, between Ajmer and Pushkar. The road from Ajmer to Pushkar crosses it.
+RB4-54	en	o	Kumbhalgarh is far to the south ¦ Sikar is far to the north ¦ Pushkar lies west of Nag Pahar, not east ¦ Right: west of Ajmer
+RB4-54	en	t	Ajmer → Nag Pahar → Pushkar, going west.
+RB4-54	hi	w	नाग पहाड़ अजमेर के पश्चिम में, अजमेर और पुष्कर के बीच है। अजमेर से पुष्कर की सड़क इसे पार करती है।
+RB4-54	hi	o	कुंभलगढ़ बहुत दक्षिण में है ¦ सीकर बहुत उत्तर में है ¦ पुष्कर नाग पहाड़ के पश्चिम में है, पूर्व में नहीं ¦ सही: अजमेर के पश्चिम में
+RB4-54	hi	t	अजमेर → नाग पहाड़ → पुष्कर, पश्चिम की ओर।
+RB4-55	en	w	Nag Pahar is in Ajmer district.
+RB4-55	en	o	Not Jaipur ¦ Not Alwar ¦ Right: Ajmer ¦ Not Bharatpur
+RB4-55	en	t	Ajmer: Taragarh and Nag Pahar.
+RB4-55	hi	w	नाग पहाड़ अजमेर ज़िले में है।
+RB4-55	hi	o	जयपुर नहीं ¦ अलवर नहीं ¦ सही: अजमेर ¦ भरतपुर नहीं
+RB4-55	hi	t	अजमेर: तारागढ़ और नाग पहाड़।
+RB4-56	en	w	Kamnath (Kamalnath) is in Udaipur, not Sirohi, so that pair is wrong. Jarga–Udaipur, Kumbhalgarh–Rajsamand and Raghunathgarh–Sikar are correct.
+RB4-56	en	o	Correct ¦ Correct ¦ Right: wrongly matched; Kamalnath is in Udaipur ¦ Correct
+RB4-56	en	t	Udaipur's high peaks: Jarga, Kamalnath, Sayra.
+RB4-56	hi	w	कमनाथ (कमलनाथ) उदयपुर में है, सिरोही में नहीं, इसलिए यह जोड़ी गलत है। जरगा-उदयपुर, कुंभलगढ़-राजसमंद और रघुनाथगढ़-सीकर सही हैं।
+RB4-56	hi	o	सही ¦ सही ¦ सही उत्तर: गलत मिलान; कमलनाथ उदयपुर में है ¦ सही
+RB4-56	hi	t	उदयपुर की ऊँची चोटियाँ: जरगा, कमलनाथ, सायरा।
+RB4-57	en	w	Achalgarh, Delwara and Ser are all on Mount Abu in Sirohi. Kamalnath is in Udaipur district.
+RB4-57	en	o	Right: Kamalnath is in Udaipur ¦ On Abu, Sirohi ¦ On Abu, Sirohi ¦ On Abu, Sirohi
+RB4-57	en	t	Abu's peaks: Guru Shikhar, Ser, Delwara, Achalgarh.
+RB4-57	hi	w	अचलगढ़, देलवाड़ा और सेर तीनों सिरोही में माउंट आबू पर हैं। कमलनाथ उदयपुर ज़िले में है।
+RB4-57	hi	o	सही: कमलनाथ उदयपुर में है ¦ आबू पर, सिरोही ¦ आबू पर, सिरोही ¦ आबू पर, सिरोही
+RB4-57	hi	t	आबू की चोटियाँ: गुरु शिखर, सेर, देलवाड़ा, अचलगढ़।
