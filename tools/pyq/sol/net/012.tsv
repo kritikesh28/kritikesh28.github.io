@@ -64,10 +64,10 @@ U5B-A100	en	t	Inside the city: rings, wedges, nuclei.
 U5B-A100	hi	w	संकेंद्रीय कटिबंध, त्रिज्यखंड और बहु-केंद्रक नगर की आंतरिक संरचना बताते हैं। नीड़ित पदानुक्रम प्रदेशों और केंद्रों का संगठन बताता है, नगर का आकार नहीं।
 U5B-A100	hi	o	नगर संरचना मॉडल ¦ नगर संरचना मॉडल ¦ नगर संरचना मॉडल ¦ सही: नगर संरचना मॉडल नहीं
 U5B-A100	hi	t	नगर के भीतर: वलय, फाँकें, केंद्रक।
-U5B-A101	en	w	The options of this question are misprinted in the source (distances instead of patterns). Rn = 0 means a fully clustered pattern, with all points at one spot. The key gives option (1).
+U5B-A101	en	w	The options of this question are misprinted (distances instead of patterns). Rn = 0 means a fully clustered pattern, with all points at one spot. The key gives option (1).
 U5B-A101	en	o	Right: option (1), as keyed (Rn = 0 means clustered) ¦ Misprinted option ¦ Misprinted option ¦ Misprinted option
 U5B-A101	en	t	Zero distance between neighbours = all in one cluster.
-U5B-A101	hi	w	इस प्रश्न के विकल्प स्रोत में गलत छपे हैं (प्रतिरूपों की जगह दूरियाँ)। Rn = 0 का अर्थ पूर्णतः गुच्छित प्रतिरूप है, सारे बिंदु एक जगह। कुंजी विकल्प (1) देती है।
+U5B-A101	hi	w	इस प्रश्न के विकल्प गलत छपे हैं (प्रतिरूपों की जगह दूरियाँ)। Rn = 0 का अर्थ पूर्णतः गुच्छित प्रतिरूप है, सारे बिंदु एक जगह। कुंजी विकल्प (1) देती है।
 U5B-A101	hi	o	सही: विकल्प (1), कुंजी अनुसार (Rn = 0 = गुच्छित) ¦ गलत छपा विकल्प ¦ गलत छपा विकल्प ¦ गलत छपा विकल्प
 U5B-A101	hi	t	पड़ोसियों के बीच शून्य दूरी = सब एक गुच्छे में।
 U5B-A102	en	w	The administrative principle is K = 7.

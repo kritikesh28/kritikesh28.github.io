@@ -106,10 +106,10 @@ U5B-N123	en	t	Auerbach saw it first.
 U5B-N123	hi	w	फ़ेलिक्स ऑरबाख (1913) ने पहली बार नगर के आकार और कोटि के बीच नियमितता देखी।
 U5B-N123	hi	o	प्रमुख नगर ¦ बाद में औपचारिक किया ¦ केंद्रीय स्थल ¦ सही: ऑरबाख
 U5B-N123	hi	t	ऑरबाख ने पहले देखा।
-U5B-N124	en	w	Two questions merged in the source. Burgess's order is CBD, transition, workers' homes, residential, commuters, which is option (4). The key (3) belongs to the next question: among South Asian countries, the Maldives (option C) is the most urbanised, about 40%.
+U5B-N124	en	w	Two questions merged. Burgess's order is CBD, transition, workers' homes, residential, commuters, which is option (4). The key (3) belongs to the next question: among South Asian countries, the Maldives (option C) is the most urbanised, about 40%.
 U5B-N124	en	o	Leaves the residential zone out of place ¦ Wrong order ¦ Right: as keyed (the key fits the merged Maldives question) ¦ The correct Burgess order
 U5B-N124	en	t	Burgess: CBD first; South Asia: the Maldives most urban.
-U5B-N124	hi	w	स्रोत में दो प्रश्न मिल गए हैं। बर्गेस का क्रम CBD, संक्रमण, मज़दूरों के घर, आवासीय, दैनिक यात्री है, जो विकल्प (4) है। कुंजी (3) अगले प्रश्न की है: दक्षिण एशियाई देशों में मालदीव (विकल्प C) सबसे नगरीकृत है, लगभग 40%।
+U5B-N124	hi	w	यहाँ दो प्रश्न मिल गए हैं। बर्गेस का क्रम CBD, संक्रमण, मज़दूरों के घर, आवासीय, दैनिक यात्री है, जो विकल्प (4) है। कुंजी (3) अगले प्रश्न की है: दक्षिण एशियाई देशों में मालदीव (विकल्प C) सबसे नगरीकृत है, लगभग 40%।
 U5B-N124	hi	o	आवासीय कटिबंध गलत जगह ¦ गलत क्रम ¦ सही: कुंजी अनुसार (कुंजी मिले हुए मालदीव प्रश्न की है) ¦ बर्गेस का सही क्रम
 U5B-N124	hi	t	बर्गेस: पहले CBD; दक्षिण एशिया: मालदीव सबसे नगरीय।
 U5B-N126	en	w	Urban land value depends most on accessibility: the easier a site is to reach, the more it is worth.
@@ -124,11 +124,11 @@ U5B-N127	en	t	Toposheets: every hamlet on the map.
 U5B-N127	hi	w	स्थलाकृतिक मानचित्र हर गाँव, पुरवा और घरों के समूह को उच्चावच और अपवाह के साथ दिखाते हैं, इसलिए बस्ती प्रतिरूप का सबसे अच्छा स्रोत हैं।
 U5B-N127	hi	o	पैमाना बहुत छोटा ¦ भूखंड दिखाते हैं, प्रादेशिक प्रतिरूप नहीं ¦ चट्टानें दिखाते हैं ¦ सही: स्थलाकृतिक मानचित्र
 U5B-N127	hi	t	टोपोशीट: नक्शे पर हर पुरवा।
-U5B-N129	en	w	The key picks (C): high birth rate, annexation of peripheral settlements and extension of boundaries. Many books would rather stress immigration, which (D) includes; the key differs.
-U5B-N129	en	o	Not keyed ¦ Not keyed ¦ Right: (C), as keyed ¦ The common textbook mix with immigration
+U5B-N129	en	w	The key picks (C): high birth rate, annexation of peripheral settlements and extension of boundaries. Many geographers would rather stress immigration, which (D) includes; the key differs.
+U5B-N129	en	o	Not keyed ¦ Not keyed ¦ Right: (C), as keyed ¦ The common standard mix with immigration
 U5B-N129	en	t	Metros grow by births, migrants and swallowing suburbs.
-U5B-N129	hi	w	कुंजी (C) चुनती है: ऊँची जन्म दर, परिधीय बस्तियों का विलय और सीमाओं का विस्तार। कई पुस्तकें आप्रवास पर अधिक ज़ोर देतीं, जो (D) में है; कुंजी भिन्न है।
-U5B-N129	hi	o	कुंजी में नहीं ¦ कुंजी में नहीं ¦ सही: (C), कुंजी अनुसार ¦ आप्रवास सहित सामान्य पाठ्यपुस्तक मिश्रण
+U5B-N129	hi	w	कुंजी (C) चुनती है: ऊँची जन्म दर, परिधीय बस्तियों का विलय और सीमाओं का विस्तार। कई भूगोलवेत्ता आप्रवास पर अधिक ज़ोर देतीं, जो (D) में है; कुंजी भिन्न है।
+U5B-N129	hi	o	कुंजी में नहीं ¦ कुंजी में नहीं ¦ सही: (C), कुंजी अनुसार ¦ आप्रवास सहित सामान्य मानक मिश्रण
 U5B-N129	hi	t	महानगर जन्म, प्रवासी और उपनगर निगलकर बढ़ते हैं।
 U5B-N130	en	w	An R value above 1 means the settlements are more evenly spread than random, and 2.15 is perfectly uniform. The key takes 1.5 as the mark of an even distribution.
 U5B-N130	en	o	Tends to clustering ¦ Random ¦ Right: about 1.5, as keyed ¦ Even closer to perfectly uniform

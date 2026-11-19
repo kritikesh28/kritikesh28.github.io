@@ -131,7 +131,7 @@ U6B-N54	hi	w	तीव्र ठंड से वृद्धि ऋतु ब�
 U6B-N54	hi	o	सही: छोटी वृद्धि ऋतु। ¦ खनिज हैं (ग्रीनलैंड, अलास्का)। ¦ टुंड्रा/बर्फ़, वन नहीं। ¦ B, C दोनों असत्य।
 U6B-N54	hi	t	टुंड्रा: 2 माह से कम पाला-रहित।
 U6B-N55	en	w	The key uses agricultural density, defined here as persons per unit of farmland. Strictly, persons per unit of farmland is physiological density, while agricultural density counts only farm workers. Exams often mix these up.
-U6B-N55	en	o	Economic density relates people to resources or income. ¦ Persons per arable land (textbook meaning). ¦ Arithmetic density is per total area. ¦ Right: As keyed.
+U6B-N55	en	o	Economic density relates people to resources or income. ¦ Persons per arable land (standard meaning). ¦ Arithmetic density is per total area. ¦ Right: As keyed.
 U6B-N55	en	t	Physiological = all people per arable land; agricultural = farm people per arable land.
 U6B-N55	hi	w	कुंजी कृषि घनत्व = कृषि भूमि प्रति व्यक्ति। सख़्ती से यह कायिक घनत्व है; कृषि घनत्व केवल कृषक गिनता है।
 U6B-N55	hi	o	आर्थिक = संसाधन/आय। ¦ कृषि भूमि प्रति सभी लोग (पाठ्य अर्थ)। ¦ गणितीय = कुल क्षेत्र। ¦ सही: कुंजी अनुसार।
@@ -143,8 +143,8 @@ U6B-N56	hi	w	ए.जे. हर्बर्टसन (1905) ने उच्च�
 U6B-N56	hi	o	अनस्टेड = क्रमबद्ध प्रदेश। ¦ सही: हर्बर्टसन। ¦ व्हिटलसी = कृषि प्रदेश। ¦ डिकिन्सन = नगर प्रदेश।
 U6B-N56	hi	t	हर्बर्टसन के प्रदेश तापमान पट्टियों पर आधारित।
 U6B-N65	en	w	The key calls collective farming (Soviet kolkhoz) a child of the Industrial Revolution. In many texts that label goes to livestock ranching or commercial dairy, because railways, refrigeration and urban markets made them possible.
-U6B-N65	en	o	This is an ancient system. ¦ Many books give this label to ranching, but not this key. ¦ This is an ancient system. ¦ Right: As keyed.
+U6B-N65	en	o	This is an ancient system. ¦ Many geographers give this label to ranching, but not this key. ¦ This is an ancient system. ¦ Right: As keyed.
 U6B-N65	en	t	Refrigerated ships (1870s) made ranching and dairy exports possible.
-U6B-N65	hi	w	कुंजी सामूहिक कृषि (सोवियत कोलखोज़) को 'औद्योगिक क्रांति की संतान' कहती है; कई पुस्तकें यह नाम पशुचारण/डेयरी को देती हैं (रेल, प्रशीतन, नगरीय बाज़ार)।
-U6B-N65	hi	o	प्राचीन प्रणाली। ¦ कई पुस्तकें यह नाम पशुचारण को देती हैं, यह कुंजी नहीं। ¦ प्राचीन। ¦ सही: कुंजी अनुसार।
+U6B-N65	hi	w	कुंजी सामूहिक कृषि (सोवियत कोलखोज़) को 'औद्योगिक क्रांति की संतान' कहती है; कई भूगोलवेत्ता यह नाम पशुचारण/डेयरी को देते हैं (रेल, प्रशीतन, नगरीय बाज़ार)।
+U6B-N65	hi	o	प्राचीन प्रणाली। ¦ कई भूगोलवेत्ता यह नाम पशुचारण को देते हैं, यह कुंजी नहीं। ¦ प्राचीन। ¦ सही: कुंजी अनुसार।
 U6B-N65	hi	t	प्रशीतित जहाज़ (1870s) ने पशु-डेयरी निर्यात संभव किया।

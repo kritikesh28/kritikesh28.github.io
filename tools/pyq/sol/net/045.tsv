@@ -10,10 +10,10 @@ U7A-A49	en	t	This is a theosophy idea, not modern anthropology.
 U7A-A49	hi	w	थियोसोफ़िकल 'मूल प्रजाति' योजना (विज्ञान नहीं) में आर्य 5वीं मूल प्रजाति; कुंजी (3)।
 U7A-A49	hi	o	नहीं। ¦ नहीं। ¦ सही: 5वीं। ¦ नहीं। ¦ नहीं।
 U7A-A49	hi	t	यह थियोसोफ़ी है, आधुनिक मानवशास्त्र नहीं।
-U7A-A50	en	w	This match table is garbled in the source. Mongoloids have yellow-brown skin and more blood group B. Caucasoids have light to dark brown hair. Australoids have brown-black skin. The keyed code is option 4: iii, i, ii.
+U7A-A50	en	w	This match table is garbled. Mongoloids have yellow-brown skin and more blood group B. Caucasoids have light to dark brown hair. Australoids have brown-black skin. The keyed code is option 4: iii, i, ii.
 U7A-A50	en	o	Not keyed. ¦ Not keyed. ¦ Not keyed. ¦ Right: iii, i, ii, as keyed. ¦ Not keyed.
 U7A-A50	en	t	Blood group B is high in Asia.
-U7A-A50	hi	w	मिलान तालिका स्रोत में बिगड़ी। मंगोलॉयड: पीत-भूरी त्वचा, B रक्त समूह अधिक; कॉकेसॉयड: हल्के से गहरे भूरे बाल; ऑस्ट्रेलॉयड: भूरी-काली त्वचा। कुंजी (4)।
+U7A-A50	hi	w	मिलान तालिका बिगड़ी। मंगोलॉयड: पीत-भूरी त्वचा, B रक्त समूह अधिक; कॉकेसॉयड: हल्के से गहरे भूरे बाल; ऑस्ट्रेलॉयड: भूरी-काली त्वचा। कुंजी (4)।
 U7A-A50	hi	o	कुंजी नहीं। ¦ कुंजी नहीं। ¦ कुंजी नहीं। ¦ सही: iii, i, ii। ¦ कुंजी नहीं।
 U7A-A50	hi	t	B रक्त समूह एशिया में अधिक।
 U7A-A51	en	w	Race = human groups classified by inherited somatic (bodily) traits.
@@ -52,11 +52,11 @@ U7A-A56	en	t	Check A and R separately first, then ask: does R answer 'why A?'
 U7A-A56	hi	w	जनसंख्या और सामाजिक भूगोल में बहुत साझा (A सत्य); पर सामाजिक भूगोल स्थानिक (कोरोलॉजिकल) उपागम अपनाता है, अतः R असत्य।
 U7A-A56	hi	o	दोनों सत्य, R, A की व्याख्या। ¦ दोनों सत्य, पर R व्याख्या नहीं। ¦ सही: A सत्य, R असत्य। ¦ A असत्य, R सत्य।
 U7A-A56	hi	t	पहले A और R अलग-अलग जाँचें, फिर पूछें: क्या R, 'A क्यों?' का उत्तर है?
-U7A-A57	en	w	The Andaman tribes (Onge, Jarawa, Great Andamanese, Sentinelese) are Negritos, so option (2) is the textbook answer. The printed key says Negroid (1), the broad group the Negritos are often placed in.
-U7A-A57	en	o	Right: As keyed: the broad group. ¦ This is the textbook answer: Negrito. ¦ No. ¦ Negrillos are African pygmies.
+U7A-A57	en	w	The Andaman tribes (Onge, Jarawa, Great Andamanese, Sentinelese) are Negritos, so option (2) is the standard answer. The printed key says Negroid (1), the broad group the Negritos are often placed in.
+U7A-A57	en	o	Right: As keyed: the broad group. ¦ This is the standard answer: Negrito. ¦ No. ¦ Negrillos are African pygmies.
 U7A-A57	en	t	Andamanese = Negrito (Guha).
-U7A-A57	hi	w	अंडमान जनजातियाँ (ओंगे, जारवा, ग्रेट अंडमानी, सेंटिनली) नीग्रिटो हैं, पाठ्यपुस्तक उत्तर (2)। छपी कुंजी नीग्रॉयड (1), व्यापक समूह।
-U7A-A57	hi	o	सही: कुंजी अनुसार: व्यापक समूह। ¦ पाठ्यपुस्तक उत्तर: नीग्रिटो। ¦ नहीं। ¦ नीग्रिलो = अफ्रीकी पिग्मी।
+U7A-A57	hi	w	अंडमान जनजातियाँ (ओंगे, जारवा, ग्रेट अंडमानी, सेंटिनली) नीग्रिटो हैं, मानक उत्तर (2)। छपी कुंजी नीग्रॉयड (1), व्यापक समूह।
+U7A-A57	hi	o	सही: कुंजी अनुसार: व्यापक समूह। ¦ मानक उत्तर: नीग्रिटो। ¦ नहीं। ¦ नीग्रिलो = अफ्रीकी पिग्मी।
 U7A-A57	hi	t	अंडमानी = नीग्रिटो (गुहा)।
 U7A-A58	en	w	Culture is learned and transmitted (1) and adapts (2). It is both material and non-material, so 3 is false.
 U7A-A58	en	o	3 is false. ¦ Right: 1 and 2. ¦ 3 is false. ¦ 3 is false.
@@ -132,7 +132,7 @@ U7A-N3	hi	o	कुंजी नहीं। ¦ सही: B, D, C, A। ¦ क�
 U7A-N3	hi	t	1973, 1982, 1985, 2014।
 U7A-N4	en	w	The real pairs are Knox and Pinch = 'Urban Social Geography', Jones and Eyles = 'An Introduction to Social Geography', Ahmad = 'Social Geography', Rubenstein = 'The Cultural Landscape'. That is III, IV, II, I, which no option prints. The key gives (3), so treat it with care.
 U7A-N4	en	o	No. ¦ No. ¦ Right: As keyed, but the true answer is III, IV, II, I. ¦ No.
-U7A-N4	en	t	Rubenstein's 'Cultural Landscape' is a well-known US textbook.
+U7A-N4	en	t	Rubenstein's 'Cultural Landscape' is a well-known US course book.
 U7A-N4	hi	w	वास्तविक जोड़े: नॉक्स-पिंच = 'Urban Social Geography', जोन्स-आइल्स = 'An Introduction to Social Geography', अहमद = 'Social Geography', रुबेनस्टीन = 'The Cultural Landscape' (III, IV, II, I), कोई विकल्प नहीं। कुंजी (3), सावधान।
 U7A-N4	hi	o	नहीं। ¦ नहीं। ¦ सही: कुंजी अनुसार; असली III, IV, II, I। ¦ नहीं।
 U7A-N4	hi	t	रुबेनस्टीन = प्रसिद्ध अमेरिकी पाठ्यपुस्तक।
