@@ -5,8 +5,9 @@
 import ExamLayout from '../../../../../../../layouts/ExamLayout.astro';
 import OrigToggle from '../../../../../../../components/exam/OrigToggle.astro';
 import QuizModes from '../../../../../../../components/exam/QuizModes.astro';
-import { BANKS, inLang, orig, mcqSets, pyqPath, rowsForMcq, setOfRow, solution, type Bank, type Mcq } from '../../../../../../../pyq';
-import { paths } from '../../../../../../../exam-prep';
+import SolQA from '../../../../../../../components/exam/SolQA.astro';
+import { BANKS, inLang, orig, mcqSets, pyqPath, rowsForMcq, setOfRow, solution, mostAsked, heat, ciTopicOfRow, type Bank, type Mcq } from '../../../../../../../pyq';
+import { paths, ciTopic, topicUrlIn } from '../../../../../../../exam-prep';
 import { langFromUrl, withLangs, pick } from '../../../../../../../i18n/config';
 import '../../../../../../../styles/pyq.css';
 
@@ -30,7 +31,7 @@ const T = pick({
     lede: 'Exactly as the exam asked them. Choose an option: you will see at once if it is right, and the small facts behind the question.',
     right: 'Right! ✓', wrong: 'Not this one. The answer is option', score: 'Score', show: 'Show answer', ans: 'Answer: option', starred: 'This answer was disputed, or the official key changed it later.',
     why: 'Why this is the answer', each: 'About each option', tip: 'Remember it',
-    behind: 'The facts behind this question', cards: 'Practise these as flip cards →', q: 'Question', prev: '← Back', next: 'Next →',
+    behind: 'What examiners ask from this', cards: 'Practise these as flip cards →', basics: 'New to this? The 30-second background', bTopic: 'What is this topic about?', bWhere: 'Where do I learn it from the basics?', bLink: 'Curriculum Index', hotT: (n: number) => `Asked in ${n} exams`, sol: 'Solution', q: 'Question', prev: '← Back', next: 'Next →',
     pPrev: '← Previous 10', pNext: 'Next 10 →', back: 'All topics', end: 'End of the real questions 🎉', partA: 'Assistant Professor paper', partN: 'NTA UGC-NET/JRF',
     titleTail: 'Previous Year Questions with Answers', descMid: 'real past-paper MCQs with answers',
   },
@@ -39,13 +40,15 @@ const T = pick({
     lede: 'ठीक वैसे जैसे परीक्षा में पूछे गए। कोई विकल्प चुनिए: तुरंत दिखेगा कि सही है या नहीं, और सवाल के पीछे के छोटे तथ्य भी।',
     right: 'सही! ✓', wrong: 'यह नहीं। सही उत्तर है विकल्प', score: 'स्कोर', show: 'उत्तर दिखाओ', ans: 'उत्तर: विकल्प', starred: 'इस उत्तर पर विवाद रहा है, या आधिकारिक कुंजी ने बाद में इसे बदला।',
     why: 'यही उत्तर क्यों', each: 'हर विकल्प के बारे में', tip: 'याद रखने की तरकीब',
-    behind: 'इस सवाल के पीछे के तथ्य', cards: 'इन्हें फ़्लिप कार्ड में दोहराइए →', q: 'सवाल', prev: '← पीछे', next: 'आगे →',
+    behind: 'इससे परीक्षक क्या-क्या पूछते हैं', cards: 'इन्हें फ़्लिप कार्ड में दोहराइए →', basics: 'नए हैं? 30 सेकंड की पृष्ठभूमि', bTopic: 'यह टॉपिक किस बारे में है?', bWhere: 'इसे शुरू से कहाँ पढ़ें?', bLink: 'करिकुलम इंडेक्स', hotT: (n: number) => `${n} परीक्षाओं में पूछा गया`, sol: 'हल', q: 'सवाल', prev: '← पीछे', next: 'आगे →',
     pPrev: '← पिछले 10', pNext: 'अगले 10 →', back: 'सारे टॉपिक', end: 'असली सवाल पूरे हुए 🎉', partA: 'असिस्टेंट प्रोफ़ेसर पेपर', partN: 'NTA UGC-NET/JRF',
     titleTail: 'पुराने सालों के सवाल उत्तर सहित', descMid: 'पुराने पेपरों के असली MCQ, उत्तर सहित',
   },
 }, lang);
 const idOf = (m: Mcq) => b.idPrefix(P, m);
-const facts = (m: Mcq) => rowsForMcq(b, idOf(m)).slice(0, 6);
+// only the facts an examiner is most likely to ask, most-asked first
+const facts = (m: Mcq) => mostAsked(rowsForMcq(b, idOf(m))).slice(0, 4);
+const topicOf = (f: ReturnType<typeof facts>) => { for (const x of f) { const id = ciTopicOfRow(b, x.sub.slug, x.row); const t = id && ciTopic(id, lang); if (t) return { id, t }; } };
 const plain = (m: Mcq) => m.s.find((x) => x.p)?.p ?? '';
 const desc = `${b.short[lang]} · ${chap} ${P.t}: ${T.descMid}. ${plain(S.m[0])}`.slice(0, 160);
 const schema = [{
@@ -99,24 +102,31 @@ const schema = [{
             )}
             {sol && (
               <section class="pq-sol behind" lang={lang}>
-                <h3>{T.why}</h3>
-                <p>{sol.w}</p>
-                {sol.o && sol.o.length > 0 && (
-                  <>
-                    <h4>{T.each}</h4>
-                    <ol class="pq-sol-opts">{sol.o.map((x, k) => <li class={k + 1 === m.a ? 'ok' : undefined}>{x}</li>)}</ol>
-                  </>
-                )}
-                {sol.t && <p class="pq-sol-tip"><b>💡 {T.tip}:</b> {sol.t}</p>}
+                <h3>{T.sol}</h3>
+                <SolQA sol={sol} a={m.a} />
               </section>
             )}
-            {f.length > 0 && (
-              <div class="pq-facts-behind behind">
-                <h3>{T.behind}</h3>
-                <ul lang={cl}>{f.map(({ row }) => <li><span data-orig={orig(row.q, row.o0?.q)}>{row.q}</span> <b data-orig={orig(row.a, row.o0?.a)}>{row.a}</b></li>)}</ul>
-                {firstFact && <a class="small" href={`${pyqPath(lang, b.slug, firstFact.sub.slug, firstFact.set)}#q${f[0].sub.slug}-${f[0].row.n}`}>{T.cards}</a>}
-              </div>
-            )}
+            {f.length > 0 && (() => {
+              const top = topicOf(f);
+              return (
+                <div class="pq-facts-behind behind">
+                  <h3>{T.behind}</h3>
+                  <ol lang={cl}>{f.map(({ row }) => { const h = heat(row); return <li><span data-orig={orig(row.q, row.o0?.q)}>{row.q}</span> <b data-orig={orig(row.a, row.o0?.a)}>{row.a}</b>{h > 1 && <span class="pq-chip hot" title={T.hotT(h)}>🔥 {h}×</span>}</li>; })}</ol>
+                  {top && (
+                    <div class="pq-basics">
+                      <h4>{T.basics}</h4>
+                      <dl class="pq-qa" lang={lang}>
+                        <dt>{T.bTopic}</dt>
+                        <dd><span lang={top.t.en ? 'en' : undefined}>{top.t.t}</span>{top.t.d && <>: <span lang={top.t.en ? 'en' : undefined}>{top.t.d}</span></>}</dd>
+                        <dt>{T.bWhere}</dt>
+                        <dd><a href={topicUrlIn(top.id, lang)}>{T.bLink}: <span lang={top.t.en ? 'en' : undefined}>{top.t.t}</span> →</a></dd>
+                      </dl>
+                    </div>
+                  )}
+                  <p class="links">{firstFact && <a class="small" href={`${pyqPath(lang, b.slug, firstFact.sub.slug, firstFact.set)}#q${f[0].sub.slug}-${f[0].row.n}`}>{T.cards}</a>}</p>
+                </div>
+              );
+            })()}
           </article>
         );
       })}
