@@ -1,0 +1,150 @@
+RB4-108	en	w	This match question's lists were printed as a table in the original paper. The keyed code is A-4, B-3, C-1, D-2; check the pairs in the "see original" view.
+RB4-108	en	o	Wrong order ¦ Wrong order ¦ Right: A-4, B-3, C-1, D-2 ¦ Wrong order
+RB4-108	en	t	Fix the pair you are surest of first, then strike out the codes that disagree.
+RB4-108	hi	w	इस मिलान प्रश्न की सूचियाँ मूल पेपर में तालिका में छपी थीं। कुंजी का कोड A-4, B-3, C-1, D-2 है; "मूल देखें" में जोड़ियाँ जाँचिए।
+RB4-108	hi	o	गलत क्रम ¦ गलत क्रम ¦ सही: A-4, B-3, C-1, D-2 ¦ गलत क्रम
+RB4-108	hi	t	पहले सबसे पक्की जोड़ी तय करें, फिर उससे असहमत कोड काटें।
+RB4-109	en	w	No single code was kept. Taragarh is in Ajmer (B-1), Achalgarh in Sirohi (C-4) and Jarga in Udaipur (D-2), but Babai is in the Neem ka Thana–Jhunjhunu area, not Jaipur, so no code matches every pair. Code 2 (3, 1, 4, 2) would be right if Babai were taken as Jaipur.
+RB4-109	en	o	Achalgarh and Jarga are wrong ¦ Closest: right except for Babai ¦ Babai and Achalgarh are wrong ¦ Babai and Taragarh are wrong
+RB4-109	en	t	When one pair in the lists is wrong, the whole question can be dropped.
+RB4-109	hi	w	कोई एक कोड नहीं रखा गया। तारागढ़ अजमेर में (B-1), अचलगढ़ सिरोही में (C-4) और जरगा उदयपुर में (D-2) है, पर बबाई नीम का थाना-झुंझुनूं क्षेत्र में है, जयपुर में नहीं, इसलिए कोई कोड हर जोड़ी से मेल नहीं खाता। बबाई को जयपुर मानें तो कोड 2 (3, 1, 4, 2) सही होता।
+RB4-109	hi	o	अचलगढ़ और जरगा गलत ¦ सबसे करीब: बबाई के अलावा सही ¦ बबाई और अचलगढ़ गलत ¦ बबाई और तारागढ़ गलत
+RB4-109	hi	t	सूची की एक जोड़ी गलत हो तो पूरा प्रश्न हट सकता है।
+RB4-110	en	w	This match question's lists were printed as a table in the original paper. The keyed code is A-3, B-1, C-4, D-2; check the pairs in the "see original" view.
+RB4-110	en	o	Wrong order ¦ Right: A-3, B-1, C-4, D-2 ¦ Wrong order ¦ Wrong order
+RB4-110	en	t	Fix the pair you are surest of first, then strike out the codes that disagree.
+RB4-110	hi	w	इस मिलान प्रश्न की सूचियाँ मूल पेपर में तालिका में छपी थीं। कुंजी का कोड A-3, B-1, C-4, D-2 है; "मूल देखें" में जोड़ियाँ जाँचिए।
+RB4-110	hi	o	गलत क्रम ¦ सही: A-3, B-1, C-4, D-2 ¦ गलत क्रम ¦ गलत क्रम
+RB4-110	hi	t	पहले सबसे पक्की जोड़ी तय करें, फिर उससे असहमत कोड काटें।
+RB4-111	en	w	Bhakar is in Sirohi (A-3), Girwa in Udaipur (B-4), Vagad in Banswara (C-1) and Bangar in Nagaur (D-2), in the semi-arid west.
+RB4-111	en	o	Wrong order ¦ Wrong order ¦ Vagad and Bangar are swapped ¦ Right: A-3, B-4, C-1, D-2
+RB4-111	en	t	Local-name set: Bhakar–Sirohi, Girwa–Udaipur, Vagad–Banswara, Bangar–the semi-arid west.
+RB4-111	hi	w	भाकर सिरोही में (A-3), गिरवा उदयपुर में (B-4), वागड़ बांसवाड़ा में (C-1) और बांगड़ नागौर में (D-2), अर्ध-शुष्क पश्चिम में है।
+RB4-111	hi	o	गलत क्रम ¦ गलत क्रम ¦ वागड़ और बांगड़ उलटे हैं ¦ सही: A-3, B-4, C-1, D-2
+RB4-111	hi	t	स्थानीय नामों का समूह: भाकर-सिरोही, गिरवा-उदयपुर, वागड़-बांसवाड़ा, बांगड़-अर्ध-शुष्क पश्चिम।
+RB5-1	en	w	Rajasthan lies far from the sea, so it has a continental climate: hot summers, cold winters and little moisture in the air. The key treats distance from the sea as the basic factor.
+RB5-1	en	o	Right: distance from the sea ¦ Matters, mainly for Abu, but is not the basic factor ¦ Temperature is a result of climate, not a cause ¦ Vegetation is shaped by climate
+RB5-1	en	t	Far from the sea → extreme heat and cold.
+RB5-1	hi	w	राजस्थान समुद्र से दूर है, इसलिए यहाँ महाद्वीपीय जलवायु है: गर्म ग्रीष्म, ठंडी शीत ऋतु और हवा में कम नमी। कुंजी समुद्र से दूरी को मूल कारक मानती है।
+RB5-1	hi	o	सही: समुद्र से दूरी ¦ मायने रखती है, खासकर आबू के लिए, पर मूल कारक नहीं ¦ तापमान जलवायु का परिणाम है, कारण नहीं ¦ वनस्पति जलवायु से बनती है
+RB5-1	hi	t	समुद्र से दूर → कड़ी गर्मी और ठंड।
+RB5-2	en	w	Sand heats up fast by day and loses its heat fast at night, especially under clear winter skies. So the sandy surface makes western Rajasthan very cold in winter nights.
+RB5-2	en	o	Right: the sandy surface ¦ Western Rajasthan has little forest ¦ Rajasthan has no snowfall ¦ The west gets little rain
+RB5-2	en	t	Sand = quick to heat, quick to cool.
+RB5-2	hi	w	रेत दिन में जल्दी गर्म होती है और रात में जल्दी ठंडी हो जाती है, खासकर सर्दियों के साफ़ आसमान में। इसलिए रेतीली सतह पश्चिमी राजस्थान की सर्दी की रातों को बहुत ठंडा बना देती है।
+RB5-2	hi	o	सही: रेतीली सतह ¦ पश्चिमी राजस्थान में वन कम हैं ¦ राजस्थान में हिमपात नहीं होता ¦ पश्चिम में वर्षा कम होती है
+RB5-2	hi	t	रेत = जल्दी गर्म, जल्दी ठंडी।
+RB5-3	en	w	Rajasthan's climate is shaped by its latitude (near the Tropic of Cancer), its distance from the Arabian Sea and its relief, above all the Aravallis. Longitude by itself does not change climate.
+RB5-3	en	o	Leaves out distance from the sea ¦ Includes longitude ¦ Right: 1, 3 and 4 ¦ Includes longitude and leaves out latitude
+RB5-3	en	t	Latitude, sea, relief: the three that matter.
+RB5-3	hi	w	राजस्थान की जलवायु उसके अक्षांश (कर्क रेखा के पास), अरब सागर से दूरी और उच्चावच, विशेषकर अरावली, से बनती है। केवल देशांतर जलवायु नहीं बदलता।
+RB5-3	hi	o	समुद्र से दूरी छूट गई ¦ इसमें देशांतर है ¦ सही: 1, 3 और 4 ¦ इसमें देशांतर है और अक्षांश छूट गया
+RB5-3	hi	t	अक्षांश, समुद्र, उच्चावच: तीन असली कारक।
+RB5-4	en	w	As keyed, most of Rajasthan lies about 250–300 m above mean sea level. Only the Aravallis and some plateaus rise much higher, so the state is mostly low, which adds to its heat.
+RB5-4	en	o	Right (as keyed): 250–300 m ¦ Too low ¦ Too high ¦ Too low
+RB5-4	en	t	Low and far from the sea: a hot combination.
+RB5-4	hi	w	कुंजी के अनुसार राजस्थान का अधिकांश भाग माध्य समुद्र तल से लगभग 250–300 मी. ऊँचा है। केवल अरावली और कुछ पठार इससे बहुत ऊँचे हैं, इसलिए राज्य अधिकतर नीचा है, जो गर्मी बढ़ाता है।
+RB5-4	hi	o	सही (कुंजी अनुसार): 250–300 मी. ¦ बहुत कम ¦ बहुत अधिक ¦ बहुत कम
+RB5-4	hi	t	नीचा और समुद्र से दूर: गर्मी का मेल।
+RB5-5	en	w	All three are true: rainfall falls off from east to west and from south to north, sand makes the daily and yearly temperature ranges large, and summer highs reach about 49°C (and even more in places like Phalodi and Churu).
+RB5-5	en	o	Leaves out statement 3 ¦ Leaves out statement 2 ¦ Leaves out statement 1 ¦ Right: all three are true
+RB5-5	en	t	Rain falls towards the north-west; heat rises there.
+RB5-5	hi	w	तीनों सही हैं: वर्षा पूर्व से पश्चिम और दक्षिण से उत्तर की ओर घटती है, रेत दैनिक और वार्षिक तापांतर बढ़ाती है, और गर्मी में अधिकतम तापमान लगभग 49° से. (फलोदी और चूरू जैसी जगहों पर इससे भी अधिक) पहुँचता है।
+RB5-5	hi	o	कथन 3 छूट गया ¦ कथन 2 छूट गया ¦ कथन 1 छूट गया ¦ सही: तीनों सही
+RB5-5	hi	t	उत्तर-पश्चिम की ओर वर्षा घटती है, गर्मी बढ़ती है।
+RB5-6	en	w	All four conditions are found in Rajasthan, but the one it shows most strongly, compared with the rest of India, is the very high variability of rainfall: in the west, rain can swing from almost none to floods from year to year.
+RB5-6	en	o	Strong, but not the most distinctive ¦ Common in the desert, but not the keyed one ¦ Right: very high variability of rainfall ¦ Common, but not the keyed one
+RB5-6	en	t	Low rain + unreliable rain = drought risk.
+RB5-6	hi	w	चारों स्थितियाँ राजस्थान में मिलती हैं, पर बाकी भारत की तुलना में सबसे अधिक है वर्षा की अत्यधिक परिवर्तनशीलता: पश्चिम में वर्षा एक साल लगभग शून्य से दूसरे साल बाढ़ तक बदल सकती है।
+RB5-6	hi	o	प्रबल, पर सबसे विशिष्ट नहीं ¦ मरुस्थल में आम, पर कुंजी का उत्तर नहीं ¦ सही: वर्षा की अत्यधिक परिवर्तनशीलता ¦ आम, पर कुंजी का उत्तर नहीं
+RB5-6	hi	t	कम वर्षा + अनिश्चित वर्षा = अकाल का खतरा।
+RB5-7	en	w	Rajasthan's climate has extremes of both temperature and rainfall. It is not simply hot-dry everywhere (the south-east and Abu are wetter), it is not hot-humid, and rainfall increases from north-west to south-east, not the other way.
+RB5-7	en	o	Right: extremes of temperature and rainfall ¦ Too simple: the south-east is sub-humid ¦ Reversed direction ¦ Not humid
+RB5-7	en	t	Rain grows towards the south-east, falls towards the north-west.
+RB5-7	hi	w	राजस्थान की जलवायु में तापमान और वर्षा दोनों की अतियाँ हैं। यह हर जगह केवल गर्म-शुष्क नहीं (दक्षिण-पूर्व और आबू अधिक नम हैं), गर्म-आर्द्र नहीं, और वर्षा उत्तर-पश्चिम से दक्षिण-पूर्व की ओर बढ़ती है, उलटी नहीं।
+RB5-7	hi	o	सही: तापमान और वर्षा की अतियाँ ¦ बहुत सरल: दक्षिण-पूर्व उप-आर्द्र है ¦ दिशा उलटी है ¦ आर्द्र नहीं
+RB5-7	hi	t	वर्षा दक्षिण-पूर्व की ओर बढ़ती, उत्तर-पश्चिम की ओर घटती है।
+RB5-8	en	w	Temperature, distance from the sea and prevailing winds all shape Rajasthan's climate. Even distribution of rainfall is not a factor at all, because Rajasthan's rain is very unevenly spread.
+RB5-8	en	o	A factor ¦ A factor ¦ A factor ¦ Right: rain is uneven, so this cannot be a cause
+RB5-8	en	t	Rajasthan's rain is anything but even.
+RB5-8	hi	w	तापमान, समुद्र से दूरी और प्रचलित हवाएँ राजस्थान की जलवायु को बनाती हैं। वर्षा का समान वितरण कोई कारक नहीं, क्योंकि राजस्थान की वर्षा बहुत असमान है।
+RB5-8	hi	o	कारक है ¦ कारक है ¦ कारक है ¦ सही: वर्षा असमान है, इसलिए यह कारण नहीं
+RB5-8	hi	t	राजस्थान की वर्षा समान बिलकुल नहीं।
+RB5-9	en	w	The winter rain that Mediterranean (western) disturbances bring to north-western Rajasthan is called mavath (mawath).
+RB5-9	en	o	Not this rain ¦ Not this rain ¦ Right: mavath ¦ Not this rain
+RB5-9	en	t	Mavath = winter rain, good for rabi crops.
+RB5-9	hi	w	भूमध्यसागरीय (पश्चिमी) विक्षोभ उत्तर-पश्चिमी राजस्थान में जो शीतकालीन वर्षा लाते हैं, उसे मावठ कहते हैं।
+RB5-9	hi	o	यह वर्षा नहीं ¦ यह वर्षा नहीं ¦ सही: मावठ ¦ यह वर्षा नहीं
+RB5-9	hi	t	मावठ = सर्दी की वर्षा, रबी के लिए अच्छी।
+RB5-10	en	w	Mavath is caused by western disturbances: low-pressure systems that start over the Mediterranean region and travel east with the westerly jet stream in winter.
+RB5-10	en	o	The south-west monsoon brings summer rain ¦ Right: western disturbances ¦ The westerlies carry them, but the cause is the disturbance ¦ Not a real mechanism
+RB5-10	en	t	West in winter, south-west in summer.
+RB5-10	hi	w	मावठ पश्चिमी विक्षोभों से होती है: ये कम दबाव के तंत्र हैं जो भूमध्यसागरीय क्षेत्र से शुरू होकर सर्दी में पछुआ जेट धारा के साथ पूर्व की ओर चलते हैं।
+RB5-10	hi	o	दक्षिण-पश्चिम मानसून गर्मी की वर्षा लाता है ¦ सही: पश्चिमी विक्षोभ ¦ पछुआ हवाएँ इन्हें लाती हैं, पर कारण विक्षोभ है ¦ वास्तविक प्रक्रिया नहीं
+RB5-10	hi	t	सर्दी में पश्चिम से, गर्मी में दक्षिण-पश्चिम से।
+RB5-11	en	w	In Rajasthan the rain from western-disturbance cyclones is popularly called mavath, and the name is often used for the disturbances themselves.
+RB5-11	en	o	Loo is the hot summer wind ¦ Thundershowers are summer storms ¦ Right: mavath ¦ Hail can come with them, but it is not their name
+RB5-11	en	t	Loo = summer; mavath = winter.
+RB5-11	hi	w	राजस्थान में पश्चिमी विक्षोभ चक्रवातों से होने वाली वर्षा को आम भाषा में मावठ कहते हैं, और यह नाम प्रायः स्वयं विक्षोभों के लिए भी आता है।
+RB5-11	hi	o	लू गर्मी की गर्म हवा है ¦ गरज वाली बौछारें गर्मी के तूफ़ान हैं ¦ सही: मावठ ¦ ओले साथ आ सकते हैं, पर यह इनका नाम नहीं
+RB5-11	hi	t	लू = गर्मी; मावठ = सर्दी।
+RB5-12	en	w	Mavath is the rain that falls in winter in Rajasthan, brought by western disturbances.
+RB5-12	en	o	Not vegetation ¦ Right: rain that falls in winter ¦ Not fodder ¦ Loo is the hot desert wind
+RB5-12	en	t	Mavath: winter drops of gold for rabi crops.
+RB5-12	hi	w	मावठ राजस्थान में सर्दी में होने वाली वर्षा है, जिसे पश्चिमी विक्षोभ लाते हैं।
+RB5-12	hi	o	वनस्पति नहीं ¦ सही: सर्दी में होने वाली वर्षा ¦ चारा नहीं ¦ लू मरुस्थल की गर्म हवा है
+RB5-12	hi	t	मावठ: रबी के लिए "सुनहरी बूँदें"।
+RB5-13	en	w	The disturbances that bring winter rain begin over the Mediterranean Sea and the Caspian Sea region and move east across Iran and Afghanistan to north-west India.
+RB5-13	en	o	Right: the Mediterranean and Caspian Seas ¦ The Arabian Sea feeds the summer monsoon ¦ Not the source ¦ Far too north and west
+RB5-13	en	t	Mediterranean → Iran → Afghanistan → Punjab → Rajasthan.
+RB5-13	hi	w	शीतकालीन वर्षा लाने वाले विक्षोभ भूमध्य सागर और कैस्पियन सागर क्षेत्र से शुरू होकर ईरान और अफ़ग़ानिस्तान से होते हुए पूर्व की ओर उत्तर-पश्चिम भारत पहुँचते हैं।
+RB5-13	hi	o	सही: भूमध्य सागर और कैस्पियन सागर ¦ अरब सागर ग्रीष्म मानसून को पानी देता है ¦ स्रोत नहीं ¦ बहुत उत्तर और पश्चिम
+RB5-13	hi	t	भूमध्य सागर → ईरान → अफ़ग़ानिस्तान → पंजाब → राजस्थान।
+RB5-14	en	w	Winter rain in Rajasthan comes from Mediterranean cyclones, the western disturbances.
+RB5-14	en	o	The retreating monsoon brings autumn rain to the south-east coast ¦ The south-west monsoon is a summer rain ¦ The north-east monsoon rains on Tamil Nadu ¦ Right: Mediterranean cyclones
+RB5-14	en	t	Winter rain in Rajasthan always points west.
+RB5-14	hi	w	राजस्थान में शीतकालीन वर्षा भूमध्यसागरीय चक्रवातों, यानी पश्चिमी विक्षोभों, से होती है।
+RB5-14	hi	o	लौटता मानसून दक्षिण-पूर्वी तट पर शरद में वर्षा लाता है ¦ दक्षिण-पश्चिम मानसून गर्मी की वर्षा है ¦ उत्तर-पूर्वी मानसून तमिलनाडु में वर्षा करता है ¦ सही: भूमध्यसागरीय चक्रवात
+RB5-14	hi	t	राजस्थान की सर्दी की वर्षा हमेशा पश्चिम की ओर इशारा करती है।
+RB5-15	en	w	Mavath falls in December–January, when rabi crops are growing, so it is a boon for wheat. Maize, rice and bajra are kharif crops grown in the monsoon.
+RB5-15	en	o	Right: wheat ¦ Kharif crop ¦ Kharif crop ¦ Kharif crop
+RB5-15	en	t	Winter rain helps winter (rabi) crops.
+RB5-15	hi	w	मावठ दिसंबर-जनवरी में होती है, जब रबी फसलें बढ़ रही होती हैं, इसलिए यह गेहूँ के लिए वरदान है। मक्का, चावल और बाजरा मानसून में बोई जाने वाली खरीफ़ फसलें हैं।
+RB5-15	hi	o	सही: गेहूँ ¦ खरीफ़ फसल ¦ खरीफ़ फसल ¦ खरीफ़ फसल
+RB5-15	hi	t	सर्दी की वर्षा सर्दी (रबी) की फसलों को मदद करती है।
+RB5-16	en	w	Wheat, gram and mustard are rabi crops that gain from mavath. Cotton is a kharif crop, sown with the monsoon and mostly picked by winter, so it does not benefit.
+RB5-16	en	o	Rabi crop: benefits ¦ Rabi crop: benefits ¦ Rabi crop: benefits ¦ Right: cotton is kharif
+RB5-16	en	t	Rabi trio: wheat, gram, mustard.
+RB5-16	hi	w	गेहूँ, चना और सरसों रबी फसलें हैं जिन्हें मावठ से लाभ होता है। कपास खरीफ़ फसल है, जो मानसून के साथ बोई जाती है और प्रायः सर्दी तक चुन ली जाती है, इसलिए इसे लाभ नहीं होता।
+RB5-16	hi	o	रबी फसल: लाभ होता है ¦ रबी फसल: लाभ होता है ¦ रबी फसल: लाभ होता है ¦ सही: कपास खरीफ़ है
+RB5-16	hi	t	रबी की तिकड़ी: गेहूँ, चना, सरसों।
+RB5-17	en	w	Gram, wheat and mustard are rabi crops helped by mavath. Groundnut and maize are kharif crops, so they do not benefit.
+RB5-17	en	o	Rabi crop: benefits ¦ Rabi crop: benefits ¦ Right: groundnut and maize are kharif ¦ Rabi crop: benefits
+RB5-17	en	t	Kharif crops are already harvested when mavath comes.
+RB5-17	hi	w	चना, गेहूँ और सरसों रबी फसलें हैं जिन्हें मावठ से लाभ होता है। मूँगफली और मक्का खरीफ़ फसलें हैं, इसलिए इन्हें लाभ नहीं होता।
+RB5-17	hi	o	रबी फसल: लाभ होता है ¦ रबी फसल: लाभ होता है ¦ सही: मूँगफली और मक्का खरीफ़ हैं ¦ रबी फसल: लाभ होता है
+RB5-17	hi	t	मावठ आने तक खरीफ़ फसलें कट चुकी होती हैं।
+RB5-18	en	w	The winter rain comes with north-westerly winds, as the western disturbances move in from the north-west across Pakistan and Punjab.
+RB5-18	en	o	North-easterlies are dry winter winds ¦ South-westerlies bring summer rain ¦ Convection gives summer showers ¦ Right: north-westerly winds
+RB5-18	en	t	Winter rain arrives from the north-west.
+RB5-18	hi	w	शीतकालीन वर्षा उत्तर-पश्चिमी हवाओं के साथ आती है, क्योंकि पश्चिमी विक्षोभ पाकिस्तान और पंजाब होते हुए उत्तर-पश्चिम से आते हैं।
+RB5-18	hi	o	उत्तर-पूर्वी हवाएँ सर्दी में सूखी होती हैं ¦ दक्षिण-पश्चिमी हवाएँ गर्मी में वर्षा लाती हैं ¦ संवहन से गर्मी की बौछारें होती हैं ¦ सही: उत्तर-पश्चिमी हवाएँ
+RB5-18	hi	t	सर्दी की वर्षा उत्तर-पश्चिम से।
+RB5-19	en	w	Western disturbances bring rain to Rajasthan mainly in December and January, the heart of winter.
+RB5-19	en	o	Monsoon months ¦ Hot dry months with dust storms ¦ Retreating monsoon months ¦ Right: December and January
+RB5-19	en	t	Mavath = Poush–Magh rain.
+RB5-19	hi	w	पश्चिमी विक्षोभ राजस्थान में मुख्य रूप से दिसंबर और जनवरी, यानी कड़ी सर्दी के महीनों, में वर्षा लाते हैं।
+RB5-19	hi	o	मानसून के महीने ¦ आँधियों वाले गर्म-शुष्क महीने ¦ लौटते मानसून के महीने ¦ सही: दिसंबर और जनवरी
+RB5-19	hi	t	मावठ = पौष-माघ की वर्षा।
+RB5-20	en	w	In the rainy season the monsoon winds blow from the south-west to the north-east, from the Arabian Sea towards the land.
+RB5-20	en	o	Not the monsoon direction ¦ This is the winter direction ¦ Right: south-west to north-east ¦ Not the monsoon direction
+RB5-20	en	t	South-west monsoon: the name gives the direction it comes from.
+RB5-20	hi	w	वर्षा ऋतु में मानसूनी हवाएँ दक्षिण-पश्चिम से उत्तर-पूर्व की ओर, अरब सागर से स्थल की ओर, चलती हैं।
+RB5-20	hi	o	मानसून की दिशा नहीं ¦ यह सर्दी की दिशा है ¦ सही: दक्षिण-पश्चिम से उत्तर-पूर्व ¦ मानसून की दिशा नहीं
+RB5-20	hi	t	दक्षिण-पश्चिम मानसून: नाम बताता है कि यह कहाँ से आता है।
+RB5-21	en	w	Purvaiyya (purvai) is the east wind, blowing from east to west. In Rajasthan it is the Bay of Bengal branch of the monsoon arriving from the east, and it brings much of the eastern districts' rain.
+RB5-21	en	o	Right: from east to west ¦ This is the pachhua, the west wind ¦ Not a real wind direction ¦ Not a real wind direction
+RB5-21	en	t	Purva = east; pachhim = west.
+RB5-21	hi	w	पुरवैया (पुरवाई) पूर्वी हवा है, जो पूर्व से पश्चिम की ओर चलती है। राजस्थान में यह पूर्व से आने वाली मानसून की बंगाल की खाड़ी शाखा है, जो पूर्वी ज़िलों की बहुत-सी वर्षा लाती है।
+RB5-21	hi	o	सही: पूर्व से पश्चिम ¦ यह पछुआ, पश्चिमी हवा है ¦ वास्तविक दिशा नहीं ¦ वास्तविक दिशा नहीं
+RB5-21	hi	t	पुरवा = पूर्व की हवा; पछुआ = पश्चिम की हवा।
