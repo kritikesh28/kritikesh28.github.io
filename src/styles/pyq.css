@@ -186,3 +186,9 @@
 .pq-basics h4 { margin: 0 0 0.2rem; font-size: 0.9rem; font-family: var(--font-sans); }
 .pq-facts-behind .hot { margin-left: 0.3rem; }
 .pq-facts-behind .links { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; margin-top: 0.5rem; }
+/* the explanation under a quick-quiz question (copied from the card's back) */
+.pq-qexp { margin: 0.7rem 0; padding: 0.7rem 0.9rem; background: color-mix(in srgb, var(--accent) 6%, var(--surface)); border-radius: 12px; font-size: 0.92rem; }
+.pq-qexp h3 { margin: 0 0 0.35rem; font-size: 0.98rem; font-family: var(--font-sans); }
+.pq-qexp .pq-qa.compact { border-top: 0; padding-top: 0; font-size: 0.9rem; }
+.pq-qexp .pq-bg { margin-top: 0.4rem; }
+.qm-review .pq-qexp { margin: 0.4rem 0 0; }
