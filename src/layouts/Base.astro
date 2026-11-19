@@ -172,7 +172,7 @@ const MENUS: Record<string, string> = { '/library/': 'lib-mega', '/exam-prep/': 
               <li><a href={L('/start/')}>{t('footer.start')}</a></li>
               <li><a href={L('/library/the-universe/')}>{t('footer.universe')}</a></li>
               <li><a href={L('/about/my-story/')}>{t('footer.story')}</a></li>
-              <li><a href={L('/aspirants/')} lang="hi">मन की सच्ची बातें</a></li>
+              <li><a href={L('/aspirants/')}>{t('footer.chapters')}</a></li>
               <li><a href={L('/search/')}>{t('footer.search')}</a></li>
               <li><a href={L('/now/')}>{t('footer.now')}</a></li>
             </ul>
@@ -240,24 +240,60 @@ const MENUS: Record<string, string> = { '/library/': 'lib-mega', '/exam-prep/': 
     // Background music (the quiet flute track, one melody for the whole visit), on by default. See src/scripts/ambient.ts
     import('../scripts/ambient').then((m) => m.initAmbient());
 
-    // Language switcher: remember the choice, so the next visit opens in the same language (public/lang-init.js)
-    // It also keeps the reader's place: how far down the page they were is carried over to the same page in the other language.
+    // Language switcher: remember the choice, so the next visit opens in the same language (public/lang-init.js).
+    // It also keeps the reader exactly where they were (his rule, 19 Nov 2026, for every page, now and future):
+    // the other language opens at the same question or section (#hash) and the same paragraph, at the same height on screen.
+    // Both languages are built from the same templates, so the n-th paragraph / heading / list item of one page is the
+    // n-th of the other; when the pages differ (a page with no translation), it falls back to the same share of the page.
+    // Nothing to do on a new page: this runs on every page. Guide: docs/15-languages-and-hindi.md, "Keeping the reader's place".
+    const BLOCKS = 'main h1, main h2, main h3, main h4, main p, main li, main dt, main dd, main figure, main table, main blockquote, main pre';
+    const headerBottom = () => Math.max(0, document.querySelector('.site-header')?.getBoundingClientRect().bottom ?? 0);
+    const visibleBlocks = () => [...document.querySelectorAll<HTMLElement>(BLOCKS)].filter((el) => el.getClientRects().length > 0);
     document.querySelectorAll<HTMLAnchorElement>('.langs a[data-lang]').forEach((a) =>
       a.addEventListener('click', () => {
         try {
           localStorage.setItem('lang', a.dataset.lang!);
+          if (a.pathname === location.pathname) return;
+          // carry the open question or section (#id) and any filters (?q=) to the other language
+          a.href = a.pathname + location.search + location.hash;
           const max = document.documentElement.scrollHeight - innerHeight;
-          if (a.pathname !== location.pathname && scrollY > 0) sessionStorage.setItem('langPlace', JSON.stringify({ to: a.pathname, at: max > 0 ? scrollY / max : 0 }));
+          const top = headerBottom();
+          const list = visibleBlocks();
+          // the block being read: the one in the middle of the screen, just under the top bar (not a sticky side list)
+          const hit = document.elementFromPoint(innerWidth / 2, Math.min(innerHeight - 1, top + 12))?.closest<HTMLElement>(BLOCKS.replaceAll('main ', ''));
+          let i = hit ? list.indexOf(hit) : -1;
+          if (i < 0) i = list.findIndex((el) => el.getBoundingClientRect().bottom > top + 1 && !el.closest('nav, aside'));
+          const el = list[i];
+          const r = el?.getBoundingClientRect();
+          sessionStorage.setItem('langPlace', JSON.stringify({
+            to: a.pathname, at: max > 0 ? scrollY / max : 0, y: scrollY,
+            i, tag: el?.tagName, n: list.length, frac: r && r.height ? (top - r.top) / r.height : 0,
+          }));
         } catch {}
       }),
     );
     try {
-      const place = JSON.parse(sessionStorage.getItem('langPlace') || 'null') as { to: string; at: number } | null;
+      const place = JSON.parse(sessionStorage.getItem('langPlace') || 'null') as { to: string; at: number; y: number; i: number; tag?: string; n: number; frac: number } | null;
       if (place) {
         sessionStorage.removeItem('langPlace');
-        if (place.to === location.pathname && !location.hash) {
-          const go = () => scrollTo({ top: place.at * (document.documentElement.scrollHeight - innerHeight), behavior: 'instant' as ScrollBehavior });
-          go();
+        if (place.to === location.pathname) {
+          const go = () => {
+            const list = visibleBlocks();
+            const el = list[place.i];
+            let y: number;
+            if (place.i >= 0 && el && el.tagName === place.tag && list.length === place.n) {
+              const r = el.getBoundingClientRect();
+              y = scrollY + r.top + place.frac * r.height - headerBottom();
+            } else if (place.y === 0) {
+              y = 0;
+            } else {
+              y = place.at * (document.documentElement.scrollHeight - innerHeight);
+            }
+            scrollTo({ top: Math.max(0, y), behavior: 'instant' as ScrollBehavior });
+          };
+          // now, after the page's own scripts (a question slider opening at #id) and once fonts have settled
+          requestAnimationFrame(() => { go(); requestAnimationFrame(go); });
+          document.fonts?.ready.then(() => { if (!signal.aborted) go(); });
           addEventListener('load', go, { once: true, signal });
         }
       }

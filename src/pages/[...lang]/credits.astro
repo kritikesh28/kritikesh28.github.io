@@ -26,12 +26,12 @@ const mail = (s: string) => `mailto:${SITE.email}?subject=${encodeURIComponent(s
 
 const T = pick({
   en: {
-    title: 'Credits and sources', description: 'Every book, paper and source that Curious Sparoows stands on, with thanks: past-paper books, official papers, the books behind मन की सच्ची बातें, fonts, music and tools. Plus how the site respects copyright.',
+    title: 'Credits and sources', description: 'Every book, paper and source that Curious Sparoows stands on, with thanks: past-paper books, official papers, the books behind Between the Chapters, fonts, music and tools. Plus how the site respects copyright.',
     eyebrow: 'With gratitude', h1: 'Credits and sources',
     lede: 'Nothing on this site began with me. It stands on the years of work of authors, publishers, teachers, examiners and the whole student community. This page names them, as fully and honestly as I can, and thanks them with folded hands. 🙏',
     mineH: 'What is mine, and what is not',
     notMine: ['The knowledge: the facts, ideas and questions belong to the people who discovered, wrote, taught and set them, and in the end to everyone.', 'The past questions: they were set by the exam bodies (RPSC, RSSB, NTA and others).', 'The books I learnt from, and the notes passed around in the student community.'],
-    mine: ['The idea of presenting it differently: flip cards, quick quizzes, five-minute pages, short talks, so that a tired mind gets a little less bored.', 'Choosing, ordering and linking topics; checking facts in more than one place; and writing the explanations in my own words.', 'My own story and feelings, shared in मन की सच्ची बातें.'],
+    mine: ['The idea of presenting it differently: flip cards, quick quizzes, five-minute pages, short talks, so that a tired mind gets a little less bored.', 'Choosing, ordering and linking topics; checking facts in more than one place; and writing the explanations in my own words.', 'My own story and feelings, shared in Between the Chapters.'],
     mineL: 'Not mine', mineR: 'My small part',
     pyqH: 'Past-question practice (PYQs)',
     pyqP: 'The questions were first set by the exam bodies. I studied and practised them from these books, and I am deeply thankful to their authors and publishers. Please buy and read the books: they carry far more than this site, including their own explanations, which I do not reproduce here.',
@@ -44,7 +44,7 @@ const T = pick({
     ciH: 'Curriculum Index and Exam Mentor',
     ciP: 'Built from the official syllabi and past papers of RPSC, RSSB, UPSC, NTA and other exam bodies, arranged by me in a Google Sheet. The topic lists for Maths and Reasoning follow the topic order of the Kiran Prakashan practice books, with thanks.',
     libH: 'The Library’s Encyclopedic shelves', libP: 'Every shelf has its own Sources page listing the books, sites and people it draws on:',
-    readH: 'The books behind मन की सच्ची बातें', readP: 'The talks with aspirants lean on these books and studies. I describe their ideas in my own words; to really meet them, read the books.',
+    readH: 'The books behind Between the Chapters', readP: 'The talks with aspirants lean on these books and studies. I describe their ideas in my own words; to really meet them, read the books.',
     otherH: 'Music, fonts, tools and help',
     other: [
       ['Background music', '“Nature Bird Bamboo Flute Morning Relaxing Music” by Sujan, shared as copyright-free. Thank you.'],
@@ -73,15 +73,15 @@ const T = pick({
     natureH: 'Why I share it freely',
     natureP: 'I believe knowledge is born of nature, and nature is every tiny living being and how they all work together through time. Every author whose book helped me is part of that nature. So I want to return this knowledge to everyone without a price, for as long as I can meet my basic needs another way, and with full credit to the people whose hard work made it possible.',
     missH: 'Did I miss you?', missP: 'If you see your work here without credit, or wrongly credited, please tell me. I will put it right with thanks.',
-    why: 'Why this format?', talks: 'मन की सच्ची बातें',
+    why: 'Why this format?', talks: 'Between the Chapters',
   },
   hi: {
-    title: 'आभार और स्रोत', description: 'हर किताब, पेपर और स्रोत जिस पर Curious Sparoows खड़ा है, आभार के साथ: PYQ की किताबें, आधिकारिक पेपर, मन की सच्ची बातें के पीछे की किताबें, फ़ॉन्ट, संगीत और औज़ार। साथ में, यह साइट कॉपीराइट का सम्मान कैसे करती है।',
+    title: 'आभार और स्रोत', description: 'हर किताब, पेपर और स्रोत जिस पर Curious Sparoows खड़ा है, आभार के साथ: PYQ की किताबें, आधिकारिक पेपर, पन्नों के बीच के पीछे की किताबें, फ़ॉन्ट, संगीत और औज़ार। साथ में, यह साइट कॉपीराइट का सम्मान कैसे करती है।',
     eyebrow: 'कृतज्ञता के साथ', h1: 'आभार और स्रोत',
     lede: 'इस साइट पर कुछ भी मुझसे शुरू नहीं हुआ। यह लेखकों, प्रकाशकों, शिक्षकों, परीक्षकों और पूरे विद्यार्थी समुदाय की सालों की मेहनत पर खड़ी है। यह पन्ना उनके नाम लेता है, जितना पूरा और ईमानदार मुझसे हो सके, और हाथ जोड़कर उनका धन्यवाद करता है। 🙏',
     mineH: 'क्या मेरा है, और क्या नहीं',
     notMine: ['ज्ञान: तथ्य, विचार और सवाल उनके हैं जिन्होंने उन्हें खोजा, लिखा, पढ़ाया और बनाया, और आख़िर में सबके।', 'पिछले सवाल: इन्हें परीक्षा संस्थाओं (RPSC, RSSB, NTA और अन्य) ने बनाया था।', 'वे किताबें जिनसे मैंने सीखा, और विद्यार्थी समुदाय में घूमते नोट्स।'],
-    mine: ['इसे अलग ढंग से पेश करने का विचार: फ़्लिप कार्ड, छोटी क्विज़, पाँच मिनट के पन्ने, छोटी बातचीत, ताकि थका हुआ मन थोड़ा कम ऊबे।', 'टॉपिक चुनना, क्रम देना और जोड़ना; तथ्यों को एक से ज़्यादा जगह जाँचना; और व्याख्याएँ अपने शब्दों में लिखना।', 'मन की सच्ची बातें में साझा की गई मेरी अपनी कहानी और भावनाएँ।'],
+    mine: ['इसे अलग ढंग से पेश करने का विचार: फ़्लिप कार्ड, छोटी क्विज़, पाँच मिनट के पन्ने, छोटी बातचीत, ताकि थका हुआ मन थोड़ा कम ऊबे।', 'टॉपिक चुनना, क्रम देना और जोड़ना; तथ्यों को एक से ज़्यादा जगह जाँचना; और व्याख्याएँ अपने शब्दों में लिखना।', 'पन्नों के बीच में साझा की गई मेरी अपनी कहानी और भावनाएँ।'],
     mineL: 'मेरा नहीं', mineR: 'मेरा छोटा-सा हिस्सा',
     pyqH: 'पिछले सवालों का अभ्यास (PYQ)',
     pyqP: 'ये सवाल पहले परीक्षा संस्थाओं ने बनाए थे। मैंने इन्हें इन किताबों से पढ़ा और अभ्यास किया, और इनके लेखकों और प्रकाशकों का दिल से आभारी हूँ। कृपया ये किताबें ख़रीदिए और पढ़िए: इनमें इस साइट से कहीं ज़्यादा है, उनकी अपनी व्याख्याओं समेत, जिन्हें मैं यहाँ नहीं छापता।',
@@ -94,7 +94,7 @@ const T = pick({
     ciH: 'पाठ्यक्रम सूची और परीक्षा मार्गदर्शक',
     ciP: 'RPSC, RSSB, UPSC, NTA और अन्य परीक्षा संस्थाओं के आधिकारिक सिलेबस और पिछले पेपरों से बनी, एक Google शीट में मेरे द्वारा सजाई गई। गणित और रीज़निंग की टॉपिक सूचियाँ किरण प्रकाशन की अभ्यास-किताबों के टॉपिक-क्रम पर चलती हैं, आभार के साथ।',
     libH: 'लाइब्रेरी की विश्वकोशीय शेल्फ़', libP: 'हर शेल्फ़ का अपना स्रोतों वाला पन्ना है, जिसमें वे किताबें, साइटें और लोग हैं जिन पर वह टिकी है:',
-    readH: 'मन की सच्ची बातें के पीछे की किताबें', readP: 'अभ्यर्थियों से बातचीत इन किताबों और अध्ययनों का सहारा लेती है। मैं उनके विचार अपने शब्दों में बताता हूँ; उन्हें सच में जानने के लिए किताबें पढ़िए।',
+    readH: 'पन्नों के बीच के पीछे की किताबें', readP: 'अभ्यर्थियों से बातचीत इन किताबों और अध्ययनों का सहारा लेती है। मैं उनके विचार अपने शब्दों में बताता हूँ; उन्हें सच में जानने के लिए किताबें पढ़िए।',
     otherH: 'संगीत, फ़ॉन्ट, औज़ार और मदद',
     other: [
       ['पृष्ठभूमि संगीत', 'सुजन का “Nature Bird Bamboo Flute Morning Relaxing Music”, कॉपीराइट-मुक्त के रूप में साझा किया गया। धन्यवाद।'],
@@ -123,7 +123,7 @@ const T = pick({
     natureH: 'मैं इसे मुफ़्त क्यों बाँटता हूँ',
     natureP: 'मेरा मानना है कि ज्ञान प्रकृति से जन्मा है, और प्रकृति है हर छोटा-सा जीव और समय के साथ उनका आपस में मिलकर काम करना। हर वह लेखक जिसकी किताब ने मेरी मदद की, उसी प्रकृति का हिस्सा है। इसलिए मैं यह ज्ञान सबको बिना क़ीमत लौटाना चाहता हूँ, जब तक अपनी बुनियादी ज़रूरतें किसी और तरह पूरी कर सकूँ, और उन लोगों को पूरे श्रेय के साथ जिनकी मेहनत से यह संभव हुआ।',
     missH: 'क्या मैं आपको भूल गया?', missP: 'अगर आपको यहाँ अपना काम बिना श्रेय या ग़लत श्रेय के साथ दिखे, तो कृपया बताइए। मैं आभार के साथ उसे ठीक करूँगा।',
-    why: 'यह ढंग क्यों?', talks: 'मन की सच्ची बातें',
+    why: 'यह ढंग क्यों?', talks: 'पन्नों के बीच',
   },
 }, lang);
 ---
@@ -134,7 +134,7 @@ const T = pick({
       <p class="eyebrow">{T.eyebrow}</p>
       <h1>{T.h1}</h1>
       <p class="lede">{T.lede}</p>
-      <p class="links"><a href={L('/aspirants/why-this-format/')}>{T.why}</a> · <a href={L('/aspirants/')} lang="hi">{T.talks}</a></p>
+      <p class="links"><a href={L('/aspirants/why-this-format/')}>{T.why}</a> · <a href={L('/aspirants/')}>{T.talks}</a></p>
     </header>
 
     <section aria-labelledby="mine-h">

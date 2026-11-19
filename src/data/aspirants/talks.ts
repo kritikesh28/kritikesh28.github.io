@@ -1,4 +1,4 @@
-// "मन की सच्ची बातें" (/aspirants/): Kritikesh talking with aspirants, as at a chai tapri, about the problems every
+// "Between the Chapters" (Hindi: "पन्नों के बीच"; renamed from "मन की सच्ची बातें" on 19 Nov 2026 at his wish) (/aspirants/): Kritikesh talking with aspirants, as at a chai tapri, about the problems every
 // aspirant has and few say out loud, from the smallest (counting the months) to the biggest (should I quit?).
 // Written 18 Nov 2026 from his brief. His rules for this page:
 // - Never advice. He is one of them, sharing what he felt, how long it lasted, who helped (seniors, parents, teachers,
