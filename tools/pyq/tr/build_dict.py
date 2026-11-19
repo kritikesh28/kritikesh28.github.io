@@ -21,7 +21,7 @@ for name, parts in JOBS.items():
       for line in open(f, encoding='utf-8'):
         line = line.rstrip('\n')
         if not line: continue
-        i, t = line.split('\t', 1)
+        i, t = line.split('\t', 1); t = t.replace('\\n', '\n')
         o = strings[int(i)]
         if o in d and d[o] != t: pass  # first wins (flip-card wording is the reviewed one)
         d.setdefault(o, t)
