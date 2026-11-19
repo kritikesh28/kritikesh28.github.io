@@ -7,6 +7,7 @@ import ciMatch from './data/pyq/ci-match.json';
 import quizRaj from './data/pyq/quiz/raj.json';
 import quizNet from './data/pyq/quiz/net.json';
 import rajEn from './data/pyq/tr/raj-en.json';
+import netHi from './data/pyq/tr/net-hi.json';
 import rajTopics from './data/pyq/raj-topics.json';
 import reword from './data/pyq/reword.json';
 import type { Lang } from './i18n/config';
@@ -148,7 +149,7 @@ export const quizOptions = (b: Bank, r: Row): string[] | undefined => {
 // Hand translations, so every reader can practise in their own language: Rajasthan into English, NET into Hindi.
 // Made by tools/pyq/tr/build_dict.py from the files in tools/pyq/tr/. {original: translation}. A string with no
 // translation yet stays as it was asked. Guide: docs/19-pyq-practice.md (Translations)
-const DICT: Record<string, Record<string, string>> = { 'raj:en': rajEn as Record<string, string> };
+const DICT: Record<string, Record<string, string>> = { 'raj:en': rajEn as Record<string, string>, 'net:hi': netHi as Record<string, string> };
 const langCache = new Map<string, Bank>();
 /** The bank in the reader's language: the bank itself when it was asked in that language (or no translation exists),
  *  otherwise a translated copy that keeps the original wording in t0 / o0 for "See original" */
