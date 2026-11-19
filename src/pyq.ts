@@ -216,7 +216,7 @@ export function inLang(b: Bank, lang: Lang): Bank {
 // Our own solutions for the real MCQs: why the keyed answer is right, a note on every option, a way to remember it.
 // Written by hand in English and Hindi, keyed by the MCQ id the page shows. Made by tools/pyq/sol/build_sol.py.
 // Guide: docs/19-pyq-practice.md (Solutions)
-export type Sol = { w: string; o?: string[]; t?: string };
+export type Sol = { w: string; o?: string[]; t?: string; b?: [string, string][] }; // b: background as short Q&A
 const SOL: Record<Bank['key'], Record<string, Partial<Record<Lang, Sol>>>> = { raj: solRaj as never, net: solNet as never };
 export const solution = (b: Bank, id: string, lang: Lang): Sol | undefined => SOL[b.key][id]?.[lang];
 
