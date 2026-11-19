@@ -1,0 +1,150 @@
+RB2-56	en	w	Rajasthan's five neighbours are Punjab, Haryana, Uttar Pradesh, Madhya Pradesh and Gujarat. Delhi is close, but Haryana lies in between.
+RB2-56	en	o	Punjab is a neighbour (shortest border) ¦ Uttar Pradesh is a neighbour ¦ Haryana is a neighbour ¦ Right: Delhi does not touch Rajasthan
+RB2-56	en	t	Five neighbours clockwise from the north: Punjab, Haryana, UP, MP, Gujarat.
+RB2-56	hi	w	राजस्थान के पाँच पड़ोसी हैं: पंजाब, हरियाणा, उत्तर प्रदेश, मध्य प्रदेश और गुजरात। दिल्ली निकट है, पर बीच में हरियाणा है।
+RB2-56	hi	o	पंजाब पड़ोसी है (सबसे छोटी सीमा) ¦ उत्तर प्रदेश पड़ोसी है ¦ हरियाणा पड़ोसी है ¦ सही: दिल्ली राजस्थान से नहीं लगती
+RB2-56	hi	t	उत्तर से घड़ी की दिशा में पाँच पड़ोसी: पंजाब, हरियाणा, उत्तर प्रदेश, मध्य प्रदेश, गुजरात।
+RB2-57	en	w	Three options are right here: Kota, Jaipur and Ajmer all lie far from Pakistan. Only Barmer touches the border. Because more than one option fits, the question was treated as having no single correct answer, and any of the first three earns the mark here.
+RB2-57	en	o	Correct: Kota does not touch Pakistan ¦ Correct: Jaipur does not touch Pakistan ¦ Correct: Ajmer does not touch Pakistan ¦ Barmer does touch Pakistan
+RB2-57	en	t	Spot the trap: when three options fit a "not" question, the question itself is flawed.
+RB2-57	hi	w	यहाँ तीन विकल्प सही हैं: कोटा, जयपुर और अजमेर तीनों पाकिस्तान से दूर हैं। केवल बाड़मेर सीमा से लगता है। एक से अधिक विकल्प सही होने के कारण इस सवाल का एक सही उत्तर नहीं माना गया, और यहाँ पहले तीन में से कोई भी चुनने पर अंक मिलता है।
+RB2-57	hi	o	सही: कोटा पाकिस्तान से नहीं लगता ¦ सही: जयपुर पाकिस्तान से नहीं लगता ¦ सही: अजमेर पाकिस्तान से नहीं लगता ¦ बाड़मेर पाकिस्तान से लगता है
+RB2-57	hi	t	जाल पहचानिए: "नहीं" वाले सवाल में तीन विकल्प सही हों तो सवाल ही दोषपूर्ण है।
+RB2-58	en	w	Dholpur, in the far east, touches Uttar Pradesh to the north-east and Madhya Pradesh across the Chambal to the south.
+RB2-58	en	o	Karauli touches Madhya Pradesh only ¦ Right: Dholpur ¦ Bharatpur touches Uttar Pradesh and Haryana ¦ Sawai Madhopur touches Madhya Pradesh only
+RB2-58	en	t	Dholpur: the corner where UP and MP both meet Rajasthan.
+RB2-58	hi	w	सुदूर पूर्व में धौलपुर उत्तर-पूर्व में उत्तर प्रदेश और दक्षिण में चंबल के पार मध्य प्रदेश से लगता है।
+RB2-58	hi	o	करौली केवल मध्य प्रदेश से लगता है ¦ सही: धौलपुर ¦ भरतपुर उत्तर प्रदेश और हरियाणा से लगता है ¦ सवाई माधोपुर केवल मध्य प्रदेश से लगता है
+RB2-58	hi	t	धौलपुर: वह कोना जहाँ उत्तर प्रदेश और मध्य प्रदेश दोनों राजस्थान से मिलते हैं।
+RB2-59	en	w	Dholpur holds Rajasthan's eastern tip, at Silana village, about 78°17′E.
+RB2-59	en	o	Bharatpur is east, but not the farthest ¦ Right: Dholpur ¦ Alwar is in the north-east, not the farthest east ¦ Dausa is further west
+RB2-59	en	t	The sun rises first over Rajasthan in Dholpur.
+RB2-59	hi	w	राजस्थान का पूर्वी सिरा धौलपुर के सिलाना गाँव में है, लगभग 78°17′ पूर्व।
+RB2-59	hi	o	भरतपुर पूर्व में है, पर सबसे पूर्वी नहीं ¦ सही: धौलपुर ¦ अलवर उत्तर-पूर्व में है, सबसे पूर्वी नहीं ¦ दौसा और पश्चिम में है
+RB2-59	hi	t	राजस्थान में सूरज सबसे पहले धौलपुर में उगता है।
+RB2-60	en	w	The four end-points of Rajasthan are Kona (north, Sri Ganganagar), Borkund (south, Banswara), Katra (west, Jaisalmer) and Silon/Silana (east, Dholpur). For the marks on the exam map, the key reads them as Silon, Kona, Katra, Borkund.
+RB2-60	en	o	Right: Silon, Kona, Katra, Borkund ¦ Wrong order for the marks ¦ Wrong order for the marks ¦ Wrong order for the marks
+RB2-60	en	t	North Kona, South Borkund, West Katra, East Silana.
+RB2-60	hi	w	राजस्थान के चार छोर हैं: कोणा (उत्तर, श्रीगंगानगर), बोरकुंड (दक्षिण, बांसवाड़ा), कटरा (पश्चिम, जैसलमेर) और सिलोन/सिलाना (पूर्व, धौलपुर)। परीक्षा के मानचित्र के चिह्नों के लिए कुंजी इन्हें सिलोन, कोणा, कटरा, बोरकुंड पढ़ती है।
+RB2-60	hi	o	सही: सिलोन, कोणा, कटरा, बोरकुंड ¦ चिह्नों के लिए गलत क्रम ¦ चिह्नों के लिए गलत क्रम ¦ चिह्नों के लिए गलत क्रम
+RB2-60	hi	t	उत्तर कोणा, दक्षिण बोरकुंड, पश्चिम कटरा, पूर्व सिलाना।
+RB2-61	en	w	Kushalgarh tehsil in Banswara holds the southern tip of Rajasthan; Borkund village, the southernmost point, is in this area.
+RB2-61	en	o	Right: Kushalgarh ¦ Ghatol is further north in Banswara ¦ Bagidora is north of Kushalgarh ¦ Garhi is north of Kushalgarh
+RB2-61	en	t	Southern tip: Borkund, Kushalgarh, Banswara.
+RB2-61	hi	w	बांसवाड़ा की कुशलगढ़ तहसील में राजस्थान का दक्षिणी सिरा है; सबसे दक्षिणी बिंदु बोरकुंड गाँव इसी क्षेत्र में है।
+RB2-61	hi	o	सही: कुशलगढ़ ¦ घाटोल बांसवाड़ा में और उत्तर में है ¦ बागीदौरा कुशलगढ़ के उत्तर में है ¦ गढ़ी कुशलगढ़ के उत्तर में है
+RB2-61	hi	t	दक्षिणी सिरा: बोरकुंड, कुशलगढ़, बांसवाड़ा।
+RB2-62	en	w	Inside Rajasthan, Baran touches only two districts, Kota and Jhalawar. The rest of its border is with Madhya Pradesh.
+RB2-62	en	o	3 is one too many ¦ Right: 2 ¦ 5 is far too many ¦ 4 is too many
+RB2-62	en	t	Baran: two Rajasthan neighbours, the rest is MP.
+RB2-62	hi	w	राजस्थान के भीतर बारां केवल दो ज़िलों, कोटा और झालावाड़, से लगता है। बाक़ी सीमा मध्य प्रदेश से है।
+RB2-62	hi	o	3 एक अधिक है ¦ सही: 2 ¦ 5 बहुत अधिक है ¦ 4 अधिक है
+RB2-62	hi	t	बारां: राजस्थान के दो पड़ोसी, बाक़ी मध्य प्रदेश।
+RB2-63	en	w	Karauli lies between Sawai Madhopur and Dholpur, so the two never touch. Sawai Madhopur does touch Dausa, Kota and Tonk.
+RB2-63	en	o	Right: Dholpur ¦ Dausa touches it ¦ Kota touches it ¦ Tonk touches it
+RB2-63	en	t	Karauli is the wall between Sawai Madhopur and Dholpur.
+RB2-63	hi	w	सवाई माधोपुर और धौलपुर के बीच करौली है, इसलिए दोनों नहीं मिलते। सवाई माधोपुर दौसा, कोटा और टोंक से लगता है।
+RB2-63	hi	o	सही: धौलपुर ¦ दौसा इससे लगता है ¦ कोटा इससे लगता है ¦ टोंक इससे लगता है
+RB2-63	hi	t	करौली सवाई माधोपुर और धौलपुर के बीच की दीवार है।
+RB2-64	en	w	The Tropic of Cancer (23°26′N) just clips the southern tip of Rajasthan, passing through Dungarpur and Banswara. Banswara city lies very close to it.
+RB2-64	en	o	Baran and Jhalawar are further north ¦ Barmer and Churu are far to the north ¦ Right: Banswara and Dungarpur ¦ Bundi and Bhilwara are further north
+RB2-64	en	t	The Tropic "kisses" Rajasthan only in the Vagad area (Dungarpur–Banswara).
+RB2-64	hi	w	कर्क रेखा (23°26′ उत्तर) राजस्थान के दक्षिणी सिरे को छूती हुई डूंगरपुर और बांसवाड़ा से गुज़रती है। बांसवाड़ा नगर इसके बहुत निकट है।
+RB2-64	hi	o	बारां और झालावाड़ अधिक उत्तर में हैं ¦ बाड़मेर और चूरू बहुत उत्तर में हैं ¦ सही: बांसवाड़ा और डूंगरपुर ¦ बूंदी और भीलवाड़ा अधिक उत्तर में हैं
+RB2-64	hi	t	कर्क रेखा राजस्थान को केवल वागड़ (डूंगरपुर–बांसवाड़ा) में "छूती" है।
+RB2-65	en	w	Banswara is the district the Tropic of Cancer is best known for in Rajasthan; the line passes very near Banswara city.
+RB2-65	en	o	Jhalawar lies north of the Tropic ¦ Chittorgarh lies north of the Tropic ¦ Right: Banswara ¦ Udaipur lies north of the Tropic
+RB2-65	en	t	Banswara: the Tropic district.
+RB2-65	hi	w	राजस्थान में कर्क रेखा के लिए बांसवाड़ा सबसे प्रसिद्ध ज़िला है; रेखा बांसवाड़ा नगर के बहुत पास से गुज़रती है।
+RB2-65	hi	o	झालावाड़ कर्क रेखा के उत्तर में है ¦ चित्तौड़गढ़ कर्क रेखा के उत्तर में है ¦ सही: बांसवाड़ा ¦ उदयपुर कर्क रेखा के उत्तर में है
+RB2-65	hi	t	बांसवाड़ा: कर्क रेखा वाला ज़िला।
+RB2-66	en	w	Of these, only Dungarpur is crossed by the Tropic of Cancer, in its southern part. Banswara is the other district it crosses.
+RB2-66	en	o	Udaipur is just north of the line ¦ Alwar is far north ¦ Right: Dungarpur ¦ Tonk is far north
+RB2-66	en	t	Two Tropic districts: Dungarpur and Banswara.
+RB2-66	hi	w	इनमें केवल डूंगरपुर से, इसके दक्षिणी भाग में, कर्क रेखा गुज़रती है। दूसरा ज़िला बांसवाड़ा है।
+RB2-66	hi	o	उदयपुर रेखा के ठीक उत्तर में है ¦ अलवर बहुत उत्तर में है ¦ सही: डूंगरपुर ¦ टोंक बहुत उत्तर में है
+RB2-66	hi	t	कर्क रेखा के दो ज़िले: डूंगरपुर और बांसवाड़ा।
+RB2-67	en	w	Rajasthan starts at 23°3′N, just south of the Tropic of Cancer (23°26′N), so the line passes only through the southern edge of the state.
+RB2-67	en	o	The north is near 30°N, far from the Tropic ¦ Right: south ¦ The centre is around 26–27°N ¦ The east is not where it crosses
+RB2-67	en	t	Almost all of Rajasthan lies north of the Tropic, in the subtropics.
+RB2-67	hi	w	राजस्थान 23°3′ उत्तर से शुरू होता है, कर्क रेखा (23°26′ उत्तर) के ठीक दक्षिण से, इसलिए रेखा राज्य के केवल दक्षिणी किनारे से गुज़रती है।
+RB2-67	hi	o	उत्तर लगभग 30° उत्तर पर है, कर्क रेखा से दूर ¦ सही: दक्षिण ¦ मध्य भाग लगभग 26–27° उत्तर पर है ¦ पूर्व से यह नहीं गुज़रती
+RB2-67	hi	t	लगभग पूरा राजस्थान कर्क रेखा के उत्तर में, उपोष्ण कटिबंध में है।
+RB2-68	en	w	The Tropic of Cancer runs through the south of Rajasthan. The Equator and the Tropic of Capricorn are far to the south of India.
+RB2-68	en	o	The Equator (0°) is far south of India ¦ The Tropic of Capricorn is in the southern hemisphere ¦ Right: Tropic of Cancer ¦ A line does pass, so "none" is wrong
+RB2-68	en	t	Cancer = north (23½°N), Capricorn = south (23½°S).
+RB2-68	hi	w	कर्क रेखा राजस्थान के दक्षिण से गुज़रती है। भूमध्य रेखा और मकर रेखा भारत से बहुत दक्षिण में हैं।
+RB2-68	hi	o	भूमध्य रेखा (0°) भारत से बहुत दक्षिण में है ¦ मकर रेखा दक्षिणी गोलार्ध में है ¦ सही: कर्क रेखा ¦ एक रेखा गुज़रती है, इसलिए "कोई नहीं" गलत
+RB2-68	hi	t	कर्क = उत्तर (23½° उ.), मकर = दक्षिण (23½° द.)।
+RB2-69	en	w	The further north a place is from the Tropic, the more slanting the sun's rays. Sri Ganganagar is the northernmost district, so its rays are the most slanting.
+RB2-69	en	o	Banswara gets the straightest rays ¦ Jaisalmer is west, not the most northern ¦ Right: Sri Ganganagar ¦ Dholpur is east, not the most northern
+RB2-69	en	t	Straightest rays Banswara (south), most slanting Ganganagar (north).
+RB2-69	hi	w	कर्क रेखा से जितना उत्तर, सूर्य की किरणें उतनी तिरछी। श्रीगंगानगर सबसे उत्तरी ज़िला है, इसलिए यहाँ किरणें सबसे तिरछी पड़ती हैं।
+RB2-69	hi	o	बांसवाड़ा में किरणें सबसे सीधी पड़ती हैं ¦ जैसलमेर पश्चिम में है, सबसे उत्तर में नहीं ¦ सही: श्रीगंगानगर ¦ धौलपुर पूर्व में है, सबसे उत्तर में नहीं
+RB2-69	hi	t	सबसे सीधी किरणें बांसवाड़ा (दक्षिण), सबसे तिरछी गंगानगर (उत्तर)।
+RB2-70	en	w	On 21 June the sun is overhead at the Tropic of Cancer, which passes close to Banswara, so the sun shines nearly straight down there.
+RB2-70	en	o	Ganganagar gets the most slanting rays ¦ Ajmer is too far north ¦ Right: Banswara ¦ Jodhpur is too far north
+RB2-70	en	t	21 June = summer solstice = sun over the Tropic of Cancer = Banswara.
+RB2-70	hi	w	21 जून को सूर्य कर्क रेखा पर लंबवत होता है, जो बांसवाड़ा के निकट से गुज़रती है, इसलिए वहाँ सूर्य लगभग सीधा चमकता है।
+RB2-70	hi	o	गंगानगर में किरणें सबसे तिरछी हैं ¦ अजमेर बहुत उत्तर में है ¦ सही: बांसवाड़ा ¦ जोधपुर बहुत उत्तर में है
+RB2-70	hi	t	21 जून = ग्रीष्म संक्रांति = सूर्य कर्क रेखा पर = बांसवाड़ा।
+RB2-71	en	w	The sun rises in the east, so the easternmost district, Dholpur, sees it first. Jaisalmer, in the far west, sees it last, about 35 minutes later.
+RB2-71	en	o	Bharatpur is east, but not the farthest ¦ Right: Dholpur ¦ Kota is further west ¦ Jhalawar is further west
+RB2-71	en	t	First sunrise Dholpur, last sunset Jaisalmer.
+RB2-71	hi	w	सूर्य पूर्व में उगता है, इसलिए सबसे पूर्वी ज़िले धौलपुर में यह पहले दिखता है। सुदूर पश्चिम के जैसलमेर में यह लगभग 35 मिनट बाद दिखता है।
+RB2-71	hi	o	भरतपुर पूर्व में है, पर सबसे पूर्व नहीं ¦ सही: धौलपुर ¦ कोटा और पश्चिम में है ¦ झालावाड़ और पश्चिम में है
+RB2-71	hi	t	पहला सूर्योदय धौलपुर, आख़िरी सूर्यास्त जैसलमेर।
+RB2-72	en	w	Exam books record Rajasthan's border dispute as being with Gujarat, over small stretches of the southern boundary. The other neighbours have no such listed dispute.
+RB2-72	en	o	No dispute with Madhya Pradesh is listed ¦ No dispute with Uttar Pradesh is listed ¦ Right: Gujarat ¦ No dispute with Punjab is listed, only the water-sharing issue
+RB2-72	en	t	Border dispute = Gujarat; water dispute = Punjab and Haryana.
+RB2-72	hi	w	परीक्षा पुस्तकें राजस्थान का सीमा विवाद गुजरात के साथ, दक्षिणी सीमा के कुछ भागों पर, दर्ज करती हैं। अन्य पड़ोसियों के साथ ऐसा कोई विवाद दर्ज नहीं है।
+RB2-72	hi	o	मध्य प्रदेश के साथ कोई विवाद दर्ज नहीं ¦ उत्तर प्रदेश के साथ कोई विवाद दर्ज नहीं ¦ सही: गुजरात ¦ पंजाब के साथ सीमा विवाद नहीं, केवल जल बँटवारे का मुद्दा है
+RB2-72	hi	t	सीमा विवाद = गुजरात; जल विवाद = पंजाब और हरियाणा।
+RB2-73	en	w	The question asks which district stretches most from north to south for its size. Chittorgarh has a long, narrow north–south shape, so the key picks it.
+RB2-73	en	o	Jhalawar is compact ¦ Bhilwara is compact ¦ Right: Chittorgarh ¦ Jhunjhunu is compact
+RB2-73	en	t	Chittorgarh is "tall and thin" on the map.
+RB2-73	hi	w	सवाल पूछता है कि अपने आकार के अनुपात में कौन-सा ज़िला उत्तर-दक्षिण में सबसे अधिक फैला है। चित्तौड़गढ़ की आकृति लंबी और संकरी उत्तर-दक्षिण है, इसलिए कुंजी इसे चुनती है।
+RB2-73	hi	o	झालावाड़ सघन है ¦ भीलवाड़ा सघन है ¦ सही: चित्तौड़गढ़ ¦ झुंझुनूं सघन है
+RB2-73	hi	t	मानचित्र पर चित्तौड़गढ़ "लंबा और पतला" है।
+RB2-74	en	w	The correct pair is 23°3′–30°12′N, 69°30′–78°17′E with an area of about 3,42,239.74 sq km. The other options change a few minutes of arc or a few sq km to trap you.
+RB2-74	en	o	Right: 23°3′–30°12′N, 69°30′–78°17′E, 342239.74 ¦ 20°30′N is far too far south ¦ 23°25′N is wrong ¦ 23°28′N and 69°21′E are wrong
+RB2-74	en	t	"23-3 to 30-12, 69-30 to 78-17": say it like a phone number.
+RB2-74	hi	w	सही युग्म है 23°3′–30°12′ उत्तर, 69°30′–78°17′ पूर्व और क्षेत्रफल लगभग 3,42,239.74 वर्ग किमी। बाक़ी विकल्प फँसाने के लिए कुछ कला या कुछ वर्ग किमी बदल देते हैं।
+RB2-74	hi	o	सही: 23°3′–30°12′ उ., 69°30′–78°17′ पू., 342239.74 ¦ 20°30′ उत्तर बहुत दक्षिण है ¦ 23°25′ उत्तर गलत है ¦ 23°28′ उत्तर और 69°21′ पूर्व गलत हैं
+RB2-74	hi	t	"23-3 से 30-12, 69-30 से 78-17": फ़ोन नंबर की तरह बोलिए।
+RB2-75	en	w	Rajasthan lies wholly in the northern hemisphere, from 23°3′N to 30°12′N.
+RB2-75	en	o	S (south) would put it below the Equator ¦ Right: 23°3′N to 30°12′N ¦ Mixing N and S is impossible here ¦ Mixing N and S is impossible here
+RB2-75	en	t	Latitudes in India are always N.
+RB2-75	hi	w	राजस्थान पूरी तरह उत्तरी गोलार्ध में है, 23°3′ उत्तर से 30°12′ उत्तर तक।
+RB2-75	hi	o	दक्षिण (S) इसे भूमध्य रेखा के नीचे कर देगा ¦ सही: 23°3′ उ. से 30°12′ उ. ¦ उत्तर और दक्षिण का मेल यहाँ असंभव है ¦ उत्तर और दक्षिण का मेल यहाँ असंभव है
+RB2-75	hi	t	भारत में अक्षांश हमेशा उत्तरी होते हैं।
+RB2-76	en	w	Rajasthan lies wholly east of Greenwich, from 69°30′E to 78°17′E.
+RB2-76	en	o	Right: 69°30′E to 78°17′E ¦ W (west) would put it in the Americas ¦ W is wrong ¦ W is wrong
+RB2-76	en	t	Longitudes in India are always E.
+RB2-76	hi	w	राजस्थान पूरी तरह ग्रीनविच के पूर्व में है, 69°30′ पूर्व से 78°17′ पूर्व तक।
+RB2-76	hi	o	सही: 69°30′ पू. से 78°17′ पू. ¦ पश्चिम (W) इसे अमेरिका में कर देगा ¦ पश्चिम गलत है ¦ पश्चिम गलत है
+RB2-76	hi	t	भारत में देशांतर हमेशा पूर्वी होते हैं।
+RB2-77	en	w	Longitude span: 78°17′ − 69°30′ = 8°47′. Latitude span: 30°12′ − 23°3′ = 7°9′. So the answer is 8°47′ and 7°9′.
+RB2-77	en	o	Uses the latitude figure first and a wrong second figure ¦ Right: 8°47′ and 7°9′ ¦ Both figures are wrong ¦ 8°9′ is wrong
+RB2-77	en	t	Wider in degrees of longitude (8°47′) than of latitude (7°9′).
+RB2-77	hi	w	देशांतरीय विस्तार: 78°17′ − 69°30′ = 8°47′। अक्षांशीय विस्तार: 30°12′ − 23°3′ = 7°9′। इसलिए उत्तर 8°47′ और 7°9′ है।
+RB2-77	hi	o	पहले अक्षांश का आँकड़ा और दूसरा गलत ¦ सही: 8°47′ और 7°9′ ¦ दोनों आँकड़े गलत ¦ 8°9′ गलत है
+RB2-77	hi	t	देशांतर में (8°47′) अक्षांश (7°9′) से अधिक फैलाव।
+RB2-78	en	w	Hanumangarh city lies at about 74.3°E, just east of 74°E. Dungarpur, Udaipur and Jalore all lie between 70°E and 74°E.
+RB2-78	en	o	Dungarpur is about 73.7°E ¦ Udaipur is about 73.7°E ¦ Jalore is about 72.6°E ¦ Right: Hanumangarh
+RB2-78	en	t	74°E roughly splits the Aravalli belt; Hanumangarh is just on the eastern side.
+RB2-78	hi	w	हनुमानगढ़ नगर लगभग 74.3° पूर्व पर है, 74° पूर्व के ठीक पूर्व में। डूंगरपुर, उदयपुर और जालोर तीनों 70° और 74° पूर्व के बीच हैं।
+RB2-78	hi	o	डूंगरपुर लगभग 73.7° पूर्व ¦ उदयपुर लगभग 73.7° पूर्व ¦ जालोर लगभग 72.6° पूर्व ¦ सही: हनुमानगढ़
+RB2-78	hi	t	74° पूर्व मोटे तौर पर अरावली पट्टी को बाँटता है; हनुमानगढ़ ठीक पूर्वी ओर है।
+RB2-79	en	w	Pali and Barmer both sit at about 25°45′N, so they share almost the same latitude, though Barmer is far to the west.
+RB2-79	en	o	Sawai Madhopur is further north (about 26°N) ¦ Bhilwara is further south (about 25°21′N) ¦ Udaipur and Sirohi differ by about half a degree ¦ Right: Pali–Barmer
+RB2-79	en	t	Pali and Barmer: same row, different columns.
+RB2-79	hi	w	पाली और बाड़मेर दोनों लगभग 25°45′ उत्तर पर हैं, इसलिए दोनों का अक्षांश लगभग समान है, भले बाड़मेर बहुत पश्चिम में है।
+RB2-79	hi	o	सवाई माधोपुर अधिक उत्तर में (लगभग 26° उ.) ¦ भीलवाड़ा अधिक दक्षिण में (लगभग 25°21′ उ.) ¦ उदयपुर और सिरोही में लगभग आधे अंश का अंतर ¦ सही: पाली–बाड़मेर
+RB2-79	hi	t	पाली और बाड़मेर: एक ही पंक्ति, अलग स्तंभ।
+RB2-80	en	w	Kota lies at about 75°50′E, within the 75°–77°E band.
+RB2-80	en	o	73°–75°E is too far west ¦ Right: 75°–77°E ¦ 72°–74°E is the Aravalli–Marwar belt ¦ 70°–72°E is the far west (Jaisalmer)
+RB2-80	en	t	Kota, on the Chambal, is in the eastern half.
+RB2-80	hi	w	कोटा लगभग 75°50′ पूर्व पर है, 75°–77° पूर्व की पट्टी में।
+RB2-80	hi	o	73°–75° पूर्व बहुत पश्चिम है ¦ सही: 75°–77° पूर्व ¦ 72°–74° पूर्व अरावली-मारवाड़ पट्टी है ¦ 70°–72° पूर्व सुदूर पश्चिम (जैसलमेर) है
+RB2-80	hi	t	चंबल पर बसा कोटा पूर्वी आधे भाग में है।

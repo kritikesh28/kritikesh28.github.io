@@ -4,7 +4,7 @@
 // Guide: docs/19-pyq-practice.md
 import ExamLayout from '../../../../../../../layouts/ExamLayout.astro';
 import OrigToggle from '../../../../../../../components/exam/OrigToggle.astro';
-import { BANKS, inLang, orig, mcqSets, pyqPath, rowsForMcq, setOfRow, type Bank, type Mcq } from '../../../../../../../pyq';
+import { BANKS, inLang, orig, mcqSets, pyqPath, rowsForMcq, setOfRow, solution, type Bank, type Mcq } from '../../../../../../../pyq';
 import { paths } from '../../../../../../../exam-prep';
 import { langFromUrl, withLangs, pick } from '../../../../../../../i18n/config';
 import '../../../../../../../styles/pyq.css';
@@ -28,6 +28,7 @@ const T = pick({
     home: 'Exam Prep', pyq: 'PYQ', real: 'Real exam questions', page: `questions ${(S.set - 1) * 10 + 1}–${(S.set - 1) * 10 + S.m.length} of ${P.m.length}`,
     lede: 'Exactly as the exam asked them. Choose an option: you will see at once if it is right, and the small facts behind the question.',
     right: 'Right! ✓', wrong: 'Not this one. The answer is option', score: 'Score', show: 'Show answer', ans: 'Answer: option', starred: 'This answer was disputed, or the official key changed it later.',
+    why: 'Why this is the answer', each: 'About each option', tip: 'Remember it',
     behind: 'The facts behind this question', cards: 'Practise these as flip cards →', q: 'Question', prev: '← Back', next: 'Next →',
     pPrev: '← Previous 10', pNext: 'Next 10 →', back: 'All topics', end: 'End of the real questions 🎉', partA: 'Assistant Professor paper', partN: 'NTA UGC-NET/JRF',
     titleTail: 'Previous Year Questions with Answers', descMid: 'real past-paper MCQs with answers',
@@ -36,6 +37,7 @@ const T = pick({
     home: 'परीक्षा तैयारी', pyq: 'PYQ', real: 'असली परीक्षा के सवाल', page: `${P.m.length} में से सवाल ${(S.set - 1) * 10 + 1}–${(S.set - 1) * 10 + S.m.length}`,
     lede: 'ठीक वैसे जैसे परीक्षा में पूछे गए। कोई विकल्प चुनिए: तुरंत दिखेगा कि सही है या नहीं, और सवाल के पीछे के छोटे तथ्य भी।',
     right: 'सही! ✓', wrong: 'यह नहीं। सही उत्तर है विकल्प', score: 'स्कोर', show: 'उत्तर दिखाओ', ans: 'उत्तर: विकल्प', starred: 'इस उत्तर पर विवाद रहा है, या आधिकारिक कुंजी ने बाद में इसे बदला।',
+    why: 'यही उत्तर क्यों', each: 'हर विकल्प के बारे में', tip: 'याद रखने की तरकीब',
     behind: 'इस सवाल के पीछे के तथ्य', cards: 'इन्हें फ़्लिप कार्ड में दोहराइए →', q: 'सवाल', prev: '← पीछे', next: 'आगे →',
     pPrev: '← पिछले 10', pNext: 'अगले 10 →', back: 'सारे टॉपिक', end: 'असली सवाल पूरे हुए 🎉', partA: 'असिस्टेंट प्रोफ़ेसर पेपर', partN: 'NTA UGC-NET/JRF',
     titleTail: 'पुराने सालों के सवाल उत्तर सहित', descMid: 'पुराने पेपरों के असली MCQ, उत्तर सहित',
@@ -73,6 +75,7 @@ const schema = [{
         const f = facts(m);
         const keys = f.map(({ row, sub }) => `${sub.slug}:${row.n}`).join(' ');
         const firstFact = f[0] && setOfRow(b, f[0].sub, f[0].row.n);
+        const sol = solution(b, idOf(m), lang);
         return (
           <article class="pq-mcq" data-mcq data-a={m.a} data-keys={keys} data-screen={i} id={`m${m.n}`}>
             <p class="tag">#{m.n}{m.p && ` · ${m.p === 'A' ? T.partA : T.partN}`}{m.x && <> · <span lang={cl} data-orig={orig(m.x, m.o0?.x)}>{m.x}</span></>}</p>
@@ -89,6 +92,19 @@ const schema = [{
               </>
             ) : (
               <details class="ans"><summary>{T.show}</summary><p>{T.ans} ({m.a})</p>{m.star && <p class="small muted">{T.starred}</p>}</details>
+            )}
+            {sol && (
+              <section class="pq-sol behind" lang={lang}>
+                <h3>{T.why}</h3>
+                <p>{sol.w}</p>
+                {sol.o && sol.o.length > 0 && (
+                  <>
+                    <h4>{T.each}</h4>
+                    <ol class="pq-sol-opts">{sol.o.map((x, k) => <li class={k + 1 === m.a ? 'ok' : undefined}>{x}</li>)}</ol>
+                  </>
+                )}
+                {sol.t && <p class="pq-sol-tip"><b>💡 {T.tip}:</b> {sol.t}</p>}
+              </section>
             )}
             {f.length > 0 && (
               <div class="pq-facts-behind behind">
