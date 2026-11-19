@@ -2,7 +2,7 @@
 // One question bank's home: the topic map (every sub-topic as a tile with its "mastered" meter)
 // and the list of real exam chapters. Guide: docs/19-pyq-practice.md
 import ExamLayout from '../../../../../layouts/ExamLayout.astro';
-import { BANKS, pyqPath, splitTitle, heat, qaSets, mcqSets, type Bank } from '../../../../../pyq';
+import { BANKS, inLang, pyqPath, splitTitle, heat, qaSets, mcqSets, type Bank } from '../../../../../pyq';
 import { paths, fmt, topicUrlIn } from '../../../../../exam-prep';
 import { langFromUrl, withLangs, pick } from '../../../../../i18n/config';
 import { CI_LINKS } from '../../../../../pyq';
@@ -12,7 +12,7 @@ export function getStaticPaths() {
   return withLangs(BANKS.map((b) => ({ params: { bank: b.slug }, props: { key: b.key } })));
 }
 const lang = langFromUrl(Astro.url);
-const b = BANKS.find((x) => x.key === (Astro.props as { key: Bank['key'] }).key)!;
+const b = inLang(BANKS.find((x) => x.key === (Astro.props as { key: Bank['key'] }).key)!, lang);
 const { BASE } = paths(lang);
 const cl = b.content;
 const rows = b.groups.reduce((a, g) => a + g.subs.reduce((x, s) => x + s.rows.length, 0), 0);
@@ -27,7 +27,7 @@ const T = pick({
     meter: '{n} of {t} cards mastered on this device', got: '{n} mastered', mapH: 'Pick a topic', mapP: 'Each topic opens as small pages of about 40 cards (five minutes). Start anywhere.',
     cards: 'cards', set: (n: number) => (n > 1 ? ` · ${n} pages` : ''), hot: (n: number) => `🔥 ${n}`, hotT: 'facts asked in two or more exams',
     realH: 'Real exam questions, topic by topic', realP: 'Every MCQ exactly as the exam asked it, ten to a page, one at a time. Pick an option and see the facts behind it.', qs: 'questions',
-    ci: 'In the Curriculum Index:', for: 'For', lang: b.content === 'hi' ? 'The questions are in Hindi, as they were asked.' : 'The questions are in English, as they were asked.',
+    ci: 'In the Curriculum Index:', for: 'For', lang: b.orig === 'hi' ? 'The questions were asked in Hindi; here they are translated into English by hand. Every page has a “See original” button for the Hindi wording.' : b.content === 'hi' ? 'The questions are in Hindi, as they were asked.' : 'The questions are in English, as they were asked.',
     partA: 'Assistant Professor papers', partN: 'NTA UGC-NET/JRF',
   },
   hi: {
@@ -37,7 +37,7 @@ const T = pick({
     meter: 'इस डिवाइस पर {t} में से {n} कार्ड याद हो गए', got: '{n} याद', mapH: 'कोई टॉपिक चुनिए', mapP: 'हर टॉपिक लगभग 40 कार्ड (पाँच मिनट) के छोटे पेजों में खुलता है। कहीं से भी शुरू कीजिए।',
     cards: 'कार्ड', set: (n: number) => (n > 1 ? ` · ${n} पेज` : ''), hot: (n: number) => `🔥 ${n}`, hotT: 'तथ्य जो दो या ज़्यादा परीक्षाओं में पूछे गए',
     realH: 'असली परीक्षा के सवाल, टॉपिक-दर-टॉपिक', realP: 'हर MCQ ठीक वैसा जैसा परीक्षा में आया, एक पेज पर दस, एक-एक करके। विकल्प चुनिए और उसके पीछे के तथ्य देखिए।', qs: 'सवाल',
-    ci: 'पाठ्यक्रम सूचकांक में:', for: 'किसके लिए:', lang: b.content === 'hi' ? 'सवाल हिंदी में हैं, जैसे पूछे गए थे।' : 'सवाल अंग्रेज़ी में हैं, जैसे पूछे गए थे।',
+    ci: 'पाठ्यक्रम सूचकांक में:', for: 'किसके लिए:', lang: b.orig === 'en' ? 'सवाल अंग्रेज़ी में पूछे गए थे; यहाँ उनका हाथ से किया हिंदी अनुवाद है। हर पेज पर “मूल देखें” बटन से अंग्रेज़ी शब्द पढ़िए।' : b.content === 'hi' ? 'सवाल हिंदी में हैं, जैसे पूछे गए थे।' : 'सवाल अंग्रेज़ी में हैं, जैसे पूछे गए थे।',
     partA: 'असिस्टेंट प्रोफ़ेसर पेपर', partN: 'NTA UGC-NET/JRF',
   },
 }, lang);

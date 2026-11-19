@@ -3,7 +3,8 @@
 // Without JavaScript the page is a plain list of questions and answers. Guide: docs/19-pyq-practice.md
 import ExamLayout from '../../../../../../layouts/ExamLayout.astro';
 import PyqDeck from '../../../../../../components/exam/PyqDeck.astro';
-import { BANKS, qaSets, pyqPath, splitTitle, CI_LINKS, ciTopicsFor, type Bank } from '../../../../../../pyq';
+import OrigToggle from '../../../../../../components/exam/OrigToggle.astro';
+import { BANKS, inLang, orig, qaSets, pyqPath, splitTitle, CI_LINKS, ciTopicsFor, type Bank } from '../../../../../../pyq';
 import { paths, topicUrlIn, ciTopic } from '../../../../../../exam-prep';
 import { langFromUrl, withLangs, pick } from '../../../../../../i18n/config';
 import '../../../../../../styles/pyq.css';
@@ -13,7 +14,7 @@ export function getStaticPaths() {
 }
 const lang = langFromUrl(Astro.url);
 const { key, seq } = Astro.props as { key: Bank['key']; seq: number };
-const b = BANKS.find((x) => x.key === key)!;
+const b = inLang(BANKS.find((x) => x.key === key)!, lang);
 const all = qaSets(b);
 const S = all[seq];
 const prev = all[seq - 1];
@@ -67,8 +68,9 @@ const schema = [{
   <PyqDeck bank={b} cards={S.rows.map((row) => ({ key: `${S.sub.slug}:${row.n}`, row }))}>
     <header class="pq-hero" slot="hero">
       <p class="eyebrow" lang={cl}>{b.icon} {gTitle}</p>
-      <h1 lang={cl}>{title}</h1>
+      <h1 lang={cl} data-orig={orig(title, S.sub.t0 && splitTitle(S.sub.t0)[0])}>{title}</h1>
       {note && <p class="sub" lang={cl}>{note}</p>}
+      <OrigToggle bank={b} />
       <ul class="pq-facts"><li>{T.cards(S.rows.length)}</li>{pageLabel && <li>{pageLabel}</li>}</ul>
       <div class="pq-meter"><span class="track"><span class="fill" data-meter-fill></span></span><span data-meter-text></span></div>
     </header>

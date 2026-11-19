@@ -2,7 +2,7 @@
 // A deck of PYQ flip cards (8 to a screen) with the quick quiz over the same cards. Used by the PYQ set pages and
 // the syllabus-topic practice pages. Put the page's header in the "hero" slot (it may hold the mastery meter), and
 // anything after the deck in the default slot. The behaviour is in src/scripts/pyq.ts. Guide: docs/19-pyq-practice.md
-import { heat, KIND, quizOptions, SCREEN, type Bank, type Row } from '../../pyq';
+import { heat, KIND, quizOptions, SCREEN, orig, type Bank, type Row } from '../../pyq';
 import { langFromUrl, pick } from '../../i18n/config';
 import '../../styles/pyq.css';
 
@@ -44,16 +44,16 @@ for (let i = 0; i < cards.length; i += SCREEN) screens.push(cards.slice(i, i + S
               <div class="in">
                 <div class="face front" role="button" tabindex="0" data-tap={T.tap} aria-label={`${r.q} (${T.tap})`}>
                   <span class="num">#{r.n}</span>
-                  <p class="q" lang={cl}>{r.q}</p>
+                  <p class="q" lang={cl} data-orig={orig(r.q, r.o0?.q)}>{r.q}</p>
                   <span class="chips">
                     {h > 1 && <span class="pq-chip hot" title={T.hotT(h)}>🔥 {h}×</span>}
                     <span class="pq-chip kind">{KIND[r.k]?.[lang] ?? r.k}</span>
                   </span>
                 </div>
                 <div class="face back">
-                  <p class="q" lang={cl}>{r.q}</p>
-                  <p class="a" lang={cl}>{r.a}</p>
-                  {r.f && <p class="flag" lang={cl}>({r.f})</p>}
+                  <p class="q" lang={cl} data-orig={orig(r.q, r.o0?.q)}>{r.q}</p>
+                  <p class="a" lang={cl} data-orig={orig(r.a, r.o0?.a)}>{r.a}</p>
+                  {r.f && <p class="flag" lang={cl}>(<span data-orig={orig(r.f, r.o0?.f)}>{r.f}</span>)</p>}
                   {r.x && <span class="chips">{r.x.slice(0, 4).map((x) => <span class="pq-chip">{x}</span>)}{r.x.length > 4 && <span class="pq-chip">+{r.x.length - 4}</span>}</span>}
                   <span class="mark"><button type="button" class="ok" data-ok>{T.ok}</button><button type="button" data-again>{T.again}</button></span>
                 </div>

@@ -1,7 +1,7 @@
 ---
 // The PYQ practice hub: every question bank, one card each. Guide: docs/19-pyq-practice.md
 import ExamLayout from '../../../../layouts/ExamLayout.astro';
-import { BANKS, pyqPath } from '../../../../pyq';
+import { BANKS, inLang, pyqPath } from '../../../../pyq';
 import { paths, fmt } from '../../../../exam-prep';
 import { langFromUrl, langParams, pick } from '../../../../i18n/config';
 import '../../../../styles/pyq.css';
@@ -16,7 +16,7 @@ const T = pick({
     home: 'Exam Prep', h1: 'Past questions, five minutes at a time',
     lede: 'Old papers are the best teacher, but a book of a thousand MCQs is a wall. So every question here is cut into small facts. Flip a card, play a quick quiz, then try the real exam question. One screen at a time, and the site remembers what you have mastered.',
     how: [['🃏 Flip cards', 'Read the question, guess, tap to see the answer. Mark it “I knew it” or “Again”.'], ['⚡ Quick quiz', 'Five questions from the cards you have not mastered yet, with four choices each.'], ['📝 Real PYQ', 'The question exactly as the exam asked it. Pick an option, then see the facts behind it.']],
-    cards: 'flip cards', real: 'real exam questions', open: 'Start practising →', for: 'For:', inHi: 'Questions in Hindi', inEn: 'Questions in English',
+    cards: 'flip cards', real: 'real exam questions', open: 'Start practising →', for: 'For:', inHi: 'Questions in Hindi', inEn: 'Questions in English', trEn: 'In English (asked in Hindi)', trHi: 'In Hindi (asked in English)',
   },
   hi: {
     title: 'PYQ अभ्यास: पुराने सालों के सवाल, फ़्लिप कार्ड और क्विज़ में',
@@ -24,7 +24,7 @@ const T = pick({
     home: 'परीक्षा तैयारी', h1: 'पुराने सवाल, एक बार में पाँच मिनट',
     lede: 'पुराने पेपर सबसे अच्छे शिक्षक हैं, पर हज़ार MCQ वाली किताब एक दीवार जैसी लगती है। इसलिए यहाँ हर सवाल को छोटे-छोटे तथ्यों में तोड़ा गया है। कार्ड पलटिए, छोटी क्विज़ खेलिए, फिर असली परीक्षा वाला सवाल कीजिए। एक बार में एक स्क्रीन, और साइट याद रखती है कि आपको क्या याद हो गया।',
     how: [['🃏 फ़्लिप कार्ड', 'सवाल पढ़िए, अंदाज़ा लगाइए, टैप करके उत्तर देखिए। फिर “याद था” या “फिर से” चुनिए।'], ['⚡ झटपट क्विज़', 'जो कार्ड अभी याद नहीं हुए, उनमें से पाँच सवाल, हर एक के चार विकल्प।'], ['📝 असली PYQ', 'सवाल ठीक वैसा जैसा परीक्षा में आया। विकल्प चुनिए, फिर उसके पीछे के तथ्य देखिए।']],
-    cards: 'फ़्लिप कार्ड', real: 'असली परीक्षा के सवाल', open: 'अभ्यास शुरू करें →', for: 'किसके लिए:', inHi: 'सवाल हिंदी में', inEn: 'सवाल अंग्रेज़ी में',
+    cards: 'फ़्लिप कार्ड', real: 'असली परीक्षा के सवाल', open: 'अभ्यास शुरू करें →', for: 'किसके लिए:', inHi: 'सवाल हिंदी में', inEn: 'सवाल अंग्रेज़ी में', trEn: 'अंग्रेज़ी में (पूछे गए हिंदी में)', trHi: 'हिंदी में (पूछे गए अंग्रेज़ी में)',
   },
 }, lang);
 const count = (b: (typeof BANKS)[number]) => b.groups.reduce((a, g) => a + g.subs.reduce((x, s) => x + s.rows.length, 0), 0);
@@ -50,7 +50,7 @@ const count = (b: (typeof BANKS)[number]) => b.groups.reduce((a, g) => a + g.sub
         <ul class="pq-facts">
           <li>{fmt(count(b))} {T.cards}</li>
           <li>{fmt(b.papers.reduce((a, p) => a + p.m.length, 0))} {T.real}</li>
-          <li>{b.content === 'hi' ? T.inHi : T.inEn}</li>
+          <li>{inLang(b, lang).orig ? (lang === 'en' ? T.trEn : T.trHi) : b.content === 'hi' ? T.inHi : T.inEn}</li>
         </ul>
         <p class="small muted">{T.for} {b.exams[lang]}</p>
         <a class="btn" href={pyqPath(lang, b.slug)}>{T.open}</a>
