@@ -101,6 +101,11 @@ const T = pick({
     <div class="wrap"><StoryTeaser /></div>
   </section>
 
+  {/* the small "Mere Man Ki Baat…" flash card, in its own light band right under the story invitation (his wish, 19 Nov 2026) */}
+  <section id="mere-man-ki-baat" class="band b-mmkb">
+    <div class="wrap"><ChaptersCard /></div>
+  </section>
+
   <section id="library" class="band b-lib">
     <div class="wrap lib reveal">
       <div>
@@ -146,8 +151,6 @@ const T = pick({
         <ul>{subjects.map((s) => <li><a href={L(`/exam-prep/curriculum-index/${s.slug}/`)}><span aria-hidden="true">{GLYPH[s.slug]}</span>{s.name}</a></li>)}</ul>
       </div>
     </div>
-    {/* the small "Mere Man Ki Baat…" flash card */}
-    <div class="wrap"><ChaptersCard /></div>
   </section>
 
   <section id="live" class="band b-live">
@@ -198,6 +201,10 @@ const T = pick({
   .band > .wrap { position: relative; }
   .b-me { --band-edge: var(--gold); --band: color-mix(in srgb, var(--gold) 8%, var(--bg)); }
   .b-story { --band-edge: var(--coral); --band: color-mix(in srgb, var(--gold) 8%, var(--bg)); border-top: 0; padding-top: 0; }
+  .b-mmkb { --band-edge: #d77a9a; --band: color-mix(in srgb, #f3c6d3 22%, var(--bg)); padding-block: clamp(2rem, 4.5vw, 3rem); }
+  :global(:root[data-theme='dark']) .b-mmkb { --band: color-mix(in srgb, #d77a9a 7%, var(--bg)); }
+  @media (prefers-color-scheme: dark) { :global(:root:not([data-theme='light'])) .b-mmkb { --band: color-mix(in srgb, #d77a9a 7%, var(--bg)); } }
+  .b-mmkb :global(.cc) { margin-top: 0; }
   .b-lib { --band-edge: var(--accent); --band: color-mix(in srgb, var(--accent) 5%, var(--bg)); }
   .b-tree { --band-edge: var(--teal); --band: color-mix(in srgb, var(--teal) 6%, var(--bg)); }
   .b-exam { --band-edge: #c98a2b; --band: color-mix(in srgb, #c98a2b 7%, var(--bg)); }

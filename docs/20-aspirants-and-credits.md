@@ -17,7 +17,7 @@ Links to them: the footer (Begin column, and "Credits and sources" next to Priva
 
 **The name (19 Nov 2026, his choice):** "Mere Man Ki Baat…", written in Hinglish (Roman letters) on both the English and the Hindi pages, in the menu, footer, home card, Credits and Why this format. History: first "मन की सच्ची बातें" (he found it cliché), then for one morning "Mere Man Ki Baat…" / "पन्नों के बीच", then his own pick. If it changes again, search the code for the name: it sits in `src/pages/[...lang]/aspirants/index.astro` (`brand`, titles), `ChaptersCard.astro`, `NavMega.astro`, `src/i18n/ui.ts` (`footer.chapters`), `credits.astro` and `why-this-format.astro`.
 
-**The home card:** `src/components/aspirants/ChaptersCard.astro`, inside the Exam Prep band on the home page. One familiar question on the front; tapping turns it over to the first two sentences of the answer, with a link to the full talk. "Another one" shows the next. Which questions it uses: the `PICK` list at the top of the file (talk ids).
+**The home card:** `src/components/aspirants/ChaptersCard.astro`, in its own light pink band (`#mere-man-ki-baat`, class `b-mmkb`) on the home page, right under the "I didn’t clear the exam…" story card (moved there 19 Nov 2026 at his wish). One familiar question on the front; tapping turns it over to the first two sentences of the answer, with a link to the full talk. "Another one" shows the next. Which questions it uses: the `PICK` list at the top of the file (talk ids).
 
 **His rules (18 Nov 2026):**
 - Never advice. He is one of them: "yes, I felt this too, this is how long it lasted, this is who helped me (seniors, parents, teachers), this is what the books said". Chai-tapri tone, first person; the Hindi narrator is masculine.
