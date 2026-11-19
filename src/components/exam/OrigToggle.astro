@@ -1,0 +1,22 @@
+---
+// "See original" button for a translated PYQ page (Rajasthan in English, NET in Hindi). It swaps every element that
+// carries data-orig back to the wording the exam used, and back again; the choice is remembered on this device.
+// Shows nothing on a page that is not translated. Behaviour: src/scripts/pyq.ts (origToggle). Guide: docs/19-pyq-practice.md
+import type { Bank } from '../../pyq';
+import { langFromUrl, pick } from '../../i18n/config';
+
+interface Props { bank: Bank }
+const { bank: b } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const T = pick({
+  en: { show: 'See original (हिन्दी)', hide: 'Back to English', note: 'Translated by hand from the Hindi the exam used.' },
+  hi: { show: 'मूल देखें (English)', hide: 'वापस हिंदी में', note: 'परीक्षा की अंग्रेज़ी से हाथ से किया अनुवाद।' },
+}, lang);
+---
+
+{b.orig && (
+  <p class="pq-orig">
+    <button type="button" class="btn ghost" data-orig-toggle data-orig-lang={b.orig} data-now-lang={b.content} data-t-show={T.show} data-t-hide={T.hide} aria-pressed="false">{T.show}</button>
+    <small class="muted">{T.note}</small>
+  </p>
+)}

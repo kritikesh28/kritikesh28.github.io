@@ -3,7 +3,8 @@
 // then "the facts behind it" (the Q&A rows made from this MCQ). Without JavaScript all ten show with a "Show answer".
 // Guide: docs/19-pyq-practice.md
 import ExamLayout from '../../../../../../../layouts/ExamLayout.astro';
-import { BANKS, mcqSets, pyqPath, rowsForMcq, setOfRow, type Bank, type Mcq } from '../../../../../../../pyq';
+import OrigToggle from '../../../../../../../components/exam/OrigToggle.astro';
+import { BANKS, inLang, orig, mcqSets, pyqPath, rowsForMcq, setOfRow, type Bank, type Mcq } from '../../../../../../../pyq';
 import { paths } from '../../../../../../../exam-prep';
 import { langFromUrl, withLangs, pick } from '../../../../../../../i18n/config';
 import '../../../../../../../styles/pyq.css';
@@ -13,7 +14,7 @@ export function getStaticPaths() {
 }
 const lang = langFromUrl(Astro.url);
 const { key, seq } = Astro.props as { key: Bank['key']; seq: number };
-const b = BANKS.find((x) => x.key === key)!;
+const b = inLang(BANKS.find((x) => x.key === key)!, lang);
 const all = mcqSets(b);
 const S = all[seq];
 const prev = all[seq - 1];
@@ -61,8 +62,9 @@ const schema = [{
   <div data-pyq-mcq data-bank={b.key} data-t-right={T.right} data-t-wrong={T.wrong} data-t-score={T.score}>
     <header class="pq-hero">
       <p class="eyebrow">{b.icon} {T.real} · {T.page}</p>
-      <h1 lang={cl}>{chap} · {P.t}</h1>
+      <h1 lang={cl}>{chap} · <span data-orig={orig(P.t, P.t0)}>{P.t}</span></h1>
       <p class="sub">{T.lede}</p>
+      <OrigToggle bank={b} />
       <ul class="pq-facts"><li data-score></li></ul>
     </header>
 
@@ -73,17 +75,17 @@ const schema = [{
         const firstFact = f[0] && setOfRow(b, f[0].sub, f[0].row.n);
         return (
           <article class="pq-mcq" data-mcq data-a={m.a} data-keys={keys} data-screen={i} id={`m${m.n}`}>
-            <p class="tag">#{m.n}{m.p && ` · ${m.p === 'A' ? T.partA : T.partN}`}{m.x && <> · <span lang={cl}>{m.x}</span></>}</p>
+            <p class="tag">#{m.n}{m.p && ` · ${m.p === 'A' ? T.partA : T.partN}`}{m.x && <> · <span lang={cl} data-orig={orig(m.x, m.o0?.x)}>{m.x}</span></>}</p>
             <div class="stem" lang={cl}>
-              {m.s.map((x) => x.p ? <p>{x.p}</p> : x.img ? <img src={x.img} alt="" loading="lazy" decoding="async" /> : x.tb ? <table><tbody>{x.tb.map((r) => <tr>{r.map((c) => <td>{c}</td>)}</tr>)}</tbody></table> : null)}
+              {m.s.map((x, bi) => { const o = m.o0?.s[bi]; return x.p ? <p data-orig={orig(x.p, o?.p)}>{x.p}</p> : x.img ? <img src={x.img} alt="" loading="lazy" decoding="async" /> : x.tb ? <table><tbody>{x.tb.map((r, ri) => <tr>{r.map((c, ci) => <td data-orig={orig(c, o?.tb?.[ri]?.[ci])}>{c}</td>)}</tr>)}</tbody></table> : null; })}
             </div>
             {m.o ? (
               <>
                 <ul class="pq-opts" lang={cl}>
-                  {m.o.map((o, k) => <li><button type="button" data-opt={k + 1}><span class="k">({k + 1})</span><span>{o}</span></button></li>)}
+                  {m.o.map((o, k) => <li><button type="button" data-opt={k + 1}><span class="k">({k + 1})</span><span data-orig={orig(o, m.o0?.o?.[k])}>{o}</span></button></li>)}
                 </ul>
                 <p class="pq-say" aria-live="polite"></p>
-                <details class="ans has-opts"><summary>{T.show}</summary><p>{T.ans} ({m.a}){m.a ? <>: <span lang={cl}>{m.o[m.a - 1]}</span></> : ''}</p>{m.star && <p class="small muted">{T.starred}</p>}</details>
+                <details class="ans has-opts"><summary>{T.show}</summary><p>{T.ans} ({m.a}){m.a ? <>: <span lang={cl} data-orig={orig(m.o[m.a - 1], m.o0?.o?.[m.a - 1])}>{m.o[m.a - 1]}</span></> : ''}</p>{m.star && <p class="small muted">{T.starred}</p>}</details>
               </>
             ) : (
               <details class="ans"><summary>{T.show}</summary><p>{T.ans} ({m.a})</p>{m.star && <p class="small muted">{T.starred}</p>}</details>
@@ -91,7 +93,7 @@ const schema = [{
             {f.length > 0 && (
               <div class="pq-facts-behind behind">
                 <h3>{T.behind}</h3>
-                <ul lang={cl}>{f.map(({ row }) => <li>{row.q} <b>{row.a}</b></li>)}</ul>
+                <ul lang={cl}>{f.map(({ row }) => <li><span data-orig={orig(row.q, row.o0?.q)}>{row.q}</span> <b data-orig={orig(row.a, row.o0?.a)}>{row.a}</b></li>)}</ul>
                 {firstFact && <a class="small" href={`${pyqPath(lang, b.slug, firstFact.sub.slug, firstFact.set)}#q${f[0].sub.slug}-${f[0].row.n}`}>{T.cards}</a>}
               </div>
             )}

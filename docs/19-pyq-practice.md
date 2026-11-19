@@ -13,6 +13,8 @@ The PYQ practice section lives at **curioussparoows.com/exam-prep/pyq/**. It put
 | Rajasthan Geography (RPSC/RSSB) | /exam-prep/pyq/rajasthan-geography/ | Hindi | 4,647 from book chapters 1–4 (rev4 file) | all 544 of chapters 1–5 |
 | UGC-NET Geography | /exam-prep/pyq/ugc-net-geography/ | English | 2,207 from the Political Geography chapter (U7B), grouped by the official 10 units | 1,406 from 9 chapters (U5A–U7B) |
 
+**Translations (19 November 2026):** the Rajasthan bank now also reads in English on the English site (all 4,647 flip cards, their quiz options and all 544 real MCQs, translated by hand), with a **See original (हिन्दी)** button on every page. NET in Hindi is in progress (part 6).
+
 The Q&A of Rajasthan chapter 5 (Climate) and of the other NET chapters comes later: re-run the builder (part 4) when the new Word file is ready and the pages appear by themselves.
 
 ## 2. The pages
@@ -84,3 +86,20 @@ python3 tools/pyq/link_ci.py
 3. Add its Curriculum Index topics to `CI_LINKS`. Everything else (pages, menu, sidebar, search, llms.txt) picks it up by itself.
 
 _Last updated: 15 November 2026 (section built)._
+
+## 6. Translations: Rajasthan in English, NET in Hindi
+
+Kritikesh asked (18 November 2026) that every reader can practise in their own language: the Rajasthan bank (asked in Hindi) in English on the English site, and the NET bank (asked in English) in Hindi on the Hindi site, with a way to see the exam's own wording.
+
+**How it works**
+
+- The translations are done by hand (no machine translation), one string at a time, and kept as plain text files in `tools/pyq/tr/`:
+  - `raj-strings.json` (every Hindi string of the flip cards, titles and quiz options) and `raj-en/NNN.tsv` (`index<TAB>English`, one per line);
+  - `raj-mcq-strings.json` (every Hindi string of the real MCQs: stems, options, tables, exam tags) and `raj-mcq-en/NNN.tsv`;
+  - the same for NET later: `net-strings.json` + `net-hi/`, `net-mcq-strings.json` + `net-mcq-hi/`.
+- `python3 tools/pyq/tr/build_dict.py` joins them into `src/data/pyq/tr/raj-en.json` (and `net-hi.json`): `{original: translation}`. **Never edit that file by hand**; fix the `.tsv` line and re-run.
+- `inLang(bank, lang)` in `src/pyq.ts` gives the pages a translated copy of the bank. The copy keeps the original wording (`t0`, `o0`), and the pages put it on each translated element as `data-orig`. A string with no translation yet simply stays as it was asked.
+- `src/components/exam/OrigToggle.astro` shows **See original (हिन्दी)** / **मूल देखें (English)** in the page header; `origToggle` in `src/scripts/pyq.ts` swaps the text and remembers the choice on the device (`cs-pyq-orig`). The quick quiz always plays in the reader's language.
+- Conventions used: "(as per the book)", "August 2023 set-up" for the district re-organisation, "sq km", "m", en dashes for ranges, the Indian number format (1,75,000), exam names as on the RPSC/RSSB notices (for example "Patwar", "Jail Prahari exam"). Place names follow the district list in the Rajasthan GK pages.
+
+**After the builder runs again** (a new Word file): new Hindi strings have no translation and show in Hindi. List them with a short script against `raj-strings.json`, add them at the end of `raj-strings.json`, write their English in a new `raj-en/NNN.tsv`, then run `build_dict.py` and build.

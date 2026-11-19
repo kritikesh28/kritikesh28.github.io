@@ -6,15 +6,17 @@ import net from './data/pyq/net.json';
 import ciMatch from './data/pyq/ci-match.json';
 import quizRaj from './data/pyq/quiz/raj.json';
 import quizNet from './data/pyq/quiz/net.json';
+import rajEn from './data/pyq/tr/raj-en.json';
 import type { Lang } from './i18n/config';
 import { localizePath } from './i18n/config';
 
-export type Row = { n: number; q: string; a: string; k: string; x?: string[]; i?: string[]; f?: string };
-export type Sub = { id: string; slug: string; t: string; other: boolean; rows: Row[] };
-export type Group = { id: string; t: string; subs: Sub[] };
+// `t0`, `o0`: the original wording, kept on a translated copy (see inLang) so a page can offer "See original"
+export type Row = { n: number; q: string; a: string; k: string; x?: string[]; i?: string[]; f?: string; o0?: { q: string; a: string; f?: string } };
+export type Sub = { id: string; slug: string; t: string; other: boolean; rows: Row[]; t0?: string };
+export type Group = { id: string; t: string; subs: Sub[]; t0?: string };
 export type Block = { p?: string; tb?: string[][]; img?: string };
-export type Mcq = { n: number; p?: string; a: number; x?: string; o?: string[]; s: Block[]; star?: number };
-export type Paper = { id: string; t: string; no?: number; code?: string; m: Mcq[] };
+export type Mcq = { n: number; p?: string; a: number; x?: string; o?: string[]; s: Block[]; star?: number; o0?: { x?: string; o?: string[]; s: Block[] } };
+export type Paper = { id: string; t: string; no?: number; code?: string; m: Mcq[]; t0?: string };
 type Raw = { bank: string; groups: Group[]; papers: Paper[] };
 
 export const SET_SIZE = 40; // flip cards on one set page (about 5 minutes); shown 8 to a screen
@@ -24,7 +26,8 @@ export const MCQ_SET = 10; // real exam questions on one page, one to a screen
 export type Bank = {
   key: 'raj' | 'net';
   slug: string; // address under /exam-prep/pyq/
-  content: 'hi' | 'en'; // the language the questions are written in
+  content: 'hi' | 'en'; // the language the questions are shown in (on a translated copy: the reader's language)
+  orig?: 'hi' | 'en'; // set only on a translated copy: the language the questions were asked in
   icon: string;
   name: Record<Lang, string>;
   short: Record<Lang, string>;
@@ -75,7 +78,44 @@ export const BANKS: Bank[] = [
 // height for a height) so the quiz is fair and moderately tough. Keyed by row number. Rows without an entry get
 // options picked by the quiz script from same-kind answers. Edit these files directly. Guide: docs/19-pyq-practice.md
 const QUIZ: Record<Bank['key'], Record<string, string[]>> = { raj: quizRaj as Record<string, string[]>, net: quizNet as Record<string, string[]> };
-export const quizOptions = (b: Bank, r: Row): string[] | undefined => QUIZ[b.key][String(r.n)];
+export const quizOptions = (b: Bank, r: Row): string[] | undefined => {
+  const o = QUIZ[b.key][String(r.n)];
+  const d = b.orig && DICT[`${b.key}:${b.content}`];
+  return o && d ? o.map((x) => d[x] ?? x) : o;
+};
+
+// ------------------------------------------------------------------ translations
+// Hand translations, so every reader can practise in their own language: Rajasthan into English, NET into Hindi.
+// Made by tools/pyq/tr/build_dict.py from the files in tools/pyq/tr/. {original: translation}. A string with no
+// translation yet stays as it was asked. Guide: docs/19-pyq-practice.md (Translations)
+const DICT: Record<string, Record<string, string>> = { 'raj:en': rajEn as Record<string, string> };
+const langCache = new Map<string, Bank>();
+/** The bank in the reader's language: the bank itself when it was asked in that language (or no translation exists),
+ *  otherwise a translated copy that keeps the original wording in t0 / o0 for "See original" */
+export function inLang(b: Bank, lang: Lang): Bank {
+  if (b.orig || lang === b.content) return b;
+  const key = `${b.key}:${lang}`;
+  const d = DICT[key];
+  if (!d) return b;
+  if (!langCache.has(key)) {
+    const t = (x: string) => d[x] ?? x;
+    const tb = (bl: Block): Block => (bl.p ? { p: t(bl.p) } : bl.tb ? { tb: bl.tb.map((r) => r.map(t)) } : bl);
+    langCache.set(key, {
+      ...b, content: lang as Bank['content'], orig: b.content,
+      groups: b.groups.map((g) => ({
+        ...g, t: t(g.t), t0: g.t,
+        subs: g.subs.map((s) => ({ ...s, t: t(s.t), t0: s.t, rows: s.rows.map((r) => ({ ...r, q: t(r.q), a: t(r.a), f: r.f && t(r.f), o0: { q: r.q, a: r.a, f: r.f } })) })),
+      })),
+      papers: b.papers.map((p) => ({
+        ...p, t: t(p.t), t0: p.t,
+        m: p.m.map((m) => ({ ...m, x: m.x && t(m.x), o: m.o?.map(t), s: m.s.map(tb), o0: { x: m.x, o: m.o, s: m.s } })),
+      })),
+    });
+  }
+  return langCache.get(key)!;
+}
+/** data-orig for an element whose text was translated (nothing when it reads the same) */
+export const orig = (now: string | undefined, was: string | undefined) => (was && was !== now ? was : undefined);
 
 export const PYQ = '/exam-prep/pyq';
 export const bankBy = (slug: string) => BANKS.find((b) => b.slug === slug)!;
@@ -95,7 +135,8 @@ export type QaSet = { bank: Bank; group: Group; sub: Sub; set: number; sets: num
 const setCache = new Map<string, QaSet[]>();
 /** Every flip-card page of a bank, in syllabus order */
 export function qaSets(b: Bank): QaSet[] {
-  if (!setCache.has(b.key)) {
+  const ck = `${b.key}:${b.content}`;
+  if (!setCache.has(ck)) {
     const out: QaSet[] = [];
     for (const g of b.groups) for (const s of g.subs) {
       const sets = Math.ceil(s.rows.length / SET_SIZE);
@@ -103,37 +144,39 @@ export function qaSets(b: Bank): QaSet[] {
       const per = Math.ceil(s.rows.length / sets);
       for (let i = 0; i < sets; i++) out.push({ bank: b, group: g, sub: s, set: i + 1, sets, rows: s.rows.slice(i * per, (i + 1) * per), seq: out.length });
     }
-    setCache.set(b.key, out);
+    setCache.set(ck, out);
   }
-  return setCache.get(b.key)!;
+  return setCache.get(ck)!;
 }
 
 export type McqSet = { bank: Bank; paper: Paper; set: number; sets: number; m: Mcq[]; seq: number };
 const mcqCache = new Map<string, McqSet[]>();
 export function mcqSets(b: Bank): McqSet[] {
-  if (!mcqCache.has(b.key)) {
+  const ck = `${b.key}:${b.content}`;
+  if (!mcqCache.has(ck)) {
     const out: McqSet[] = [];
     for (const p of b.papers) {
       const sets = Math.ceil(p.m.length / MCQ_SET);
       for (let i = 0; i < sets; i++) out.push({ bank: b, paper: p, set: i + 1, sets, m: p.m.slice(i * MCQ_SET, (i + 1) * MCQ_SET), seq: out.length });
     }
-    mcqCache.set(b.key, out);
+    mcqCache.set(ck, out);
   }
-  return mcqCache.get(b.key)!;
+  return mcqCache.get(ck)!;
 }
 
 /** Q&A rows that were made from one MCQ (so a real question can show "the facts behind it") */
 const byMcq = new Map<string, Map<string, { row: Row; sub: Sub }[]>>();
 export function rowsForMcq(b: Bank, id: string) {
-  if (!byMcq.has(b.key)) {
+  const ck = `${b.key}:${b.content}`;
+  if (!byMcq.has(ck)) {
     const m = new Map<string, { row: Row; sub: Sub }[]>();
     for (const g of b.groups) for (const s of g.subs) for (const r of s.rows) for (const i of r.i ?? []) {
       if (!m.has(i)) m.set(i, []);
       m.get(i)!.push({ row: r, sub: s });
     }
-    byMcq.set(b.key, m);
+    byMcq.set(ck, m);
   }
-  return byMcq.get(b.key)!.get(id) ?? [];
+  return byMcq.get(ck)!.get(id) ?? [];
 }
 /** The first flip-card page that holds a row of a sub-topic */
 export function setOfRow(b: Bank, sub: Sub, n: number) {
@@ -199,7 +242,7 @@ export function pyqLinksFor(ciId: string, lang: Lang): PyqLink[] {
   const out: PyqLink[] = [];
   const hi = lang === 'hi';
   for (const [key, kind, id] of CI_LINKS[ciId] ?? []) {
-    const b = BANKS.find((x) => x.key === key)!;
+    const b = inLang(BANKS.find((x) => x.key === key)!, lang);
     if (kind === 'qa') {
       // a group id ("G3", "UVII") means every sub-topic of it; a sub-topic id means just that one
       const subs = b.groups.flatMap((g) => g.subs.map((s) => ({ g, s }))).filter(({ g, s }) => s.id === id || (g.id === id));

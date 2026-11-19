@@ -255,7 +255,32 @@ function homePage(root: HTMLElement) {
   fill(root.querySelector('[data-meter-fill]'), have, total);
 }
 
+// ------------------------------------------------------------------ "See original" on translated pages
+const ORIG = 'cs-pyq-orig';
+function origToggle(btn: HTMLButtonElement) {
+  const els = [...document.querySelectorAll<HTMLElement>('[data-orig]')];
+  const set = (on: boolean) => {
+    for (const el of els) {
+      const showing = el.dataset.showing === 'orig';
+      if (showing === on) continue;
+      const other = el.dataset.orig!;
+      el.dataset.orig = el.textContent ?? '';
+      el.textContent = other;
+      el.dataset.showing = on ? 'orig' : 'tr';
+      el.lang = on ? btn.dataset.origLang! : btn.dataset.nowLang!;
+    }
+    btn.textContent = on ? btn.dataset.tHide! : btn.dataset.tShow!;
+    btn.setAttribute('aria-pressed', String(on));
+    try { if (on) localStorage.setItem(ORIG, '1'); else localStorage.removeItem(ORIG); } catch { /* not kept */ }
+  };
+  btn.addEventListener('click', () => set(btn.getAttribute('aria-pressed') !== 'true'));
+  let keep = false;
+  try { keep = localStorage.getItem(ORIG) === '1'; } catch { /* private window */ }
+  if (keep) set(true);
+}
+
 onPage((signal) => {
+  document.querySelectorAll<HTMLButtonElement>('[data-orig-toggle]').forEach((b) => origToggle(b));
   document.querySelectorAll<HTMLElement>('[data-pyq-set]').forEach((r) => setPage(r, signal));
   document.querySelectorAll<HTMLElement>('[data-pyq-mcq]').forEach((r) => mcqPage(r));
   document.querySelectorAll<HTMLElement>('[data-pyq-home]').forEach((r) => homePage(r));

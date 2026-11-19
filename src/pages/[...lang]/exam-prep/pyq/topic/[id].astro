@@ -4,7 +4,8 @@
 // Index page. Guide: docs/19-pyq-practice.md
 import ExamLayout from '../../../../../layouts/ExamLayout.astro';
 import PyqDeck from '../../../../../components/exam/PyqDeck.astro';
-import { CI_PACK_IDS, ciPack, pyqPath, pyqLinksFor, splitTitle } from '../../../../../pyq';
+import { CI_PACK_IDS, ciPack, inLang, pyqPath, pyqLinksFor, splitTitle } from '../../../../../pyq';
+import OrigToggle from '../../../../../components/exam/OrigToggle.astro';
 import { paths, topicUrlIn, ciTopic, subjectsIn, subjectOf, l1Of, fmt } from '../../../../../exam-prep';
 import { langFromUrl, withLangs, pick } from '../../../../../i18n/config';
 import '../../../../../styles/pyq.css';
@@ -15,7 +16,11 @@ export function getStaticPaths() {
 const lang = langFromUrl(Astro.url);
 const { tid } = Astro.props as { tid: string };
 const pack = ciPack(tid)!;
-const b = pack.bank;
+const b = inLang(pack.bank, lang);
+// the same cards and decks, in the reader's language
+const subIn = new Map(b.groups.flatMap((g) => g.subs).map((s) => [s.slug, s]));
+const cards = pack.cards.map((c) => ({ key: c.key, row: subIn.get(c.sub.slug)!.rows.find((r) => r.n === c.row.n)! }));
+const decks = pack.subs.map((s) => subIn.get(s.slug)!);
 const cl = b.content;
 const t = ciTopic(tid, lang)!;
 const l1 = l1Of(tid);
@@ -27,14 +32,14 @@ const T = pick({
   en: {
     home: 'Exam Prep', ci: 'Curriculum Index', eyebrow: 'Syllabus topic', soon: '📝 Notes for this topic are being prepared and will be uploaded soon.',
     meanwhile: (n: number, all: number) => `Meanwhile, practise ${n} past-exam questions on it${all > n ? ` (out of ${fmt(all)} we have)` : ''}: flip a card, or play a quick quiz.`,
-    lang: { hi: 'The questions are in Hindi, as in the exam.', en: 'The questions are in English, as in the exam.' },
+    lang: { hi: 'The questions are in Hindi, as in the exam.', en: b.orig === 'hi' ? 'Translated by hand from the Hindi the exam used.' : 'The questions are in English, as in the exam.' },
     more: '🃏 Keep going: the full decks on this', cards: (n: number) => `${fmt(n)} flip cards`, real: '📝 Real exam questions on this', back: '← Back to this topic in the syllabus', bank: 'All PYQ topics',
     title: (x: string) => `${x}: PYQ Flip Cards and Quiz`, desc: (x: string, n: number) => `${n} past-exam questions on ${x} as one-line flip cards and a quick quiz, while the notes are being prepared.`,
   },
   hi: {
     home: 'परीक्षा तैयारी', ci: 'पाठ्यक्रम सूचकांक', eyebrow: 'सिलेबस का टॉपिक', soon: '📝 इस टॉपिक के नोट्स तैयार हो रहे हैं और जल्द ही अपलोड होंगे।',
     meanwhile: (n: number, all: number) => `तब तक इस पर पुरानी परीक्षाओं के ${n} सवालों का अभ्यास कीजिए${all > n ? ` (हमारे पास कुल ${fmt(all)} हैं)` : ''}: कार्ड पलटिए या झटपट क्विज़ खेलिए।`,
-    lang: { hi: 'सवाल हिंदी में हैं, जैसे परीक्षा में आए।', en: 'सवाल अंग्रेज़ी में हैं, जैसे परीक्षा में आए।' },
+    lang: { hi: b.orig === 'en' ? 'परीक्षा की अंग्रेज़ी से हाथ से किया अनुवाद।' : 'सवाल हिंदी में हैं, जैसे परीक्षा में आए।', en: 'सवाल अंग्रेज़ी में हैं, जैसे परीक्षा में आए।' },
     more: '🃏 आगे बढ़िए: इस पर पूरे डेक', cards: (n: number) => `${fmt(n)} फ़्लिप कार्ड`, real: '📝 इस पर असली परीक्षा के सवाल', back: '← सिलेबस में इस टॉपिक पर लौटें', bank: 'सारे PYQ टॉपिक',
     title: (x: string) => `${x}: PYQ फ़्लिप कार्ड और क्विज़`, desc: (x: string, n: number) => `${x} पर पुरानी परीक्षाओं के ${n} सवाल, एक-लाइन फ़्लिप कार्ड और झटपट क्विज़ में, जब तक नोट्स तैयार हो रहे हैं।`,
   },
@@ -50,18 +55,19 @@ const tLang = t.en ? 'en' : undefined;
   pyqBank={b.slug}
   crumbs={[{ href: `${BASE}/`, label: T.home }, { href: `${CI}/`, label: T.ci }, { href: `${CI}/${subj.slug}/`, label: subj.name }, ...(major && l1 !== tid ? [{ href: topicUrlIn(l1, lang), label: major.t }] : []), { label: t.t }]}
 >
-  <PyqDeck bank={b} cards={pack.cards.map((c) => ({ key: c.key, row: c.row }))}>
+  <PyqDeck bank={b} {cards}>
     <header class="pq-hero" slot="hero">
       <p class="eyebrow">📚 {T.eyebrow} · {major && l1 !== tid ? <span lang={major.en ? 'en' : undefined}>{major.t}</span> : subj.name} · <span class="pq-id">{tid}</span></p>
       <h1 lang={tLang}>{t.t}</h1>
       <p class="pq-soon"><strong>{T.soon}</strong> {T.meanwhile(n, pack.total)} <span class="muted">{T.lang[cl]}</span></p>
+      <OrigToggle bank={b} />
       <div class="pq-meter"><span class="track"><span class="fill" data-meter-fill></span></span><span data-meter-text></span></div>
     </header>
 
-    {pack.subs.length > 0 && (
+    {decks.length > 0 && (
       <aside class="pyq-box">
         <h2>{T.more}</h2>
-        <ul>{pack.subs.map((s) => <li><a href={pyqPath(lang, b.slug, s.slug, 1)}><span lang={cl}>{splitTitle(s.t)[0] || s.t}</span><small>{T.cards(s.rows.length)}</small></a></li>)}</ul>
+        <ul>{decks.map((s) => <li><a href={pyqPath(lang, b.slug, s.slug, 1)}><span lang={cl}>{splitTitle(s.t)[0] || s.t}</span><small>{T.cards(s.rows.length)}</small></a></li>)}</ul>
       </aside>
     )}
     {papers.length > 0 && (
