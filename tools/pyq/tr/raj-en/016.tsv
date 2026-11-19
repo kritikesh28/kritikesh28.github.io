@@ -1,0 +1,219 @@
+4316	Guru Shikhar, Ser, Dilwara, Achalgarh, Kumbhalgarh
+4317	Guru Shikhar, Dilwara, Ser, Achalgarh, Kumbhalgarh
+4318	Guru Shikhar, Ser, Achalgarh, Dilwara, Kumbhalgarh
+4319	Ser, Guru Shikhar, Dilwara, Achalgarh, Kumbhalgarh
+4320	Bairath, Achalgarh, Kumbhalgarh, Ser in ascending order of height (as per the book's table)?
+4321	Bairath, Kumbhalgarh, Achalgarh, Ser
+4322	Kumbhalgarh, Bairath, Achalgarh, Ser
+4323	Bairath, Achalgarh, Kumbhalgarh, Ser
+4324	Bairath, Kumbhalgarh, Ser, Achalgarh
+4325	Sajjangarh, Lilagarh, Raghunathgarh, Jarga in descending order of height (as per the book's table)?
+4326	Jarga, Raghunathgarh, Sajjangarh, Lilagarh
+4327	Raghunathgarh, Jarga, Sajjangarh, Lilagarh
+4328	Jarga, Sajjangarh, Raghunathgarh, Lilagarh
+4329	Jarga, Raghunathgarh, Lilagarh, Sajjangarh
+4330	Taragarh, Achalgarh, Kamalnath, Raghunathgarh in ascending order of height (as per the book's table)?
+4331	Taragarh, Kamalnath, Raghunathgarh, Achalgarh
+4332	Kamalnath, Taragarh, Raghunathgarh, Achalgarh
+4333	Taragarh, Raghunathgarh, Kamalnath, Achalgarh
+4334	Taragarh, Kamalnath, Achalgarh, Raghunathgarh
+4335	Kumbhalgarh (Rajsamand), Jarga, Dhoniya, Kamalnath in descending order of height (as per the book's table)?
+4336	Jarga, Kumbhalgarh, Dhoniya, Kamalnath
+4337	Kumbhalgarh, Jarga, Dhoniya, Kamalnath
+4338	Jarga, Dhoniya, Kumbhalgarh, Kamalnath
+4339	Jarga, Kumbhalgarh, Kamalnath, Dhoniya
+4340	Babai, Bairath, Nag Pahar, Bhairach in descending order of height (as per the book's table)?
+4341	Nag Pahar, Bhairach, Babai, Bairath
+4342	Bhairach, Nag Pahar, Babai, Bairath
+4343	Nag Pahar, Babai, Bhairach, Bairath
+4344	Nag Pahar, Bhairach, Bairath, Babai
+4345	Taragarh, Sayra, Nag Pahar, Dora Parvat in descending order of height (as per the book's table)?
+4346	Sayra, Taragarh, Dora Parvat, Nag Pahar
+4347	Taragarh, Sayra, Dora Parvat, Nag Pahar
+4348	Sayra, Dora Parvat, Taragarh, Nag Pahar
+4349	Sayra, Taragarh, Nag Pahar, Dora Parvat
+4350	Highest peak among Kho, Babai, Taragarh, Rishikesh?
+4351	Babai
+4352	Lowest peak among Kho, Babai, Taragarh, Rishikesh?
+4353	Highest peak among Taragarh, Kho, Ser, Achalgarh?
+4354	Lowest peak among Taragarh, Kho, Ser, Achalgarh?
+4355	Highest peak among Guru Shikhar, Achalgarh, Kumbhalgarh, Ser, Dilwara?
+4356	Lowest peak among Guru Shikhar, Achalgarh, Kumbhalgarh, Ser, Dilwara?
+4357	Guru Shikhar, Ser, Dilwara, Achalgarh and Kumbhalgarh are peaks of which part of the Aravalli?
+4358	Highest peak among Bairath, Achalgarh, Kumbhalgarh, Ser?
+4359	Lowest peak among Bairath, Achalgarh, Kumbhalgarh, Ser?
+4360	Highest peak among Raghunathgarh, Ser, Dora Parvat, Gogunda?
+4361	Gogunda
+4362	Lowest peak among Raghunathgarh, Ser, Dora Parvat, Gogunda?
+4363	Highest peak among Sajjangarh, Lilagarh, Raghunathgarh, Jarga?
+4364	Lilagarh
+4365	Lowest peak among Sajjangarh, Lilagarh, Raghunathgarh, Jarga?
+4366	Highest peak among Taragarh, Achalgarh, Kamalnath, Raghunathgarh?
+4367	Kamalnath
+4368	Lowest peak among Taragarh, Achalgarh, Kamalnath, Raghunathgarh?
+4369	Highest peak among Kumbhalgarh (Rajsamand), Jarga, Dhoniya, Kamalnath?
+4370	Dhoniya
+4371	Lowest peak among Kumbhalgarh (Rajsamand), Jarga, Dhoniya, Kamalnath?
+4372	Jarga, Kumbhalgarh, Dhoniya, Kamalnath are peaks of which part of the Aravalli?
+4373	Highest peak among Ser, Dilwara, Kamalnath, Bilali?
+4374	Lowest peak among Ser, Dilwara, Kamalnath, Bilali?
+4375	Highest peak among Babai, Bairath, Nag Pahar, Bhairach?
+4376	Bhairach
+4377	Lowest peak among Babai, Bairath, Nag Pahar, Bhairach?
+4378	Highest peak among Taragarh, Sayra, Nag Pahar, Dora Parvat?
+4379	Lowest peak among Taragarh, Sayra, Nag Pahar, Dora Parvat?
+4380	In which part of the Aravalli is Bilali peak?
+4381	Descending order of height of the peaks Ser, Jarga, Achalgarh, Dilwara?
+4382	Ser, Dilwara, Jarga, Achalgarh
+4383	Ser, Jarga, Dilwara, Achalgarh
+4384	Dilwara, Ser, Jarga, Achalgarh
+4385	Ser, Dilwara, Achalgarh, Jarga
+4386	Descending order of height of the peaks Kho, Nag Pahar, Todgarh, Bhairach?
+4387	Todgarh, Kho, Nag Pahar, Bhairach
+4388	Kho, Todgarh, Nag Pahar, Bhairach
+4389	Todgarh, Nag Pahar, Kho, Bhairach
+4390	Todgarh, Kho, Bhairach, Nag Pahar
+4391	Descending order of height of Bilali, Nag Pahar, Sayra, Dora Parvat?
+4392	Sayra, Dora Parvat, Nag Pahar, Bilali
+4393	Dora Parvat, Sayra, Nag Pahar, Bilali
+4394	Sayra, Nag Pahar, Dora Parvat, Bilali
+4395	Sayra, Dora Parvat, Bilali, Nag Pahar
+4396	Highest peak among Ser, Jarga, Achalgarh, Dilwara?
+4397	Lowest peak among Ser, Jarga, Achalgarh, Dilwara?
+4398	Highest peak among Kho, Nag Pahar, Todgarh, Bhairach?
+4399	Todgarh
+4400	Lowest peak among Kho, Nag Pahar, Todgarh, Bhairach?
+4401	Highest peak among Bilali, Nag Pahar, Sayra, Dora Parvat?
+4402	Lowest peak among Bilali, Nag Pahar, Sayra, Dora Parvat?
+4403	The Merwara hills are a sub-division of which Aravalli range?
+4404	Central Aravalli range
+4405	Northern Aravalli range
+4406	Southern Aravalli range
+4407	Which sub-division of the central Aravalli range spreads over the Ajmer area?
+4408	Which three districts are included in the southern Aravalli region (as per the book)?
+4409	Sirohi, Udaipur, Rajsamand
+4410	Sirohi, Udaipur, Ajmer
+4411	Sirohi, Pali, Rajsamand
+4412	Dungarpur, Udaipur, Rajsamand
+4413	Sirohi, Udaipur and Rajsamand districts fall in which Aravalli region?
+4414	What is the Sirohi part of the southern Aravalli called?
+4415	Abu hills
+4416	What is the Udaipur and Rajsamand part of the southern Aravalli called?
+4417	Mewar Aravalli
+4418	Merwara Aravalli
+4419	Bhomat Aravalli
+4420	What are the main peaks of the Abu hills?
+4421	Ser, Achalgarh, Rishikesh, Guru Shikhar
+4422	Ser, Jarga, Rishikesh, Guru Shikhar
+4423	Taragarh, Achalgarh, Rishikesh, Guru Shikhar
+4424	Ser, Achalgarh, Kumbhalgarh, Raghunathgarh
+4425	Ser, Achalgarh, Rishikesh and Guru Shikhar are the main peaks of which mountain?
+4426	Someshwar, Hathiguda and Desuri are passes crossing which Aravalli block?
+4427	Two main passes of the Aravalli range (as per the book)?
+4428	Desuri ki Nal, Hathi Darra
+4429	Bar pass, Shivpur Ghat
+4430	Hathi Darra, Pakheriya pass
+4431	Debari pass, Sura Ghat
+4432	Which two physiographic regions of Rajasthan are part of Gondwanaland?
+4433	Aravalli range, South-eastern plateau
+4434	Aravalli range, Eastern plains
+4435	Desert region, South-eastern plateau
+4436	Eastern plains, Desert region
+4437	How many physiographic regions of Rajasthan are part of Gondwanaland (as per the book)?
+4438	How many mountain ranges are in the Rajasthan regions that are part of Gondwanaland?
+4439	The Aravalli range is mainly made of rocks of which two supergroups?
+4440	Aravalli Supergroup, Delhi Supergroup
+4441	Aravalli Supergroup, Vindhyan Supergroup
+4442	Delhi Supergroup, Marwar Supergroup
+4443	Vindhyan Supergroup, Gondwana Supergroup
+4444	Which rocks are in the Aravalli Supergroup?
+4445	Which is a rock of the Delhi Supergroup?
+4446	Quartzite
+4447	Gneiss
+4448	Order of geological eras from oldest to youngest?
+4449	Pre-Cambrian, Palaeozoic, Mesozoic, Cenozoic
+4450	Palaeozoic, Pre-Cambrian, Mesozoic, Cenozoic
+4451	Pre-Cambrian, Mesozoic, Palaeozoic, Cenozoic
+4452	Pre-Cambrian, Palaeozoic, Cenozoic, Mesozoic
+4453	How many minor physical parts does the Aravalli region have?
+4454	Part of the Aravalli from Jaipur to Khetri and Neem ka Thana?
+4455	Three hills of Jaipur in the northern Aravalli (book)?
+4456	Nahargarh, Jaigarh, Manoharpura
+4457	Nahargarh, Bhangarh, Manoharpura
+4458	Jaigarh, Sariska, Manoharpura
+4459	Nahargarh, Jaigarh, Bilali
+4460	Four hills of Alwar in the northern Aravalli (book)?
+4461	Bhangarh, Sariska, Bilali, Sirawas
+4462	Bhangarh, Sariska, Bilali, Bairath
+4463	Bhangarh, Sariska, Babai, Sirawas
+4464	Bhangarh, Raghunathgarh, Bilali, Sirawas
+4465	Main high peaks of the northern Aravalli in the book's order?
+4466	Raghunathgarh, Khoh, Bhairach, Barwara
+4467	Raghunathgarh, Bhairach, Khoh, Barwara
+4468	Khoh, Raghunathgarh, Bhairach, Barwara
+4469	Raghunathgarh, Khoh, Barwara, Bhairach
+4470	Part of the Aravalli stretching from Ajmer to Rajsamand?
+4471	The central Aravalli area stretches from Ajmer up to which district?
+4472	Part of the Aravalli from Rajsamand to Mount Abu, Sirohi?
+4473	Into how many parts is the southern Aravalli divided?
+4474	What are the two parts of the southern Aravalli?
+4475	Abu hills, Mewar Aravalli
+4476	Abu hills, Merwara hills
+4477	Mewar Aravalli, Bhorat plateau
+4478	Abu hills, Torawati hills
+4479	Which are the two parts of the southern Aravalli?
+4480	Part of the southern Aravalli spread over Udaipur and Rajsamand?
+4481	In the matching question, the north-eastern Aravalli area goes with which district?
+4482	In the matching question, the central part of the Aravalli goes with which district (book's key)?
+4483	Disputed: Ajmer
+4484	In the matching question, the Bhorat area goes with which district?
+4485	In the matching question, the southern Aravalli goes with which district?
+4486	Alwar district goes with which area of the Aravalli (matching)?
+4487	North-eastern Aravalli
+4488	Central Aravalli
+4489	Bhorat area
+4490	Aravalli area of Udaipur district (matching)?
+4491	Aravalli area of Sirohi district (matching)?
+4492	Three minor physical parts of the Aravalli (as per the book)?
+4493	As per the book, how many minor physical parts does the Aravalli region have?
+4494	Three peaks of Rajasthan higher than Jarga (as per the book's table)?
+4495	Guru Shikhar, Ser, Dilwara
+4496	Guru Shikhar, Ser, Achalgarh
+4497	Guru Shikhar, Dilwara, Kumbhalgarh
+4498	Ser, Dilwara, Achalgarh
+4499	Fourth-highest peak of Rajasthan, in the Udaipur-Rajsamand area?
+4500	In which part of the Aravalli is Jarga peak?
+4501	Peaks of Jalore district (as per the book's table)?
+4502	Sundha Parvat, Dora Parvat, Israna Bhakhar, Roja Bhakhar, Jharola Bhakhar
+4503	Sundha Parvat, Dora Parvat, Rishikesh, Roja Bhakhar, Jharola Bhakhar
+4504	Sundha Parvat, Sayra, Israna Bhakhar, Roja Bhakhar, Jharola Bhakhar
+4505	Sundha Parvat, Dora Parvat, Israna Bhakhar, Gogunda, Jharola Bhakhar
+4506	First peak of the southern Aravalli by height (as per the book's table)?
+4507	Second peak of the southern Aravalli by height (as per the book's table)?
+4508	Third peak of the southern Aravalli by height (as per the book's table)?
+4509	Fourth peak of the southern Aravalli by height (as per the book's table)?
+4510	Fifth peak of the southern Aravalli by height (as per the book's table)?
+4511	Sixth peak of the southern Aravalli by height (as per the book's table)?
+4512	The three highest peaks of the southern Aravalli in order of height (as per the book's table)?
+4513	Guru Shikhar, Ser, Jarga
+4514	Guru Shikhar, Dilwara, Ser
+4515	Ser, Dilwara, Jarga
+4516	Lowest peak of the southern Aravalli (as per the book's table)?
+4517	Rishabhdev
+4518	Nagpani
+4519	Second-lowest peak of the southern Aravalli (as per the book's table)?
+4520	Highest peak of the southern Aravalli?
+4521	Highest peak of Rajasthan (as per the book's table)?
+4522	Second-highest peak of Rajasthan (as per the book's table)?
+4523	Fourth-highest peak of Rajasthan (as per the book's table)?
+4524	Peaks of the northern Aravalli that are 792 m high (as per the book's table)?
+4525	Bhairach, Babai
+4526	Kho, Babai
+4527	Bhairach, Bairath
+4528	Nag Pahar, Babai
+4529	Peaks of the northern Aravalli in Alwar district (as per the book's table)?
+4530	Bhairach, Sariska, Sirawas, Bhangarh, Balagarh
+4531	Bhairach, Sariska, Sirawas, Bhangarh, Bairath
+4532	Bhairach, Sariska, Raghunathgarh, Bhangarh, Balagarh
+4533	Kho, Sariska, Sirawas, Bhangarh, Balagarh
+4534	Peaks of Jaipur Rural district as per the August 2023 set-up (as per the table)?
