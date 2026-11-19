@@ -4,6 +4,7 @@
 // Guide: docs/19-pyq-practice.md
 import ExamLayout from '../../../../../../../layouts/ExamLayout.astro';
 import OrigToggle from '../../../../../../../components/exam/OrigToggle.astro';
+import QuizModes from '../../../../../../../components/exam/QuizModes.astro';
 import { BANKS, inLang, orig, mcqSets, pyqPath, rowsForMcq, setOfRow, solution, type Bank, type Mcq } from '../../../../../../../pyq';
 import { paths } from '../../../../../../../exam-prep';
 import { langFromUrl, withLangs, pick } from '../../../../../../../i18n/config';
@@ -70,6 +71,8 @@ const schema = [{
       <ul class="pq-facts"><li data-score></li></ul>
     </header>
 
+    <QuizModes n={S.m.length} />
+
     <div data-run data-screen-label={T.q}>
       {S.m.map((m, i) => {
         const f = facts(m);
@@ -134,4 +137,5 @@ const schema = [{
 
 <script>
   import '../../../../../../../scripts/pyq';
+  import '../../../../../../../scripts/quiz-modes';
 </script>
