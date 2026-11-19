@@ -1,0 +1,150 @@
+U6B-N1	en	w	Crop-combination regions are a basis for regionalisation (A), guide agricultural policy (C) and show the farming mosaic for planning (D). They describe what is grown, not how productive it is, so B is out.
+U6B-N1	en	o	Includes B (productivity). ¦ Right: A, C and D. ¦ Includes B, leaves out A. ¦ Includes B, leaves out D.
+U6B-N1	en	t	Combination tells you what is grown; efficiency tells you how well.
+U6B-N1	hi	w	शस्य संयोजन प्रदेश प्रादेशीकरण (A), नीति (C) और नियोजन हेतु कृषि मोज़ेक (D) देते हैं; उत्पादकता (B) नहीं बताते।
+U6B-N1	hi	o	B शामिल। ¦ सही: A, C और D। ¦ B शामिल, A छूटा। ¦ B शामिल, D छूटा।
+U6B-N1	hi	t	संयोजन = क्या उगता है; दक्षता = कितना अच्छा।
+U6B-N2	en	w	Truck farming grows vegetables for distant city markets. Factory farming rears poultry and livestock indoors on industrial lines.
+U6B-N2	en	o	Timber is forestry. ¦ Corn is a field crop. ¦ Right: Vegetables and poultry. ¦ Both belong to horticulture.
+U6B-N2	en	t	Factory farming = broilers and eggs in sheds.
+U6B-N2	hi	w	ट्रक फ़ार्मिंग = दूर बाज़ारों के लिए सब्ज़ियाँ; फ़ैक्टरी फ़ार्मिंग = शेड में औद्योगिक मुर्गी/पशुपालन।
+U6B-N2	hi	o	इमारती लकड़ी वानिकी है। ¦ मक्का खेत फसल। ¦ सही: सब्ज़ी और मुर्गी। ¦ दोनों बागवानी।
+U6B-N2	hi	t	फ़ैक्टरी फ़ार्मिंग = शेड में ब्रॉयलर-अंडे।
+U6B-N3	en	w	This question is garbled in the source: the statements A–D were printed as options. The NOT-correct statements are: Thünen's rent was his own idea (Ricardo, not Weaver); he did discuss a navigable river distorting the rings; real farmers are not always rational; and isotropic surfaces are not universal anywhere. Keyed: option (4), 'A, B, C and E'.
+U6B-N3	en	o	Statement A is wrong: the rent idea came from Thünen and Ricardo, not Weaver. ¦ Statement B is wrong: Thünen himself showed a river stretching the zones. ¦ Statement C is wrong: farmers satisfice (Wolpert). ¦ Right: as keyed, A, B, C and E are not correct.
+U6B-N3	en	t	The firewood ring losing its validity (D) is a true modern criticism.
+U6B-N3	hi	w	यह प्रश्न स्रोत में बिगड़ा है: कथन विकल्पों में छपे। असत्य कथन: लगान विचार वीवर का नहीं (थूनेन/रिकार्डो); थूनेन ने नदी का प्रभाव दिखाया; किसान सदा तार्किक नहीं; समदैशिक सतह कहीं सार्वभौमिक नहीं। कुंजी: (4) A, B, C, E।
+U6B-N3	hi	o	कथन A गलत: लगान वीवर का नहीं। ¦ कथन B गलत: थूनेन ने नदी से वलय खिंचते दिखाए। ¦ कथन C गलत: किसान संतोषी (वोल्पर्ट)। ¦ सही: कुंजी अनुसार A, B, C, E असत्य।
+U6B-N3	hi	t	ईंधन वलय की वैधता खोना (D) सही आधुनिक आलोचना है।
+U6B-N4	en	w	Weaver gave crop combination (IV). Von Thünen wrote 'The Isolated State' (III). Stouffer gave intervening opportunities (I, 1940). Whittlesey gave sequent occupance (II, 1929).
+U6B-N4	en	o	Swaps Stouffer and Whittlesey. ¦ Wrong for A. ¦ Wrong for A. ¦ Right: IV, III, I, II.
+U6B-N4	en	t	Sequent occupance means successive human imprints on one place.
+U6B-N4	hi	w	वीवर = शस्य संयोजन (IV), थूनेन = पृथक राज्य (III), स्टाउफ़र = अंतर्वर्ती अवसर (I, 1940), व्हिटलसी = अनुक्रमिक अधिवास (II, 1929)।
+U6B-N4	hi	o	स्टाउफ़र-व्हिटलसी उलटे। ¦ A गलत। ¦ A गलत। ¦ सही: IV, III, I, II।
+U6B-N4	hi	t	अनुक्रमिक अधिवास = एक स्थान पर क्रमिक मानवीय छाप।
+U6B-N5	en	w	From the town outward: market gardening and milk (C), firewood (B), crop farming without fallow (A), the three-field system (D), then ranching (E).
+U6B-N5	en	o	Firewood is not first. ¦ Firewood is not third. ¦ Right: C, B, A, D, E. ¦ Ranching is not third.
+U6B-N5	en	t	Perishable and heavy goods come first; extensive uses go last.
+U6B-N5	hi	w	नगर से बाहर: बागवानी-दूध (C), ईंधन वन (B), परती रहित फसल (A), त्रिक्षेत्र (D), पशुचारण (E)।
+U6B-N5	hi	o	ईंधन पहला नहीं। ¦ ईंधन तीसरा नहीं। ¦ सही: C, B, A, D, E। ¦ पशुचारण तीसरा नहीं।
+U6B-N5	hi	t	नाशवान/भारी पहले, विस्तृत उपयोग अंत में।
+U6B-N6	en	w	Whittlesey's five criteria are: crop and livestock combination, intensity, disposal of produce, methods, and buildings. Productivity level is not one of them.
+U6B-N6	en	o	Is a criterion. ¦ Is a criterion. ¦ Is a criterion. ¦ Right: Productivity level.
+U6B-N6	en	t	5 criteria, 13 regions, 1936.
+U6B-N6	hi	w	व्हिटलसी के पाँच आधार: फसल-पशु संयोजन, गहनता, निपटान, विधि, भवन। उत्पादकता स्तर नहीं।
+U6B-N6	hi	o	आधार है। ¦ आधार है। ¦ आधार है। ¦ सही: उत्पादकता स्तर।
+U6B-N6	hi	t	5 आधार, 13 प्रदेश, 1936।
+U6B-N7	en	w	The Prairies and Great Plains of the USA and Canada grow wheat and corn on large mechanised farms. That is commercial grain farming.
+U6B-N7	en	o	Dairy belongs to the Great Lakes and New England. ¦ Right: Commercial grain farming. ¦ Horticulture belongs to California and Florida. ¦ Rice-dominant subsistence belongs to Monsoon Asia.
+U6B-N7	en	t	Other grain lands: Pampas, Ukraine steppe, Murray-Darling.
+U6B-N7	hi	w	अमेरिका-कनाडा के प्रेयरी/ग्रेट प्लेन्स में बड़े यंत्रीकृत खेतों पर गेहूँ-मक्का: व्यापारिक अनाज कृषि।
+U6B-N7	hi	o	डेयरी = ग्रेट लेक्स। ¦ सही: व्यापारिक अनाज कृषि। ¦ बागवानी = कैलिफ़ोर्निया। ¦ चावल निर्वाह = मानसून एशिया।
+U6B-N7	hi	t	अन्य अनाज क्षेत्र: पम्पास, यूक्रेन स्टेपी, मरे-डार्लिंग।
+U6B-N8	en	w	Olof Jonasson (1925) extended von Thünen's rings to Europe and the world around the North Atlantic urban market.
+U6B-N8	en	o	Right: Jonasson. ¦ Valkenburg (1952) mapped world agricultural intensity. ¦ Horvath (1969) studied Addis Ababa's eucalyptus ring. ¦ Blaikie studied political ecology.
+U6B-N8	en	t	Horvath found a real 'firewood ring' in Ethiopia.
+U6B-N8	hi	w	ओलोफ़ योनासन (1925) ने थूनेन वलयों को उत्तर अटलांटिक नगरीय बाज़ार के आसपास यूरोप/विश्व तक बढ़ाया।
+U6B-N8	hi	o	सही: योनासन। ¦ वाल्केनबर्ग (1952) = विश्व कृषि गहनता। ¦ होर्वाथ (1969) = अदीस अबाबा यूकेलिप्टस वलय। ¦ ब्लेकी = राजनीतिक पारिस्थितिकी।
+U6B-N8	hi	t	होर्वाथ ने इथियोपिया में असली 'ईंधन वलय' पाया।
+U6B-N9	en	w	A gives the broad definition of drought (any water shortfall). R gives its root cause, a lack of rainfall. Both are true and R explains A.
+U6B-N9	en	o	Right: Both true and R explains A. ¦ Both true, but R does not explain A. ¦ A true, R false. ¦ A false, R true.
+U6B-N9	en	t	Types of drought: meteorological, hydrological, agricultural, socio-economic.
+U6B-N9	hi	w	A सूखे की व्यापक परिभाषा (कोई भी जल कमी), R उसका मूल कारण (वर्षा की कमी): दोनों सत्य, R व्याख्या।
+U6B-N9	hi	o	सही: दोनों सत्य, R, A की व्याख्या। ¦ दोनों सत्य, पर R व्याख्या नहीं। ¦ A सत्य, R असत्य। ¦ A असत्य, R सत्य।
+U6B-N9	hi	t	सूखे के प्रकार: मौसमी, जलीय, कृषि, सामाजिक-आर्थिक।
+U6B-N10	en	w	Bhatia's diversification index = (% of total cropped area under the x crops) ÷ (number of x crops). Here x is the area occupied by each crop counted.
+U6B-N10	en	o	GCA is the base, not x. ¦ Right: The area occupied by each crop. ¦ NSA is not used. ¦ NSA is not used.
+U6B-N10	en	t	A higher index means more diversification.
+U6B-N10	hi	w	भाटिया का विविधता सूचकांक = (x फसलों के अंतर्गत कुल फसल क्षेत्र का %) ÷ फसलों की संख्या; x = प्रत्येक फसल का क्षेत्र।
+U6B-N10	hi	o	GCA आधार है। ¦ सही: प्रत्येक फसल का क्षेत्र। ¦ NSA नहीं। ¦ NSA नहीं।
+U6B-N10	hi	t	अधिक सूचकांक = अधिक विविधता।
+U6B-N11	en	w	Kendall (1939) devised the ranking coefficient; Shafi worked on productivity in the 1960s–80s, so 'Shafi, ranking coefficient, 1990' is wrong. Khusro (1964) measured productivity as an input-output ratio, which is true.
+U6B-N11	en	o	Both statements true. ¦ Both statements false. ¦ I true, II false. ¦ Right: I false, II true.
+U6B-N11	en	t	Test each statement alone; one wrong year or name makes it false.
+U6B-N11	hi	w	रैंकिंग गुणांक केंडल (1939) का; 'शफ़ी, 1990' गलत। खुसरो (1964) ने आगत-निर्गत अनुपात से उत्पादकता मापी, यह सत्य।
+U6B-N11	hi	o	दोनों कथन सत्य। ¦ दोनों कथन असत्य। ¦ I सत्य, II असत्य। ¦ सही: I असत्य, II सत्य।
+U6B-N11	hi	t	हर कथन अलग जाँचें; एक गलत वर्ष या नाम उसे असत्य बना देता है।
+U6B-N13	en	w	PI = (Y/Yn) ÷ (T/Tn) compares a unit's production share with its area share against the nation. The key credits Shafi (1960s) with this form.
+U6B-N13	en	o	Bhatia weighted yield indices by area. ¦ Enyedi used a different yield-share index. ¦ Weaver did crop combination. ¦ Right: Shafi.
+U6B-N13	en	t	In the formula, n means the national total.
+U6B-N13	hi	w	PI = (Y/Yn) ÷ (T/Tn): इकाई का उत्पादन हिस्सा बनाम क्षेत्र हिस्सा, राष्ट्र की तुलना में; कुंजी शफ़ी को देती है।
+U6B-N13	hi	o	भाटिया = क्षेत्र-भारित। ¦ एनयेडी = अन्य सूचकांक। ¦ वीवर = शस्य संयोजन। ¦ सही: शफ़ी।
+U6B-N13	hi	t	n = राष्ट्रीय योग।
+U6B-N14	en	w	In this question the options are mixed up with the statements. Subsistence countries have a developing economy, dense population and low technology. Highly developed international trade does not fit. Keyed: option (4), 'B, D and C', as printed.
+U6B-N14	en	o	This trait (developing economy) does fit. ¦ This trait (dense population) does fit. ¦ This trait (low technology) does fit. ¦ Right: as keyed. Note that 'high international trade' does not fit subsistence farming.
+U6B-N14	en	t	Subsistence means produce is eaten, not sold.
+U6B-N14	hi	w	विकल्प-कथन मिले हुए। निर्वाह देशों में विकासशील अर्थव्यवस्था, घनी जनसंख्या, निम्न तकनीक; उच्च अंतरराष्ट्रीय व्यापार नहीं। कुंजी (4)।
+U6B-N14	hi	o	यह लक्षण सही। ¦ यह लक्षण सही। ¦ यह लक्षण सही। ¦ सही: कुंजी अनुसार; 'उच्च व्यापार' निर्वाह से मेल नहीं खाता।
+U6B-N14	hi	t	निर्वाह = उपज खाई जाती है, बेची नहीं।
+U6B-N16	en	w	In this question the options are mixed up with the statements. Weaver (1954) offered a method better than simple inspection (A) and minimised the gap between actual and theoretical combinations (C). B and D describe Coppock and Stamp (British land), not Weaver. Keyed: 'A and C only'.
+U6B-N16	en	o	This statement (A) is true for Weaver. ¦ This statement (B) is about Britain, not Weaver. ¦ This statement (C) is true for Weaver. ¦ Right: as keyed, A and C only.
+U6B-N16	en	t	Weaver's data came from the US Middle West in 1954.
+U6B-N16	hi	w	विकल्प-कथन मिले हुए। वीवर (1954): सरल निरीक्षण से श्रेष्ठ विधि (A) और वास्तविक-सैद्धांतिक अंतर न्यूनतम (C)। B, D ब्रिटिश भूमि अध्ययन। कुंजी: A और C।
+U6B-N16	hi	o	कथन A वीवर हेतु सत्य। ¦ कथन B ब्रिटेन का, वीवर नहीं। ¦ कथन C वीवर हेतु सत्य। ¦ सही: कुंजी अनुसार A और C।
+U6B-N16	hi	t	वीवर का आँकड़ा: अमेरिकी मध्य-पश्चिम, 1954।
+U6B-N17	en	w	Thünen's work did not call sector-shaped fields the most irrational, so A is wrong as written. R is a fair general observation, since sector fields do occur in some systems.
+U6B-N17	en	o	Both true and R explains A. ¦ Both true, but R does not explain A. ¦ A true, R false. ¦ Right: A false, R true.
+U6B-N17	en	t	Check A and R separately first, then ask: does R answer 'why A?'
+U6B-N17	hi	w	थूनेन ने त्रिज्यखंडी खेतों को 'सबसे अतार्किक' नहीं कहा, इसलिए A गलत; R सामान्य सत्य अवलोकन है।
+U6B-N17	hi	o	दोनों सत्य, R, A की व्याख्या। ¦ दोनों सत्य, पर R व्याख्या नहीं। ¦ A सत्य, R असत्य। ¦ सही: A असत्य, R सत्य।
+U6B-N17	hi	t	पहले A और R अलग-अलग जाँचें, फिर पूछें: क्या R, 'A क्यों?' का उत्तर है?
+U6B-N18	en	w	In rice-based Asia, animals are a sideline (A true). Poor breeding is real (R true), but the main reason is that land is too scarce for fodder, so R does not explain A.
+U6B-N18	en	o	Both true and R explains A. ¦ Right: Both true, but R does not explain A. ¦ A true, R false. ¦ A false, R true.
+U6B-N18	en	t	Check A and R separately first, then ask: does R answer 'why A?'
+U6B-N18	hi	w	चावल-प्रधान एशिया में पशुपालन गौण (A सत्य); कमज़ोर प्रजनन भी सच (R सत्य), पर मुख्य कारण चारे हेतु भूमि की कमी, अतः R व्याख्या नहीं।
+U6B-N18	hi	o	दोनों सत्य, R, A की व्याख्या। ¦ सही: दोनों सत्य, पर R व्याख्या नहीं। ¦ A सत्य, R असत्य। ¦ A असत्य, R सत्य।
+U6B-N18	hi	t	पहले A और R अलग-अलग जाँचें, फिर पूछें: क्या R, 'A क्यों?' का उत्तर है?
+U6B-N19	en	w	Intensive farming puts heavy labour and capital into small plots to get a high yield per hectare.
+U6B-N19	en	o	Large farms go with extensive farming. ¦ Low labour goes with extensive farming. ¦ Right: High yield rate. ¦ Sparse population goes with extensive farming.
+U6B-N19	en	t	Intensive = high input and high output per hectare.
+U6B-N19	hi	w	गहन कृषि छोटे खेत में अधिक श्रम-पूँजी लगाकर प्रति हेक्टेयर उच्च उपज पाती है।
+U6B-N19	hi	o	बड़े खेत = विस्तृत। ¦ कम श्रम = विस्तृत। ¦ सही: उच्च उपज दर। ¦ विरल जनसंख्या = विस्तृत।
+U6B-N19	hi	t	गहन = प्रति हेक्टेयर अधिक निवेश व अधिक उत्पादन।
+U6B-N20	en	w	In order of appearance: Weaver (1954), Doi (1959), Coppock (1964), Rafiullah (1965). No printed option matches this exactly. The key (3), 'c, b, a, d', puts Weaver first, which is the main point tested.
+U6B-N20	en	o	Starts with Doi, but Weaver came first. ¦ Starts with Rafiullah. ¦ Right: as keyed. Weaver first is the key fact. ¦ Starts with Coppock.
+U6B-N20	en	t	Weaver 1954, then Doi 1959, then Coppock 1964, then Rafiullah 1965.
+U6B-N20	hi	w	प्रकट होने का क्रम: वीवर (1954), दोई (1959), कॉपॉक (1964), रफ़ीउल्लाह (1965)। कोई विकल्प पूरा मेल नहीं खाता; कुंजी (3) वीवर को पहले रखती है।
+U6B-N20	hi	o	दोई से शुरू; वीवर पहले थे। ¦ रफ़ीउल्लाह से शुरू। ¦ सही: कुंजी अनुसार; वीवर पहले मुख्य तथ्य। ¦ कॉपॉक से शुरू।
+U6B-N20	hi	t	वीवर 1954, दोई 1959, कॉपॉक 1964, रफ़ीउल्लाह 1965।
+U6B-N21	en	w	The share of area under each crop at a given time is the cropping pattern.
+U6B-N21	en	o	Combination means the leading crops grouped together. ¦ Right: Cropping pattern. ¦ Concentration means one crop's density. ¦ Diversification means the spread of many crops.
+U6B-N21	en	t	Pattern = a snapshot of area shares.
+U6B-N21	hi	w	किसी समय विभिन्न फसलों के अंतर्गत क्षेत्र का अनुपात = शस्य प्रतिरूप।
+U6B-N21	hi	o	संयोजन = प्रमुख फसल समूह। ¦ सही: शस्य प्रतिरूप। ¦ संकेंद्रण = एक फसल का घनत्व। ¦ विविधीकरण = अनेक फसलों का फैलाव।
+U6B-N21	hi	t	प्रतिरूप = क्षेत्र हिस्सों की झलक।
+U6B-N23	en	w	Whittlesey (1936) identified 13 agricultural regions of the world.
+U6B-N23	en	o	Too few. ¦ Right: 13. ¦ Too many. ¦ Too many (repeated option).
+U6B-N23	en	t	5 criteria, 13 regions.
+U6B-N23	hi	w	व्हिटलसी (1936) ने विश्व के 13 कृषि प्रदेश बताए।
+U6B-N23	hi	o	कम। ¦ सही: 13। ¦ अधिक। ¦ अधिक (दोहराया विकल्प)।
+U6B-N23	hi	t	5 आधार, 13 प्रदेश।
+U6B-N24	en	w	From top to bottom on the East African peaks (Kilimanjaro, Mount Kenya): Afro-alpine moorland, then the Ericaceous heath belt, then bamboo, then lowland or montane forest.
+U6B-N24	en	o	This is the bottom-up order. ¦ Right: Afro-alpine, Ericaceous, Bamboo, Lowland. ¦ Bamboo and forest are swapped. ¦ Jumbled.
+U6B-N24	en	t	Giant groundsels and lobelias grow in the Afro-alpine belt.
+U6B-N24	hi	w	पूर्वी अफ्रीकी पर्वतों (किलिमंजारो) पर ऊपर से नीचे: अफ्रो-अल्पाइन, एरिकेसियस, बाँस, निचला वन।
+U6B-N24	hi	o	नीचे से ऊपर क्रम। ¦ सही: अफ्रो-अल्पाइन, एरिकेसियस, बाँस, निचला वन। ¦ बाँस-वन उलटे। ¦ उलझा क्रम।
+U6B-N24	hi	t	विशाल ग्राउंडसेल-लोबेलिया अफ्रो-अल्पाइन पट्टी में।
+U6B-N26	en	w	Enyedi (1964, Hungary) measured productivity as (Y/Yn) ÷ (T/Tn), weighting a unit's yield share by its area share. Here the key credits Enyedi.
+U6B-N26	en	o	Bhatia used area-weighted yield indices. ¦ Right: Enyedi. ¦ Weaver did crop combination. ¦ Shafi used a similar form; this key gives Enyedi.
+U6B-N26	en	t	The Enyedi and Shafi formulae look alike, so read the year and country.
+U6B-N26	hi	w	एनयेडी (1964, हंगरी) ने उत्पादकता (Y/Yn) ÷ (T/Tn) से मापी; यहाँ कुंजी एनयेडी।
+U6B-N26	hi	o	भाटिया = क्षेत्र-भारित। ¦ सही: एनयेडी। ¦ वीवर = संयोजन। ¦ शफ़ी का सूत्र समान; यहाँ कुंजी एनयेडी।
+U6B-N26	hi	t	एनयेडी-शफ़ी सूत्र मिलते-जुलते; वर्ष/देश देखें।
+U6B-N27	en	w	In commercial dairy farming (market milk, cheese, butter, high technology), the USA leads, followed by Western Europe and New Zealand. India leads in total milk volume, but that is not 'commercial dairy farming'.
+U6B-N27	en	o	Right: USA. ¦ India leads in volume through smallholder dairy, not commercial dairy farming. ¦ Not a leader. ¦ Not a leader.
+U6B-N27	en	t	Watch the trap: the largest producer is India, the commercial-dairy leader is the USA.
+U6B-N27	hi	w	व्यापारिक डेयरी कृषि (उच्च तकनीक) में अमेरिका प्रथम, फिर पश्चिमी यूरोप, न्यूज़ीलैंड। भारत कुल दूध में आगे, पर वह व्यापारिक डेयरी नहीं।
+U6B-N27	hi	o	सही: अमेरिका। ¦ भारत मात्रा में आगे, छोटे पालकों से। ¦ अग्रणी नहीं। ¦ अग्रणी नहीं।
+U6B-N27	hi	t	जाल: सबसे बड़ा उत्पादक भारत; व्यापारिक डेयरी अग्रणी अमेरिका।
+U6B-N28	en	w	σ² = Σd² ÷ n is Weaver's least-variance formula for crop combination.
+U6B-N28	en	o	Doi used Σd² without dividing by n. ¦ Right: J.C. Weaver. ¦ Pownall worked on functional town classification. ¦ Rafiullah used maximum positive deviation.
+U6B-N28	en	t	Doi dropped the n to make it simpler.
+U6B-N28	hi	w	σ² = Σd² ÷ n वीवर का न्यूनतम प्रसरण सूत्र है।
+U6B-N28	hi	o	दोई ने n से भाग नहीं दिया। ¦ सही: जे.सी. वीवर। ¦ पाउनल = नगर वर्गीकरण। ¦ रफ़ीउल्लाह = अधिकतम धनात्मक विचलन।
+U6B-N28	hi	t	दोई ने सरलता हेतु n हटाया।
+U6B-N29	en	w	Critics argue the Green Revolution widened inequality (A). The reason given is that rich farmers mechanised and took back leased land, pushing out tenants (R). R is exactly why A happened.
+U6B-N29	en	o	Right: Both true and R explains A. ¦ Both true, but R does not explain A. ¦ A true, R false. ¦ A false, R true.
+U6B-N29	en	t	Check A and R separately first, then ask: does R answer 'why A?'
+U6B-N29	hi	w	आलोचकों के अनुसार हरित क्रांति से असमानता बढ़ी (A); धनी किसानों ने यंत्रीकरण कर पट्टे की भूमि वापस ली और काश्तकार बेदखल हुए (R), यही A का कारण।
+U6B-N29	hi	o	सही: दोनों सत्य, R, A की व्याख्या। ¦ दोनों सत्य, पर R व्याख्या नहीं। ¦ A सत्य, R असत्य। ¦ A असत्य, R सत्य।
+U6B-N29	hi	t	पहले A और R अलग-अलग जाँचें, फिर पूछें: क्या R, 'A क्यों?' का उत्तर है?
