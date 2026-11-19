@@ -1,0 +1,150 @@
+RB2-81	en	w	This match pairs districts with their latitude and longitude. The trick is to place each district on a mental grid: south-east districts have higher longitudes and lower latitudes, the Thar districts low longitudes. The key's pairing is A-III, B-II, C-IV, D-I.
+RB2-81	en	o	C and D are swapped ¦ Right: A-III, B-II, C-IV, D-I ¦ A and B are swapped ¦ A and D are wrong
+RB2-81	en	t	Rajasthan grid: west ≈ 70°E, east ≈ 78°E; south ≈ 23°N, north ≈ 30°N.
+RB2-81	hi	w	यह मिलान ज़िलों को उनके अक्षांश-देशांतर से जोड़ता है। तरकीब है हर ज़िले को मन के ग्रिड पर रखना: दक्षिण-पूर्वी ज़िलों का देशांतर अधिक और अक्षांश कम, थार के ज़िलों का देशांतर कम। कुंजी का मिलान है A-III, B-II, C-IV, D-I।
+RB2-81	hi	o	C और D उलटे हैं ¦ सही: A-III, B-II, C-IV, D-I ¦ A और B उलटे हैं ¦ A और D गलत हैं
+RB2-81	hi	t	राजस्थान ग्रिड: पश्चिम ≈ 70° पू., पूर्व ≈ 78° पू.; दक्षिण ≈ 23° उ., उत्तर ≈ 30° उ.।
+RB2-82	en	w	The Tropic of Cancer (about 23½°N) crosses Banswara in the south, and the 70°E meridian crosses Jaisalmer in the far west.
+RB2-82	en	o	Right: Banswara and Jaisalmer ¦ Nagaur is near 74°E, not 70°E ¦ Dungarpur is near 73–74°E, not 70°E ¦ Dholpur is near 78°E
+RB2-82	en	t	South line → Banswara; west line → Jaisalmer.
+RB2-82	hi	w	कर्क रेखा (लगभग 23½° उत्तर) दक्षिण में बांसवाड़ा से और 70° पूर्व देशांतर सुदूर पश्चिम में जैसलमेर से गुज़रता है।
+RB2-82	hi	o	सही: बांसवाड़ा और जैसलमेर ¦ नागौर लगभग 74° पूर्व पर है, 70° नहीं ¦ डूंगरपुर लगभग 73–74° पूर्व पर है ¦ धौलपुर लगभग 78° पूर्व पर है
+RB2-82	hi	t	दक्षिणी रेखा → बांसवाड़ा; पश्चिमी रेखा → जैसलमेर।
+RB2-83	en	w	Rajasthan's western edge is at 69°30′E, so the 70°E line falls inside Jaisalmer, the westernmost district.
+RB2-83	en	o	Jodhpur is around 72–73°E ¦ Right: Jaisalmer ¦ Dholpur is near 78°E ¦ Nagaur is around 73–75°E
+RB2-83	en	t	70°E = Jaisalmer's meridian.
+RB2-83	hi	w	राजस्थान का पश्चिमी किनारा 69°30′ पूर्व पर है, इसलिए 70° पूर्व रेखा सबसे पश्चिमी ज़िले जैसलमेर के भीतर पड़ती है।
+RB2-83	hi	o	जोधपुर लगभग 72–73° पूर्व पर है ¦ सही: जैसलमेर ¦ धौलपुर लगभग 78° पूर्व पर है ¦ नागौर लगभग 73–75° पूर्व पर है
+RB2-83	hi	t	70° पूर्व = जैसलमेर का देशांतर।
+RB2-84	en	w	The earth turns 1° in 4 minutes. Ajmer is 83° − 74° = 9° west of Calcutta, so the sun rises there 9 × 4 = 36 minutes later: 6:36 a.m.
+RB2-84	en	o	5:24 a.m. wrongly makes it earlier ¦ 7:12 a.m. doubles the gap ¦ Right: 6:36 a.m. ¦ 4:48 a.m. is far too early
+RB2-84	en	t	West = later sunrise. 1° = 4 minutes.
+RB2-84	hi	w	पृथ्वी 1° घूमने में 4 मिनट लेती है। अजमेर कलकत्ता से 83° − 74° = 9° पश्चिम है, इसलिए वहाँ सूर्य 9 × 4 = 36 मिनट बाद उगेगा: सुबह 6:36।
+RB2-84	hi	o	5:24 इसे गलती से पहले कर देता है ¦ 7:12 अंतर को दोगुना कर देता है ¦ सही: सुबह 6:36 ¦ 4:48 बहुत पहले है
+RB2-84	hi	t	पश्चिम = देर से सूर्योदय। 1° = 4 मिनट।
+RB2-85	en	w	IST is set at 82°30′E. Ghatol is at 74°25′E, which is 8°5′ further west. 8°5′ × 4 minutes = 32 minutes 20 seconds. Local time is that much behind IST: 6:15 p.m. − 32:20 = 5:42:40 p.m.
+RB2-85	en	o	6:42:40 adds the gap instead of subtracting ¦ 6:24:42 is a jumbled figure ¦ Right: 5:42:40 p.m. ¦ 5:24:42 is a jumbled figure
+RB2-85	en	t	West of 82°30′E means local time is behind IST.
+RB2-85	hi	w	IST 82°30′ पूर्व पर तय है। घाटोल 74°25′ पूर्व पर है, यानी 8°5′ अधिक पश्चिम। 8°5′ × 4 मिनट = 32 मिनट 20 सेकंड। स्थानीय समय IST से इतना पीछे होगा: शाम 6:15 − 32:20 = शाम 5:42:40।
+RB2-85	hi	o	6:42:40 अंतर घटाने के बजाय जोड़ता है ¦ 6:24:42 गड्डमड्ड आँकड़ा है ¦ सही: शाम 5:42:40 ¦ 5:24:42 गड्डमड्ड आँकड़ा है
+RB2-85	hi	t	82°30′ पूर्व से पश्चिम = स्थानीय समय IST से पीछे।
+RB2-86	en	w	Five Indian states touch Rajasthan: Punjab, Haryana, Uttar Pradesh, Madhya Pradesh and Gujarat.
+RB2-86	en	o	3 is too few ¦ Right: 5 ¦ 6 counts one too many ¦ 8 is far too many
+RB2-86	en	t	5 states + 1 country (Pakistan).
+RB2-86	hi	w	पाँच भारतीय राज्य राजस्थान से लगते हैं: पंजाब, हरियाणा, उत्तर प्रदेश, मध्य प्रदेश और गुजरात।
+RB2-86	hi	o	3 बहुत कम है ¦ सही: 5 ¦ 6 एक अधिक है ¦ 8 बहुत अधिक है
+RB2-86	hi	t	5 राज्य + 1 देश (पाकिस्तान)।
+RB2-87	en	w	Udaipur touches Gujarat, not Madhya Pradesh. Banswara, Pratapgarh and Jhalawar all touch Madhya Pradesh.
+RB2-87	en	o	Banswara touches Madhya Pradesh ¦ Pratapgarh touches Madhya Pradesh ¦ Right: Udaipur ¦ Jhalawar has the longest stretch with Madhya Pradesh
+RB2-87	en	t	Udaipur faces Gujarat; its eastern neighbours face MP.
+RB2-87	hi	w	उदयपुर गुजरात से लगता है, मध्य प्रदेश से नहीं। बांसवाड़ा, प्रतापगढ़ और झालावाड़ तीनों मध्य प्रदेश से लगते हैं।
+RB2-87	hi	o	बांसवाड़ा मध्य प्रदेश से लगता है ¦ प्रतापगढ़ मध्य प्रदेश से लगता है ¦ सही: उदयपुर ¦ झालावाड़ की मध्य प्रदेश से सबसे लंबी सीमा है
+RB2-87	hi	t	उदयपुर गुजरात की ओर; इसके पूर्वी पड़ोसी मध्य प्रदेश की ओर।
+RB2-88	en	w	Dungarpur touches Gujarat and Bharatpur touches Uttar Pradesh and Haryana; neither touches Madhya Pradesh. Every district in the other options does.
+RB2-88	en	o	Both touch Madhya Pradesh ¦ Both touch Madhya Pradesh ¦ Both touch Madhya Pradesh ¦ Right: Dungarpur and Bharatpur
+RB2-88	en	t	MP border districts run from Dholpur round to Banswara: Dholpur, Karauli, Sawai Madhopur, Kota, Baran, Jhalawar, Bhilwara, Chittorgarh, Pratapgarh, Banswara.
+RB2-88	hi	w	डूंगरपुर गुजरात से और भरतपुर उत्तर प्रदेश व हरियाणा से लगता है; दोनों मध्य प्रदेश से नहीं लगते। बाक़ी विकल्पों के सभी ज़िले लगते हैं।
+RB2-88	hi	o	दोनों मध्य प्रदेश से लगते हैं ¦ दोनों मध्य प्रदेश से लगते हैं ¦ दोनों मध्य प्रदेश से लगते हैं ¦ सही: डूंगरपुर और भरतपुर
+RB2-88	hi	t	मध्य प्रदेश सीमा के ज़िले धौलपुर से बांसवाड़ा तक: धौलपुर, करौली, सवाई माधोपुर, कोटा, बारां, झालावाड़, भीलवाड़ा, चित्तौड़गढ़, प्रतापगढ़, बांसवाड़ा।
+RB2-89	en	w	Two districts touch Uttar Pradesh: Bharatpur and Dholpur.
+RB2-89	en	o	Dholpur is right but not alone ¦ Alwar and Dausa do not touch UP ¦ Bharatpur is right but not alone ¦ Right: both Bharatpur and Dholpur
+RB2-89	en	t	UP border = the "Braj" corner: Bharatpur and Dholpur.
+RB2-89	hi	w	दो ज़िले उत्तर प्रदेश से लगते हैं: भरतपुर और धौलपुर।
+RB2-89	hi	o	धौलपुर सही है पर अकेला नहीं ¦ अलवर और दौसा उत्तर प्रदेश से नहीं लगते ¦ भरतपुर सही है पर अकेला नहीं ¦ सही: भरतपुर और धौलपुर दोनों
+RB2-89	hi	t	उत्तर प्रदेश सीमा = "ब्रज" कोना: भरतपुर और धौलपुर।
+RB2-90	en	w	Pratapgarh touches Madhya Pradesh, not Gujarat. Sirohi, Barmer and Dungarpur are three of the six Gujarat-border districts.
+RB2-90	en	o	Right: Pratapgarh ¦ Sirohi touches Gujarat ¦ Barmer touches Gujarat (shortest stretch) ¦ Dungarpur touches Gujarat
+RB2-90	en	t	Pratapgarh looks south but faces MP.
+RB2-90	hi	w	प्रतापगढ़ मध्य प्रदेश से लगता है, गुजरात से नहीं। सिरोही, बाड़मेर और डूंगरपुर गुजरात सीमा के छह ज़िलों में से तीन हैं।
+RB2-90	hi	o	सही: प्रतापगढ़ ¦ सिरोही गुजरात से लगता है ¦ बाड़मेर गुजरात से लगता है (सबसे छोटा भाग) ¦ डूंगरपुर गुजरात से लगता है
+RB2-90	hi	t	प्रतापगढ़ दक्षिण में है, पर सामने मध्य प्रदेश है।
+RB3-1	en	w	Rajasthan is usually divided into four major physical divisions: the north-western sandy desert, the central Aravalli hills, the eastern plains, and the south-eastern Hadoti plateau.
+RB3-1	en	o	One is too few ¦ Right: four ¦ Two is too few ¦ Six is too many for the major divisions
+RB3-1	en	t	Desert, Aravalli, Plains, Plateau: "DAPP".
+RB3-1	hi	w	राजस्थान को सामान्यतः चार प्रमुख भौतिक विभागों में बाँटा जाता है: उत्तर-पश्चिमी रेतीला मरुस्थल, मध्य अरावली पहाड़ियाँ, पूर्वी मैदान, और दक्षिण-पूर्वी हाड़ौती पठार।
+RB3-1	hi	o	एक बहुत कम है ¦ सही: चार ¦ दो बहुत कम है ¦ प्रमुख विभागों के लिए छह बहुत अधिक है
+RB3-1	hi	t	मरुस्थल, अरावली, मैदान, पठार।
+RB3-2	en	w	Geographer V. C. Mishra divided Rajasthan into seven geographical regions, a finer split than the usual four physical divisions.
+RB3-2	en	o	Two is far too few ¦ Four is the usual physical split, not Mishra's ¦ Five is wrong ¦ Right: seven
+RB3-2	en	t	Mishra = 7.
+RB3-2	hi	w	भूगोलवेत्ता वी. सी. मिश्रा ने राजस्थान को सात भौगोलिक प्रदेशों में बाँटा, जो सामान्य चार भौतिक विभागों से बारीक विभाजन है।
+RB3-2	hi	o	दो बहुत कम है ¦ चार सामान्य भौतिक विभाजन है, मिश्रा का नहीं ¦ पाँच गलत है ¦ सही: सात
+RB3-2	hi	t	मिश्रा = 7।
+RB3-3	en	w	Different geographers split the four main divisions into different numbers of sub-regions, so none of the numbers given was accepted as the one right answer. Learn the four main divisions and their best-known parts (Thar, Bangar, Aravalli ranges, Banas and Chambal plains, Hadoti, Vindhyan scarp).
+RB3-3	en	o	14 is one scholar's count ¦ 13 is one scholar's count ¦ 12 is one scholar's count ¦ 11 is one scholar's count
+RB3-3	en	t	When scholars disagree on a count, the exam may drop the question.
+RB3-3	hi	w	अलग-अलग भूगोलवेत्ता चार मुख्य विभागों को अलग संख्या में उप-प्रदेशों में बाँटते हैं, इसलिए दी गई किसी संख्या को एकमात्र सही उत्तर नहीं माना गया। चार मुख्य विभाग और उनके प्रसिद्ध भाग (थार, बांगड़, अरावली श्रेणियाँ, बनास और चंबल के मैदान, हाड़ौती, विंध्य कगार) याद रखिए।
+RB3-3	hi	o	14 एक विद्वान की गणना है ¦ 13 एक विद्वान की गणना है ¦ 12 एक विद्वान की गणना है ¦ 11 एक विद्वान की गणना है
+RB3-3	hi	t	जब विद्वान संख्या पर असहमत हों, तो परीक्षा सवाल रद्द कर सकती है।
+RB3-4	en	w	The Aravalli is among the oldest fold mountains on earth, formed in Pre-Cambrian times, long before the desert sands or the river plains were laid down.
+RB3-4	en	o	The Ghaggar plain is young river deposit ¦ The north-eastern plain is young alluvium ¦ Right: Aravalli hill region ¦ The Thar's sands are young compared with the Aravalli rocks
+RB3-4	en	t	Rocks first, sand and silt later: the Aravalli wins on age.
+RB3-4	hi	w	अरावली पृथ्वी के सबसे पुराने वलित पर्वतों में से है, जो प्री-कैम्ब्रियन काल में बना, मरुस्थल की रेत या नदियों के मैदान बनने से बहुत पहले।
+RB3-4	hi	o	घग्घर मैदान नया नदी निक्षेप है ¦ उत्तर-पूर्वी मैदान नया जलोढ़ है ¦ सही: अरावली पर्वतीय प्रदेश ¦ थार की रेत अरावली की चट्टानों से बहुत नई है
+RB3-4	hi	t	पहले चट्टानें, बाद में रेत और गाद: उम्र में अरावली आगे।
+RB3-5	en	w	A straight line from Jhalawar (south-east) to Bikaner (north-west) first crosses the Hadoti plateau, then the Banas basin of the central-east, then the central Aravalli, before reaching the desert.
+RB3-5	en	o	The Bhorat plateau is near Udaipur–Rajsamand, off this line ¦ The Mahi plain is in the far south, off this line ¦ The Vindhyan scarp and Bhorat are off this line ¦ Right: Hadoti plateau, Banas basin, central Aravalli
+RB3-5	en	t	South-east to north-west: plateau → plain → hills → desert.
+RB3-5	hi	w	झालावाड़ (दक्षिण-पूर्व) से बीकानेर (उत्तर-पश्चिम) तक सीधी रेखा पहले हाड़ौती पठार, फिर मध्य-पूर्व का बनास बेसिन, फिर मध्य अरावली पार करती है और फिर मरुस्थल आता है।
+RB3-5	hi	o	भोराट पठार उदयपुर-राजसमंद के पास है, इस रेखा से हटकर ¦ माही मैदान सुदूर दक्षिण में है ¦ विंध्य कगार और भोराट इस रेखा से हटकर हैं ¦ सही: हाड़ौती पठार, बनास बेसिन, मध्य अरावली
+RB3-5	hi	t	दक्षिण-पूर्व से उत्तर-पश्चिम: पठार → मैदान → पहाड़ → मरुस्थल।
+RB3-6	en	w	Structurally Rajasthan sits where two of India's relief regions meet: the Great Northern Plains (the desert and eastern plains) and the Peninsular Plateau (the Aravalli and the Hadoti plateau). The Himalaya and the coasts are far away.
+RB3-6	en	o	Right: Northern Great Plains and Peninsular Plateau ¦ No part of the northern mountains is in Rajasthan ¦ Rajasthan has no coast ¦ No part of the northern mountains is in Rajasthan
+RB3-6	en	t	Rajasthan = Plain + Plateau, no Mountain range of the Himalaya, no Coast.
+RB3-6	hi	w	संरचना की दृष्टि से राजस्थान वहाँ है जहाँ भारत के दो उच्चावच प्रदेश मिलते हैं: उत्तर का विशाल मैदान (मरुस्थल और पूर्वी मैदान) और प्रायद्वीपीय पठार (अरावली और हाड़ौती पठार)। हिमालय और तट बहुत दूर हैं।
+RB3-6	hi	o	सही: उत्तरी विशाल मैदान और प्रायद्वीपीय पठार ¦ उत्तरी पर्वतों का कोई भाग राजस्थान में नहीं ¦ राजस्थान का कोई तट नहीं ¦ उत्तरी पर्वतों का कोई भाग राजस्थान में नहीं
+RB3-6	hi	t	राजस्थान = मैदान + पठार; न हिमालय, न तट।
+RB3-7	en	w	The south-eastern Hadoti plateau is the wettest part of Rajasthan, with about 80–120 cm of rain a year; Jhalawar is the rainiest district.
+RB3-7	en	o	40–70 cm suits the eastern plains or the semi-arid belt ¦ Right: 80–120 cm ¦ 70–80 cm is a little low ¦ 10–20 cm is the far western desert
+RB3-7	en	t	Rain rises from north-west (10 cm) to south-east (over 100 cm).
+RB3-7	hi	w	दक्षिण-पूर्वी हाड़ौती पठार राजस्थान का सबसे वर्षा वाला भाग है, जहाँ सालाना लगभग 80–120 सेमी वर्षा होती है; झालावाड़ सबसे अधिक वर्षा वाला ज़िला है।
+RB3-7	hi	o	40–70 सेमी पूर्वी मैदान या अर्ध-शुष्क पट्टी के लिए है ¦ सही: 80–120 सेमी ¦ 70–80 सेमी थोड़ा कम है ¦ 10–20 सेमी सुदूर पश्चिमी मरुस्थल है
+RB3-7	hi	t	वर्षा उत्तर-पश्चिम (10 सेमी) से दक्षिण-पूर्व (100 सेमी से अधिक) की ओर बढ़ती है।
+RB3-8	en	w	By the key, each division pairs with the rainfall figure printed against it in the paper (A1, B2, C3, D4). The pattern to remember is that rain grows from the north-western desert to the south-eastern plateau.
+RB3-8	en	o	Scrambles all four ¦ Scrambles three of four ¦ Swaps C and D ¦ Right: A1, B2, C3, D4
+RB3-8	en	t	Desert least, Hadoti most.
+RB3-8	hi	w	कुंजी के अनुसार हर विभाग पेपर में उसके सामने छपे वर्षा आँकड़े से मेल खाता है (A1, B2, C3, D4)। याद रखने का प्रतिरूप: वर्षा उत्तर-पश्चिमी मरुस्थल से दक्षिण-पूर्वी पठार की ओर बढ़ती है।
+RB3-8	hi	o	चारों गड्डमड्ड ¦ चार में से तीन गड्डमड्ड ¦ C और D उलटे ¦ सही: A1, B2, C3, D4
+RB3-8	hi	t	मरुस्थल में सबसे कम, हाड़ौती में सबसे अधिक।
+RB3-9	en	w	The north-eastern plain of Rajasthan was built by the Chambal, Banas and other Yamuna-side rivers, not by the Indus. The other three statements are what the books teach.
+RB3-9	en	o	As per the books: the Aravalli is the oldest fold range ¦ Right (the wrong statement): the plain is not the Indus's work ¦ As per the books: the Thar is a remnant of the Tethys Sea ¦ As per the books: the plateau is a Gondwana extension
+RB3-9	en	t	Eastern plain = Chambal–Banas (Yamuna system), not Indus.
+RB3-9	hi	w	राजस्थान का उत्तर-पूर्वी मैदान चंबल, बनास और यमुना तंत्र की अन्य नदियों ने बनाया है, सिंधु ने नहीं। बाक़ी तीनों कथन वही हैं जो पुस्तकें सिखाती हैं।
+RB3-9	hi	o	पुस्तकों के अनुसार: अरावली सबसे पुरानी वलित श्रेणी है ¦ सही (गलत कथन): यह मैदान सिंधु का बनाया नहीं ¦ पुस्तकों के अनुसार: थार टेथिस सागर का अवशेष है ¦ पुस्तकों के अनुसार: पठार गोंडवाना का विस्तार है
+RB3-9	hi	t	पूर्वी मैदान = चंबल–बनास (यमुना तंत्र), सिंधु नहीं।
+RB3-10	en	w	Per the key, the first three pairs of division and surface feature are correct and the fourth is not. Check such pairs with the basics: sand dunes in the west, ridges in the Aravalli, alluvium in the east, lava and sandstone plateau in Hadoti.
+RB3-10	en	o	Misses pair 1, which is also correct ¦ Pair 4 is not correct ¦ Right: 1, 2 and 3 ¦ Pair 4 is not correct
+RB3-10	en	t	Dunes, ridges, alluvium, plateau: one feature per division.
+RB3-10	hi	w	कुंजी के अनुसार पहले तीन विभाग-सतह विशेषता युग्म सही हैं और चौथा नहीं। ऐसे युग्मों को मूल बातों से जाँचिए: पश्चिम में बालू के टीले, अरावली में कटक, पूर्व में जलोढ़, हाड़ौती में लावा और बलुआ पत्थर का पठार।
+RB3-10	hi	o	युग्म 1 छूट गया, जो सही है ¦ युग्म 4 सही नहीं है ¦ सही: 1, 2 और 3 ¦ युग्म 4 सही नहीं है
+RB3-10	hi	t	टीले, कटक, जलोढ़, पठार: हर विभाग की एक पहचान।
+RB3-11	en	w	Going south: Shekhawati (north-east, Sikar–Jhunjhunu), then the Vindhyan range (the scarp in the east), then the Luni basin (west-centre), and finally the Mahi plain in the far south (Banswara).
+RB3-11	en	o	Shekhawati is the most northern, so it must come first ¦ Shekhawati must come first ¦ Right: Shekhawati → Vindhyan → Luni basin → Mahi plain ¦ The Ghaggar plain is north, but the Luni basin is not the southernmost
+RB3-11	en	t	Mahi is always the last stop going south.
+RB3-11	hi	w	दक्षिण की ओर चलें: शेखावाटी (उत्तर-पूर्व, सीकर–झुंझुनूं), फिर विंध्य श्रेणी (पूर्व का कगार), फिर लूनी बेसिन (पश्चिम-मध्य), और अंत में सुदूर दक्षिण में माही मैदान (बांसवाड़ा)।
+RB3-11	hi	o	शेखावाटी सबसे उत्तर में है, उसे पहले आना चाहिए ¦ शेखावाटी पहले आना चाहिए ¦ सही: शेखावाटी → विंध्य → लूनी बेसिन → माही मैदान ¦ घग्घर मैदान उत्तर में है, पर लूनी बेसिन सबसे दक्षिणी नहीं
+RB3-11	hi	t	दक्षिण जाते हुए माही हमेशा आख़िरी पड़ाव है।
+RB3-12	en	w	The key accepts statements 2, 3 and 4: about 41.5% of the western sandy plain is free of dunes, Rajasthan's relief belongs to the Northern Plain and Peninsular Plateau, and the Aravalli survives only as worn-down relict mountains. Statement 1 is treated as wrong because the Great Boundary Fault marks the edge between the Aravalli and the Vindhyan rocks rather than bounding Hadoti as stated.
+RB3-12	en	o	Includes 1, which the key rejects ¦ Includes 1 and leaves out 2 and 4 ¦ Right: 2, 3 and 4 ¦ 3 is true but not alone
+RB3-12	en	t	The Aravalli today: an old giant worn down to stumps.
+RB3-12	hi	w	कुंजी कथन 2, 3 और 4 को स्वीकार करती है: पश्चिमी रेतीले मैदान का लगभग 41.5% भाग टीला-रहित है, राजस्थान का उच्चावच उत्तरी मैदान और प्रायद्वीपीय पठार का भाग है, और अरावली आज केवल घिसे हुए अवशिष्ट पर्वत के रूप में है। कथन 1 को गलत माना गया क्योंकि महान सीमा भ्रंश अरावली और विंध्य चट्टानों के बीच की सीमा है, न कि जैसा कहा गया वैसे हाड़ौती की सीमा।
+RB3-12	hi	o	इसमें 1 है, जिसे कुंजी नहीं मानती ¦ इसमें 1 है और 2 व 4 छूट गए ¦ सही: 2, 3 और 4 ¦ 3 सही है पर अकेला नहीं
+RB3-12	hi	t	आज की अरावली: घिसकर ठूँठ बना एक पुराना दानव।
+RB3-13	en	w	The Great Boundary Fault separates the Aravalli rocks from the Vindhyan rocks. It runs through Chittorgarh, Bundi, Kota and Sawai Madhopur towards Dholpur. Bhilwara lies on the Aravalli side, away from the fault line.
+RB3-13	en	o	Kota lies along the fault zone ¦ Chittorgarh lies along the fault zone ¦ Sawai Madhopur lies along the fault zone ¦ Right: Bhilwara
+RB3-13	en	t	The fault is the "seam" between old Aravalli and younger Vindhyan rocks.
+RB3-13	hi	w	महान सीमा भ्रंश अरावली चट्टानों को विंध्य चट्टानों से अलग करता है। यह चित्तौड़गढ़, बूंदी, कोटा और सवाई माधोपुर होते हुए धौलपुर की ओर जाता है। भीलवाड़ा अरावली की ओर, भ्रंश रेखा से दूर है।
+RB3-13	hi	o	कोटा भ्रंश क्षेत्र में है ¦ चित्तौड़गढ़ भ्रंश क्षेत्र में है ¦ सवाई माधोपुर भ्रंश क्षेत्र में है ¦ सही: भीलवाड़ा
+RB3-13	hi	t	भ्रंश पुरानी अरावली और नई विंध्य चट्टानों के बीच की "सिलाई" है।
+RB3-14	en	w	Only statement 1 matches the figures the books use: the western sandy plain covers 61.11% of the state. The decimals in statements 2, 3 and 4 do not match the shares usually printed (about 9%, 23% and 6.89%).
+RB3-14	en	o	Right: 1 only ¦ 3 has the wrong decimal ¦ 2 and 3 have the wrong figures ¦ 3 and 4 have the wrong figures
+RB3-14	en	t	61.11%: the desert's share, a number worth knowing by heart.
+RB3-14	hi	w	केवल कथन 1 पुस्तकों के आँकड़ों से मेल खाता है: पश्चिमी रेतीला मैदान राज्य का 61.11% है। कथन 2, 3 और 4 के दशमलव सामान्यतः छपे हिस्सों (लगभग 9%, 23% और 6.89%) से मेल नहीं खाते।
+RB3-14	hi	o	सही: केवल 1 ¦ 3 का दशमलव गलत है ¦ 2 और 3 के आँकड़े गलत हैं ¦ 3 और 4 के आँकड़े गलत हैं
+RB3-14	hi	t	61.11%: मरुस्थल का हिस्सा, कंठस्थ करने योग्य संख्या।
+RB3-15	en	w	A. M. Heron of the Geological Survey of India gave the basic description and classification of Rajasthan's Pre-Cambrian rocks (his work on the geology of Rajputana).
+RB3-15	en	o	Right: A. M. Heron ¦ La Touche worked on the geology of western Rajputana, not this basic scheme ¦ M. S. Krishnan wrote on the geology of India as a whole ¦ Coulson is not linked to this
+RB3-15	en	t	Heron = the father figure of Rajasthan's rock story.
+RB3-15	hi	w	भारतीय भूवैज्ञानिक सर्वेक्षण के ए. एम. हेरॉन ने राजस्थान की प्री-कैम्ब्रियन चट्टानों का मूल विवरण और वर्गीकरण दिया (राजपूताना के भूविज्ञान पर उनका कार्य)।
+RB3-15	hi	o	सही: ए. एम. हेरॉन ¦ ला टच ने पश्चिमी राजपूताना के भूविज्ञान पर कार्य किया, यह मूल योजना नहीं ¦ एम. एस. कृष्णन ने पूरे भारत के भूविज्ञान पर लिखा ¦ कूल्सन इससे संबद्ध नहीं
+RB3-15	hi	t	हेरॉन = राजस्थान की चट्टानों की कहानी के जनक।
