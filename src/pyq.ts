@@ -8,6 +8,8 @@ import quizRaj from './data/pyq/quiz/raj.json';
 import quizNet from './data/pyq/quiz/net.json';
 import rajEn from './data/pyq/tr/raj-en.json';
 import netHi from './data/pyq/tr/net-hi.json';
+import solRaj from './data/pyq/sol/raj.json';
+import solNet from './data/pyq/sol/net.json';
 import rajTopics from './data/pyq/raj-topics.json';
 import reword from './data/pyq/reword.json';
 import type { Lang } from './i18n/config';
@@ -175,6 +177,13 @@ export function inLang(b: Bank, lang: Lang): Bank {
   }
   return langCache.get(key)!;
 }
+// Our own solutions for the real MCQs: why the keyed answer is right, a note on every option, a way to remember it.
+// Written by hand in English and Hindi, keyed by the MCQ id the page shows. Made by tools/pyq/sol/build_sol.py.
+// Guide: docs/19-pyq-practice.md (Solutions)
+export type Sol = { w: string; o?: string[]; t?: string };
+const SOL: Record<Bank['key'], Record<string, Partial<Record<Lang, Sol>>>> = { raj: solRaj as never, net: solNet as never };
+export const solution = (b: Bank, id: string, lang: Lang): Sol | undefined => SOL[b.key][id]?.[lang];
+
 /** data-orig for an element whose text was translated (nothing when it reads the same) */
 export const orig = (now: string | undefined, was: string | undefined) => (was && was !== now ? was : undefined);
 

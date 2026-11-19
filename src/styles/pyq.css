@@ -153,3 +153,13 @@
 /* "See original" on translated pages (OrigToggle.astro) */
 .pq-orig { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem; margin: .75rem 0 0; }
 .pq-orig .btn { font-size: .9rem; }
+/* our own solution under a real MCQ (shown once answered) */
+.pq-sol { margin: 0.8rem 0 0; padding: 0.75rem 0.95rem; background: color-mix(in srgb, var(--accent) 6%, var(--surface)); border-radius: 12px; font-size: 0.94rem; }
+.pq-sol h3 { margin: 0 0 0.35rem; font-size: 0.98rem; font-family: var(--font-sans); }
+.pq-sol h4 { margin: 0.6rem 0 0.25rem; font-size: 0.9rem; font-family: var(--font-sans); color: var(--ink-soft); }
+.pq-sol p { margin: 0 0 0.4rem; }
+.pq-sol-opts { margin: 0; padding-left: 0; list-style: none; counter-reset: o; }
+.pq-sol-opts li { margin: 0.15rem 0; padding-left: 2rem; text-indent: -2rem; counter-increment: o; }
+.pq-sol-opts li::before { content: "(" counter(o) ") "; display: inline-block; width: 2rem; text-indent: 0; }
+.pq-sol-opts li.ok { font-weight: 600; color: var(--teal); }
+.pq-sol-tip { margin: 0.55rem 0 0 !important; }
