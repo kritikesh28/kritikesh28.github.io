@@ -156,13 +156,24 @@ function wrongOptions(item: { a: string; o?: string[] }, all: { a: string }[]): 
 }
 
 const cardItems = (cards: HTMLElement[]) => cards.map((c) => ({ key: c.dataset.key!, q: c.dataset.q!, a: c.dataset.a!, o: c.dataset.o ? c.dataset.o.split('\u241F') : undefined }));
+/** The explanation of one card (the Q&A on its back and its short background), copied for a quiz question */
+export function explainCard(root: HTMLElement, key: string, title: string): HTMLElement | undefined {
+  const back = root.querySelector<HTMLElement>(`[data-card][data-key="${CSS.escape(key)}"] .back`);
+  const parts = back ? [...back.querySelectorAll<HTMLElement>(':scope > .pq-qa, :scope > .pq-bg')] : [];
+  if (!parts.length) return undefined;
+  const box = document.createElement('section'); box.className = 'pq-qexp';
+  const h = document.createElement('h3'); h.textContent = title;
+  box.append(h, ...parts.map((x) => x.cloneNode(true) as HTMLElement));
+  box.querySelector('details.pq-bg')?.setAttribute('open', '');
+  return box;
+}
 /** Five questions with their options, the ones not mastered first: used by Exam mode (src/scripts/quiz-modes.ts) */
 export function quizPool(root: HTMLElement, n = 5) {
   const cards = [...root.querySelectorAll<HTMLElement>('[data-card]')];
   const all = cardItems(cards);
   const k = known(root.dataset.bank ?? '');
   const pool = [...shuffle(all.filter((x) => !k[x.key])), ...shuffle(all.filter((x) => k[x.key]))].slice(0, n);
-  return pool.map((item) => ({ q: item.q, a: item.a, opts: shuffle([item.a, ...wrongOptions(item, all)]) }));
+  return pool.map((item) => ({ key: item.key, q: item.q, a: item.a, opts: shuffle([item.a, ...wrongOptions(item, all)]) }));
 }
 
 function startQuiz(box: HTMLElement, cards: HTMLElement[], bank: string, refresh: () => void) {
@@ -215,7 +226,10 @@ function startQuiz(box: HTMLElement, cards: HTMLElement[], bank: string, refresh
         say.className = `pq-say ${ok ? 'good' : 'bad'}`;
         say.textContent = ok ? W.right : `${W.wrong} “${item.a}”.`;
         top.children[1].textContent = `★ ${score}`;
-        nx.hidden = false; nx.focus();
+        const root = box.closest<HTMLElement>('[data-pyq-set]');
+        const ex = root && explainCard(root, item.key, box.dataset.tExp ?? 'Explanation');
+        if (ex) card.insertBefore(ex, nx);
+        nx.hidden = false; nx.focus({ preventScroll: true });
       });
       li.append(b); ul.append(li);
     });

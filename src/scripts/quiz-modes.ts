@@ -5,7 +5,7 @@
 // Exam: whole-test and 40-second per-question timers, no feedback, no going back, then an evaluation card with a
 // time-per-question graph. Nothing is stored anywhere: every test is one time. Guide: docs/19-pyq-practice.md
 import { onPage } from './page';
-import { quizPool } from './pyq';
+import { quizPool, explainCard } from './pyq';
 
 type W = Record<string, string>;
 type State = 'ok' | 'no' | 'skip';
@@ -74,7 +74,7 @@ function setup(qm: HTMLElement, signal: AbortSignal) {
   const mcqs = quick ? [] : [...root.querySelectorAll<HTMLElement>('[data-mcq]')];
   const reset = (q: HTMLElement) => q.dispatchEvent(new Event('pyq-reset'));
   const goTo = (i: number) => [...root.querySelectorAll<HTMLButtonElement>('[data-dots] button')][i]?.click();
-  let items: { q: string; a: string; opts: string[] }[] = [];
+  let items: { key: string; q: string; a: string; opts: string[] }[] = [];
   const count = () => (quick ? items.length : mcqs.length);
 
   if (!quick) {
@@ -180,6 +180,8 @@ function setup(qm: HTMLElement, signal: AbortSignal) {
           const mine = picks[k] ? it.opts[picks[k] - 1] : '—';
           li.append(el('p', state[k], `${state[k] === 'ok' ? '✓' : state[k] === 'no' ? '✗' : '·'} ${mine}`));
           if (state[k] !== 'ok') li.append(el('p', 'ok', `✓ ${it.a}`));
+          const ex = explainCard(root!, it.key, root!.querySelector<HTMLElement>('[data-quiz]')?.dataset.tExp ?? 'Explanation');
+          if (ex) { ex.querySelector('details.pq-bg')?.removeAttribute('open'); li.append(ex); }
           ul.append(li);
         });
         runBox.append(ul); runBox.hidden = false;
