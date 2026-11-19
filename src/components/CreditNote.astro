@@ -1,0 +1,34 @@
+---
+// The short, grateful note at the end of every page (just above the footer, from src/layouts/Base.astro):
+// the content is not Kritikesh's own; it rests on authors, publishers, teachers and the student community;
+// his small part is the presentation. Links to the Credits page and the "Why this format?" page.
+// Wording agreed from his brief of 18 Nov 2026. Guide: docs/20-aspirants-and-credits.md
+import { langFromUrl, localizePath } from '../i18n/config';
+const lang = langFromUrl(Astro.url);
+const L = (p: string) => localizePath(p, lang);
+const hi = lang === 'hi';
+---
+
+<aside class="credit-note" aria-label={hi ? 'आभार' : 'With gratitude'}>
+  <div class="wrap cn">
+    <span class="cn-ic" aria-hidden="true">🙏</span>
+    {hi ? (
+      <p>
+        <strong>आभार के साथ:</strong> यहाँ जो कुछ आप पढ़ते हैं, वह मेरी अपनी रचना नहीं है। यह लेखकों, प्रकाशकों, शिक्षकों, परीक्षा संस्थाओं और पूरे विद्यार्थी समुदाय की मेहनत पर टिका है, जिनके नाम <a href={L('/credits/')}>आभार और स्रोत</a> पन्ने पर हैं। मेरा छोटा-सा योगदान बस इसे पेश करने का ढंग है, ताकि पढ़ाई थोड़ी कम उबाऊ लगे। <a href={L('/aspirants/why-this-format/')}>यह ढंग क्यों?</a>
+      </p>
+    ) : (
+      <p>
+        <strong>With gratitude:</strong> what you read here is not my own creation. It rests on the hard work of authors, publishers, teachers, exam bodies and the whole student community, named on the <a href={L('/credits/')}>Credits and sources</a> page. My small part is only the way it is presented, so that studying feels a little less boring. <a href={L('/aspirants/why-this-format/')}>Why this format?</a>
+      </p>
+    )}
+  </div>
+</aside>
+
+<style>
+  .credit-note { margin-top: 3.5rem; border-top: 1px solid var(--line); background: color-mix(in srgb, var(--gold) 7%, var(--bg)); }
+  .cn { display: flex; gap: 0.8rem; align-items: flex-start; padding-block: 1.1rem; }
+  .cn-ic { font-size: 1.2rem; line-height: 1.5; }
+  .cn p { margin: 0; font-size: 0.9rem; line-height: 1.6; color: var(--ink-soft); max-width: 62rem; }
+  .cn strong { color: var(--ink); }
+  .cn a { color: var(--accent); }
+</style>

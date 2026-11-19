@@ -38,6 +38,7 @@ if (kind === 'exam') {
       { href: L('/exam-prep/exam-guide/how-it-works/'), label: hi ? 'यह कैसे काम करता है' : 'How it works' },
       { href: L('/exam-prep/curriculum-index/'), label: hi ? 'पूरी पाठ्यक्रम सूची' : 'The whole Curriculum Index', note: `${SUBJECTS.length} ${hi ? 'विषय' : 'subjects'}` },
       ...BANKS.map((b) => ({ href: L(`/exam-prep/pyq/${b.slug}/`), label: b.name[lang], icon: b.icon, note: hi ? 'फ़्लिप कार्ड, क्विज़, असली सवाल' : 'Flip cards, quiz, real questions' })),
+      { href: L('/aspirants/'), label: 'मन की सच्ची बातें', icon: '🫖', note: hi ? 'अभ्यर्थियों से दिल की बात' : 'Honest talks for aspirants' },
     ] },
   ];
 } else if (kind === 'portfolio') {
@@ -70,6 +71,8 @@ if (kind === 'exam') {
       { href: L('/start/'), label: hi ? 'यहाँ से शुरू करें' : 'Start here', note: hi ? 'नए हैं? दो मिनट का रास्ता' : 'New here? A two-minute path' },
       { href: '/library/map/', label: hi ? 'लाइब्रेरी का पूरा पेड़' : 'The whole Library tree' },
       { href: L('/search/'), label: hi ? 'खोजें' : 'Search' },
+      { href: L('/aspirants/why-this-format/'), label: hi ? 'यह ढंग क्यों?' : 'Why this format?', note: hi ? 'वही सामग्री, नया ढंग' : 'Same content, a new way' },
+      { href: L('/credits/'), label: hi ? 'आभार और स्रोत' : 'Credits and sources', note: hi ? 'जिनकी मेहनत पर यह टिका है' : 'Whose work this rests on' },
       { href: L('/privacy/'), label: hi ? 'निजता' : 'Privacy', note: hi ? 'कोई ट्रैकिंग कुकी नहीं' : 'No tracking cookies' },
     ] },
     { title: hi ? 'जुड़िए' : 'Connect', links: [{ href: L('/contact/'), label: hi ? 'मुझे लिखिए' : 'Write to me' }, ...social] },
