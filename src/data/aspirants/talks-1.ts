@@ -1,4 +1,4 @@
-// Between the Chapters (पन्नों के बीच), part 1 of 2: the small things, putting it off, comparison, loneliness. Format: see talks.ts.
+// Mere Man Ki Baat…, part 1 of 2: the small things, putting it off, comparison, loneliness. Format: see talks.ts.
 import type { Topic } from './talks';
 
 export const TALKS_1: Topic[] = [

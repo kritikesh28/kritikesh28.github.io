@@ -1,5 +1,5 @@
 ---
-// The small flash card for "Between the Chapters" on the home page, inside the Exam Prep band (his wish, 19 Nov 2026:
+// The small flash card for "Mere Man Ki Baat…" on the home page, inside the Exam Prep band (his wish, 19 Nov 2026:
 // a short card that blends in). Front: one question every aspirant knows. Tap: it turns over to the first lines of
 // Kritikesh's answer and a link to read it. "Another one" shows the next question. Without JavaScript the front and back both show.
 // The questions come from src/data/aspirants/talks*.ts (PICK below). Guide: docs/20-aspirants-and-credits.md
@@ -17,13 +17,13 @@ const cards = PICK.map((id) => all.find((q) => q.id === id)).filter((q) => q !==
   return { id: q.id, q: hi ? q.q.hi : q.q.en, a: lines };
 });
 const W = hi
-  ? { kick: 'पन्नों के बीच', tap: 'पलटिए, मेरा जवाब पढ़िए', more: 'पूरी बात पढ़िए →', next: 'एक और', all: 'सारी बातें', tag: 'जो हर अभ्यर्थी महसूस करता है' }
-  : { kick: 'Between the Chapters', tap: 'Turn over for my answer', more: 'Read the whole talk →', next: 'Another one', all: 'All the talks', tag: 'What every aspirant feels' };
+  ? { kick: 'Mere Man Ki Baat…', tap: 'पलटिए, मेरा जवाब पढ़िए', more: 'पूरी बात पढ़िए →', next: 'एक और', all: 'सारी बातें', tag: 'जो हर अभ्यर्थी महसूस करता है' }
+  : { kick: 'Mere Man Ki Baat…', tap: 'Turn over for my answer', more: 'Read the whole talk →', next: 'Another one', all: 'All the talks', tag: 'What every aspirant feels' };
 ---
 
 <div class="cc" data-cc>
   <div class="cc-side">
-    <p class="cc-kick">{W.kick}</p>
+    <p class="cc-kick" lang="hi-Latn">{W.kick}</p>
     <p class="cc-tag">{W.tag}</p>
     <p class="cc-btns">
       <button type="button" class="cc-next" data-cc-next>{W.next} ↻</button>
@@ -66,7 +66,6 @@ const W = hi
   .cc { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); gap: 1.6rem; align-items: center; margin-top: 2.4rem; padding: 1.3rem 1.4rem;
     border-radius: 20px; border: 1px solid color-mix(in srgb, #c98a2b 28%, var(--line)); background: color-mix(in srgb, var(--surface) 80%, transparent); }
   .cc-kick { margin: 0; font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 1.7rem; line-height: 1.1; color: var(--ink); }
-  :global(html[lang='hi']) .cc-kick { font-style: normal; }
   .cc-tag { margin: 0.3rem 0 0.9rem; font-size: 0.9rem; color: var(--ink-soft); }
   .cc-btns { display: flex; gap: 1rem; align-items: center; margin: 0; font-size: 0.9rem; }
   .cc-next { display: none; font: inherit; font-weight: 600; color: #a8701f; background: none; border: 0; padding: 0; cursor: pointer; }

@@ -1,4 +1,4 @@
-# 20 · Between the Chapters (पन्नों के बीच), credits and the grateful note
+# 20 · Mere Man Ki Baat…, credits and the grateful note
 
 [Back to the handbook](README.md)
 
@@ -6,16 +6,16 @@ Built on 18 November 2026 from Kritikesh's brief. Three things work together:
 
 | What | Address | Files |
 | --- | --- | --- |
-| **Between the Chapters** (Hindi: **पन्नों के बीच**), the aspirants' library: Kritikesh talking with aspirants, as at a chai tapri, about the problems everyone has and few say out loud | /aspirants/ (and /hi/aspirants/) | `src/pages/[...lang]/aspirants/index.astro`, text in `src/data/aspirants/talks-1.ts` and `talks-2.ts` |
+| **Mere Man Ki Baat…** (Hinglish, the same on English and Hindi pages), the aspirants' library: Kritikesh talking with aspirants, as at a chai tapri, about the problems everyone has and few say out loud | /aspirants/ (and /hi/aspirants/) | `src/pages/[...lang]/aspirants/index.astro`, text in `src/data/aspirants/talks-1.ts` and `talks-2.ts` |
 | **Why this format?**: why the same book content is shown as flip cards, quizzes and short talks | /aspirants/why-this-format/ | `src/pages/[...lang]/aspirants/why-this-format.astro`, text in `WHY` in `src/data/aspirants/talks.ts` |
 | **Credits and sources**: the bibliography of the whole site, what is and is not his own, copyright rules, his promise to authors and publishers | /credits/ | `src/pages/[...lang]/credits.astro` |
 | **The grateful note** at the end of every page, linking to both pages above | every page | `src/components/CreditNote.astro`, placed in `src/layouts/Base.astro` |
 
-Links to them: the footer (Begin column, and "Credits and sources" next to Privacy), the Exam Prep menu (Between the Chapters), a flip card on the home page and the About menu (Why this format?, Credits and sources).
+Links to them: the footer (Begin column, and "Credits and sources" next to Privacy), the Exam Prep menu (Mere Man Ki Baat…), a flip card on the home page and the About menu (Why this format?, Credits and sources).
 
-## 1. Between the Chapters (पन्नों के बीच)
+## 1. Mere Man Ki Baat…
 
-**The name (19 Nov 2026):** it was first called "मन की सच्ची बातें"; he found that cliché and asked for something relatable, catchy and classy. "Between the Chapters" is the time every aspirant knows: the pauses between study sessions when the doubts come. The page title shows the English name large in italic with the Hindi as a gold line under it (the other way round on Hindi pages).
+**The name (19 Nov 2026, his choice):** "Mere Man Ki Baat…", written in Hinglish (Roman letters) on both the English and the Hindi pages, in the menu, footer, home card, Credits and Why this format. History: first "मन की सच्ची बातें" (he found it cliché), then for one morning "Mere Man Ki Baat…" / "पन्नों के बीच", then his own pick. If it changes again, search the code for the name: it sits in `src/pages/[...lang]/aspirants/index.astro` (`brand`, titles), `ChaptersCard.astro`, `NavMega.astro`, `src/i18n/ui.ts` (`footer.chapters`), `credits.astro` and `why-this-format.astro`.
 
 **The home card:** `src/components/aspirants/ChaptersCard.astro`, inside the Exam Prep band on the home page. One familiar question on the front; tapping turns it over to the first two sentences of the answer, with a link to the full talk. "Another one" shows the next. Which questions it uses: the `PICK` list at the top of the file (talk ids).
 
@@ -42,7 +42,7 @@ The `id` becomes the link (/aspirants/#unique-link-name). `books` are keys from 
 
 ## 2. Credits and sources
 
-Sections: what is mine and not mine · PYQ books (with publisher and use) · Curriculum Index sources · links to every Library shelf's own Sources page (built from `src/explore.ts`, so new shelves appear by themselves) · the reading list behind Between the Chapters (from `books.ts`) · music, fonts, tools, AI · copyright rules · a letter to authors and publishers · the benefit-sharing promise · why knowledge is shared freely · "did I miss you?".
+Sections: what is mine and not mine · PYQ books (with publisher and use) · Curriculum Index sources · links to every Library shelf's own Sources page (built from `src/explore.ts`, so new shelves appear by themselves) · the reading list behind Mere Man Ki Baat… (from `books.ts`) · music, fonts, tools, AI · copyright rules · a letter to authors and publishers · the benefit-sharing promise · why knowledge is shared freely · "did I miss you?".
 
 **Book titles to confirm with him** (as he named them, 18 Nov 2026): Rajasthan Geography PYQ book, Disha Publication, Dr. Rajeev; UGC-NET Geography PYQ book, Shree Education & Publication, Dimpesh Saini and Swati Verma. The Kiran Prakashan credit for the Maths and Reasoning topic order comes from the file names `Kiran_*_Topic_Hierarchy.txt`.
 
