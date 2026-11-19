@@ -1,0 +1,150 @@
+U6C-A26	en	w	Private transport costs are the costs the operator pays: track, interchange and running costs. Social cost (pollution, congestion) falls on society, not the firm.
+U6C-A26	en	o	Is a private cost. ¦ Is a private cost. ¦ Is a private cost. ¦ Right: Social cost.
+U6C-A26	en	t	Social cost minus private cost = externality.
+U6C-A26	hi	w	निजी परिवहन लागत = ऑपरेटर द्वारा चुकाई (ट्रैक, इंटरचेंज, रनिंग); सामाजिक लागत (प्रदूषण, भीड़) समाज पर।
+U6C-A26	hi	o	निजी लागत। ¦ निजी लागत। ¦ निजी लागत। ¦ सही: सामाजिक लागत।
+U6C-A26	hi	t	सामाजिक − निजी = बाह्यता।
+U6C-A27	en	w	Weber used locational weight, the locational triangle and agglomeration. 'Complementary area' belongs to Christaller's central place theory.
+U6C-A27	en	o	Weber's term. ¦ Weber's term. ¦ Right: Complementary area. ¦ Weber's term.
+U6C-A27	en	t	Christaller: central place + complementary region.
+U6C-A27	hi	w	वेबर: अवस्थितिक भार, त्रिभुज, समूहन। 'पूरक क्षेत्र' क्रिस्टालर का शब्द।
+U6C-A27	hi	o	वेबर। ¦ वेबर। ¦ सही: पूरक क्षेत्र। ¦ वेबर।
+U6C-A27	hi	t	क्रिस्टालर: केंद्रीय स्थान + पूरक प्रदेश।
+U6C-A28	en	w	Weber = minimum transport cost (C). Smith = maximum profit (B, within the spatial margins). Hotelling = market competition (D). Hoover = minimum production cost (A).
+U6C-A28	en	o	Right: C, B, D, A. ¦ Wrong for Weber. ¦ Wrong for Smith. ¦ Wrong for Weber.
+U6C-A28	en	t	Hotelling (1929): two sellers on a line.
+U6C-A28	hi	w	वेबर = न्यूनतम परिवहन (C), स्मिथ = अधिकतम लाभ (B), हॉटेलिंग = बाज़ार प्रतिस्पर्धा (D), हूवर = न्यूनतम उत्पादन लागत (A)।
+U6C-A28	hi	o	सही: C, B, D, A। ¦ वेबर गलत। ¦ स्मिथ गलत। ¦ वेबर गलत।
+U6C-A28	hi	t	हॉटेलिंग (1929): रेखा पर दो विक्रेता।
+U6C-A29	en	w	Isodapanes join points of equal total transport cost.
+U6C-A29	en	o	Isohalines show equal salinity. ¦ Right: Isodapane. ¦ An isotim is equal cost for one input or the product. ¦ Isobars show equal pressure.
+U6C-A29	en	t	Isotim = one input; isodapane = all inputs.
+U6C-A29	hi	w	आइसोडापेन = समान कुल परिवहन लागत वाले बिंदुओं की रेखा।
+U6C-A29	hi	o	आइसोहेलाइन = लवणता। ¦ सही: आइसोडापेन। ¦ आइसोटिम = एक निवेश। ¦ आइसोबार = दाब।
+U6C-A29	hi	t	आइसोटिम = एक; आइसोडापेन = कुल।
+U6C-A30	en	w	Material index above 1 means the raw material loses weight in processing (for example ore to steel, cane to sugar), so industry goes to the source.
+U6C-A30	en	o	Pure materials give MI = 1. ¦ Right: Weight-losing. ¦ Weight-gaining materials give MI below 1. ¦ Wrong.
+U6C-A30	en	t	Sugar mills sit near cane fields because cane loses weight fast.
+U6C-A30	hi	w	पदार्थ सूचकांक > 1 = भार-ह्रासी कच्चा माल (अयस्क-इस्पात, गन्ना-चीनी); उद्योग स्रोत पर।
+U6C-A30	hi	o	शुद्ध = 1। ¦ सही: भार-ह्रासी। ¦ भार-वर्धक < 1। ¦ गलत।
+U6C-A30	hi	t	चीनी मिलें गन्ना खेतों के पास।
+U6C-A31	en	w	Alfred Weber (1909) gave the least-cost location theory, built on transport, labour and agglomeration.
+U6C-A31	en	o	Lösch: maximum profit. ¦ Right: Weber. ¦ Christaller: central places. ¦ Estall and Buchanan wrote on industrial activity; Rawstron gave spatial margins.
+U6C-A31	en	t	The least-cost school (Weber, Hoover) versus the market-area school (Lösch, Fetter, Hotelling).
+U6C-A31	hi	w	अल्फ्रेड वेबर (1909) = न्यूनतम लागत अवस्थिति सिद्धांत (परिवहन, श्रम, समूहन)।
+U6C-A31	hi	o	लॉश = अधिकतम लाभ। ¦ सही: वेबर। ¦ क्रिस्टालर = केंद्रीय स्थान। ¦ रॉस्ट्रॉन = स्थानिक सीमाएँ।
+U6C-A31	hi	t	न्यूनतम लागत (वेबर, हूवर) बनाम बाज़ार क्षेत्र (लॉश, फ़ेटर, हॉटेलिंग)।
+U6C-A33	en	w	Alfred Weber (1909) gave the least-cost location theory, built on transport, labour and agglomeration.
+U6C-A33	en	o	Lösch: maximum profit. ¦ Greenhut: demand and profit. ¦ Right: Alfred Weber. ¦ Loria was an economist (rent).
+U6C-A33	en	t	The least-cost school (Weber, Hoover) versus the market-area school (Lösch, Fetter, Hotelling).
+U6C-A33	hi	w	अल्फ्रेड वेबर (1909) = न्यूनतम लागत अवस्थिति सिद्धांत (परिवहन, श्रम, समूहन)।
+U6C-A33	hi	o	लॉश = अधिकतम लाभ। ¦ ग्रीनहट = माँग/लाभ। ¦ सही: अल्फ्रेड वेबर। ¦ लोरिया = अर्थशास्त्री।
+U6C-A33	hi	t	न्यूनतम लागत (वेबर, हूवर) बनाम बाज़ार क्षेत्र (लॉश, फ़ेटर, हॉटेलिंग)।
+U6C-A34	en	w	Alfred Weber (1909) gave the least-cost location theory, built on transport, labour and agglomeration.
+U6C-A34	en	o	Isard: substitution between inputs. ¦ Lösch: market area. ¦ Right: Weber's theory. ¦ Wrong.
+U6C-A34	en	t	The least-cost school (Weber, Hoover) versus the market-area school (Lösch, Fetter, Hotelling).
+U6C-A34	hi	w	अल्फ्रेड वेबर (1909) = न्यूनतम लागत अवस्थिति सिद्धांत (परिवहन, श्रम, समूहन)।
+U6C-A34	hi	o	आइज़र्ड = प्रतिस्थापन। ¦ लॉश = बाज़ार क्षेत्र। ¦ सही: वेबर। ¦ गलत।
+U6C-A34	hi	t	न्यूनतम लागत (वेबर, हूवर) बनाम बाज़ार क्षेत्र (लॉश, फ़ेटर, हॉटेलिंग)।
+U6C-A32	en	w	Footloose industries use light, high-value inputs and products, so they are not tied to raw materials. Electronics is the standard example. Leather, paper and cement are tied to their materials.
+U6C-A32	en	o	Right: Electronics. ¦ Leather is tied to hides. ¦ Paper is tied to wood and water. ¦ Cement is tied to limestone.
+U6C-A32	en	t	Footloose: electronics, software, watches, diamonds.
+U6C-A32	hi	w	स्वच्छंद उद्योग हल्के, महँगे निवेश-उत्पाद वाले; कच्चे माल से बँधे नहीं। इलेक्ट्रॉनिक्स मानक उदाहरण।
+U6C-A32	hi	o	सही: इलेक्ट्रॉनिक्स। ¦ चमड़ा = खाल से बँधा। ¦ कागज़ = लकड़ी/जल। ¦ सीमेंट = चूना पत्थर।
+U6C-A32	hi	t	स्वच्छंद: इलेक्ट्रॉनिक्स, सॉफ़्टवेयर, घड़ियाँ, हीरे।
+U6C-A35	en	w	Weber = industrial location (iv). Thünen = agricultural location (ii). Christaller = central place theory (iii). Weaver = crop combination (i).
+U6C-A35	en	o	Right: iv, ii, iii, i. ¦ Wrong order. ¦ Wrong order. ¦ Wrong order.
+U6C-A35	en	t	Four founders, four fields: industry, agriculture, settlement, crops.
+U6C-A35	hi	w	वेबर = औद्योगिक (iv), थूनेन = कृषि (ii), क्रिस्टालर = केंद्रीय स्थान (iii), वीवर = शस्य संयोजन (i)।
+U6C-A35	hi	o	सही: iv, ii, iii, i। ¦ गलत। ¦ गलत। ¦ गलत।
+U6C-A35	hi	t	चार संस्थापक, चार क्षेत्र।
+U6C-A36	en	w	An isodapane is a line of equal total transport cost per tonne of output.
+U6C-A36	en	o	This describes the labour coefficient. ¦ This describes agglomeration economies. ¦ This describes the material index. ¦ Right: Lines of equal transport cost.
+U6C-A36	en	t	Weber's three tools: material index, labour coefficient, isodapanes.
+U6C-A36	hi	w	आइसोडापेन = प्रति टन उत्पाद समान कुल परिवहन लागत रेखा।
+U6C-A36	hi	o	यह श्रम गुणांक। ¦ यह समूहन मितव्ययिता। ¦ यह पदार्थ सूचकांक। ¦ सही: समान परिवहन लागत रेखा।
+U6C-A36	hi	t	वेबर के तीन उपकरण: पदार्थ सूचकांक, श्रम गुणांक, आइसोडापेन।
+U6C-A37	en	w	Harold Hotelling (1929) showed two ice-cream sellers on a beach end up side by side at the centre. This is locational interdependence.
+U6C-A37	en	o	Right: Hotelling. ¦ Chamberlin gave monopolistic competition. ¦ Lösch gave hexagonal market areas. ¦ Palander gave isotims.
+U6C-A37	en	t	This explains why rival shops cluster.
+U6C-A37	hi	w	हेरोल्ड हॉटेलिंग (1929): समुद्र तट पर दो आइसक्रीम विक्रेता अंततः बीच में साथ-साथ; अवस्थितिक अंतर्निर्भरता।
+U6C-A37	hi	o	सही: हॉटेलिंग। ¦ चैम्बरलिन = एकाधिकारी प्रतिस्पर्धा। ¦ लॉश = षट्भुज। ¦ पालैंडर = आइसोटिम।
+U6C-A37	hi	t	प्रतिद्वंद्वी दुकानें पास क्यों।
+U6C-A38	en	w	The key credits D. Thompson with the multi-factor approach to measuring the level of industrialisation.
+U6C-A38	en	o	Not keyed. ¦ Right: D. Thompson. ¦ De Geer mapped the American manufacturing belt. ¦ Jones wrote on economic geography.
+U6C-A38	en	t	De Geer (1927) defined the US Manufacturing Belt.
+U6C-A38	hi	w	कुंजी डी. थॉम्पसन को औद्योगीकरण स्तर के बहुकारक उपागम का श्रेय देती है।
+U6C-A38	hi	o	कुंजी नहीं। ¦ सही: डी. थॉम्पसन। ¦ डी गियर = अमेरिकी विनिर्माण पट्टी। ¦ जोन्स = आर्थिक भूगोल।
+U6C-A38	hi	t	डी गियर (1927) = US Manufacturing Belt।
+U6C-A39	en	w	New England (Boston, textiles, then high-tech on Route 128) is in the north-east USA.
+U6C-A39	en	o	Wrong country. ¦ Right: USA. ¦ Wrong country. ¦ New England in Australia is a tableland in New South Wales, not an industrial region.
+U6C-A39	en	t	Route 128 is America's Technology Highway.
+U6C-A39	hi	w	न्यू इंग्लैंड (बॉस्टन, वस्त्र, फिर रूट 128 हाई-टेक) उत्तर-पूर्वी अमेरिका में।
+U6C-A39	hi	o	गलत देश। ¦ सही: अमेरिका। ¦ गलत। ¦ ऑस्ट्रेलिया का न्यू इंग्लैंड पठार है, औद्योगिक नहीं।
+U6C-A39	hi	t	रूट 128 = अमेरिका का टेक्नोलॉजी हाईवे।
+U6C-N1	en	w	D.M. Smith (1966, 1971), building on Rawstron (1958), gave the spatial margins of profitability.
+U6C-N1	en	o	Lösch: market area. ¦ Pred: behavioural matrix. ¦ Right: D.M. Smith. ¦ Isard: substitution.
+U6C-N1	en	t	Rawstron first, then Smith developed it.
+U6C-N1	hi	w	डी.एम. स्मिथ (1966, 1971) ने रॉस्ट्रॉन (1958) पर आधारित लाभ की स्थानिक सीमाएँ दीं।
+U6C-N1	hi	o	लॉश = बाज़ार। ¦ प्रेड = व्यवहार। ¦ सही: डी.एम. स्मिथ। ¦ आइज़र्ड = प्रतिस्थापन।
+U6C-N1	hi	t	पहले रॉस्ट्रॉन, फिर स्मिथ।
+U6C-N2	en	w	China made about 1,033 Mt of crude steel in 2021, more than half the world's output, and was also the top exporter that year.
+U6C-N2	en	o	Japan is about 96 Mt and a major exporter. ¦ Right: China. ¦ USA is about 86 Mt. ¦ Australia exports ore, not steel.
+U6C-N2	en	t	Top steel producers: China, India, Japan.
+U6C-N2	hi	w	चीन ने 2021 में लगभग 1,033 मीट्रिक टन कच्चा इस्पात बनाया (विश्व का आधे से अधिक), निर्यात में भी प्रथम।
+U6C-N2	hi	o	जापान लगभग 96। ¦ सही: चीन। ¦ अमेरिका लगभग 86। ¦ ऑस्ट्रेलिया अयस्क निर्यातक।
+U6C-N2	hi	t	शीर्ष: चीन, भारत, जापान।
+U6C-N3	en	w	Silicon Forest is the Portland and Seattle area of the Pacific Northwest (Intel, Microsoft). Silicon Valley is the San Francisco Bay Area (San Jose).
+U6C-N3	en	o	Boston is Route 128. ¦ São Paulo is wrong. ¦ Right: Seattle and San Francisco. ¦ Osaka is wrong.
+U6C-N3	en	t	Other nicknames: Silicon Glen (Scotland), Silicon Plateau (Bengaluru).
+U6C-N3	hi	w	सिलिकॉन फ़ॉरेस्ट = पोर्टलैंड-सिएटल क्षेत्र; सिलिकॉन वैली = सैन फ़्रांसिस्को खाड़ी क्षेत्र।
+U6C-N3	hi	o	बॉस्टन = रूट 128। ¦ साओ पाउलो गलत। ¦ सही: सिएटल और सैन फ़्रांसिस्को। ¦ ओसाका गलत।
+U6C-N3	hi	t	सिलिकॉन ग्लेन (स्कॉटलैंड), सिलिकॉन पठार (बेंगलुरु)।
+U6C-N4	en	w	Weber assumed a uniform landscape (so A is false), perfect knowledge (B is true), one mode of transport (D is false) and least cost (E is true). He did count agglomeration, so C is false.
+U6C-N4	en	o	Right: B and E. ¦ A is false. ¦ C and D are false. ¦ C and D are false.
+U6C-N4	en	t	Weber's three factors: transport, labour, agglomeration.
+U6C-N4	hi	w	वेबर: एकसमान भूदृश्य (A असत्य), पूर्ण ज्ञान (B सत्य), एक परिवहन साधन (D असत्य), न्यूनतम लागत (E सत्य); समूहन माना (C असत्य)।
+U6C-N4	hi	o	सही: B और E। ¦ A असत्य। ¦ C, D असत्य। ¦ C, D असत्य।
+U6C-N4	hi	t	वेबर के तीन कारक: परिवहन, श्रम, समूहन।
+U6C-N5	en	w	In this question the options are mixed up with the statements. Pharma, biotech and telecom are knowledge industries (A). Tier I firms produce knowledge (B). Tier II firms are business innovators (C). D is false, because these firms do face funding challenges. Keyed: A, B and C.
+U6C-N5	en	o	Right: as keyed, A, B and C. ¦ Includes the false D. ¦ Includes the false D. ¦ Includes the false D.
+U6C-N5	en	t	Knowledge industries run on human capital, not heavy fixed assets.
+U6C-N5	hi	w	विकल्प-कथन मिले। फ़ार्मा, बायोटेक, दूरसंचार ज्ञान उद्योग (A); टियर-I ज्ञान उत्पादक (B); टियर-II व्यावसायिक नवप्रवर्तक (C); D असत्य।
+U6C-N5	hi	o	सही: कुंजी अनुसार A, B, C। ¦ असत्य D शामिल। ¦ असत्य D शामिल। ¦ असत्य D शामिल।
+U6C-N5	hi	t	ज्ञान उद्योग = मानव पूँजी।
+U6C-N6	en	w	In date order: Weber (1909), Hoover (1937 and 1948), Isard (1956), Pred (1967). That is A, C, D, B.
+U6C-N6	en	o	Not keyed. ¦ Right: A, C, D, B. ¦ Not keyed. ¦ Not keyed.
+U6C-N6	en	t	Weber, then Hoover, then Isard, then Pred: from least cost to behavioural.
+U6C-N6	hi	w	क्रम: वेबर (1909), हूवर (1937/48), आइज़र्ड (1956), प्रेड (1967): A, C, D, B।
+U6C-N6	hi	o	कुंजी नहीं। ¦ सही: A, C, D, B। ¦ कुंजी नहीं। ¦ कुंजी नहीं।
+U6C-N6	hi	t	न्यूनतम लागत से व्यवहारवाद तक।
+U6C-N7	en	w	In 2023, by market value: TCS (about ₹12–13 lakh crore), Infosys (about ₹6 lakh crore), HCL Tech, then Wipro. That is A, D, B, C.
+U6C-N7	en	o	Not keyed. ¦ Not keyed. ¦ Right: A, D, B, C. ¦ Not keyed.
+U6C-N7	en	t	TCS has led Indian IT by value for years.
+U6C-N7	hi	w	2023 बाज़ार मूल्य: TCS (लगभग 12–13 लाख करोड़), इन्फ़ोसिस (लगभग 6), HCL, फिर विप्रो: A, D, B, C।
+U6C-N7	hi	o	कुंजी नहीं। ¦ कुंजी नहीं। ¦ सही: A, D, B, C। ¦ कुंजी नहीं।
+U6C-N7	hi	t	TCS वर्षों से अग्रणी।
+U6C-N8	en	w	In this question the options are mixed up with the statements. Niche (special-interest) tourism includes theme parks, cruises and sports tourism. Family gatherings are mass or VFR travel. Keyed: A, B and C.
+U6C-N8	en	o	Right: as keyed, A, B and C. ¦ Not keyed. ¦ Not keyed. ¦ Not keyed.
+U6C-N8	en	t	VFR = visiting friends and relatives.
+U6C-N8	hi	w	विकल्प-कथन मिले। विशिष्ट (niche) पर्यटन: थीम पार्क, क्रूज़, खेल पर्यटन; पारिवारिक मिलन = VFR। कुंजी: A, B, C।
+U6C-N8	hi	o	सही: कुंजी अनुसार A, B, C। ¦ कुंजी नहीं। ¦ कुंजी नहीं। ¦ कुंजी नहीं।
+U6C-N8	hi	t	VFR = मित्र-संबंधी भेंट।
+U6C-N9	en	w	In time order: the wheel (ancient), Thomas Cook's first package tour (1841), the end of World War II (1945), then jet travel (1950s). That is A, C, B, D.
+U6C-N9	en	o	Right: A, C, B, D. ¦ Not keyed. ¦ Not keyed. ¦ Not keyed.
+U6C-N9	en	t	Cook's 1841 rail trip ran from Leicester to Loughborough.
+U6C-N9	hi	w	समय क्रम: पहिया (प्राचीन), थॉमस कुक का पहला पैकेज टूर (1841), द्वितीय विश्वयुद्ध अंत (1945), जेट (1950s): A, C, B, D।
+U6C-N9	hi	o	सही: A, C, B, D। ¦ कुंजी नहीं। ¦ कुंजी नहीं। ¦ कुंजी नहीं।
+U6C-N9	hi	t	कुक 1841: लेस्टर से लफ़बरो।
+U6C-N10	en	w	In this question the options are mixed up with the statements. A–D are correct statements of Weber's material index. E is wrong, because MI above 1 means material-oriented, not market-oriented. Keyed: E only.
+U6C-N10	en	o	This statement is correct. ¦ This statement is correct. ¦ This statement is correct. ¦ Right: as keyed, E only is incorrect.
+U6C-N10	en	t	MI > 1: source; MI < 1: market.
+U6C-N10	hi	w	विकल्प-कथन मिले। A–D पदार्थ सूचकांक के सही कथन; E गलत (MI > 1 = स्रोत-उन्मुख)। कुंजी: केवल E।
+U6C-N10	hi	o	कथन सही। ¦ कथन सही। ¦ कथन सही। ¦ सही: कुंजी अनुसार केवल E गलत।
+U6C-N10	hi	t	MI > 1 स्रोत; < 1 बाज़ार।
+U6C-N11	en	w	Richard Butler (1980) gave the TALC stages: exploration, involvement, development, consolidation, stagnation, then decline or rejuvenation.
+U6C-N11	en	o	Wrong person and year. ¦ Right: Richard Butler, 1980. ¦ Harvey worked on Marxist urban geography. ¦ Prosser wrote on tourism, but not TALC.
+U6C-N11	en	t	TALC curve is S-shaped, based on the product life cycle.
+U6C-N11	hi	w	रिचर्ड बटलर (1980) TALC अवस्थाएँ: अन्वेषण, सहभागिता, विकास, सुदृढ़ीकरण, ठहराव, पतन/पुनर्जीवन।
+U6C-N11	hi	o	गलत। ¦ सही: रिचर्ड बटलर 1980। ¦ हार्वे = मार्क्सवादी नगरीय। ¦ प्रॉसर = पर्यटन, TALC नहीं।
+U6C-N11	hi	t	TALC S-वक्र, उत्पाद जीवन चक्र पर आधारित।
