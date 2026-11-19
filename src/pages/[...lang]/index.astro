@@ -195,23 +195,26 @@ const T = pick({
 </Base>
 
 <style>
-  /* the bands: each section has its own light pastel, and no two neighbours share a family (warm, then cool, then warm…),
-     so scrolling down you feel you are stepping into a new room (his wish, 19 Nov 2026). In dark mode each band is a faint tint of its own colour. */
-  .band { position: relative; padding-block: clamp(2.8rem, 6vw, 4.2rem); --band: var(--pastel); background: var(--band); border-top: 1px solid color-mix(in srgb, var(--band-edge) 22%, transparent); }
-  :global(:root[data-theme='dark']) .band { --band: color-mix(in srgb, var(--band-edge) 8%, var(--bg)); }
-  @media (prefers-color-scheme: dark) { :global(:root:not([data-theme='light'])) .band { --band: color-mix(in srgb, var(--band-edge) 8%, var(--bg)); } }
-  .band::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 90% at 100% 0%, color-mix(in srgb, var(--band-edge) 9%, transparent), transparent 70%); }
+  /* the bands: one soft pastel flowing into the next, with no edge between sections (his wish, 19 Nov 2026).
+     Each band starts in its own colour and melts, by its bottom, into the colour the next band starts with.
+     --e is the band's colour, --p its pastel; --ne / --np are the next band's. The pastels are mixed half-and-half
+     with the page background so they stay quiet. Dark mode uses faint tints of the same colours. */
+  .band { position: relative; padding-block: clamp(2.8rem, 6vw, 4.2rem);
+    --c: color-mix(in srgb, var(--p) 55%, var(--bg)); --n: color-mix(in srgb, var(--np) 55%, var(--bg));
+    background: linear-gradient(180deg, var(--c) 0%, var(--c) 30%, var(--n) 100%); }
+  :global(:root[data-theme='dark']) .band { --c: color-mix(in srgb, var(--e) 7%, var(--bg)); --n: color-mix(in srgb, var(--ne) 7%, var(--bg)); }
+  @media (prefers-color-scheme: dark) { :global(:root:not([data-theme='light'])) .band { --c: color-mix(in srgb, var(--e) 7%, var(--bg)); --n: color-mix(in srgb, var(--ne) 7%, var(--bg)); } }
   .band > .wrap { position: relative; }
-  .b-me { --band-edge: #d9a24a; --pastel: #fbefdc; }      /* warm cream */
-  .b-story { --band-edge: #8f7be8; --pastel: #ece7fb; border-top: 0; padding-top: 0; }   /* lavender */
-  .b-mmkb { --band-edge: #d77a9a; --pastel: #fbe4ec; padding-block: clamp(2rem, 4.5vw, 3rem); }   /* blush */
+  .b-me { --band-edge: #d9a24a; --e: #d9a24a; --p: #fbefdc; --ne: #8f7be8; --np: #ece7fb; }
+  .b-story { --band-edge: #8f7be8; --e: #8f7be8; --p: #ece7fb; --ne: #d77a9a; --np: #fbe4ec; padding-top: 0; }
+  .b-mmkb { --band-edge: #d77a9a; --e: #d77a9a; --p: #fbe4ec; --ne: #3fa58a; --np: #e1f3ec; padding-block: clamp(2rem, 4.5vw, 3rem); }
+  .b-lib { --band-edge: #3fa58a; --e: #3fa58a; --p: #e1f3ec; --ne: #d0a72e; --np: #fcf3d6; }
+  .b-tree { --band-edge: #d0a72e; --e: #d0a72e; --p: #fcf3d6; --ne: #3f7fc4; --np: #e2eefb; }
+  .b-exam { --band-edge: #3f7fc4; --e: #3f7fc4; --p: #e2eefb; --ne: #e0876a; --np: #fde8df; }
+  .b-live { --band-edge: #e0876a; --e: #e0876a; --p: #fde8df; --ne: #2f9aa0; --np: #ddf1f1; }
+  .b-pf { --band-edge: #2f9aa0; --e: #2f9aa0; --p: #ddf1f1; --ne: #8f7be8; --np: #efe9fc; }
+  .b-read { --band-edge: #8f7be8; --e: #8f7be8; --p: #efe9fc; --ne: #8f7be8; --np: #efe9fc; }
   .b-mmkb :global(.cc) { margin-top: 0; }
-  .b-lib { --band-edge: #3fa58a; --pastel: #e1f3ec; }     /* mint */
-  .b-tree { --band-edge: #d0a72e; --pastel: #fcf3d6; }    /* butter */
-  .b-exam { --band-edge: #3f7fc4; --pastel: #e2eefb; }    /* sky */
-  .b-live { --band-edge: #e0876a; --pastel: #fde8df; }    /* apricot */
-  .b-pf { --band-edge: #2f9aa0; --pastel: #ddf1f1; }      /* sea-glass */
-  .b-read { --band-edge: #8f7be8; --pastel: #efe9fc; border-bottom: 1px solid color-mix(in srgb, #8f7be8 18%, transparent); }   /* lilac */
   .band :global(.cta) { margin-top: 0; }
 
   /* about me */
@@ -226,7 +229,7 @@ const T = pick({
   .me-links, .row-links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.2rem; }
   .me-tl { list-style: none; margin: 0; padding: 0 0 0 1.2rem; border-left: 2px solid color-mix(in srgb, var(--gold) 45%, var(--line)); display: grid; gap: 1rem; }
   .me-tl li { position: relative; display: grid; gap: 0.1rem; font-size: 0.92rem; line-height: 1.45; color: var(--ink-soft); }
-  .me-tl li::before { content: ''; position: absolute; left: calc(-1.2rem - 6px); top: 0.35rem; width: 10px; height: 10px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 3px var(--band); }
+  .me-tl li::before { content: ''; position: absolute; left: calc(-1.2rem - 6px); top: 0.35rem; width: 10px; height: 10px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 3px var(--c); }
   .me-tl b { font-family: var(--font-serif); font-size: 1.05rem; color: var(--ink); }
 
   .lib { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 2.5rem; align-items: center; }

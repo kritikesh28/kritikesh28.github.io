@@ -155,13 +155,23 @@ function wrongOptions(item: { a: string; o?: string[] }, all: { a: string }[]): 
   return shuffle(same).sort((x, z) => Math.abs(x.length - len) - Math.abs(z.length - len)).slice(0, 3);
 }
 
+const cardItems = (cards: HTMLElement[]) => cards.map((c) => ({ key: c.dataset.key!, q: c.dataset.q!, a: c.dataset.a!, o: c.dataset.o ? c.dataset.o.split('\u241F') : undefined }));
+/** Five questions with their options, the ones not mastered first: used by Exam mode (src/scripts/quiz-modes.ts) */
+export function quizPool(root: HTMLElement, n = 5) {
+  const cards = [...root.querySelectorAll<HTMLElement>('[data-card]')];
+  const all = cardItems(cards);
+  const k = known(root.dataset.bank ?? '');
+  const pool = [...shuffle(all.filter((x) => !k[x.key])), ...shuffle(all.filter((x) => k[x.key]))].slice(0, n);
+  return pool.map((item) => ({ q: item.q, a: item.a, opts: shuffle([item.a, ...wrongOptions(item, all)]) }));
+}
+
 function startQuiz(box: HTMLElement, cards: HTMLElement[], bank: string, refresh: () => void) {
   const W = { q: box.dataset.tQ ?? 'Question', right: box.dataset.tRight ?? 'Right!', wrong: box.dataset.tWrong ?? 'Not quite. The answer is', next: box.dataset.tNext ?? 'Next', again: box.dataset.tAgain ?? 'Play 5 more', score: box.dataset.tScore ?? 'You got {s} out of {t}.' };
-  const all = cards.map((c) => ({ key: c.dataset.key!, q: c.dataset.q!, a: c.dataset.a!, o: c.dataset.o ? c.dataset.o.split('\u241F') : undefined }));
+  const all = cardItems(cards);
   // the ones not mastered come first
   const k = known(bank);
   const pool = [...shuffle(all.filter((x) => !k[x.key])), ...shuffle(all.filter((x) => k[x.key]))].slice(0, 5);
-  let i = 0, score = 0;
+  let i = 0, score = 0, got = false;
   const render = () => {
     box.innerHTML = '';
     if (i >= pool.length) {
@@ -173,6 +183,7 @@ function startQuiz(box: HTMLElement, cards: HTMLElement[], bank: string, refresh
       s.append(b); box.append(s); return;
     }
     const item = pool[i];
+    got = false;
     const opts = shuffle([item.a, ...wrongOptions(item, all)]);
     const card = document.createElement('div'); card.className = 'pq-qcard';
     const top = document.createElement('div'); top.className = 'pq-qtop';
@@ -184,6 +195,11 @@ function startQuiz(box: HTMLElement, cards: HTMLElement[], bank: string, refresh
     const say = document.createElement('p'); say.className = 'pq-say'; say.setAttribute('aria-live', 'polite');
     const nx = document.createElement('button'); nx.className = 'btn'; nx.type = 'button'; nx.textContent = W.next; nx.hidden = true;
     nx.addEventListener('click', () => { i++; render(); });
+    // Practice mode: ↻ Reattempt this question (its point comes off until it is answered again)
+    const re = document.createElement('button'); re.type = 'button'; re.className = 'qm-re';
+    const ic = document.createElement('span'); ic.textContent = '↻';
+    re.append(ic, document.createTextNode(box.dataset.tRe ?? 'Reattempt'));
+    re.addEventListener('click', () => { if (got) score--; render(); });
     opts.forEach((o, n) => {
       const li = document.createElement('li');
       const b = document.createElement('button'); b.type = 'button';
@@ -193,7 +209,7 @@ function startQuiz(box: HTMLElement, cards: HTMLElement[], bank: string, refresh
       b.addEventListener('click', () => {
         ul.querySelectorAll('button').forEach((x) => (x.disabled = true));
         const ok = o === item.a;
-        if (ok) { score++; setKnown(bank, item.key, true); refresh(); }
+        if (ok) { score++; got = true; setKnown(bank, item.key, true); refresh(); }
         b.classList.add(ok ? 'right' : 'wrong');
         if (!ok) ul.querySelectorAll('button').forEach((x) => { if (x.lastChild?.textContent === item.a) x.classList.add('right'); });
         say.className = `pq-say ${ok ? 'good' : 'bad'}`;
@@ -203,7 +219,7 @@ function startQuiz(box: HTMLElement, cards: HTMLElement[], bank: string, refresh
       });
       li.append(b); ul.append(li);
     });
-    card.append(top, q, ul, say, nx);
+    card.append(re, top, q, ul, say, nx);
     box.append(card);
   };
   render();
