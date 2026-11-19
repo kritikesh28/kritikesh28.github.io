@@ -6,6 +6,7 @@ import { heat, KIND, quizOptions, SCREEN, orig, solution, rowsForMcq, mostAsked,
 import { ciTopic, topicUrlIn } from '../../exam-prep';
 import { langFromUrl, pick } from '../../i18n/config';
 import SolQA from './SolQA.astro';
+import QuizModes from './QuizModes.astro';
 import '../../styles/pyq.css';
 
 interface Props { bank: Bank; cards: { key: string; row: Row }[] }
@@ -16,13 +17,13 @@ const T = pick({
   en: {
     meter: '{n} of {t} mastered', modes: 'How do you want to practise?', flip: '🃏 Flip cards', quiz: '⚡ Quick quiz (5)', tap: 'Tap to see the answer', ok: '✓ I knew it', again: '↻ Re-attempt',
     screen: 'Screen', prev: '← Back', next: 'Next →', hotT: (n: number) => `Asked in ${n} exams`,
-    qT: 'Question', right: 'Right! ✓', wrong: 'Not quite. The answer is', qNext: 'Next question →', qAgain: 'Play 5 more', score: 'You got {s} out of {t}.',
+    qT: 'Question', re: 'Reattempt', right: 'Right! ✓', wrong: 'Not quite. The answer is', qNext: 'Next question →', qAgain: 'Play 5 more', score: 'You got {s} out of {t}.',
     bg: '📖 Background in short', bgAlso: 'What else do examiners ask here?', bgTopic: 'What is this topic about?', bgBasics: 'Learn it from the basics →', real: 'See the real exam question →',
   },
   hi: {
     meter: '{t} में से {n} याद हो गए', modes: 'कैसे अभ्यास करना है?', flip: '🃏 फ़्लिप कार्ड', quiz: '⚡ झटपट क्विज़ (5)', tap: 'उत्तर देखने के लिए टैप करें', ok: '✓ याद था', again: '↻ फिर से करें',
     screen: 'स्क्रीन', prev: '← पीछे', next: 'आगे →', hotT: (n: number) => `${n} परीक्षाओं में पूछा गया`,
-    qT: 'सवाल', right: 'सही! ✓', wrong: 'नहीं, सही उत्तर है', qNext: 'अगला सवाल →', qAgain: '5 और खेलें', score: '{t} में से {s} सही।',
+    qT: 'सवाल', re: 'दोबारा करें', right: 'सही! ✓', wrong: 'नहीं, सही उत्तर है', qNext: 'अगला सवाल →', qAgain: '5 और खेलें', score: '{t} में से {s} सही।',
     bg: '📖 संक्षेप में पृष्ठभूमि', bgAlso: 'यहाँ से परीक्षक और क्या पूछते हैं?', bgTopic: 'यह टॉपिक किस बारे में है?', bgBasics: 'शुरू से पढ़िए →', real: 'असली परीक्षा का सवाल देखिए →',
   },
 }, lang);
@@ -97,7 +98,8 @@ for (let i = 0; i < cards.length; i += SCREEN) screens.push(cards.slice(i, i + S
     </nav>
   </div>
 
-  <div class="pq-quiz" data-quiz data-t-q={T.qT} data-t-right={T.right} data-t-wrong={T.wrong} data-t-next={T.qNext} data-t-again={T.qAgain} data-t-score={T.score} lang={cl}></div>
+  <QuizModes n={5} kind="quick" />
+  <div class="pq-quiz" data-quiz data-t-re={T.re} data-t-q={T.qT} data-t-right={T.right} data-t-wrong={T.wrong} data-t-next={T.qNext} data-t-again={T.qAgain} data-t-score={T.score} lang={cl}></div>
 
   <slot />
 </div>
