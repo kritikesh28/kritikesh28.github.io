@@ -7,8 +7,10 @@
 // Script: src/scripts/quiz-modes.ts. Guide: docs/19-pyq-practice.md, "Practice mode and Exam mode".
 import { langFromUrl, pick } from '../../i18n/config';
 
-interface Props { n: number }
-const { n } = Astro.props;
+// kind 'mcq': the real-question pages (questions already on the page). kind 'quick': the 5-question quick quiz of a
+// flip-card deck (PyqDeck.astro); exam mode then draws its own questions from the deck.
+interface Props { n: number; kind?: 'mcq' | 'quick' }
+const { n, kind = 'mcq' } = Astro.props;
 const lang = langFromUrl(Astro.url);
 const PER = 40;
 const mins = Math.ceil((n * PER) / 60);
@@ -71,6 +73,7 @@ const T = pick({
 const W = { reattempt: T.reattempt, total: T.total, this: T.this, skip: T.skip, next: T.next, finish: T.finish, timeUp: T.timeUp, evalH: T.evalH, score: T.score, used: T.used, of: T.of, sec: T.sec, lRight: T.lRight, lWrong: T.lWrong, lSkip: T.lSkip, l30: T.l30, p10: T.p10, p30: T.p30, p40: T.p40, pSkip: T.pSkip, pNone: T.pNone, review: T.review, again: T.again };
 ---
 
+<div class:list={['qm-box', kind === 'quick' && 'qm-quick']}>
 <aside class="qm-why">
   <p class="qm-why-h">⏱️ {T.whyH}</p>
   <p class="qm-why-s">{T.whyShort}</p>
@@ -80,7 +83,7 @@ const W = { reattempt: T.reattempt, total: T.total, this: T.this, skip: T.skip, 
   </details>
 </aside>
 
-<div class="qm" data-qm data-per={PER} data-mins={mins} data-w={JSON.stringify(W)}>
+<div class="qm" data-qm data-kind={kind} data-per={PER} data-mins={mins} data-w={JSON.stringify(W)}>
   <div class="qm-tabs" role="tablist">
     <button type="button" role="tab" aria-selected="true" data-qm-mode="practice">📝 {T.practice}</button>
     <button type="button" role="tab" aria-selected="false" data-qm-mode="exam">⏱️ {T.exam}</button>
@@ -95,10 +98,25 @@ const W = { reattempt: T.reattempt, total: T.total, this: T.this, skip: T.skip, 
     <div class="qm-q" data-qm-q><small>{T.this}</small><b data-qm-sec>40</b></div>
     <button type="button" class="btn" data-qm-next>{T.skip}</button>
   </div>
+  <div class="qm-run" data-qm-run hidden></div>
   <div class="qm-eval" data-qm-eval hidden></div>
 </div>
+</div>
+
+<script>
+  import '../../scripts/quiz-modes';
+</script>
 
 <style>
+  /* on a flip-card deck, the modes show only while the quick quiz is open */
+  .qm-quick { display: none; margin-top: 0.4rem; }
+  :global([data-pyq-set]:has(.pq-quiz.on)) .qm-quick { display: block; }
+  :global(.qm-exam-tab .pq-quiz) { display: none !important; }
+  .qm-run { max-width: 44rem; }
+  :global(.qm-review) { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; gap: 0.5rem; }
+  :global(.qm-review li) { padding: 0.6rem 0.8rem; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); }
+  :global(.qm-review .ok) { color: var(--teal); font-weight: 600; }
+  :global(.qm-review .no) { color: var(--coral); font-weight: 600; }
   .qm-why { max-width: 44rem; margin: 0 0 1rem; padding: 0.9rem 1.1rem; border-radius: var(--radius); border: 1px solid color-mix(in srgb, #c98a2b 30%, var(--line)); background: color-mix(in srgb, #c98a2b 7%, var(--surface)); font-size: 0.93rem; }
   .qm-why-h { margin: 0 0 0.3rem; font-weight: 700; }
   .qm-why-s { margin: 0; color: var(--ink-soft); line-height: 1.6; }
@@ -133,7 +151,8 @@ const W = { reattempt: T.reattempt, total: T.total, this: T.this, skip: T.skip, 
   :global(.qm-re) { position: absolute; top: 0.7rem; right: 0.8rem; display: grid; justify-items: center; gap: 0.05rem; font: inherit; font-size: 0.68rem; color: var(--ink-soft); background: none; border: 0; cursor: pointer; padding: 0.2rem; }
   :global(.qm-re span) { font-size: 1.25rem; line-height: 1; color: var(--accent); }
   :global(.qm-re:hover span) { transform: rotate(-90deg); transition: transform 0.3s; }
-  :global(.pq-mcq .tag) { padding-right: 4rem; }
+  :global(.pq-mcq .tag), :global(.pq-qcard .pq-qtop) { padding-right: 4rem; }
+  :global(.pq-qcard) { position: relative; }
   /* the evaluation card */
   .qm-eval { padding: 1.1rem 1.2rem; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); margin-bottom: 1rem; }
   :global(.qm-eval h2) { margin: 0 0 0.4rem; font-size: 1.35rem; }
