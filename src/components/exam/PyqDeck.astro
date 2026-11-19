@@ -64,7 +64,8 @@ for (let i = 0; i < cards.length; i += SCREEN) screens.push(cards.slice(i, i + S
                   <p class="q" lang={cl} data-orig={orig(r.q, r.o0?.q)}>{r.q}</p>
                   <span class="chips">
                     {h > 1 && <span class="pq-chip hot" title={T.hotT(h)}>🔥 {h}×</span>}
-                    <span class="pq-chip kind">{KIND[r.k]?.[lang] ?? r.k}</span>
+                    {/* only "asked in an exam" is tagged: where any other fact came from is not shown (his ask, 19 Nov 2026) */}
+                    {(r.k.startsWith('PYQ') || r.k === 'Rev') && <span class="pq-chip kind">{KIND[r.k]?.[lang] ?? r.k}</span>}
                   </span>
                 </div>
                 <div class="face back">

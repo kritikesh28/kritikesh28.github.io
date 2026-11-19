@@ -1,7 +1,7 @@
 ---
 // One MCQ's solution as short questions and answers, read top to bottom: why the key is right, what each option is,
-// and how to remember it. Used under a real exam question and on the back of a flip card ("compact": the
-// note on every option folds away). Solutions: tools/pyq/sol/. Guide: docs/19-pyq-practice.md
+// and how to remember it. Used under a real exam question and on the back of a flip card ("compact": a flip card
+// has no options, so the option notes and any sentence about options or the key are left out). Solutions: tools/pyq/sol/. Guide: docs/19-pyq-practice.md
 import type { Sol } from '../../pyq';
 import { langFromUrl, pick } from '../../i18n/config';
 
@@ -9,16 +9,20 @@ interface Props { sol: Sol; a: number; compact?: boolean }
 const { sol, a, compact = false } = Astro.props;
 const lang = langFromUrl(Astro.url);
 const T = pick({
-  en: { why: 'Why is this the answer?', each: 'What about each option?', more: '🔍 Every option explained', tip: 'How do I remember it?' },
-  hi: { why: 'यही उत्तर क्यों?', each: 'बाक़ी विकल्पों का क्या?', more: '🔍 हर विकल्प की व्याख्या', tip: 'याद कैसे रखें?' },
+  en: { why: 'Why is this the answer?', each: 'What about each option?', tip: 'How do I remember it?' },
+  hi: { why: 'यही उत्तर क्यों?', each: 'बाक़ी विकल्पों का क्या?', tip: 'याद कैसे रखें?' },
 }, lang);
-const opts = sol.o && sol.o.length > 0 ? sol.o : undefined;
+const opts = !compact && sol.o && sol.o.length > 0 ? sol.o : undefined;
+// a flip card has no options: drop sentences that talk about options, codes or the key
+const OPT = /\b(option|options|keyed|code|codes|statement|assertion)\b|\(\d\)|विकल्प|कुंजी|कूट|कथन|अभिकथन|कारण \(R\)/i;
+const plain = (t: string) => (compact ? t.split(/(?<=[.।?!])\s+/).filter((x) => !OPT.test(x)).join(' ') : t);
+const why = plain(sol.w);
+const tip = sol.t ? plain(sol.t) : '';
 ---
 
 <dl class:list={['pq-qa', { compact }]} lang={lang}>
-  <dt>{T.why}</dt>
-  <dd>{sol.w}</dd>
-  {opts && !compact && <><dt>{T.each}</dt><dd><ol class="pq-sol-opts">{opts.map((x, k) => <li class={k + 1 === a ? 'ok' : undefined}>{x}</li>)}</ol></dd></>}
-  {sol.t && <><dt>{T.tip}</dt><dd class="pq-sol-tip">💡 {sol.t}</dd></>}
+  {why && <dt>{T.why}</dt>}
+  {why && <dd>{why}</dd>}
+  {opts && <><dt>{T.each}</dt><dd><ol class="pq-sol-opts">{opts.map((x, k) => <li class={k + 1 === a ? 'ok' : undefined}>{x}</li>)}</ol></dd></>}
+  {tip && <><dt>{T.tip}</dt><dd class="pq-sol-tip">💡 {tip}</dd></>}
 </dl>
-{opts && compact && <details class="pq-more" lang={lang}><summary>{T.more}</summary><ol class="pq-sol-opts">{opts.map((x, k) => <li class={k + 1 === a ? 'ok' : undefined}>{x}</li>)}</ol></details>}

@@ -53,15 +53,15 @@ U5A-N130	hi	w	एरिक ज़िमरमैन (1933) ने लिखा �
 U5A-N130	hi	o	वॉन थ्यूनन ने कृषि अवस्थिति मॉडल दिया ¦ सही: ज़िमरमैन ¦ हार्टशोर्न ने क्षेत्रीय विभेदन पर लिखा ¦ सेम्पल पर्यावरण निश्चयवादी थीं
 U5A-N130	hi	t	इंजन आने तक तेल काला कीचड़ था।
 U5A-N131	en	w	A push factor drives people out of their home country; internal conflict is the clear example. Higher wages abroad, freedom and security pull people towards a destination. The key gives (3), which is a pull factor, so it looks wrong.
-U5A-N131	en	o	The textbook push factor; the key differs ¦ A pull factor ¦ Right: as keyed, though it is really a pull factor ¦ A pull factor
+U5A-N131	en	o	The standard push factor; the key differs ¦ A pull factor ¦ Right: as keyed, though it is really a pull factor ¦ A pull factor
 U5A-N131	en	t	Push = trouble at home; pull = promise abroad.
 U5A-N131	hi	w	धक्का कारक लोगों को अपने देश से बाहर निकालता है; आंतरिक संघर्ष इसका स्पष्ट उदाहरण है। विदेश में ऊँची मज़दूरी, स्वतंत्रता और सुरक्षा गंतव्य की ओर खींचते हैं। कुंजी (3) देती है, जो खिंचाव कारक है, इसलिए यह गलत लगती है।
-U5A-N131	hi	o	पाठ्यपुस्तक का धक्का कारक; कुंजी भिन्न ¦ खिंचाव कारक ¦ सही: कुंजी अनुसार, यद्यपि यह वास्तव में खिंचाव कारक है ¦ खिंचाव कारक
+U5A-N131	hi	o	मानक धक्का कारक; कुंजी भिन्न ¦ खिंचाव कारक ¦ सही: कुंजी अनुसार, यद्यपि यह वास्तव में खिंचाव कारक है ¦ खिंचाव कारक
 U5A-N131	hi	t	धक्का = घर में परेशानी; खिंचाव = बाहर वादा।
-U5A-N132	en	w	The options of this question were printed out of order in the source. The key gives option (1). Resource development depends on people: how many there are, their skills, capital and needs, acting on the physical environment.
+U5A-N132	en	w	The options of this question were printed out of order. The key gives option (1). Resource development depends on people: how many there are, their skills, capital and needs, acting on the physical environment.
 U5A-N132	en	o	Right: option (1), as keyed ¦ Provides the base, not the driver ¦ Drives demand ¦ Needed, but not keyed
 U5A-N132	en	t	Nature offers, people develop.
-U5A-N132	hi	w	इस प्रश्न के विकल्प स्रोत में क्रम से बाहर छपे थे। कुंजी विकल्प (1) देती है। संसाधन विकास लोगों पर निर्भर करता है: उनकी संख्या, कौशल, पूँजी और ज़रूरतें, जो भौतिक पर्यावरण पर काम करती हैं।
+U5A-N132	hi	w	इस प्रश्न के विकल्प क्रम से बाहर छपे थे। कुंजी विकल्प (1) देती है। संसाधन विकास लोगों पर निर्भर करता है: उनकी संख्या, कौशल, पूँजी और ज़रूरतें, जो भौतिक पर्यावरण पर काम करती हैं।
 U5A-N132	hi	o	सही: विकल्प (1), कुंजी अनुसार ¦ आधार देता है, चालक नहीं ¦ माँग चलाती हैं ¦ ज़रूरी, पर कुंजी में नहीं
 U5A-N132	hi	t	प्रकृति देती है, लोग विकसित करते हैं।
 U5A-N133	en	w	By the rule of 70, doubling time = 70 ÷ 2.1 ≈ 33 years. The key gives 28 years, which does not fit the arithmetic; 33 years (option 3) is the correct value.
@@ -95,10 +95,10 @@ U5B-A3	hi	w	ग्रामीण बस्तियों के प्रक�
 U5B-A3	hi	o	C नगरीय है ¦ सही: A, B और D ¦ C नगरीय है ¦ C नगरीय है
 U5B-A3	hi	t	बहुत मंज़िलें = शहर।
 U5B-A4	en	w	The true pairs are Burgess (concentric), Hoyt (sector), Peter Mann (his alternate model) and Harris and Ullman (multiple nuclei), which is code (2). The key gives code (1), which pairs sector theory with Mann; it looks wrong.
-U5B-A4	en	o	Right: as keyed, though Hoyt made the sector theory ¦ The textbook pairing: iv, iii, ii, i ¦ Wrong order ¦ Wrong order
+U5B-A4	en	o	Right: as keyed, though Hoyt made the sector theory ¦ The standard pairing: iv, iii, ii, i ¦ Wrong order ¦ Wrong order
 U5B-A4	en	t	Burgess rings, Hoyt wedges, Harris-Ullman many hearts.
 U5B-A4	hi	w	सही जोड़ियाँ हैं बर्गेस (संकेंद्रीय), हॉयट (त्रिज्यखंड), पीटर मान (उनका वैकल्पिक मॉडल) और हैरिस व उलमैन (बहु-केंद्रक), जो कोड (2) है। कुंजी कोड (1) देती है, जो त्रिज्यखंड सिद्धांत को मान से जोड़ती है; यह गलत लगती है।
-U5B-A4	hi	o	सही: कुंजी अनुसार, यद्यपि त्रिज्यखंड सिद्धांत हॉयट का है ¦ पाठ्यपुस्तक जोड़ी: iv, iii, ii, i ¦ गलत क्रम ¦ गलत क्रम
+U5B-A4	hi	o	सही: कुंजी अनुसार, यद्यपि त्रिज्यखंड सिद्धांत हॉयट का है ¦ मानक जोड़ी: iv, iii, ii, i ¦ गलत क्रम ¦ गलत क्रम
 U5B-A4	hi	t	बर्गेस वलय, हॉयट फाँकें, हैरिस-उलमैन कई केंद्र।
 U5B-A6	en	w	Both Burgess and Hoyt deal mainly with where residential areas of different classes sit around the CBD. Both place the CBD at the centre, but the arrangement of housing is what they share and compare.
 U5B-A6	en	o	They place industry differently ¦ Right: location of residential areas ¦ Retail is in the CBD in both, not the theme ¦ Both have a central CBD, but the key stresses housing

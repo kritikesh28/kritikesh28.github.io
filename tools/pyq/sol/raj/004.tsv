@@ -106,11 +106,11 @@ RB3-8	en	t	Desert least, Hadoti most.
 RB3-8	hi	w	कुंजी के अनुसार हर विभाग पेपर में उसके सामने छपे वर्षा आँकड़े से मेल खाता है (A1, B2, C3, D4)। याद रखने का प्रतिरूप: वर्षा उत्तर-पश्चिमी मरुस्थल से दक्षिण-पूर्वी पठार की ओर बढ़ती है।
 RB3-8	hi	o	चारों गड्डमड्ड ¦ चार में से तीन गड्डमड्ड ¦ C और D उलटे ¦ सही: A1, B2, C3, D4
 RB3-8	hi	t	मरुस्थल में सबसे कम, हाड़ौती में सबसे अधिक।
-RB3-9	en	w	The north-eastern plain of Rajasthan was built by the Chambal, Banas and other Yamuna-side rivers, not by the Indus. The other three statements are what the books teach.
-RB3-9	en	o	As per the books: the Aravalli is the oldest fold range ¦ Right (the wrong statement): the plain is not the Indus's work ¦ As per the books: the Thar is a remnant of the Tethys Sea ¦ As per the books: the plateau is a Gondwana extension
+RB3-9	en	w	The north-eastern plain of Rajasthan was built by the Chambal, Banas and other Yamuna-side rivers, not by the Indus. The other three statements are what geographers teach.
+RB3-9	en	o	Commonly taught: the Aravalli is the oldest fold range ¦ Right (the wrong statement): the plain is not the Indus's work ¦ Commonly taught: the Thar is a remnant of the Tethys Sea ¦ Commonly taught: the plateau is a Gondwana extension
 RB3-9	en	t	Eastern plain = Chambal–Banas (Yamuna system), not Indus.
-RB3-9	hi	w	राजस्थान का उत्तर-पूर्वी मैदान चंबल, बनास और यमुना तंत्र की अन्य नदियों ने बनाया है, सिंधु ने नहीं। बाक़ी तीनों कथन वही हैं जो पुस्तकें सिखाती हैं।
-RB3-9	hi	o	पुस्तकों के अनुसार: अरावली सबसे पुरानी वलित श्रेणी है ¦ सही (गलत कथन): यह मैदान सिंधु का बनाया नहीं ¦ पुस्तकों के अनुसार: थार टेथिस सागर का अवशेष है ¦ पुस्तकों के अनुसार: पठार गोंडवाना का विस्तार है
+RB3-9	hi	w	राजस्थान का उत्तर-पूर्वी मैदान चंबल, बनास और यमुना तंत्र की अन्य नदियों ने बनाया है, सिंधु ने नहीं। बाक़ी तीनों कथन वही हैं जो सामान्यतः पढ़ाया जाता है।
+RB3-9	hi	o	प्रचलित मत: अरावली सबसे पुरानी वलित श्रेणी है ¦ सही (गलत कथन): यह मैदान सिंधु का बनाया नहीं ¦ प्रचलित मत: थार टेथिस सागर का अवशेष है ¦ प्रचलित मत: पठार गोंडवाना का विस्तार है
 RB3-9	hi	t	पूर्वी मैदान = चंबल–बनास (यमुना तंत्र), सिंधु नहीं।
 RB3-10	en	w	Per the key, the first three pairs of division and surface feature are correct and the fourth is not. Check such pairs with the basics: sand dunes in the west, ridges in the Aravalli, alluvium in the east, lava and sandstone plateau in Hadoti.
 RB3-10	en	o	Misses pair 1, which is also correct ¦ Pair 4 is not correct ¦ Right: 1, 2 and 3 ¦ Pair 4 is not correct
@@ -136,10 +136,10 @@ RB3-13	en	t	The fault is the "seam" between old Aravalli and younger Vindhyan ro
 RB3-13	hi	w	महान सीमा भ्रंश अरावली चट्टानों को विंध्य चट्टानों से अलग करता है। यह चित्तौड़गढ़, बूंदी, कोटा और सवाई माधोपुर होते हुए धौलपुर की ओर जाता है। भीलवाड़ा अरावली की ओर, भ्रंश रेखा से दूर है।
 RB3-13	hi	o	कोटा भ्रंश क्षेत्र में है ¦ चित्तौड़गढ़ भ्रंश क्षेत्र में है ¦ सवाई माधोपुर भ्रंश क्षेत्र में है ¦ सही: भीलवाड़ा
 RB3-13	hi	t	भ्रंश पुरानी अरावली और नई विंध्य चट्टानों के बीच की "सिलाई" है।
-RB3-14	en	w	Only statement 1 matches the figures the books use: the western sandy plain covers 61.11% of the state. The decimals in statements 2, 3 and 4 do not match the shares usually printed (about 9%, 23% and 6.89%).
+RB3-14	en	w	Only statement 1 matches the figures geographers use: the western sandy plain covers 61.11% of the state. The decimals in statements 2, 3 and 4 do not match the shares usually printed (about 9%, 23% and 6.89%).
 RB3-14	en	o	Right: 1 only ¦ 3 has the wrong decimal ¦ 2 and 3 have the wrong figures ¦ 3 and 4 have the wrong figures
 RB3-14	en	t	61.11%: the desert's share, a number worth knowing by heart.
-RB3-14	hi	w	केवल कथन 1 पुस्तकों के आँकड़ों से मेल खाता है: पश्चिमी रेतीला मैदान राज्य का 61.11% है। कथन 2, 3 और 4 के दशमलव सामान्यतः छपे हिस्सों (लगभग 9%, 23% और 6.89%) से मेल नहीं खाते।
+RB3-14	hi	w	केवल कथन 1 प्रचलित आँकड़ों से मेल खाता है: पश्चिमी रेतीला मैदान राज्य का 61.11% है। कथन 2, 3 और 4 के दशमलव सामान्यतः छपे हिस्सों (लगभग 9%, 23% और 6.89%) से मेल नहीं खाते।
 RB3-14	hi	o	सही: केवल 1 ¦ 3 का दशमलव गलत है ¦ 2 और 3 के आँकड़े गलत हैं ¦ 3 और 4 के आँकड़े गलत हैं
 RB3-14	hi	t	61.11%: मरुस्थल का हिस्सा, कंठस्थ करने योग्य संख्या।
 RB3-15	en	w	A. M. Heron of the Geological Survey of India gave the basic description and classification of Rajasthan's Pre-Cambrian rocks (his work on the geology of Rajputana).

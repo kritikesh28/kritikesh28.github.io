@@ -1,0 +1,148 @@
+{
+ "_note": "Book and source mentions are dropped from everything a student reads (his ask, 19 Nov 2026): each question stands on its own; credits live in the page footer and /credits/. [regex, replacement], applied in order, case-insensitive. Used by src/pyq.ts. Guide: docs/19-pyq-practice.md part 9.",
+ "rules": [
+  [
+   "\\s*\\(पुस्तक[^()]*?(अगस्त 2023)[^()]*\\)",
+   " (अगस्त 2023 के गठन अनुसार)"
+  ],
+  [
+   "\\s*\\([^()]*पुस्तक[^()]*\\)",
+   ""
+  ],
+  [
+   "पुस्तक\\s*\\((अगस्त 2023)[^()]*\\)\\s*(के\\s*)?अनुसार",
+   "अगस्त 2023 के गठन अनुसार"
+  ],
+  [
+   "पुस्तक(\\s*की\\s*(तालिका|सूची|व्याख्या|कुंजी)\\s*)?(\\s*के)?\\s*अनुसार,?\\s*",
+   ""
+  ],
+  [
+   "पुस्तक की (अगस्त 2023 की )?(तालिका|सूची)\\s*में\\s*",
+   ""
+  ],
+  [
+   "पुस्तक में\\s*",
+   ""
+  ],
+  [
+   "पुस्तकीय\\s*",
+   ""
+  ],
+  [
+   "पुस्तक की व्याख्या में बिंदु \\d+ \\(([^()]*)\\) (सत्य है या असत्य|कितना सत्य है)\\?",
+   "क्या यह कथन सत्य है: $1?"
+  ],
+  [
+   "पुस्तक की उत्तर-दक्षिण सूची में",
+   "उत्तर से दक्षिण क्रम में"
+  ],
+  [
+   "पुस्तक के समय",
+   "अगस्त 2023 के पुनर्गठन से पहले"
+  ],
+  [
+   "पुस्तक की तालिका \\(अगस्त 2023\\) अनुसार",
+   "अगस्त 2023 के गठन अनुसार"
+  ],
+  [
+   "पुस्तक की बालुका स्तूप तालिका में",
+   "बालुका स्तूप वर्गीकरण में"
+  ],
+  [
+   "(?<!की )पुस्तक (की|के) (क्रम|तालिकाओं|तालिका|सूची|व्याख्या|बरखान-विवरण)( अनुसार| में)?\\s*",
+   ""
+  ],
+  [
+   "(?<!की )पुस्तक (की|के) ",
+   ""
+  ],
+  [
+   "\\bIn the book's explanation, point \\d+ \\(([^()]*)\\)[^?]*\\?",
+   "True or false: $1?"
+  ],
+  [
+   "\\bin the book's north-south list",
+   "from north to south"
+  ],
+  [
+   "\\bIn the book's north-south list",
+   "From north to south"
+  ],
+  [
+   "\\b(at the time of the book)",
+   "before the August 2023 reorganisation"
+  ],
+  [
+   "\\b(as )?per the book\\b,?\\s*",
+   ""
+  ],
+  [
+   "\\baccording to the book\\b,?\\s*",
+   ""
+  ],
+  [
+   "\\s*\\((as per |at the time of )?the book[^()]*\\)",
+   ""
+  ],
+  [
+   "\\s*\\(book[^()]*\\)",
+   ""
+  ],
+  [
+   "\\b(As|as) per the book's (table|list|key|explanation|order)(,| and)?\\s*",
+   ""
+  ],
+  [
+   "\\b(According to|As per|as per|according to) the book's (August 2023 )?(table|list)?,?\\s*",
+   ""
+  ],
+  [
+   "\\b(According to|As per|as per|according to) the book( \\(August 2023\\))?,?\\s*",
+   ""
+  ],
+  [
+   "\\bIn the book's ([a-z-]+ )?list,?\\s*",
+   ""
+  ],
+  [
+   "\\bin the book's (list|table|order)( of)?",
+   "in the list$2"
+  ],
+  [
+   "\\bthe book's ",
+   "the "
+  ],
+  [
+   "\\bbook:\\s*",
+   ""
+  ],
+  [
+   "\\bbook:\\s*",
+   ""
+  ],
+  [
+   "पुस्तक:\\s*",
+   ""
+  ],
+  [
+   "\\s*\\(not named in the syllabus text[^()]*\\)",
+   ""
+  ],
+  [
+   "कई किताबें",
+   "कई भूगोलवेत्ता"
+  ],
+  [
+   "\\bmany (text)?books\\b",
+   "many geographers"
+  ],
+  [
+   "\\s*\\(soils; not named in syllabus text[^()]*\\)",
+   " (soils)"
+  ]
+ ],
+ "dropFlag": "^(book|पुस्तक)\\s*:|^not in the book$|^पुस्तक में नहीं",
+ "dropRow": "\\bthe book\\b|\\bdoes the book\\b|RBSE class and page|पुस्तक (अल्फ़्रेड|पूर्वी|हाड़ौती|कमलनाथ)|पुस्तक में दिया|पुस्तक में दूर|पुस्तक .{0,30}(बताती|लिखती|देती|लेती) है",
+ "dropAnswer": "^\\s*(not in the book|पुस्तक में (नहीं|उल्लेख नहीं)[^,;]*)\\s*$"
+}

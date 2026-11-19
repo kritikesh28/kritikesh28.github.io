@@ -64,10 +64,10 @@ U6A-N42	en	t	Cut = primary; carve = secondary.
 U6A-N42	hi	w	लकड़ी काटना सीधे वनों से लकड़ी लेता है, इसलिए यह प्राथमिक गतिविधि है।
 U6A-N42	hi	o	सेवाएँ ¦ वस्तुएँ बनाना ¦ सही: प्राथमिक ¦ ज्ञान कार्य
 U6A-N42	hi	t	काटना = प्राथमिक; तराशना = द्वितीयक।
-U6A-N43	en	w	The key gives retail and wholesale trade. In most textbooks trade is tertiary and quaternary means knowledge work such as research and information services, so the key is loose here.
+U6A-N43	en	w	The key gives retail and wholesale trade. In most accounts trade is tertiary and quaternary means knowledge work such as research and information services, so the key is loose here.
 U6A-N43	en	o	Secondary ¦ Primary ¦ Right: as keyed ¦ Secondary
 U6A-N43	en	t	Usually: trade is tertiary, research is quaternary.
-U6A-N43	hi	w	कुंजी खुदरा और थोक व्यापार देती है। अधिकांश पाठ्यपुस्तकों में व्यापार तृतीयक है और चतुर्थक का अर्थ अनुसंधान और सूचना सेवाओं जैसा ज्ञान कार्य है, इसलिए यहाँ कुंजी ढीली है।
+U6A-N43	hi	w	कुंजी खुदरा और थोक व्यापार देती है। अधिकांश विवरणों में व्यापार तृतीयक है और चतुर्थक का अर्थ अनुसंधान और सूचना सेवाओं जैसा ज्ञान कार्य है, इसलिए यहाँ कुंजी ढीली है।
 U6A-N43	hi	o	द्वितीयक ¦ प्राथमिक ¦ सही: कुंजी अनुसार ¦ द्वितीयक
 U6A-N43	hi	t	आमतौर पर: व्यापार तृतीयक, अनुसंधान चतुर्थक।
 U6A-N44	en	w	Coal mining extracts a resource directly from the earth, so it is primary.

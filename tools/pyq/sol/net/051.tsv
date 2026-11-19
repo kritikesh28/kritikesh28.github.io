@@ -76,7 +76,7 @@ U7B-A58	en	t	Geopolitik fell into disrepute after 1945.
 U7B-A58	hi	w	कार्ल हॉसहोफ़र की भू-राजनीति (लेबेन्सराउम) को नाज़ी विस्तार और विश्वयुद्ध हेतु दोषी माना गया।
 U7B-A58	hi	o	सही: हॉसहोफ़र। ¦ नहीं। ¦ नहीं। ¦ नहीं। ¦ नहीं।
 U7B-A58	hi	t	1945 के बाद भू-राजनीति बदनाम।
-U7B-A59	en	w	This match table is garbled in the source (row 4 reads 'Negroid'). Mahan = sea power (i) and Mackinder = land power, Europe and Russia (iii). The keyed code is option 3: i, iii, iv, ii.
+U7B-A59	en	w	This match table is garbled (row 4 reads 'Negroid'). Mahan = sea power (i) and Mackinder = land power, Europe and Russia (iii). The keyed code is option 3: i, iii, iv, ii.
 U7B-A59	en	o	No. ¦ No. ¦ Right: i, iii, iv, ii. ¦ No. ¦ No.
 U7B-A59	en	t	Mahan sea, Mackinder land, Seversky air.
 U7B-A59	hi	w	मिलान तालिका बिगड़ी (पंक्ति 4 'Negroid')। महान = समुद्र (i), मैकिंडर = स्थल यूरोप-रूस (iii)। कुंजी (3): i, iii, iv, ii।
@@ -84,10 +84,10 @@ U7B-A59	hi	o	नहीं। ¦ नहीं। ¦ सही: i, iii, iv, ii। 
 U7B-A59	hi	t	महान समुद्र, मैकिंडर स्थल, सेवर्स्की वायु।
 U7B-A60	en	w	Mackinder's Heartland map is usually said to be on a Mercator projection (see U7B-A43). This key gives (3), polyconic, so learn Mercator and note the key.
 U7B-A60	en	o	No. ¦ No. ¦ Right: polyconic, as keyed. ¦ No. ¦ The usual answer (Mercator).
-U7B-A60	en	t	Most books say Mercator.
+U7B-A60	en	t	Most geographers say Mercator.
 U7B-A60	hi	w	मैकिंडर का मानचित्र प्रायः मर्केटर पर माना जाता (U7B-A43); यह कुंजी (3) बहुशंकुक देती, मर्केटर याद रखें।
 U7B-A60	hi	o	नहीं। ¦ नहीं। ¦ सही: बहुशंकुक, कुंजी अनुसार। ¦ नहीं। ¦ सामान्य उत्तर (मर्केटर)।
-U7B-A60	hi	t	अधिकांश पुस्तकें मर्केटर।
+U7B-A60	hi	t	अधिकांश भूगोलवेत्ता: मर्केटर।
 U7B-A61	en	w	Richard C. Powell wrote on polar (Arctic) geopolitics and is keyed here.
 U7B-A61	en	o	Right: Richard Powell. ¦ No. ¦ No. ¦ Dixit wrote on Indian political geography. ¦ No.
 U7B-A61	en	t	Arctic geopolitics is a new field.

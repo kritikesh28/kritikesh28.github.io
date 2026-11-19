@@ -12,6 +12,7 @@ import solRaj from './data/pyq/sol/raj.json';
 import solNet from './data/pyq/sol/net.json';
 import rajTopics from './data/pyq/raj-topics.json';
 import reword from './data/pyq/reword.json';
+import cleanJson from './data/pyq/clean.json';
 import type { Lang } from './i18n/config';
 import { localizePath } from './i18n/config';
 
@@ -53,8 +54,37 @@ function applyReword(raw: Raw, key: 'raj' | 'net'): Raw {
   const W = (reword as Record<string, Reword>)[key] ?? {};
   return { ...raw, groups: raw.groups.map((g) => ({ ...g, subs: g.subs.map((s) => ({ ...s, rows: s.rows.map((r) => (W[r.n] ? { ...r, ...W[r.n] } : r)) })) })) };
 }
-const R = applyReword(raj as unknown as Raw, 'raj');
-const N = applyReword(net as unknown as Raw, 'net');
+// Each question stands on its own: no "as per the book", "book's table", "book: X" notes anywhere a student reads
+// (his ask, 19 Nov 2026). Credits live in the page footer and on /credits/. Rules: src/data/pyq/clean.json.
+const CLEAN = (cleanJson as { rules: [string, string][]; dropFlag: string; dropRow: string; dropAnswer: string });
+const CLEAN_RULES = CLEAN.rules.map(([p, r]) => [new RegExp(p, 'giu'), r] as const);
+const DROP_FLAG = new RegExp(CLEAN.dropFlag, 'iu');
+const DROP_ROW = new RegExp(CLEAN.dropRow, 'iu');
+const DROP_ANSWER = new RegExp(CLEAN.dropAnswer, 'iu');
+export function noBook(s: string): string;
+export function noBook(s: string | undefined): string | undefined;
+export function noBook(s: string | undefined) {
+  if (!s) return s;
+  let t = s;
+  for (const [p, r] of CLEAN_RULES) t = t.replace(p, r);
+  t = t.replace(/\s{2,}/g, ' ').trim();
+  return /^[a-z]/.test(t) && /^[A-Z]/.test(s) ? t[0].toUpperCase() + t.slice(1) : t;
+}
+const RAW_DICT: Record<string, Record<string, string>> = { 'raj:en': rajEn as Record<string, string>, 'net:hi': netHi as Record<string, string> };
+const RAW_ALL = { ...RAW_DICT['raj:en'], ...RAW_DICT['net:hi'] };
+function applyClean(raw: Raw): Raw {
+  const bad = (r: Row) => [r.q, RAW_ALL[r.q]].some((q) => q !== undefined && DROP_ROW.test(noBook(q))) || [r.a, RAW_ALL[r.a]].some((a) => a !== undefined && DROP_ANSWER.test(a));
+  const flag = (f?: string) => (!f || DROP_FLAG.test(f) || (RAW_ALL[f] !== undefined && DROP_FLAG.test(RAW_ALL[f])) ? undefined : noBook(f));
+  return {
+    ...raw,
+    groups: raw.groups.map((g) => ({
+      ...g, t: noBook(g.t),
+      subs: g.subs.map((s) => ({ ...s, t: noBook(s.t), rows: s.rows.filter((r) => !bad(r)).map((r) => ({ ...r, q: noBook(r.q), a: noBook(r.a), f: flag(r.f) })) })),
+    })),
+  };
+}
+const R = applyClean(applyReword(raj as unknown as Raw, 'raj'));
+const N = applyClean(applyReword(net as unknown as Raw, 'net'));
 
 // The source Word file still carries a few answer lines and printed-book explanation notes inside the stems
 // ("उत्तर: (*) व्याख्या : …"). The answer is shown on its own and the publisher's notes are not ours to show, so drop them.
@@ -144,14 +174,20 @@ const QUIZ: Record<Bank['key'], Record<string, string[]>> = { raj: quizRaj as Re
 export const quizOptions = (b: Bank, r: Row): string[] | undefined => {
   const o = QUIZ[b.key][String(r.n)];
   const d = b.orig && DICT[`${b.key}:${b.content}`];
-  return o && d ? o.map((x) => d[x] ?? x) : o;
+  return o && (d ? o.map((x) => d[x] ?? noBook(x)) : o.map((x) => noBook(x)));
 };
 
 // ------------------------------------------------------------------ translations
 // Hand translations, so every reader can practise in their own language: Rajasthan into English, NET into Hindi.
 // Made by tools/pyq/tr/build_dict.py from the files in tools/pyq/tr/. {original: translation}. A string with no
 // translation yet stays as it was asked. Guide: docs/19-pyq-practice.md (Translations)
-const DICT: Record<string, Record<string, string>> = { 'raj:en': rajEn as Record<string, string>, 'net:hi': netHi as Record<string, string> };
+// cleaned too (see noBook), and reachable both by the original wording and by the cleaned one
+const DICT: Record<string, Record<string, string>> = Object.fromEntries(Object.entries(RAW_DICT).map(([k, d]) => {
+  const out: Record<string, string> = {};
+  for (const [a, b] of Object.entries(d)) out[a] = noBook(b);
+  for (const [a, b] of Object.entries(d)) { const k = noBook(a); if (!(k in d)) out[k] = noBook(b); } // never over an exact entry
+  return [k, out];
+}));
 const langCache = new Map<string, Bank>();
 /** The bank in the reader's language: the bank itself when it was asked in that language (or no translation exists),
  *  otherwise a translated copy that keeps the original wording in t0 / o0 for "See original" */
@@ -285,9 +321,9 @@ export const heat = (r: Row) => (r.k.startsWith('PYQ') || r.k === 'Rev' ? (r.x?.
 
 export const KIND: Record<string, Record<Lang, string>> = {
   PYQ: { en: 'Asked', hi: 'पूछा गया' },
-  'PYQ-corrected': { en: 'Asked · corrected', hi: 'पूछा गया · सुधारा' },
+  'PYQ-corrected': { en: 'Asked', hi: 'पूछा गया' },
   Rev: { en: 'Asked, the other way round', hi: 'उल्टा करके' },
-  Expl: { en: 'From the explanation', hi: 'व्याख्या से' },
+  Expl: { en: 'Background', hi: 'पृष्ठभूमि' },
   Tab: { en: 'From a table', hi: 'तालिका से' },
   Box: { en: 'Did you know', hi: 'क्या आप जानते हैं' },
   Option: { en: 'From an option', hi: 'विकल्प से' },
