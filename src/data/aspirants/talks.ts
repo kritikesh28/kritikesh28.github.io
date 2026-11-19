@@ -8,17 +8,18 @@
 // - Humble tone, no comparing (see project memory story-tone-humble). Dates about him come from his Life History sheet.
 // - The small personal stories (what a senior, his mother or father said) were drafted for him to check; when he
 //   corrects one, change both `en` and `hi`.
-// To edit: change the text in talks-1.ts / talks-2.ts. To add a question: add an item with a new unique `id`
+// To edit: change the text in talks-1.ts / talks-2.ts / talks-3.ts. To add a question: add an item with a new unique `id`
 // (it becomes the link #id) to a topic, and list the books it leans on (keys from books.ts).
 // To add a topic: add { id, icon, title, qs } to either file. Guide: docs/20-aspirants-and-credits.md
 import { TALKS_1 } from './talks-1';
 import { TALKS_2 } from './talks-2';
+import { TALKS_3 } from './talks-3';
 
 export type Bi = { en: string; hi: string };
 export type Talk = { id: string; q: Bi; a: { en: string[]; hi: string[] }; books?: string[] };
 export type Topic = { id: string; icon: string; title: Bi; qs: Talk[] };
 
-export const TALKS: Topic[] = [...TALKS_1, ...TALKS_2];
+export const TALKS: Topic[] = [...TALKS_1, ...TALKS_2, ...TALKS_3];
 
 // "Why this format?" (/aspirants/why-this-format/): why the same book content is shown in a new way.
 // His thoughts (18 Nov 2026) are the base; the research notes are from the books in books.ts. Shorter answers (1 to 2 min).

@@ -9,7 +9,7 @@ import { langFromUrl, localizePath } from '../../i18n/config';
 const lang = langFromUrl(Astro.url);
 const hi = lang === 'hi';
 const L = (p: string) => localizePath(p, lang);
-const PICK = ['counting-days', 'room-needs-cleaning', 'relatives', 'night-before', 'missed-by-few', 'friends-settled', 'phone-reels', 'age-running-out'];
+const PICK = ['counting-days', 'room-needs-cleaning', 'relatives', 'night-before', 'missed-by-few', 'friends-settled', 'phone-reels', 'age-running-out', 'stuck-on-one', 'strange-questions', 'first-instinct'];
 const all = TALKS.flatMap((t) => t.qs);
 const cards = PICK.map((id) => all.find((q) => q.id === id)).filter((q) => q !== undefined).map((q) => {
   const first = (hi ? q.a.hi : q.a.en)[0];
