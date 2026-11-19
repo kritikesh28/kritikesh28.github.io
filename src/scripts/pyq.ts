@@ -209,8 +209,9 @@ function mcqPage(root: HTMLElement) {
   const qs = [...root.querySelectorAll<HTMLElement>('[data-mcq]')];
   const scoreEl = root.querySelector<HTMLElement>('[data-score]');
   const W = { right: root.dataset.tRight ?? 'Right!', wrong: root.dataset.tWrong ?? 'Not this one. The answer is option', score: root.dataset.tScore ?? 'Score' };
-  let score = 0, done = 0;
-  const upd = () => { if (scoreEl) scoreEl.textContent = `${W.score}: ${score} / ${done}`; };
+  // one result per question, so a reattempt (Practice mode, src/scripts/quiz-modes.ts) replaces the old result
+  const res = new Map<HTMLElement, boolean>();
+  const upd = () => { if (scoreEl) scoreEl.textContent = `${W.score}: ${[...res.values()].filter(Boolean).length} / ${res.size}`; };
   for (const q of qs) {
     const a = Number(q.dataset.a);
     const btns = [...q.querySelectorAll<HTMLButtonElement>('[data-opt]')];
@@ -223,13 +224,21 @@ function mcqPage(root: HTMLElement) {
       const ok = pick === a || a === 0;
       btns.forEach((x) => { x.disabled = true; if (Number(x.dataset.opt) === a) x.classList.add('right'); });
       if (!ok) b.classList.add('wrong');
-      done++; if (ok) score++; upd();
+      res.set(q, ok); upd();
       if (ok) for (const k of (q.dataset.keys ?? '').split(' ').filter(Boolean)) setKnown(bank, k, true);
       if (say) { say.className = `pq-say ${ok ? 'good' : 'bad'}`; say.textContent = ok ? W.right : `${W.wrong} (${a}).`; }
       ans?.classList.add('shown'); if (ans instanceof HTMLDetailsElement) ans.open = true;
     }));
     // questions printed without separate options: "Show answer"
     q.querySelector('details.ans')?.addEventListener('toggle', () => q.classList.add('answered'));
+    // "Reattempt": clear this question so it can be answered again
+    q.addEventListener('pyq-reset', () => {
+      q.classList.remove('answered');
+      btns.forEach((x) => { x.disabled = false; x.classList.remove('right', 'wrong', 'picked'); });
+      if (say) { say.className = 'pq-say'; say.textContent = ''; }
+      ans?.classList.remove('shown'); if (ans instanceof HTMLDetailsElement) ans.open = false;
+      res.delete(q); upd();
+    });
   }
   const box = root.querySelector<HTMLElement>('[data-run]');
   if (box) screens(box);
