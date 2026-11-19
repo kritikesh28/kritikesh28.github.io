@@ -1,4 +1,4 @@
-// The books and ideas that "मन की सच्ची बातें" (/aspirants/) leans on. Each answer names the ones it uses (`books: [...]`),
+// The books and ideas that "Between the Chapters" (/aspirants/) leans on. Each answer names the ones it uses (`books: [...]`),
 // and the Credits page (/credits/) lists all of them in its reading list. To add one: add a line here with a new key,
 // then use the key in an answer in src/data/aspirants/talks*.ts. Only write what the book really says, in your own words.
 // Guide: docs/20-aspirants-and-credits.md

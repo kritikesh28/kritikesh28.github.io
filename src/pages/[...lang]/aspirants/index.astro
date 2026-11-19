@@ -1,5 +1,5 @@
 ---
-// मन की सच्ची बातें: the aspirants' library. Kritikesh talks with aspirants about the problems everyone has and few share,
+// Between the Chapters (Hindi: पन्नों के बीच; named on 19 Nov 2026, replacing "मन की सच्ची बातें"): the aspirants' library. Kritikesh talks with aspirants about the problems everyone has and few share,
 // as friends do at a chai tapri. Questions and answers: src/data/aspirants/talks*.ts; the layout: src/components/aspirants/TalkBook.astro.
 // The form at the bottom sends a problem to his inbox (Formspree, like the Contact page); a name and email are optional.
 // Guide: docs/20-aspirants-and-credits.md
@@ -17,10 +17,10 @@ const flat = allTalks(TALKS);
 
 const T = pick({
   en: {
-    title: 'मन की सच्ची बातें: honest talks for aspirants',
+    title: 'Between the Chapters: what every aspirant feels and almost no one says',
     description: 'Kritikesh Rajpurohit talks with exam aspirants about the small and big problems everyone faces and few share: counting months, procrastination, the phone, comparison, loneliness, exam fear, results, money, age and doubt.',
     eyebrow: 'The aspirants’ library',
-    h1sub: 'Honest talks, from one aspirant to another',
+    brand: 'Between the Chapters', other: 'पन्नों के बीच', h1sub: 'What every aspirant feels, and almost no one says.',
     lede: [
       'Come, sit. Two cups of chai, a bench outside a coaching street, and no hurry. This is not an advice page. I am not your teacher here; I’m one of you. I have been preparing since 2018, and I have felt every one of these things, many of them more than once. Some I still feel.',
       'Here I share what went on in my head, how long it lasted, who helped me (seniors, my parents, teachers) and what the books I leaned on had to say. Start from the smallest problem. None of them is silly.',
@@ -36,10 +36,10 @@ const T = pick({
     trap: 'Leave this empty',
   },
   hi: {
-    title: 'मन की सच्ची बातें: अभ्यर्थियों से दिल की बात',
+    title: 'पन्नों के बीच: जो हर अभ्यर्थी महसूस करता है, पर कहता कोई नहीं',
     description: 'कृतिकेश राजपुरोहित परीक्षा की तैयारी कर रहे साथियों से उन छोटी-बड़ी परेशानियों पर बात करते हैं जो सबको होती हैं पर कम लोग बताते हैं: महीने गिनना, टालमटोल, फ़ोन, तुलना, अकेलापन, परीक्षा का डर, रिज़ल्ट, पैसा, उम्र और शक।',
     eyebrow: 'अभ्यर्थियों की लाइब्रेरी',
-    h1sub: 'एक अभ्यर्थी से दूसरे तक, सच्ची बातें',
+    brand: 'पन्नों के बीच', other: 'Between the Chapters', h1sub: 'जो हर अभ्यर्थी महसूस करता है, पर कहता कोई नहीं।',
     lede: [
       'आइए, बैठिए। दो कप चाय, कोचिंग वाली गली के बाहर एक बेंच, और कोई जल्दी नहीं। यह सलाह वाला पन्ना नहीं है। यहाँ मैं आपका शिक्षक नहीं; आप में से ही एक हूँ। मैं 2018 से तैयारी कर रहा हूँ, और इनमें से हर बात मैंने महसूस की है, कई तो एक से ज़्यादा बार। कुछ अब भी करता हूँ।',
       'यहाँ मैं बताता हूँ कि मेरे मन में क्या चलता था, कितने समय तक चला, किसने मदद की (सीनियर्स, माँ-पापा, शिक्षक), और जिन किताबों का मैंने सहारा लिया, उन्होंने क्या कहा। सबसे छोटी परेशानी से शुरू कीजिए। इनमें से कोई भी बेवक़ूफ़ी वाली नहीं।',
@@ -67,7 +67,9 @@ const schema = [{
   <article class="wrap asp">
     <header class="asp-head">
       <p class="eyebrow">{T.eyebrow}</p>
-      <h1><span class="hi-t" lang="hi">मन की सच्ची बातें</span><span class="sub">{T.h1sub}</span></h1>
+      <h1 class="title"><span class="name">{T.brand}</span></h1>
+      <p class="other" lang={hi ? 'en' : 'hi'}><span class="rule" aria-hidden="true"></span>{T.other}<span class="rule" aria-hidden="true"></span></p>
+      <p class="sub">{T.h1sub}</p>
       {T.lede.map((p) => <p class="lede">{p}</p>)}
       <p class="meta">{T.meta(flat.length, TALKS.length)} · <a href={L('/aspirants/why-this-format/')}>{T.whyLink}</a> · <a href={L('/credits/')}>{T.creditsLink}</a></p>
     </header>
@@ -90,7 +92,7 @@ const schema = [{
           <label><span>{T.email} <small>{T.opt}</small></span><input type="email" name="email" maxlength="200" autocomplete="email" /></label>
         </div>
         <label>{T.msg}<textarea name="message" rows="6" required maxlength="5000"></textarea></label>
-        <input type="hidden" name="_subject" value="मन की सच्ची बातें: an aspirant's message" />
+        <input type="hidden" name="_subject" value="Between the Chapters: an aspirant's message" />
         <input type="hidden" name="language" value={lang} />
         <label class="trap" aria-hidden="true">{T.trap} <input name="_gotcha" tabindex="-1" autocomplete="off" /></label>
         <p class="row"><button class="btn" type="submit">{T.send}</button> <span class="status" role="status" aria-live="polite"></span></p>
@@ -133,10 +135,12 @@ const schema = [{
 <style>
   .asp { max-width: 1240px; margin-top: 1.5rem; }
   .asp-head { max-width: 46rem; margin: 0 auto 1.2rem; text-align: center; }
-  .asp-head h1 { margin: 0.2rem 0 0.9rem; display: grid; gap: 0.3rem; }
-  .hi-t { font-family: 'Tiro Devanagari Hindi', var(--font-display); font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.2;
-    background: linear-gradient(90deg, #c98a2e, var(--coral), #7c62d6); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .sub { font-size: clamp(1.05rem, 2vw, 1.3rem); font-weight: 500; color: var(--ink-soft); }
+  .title { margin: 0.3rem 0 0.4rem; }
+  .name { display: block; font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: clamp(2.6rem, 6.5vw, 4.4rem); line-height: 1.05; letter-spacing: -0.01em; color: var(--ink); }
+  :global(html[lang='hi']) .name { font-family: 'Tiro Devanagari Hindi', var(--font-display); font-style: normal; line-height: 1.3; }
+  .other { display: flex; align-items: center; justify-content: center; gap: 0.8rem; margin: 0 0 0.9rem; font-family: 'Tiro Devanagari Hindi', var(--font-display); font-style: italic; font-size: 1.15rem; color: #a87a35; }
+  .other .rule { width: 2.4rem; height: 1px; background: linear-gradient(90deg, transparent, #c9a25f, transparent); }
+  .sub { margin: 0 0 1rem; font-family: var(--font-serif); font-size: clamp(1.1rem, 2.2vw, 1.35rem); color: var(--ink); }
   .lede { font-family: var(--font-serif); font-size: 1.1rem; line-height: 1.7; color: var(--ink-soft); margin: 0 0 0.7rem; }
   .meta { font-size: 0.9rem; color: var(--ink-soft); margin: 0.8rem 0 0; }
   .meta a { color: var(--accent); }

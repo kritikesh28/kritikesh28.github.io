@@ -112,3 +112,15 @@ Rules:
 3. Hindi search also matches the English title of a translated topic, so typing "Fundamental Rights" on the Hindi page still works.
 4. Keep the standard Hindi-medium exam word and add the English or a plain gloss in brackets: "न्याय निगमन (सिलॉजिज़्म)".
 5. **Adding a batch:** list the ids still in English for one subject, translate them, add them to that subject's file, build and check `/hi/exam-prep/curriculum-index/<subject>/`. Do one subject at a time, most-asked topics first.
+
+## 7. Keeping the reader's place (his rule, 19 Nov 2026)
+
+**The rule:** pressing EN / हिं must not move the reader at all. The other language opens at the same paragraph, the same question and the same slide, never at the top of the page. This applies to every page, now and in future.
+
+**How it works** (the language switch script in `src/layouts/Base.astro`, nothing to do per page):
+
+1. Before leaving, it finds the text block in the middle of the screen (a heading, paragraph, list item, table, quote or figure inside `<main>`), its number in the page, and how far down that block the reader was. It stores this in the browser for that one trip only.
+2. The link to the other language keeps the `#…` part of the address, so a slider or a talk opens on the same question.
+3. On arrival, if the page has the same number of blocks and block number N is the same kind (a paragraph is still a paragraph), it scrolls to that block at the same spot under the header. If not, it falls back to the same share of the page. It waits for fonts and images so the spot doesn't shift afterwards.
+
+**For a new page:** write the English and Hindi with the **same blocks in the same order** (one Hindi paragraph for each English paragraph, the same headings, the same list items). That is all it needs. If a Hindi version adds or drops a paragraph, the switch still works but lands only approximately. Test: open the page, scroll halfway, switch language, and the same paragraph should be where it was.

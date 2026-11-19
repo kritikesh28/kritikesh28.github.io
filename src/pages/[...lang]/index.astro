@@ -14,6 +14,7 @@ import QuestionCard from '../../components/QuestionCard.astro';
 import StoryTeaser from '../../components/StoryTeaser.astro';
 import { SHELVES, shelfTitle } from '../../library-map';
 import { subjectsIn, GLYPH, STATS, fmt } from '../../exam-prep';
+import ChaptersCard from '../../components/aspirants/ChaptersCard.astro';
 import { PF_SECTIONS, pfName, pfUrl } from '../../portfolio.config';
 import { getPosts, getProjects } from '../../lib';
 import { langFromUrl, langParams, localizePath, pick } from '../../i18n/config';
@@ -145,6 +146,8 @@ const T = pick({
         <ul>{subjects.map((s) => <li><a href={L(`/exam-prep/curriculum-index/${s.slug}/`)}><span aria-hidden="true">{GLYPH[s.slug]}</span>{s.name}</a></li>)}</ul>
       </div>
     </div>
+    {/* the small "Between the Chapters" flash card: the feelings between the chapters of exam preparation */}
+    <div class="wrap"><ChaptersCard /></div>
   </section>
 
   <section id="live" class="band b-live">
