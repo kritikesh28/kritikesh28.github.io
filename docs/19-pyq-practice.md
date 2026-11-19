@@ -114,3 +114,13 @@ Kritikesh asked (18 November 2026) that every reader can practise in their own l
 - NET Hindi conventions: standard exam Hindi (कूट, सूची-I का सूची-II से मिलान कीजिए, अभिकथन (A) / कारण (R), नीचे दिए गए विकल्पों में से सही उत्तर चुनिए, केवल A और B); scholars and book titles written in Devanagari (फ़ॉन थ्यूनेन, 'लोकेशन एनालिसिस इन ह्यूमन ज्योग्राफ़ी'); acronyms kept in Latin letters (WTO, SAARC, HDI); fixed glossary terms such as जनांकिकीय संक्रमण, कायिक घनत्व, संकेंद्रीय वलय, प्रमुख नगर, श्रेणी-आकार नियम, सन्नगर, देहली, परास, पृष्ठप्रदेश, फ़सल संयोजन, स्थानांतरी कृषि, स्वच्छंद उद्योग, आइसोडापेन, पदार्थ सूचकांक, हृदय स्थल, सीमांत.
 
 **After the builder runs again** (a new Word file): new Hindi strings have no translation and show in Hindi. List them with a short script against `raj-strings.json`, add them at the end of `raj-strings.json`, write their English in a new `raj-en/NNN.tsv`, then run `build_dict.py` and build.
+
+## Practice mode and Exam mode (19 Nov 2026, his design)
+
+Every real-question page (`/exam-prep/pyq/<bank>/paper/<paper>/<set>/`) has two modes, from `src/components/exam/QuizModes.astro` and `src/scripts/quiz-modes.ts`:
+
+- **Practice mode** (default): answer, see right or wrong and the solution at once. Each question has a **↻ Reattempt** button at its top right that clears it so it can be answered again (the score updates; `pyq-reset` event in `src/scripts/pyq.ts`).
+- **Exam mode**: a start panel, then two timers. The **whole test** gets 40 seconds a question, rounded up to whole minutes (10 questions = 7 minutes). **This question** counts down 40 seconds; after 30 it turns red and beats like a heart; at 40 it moves to the next question. No right/wrong, no solutions and no going back during the test; "Leave it →" skips a question (leaving a hurdle is part of the skill). At the end, an **evaluation card**: score, time used, a bar graph of seconds per question (green right, red wrong, grey left, with the 30-second line), and a pat on the back for right answers under 10 s ⚡, under 30 s 🎯 and under 40 s ✅. "See the answers and why" switches to Practice mode with the exam answers filled in; "Take the test again" starts afresh.
+- **Nothing is saved**: every test is one time, kept only in memory until the page closes. No history, no account.
+- **"Why a timer, and why two?"** card above the modes: his reasons (the steeplechase, tough questions as hurdles that test temperament, how one question eats a whole paper, get up at once after a fall, why 30 seconds, why two timers, calm as a skill, why only 10 questions). Text in both languages in `QuizModes.astro`; keep it in his voice.
+- To change the time per question, change `PER` in `QuizModes.astro`.

@@ -1,0 +1,158 @@
+---
+// Practice mode / Exam mode for the real-question quizzes (his design, 19 Nov 2026), plus the "Why a timer?" card.
+// Practice: answer, see why, and "Reattempt" any question as often as you like.
+// Exam: a whole-test timer (40 s a question, rounded up to whole minutes) and a 40-second timer per question that turns red
+// and beats like a heart after 30 s; at 40 s it moves on, with no way back; at the end an evaluation card with a
+// time-per-question graph and a pat on the back for fast right answers. Nothing is saved: every test is one time.
+// Script: src/scripts/quiz-modes.ts. Guide: docs/19-pyq-practice.md, "Practice mode and Exam mode".
+import { langFromUrl, pick } from '../../i18n/config';
+
+interface Props { n: number }
+const { n } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const PER = 40;
+const mins = Math.ceil((n * PER) / 60);
+const T = pick({
+  en: {
+    practice: 'Practice mode', exam: 'Exam mode',
+    pHint: 'Take your time. Answer, see why, and reattempt any question as often as you like.',
+    start: `${n} questions · ${mins} minutes · ${PER} seconds a question. Once you move on, you can’t come back, and answers show only at the end. Just like the real hall.`,
+    go: 'Start the exam', total: 'Whole test', this: 'This question', skip: 'Leave it →', next: 'Next →', finish: 'Finish',
+    timeUp: 'Time’s up', reattempt: 'Reattempt',
+    evalH: 'Your test, question by question', score: 'Score', used: 'Time used', of: 'of', sec: 's',
+    lRight: 'right', lWrong: 'wrong', lSkip: 'left', l30: '30 s mark',
+    p10: '⚡ {n} right in under 10 seconds. Lightning: you read, understood and decided in one go.',
+    p30: '🎯 {n} right in under 30 seconds. That is exactly the exam pace we are training for.',
+    p40: '✅ {n} right before the clock ran out. You stayed steady under pressure.',
+    pSkip: '🏃 You left {n}. Leaving a hurdle is a skill too: it saves time for the ones you know.',
+    pNone: 'Every run teaches you the clock a little. Look at the answers, then try again: the second run is always calmer.',
+    review: 'See the answers and why', again: 'Take the test again',
+    whyH: 'Why a timer, and why two?',
+    whyShort: 'An exam is a steeplechase. Easy, moderate and tough questions are mixed on purpose, and time is the real opponent. Given a whole day, most of us would score well. In two hours, the one who handles the clock goes through.',
+    more: 'Read why',
+    why: [
+      ['The hurdles are placed on purpose', 'Tough questions, sometimes from outside every book, are set between the easy ones on purpose: so the cut-off doesn’t go too high, and to see how we behave under pressure. They test temperament more than knowledge. A runner doesn’t stop at a hurdle; we shouldn’t either. Spot it, leave it, move on.'],
+      ['How one question eats a whole paper', 'A question feels half familiar. “I’ll recall it.” A minute goes, then two. Slowly it becomes ego: “I will get this one.” When we finally look at the clock, worry starts, and the worry walks with us into the next question, so that one goes badly too. It was never a lack of knowledge. It was the fall, and the time we spent blaming ourselves on the ground.'],
+      ['If you fall, stand up at once', 'It happens to everyone. What saves the paper is getting up quickly: “Fine, I lost time there. I’ll be careful on the next one.” That bad moment then helps you instead of hurting you.'],
+      ['Why 30 seconds', 'Reading and understanding an average question takes about a minute. If we train to read it once, understand it while reading, and decide “I know it” or “I’ll leave it” in 30 seconds, a 100-question paper gives back almost an hour. Re-reading to check is fine; re-reading because we didn’t understand is where the time goes.'],
+      ['Why two timers', `The big one is the whole test: ${PER} seconds a question, rounded up to whole minutes. The small one is this question: ${PER} seconds. After 30 it turns red and beats like a heart, so you meet the pressure here, at home, and not for the first time in the exam hall. At ${PER} it moves on, and there is no going back, just as the real clock never waits.`],
+      ['Calm is a skill', 'A calm mind under pressure is at its sharpest. It can pull up something you heard once, years ago, in class 6. Spare minutes are what keep us calm, and that is what this little clock trains.'],
+      ['Why only 10 questions', 'I used to feel lazy just looking at a full 100-question paper. The skill is the same in 10 questions and a few minutes, and a few minutes are easy to give. So do it often. Nothing is saved: every test is one time, with no history and no account.'],
+    ],
+  },
+  hi: {
+    practice: 'अभ्यास मोड', exam: 'परीक्षा मोड',
+    pHint: 'आराम से। उत्तर दीजिए, कारण देखिए, और कोई भी सवाल जितनी बार चाहें दोबारा कीजिए।',
+    start: `${n} सवाल · ${mins} मिनट · हर सवाल ${PER} सेकंड। आगे बढ़ने के बाद लौट नहीं सकते, और उत्तर आख़िर में ही दिखेंगे। बिलकुल असली परीक्षा-हॉल की तरह।`,
+    go: 'परीक्षा शुरू करें', total: 'पूरी परीक्षा', this: 'यह सवाल', skip: 'छोड़िए →', next: 'आगे →', finish: 'ख़त्म करें',
+    timeUp: 'समय पूरा', reattempt: 'दोबारा करें',
+    evalH: 'आपकी परीक्षा, सवाल-दर-सवाल', score: 'स्कोर', used: 'लगा समय', of: 'में से', sec: 'से.',
+    lRight: 'सही', lWrong: 'ग़लत', lSkip: 'छोड़ा', l30: '30 से. की रेखा',
+    p10: '⚡ {n} सही, 10 सेकंड से कम में। बिजली जैसी तेज़ी: पढ़ा, समझा और एक बार में तय किया।',
+    p30: '🎯 {n} सही, 30 सेकंड से कम में। परीक्षा की यही रफ़्तार हम साध रहे हैं।',
+    p40: '✅ {n} सही, घड़ी ख़त्म होने से पहले। दबाव में भी आप टिके रहे।',
+    pSkip: '🏃 आपने {n} सवाल छोड़े। बाधा को छोड़ना भी एक हुनर है: इससे जो आता है उसके लिए समय बचता है।',
+    pNone: 'हर बार घड़ी थोड़ा कुछ सिखाती है। उत्तर देखिए, फिर दोबारा कीजिए: दूसरी बार मन हमेशा ज़्यादा शांत रहता है।',
+    review: 'उत्तर और कारण देखिए', again: 'परीक्षा फिर से दीजिए',
+    whyH: 'टाइमर क्यों, और दो क्यों?',
+    whyShort: 'परीक्षा एक स्टीपलचेज़ दौड़ है। आसान, मध्यम और कठिन सवाल जान-बूझकर मिलाए जाते हैं, और असली मुक़ाबला समय से है। पूरा दिन मिले तो हम में से ज़्यादातर अच्छे अंक ले आएँ। दो घंटे में वही आगे निकलता है जो घड़ी को सँभाल ले।',
+    more: 'क्यों, पढ़िए',
+    why: [
+      ['बाधाएँ जान-बूझकर रखी जाती हैं', 'कठिन सवाल, कभी-कभी हर किताब से बाहर के, आसान सवालों के बीच जान-बूझकर रखे जाते हैं: ताकि कट-ऑफ़ बहुत ऊपर न जाए, और यह दिखे कि दबाव में हम कैसा बर्ताव करते हैं। ये ज्ञान से ज़्यादा स्वभाव की परीक्षा हैं। धावक बाधा पर रुकता नहीं; हमें भी नहीं रुकना। पहचानिए, छोड़िए, आगे बढ़िए।'],
+      ['एक सवाल पूरा पेपर कैसे खा जाता है', 'कोई सवाल आधा-जाना-पहचाना लगता है। “याद आ जाएगा।” एक मिनट जाता है, फिर दो। धीरे-धीरे यह ज़िद बन जाती है: “यह तो करके ही रहूँगा।” जब आख़िर में घड़ी देखते हैं, घबराहट शुरू होती है, और वह घबराहट अगले सवाल तक साथ चलती है, तो वह भी बिगड़ता है। कमी ज्ञान की नहीं थी। कमी उस गिरने की थी, और ज़मीन पर पड़े-पड़े ख़ुद को कोसने में गए समय की।'],
+      ['गिरें तो तुरंत उठिए', 'ऐसा सबके साथ होता है। पेपर को बचाता है जल्दी उठ जाना: “ठीक है, यहाँ समय गया। अगले सवाल पर ध्यान रखूँगा।” तब वह बुरा पल नुक़सान नहीं, मदद करता है।'],
+      ['30 सेकंड क्यों', 'एक औसत सवाल पढ़ने और समझने में लगभग एक मिनट लगता है। अगर हम एक बार में पढ़ना, पढ़ते-पढ़ते समझना और 30 सेकंड में तय करना सीख लें कि “आता है” या “छोड़ूँगा”, तो 100 सवालों का पेपर लगभग एक घंटा लौटा देता है। जाँचने के लिए दोबारा पढ़ना ठीक है; न समझने की वजह से बार-बार पढ़ना, वहीं समय जाता है।'],
+      ['दो टाइमर क्यों', `बड़ा टाइमर पूरी परीक्षा का है: हर सवाल ${PER} सेकंड, पूरे मिनटों में। छोटा टाइमर इस सवाल का है: ${PER} सेकंड। 30 के बाद यह लाल हो जाता है और दिल की तरह धड़कता है, ताकि दबाव से पहली मुलाक़ात यहीं, घर पर हो, परीक्षा-हॉल में नहीं। ${PER} पर यह आगे बढ़ जाता है, और लौटना नहीं होता, जैसे असली घड़ी कभी रुकती नहीं।`],
+      ['शांति एक हुनर है', 'दबाव में शांत मन सबसे तेज़ होता है। वह बरसों पहले, छठी कक्षा में एक बार सुनी बात भी निकाल लाता है। बचे हुए मिनट ही हमें शांत रखते हैं, और यही यह छोटी घड़ी सिखाती है।'],
+      ['सिर्फ़ 10 सवाल क्यों', 'पूरे 100 सवालों का पेपर देखकर ही मुझे आलस आ जाता था। हुनर वही है, 10 सवालों और कुछ मिनटों में भी, और कुछ मिनट देना आसान है। तो इसे बार-बार कीजिए। कुछ भी सहेजा नहीं जाता: हर परीक्षा एक बार की है, न कोई इतिहास, न कोई अकाउंट।'],
+    ],
+  },
+}, lang);
+const W = { reattempt: T.reattempt, total: T.total, this: T.this, skip: T.skip, next: T.next, finish: T.finish, timeUp: T.timeUp, evalH: T.evalH, score: T.score, used: T.used, of: T.of, sec: T.sec, lRight: T.lRight, lWrong: T.lWrong, lSkip: T.lSkip, l30: T.l30, p10: T.p10, p30: T.p30, p40: T.p40, pSkip: T.pSkip, pNone: T.pNone, review: T.review, again: T.again };
+---
+
+<aside class="qm-why">
+  <p class="qm-why-h">⏱️ {T.whyH}</p>
+  <p class="qm-why-s">{T.whyShort}</p>
+  <details>
+    <summary>{T.more}</summary>
+    <dl>{T.why.map(([h, p]) => <><dt>{h}</dt><dd>{p}</dd></>)}</dl>
+  </details>
+</aside>
+
+<div class="qm" data-qm data-per={PER} data-mins={mins} data-w={JSON.stringify(W)}>
+  <div class="qm-tabs" role="tablist">
+    <button type="button" role="tab" aria-selected="true" data-qm-mode="practice">📝 {T.practice}</button>
+    <button type="button" role="tab" aria-selected="false" data-qm-mode="exam">⏱️ {T.exam}</button>
+  </div>
+  <p class="qm-hint" data-qm-hint>{T.pHint}</p>
+  <div class="qm-start" data-qm-start hidden>
+    <p>{T.start}</p>
+    <button type="button" class="btn" data-qm-go>{T.go}</button>
+  </div>
+  <div class="qm-clock" data-qm-clock hidden>
+    <div class="qm-total"><small>{T.total}</small><b data-qm-total>0:00</b></div>
+    <div class="qm-q" data-qm-q><small>{T.this}</small><b data-qm-sec>40</b></div>
+    <button type="button" class="btn" data-qm-next>{T.skip}</button>
+  </div>
+  <div class="qm-eval" data-qm-eval hidden></div>
+</div>
+
+<style>
+  .qm-why { max-width: 44rem; margin: 0 0 1rem; padding: 0.9rem 1.1rem; border-radius: var(--radius); border: 1px solid color-mix(in srgb, #c98a2b 30%, var(--line)); background: color-mix(in srgb, #c98a2b 7%, var(--surface)); font-size: 0.93rem; }
+  .qm-why-h { margin: 0 0 0.3rem; font-weight: 700; }
+  .qm-why-s { margin: 0; color: var(--ink-soft); line-height: 1.6; }
+  .qm-why summary { margin-top: 0.5rem; cursor: pointer; color: var(--accent); font-weight: 600; }
+  .qm-why dl { margin: 0.6rem 0 0; }
+  .qm-why dt { font-weight: 700; margin-top: 0.6rem; }
+  .qm-why dd { margin: 0.15rem 0 0; line-height: 1.6; color: var(--ink-soft); }
+  .qm { display: none; max-width: 44rem; }
+  :global(.js) .qm { display: block; }
+  .qm-tabs { display: inline-flex; gap: 0.3rem; padding: 0.25rem; border-radius: 999px; background: var(--accent-soft); margin-bottom: 0.5rem; }
+  .qm-tabs button { font: inherit; font-weight: 600; font-size: 0.92rem; border: 0; border-radius: 999px; padding: 0.4rem 0.95rem; background: none; color: var(--ink-soft); cursor: pointer; }
+  .qm-tabs button[aria-selected='true'] { background: var(--surface); color: var(--ink); box-shadow: 0 2px 8px rgb(0 0 0 / 0.08); }
+  .qm-hint { margin: 0 0 0.9rem; font-size: 0.9rem; color: var(--ink-soft); }
+  .qm-start { padding: 1rem 1.1rem; border-radius: var(--radius); border: 1px dashed var(--line); margin-bottom: 1rem; }
+  .qm-start p { margin: 0 0 0.8rem; }
+  .qm-clock { position: sticky; top: 4.6rem; max-width: 44rem; z-index: 5; display: flex; align-items: center; gap: 1rem; padding: 0.6rem 0.9rem; margin-bottom: 0.8rem; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 8px 24px rgb(0 0 0 / 0.08); }
+  .qm-clock[hidden] { display: none; }
+  .qm-clock small { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-soft); }
+  .qm-clock b { font-variant-numeric: tabular-nums; font-size: 1.25rem; }
+  .qm-q small { font-size: 0.56rem; letter-spacing: 0.02em; }
+  .qm-q { display: grid; place-items: center; text-align: center; width: 4.6rem; height: 4.6rem; border-radius: 50%; border: 3px solid var(--teal); transition: border-color 0.3s, color 0.3s; }
+  .qm-q.hot { border-color: #e0413a; color: #e0413a; animation: qm-beat 0.9s ease-in-out infinite; }
+  .qm-clock .btn { margin-left: auto; }
+  @keyframes qm-beat { 0%, 100% { transform: scale(1); } 14% { transform: scale(1.13); } 28% { transform: scale(1); } 42% { transform: scale(1.08); } 70% { transform: scale(1); } }
+  @media (prefers-reduced-motion: reduce) { .qm-q.hot { animation: none; } }
+  /* exam mode: no feedback, no going back */
+  :global(.exam-on .pq-pager), :global(.exam-on .pq-say), :global(.exam-on .ans), :global(.exam-on .behind), :global(.exam-on .qm-re) { display: none !important; }
+  :global(.exam-on .pq-opts button.picked) { border-color: var(--accent); background: var(--accent-soft); }
+  :global(.exam-done [data-run]) { display: none; }
+  /* Reattempt, top right of each question in Practice mode */
+  :global(.pq-mcq) { position: relative; }
+  :global(.qm-re) { position: absolute; top: 0.7rem; right: 0.8rem; display: grid; justify-items: center; gap: 0.05rem; font: inherit; font-size: 0.68rem; color: var(--ink-soft); background: none; border: 0; cursor: pointer; padding: 0.2rem; }
+  :global(.qm-re span) { font-size: 1.25rem; line-height: 1; color: var(--accent); }
+  :global(.qm-re:hover span) { transform: rotate(-90deg); transition: transform 0.3s; }
+  :global(.pq-mcq .tag) { padding-right: 4rem; }
+  /* the evaluation card */
+  .qm-eval { padding: 1.1rem 1.2rem; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); margin-bottom: 1rem; }
+  :global(.qm-eval h2) { margin: 0 0 0.4rem; font-size: 1.35rem; }
+  :global(.qm-sum) { display: flex; gap: 1.4rem; flex-wrap: wrap; margin: 0 0 0.8rem; }
+  :global(.qm-sum b) { font-size: 1.5rem; display: block; }
+  :global(.qm-sum small) { color: var(--ink-soft); }
+  :global(.qm-graph) { position: relative; display: flex; align-items: flex-end; gap: 0.35rem; height: 10rem; border-bottom: 1px solid var(--line); margin: 1.6rem 0 1.8rem; }
+  :global(.qm-bar) { position: relative; flex: 1; min-width: 0; border-radius: 6px 6px 0 0; background: var(--line); }
+  :global(.qm-bar.ok) { background: var(--teal); }
+  :global(.qm-bar.no) { background: var(--coral); }
+  :global(.qm-bar i) { position: absolute; bottom: 100%; left: 0; right: 0; text-align: center; font-style: normal; font-size: 0.72rem; color: var(--ink-soft); }
+  :global(.qm-bar em) { position: absolute; top: calc(100% + 0.3rem); left: 0; right: 0; text-align: center; font-style: normal; font-size: 0.72rem; color: var(--ink-soft); }
+  :global(.qm-line) { position: absolute; left: 0; right: 0; border-top: 1px dashed #e0413a; pointer-events: none; }
+  :global(.qm-line span) { position: absolute; right: 0; top: -1.1rem; font-size: 0.68rem; color: #e0413a; }
+  :global(.qm-legend) { display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.8rem; color: var(--ink-soft); margin: 0.9rem 0 0.8rem; }
+  :global(.qm-legend span::before) { content: ''; display: inline-block; width: 0.7rem; height: 0.7rem; border-radius: 3px; margin-right: 0.3rem; vertical-align: -1px; background: var(--line); }
+  :global(.qm-legend .ok::before) { background: var(--teal); }
+  :global(.qm-legend .no::before) { background: var(--coral); }
+  :global(.qm-pats) { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; gap: 0.4rem; }
+  :global(.qm-pats li) { padding: 0.5rem 0.75rem; border-radius: 10px; background: color-mix(in srgb, var(--teal) 9%, var(--surface)); }
+  :global(.qm-acts) { display: flex; gap: 0.6rem; flex-wrap: wrap; margin: 0; }
+</style>
