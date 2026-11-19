@@ -28,9 +28,9 @@ Links to them: the footer (Begin column, and "Credits and sources" next to Priva
 
 **Layout:** `src/components/aspirants/TalkBook.astro`, the same pattern as My story: topics with their questions down the left and right side bars, one answer at a time in the middle (Previous / Next, arrow keys, swipe), "Read it all at once", and a fold-out list on phones. Each answer shows its read time and a "Books that helped me" box.
 
-**Now:** 21 talks in 8 topics, about 440 words each in English (about 3 minutes), all in Hindi too.
+**Now:** 29 talks in 10 topics, all in English and Hindi. Parts 1 and 2 (`talks-1.ts`, `talks-2.ts`, 18 Nov 2026) have about 440 words each. Part 3 (`talks-3.ts`, 19 Nov 2026) comes from his voice note on time pressure: "In the exam hall" (stuck on one question, strange questions, re-reading, the first instinct and the ocean of the mind, the mind going blank, the 100-question mock) and "What is all this for?" (what use is this knowledge, were the years wasted). The page ends open: "More thoughts are on their way…", because he will keep adding.
 
-**To add a talk** (for example, from a problem a reader sent): add an item to a topic in `talks-1.ts` or `talks-2.ts`:
+**To add a talk** (for example, from a problem a reader sent): add an item to a topic in `talks-1.ts`, `talks-2.ts` or `talks-3.ts`:
 
 ```ts
 { id: 'unique-link-name', q: { en: '…', hi: '…' }, books: ['atomic'], a: { en: ['para 1', 'para 2'], hi: ['…', '…'] } },

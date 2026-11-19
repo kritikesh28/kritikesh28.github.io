@@ -26,6 +26,7 @@ const T = pick({
       'Here I share what went on in my head, how long it lasted, who helped me (seniors, my parents, teachers) and what the books I leaned on had to say. Start from the smallest problem. None of them is silly.',
     ],
     meta: (n: number, t: number) => `${n} talks in ${t} topics · each about a 3-minute read`,
+    moreH: 'More thoughts are on their way…', moreP: 'This page isn’t finished, and I hope it never is. Whenever a new thought comes, mine or one you send me, it will find a place here.',
     whyLink: 'Why is this site made this way?', creditsLink: 'Credits and sources',
     shareE: 'Your turn', shareH: 'Tell me what you are going through',
     shareP: 'Any problem, however small or silly it feels. Send it with your name, or completely anonymously. I read every message myself. With your permission, I will talk about it here in a new answer, without your name unless you ask for it, so that others who feel the same know they are not alone.',
@@ -45,6 +46,7 @@ const T = pick({
       'यहाँ मैं बताता हूँ कि मेरे मन में क्या चलता था, कितने समय तक चला, किसने मदद की (सीनियर्स, माँ-पापा, शिक्षक), और जिन किताबों का मैंने सहारा लिया, उन्होंने क्या कहा। सबसे छोटी परेशानी से शुरू कीजिए। इनमें से कोई भी बेवक़ूफ़ी वाली नहीं।',
     ],
     meta: (n: number, t: number) => `${t} विषयों में ${n} बातें · हर एक लगभग 3 मिनट की`,
+    moreH: 'और बातें रास्ते में हैं…', moreP: 'यह पन्ना पूरा नहीं हुआ, और उम्मीद है कभी होगा भी नहीं। जब भी कोई नई बात आएगी, मेरी या आपकी भेजी हुई, उसे यहाँ जगह मिलेगी।',
     whyLink: 'यह साइट इस तरह क्यों बनी है?', creditsLink: 'आभार और स्रोत',
     shareE: 'अब आपकी बारी', shareH: 'मुझे बताइए, आप किस दौर से गुज़र रहे हैं',
     shareP: 'कोई भी परेशानी, चाहे कितनी भी छोटी या बेवक़ूफ़ी भरी लगे। अपने नाम के साथ भेजिए, या पूरी तरह बिना नाम के। हर संदेश मैं ख़ुद पढ़ता हूँ। आपकी इजाज़त से, मैं इस पर यहाँ एक नए जवाब में बात करूँगा, आपके नाम के बिना जब तक आप ख़ुद न कहें, ताकि ऐसा ही महसूस करने वाले दूसरे लोग जानें कि वे अकेले नहीं हैं।',
@@ -74,6 +76,7 @@ const schema = [{
     </header>
 
     <TalkBook topics={TALKS} share="#share" />
+    <aside class="more"><p class="more-h">{T.moreH}</p><p>{T.moreP}</p></aside>
 
     <section class="share" id="share" aria-labelledby="share-h">
       <p class="share-e">{T.shareE}</p>
@@ -138,6 +141,9 @@ const schema = [{
   .name { display: block; font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: clamp(2.6rem, 6.5vw, 4.4rem); line-height: 1.05; letter-spacing: -0.01em; color: var(--ink); }
   .sub { margin: 0 0 1rem; font-family: var(--font-serif); font-size: clamp(1.1rem, 2.2vw, 1.35rem); color: var(--ink); }
   .lede { font-family: var(--font-serif); font-size: 1.1rem; line-height: 1.7; color: var(--ink-soft); margin: 0 0 0.7rem; }
+  .more { max-width: 40rem; margin: 2.2rem auto 0; text-align: center; color: var(--ink-soft); }
+  .more-h { margin: 0 0 0.3rem; font-family: var(--font-display); font-style: italic; font-size: 1.5rem; color: var(--ink); }
+  .more p:last-child { margin: 0; }
   .meta { font-size: 0.9rem; color: var(--ink-soft); margin: 0.8rem 0 0; }
   .meta a { color: var(--accent); }
 
