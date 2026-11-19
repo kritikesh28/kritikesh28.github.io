@@ -195,22 +195,23 @@ const T = pick({
 </Base>
 
 <style>
-  /* the bands: very light washes of the site's own colours, so each section reads as its own room */
-  .band { position: relative; padding-block: clamp(2.8rem, 6vw, 4.2rem); background: var(--band); border-top: 1px solid color-mix(in srgb, var(--band-edge) 18%, transparent); }
+  /* the bands: each section has its own light pastel, and no two neighbours share a family (warm, then cool, then warm…),
+     so scrolling down you feel you are stepping into a new room (his wish, 19 Nov 2026). In dark mode each band is a faint tint of its own colour. */
+  .band { position: relative; padding-block: clamp(2.8rem, 6vw, 4.2rem); --band: var(--pastel); background: var(--band); border-top: 1px solid color-mix(in srgb, var(--band-edge) 22%, transparent); }
+  :global(:root[data-theme='dark']) .band { --band: color-mix(in srgb, var(--band-edge) 8%, var(--bg)); }
+  @media (prefers-color-scheme: dark) { :global(:root:not([data-theme='light'])) .band { --band: color-mix(in srgb, var(--band-edge) 8%, var(--bg)); } }
   .band::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 90% at 100% 0%, color-mix(in srgb, var(--band-edge) 9%, transparent), transparent 70%); }
   .band > .wrap { position: relative; }
-  .b-me { --band-edge: var(--gold); --band: color-mix(in srgb, var(--gold) 8%, var(--bg)); }
-  .b-story { --band-edge: var(--coral); --band: color-mix(in srgb, var(--gold) 8%, var(--bg)); border-top: 0; padding-top: 0; }
-  .b-mmkb { --band-edge: #d77a9a; --band: color-mix(in srgb, #f3c6d3 22%, var(--bg)); padding-block: clamp(2rem, 4.5vw, 3rem); }
-  :global(:root[data-theme='dark']) .b-mmkb { --band: color-mix(in srgb, #d77a9a 7%, var(--bg)); }
-  @media (prefers-color-scheme: dark) { :global(:root:not([data-theme='light'])) .b-mmkb { --band: color-mix(in srgb, #d77a9a 7%, var(--bg)); } }
+  .b-me { --band-edge: #d9a24a; --pastel: #fbefdc; }      /* warm cream */
+  .b-story { --band-edge: #8f7be8; --pastel: #ece7fb; border-top: 0; padding-top: 0; }   /* lavender */
+  .b-mmkb { --band-edge: #d77a9a; --pastel: #fbe4ec; padding-block: clamp(2rem, 4.5vw, 3rem); }   /* blush */
   .b-mmkb :global(.cc) { margin-top: 0; }
-  .b-lib { --band-edge: var(--accent); --band: color-mix(in srgb, var(--accent) 5%, var(--bg)); }
-  .b-tree { --band-edge: var(--teal); --band: color-mix(in srgb, var(--teal) 6%, var(--bg)); }
-  .b-exam { --band-edge: #c98a2b; --band: color-mix(in srgb, #c98a2b 7%, var(--bg)); }
-  .b-live { --band-edge: #3f7fc4; --band: color-mix(in srgb, #3f7fc4 6%, var(--bg)); }
-  .b-pf { --band-edge: var(--coral); --band: color-mix(in srgb, var(--coral) 6%, var(--bg)); }
-  .b-read { --band-edge: #8f7be8; --band: color-mix(in srgb, #8f7be8 8%, var(--bg)); border-bottom: 1px solid color-mix(in srgb, #8f7be8 18%, transparent); }
+  .b-lib { --band-edge: #3fa58a; --pastel: #e1f3ec; }     /* mint */
+  .b-tree { --band-edge: #d0a72e; --pastel: #fcf3d6; }    /* butter */
+  .b-exam { --band-edge: #3f7fc4; --pastel: #e2eefb; }    /* sky */
+  .b-live { --band-edge: #e0876a; --pastel: #fde8df; }    /* apricot */
+  .b-pf { --band-edge: #2f9aa0; --pastel: #ddf1f1; }      /* sea-glass */
+  .b-read { --band-edge: #8f7be8; --pastel: #efe9fc; border-bottom: 1px solid color-mix(in srgb, #8f7be8 18%, transparent); }   /* lilac */
   .band :global(.cta) { margin-top: 0; }
 
   /* about me */
