@@ -72,12 +72,18 @@ function setPage(root: HTMLElement, signal: AbortSignal) {
   };
   for (const c of cards) {
     const front = c.querySelector<HTMLElement>('.front');
-    const flip = () => c.classList.toggle('flipped');
+    const back = c.querySelector<HTMLElement>('.back');
+    // the back holds the solution, so the card grows to fit it while it is turned over
+    const fit = () => { c.style.minHeight = c.classList.contains('flipped') && back ? `${back.scrollHeight + 2}px` : ''; };
+    const turn = (on: boolean) => { c.classList.toggle('flipped', on); fit(); if (!on) back?.querySelectorAll('details').forEach((d) => (d.open = false)); };
+    const flip = () => turn(!c.classList.contains('flipped'));
     front?.addEventListener('click', flip);
     front?.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
-    c.querySelector('.back')?.addEventListener('click', (e) => { if (!(e.target as HTMLElement).closest('button')) flip(); });
-    c.querySelector('[data-ok]')?.addEventListener('click', () => { setKnown(bank, c.dataset.key!, true); c.classList.remove('flipped'); refresh(); });
-    c.querySelector('[data-again]')?.addEventListener('click', () => { setKnown(bank, c.dataset.key!, false); c.classList.remove('flipped'); refresh(); });
+    back?.addEventListener('click', (e) => { if (!(e.target as HTMLElement).closest('button, a, details')) flip(); });
+    back?.querySelectorAll('details').forEach((d) => d.addEventListener('toggle', fit));
+    c.querySelector('[data-ok]')?.addEventListener('click', () => { setKnown(bank, c.dataset.key!, true); turn(false); refresh(); });
+    // "Re-attempt": forget it and turn the card back to the question
+    c.querySelector('[data-again]')?.addEventListener('click', () => { setKnown(bank, c.dataset.key!, false); turn(false); refresh(); front?.focus(); });
   }
   refresh();
   const flipBox = root.querySelector<HTMLElement>('[data-flip]');
@@ -241,7 +247,10 @@ function mcqPage(root: HTMLElement) {
     });
   }
   const box = root.querySelector<HTMLElement>('[data-run]');
-  if (box) screens(box);
+  const sc = box ? screens(box) : undefined;
+  // a link from a flip card ("…/paper/u7b/1/#m66") opens at that question
+  const at = qs.findIndex((q) => `#${q.id}` === location.hash);
+  if (sc && at > 0) sc.show(at, true);
   upd();
 }
 

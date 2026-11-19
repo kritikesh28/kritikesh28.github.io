@@ -2,8 +2,10 @@
 // A deck of PYQ flip cards (8 to a screen) with the quick quiz over the same cards. Used by the PYQ set pages and
 // the syllabus-topic practice pages. Put the page's header in the "hero" slot (it may hold the mastery meter), and
 // anything after the deck in the default slot. The behaviour is in src/scripts/pyq.ts. Guide: docs/19-pyq-practice.md
-import { heat, KIND, quizOptions, SCREEN, orig, type Bank, type Row } from '../../pyq';
+import { heat, KIND, quizOptions, SCREEN, orig, solution, rowsForMcq, mostAsked, mcqHref, ciTopicOfRow, type Bank, type Row } from '../../pyq';
+import { ciTopic, topicUrlIn } from '../../exam-prep';
 import { langFromUrl, pick } from '../../i18n/config';
+import SolQA from './SolQA.astro';
 import '../../styles/pyq.css';
 
 interface Props { bank: Bank; cards: { key: string; row: Row }[] }
@@ -12,16 +14,29 @@ const lang = langFromUrl(Astro.url);
 const cl = b.content;
 const T = pick({
   en: {
-    meter: '{n} of {t} mastered', modes: 'How do you want to practise?', flip: '🃏 Flip cards', quiz: '⚡ Quick quiz (5)', tap: 'Tap to see the answer', ok: '✓ I knew it', again: '↻ Again',
+    meter: '{n} of {t} mastered', modes: 'How do you want to practise?', flip: '🃏 Flip cards', quiz: '⚡ Quick quiz (5)', tap: 'Tap to see the answer', ok: '✓ I knew it', again: '↻ Re-attempt',
     screen: 'Screen', prev: '← Back', next: 'Next →', hotT: (n: number) => `Asked in ${n} exams`,
     qT: 'Question', right: 'Right! ✓', wrong: 'Not quite. The answer is', qNext: 'Next question →', qAgain: 'Play 5 more', score: 'You got {s} out of {t}.',
+    bg: '📖 Background in short', bgAlso: 'What else do examiners ask here?', bgTopic: 'What is this topic about?', bgBasics: 'Learn it from the basics →', real: 'See the real exam question →',
   },
   hi: {
-    meter: '{t} में से {n} याद हो गए', modes: 'कैसे अभ्यास करना है?', flip: '🃏 फ़्लिप कार्ड', quiz: '⚡ झटपट क्विज़ (5)', tap: 'उत्तर देखने के लिए टैप करें', ok: '✓ याद था', again: '↻ फिर से',
+    meter: '{t} में से {n} याद हो गए', modes: 'कैसे अभ्यास करना है?', flip: '🃏 फ़्लिप कार्ड', quiz: '⚡ झटपट क्विज़ (5)', tap: 'उत्तर देखने के लिए टैप करें', ok: '✓ याद था', again: '↻ फिर से करें',
     screen: 'स्क्रीन', prev: '← पीछे', next: 'आगे →', hotT: (n: number) => `${n} परीक्षाओं में पूछा गया`,
     qT: 'सवाल', right: 'सही! ✓', wrong: 'नहीं, सही उत्तर है', qNext: 'अगला सवाल →', qAgain: '5 और खेलें', score: '{t} में से {s} सही।',
+    bg: '📖 संक्षेप में पृष्ठभूमि', bgAlso: 'यहाँ से परीक्षक और क्या पूछते हैं?', bgTopic: 'यह टॉपिक किस बारे में है?', bgBasics: 'शुरू से पढ़िए →', real: 'असली परीक्षा का सवाल देखिए →',
   },
 }, lang);
+// the back of a card: the solution of the exam question it came from, and a short background
+const extra = (key: string, r: Row) => {
+  const id = r.i?.[0];
+  const slug = key.split(':')[0];
+  const sol = id ? solution(b, id, lang) : undefined;
+  const src = id ? b.papers.flatMap((p) => p.m.filter((m) => b.idPrefix(p, m) === id))[0] : undefined;
+  const also = id ? mostAsked(rowsForMcq(b, id).filter((x) => x.row !== r)).slice(0, 3).map((x) => x.row) : [];
+  const tid = ciTopicOfRow(b, slug, r);
+  const topic = tid ? ciTopic(tid, lang) : undefined;
+  return { sol, a: src?.a ?? 0, also, topic, tid, real: id ? mcqHref(b, id, lang) : undefined };
+};
 const screens: (typeof cards)[] = [];
 for (let i = 0; i < cards.length; i += SCREEN) screens.push(cards.slice(i, i + SCREEN));
 ---
@@ -39,6 +54,7 @@ for (let i = 0; i < cards.length; i += SCREEN) screens.push(cards.slice(i, i + S
       <ul class="pq-cards" data-screen={si}>
         {sc.map(({ key, row: r }) => {
           const h = heat(r);
+          const e = extra(key, r);
           return (
             <li class="pq-card" data-card data-key={key} data-q={r.q} data-a={r.a} data-o={quizOptions(b, r)?.join('\u241F')} id={`q${key.replace(':', '-')}`}>
               <div class="in">
@@ -55,6 +71,17 @@ for (let i = 0; i < cards.length; i += SCREEN) screens.push(cards.slice(i, i + S
                   <p class="a" lang={cl} data-orig={orig(r.a, r.o0?.a)}>{r.a}</p>
                   {r.f && <p class="flag" lang={cl}>(<span data-orig={orig(r.f, r.o0?.f)}>{r.f}</span>)</p>}
                   {r.x && <span class="chips">{r.x.slice(0, 4).map((x) => <span class="pq-chip">{x}</span>)}{r.x.length > 4 && <span class="pq-chip">+{r.x.length - 4}</span>}</span>}
+                  {e.sol && <SolQA sol={e.sol} a={e.a} compact />}
+                  {(e.also.length > 0 || e.topic || e.real) && (
+                    <details class="pq-more pq-bg">
+                      <summary>{T.bg}</summary>
+                      <dl class="pq-qa">
+                        {e.also.length > 0 && <><dt>{T.bgAlso}</dt><dd><ul lang={cl}>{e.also.map((x) => <li><span data-orig={orig(x.q, x.o0?.q)}>{x.q}</span> <b data-orig={orig(x.a, x.o0?.a)}>{x.a}</b></li>)}</ul></dd></>}
+                        {e.topic && <><dt>{T.bgTopic}</dt><dd><span lang={e.topic.en ? 'en' : undefined}>{e.topic.t}</span>{e.topic.d && <>: <span lang={e.topic.en ? 'en' : undefined}>{e.topic.d}</span></>} <a href={topicUrlIn(e.tid!, lang)}>{T.bgBasics}</a></dd></>}
+                      </dl>
+                      {e.real && <a class="small" href={e.real}>{T.real}</a>}
+                    </details>
+                  )}
                   <span class="mark"><button type="button" class="ok" data-ok>{T.ok}</button><button type="button" data-again>{T.again}</button></span>
                 </div>
               </div>

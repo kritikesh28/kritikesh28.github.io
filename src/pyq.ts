@@ -253,6 +253,33 @@ export function setOfRow(b: Bank, sub: Sub, n: number) {
   return qaSets(b).find((x) => x.sub === sub && x.rows.some((r) => r.n === n));
 }
 
+/** The real exam question a card was made from: its page, opened at that question */
+const mcqAt = new Map<string, Map<string, string>>();
+export function mcqHref(b: Bank, id: string, lang: Lang): string | undefined {
+  const ck = `${b.key}:${lang}`;
+  if (!mcqAt.has(ck)) {
+    const m = new Map<string, string>();
+    for (const s of mcqSets(b)) for (const q of s.m) { const k = b.idPrefix(s.paper, q); if (!m.has(k)) m.set(k, `${pyqPath(lang, b.slug, 'paper', s.paper.id, s.set)}#m${q.n}`); }
+    mcqAt.set(ck, m);
+  }
+  return mcqAt.get(ck)!.get(id);
+}
+/** The Curriculum Index topic that teaches a card from the basics: the card's own match, else its deck's closest topic */
+const deckTopic = new Map<string, string | undefined>();
+export function ciTopicOfRow(b: Bank, slug: string, r: Row): string | undefined {
+  const own = CM.rows[b.key]?.[`${slug}:${r.n}`];
+  if (own) return own;
+  const ck = `${b.key}:${slug}`;
+  if (!deckTopic.has(ck)) {
+    const sub = b.groups.flatMap((g) => g.subs).find((s) => s.slug === slug);
+    deckTopic.set(ck, sub ? ciTopicsFor(b, sub, sub.rows)[0] : undefined);
+  }
+  return deckTopic.get(ck);
+}
+const KIND_RANK: Record<string, number> = { PYQ: 0, 'PYQ-corrected': 0, Rev: 1, Expl: 2, Tab: 2, Box: 3, Option: 4, Added: 5 };
+/** The facts an examiner is most likely to ask: asked most often first, then facts that were asked, then explanations */
+export const mostAsked = <T extends { row: Row }>(list: T[]) => [...list].sort((a, z) => heat(z.row) - heat(a.row) || (KIND_RANK[a.row.k] ?? 9) - (KIND_RANK[z.row.k] ?? 9));
+
 /** How many exams asked a row (the "favourite" heat): PYQ rows count their exams, other kinds count 0 */
 export const heat = (r: Row) => (r.k.startsWith('PYQ') || r.k === 'Rev' ? (r.x?.length ?? 0) : 0);
 
