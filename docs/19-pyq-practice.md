@@ -13,7 +13,7 @@ The PYQ practice section lives at **curioussparoows.com/exam-prep/pyq/**. It put
 | Rajasthan Geography (RPSC/RSSB) | /exam-prep/pyq/rajasthan-geography/ | Hindi | 4,647 from book chapters 1–4 (rev4 file) | all 544, sorted into 15 official syllabus topics (G1.1–G2.6), not the book's chapters |
 | UGC-NET Geography | /exam-prep/pyq/ugc-net-geography/ | English | 2,207 from the Political Geography chapter (U7B), grouped by the official 10 units | 1,406 from 9 chapters (U5A–U7B) |
 
-**Translations (19 November 2026):** the Rajasthan bank now also reads in English on the English site (all 4,647 flip cards, their quiz options and all 544 real MCQs, translated by hand), with a **See original (हिन्दी)** button on every page. NET in Hindi is in progress (part 7).
+**Translations (19 November 2026):** the Rajasthan bank now also reads in English on the English site (all 4,647 flip cards, their quiz options and all 544 real MCQs, translated by hand), with a **See original (हिन्दी)** button on every page. The NET bank now also reads in Hindi on the Hindi site (all 5,040 flip-card strings and all 1,406 real MCQs, translated by hand), with a **मूल देखें (English)** button (part 7).
 
 The Q&A of Rajasthan chapter 5 (Climate) and of the other NET chapters comes later: re-run the builder (part 4) when the new Word file is ready and the pages appear by themselves.
 
@@ -104,10 +104,13 @@ Kritikesh asked (18 November 2026) that every reader can practise in their own l
 - The translations are done by hand (no machine translation), one string at a time, and kept as plain text files in `tools/pyq/tr/`:
   - `raj-strings.json` (every Hindi string of the flip cards, titles and quiz options) and `raj-en/NNN.tsv` (`index<TAB>English`, one per line);
   - `raj-mcq-strings.json` (every Hindi string of the real MCQs: stems, options, tables, exam tags) and `raj-mcq-en/NNN.tsv`;
-  - the same for NET later: `net-strings.json` + `net-hi/`, `net-mcq-strings.json` + `net-mcq-hi/`.
+  - the same for NET: `net-strings.json` + `net-hi/`, `net-mcq-strings.json` + `net-mcq-hi/` (`auto.tsv` holds the pattern-made lines such as "A, B और C"; `rNNN.tsv` the hand-written ones). Strings that are only codes ("A-II, B-I…", "(iii)") stay as they are.
+  - `raj-extra-en.tsv` / `net-extra-hi.tsv` hold strings added later (`original<TAB>translation`), for example reworded cards and the "Dec.2019" session tags.
+  - A string with a line break is written on one line with `\n` where the break goes; the builder turns it back into a break.
 - `python3 tools/pyq/tr/build_dict.py` joins them into `src/data/pyq/tr/raj-en.json` (and `net-hi.json`): `{original: translation}`. **Never edit that file by hand**; fix the `.tsv` line and re-run.
 - `inLang(bank, lang)` in `src/pyq.ts` gives the pages a translated copy of the bank. The copy keeps the original wording (`t0`, `o0`), and the pages put it on each translated element as `data-orig`. A string with no translation yet simply stays as it was asked.
 - `src/components/exam/OrigToggle.astro` shows **See original (हिन्दी)** / **मूल देखें (English)** in the page header; `origToggle` in `src/scripts/pyq.ts` swaps the text and remembers the choice on the device (`cs-pyq-orig`). The quick quiz always plays in the reader's language.
 - Conventions used: "(as per the book)", "August 2023 set-up" for the district re-organisation, "sq km", "m", en dashes for ranges, the Indian number format (1,75,000), exam names as on the RPSC/RSSB notices (for example "Patwar", "Jail Prahari exam"). Place names follow the district list in the Rajasthan GK pages.
+- NET Hindi conventions: standard exam Hindi (कूट, सूची-I का सूची-II से मिलान कीजिए, अभिकथन (A) / कारण (R), नीचे दिए गए विकल्पों में से सही उत्तर चुनिए, केवल A और B); scholars and book titles written in Devanagari (फ़ॉन थ्यूनेन, 'लोकेशन एनालिसिस इन ह्यूमन ज्योग्राफ़ी'); acronyms kept in Latin letters (WTO, SAARC, HDI); fixed glossary terms such as जनांकिकीय संक्रमण, कायिक घनत्व, संकेंद्रीय वलय, प्रमुख नगर, श्रेणी-आकार नियम, सन्नगर, देहली, परास, पृष्ठप्रदेश, फ़सल संयोजन, स्थानांतरी कृषि, स्वच्छंद उद्योग, आइसोडापेन, पदार्थ सूचकांक, हृदय स्थल, सीमांत.
 
 **After the builder runs again** (a new Word file): new Hindi strings have no translation and show in Hindi. List them with a short script against `raj-strings.json`, add them at the end of `raj-strings.json`, write their English in a new `raj-en/NNN.tsv`, then run `build_dict.py` and build.
