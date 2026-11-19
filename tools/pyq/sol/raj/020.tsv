@@ -1,0 +1,150 @@
+RB5-97	en	w	The semi-arid (steppe) region covers Jalore, Pali, Jodhpur, Nagaur, Sikar and Jhunjhunu, the belt between the core desert and the Aravallis.
+RB5-97	en	o	Humid south ¦ Right: Jalore, Pali, Jodhpur, Nagaur, Sikar, Jhunjhunu ¦ Humid and very humid south-east ¦ Mostly arid north-west
+RB5-97	en	t	Steppe belt = the desert's eastern fringe.
+RB5-97	hi	w	अर्ध-शुष्क (स्टेपी) प्रदेश में जालोर, पाली, जोधपुर, नागौर, सीकर और झुंझुनूं आते हैं, जो मुख्य मरुस्थल और अरावली के बीच की पट्टी है।
+RB5-97	hi	o	आर्द्र दक्षिण ¦ सही: जालोर, पाली, जोधपुर, नागौर, सीकर, झुंझुनूं ¦ आर्द्र और अति आर्द्र दक्षिण-पूर्व ¦ अधिकतर शुष्क उत्तर-पश्चिम
+RB5-97	hi	t	स्टेपी पट्टी = मरुस्थल का पूर्वी किनारा।
+RB5-98	en	w	Climate is the average of weather conditions over a long period, usually 30 years or more. Weather is the condition at a given time.
+RB5-98	en	o	Weather is day-to-day ¦ Right: climate ¦ A season is part of a year ¦ A cyclone is a storm system
+RB5-98	en	t	Weather = mood; climate = character.
+RB5-98	hi	w	जलवायु लंबी अवधि, सामान्यतः 30 वर्ष या अधिक, की मौसमी दशाओं का औसत है। मौसम किसी समय की दशा है।
+RB5-98	hi	o	मौसम रोज़ का होता है ¦ सही: जलवायु ¦ ऋतु वर्ष का भाग है ¦ चक्रवात तूफ़ानी तंत्र है
+RB5-98	hi	t	मौसम = मिज़ाज; जलवायु = स्वभाव।
+RB5-99	en	w	This question matched cities with line graphs of their monthly temperatures, printed in the original paper. The keyed code is A-(iv), B-(iii), C-(ii), D-(i); see the original for the graphs.
+RB5-99	en	o	Wrong order ¦ Wrong order ¦ Wrong order ¦ Right: (iv), (iii), (ii), (i)
+RB5-99	en	t	Desert cities show the steepest summer peak; Abu the flattest curve.
+RB5-99	hi	w	इस प्रश्न में शहरों को उनके मासिक तापमान के रेखा-ग्राफ़ से मिलाना था, जो मूल पेपर में छपे थे। कुंजी का कोड A-(iv), B-(iii), C-(ii), D-(i) है; ग्राफ़ के लिए मूल देखें।
+RB5-99	hi	o	गलत क्रम ¦ गलत क्रम ¦ गलत क्रम ¦ सही: (iv), (iii), (ii), (i)
+RB5-99	hi	t	मरुस्थलीय शहरों में गर्मी का शिखर सबसे तीखा; आबू का वक्र सबसे सपाट।
+RB5-100	en	w	Thornthwaite built his classification on precipitation effectiveness (rain compared with evaporation) and temperature efficiency, so rainfall is at its core.
+RB5-100	en	o	Köppen used vegetation-based temperature and rain limits ¦ Kendrew described climates regionally ¦ Not a standard name ¦ Right: Thornthwaite
+RB5-100	en	t	Thornthwaite = water balance.
+RB5-100	hi	w	थॉर्नथ्वेट ने अपना वर्गीकरण वर्षण प्रभाविता (वर्षा बनाम वाष्पीकरण) और तापीय दक्षता पर बनाया, इसलिए इसके केंद्र में वर्षा है।
+RB5-100	hi	o	कोपेन ने वनस्पति आधारित तापमान और वर्षा सीमाएँ लीं ¦ केंड्रयू ने प्रादेशिक वर्णन किया ¦ मानक नाम नहीं ¦ सही: थॉर्नथ्वेट
+RB5-100	hi	t	थॉर्नथ्वेट = जल संतुलन।
+RB5-101	en	w	Köppen based his climatic regions on vegetation, choosing temperature and rainfall limits that match where natural vegetation types change.
+RB5-101	en	o	Right: vegetation ¦ Used, but as a limit set by vegetation ¦ Used, but as a limit set by vegetation ¦ Not his basis
+RB5-101	en	t	Köppen read climate from plants.
+RB5-101	hi	w	कोपेन ने अपने जलवायु प्रदेश वनस्पति के आधार पर बनाए, और तापमान व वर्षा की वे सीमाएँ चुनीं जहाँ प्राकृतिक वनस्पति के प्रकार बदलते हैं।
+RB5-101	hi	o	सही: वनस्पति ¦ प्रयोग किया, पर वनस्पति से तय सीमा के रूप में ¦ प्रयोग किया, पर वनस्पति से तय सीमा के रूप में ¦ उनका आधार नहीं
+RB5-101	hi	t	कोपेन ने पौधों से जलवायु पढ़ी।
+RB5-102	en	w	In Köppen codes, a small k means cold (mean annual temperature below 18°C). BSkw, a cold steppe, is not found in Rajasthan; the steppe here is hot (BShw). Köppen in Rajasthan: BWhw = hot desert (far west), BShw = semi-arid steppe (west of the Aravallis), Cwg = sub-humid (east of the Aravallis), Aw = tropical savanna (far south and south-east).
+RB5-102	en	o	Found: the far west ¦ Right: BSkw (cold steppe) is not found ¦ Found: the east ¦ Found: the far south
+RB5-102	en	t	h = hot, k = cold: Rajasthan is always h.
+RB5-102	hi	w	कोपेन कोड में छोटा k ठंडे (औसत वार्षिक तापमान 18° से. से कम) को दर्शाता है। BSkw, यानी ठंडा स्टेपी, राजस्थान में नहीं मिलता; यहाँ का स्टेपी गर्म (BShw) है। राजस्थान में कोपेन: BWhw = उष्ण मरुस्थल (सुदूर पश्चिम), BShw = अर्ध-शुष्क स्टेपी (अरावली के पश्चिम), Cwg = उप-आर्द्र (अरावली के पूर्व), Aw = उष्ण सवाना (सुदूर दक्षिण और दक्षिण-पूर्व)।
+RB5-102	hi	o	मिलता है: सुदूर पश्चिम ¦ सही: BSkw (ठंडा स्टेपी) नहीं मिलता ¦ मिलता है: पूर्व ¦ मिलता है: सुदूर दक्षिण
+RB5-102	hi	t	h = गर्म, k = ठंडा: राजस्थान हमेशा h।
+RB5-103	en	w	Reading the map from west to south-east, the regions are (i) BWhw, (ii) BShw, (iii) Cwg and (iv) Aw. Köppen in Rajasthan: BWhw = hot desert (far west), BShw = semi-arid steppe (west of the Aravallis), Cwg = sub-humid (east of the Aravallis), Aw = tropical savanna (far south and south-east).
+RB5-103	en	o	Wrong order ¦ Reversed ¦ Right: BWhw, BShw, Cwg, Aw ¦ Wrong order
+RB5-103	en	t	West to south-east: BWhw → BShw → Cwg → Aw.
+RB5-103	hi	w	मानचित्र को पश्चिम से दक्षिण-पूर्व पढ़ें तो प्रदेश हैं (i) BWhw, (ii) BShw, (iii) Cwg और (iv) Aw। राजस्थान में कोपेन: BWhw = उष्ण मरुस्थल (सुदूर पश्चिम), BShw = अर्ध-शुष्क स्टेपी (अरावली के पश्चिम), Cwg = उप-आर्द्र (अरावली के पूर्व), Aw = उष्ण सवाना (सुदूर दक्षिण और दक्षिण-पूर्व)।
+RB5-103	hi	o	गलत क्रम ¦ उलटा ¦ सही: BWhw, BShw, Cwg, Aw ¦ गलत क्रम
+RB5-103	hi	t	पश्चिम से दक्षिण-पूर्व: BWhw → BShw → Cwg → Aw।
+RB5-104	en	w	Cwg is found in the east and south-east of the Aravallis, not in northern Rajasthan, so that pair is wrong. Köppen in Rajasthan: BWhw = hot desert (far west), BShw = semi-arid steppe (west of the Aravallis), Cwg = sub-humid (east of the Aravallis), Aw = tropical savanna (far south and south-east).
+RB5-104	en	o	Correct ¦ Right: wrongly matched ¦ Correct ¦ Correct
+RB5-104	en	t	West to south-east: BWhw → BShw → Cwg → Aw.
+RB5-104	hi	w	Cwg अरावली के पूर्व और दक्षिण-पूर्व में मिलता है, उत्तरी राजस्थान में नहीं, इसलिए यह जोड़ी गलत है। राजस्थान में कोपेन: BWhw = उष्ण मरुस्थल (सुदूर पश्चिम), BShw = अर्ध-शुष्क स्टेपी (अरावली के पश्चिम), Cwg = उप-आर्द्र (अरावली के पूर्व), Aw = उष्ण सवाना (सुदूर दक्षिण और दक्षिण-पूर्व)।
+RB5-104	hi	o	सही ¦ सही उत्तर: गलत मिलान ¦ सही ¦ सही
+RB5-104	hi	t	पश्चिम से दक्षिण-पूर्व: BWhw → BShw → Cwg → Aw।
+RB5-105	en	w	BShw, the semi-arid steppe, lies west of the Aravallis, between the hot desert and the hills. Köppen in Rajasthan: BWhw = hot desert (far west), BShw = semi-arid steppe (west of the Aravallis), Cwg = sub-humid (east of the Aravallis), Aw = tropical savanna (far south and south-east).
+RB5-105	en	o	Not the steppe belt ¦ The south is Aw/Cwg ¦ East is Cwg ¦ Right: west of the Aravallis
+RB5-105	en	t	West to south-east: BWhw → BShw → Cwg → Aw.
+RB5-105	hi	w	BShw, यानी अर्ध-शुष्क स्टेपी, अरावली के पश्चिम में, उष्ण मरुस्थल और पहाड़ियों के बीच है। राजस्थान में कोपेन: BWhw = उष्ण मरुस्थल (सुदूर पश्चिम), BShw = अर्ध-शुष्क स्टेपी (अरावली के पश्चिम), Cwg = उप-आर्द्र (अरावली के पूर्व), Aw = उष्ण सवाना (सुदूर दक्षिण और दक्षिण-पूर्व)।
+RB5-105	hi	o	स्टेपी पट्टी नहीं ¦ दक्षिण Aw/Cwg है ¦ पूर्व Cwg है ¦ सही: अरावली के पश्चिम
+RB5-105	hi	t	पश्चिम से दक्षिण-पूर्व: BWhw → BShw → Cwg → Aw।
+RB5-106	en	w	The steppe (BShw) climate is found in Barmer, Jalore and Jodhpur, among other districts of the desert's eastern side. Köppen in Rajasthan: BWhw = hot desert (far west), BShw = semi-arid steppe (west of the Aravallis), Cwg = sub-humid (east of the Aravallis), Aw = tropical savanna (far south and south-east).
+RB5-106	en	o	Hot desert (BWhw) ¦ The key gives these to BWhw ¦ Right: Barmer, Jalore, Jodhpur ¦ Cwg
+RB5-106	en	t	West to south-east: BWhw → BShw → Cwg → Aw.
+RB5-106	hi	w	स्टेपी (BShw) जलवायु मरुस्थल के पूर्वी ओर के अन्य ज़िलों के साथ बाड़मेर, जालोर और जोधपुर में मिलती है। राजस्थान में कोपेन: BWhw = उष्ण मरुस्थल (सुदूर पश्चिम), BShw = अर्ध-शुष्क स्टेपी (अरावली के पश्चिम), Cwg = उप-आर्द्र (अरावली के पूर्व), Aw = उष्ण सवाना (सुदूर दक्षिण और दक्षिण-पूर्व)।
+RB5-106	hi	o	उष्ण मरुस्थल (BWhw) ¦ कुंजी इन्हें BWhw देती है ¦ सही: बाड़मेर, जालोर, जोधपुर ¦ Cwg
+RB5-106	hi	t	पश्चिम से दक्षिण-पूर्व: BWhw → BShw → Cwg → Aw।
+RB5-107	en	w	Jalore, Sikar, Nagaur and Jhunjhunu are in the BShw (semi-arid steppe) region. Köppen in Rajasthan: BWhw = hot desert (far west), BShw = semi-arid steppe (west of the Aravallis), Cwg = sub-humid (east of the Aravallis), Aw = tropical savanna (far south and south-east).
+RB5-107	en	o	The hot desert ¦ Right: BShw ¦ A cold desert: not in Rajasthan ¦ A cold steppe: not in Rajasthan
+RB5-107	en	t	West to south-east: BWhw → BShw → Cwg → Aw.
+RB5-107	hi	w	जालोर, सीकर, नागौर और झुंझुनूं BShw (अर्ध-शुष्क स्टेपी) प्रदेश में हैं। राजस्थान में कोपेन: BWhw = उष्ण मरुस्थल (सुदूर पश्चिम), BShw = अर्ध-शुष्क स्टेपी (अरावली के पश्चिम), Cwg = उप-आर्द्र (अरावली के पूर्व), Aw = उष्ण सवाना (सुदूर दक्षिण और दक्षिण-पूर्व)।
+RB5-107	hi	o	उष्ण मरुस्थल ¦ सही: BShw ¦ ठंडा मरुस्थल: राजस्थान में नहीं ¦ ठंडा स्टेपी: राजस्थान में नहीं
+RB5-107	hi	t	पश्चिम से दक्षिण-पूर्व: BWhw → BShw → Cwg → Aw।
+RB5-108	en	w	Aw, the tropical savanna climate, is in the far south and south-east. Sikar and Churu are semi-arid (BShw), so that pair is wrong. Köppen in Rajasthan: BWhw = hot desert (far west), BShw = semi-arid steppe (west of the Aravallis), Cwg = sub-humid (east of the Aravallis), Aw = tropical savanna (far south and south-east).
+RB5-108	en	o	Right: wrongly matched ¦ Correct ¦ Correct ¦ Correct
+RB5-108	en	t	West to south-east: BWhw → BShw → Cwg → Aw.
+RB5-108	hi	w	Aw, यानी उष्ण सवाना जलवायु, सुदूर दक्षिण और दक्षिण-पूर्व में है। सीकर और चूरू अर्ध-शुष्क (BShw) हैं, इसलिए यह जोड़ी गलत है। राजस्थान में कोपेन: BWhw = उष्ण मरुस्थल (सुदूर पश्चिम), BShw = अर्ध-शुष्क स्टेपी (अरावली के पश्चिम), Cwg = उप-आर्द्र (अरावली के पूर्व), Aw = उष्ण सवाना (सुदूर दक्षिण और दक्षिण-पूर्व)।
+RB5-108	hi	o	सही उत्तर: गलत मिलान ¦ सही ¦ सही ¦ सही
+RB5-108	hi	t	पश्चिम से दक्षिण-पूर्व: BWhw → BShw → Cwg → Aw।
+RB5-109	en	w	BShw covers Barmer, Jodhpur, Nagaur and Sikar. Köppen in Rajasthan: BWhw = hot desert (far west), BShw = semi-arid steppe (west of the Aravallis), Cwg = sub-humid (east of the Aravallis), Aw = tropical savanna (far south and south-east).
+RB5-109	en	o	Right: Barmer, Jodhpur, Nagaur, Sikar ¦ Mostly Cwg ¦ Aw and Cwg ¦ Cwg
+RB5-109	en	t	West to south-east: BWhw → BShw → Cwg → Aw.
+RB5-109	hi	w	BShw में बाड़मेर, जोधपुर, नागौर और सीकर आते हैं। राजस्थान में कोपेन: BWhw = उष्ण मरुस्थल (सुदूर पश्चिम), BShw = अर्ध-शुष्क स्टेपी (अरावली के पश्चिम), Cwg = उप-आर्द्र (अरावली के पूर्व), Aw = उष्ण सवाना (सुदूर दक्षिण और दक्षिण-पूर्व)।
+RB5-109	hi	o	सही: बाड़मेर, जोधपुर, नागौर, सीकर ¦ अधिकतर Cwg ¦ Aw और Cwg ¦ Cwg
+RB5-109	hi	t	पश्चिम से दक्षिण-पूर्व: BWhw → BShw → Cwg → Aw।
+RB5-110	en	w	Barmer and Jhunjhunu are both in the BShw region in this key. Köppen in Rajasthan: BWhw = hot desert (far west), BShw = semi-arid steppe (west of the Aravallis), Cwg = sub-humid (east of the Aravallis), Aw = tropical savanna (far south and south-east).
+RB5-110	en	o	The far-west desert ¦ Right: BShw ¦ East of the Aravallis ¦ Far south
+RB5-110	en	t	West to south-east: BWhw → BShw → Cwg → Aw.
+RB5-110	hi	w	इस कुंजी में बाड़मेर और झुंझुनूं दोनों BShw प्रदेश में हैं। राजस्थान में कोपेन: BWhw = उष्ण मरुस्थल (सुदूर पश्चिम), BShw = अर्ध-शुष्क स्टेपी (अरावली के पश्चिम), Cwg = उप-आर्द्र (अरावली के पूर्व), Aw = उष्ण सवाना (सुदूर दक्षिण और दक्षिण-पूर्व)।
+RB5-110	hi	o	सुदूर पश्चिम का मरुस्थल ¦ सही: BShw ¦ अरावली के पूर्व ¦ सुदूर दक्षिण
+RB5-110	hi	t	पश्चिम से दक्षिण-पूर्व: BWhw → BShw → Cwg → Aw।
+RB5-111	en	w	BWhw means a hot, dry tropical desert: B = dry, W = desert (Wüste), h = hot, w = dry winter. Köppen in Rajasthan: BWhw = hot desert (far west), BShw = semi-arid steppe (west of the Aravallis), Cwg = sub-humid (east of the Aravallis), Aw = tropical savanna (far south and south-east).
+RB5-111	en	o	That would need k, not h ¦ The opposite ¦ Right: dry tropical desert ¦ The opposite
+RB5-111	en	t	W = Wüste, German for desert; S = steppe.
+RB5-111	hi	w	BWhw का अर्थ है गर्म, शुष्क उष्ण मरुस्थल: B = शुष्क, W = मरुस्थल (Wüste), h = गर्म, w = शुष्क सर्दी। राजस्थान में कोपेन: BWhw = उष्ण मरुस्थल (सुदूर पश्चिम), BShw = अर्ध-शुष्क स्टेपी (अरावली के पश्चिम), Cwg = उप-आर्द्र (अरावली के पूर्व), Aw = उष्ण सवाना (सुदूर दक्षिण और दक्षिण-पूर्व)।
+RB5-111	hi	o	उसके लिए h नहीं, k चाहिए ¦ उलटा ¦ सही: शुष्क उष्ण मरुस्थल ¦ उलटा
+RB5-111	hi	t	W = Wüste, जर्मन में मरुस्थल; S = स्टेपी।
+RB5-112	en	w	The tropical dry desert climate is BWhw. Köppen in Rajasthan: BWhw = hot desert (far west), BShw = semi-arid steppe (west of the Aravallis), Cwg = sub-humid (east of the Aravallis), Aw = tropical savanna (far south and south-east).
+RB5-112	en	o	Tropical savanna ¦ Sub-humid ¦ Semi-arid steppe ¦ Right: BWhw
+RB5-112	en	t	West to south-east: BWhw → BShw → Cwg → Aw.
+RB5-112	hi	w	उष्ण शुष्क मरुस्थलीय जलवायु BWhw है। राजस्थान में कोपेन: BWhw = उष्ण मरुस्थल (सुदूर पश्चिम), BShw = अर्ध-शुष्क स्टेपी (अरावली के पश्चिम), Cwg = उप-आर्द्र (अरावली के पूर्व), Aw = उष्ण सवाना (सुदूर दक्षिण और दक्षिण-पूर्व)।
+RB5-112	hi	o	उष्ण सवाना ¦ उप-आर्द्र ¦ अर्ध-शुष्क स्टेपी ¦ सही: BWhw
+RB5-112	hi	t	पश्चिम से दक्षिण-पूर्व: BWhw → BShw → Cwg → Aw।
+RB5-113	en	w	Jaisalmer is the only district wholly in the BWhw type. Barmer, Jodhpur and Bikaner are partly desert and partly steppe. Köppen in Rajasthan: BWhw = hot desert (far west), BShw = semi-arid steppe (west of the Aravallis), Cwg = sub-humid (east of the Aravallis), Aw = tropical savanna (far south and south-east).
+RB5-113	en	o	Partly ¦ Partly ¦ Partly ¦ Right: Jaisalmer
+RB5-113	en	t	West to south-east: BWhw → BShw → Cwg → Aw.
+RB5-113	hi	w	जैसलमेर ही पूरी तरह BWhw प्रकार में आने वाला ज़िला है। बाड़मेर, जोधपुर और बीकानेर आंशिक रूप से मरुस्थल और आंशिक रूप से स्टेपी हैं। राजस्थान में कोपेन: BWhw = उष्ण मरुस्थल (सुदूर पश्चिम), BShw = अर्ध-शुष्क स्टेपी (अरावली के पश्चिम), Cwg = उप-आर्द्र (अरावली के पूर्व), Aw = उष्ण सवाना (सुदूर दक्षिण और दक्षिण-पूर्व)।
+RB5-113	hi	o	आंशिक ¦ आंशिक ¦ आंशिक ¦ सही: जैसलमेर
+RB5-113	hi	t	पश्चिम से दक्षिण-पूर्व: BWhw → BShw → Cwg → Aw।
+RB5-114	en	w	Jaipur is east of the Aravallis, in the Cwg region, not BShw, so that pair is wrong. Köppen in Rajasthan: BWhw = hot desert (far west), BShw = semi-arid steppe (west of the Aravallis), Cwg = sub-humid (east of the Aravallis), Aw = tropical savanna (far south and south-east).
+RB5-114	en	o	Correct in this key ¦ Right: wrongly matched ¦ Correct ¦ Correct in this key
+RB5-114	en	t	West to south-east: BWhw → BShw → Cwg → Aw.
+RB5-114	hi	w	जयपुर अरावली के पूर्व में, Cwg प्रदेश में है, BShw में नहीं, इसलिए यह जोड़ी गलत है। राजस्थान में कोपेन: BWhw = उष्ण मरुस्थल (सुदूर पश्चिम), BShw = अर्ध-शुष्क स्टेपी (अरावली के पश्चिम), Cwg = उप-आर्द्र (अरावली के पूर्व), Aw = उष्ण सवाना (सुदूर दक्षिण और दक्षिण-पूर्व)।
+RB5-114	hi	o	इस कुंजी में सही ¦ सही उत्तर: गलत मिलान ¦ सही ¦ इस कुंजी में सही
+RB5-114	hi	t	पश्चिम से दक्षिण-पूर्व: BWhw → BShw → Cwg → Aw।
+RB5-115	en	w	The western parts of Jaisalmer and Bikaner have the BWhw (hot desert) climate. Köppen in Rajasthan: BWhw = hot desert (far west), BShw = semi-arid steppe (west of the Aravallis), Cwg = sub-humid (east of the Aravallis), Aw = tropical savanna (far south and south-east).
+RB5-115	en	o	Right: BWhw ¦ East ¦ South ¦ The steppe, further east
+RB5-115	en	t	West to south-east: BWhw → BShw → Cwg → Aw.
+RB5-115	hi	w	जैसलमेर और बीकानेर के पश्चिमी भागों में BWhw (उष्ण मरुस्थल) जलवायु है। राजस्थान में कोपेन: BWhw = उष्ण मरुस्थल (सुदूर पश्चिम), BShw = अर्ध-शुष्क स्टेपी (अरावली के पश्चिम), Cwg = उप-आर्द्र (अरावली के पूर्व), Aw = उष्ण सवाना (सुदूर दक्षिण और दक्षिण-पूर्व)।
+RB5-115	hi	o	सही: BWhw ¦ पूर्व ¦ दक्षिण ¦ स्टेपी, और पूर्व में
+RB5-115	hi	t	पश्चिम से दक्षिण-पूर्व: BWhw → BShw → Cwg → Aw।
+RB5-116	en	w	This match question's lists were printed as a table in the original paper. The keyed code is A-1, B-4, C-2, D-3; check the pairs in the "see original" view.
+RB5-116	en	o	Wrong order ¦ Wrong order ¦ Right: A-1, B-4, C-2, D-3 ¦ Wrong order
+RB5-116	en	t	Fix the pair you are surest of first, then strike out the codes that disagree.
+RB5-116	hi	w	इस मिलान प्रश्न की सूचियाँ मूल पेपर में तालिका में छपी थीं। कुंजी का कोड A-1, B-4, C-2, D-3 है; "मूल देखें" में जोड़ियाँ जाँचिए।
+RB5-116	hi	o	गलत क्रम ¦ गलत क्रम ¦ सही: A-1, B-4, C-2, D-3 ¦ गलत क्रम
+RB5-116	hi	t	पहले सबसे पक्की जोड़ी तय करें, फिर उससे असहमत कोड काटें।
+RB5-117	en	w	Aw–Jhalawar and BWhw–Bikaner are correct. Banswara is Aw, not Cwg, and Alwar is Cwg, not BShw. Köppen in Rajasthan: BWhw = hot desert (far west), BShw = semi-arid steppe (west of the Aravallis), Cwg = sub-humid (east of the Aravallis), Aw = tropical savanna (far south and south-east).
+RB5-117	en	o	Both wrong ¦ Includes the wrong 3 ¦ Includes the wrong 2 and 3 ¦ Right: 1 and 4
+RB5-117	en	t	West to south-east: BWhw → BShw → Cwg → Aw.
+RB5-117	hi	w	Aw-झालावाड़ और BWhw-बीकानेर सही हैं। बांसवाड़ा Aw है, Cwg नहीं, और अलवर Cwg है, BShw नहीं। राजस्थान में कोपेन: BWhw = उष्ण मरुस्थल (सुदूर पश्चिम), BShw = अर्ध-शुष्क स्टेपी (अरावली के पश्चिम), Cwg = उप-आर्द्र (अरावली के पूर्व), Aw = उष्ण सवाना (सुदूर दक्षिण और दक्षिण-पूर्व)।
+RB5-117	hi	o	दोनों गलत ¦ इसमें गलत 3 है ¦ इसमें गलत 2 और 3 हैं ¦ सही: 1 और 4
+RB5-117	hi	t	पश्चिम से दक्षिण-पूर्व: BWhw → BShw → Cwg → Aw।
+RB5-118	en	w	The Aw region is in the southern and south-eastern parts. Köppen in Rajasthan: BWhw = hot desert (far west), BShw = semi-arid steppe (west of the Aravallis), Cwg = sub-humid (east of the Aravallis), Aw = tropical savanna (far south and south-east).
+RB5-118	en	o	Right: southern and south-eastern parts ¦ Not there ¦ Not there ¦ Not there
+RB5-118	en	t	West to south-east: BWhw → BShw → Cwg → Aw.
+RB5-118	hi	w	Aw प्रदेश दक्षिणी और दक्षिण-पूर्वी भागों में है। राजस्थान में कोपेन: BWhw = उष्ण मरुस्थल (सुदूर पश्चिम), BShw = अर्ध-शुष्क स्टेपी (अरावली के पश्चिम), Cwg = उप-आर्द्र (अरावली के पूर्व), Aw = उष्ण सवाना (सुदूर दक्षिण और दक्षिण-पूर्व)।
+RB5-118	hi	o	सही: दक्षिणी और दक्षिण-पूर्वी भाग ¦ वहाँ नहीं ¦ वहाँ नहीं ¦ वहाँ नहीं
+RB5-118	hi	t	पश्चिम से दक्षिण-पूर्व: BWhw → BShw → Cwg → Aw।
+RB5-119	en	w	Aw covers Banswara, Dungarpur, Jhalawar and Pratapgarh. Köppen in Rajasthan: BWhw = hot desert (far west), BShw = semi-arid steppe (west of the Aravallis), Cwg = sub-humid (east of the Aravallis), Aw = tropical savanna (far south and south-east).
+RB5-119	en	o	Mixed: mostly not Aw ¦ Cwg ¦ Right: Banswara, Dungarpur, Jhalawar, Pratapgarh ¦ Mixed: only Jhalawar is Aw
+RB5-119	en	t	West to south-east: BWhw → BShw → Cwg → Aw.
+RB5-119	hi	w	Aw में बांसवाड़ा, डूंगरपुर, झालावाड़ और प्रतापगढ़ आते हैं। राजस्थान में कोपेन: BWhw = उष्ण मरुस्थल (सुदूर पश्चिम), BShw = अर्ध-शुष्क स्टेपी (अरावली के पश्चिम), Cwg = उप-आर्द्र (अरावली के पूर्व), Aw = उष्ण सवाना (सुदूर दक्षिण और दक्षिण-पूर्व)।
+RB5-119	hi	o	मिश्रित: अधिकतर Aw नहीं ¦ Cwg ¦ सही: बांसवाड़ा, डूंगरपुर, झालावाड़, प्रतापगढ़ ¦ मिश्रित: केवल झालावाड़ Aw
+RB5-119	hi	t	पश्चिम से दक्षिण-पूर्व: BWhw → BShw → Cwg → Aw।
+RB5-120	en	w	Of these, only Dungarpur is in the Aw region. Köppen in Rajasthan: BWhw = hot desert (far west), BShw = semi-arid steppe (west of the Aravallis), Cwg = sub-humid (east of the Aravallis), Aw = tropical savanna (far south and south-east).
+RB5-120	en	o	Cwg ¦ Cwg ¦ BShw ¦ Right: Dungarpur
+RB5-120	en	t	West to south-east: BWhw → BShw → Cwg → Aw.
+RB5-120	hi	w	इनमें केवल डूंगरपुर Aw प्रदेश में है। राजस्थान में कोपेन: BWhw = उष्ण मरुस्थल (सुदूर पश्चिम), BShw = अर्ध-शुष्क स्टेपी (अरावली के पश्चिम), Cwg = उप-आर्द्र (अरावली के पूर्व), Aw = उष्ण सवाना (सुदूर दक्षिण और दक्षिण-पूर्व)।
+RB5-120	hi	o	Cwg ¦ Cwg ¦ BShw ¦ सही: डूंगरपुर
+RB5-120	hi	t	पश्चिम से दक्षिण-पूर्व: BWhw → BShw → Cwg → Aw।
+RB5-121	en	w	Bharatpur, east of the Aravallis, has the Cwg type. Köppen in Rajasthan: BWhw = hot desert (far west), BShw = semi-arid steppe (west of the Aravallis), Cwg = sub-humid (east of the Aravallis), Aw = tropical savanna (far south and south-east).
+RB5-121	en	o	Right: Bharatpur ¦ Aw ¦ BShw ¦ BWhw
+RB5-121	en	t	West to south-east: BWhw → BShw → Cwg → Aw.
+RB5-121	hi	w	अरावली के पूर्व का भरतपुर Cwg प्रकार का है। राजस्थान में कोपेन: BWhw = उष्ण मरुस्थल (सुदूर पश्चिम), BShw = अर्ध-शुष्क स्टेपी (अरावली के पश्चिम), Cwg = उप-आर्द्र (अरावली के पूर्व), Aw = उष्ण सवाना (सुदूर दक्षिण और दक्षिण-पूर्व)।
+RB5-121	hi	o	सही: भरतपुर ¦ Aw ¦ BShw ¦ BWhw
+RB5-121	hi	t	पश्चिम से दक्षिण-पूर्व: BWhw → BShw → Cwg → Aw।
