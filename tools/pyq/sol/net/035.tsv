@@ -1,0 +1,150 @@
+U6D-A6	en	w	Transport cost has two parts: fixed (terminal, track, vehicle capital) and variable (line-haul: fuel, wages, which grow with distance).
+U6D-A6	en	o	Vehicle cost sits inside these. ¦ No. ¦ Right: Fixed and variable. ¦ Road cost sits inside these.
+U6D-A6	en	t	Fixed + variable = total transport cost.
+U6D-A6	hi	w	परिवहन लागत के दो भाग: स्थिर (टर्मिनल, ट्रैक, वाहन पूँजी) और परिवर्तनीय (ईंधन, वेतन, दूरी से बढ़ती)।
+U6D-A6	hi	o	वाहन लागत इनके भीतर। ¦ नहीं। ¦ सही: स्थिर और परिवर्तनीय। ¦ सड़क लागत भीतर।
+U6D-A6	hi	t	स्थिर + परिवर्तनीय = कुल।
+U6D-A7	en	w	Unit cost falls as traffic grows (A), cost rises with distance (B, roughly) and varies by mode (D). Air is the costliest, not the cheapest, so C is false.
+U6D-A7	en	o	Includes the false C. ¦ Right: A, B, D. ¦ Includes C. ¦ Includes C.
+U6D-A7	en	t	Cost per tonne-km: water is lowest, air is highest.
+U6D-A7	hi	w	यातायात बढ़ने पर इकाई लागत बदलती (A), दूरी से बढ़ती (B), साधन से बदलती (D); वायु सबसे महँगी, C असत्य।
+U6D-A7	hi	o	असत्य C शामिल। ¦ सही: A, B, D। ¦ C शामिल। ¦ C शामिल।
+U6D-A7	hi	t	प्रति टन-किमी: जल सबसे सस्ता, वायु सबसे महँगा।
+U6D-A8	en	w	The gravity model (interaction = P₁P₂ ÷ d²) predicts flows between places.
+U6D-A8	en	o	Rostow is about growth stages. ¦ No. ¦ No. ¦ Right: Gravity model.
+U6D-A8	en	t	Reilly (1931) used it for retail.
+U6D-A8	hi	w	गुरुत्व मॉडल (अंतःक्रिया = P₁P₂ ÷ d²) स्थानों के बीच प्रवाह बताता है।
+U6D-A8	hi	o	रोस्टो = विकास। ¦ नहीं। ¦ नहीं। ¦ सही: गुरुत्व मॉडल।
+U6D-A8	hi	t	रेली (1931) खुदरा हेतु।
+U6D-A9	en	w	This is a diagram question, and the picture is in the 'see original' view. Fundamental circuits are the smallest closed loops. Here they are ACDA and ABCA.
+U6D-A9	en	o	Right: both ACDA and ABCA. ¦ This is the outer loop, not fundamental. ¦ Not a circuit. ¦ Not a circuit.
+U6D-A9	en	t	Cyclomatic number μ = e − v + p counts the fundamental circuits.
+U6D-A9	hi	w	आरेख प्रश्न; चित्र 'मूल देखें' में। मूल परिपथ = सबसे छोटे बंद पाश: ACDA और ABCA।
+U6D-A9	hi	o	सही: ACDA और ABCA दोनों। ¦ बाहरी पाश, मूल नहीं। ¦ परिपथ नहीं। ¦ परिपथ नहीं।
+U6D-A9	hi	t	चक्रीय संख्या μ = e − v + p।
+U6D-A10	en	w	Alpha = actual circuits ÷ maximum circuits = (e − v + 1) ÷ (2v − 5). It runs from 0 (a tree) to 1 (fully connected).
+U6D-A10	en	o	Right: Alpha. ¦ Beta is e/v. ¦ Gamma is links ÷ maximum links. ¦ The cyclomatic number is a count, not a ratio.
+U6D-A10	en	t	Alpha = circuits; gamma = links.
+U6D-A10	hi	w	अल्फ़ा = वास्तविक परिपथ ÷ अधिकतम = (e − v + 1) ÷ (2v − 5); 0 (वृक्ष) से 1 (पूर्ण)।
+U6D-A10	hi	o	सही: अल्फ़ा। ¦ बीटा = e/v। ¦ गामा = कड़ियाँ ÷ अधिकतम। ¦ चक्रीय संख्या गणना है।
+U6D-A10	hi	t	अल्फ़ा = परिपथ; गामा = कड़ियाँ।
+U6D-A12	en	w	Many texts count six phases in the Taaffe, Morrill and Gould model: scattered ports, penetration lines, feeders, interconnection, complete interconnection, then high-priority main streets. Some count four.
+U6D-A12	en	o	Some books count four. ¦ Too few. ¦ Right: Six. ¦ Too few.
+U6D-A12	en	t	Exams use six.
+U6D-A12	hi	w	टैफ़े-मॉरिल-गूल्ड मॉडल की प्रायः छह अवस्थाएँ: बिखरे बंदरगाह, भीतरी लाइनें, फ़ीडर, अंतर्संबंध, पूर्ण अंतर्संबंध, मुख्य मार्ग।
+U6D-A12	hi	o	कुछ पुस्तकें चार। ¦ कम। ¦ सही: छह। ¦ कम।
+U6D-A12	hi	t	परीक्षा में छह।
+U6D-A13	en	w	Ullman's three bases are complementarity, the absence of intervening opportunity, and transferability.
+U6D-A13	en	o	Right: 1, 2 and 3. ¦ Means of transport is not one of them. ¦ No. ¦ No.
+U6D-A13	en	t	C, IO, T.
+U6D-A13	hi	w	उलमैन के तीन आधार: पूरकता, अंतर्वर्ती अवसर का अभाव, स्थानांतरणीयता।
+U6D-A13	hi	o	सही: 1, 2, 3। ¦ साधन नहीं। ¦ नहीं। ¦ नहीं।
+U6D-A13	hi	t	पूरकता, अंतर्वर्ती अवसर, स्थानांतरणीयता।
+U6D-A14	en	w	A new mode first works alongside the old one (symbiosis), then dominates (predominant), then is reduced to a helper when newer modes come (auxiliary).
+U6D-A14	en	o	Wrong order. ¦ Right: Symbiosis, then predominant, then auxiliary. ¦ Reversed. ¦ Wrong order.
+U6D-A14	en	t	Example: rail grew alongside canals, dominated, then became auxiliary to roads.
+U6D-A14	hi	w	नया साधन पहले पुराने के साथ (सहजीवन), फिर प्रधान, फिर नए साधन आने पर सहायक।
+U6D-A14	hi	o	गलत। ¦ सही: सहजीवन, प्रधान, सहायक। ¦ उल्टा। ¦ गलत।
+U6D-A14	hi	t	रेल: नहरों संग, फिर प्रधान, फिर सड़क की सहायक।
+U6D-A15	en	w	This is a diagram question with no printed options here, so check the 'see original' view. The keyed figure is (4), the one where cost rises at a falling rate (tapering).
+U6D-A15	en	o	Not keyed. ¦ Not keyed. ¦ Not keyed. ¦ Right: figure (4), as keyed.
+U6D-A15	en	t	Tapering rates favour the longer trip.
+U6D-A15	hi	w	आरेख प्रश्न, विकल्प यहाँ नहीं; 'मूल देखें'। कुंजी (4): घटती दर से बढ़ती लागत।
+U6D-A15	hi	o	कुंजी नहीं। ¦ कुंजी नहीं। ¦ कुंजी नहीं। ¦ सही: चित्र (4), कुंजी अनुसार।
+U6D-A15	hi	t	घटती दर लंबी यात्रा के पक्ष में।
+U6D-A16	en	w	Beta = edges ÷ vertices.
+U6D-A16	en	o	Gamma = e ÷ 3(v − 2). ¦ Eta = total length ÷ edges. ¦ Right: Beta. ¦ Alpha = circuits ratio.
+U6D-A16	en	t	Beta is the simplest network index.
+U6D-A16	hi	w	बीटा = कड़ियाँ ÷ शीर्ष।
+U6D-A16	hi	o	गामा = e ÷ 3(v − 2)। ¦ ईटा = कुल लंबाई ÷ कड़ियाँ। ¦ सही: बीटा। ¦ अल्फ़ा = परिपथ अनुपात।
+U6D-A16	hi	t	बीटा सबसे सरल।
+U6D-A17	en	w	Road transport has the lowest terminal costs (no stations or ports needed) but high line-haul costs. That is why it wins for short trips.
+U6D-A17	en	o	Right: Road. ¦ Rail is medium. ¦ Water has high terminal costs (ports). ¦ Air has high terminal costs (airports).
+U6D-A17	en	t	Short distance: road; medium: rail; long and bulky: water.
+U6D-A17	hi	w	सड़क परिवहन की टर्मिनल लागत सबसे कम, पर लाइन-हॉल अधिक; अतः छोटी दूरी हेतु श्रेष्ठ।
+U6D-A17	hi	o	सही: सड़क। ¦ रेल मध्यम। ¦ जल = बंदरगाह महँगे। ¦ वायु = हवाई अड्डे महँगे।
+U6D-A17	hi	t	छोटी दूरी सड़क, मध्यम रेल, लंबी भारी जल।
+U6D-A18	en	w	The Trans-Siberian (about 9,289 km, the world's longest) runs from Moscow to Vladivostok. The key's version is Leningrad (St Petersburg) to Vladivostok, which is how many older books describe it.
+U6D-A18	en	o	This is the commonly quoted modern answer; here the key prefers Leningrad. ¦ Right: Leningrad to Vladivostok. ¦ Too short. ¦ Too short.
+U6D-A18	en	t	About 9,289 km, finished in 1916.
+U6D-A18	hi	w	ट्रांस-साइबेरियन (लगभग 9,289 किमी, सबसे लंबा) मॉस्को-व्लादिवोस्तोक; कुंजी: लेनिनग्राद (सेंट पीटर्सबर्ग) से व्लादिवोस्तोक।
+U6D-A18	hi	o	आधुनिक प्रचलित उत्तर; कुंजी लेनिनग्राद। ¦ सही: लेनिनग्राद-व्लादिवोस्तोक। ¦ छोटा। ¦ छोटा।
+U6D-A18	hi	t	लगभग 9,289 किमी, 1916 में पूर्ण।
+U6D-N1	en	w	WTO benefits include dispute settlement (A), more choice (B) and lower living costs (D). C and E are negatives taken from the WTO's own '10 misunderstandings' list.
+U6D-N1	en	o	Right: A, B, D. ¦ E is false. ¦ C and E are false. ¦ C is false.
+U6D-N1	en	t	The WTO was set up in 1995, replacing GATT (1947).
+U6D-N1	hi	w	WTO लाभ: विवाद निपटान (A), अधिक विकल्प (B), जीवन लागत घटना (D); C, E नकारात्मक।
+U6D-N1	hi	o	सही: A, B, D। ¦ E असत्य। ¦ C, E असत्य। ¦ C असत्य।
+U6D-N1	hi	t	WTO 1995, GATT (1947) के स्थान पर।
+U6D-N2	en	w	Michael Eliot Hurst edited 'Transportation Geography' (1974), which includes 'Transportation and the Societal Framework'.
+U6D-N2	en	o	Ullman gave spatial interaction. ¦ Right: M.E. Hurst. ¦ Zipf gave P₁P₂/d and the rank-size rule. ¦ Friedmann gave core-periphery.
+U6D-N2	en	t	Hurst also gave the conduction, convection, radiation analogy.
+U6D-N2	hi	w	माइकल एलियट हर्स्ट ने 'Transportation Geography' (1974) संपादित की, जिसमें 'Transportation and the Societal Framework'।
+U6D-N2	hi	o	उलमैन = स्थानिक अंतःक्रिया। ¦ सही: एम.ई. हर्स्ट। ¦ ज़िप्फ़ = कोटि-आकार। ¦ फ़्रीडमैन = कोर-परिधि।
+U6D-N2	hi	t	हर्स्ट = चालन, संवहन, विकिरण उपमा भी।
+U6D-N3	en	w	In this question the options are mixed up with the statements. The top importers in 2021 were the USA (about $2.9 trillion), China, Germany, then Japan. That is D, C, B, A.
+U6D-N3	en	o	Not keyed. ¦ Not keyed. ¦ Not keyed. ¦ Right: USA, China, Germany, Japan.
+U6D-N3	en	t	The top exporter is China; the top importer is the USA.
+U6D-N3	hi	w	विकल्प-कथन मिले हुए। 2021 शीर्ष आयातक: अमेरिका (लगभग 2.9 ट्रिलियन डॉलर), चीन, जर्मनी, जापान: D, C, B, A।
+U6D-N3	hi	o	कुंजी नहीं। ¦ कुंजी नहीं। ¦ कुंजी नहीं। ¦ सही: अमेरिका, चीन, जर्मनी, जापान।
+U6D-N3	hi	t	शीर्ष निर्यातक चीन, शीर्ष आयातक अमेरिका।
+U6D-N4	en	w	The USA leads both exports and imports of commercial services (finance, IT, travel, IP).
+U6D-N4	en	o	Right: USA. ¦ India is strong in IT exports, but smaller. ¦ China is a goods giant. ¦ No.
+U6D-N4	en	t	India ranks around 7th–8th in service exports.
+U6D-N4	hi	w	वाणिज्यिक सेवाओं के निर्यात-आयात दोनों में अमेरिका प्रथम।
+U6D-N4	hi	o	सही: अमेरिका। ¦ भारत IT में मज़बूत, पर छोटा। ¦ चीन = माल। ¦ नहीं।
+U6D-N4	hi	t	भारत सेवा निर्यात में लगभग 7–8वाँ।
+U6D-N5	en	w	Ullman's triad: complementarity (A), intervening opportunities (D) and transferability (E).
+U6D-N5	en	o	Convenience is not one. ¦ Convenience is not one. ¦ Right: A, D and E. ¦ No.
+U6D-N5	en	t	Ullman, 1956.
+U6D-N5	hi	w	उलमैन त्रयी: पूरकता (A), अंतर्वर्ती अवसर (D), स्थानांतरणीयता (E)।
+U6D-N5	hi	o	सुविधा नहीं। ¦ सुविधा नहीं। ¦ सही: A, D, E। ¦ नहीं।
+U6D-N5	hi	t	उलमैन 1956।
+U6D-N6	en	w	Hadoti is in Rajasthan, Khandesh in Maharashtra, and Malwa is also a region of Punjab (south of the Sutlej) as well as of Madhya Pradesh. Baghelkhand is in MP and Rohilkhand is in UP, so C and D are wrong.
+U6D-N6	en	o	Includes C. ¦ Includes C and D. ¦ Includes C and D. ¦ Right: A, B and E.
+U6D-N6	en	t	Hadoti = Kota, Bundi, Baran, Jhalawar.
+U6D-N6	hi	w	हाड़ौती = राजस्थान, खानदेश = महाराष्ट्र, मालवा = पंजाब का भी प्रदेश (सतलुज के दक्षिण); बघेलखंड = मप्र, रुहेलखंड = उप्र।
+U6D-N6	hi	o	C शामिल। ¦ C, D शामिल। ¦ C, D शामिल। ¦ सही: A, B, E।
+U6D-N6	hi	t	हाड़ौती = कोटा, बूँदी, बाराँ, झालावाड़।
+U6D-N7	en	w	Rogers' shares: late majority 34%, laggards 16%, early adopters 13.5%, innovators 2.5%. So the order is B, C, D, A.
+U6D-N7	en	o	Not keyed. ¦ Not keyed. ¦ Not keyed. ¦ Right: B, C, D, A.
+U6D-N7	en	t	2.5 / 13.5 / 34 / 34 / 16.
+U6D-N7	hi	w	रॉजर्स: पश्च बहुमत 34%, पिछड़े 16%, प्रारंभिक अपनाने वाले 13.5%, नवप्रवर्तक 2.5%: B, C, D, A।
+U6D-N7	hi	o	कुंजी नहीं। ¦ कुंजी नहीं। ¦ कुंजी नहीं। ¦ सही: B, C, D, A।
+U6D-N7	hi	t	2.5 / 13.5 / 34 / 34 / 16।
+U6D-N8	en	w	A and B are true. C credits Hurst with the physics analogy, but the key treats it as not correct (it is Haggett's analogy). D is false because 'exclusively' is wrong. So the answer is C and D.
+U6D-N8	en	o	A and B are true. ¦ A and B are true. ¦ B is true. ¦ Right: C and D.
+U6D-N8	en	t	Haggett: convection, conduction, radiation (1965).
+U6D-N8	hi	w	A, B सत्य; C (भौतिकी उपमा हर्स्ट की) कुंजी में असत्य, यह हैगेट की उपमा; D ('केवल') असत्य।
+U6D-N8	hi	o	A, B सत्य। ¦ A, B सत्य। ¦ B सत्य। ¦ सही: C और D।
+U6D-N8	hi	t	हैगेट: संवहन, चालन, विकिरण (1965)।
+U6D-N9	en	w	Canada, Alaska, Siberia and the Australian outback are huge, harsh and thinly settled, so roads and rail are hard to build. Air links fill the gap.
+U6D-N9	en	o	No, population is sparse. ¦ Forest and ice are part of it, but not the full reason. ¦ Air is not door-to-door. ¦ Right: Scattered people and difficult terrain.
+U6D-N9	en	t	Bush planes are lifelines in the Canadian north.
+U6D-N9	hi	w	कनाडा, अलास्का, साइबेरिया, ऑस्ट्रेलिया अंतर्देश विशाल, कठोर, विरल बसे; सड़क-रेल कठिन, अतः हवाई।
+U6D-N9	hi	o	नहीं। ¦ आंशिक। ¦ द्वार-द्वार नहीं। ¦ सही: बिखरी जनसंख्या, कठिन भू-भाग।
+U6D-N9	hi	t	कनाडाई उत्तर में बुश विमान जीवनरेखा।
+U6D-N10	en	w	The triple helix (Etzkowitz and Leydesdorff, 1995) is university–industry–government collaboration, the basis of science parks.
+U6D-N10	en	o	Porter's clusters are about firms. ¦ Right: Triple helix. ¦ Perroux's growth pole. ¦ Isard's regional science.
+U6D-N10	en	t	Etzkowitz and Leydesdorff, 1995.
+U6D-N10	hi	w	ट्रिपल हेलिक्स (एट्ज़कोविट्ज़-लेडेसडॉर्फ़, 1995) = विश्वविद्यालय-उद्योग-सरकार सहयोग।
+U6D-N10	hi	o	पोर्टर क्लस्टर। ¦ सही: ट्रिपल हेलिक्स। ¦ पेरू विकास ध्रुव। ¦ आइज़र्ड।
+U6D-N10	hi	t	एट्ज़कोविट्ज़-लेडेसडॉर्फ़ 1995।
+U6D-N11	en	w	In this question the options are mixed up with the statements. Commuting, energy supply, and manufacturing and distribution all depend on transport. Option D, 'all of the above', is right, so the keyed code is (1), 'D only'.
+U6D-N11	en	o	Commuting is one reason. ¦ Energy supply is one reason. ¦ Manufacturing is one reason. ¦ Right: as keyed, all of the above (D).
+U6D-N11	en	t	Transport underpins every sector.
+U6D-N11	hi	w	विकल्प-कथन मिले हुए। आवागमन, ऊर्जा, विनिर्माण-वितरण सब परिवहन पर; 'उपरोक्त सभी' (D)।
+U6D-N11	hi	o	एक कारण। ¦ एक कारण। ¦ एक कारण। ¦ सही: कुंजी अनुसार सभी (D)।
+U6D-N11	hi	t	परिवहन हर क्षेत्र का आधार।
+U6D-N12	en	w	Transportability is the ease with which passengers, freight or information can move. It depends on cost, distance and the nature of the goods.
+U6D-N12	en	o	Right: Ease of movement. ¦ The opposite. ¦ No. ¦ No.
+U6D-N12	en	t	Transferability (Ullman) is close kin.
+U6D-N12	hi	w	परिवहनीयता = यात्री, माल या सूचना की गति की सहजता।
+U6D-N12	hi	o	सही: गति की सहजता। ¦ उल्टा। ¦ नहीं। ¦ नहीं।
+U6D-N12	hi	t	स्थानांतरणीयता (उलमैन) निकट।
+U6D-N13	en	w	In this question the options are mixed up with the statements. The fast growth of flows after 1950 came from liberalised trade, economic blocs and more efficient use of resources. Low labour productivity was not a reason. Keyed: A, B and D.
+U6D-N13	en	o	A reason. ¦ A reason. ¦ Not a reason. ¦ Right: as keyed, A, B and D.
+U6D-N13	en	t	GATT, then the EEC, then the WTO, then container ships.
+U6D-N13	hi	w	विकल्प-कथन मिले हुए। 1950 के बाद तेज़ प्रवाह: उदार व्यापार, आर्थिक गुट, संसाधनों का कुशल उपयोग; कम श्रम उत्पादकता नहीं। कुंजी: A, B, D।
+U6D-N13	hi	o	कारण। ¦ कारण। ¦ कारण नहीं। ¦ सही: कुंजी अनुसार A, B, D।
+U6D-N13	hi	t	GATT, EEC, WTO, कंटेनर जहाज़।

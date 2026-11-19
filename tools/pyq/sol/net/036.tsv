@@ -1,0 +1,150 @@
+U6D-N14	en	w	Friction of space (distance) covers every human and physical barrier to moving people, freight and information.
+U6D-N14	en	o	Right: Human and physical, for all flows. ¦ Only human: too narrow. ¦ Only physical: too narrow. ¦ Only information: too narrow.
+U6D-N14	en	t	Friction of distance gives distance decay.
+U6D-N14	hi	w	स्थान का घर्षण = लोगों, माल, सूचना की गति में सभी मानवीय व भौतिक बाधाएँ।
+U6D-N14	hi	o	सही: मानवीय और भौतिक, सभी प्रवाह। ¦ केवल मानवीय, संकीर्ण। ¦ केवल भौतिक, संकीर्ण। ¦ केवल सूचना।
+U6D-N14	hi	t	घर्षण से दूरी क्षय।
+U6D-N15	en	w	Transport exists to meet the demand for mobility (I true). That demand is derived: people travel to work or shop, not for the ride (II true).
+U6D-N15	en	o	Right: Both statements true. ¦ Both statements false. ¦ I true, II false. ¦ I false, II true.
+U6D-N15	en	t	Test each statement alone; one wrong year or name makes it false.
+U6D-N15	hi	w	परिवहन गतिशीलता की माँग पूरी करता है (I सत्य); यह व्युत्पन्न माँग है, लोग काम/खरीदारी हेतु जाते हैं (II सत्य)।
+U6D-N15	hi	o	सही: दोनों कथन सत्य। ¦ दोनों कथन असत्य। ¦ I सत्य, II असत्य। ¦ I असत्य, II सत्य।
+U6D-N15	hi	t	हर कथन अलग जाँचें; एक गलत वर्ष या नाम उसे असत्य बना देता है।
+U6D-N17	en	w	This is a diagram question, and the picture is in the 'see original' view. A connectivity matrix puts 1 where two nodes are directly linked and 0 elsewhere. It is symmetric, and its row totals give each node's degree.
+U6D-N17	en	o	Not keyed. ¦ Right: option (2), as keyed. ¦ Not keyed. ¦ Not keyed.
+U6D-N17	en	t	Count nodes (v) and links (e) carefully before you use any formula.
+U6D-N17	hi	w	आरेख प्रश्न; चित्र 'मूल देखें' में। संयोजकता मैट्रिक्स: दो नोड सीधे जुड़े हों तो 1, अन्यथा 0; सममित, पंक्ति योग = नोड की कोटि।
+U6D-N17	hi	o	कुंजी नहीं। ¦ सही: विकल्प (2), कुंजी अनुसार। ¦ कुंजी नहीं। ¦ कुंजी नहीं।
+U6D-N17	hi	t	सूत्र से पहले नोड (v) और कड़ियाँ (e) ध्यान से गिनें।
+U6D-N19	en	w	This is a diagram question, and the picture is in the 'see original' view. The best location is where revenue exceeds cost by the most.
+U6D-N19	en	o	Not keyed. ¦ Right: option (2), as keyed. ¦ Not keyed. ¦ Not keyed.
+U6D-N19	en	t	Count nodes (v) and links (e) carefully before you use any formula.
+U6D-N19	hi	w	आरेख प्रश्न; चित्र 'मूल देखें' में। सर्वोत्तम स्थल जहाँ आय लागत से सर्वाधिक ऊपर।
+U6D-N19	hi	o	कुंजी नहीं। ¦ सही: विकल्प (2), कुंजी अनुसार। ¦ कुंजी नहीं। ¦ कुंजी नहीं।
+U6D-N19	hi	t	सूत्र से पहले नोड (v) और कड़ियाँ (e) ध्यान से गिनें।
+U6D-N20	en	w	This is a diagram question, and the picture is in the 'see original' view. Beta = edges ÷ vertices. The keyed value is 2.0, so the graph has twice as many edges as vertices.
+U6D-N20	en	o	Not keyed. ¦ Not keyed. ¦ Right: option (3), as keyed. ¦ Not keyed.
+U6D-N20	en	t	Count nodes (v) and links (e) carefully before you use any formula.
+U6D-N20	hi	w	आरेख प्रश्न; चित्र 'मूल देखें' में। बीटा = कड़ियाँ ÷ शीर्ष; कुंजी 2.0।
+U6D-N20	hi	o	कुंजी नहीं। ¦ कुंजी नहीं। ¦ सही: विकल्प (3), कुंजी अनुसार। ¦ कुंजी नहीं।
+U6D-N20	hi	t	सूत्र से पहले नोड (v) और कड़ियाँ (e) ध्यान से गिनें।
+U6D-N21	en	w	This is a diagram question, and the picture is in the 'see original' view. Look for the network with 6 vertices, 6 edges (one circuit) and diameter 3. The keyed one is A.
+U6D-N21	en	o	Right: option (1), as keyed. ¦ Not keyed. ¦ Not keyed. ¦ Not keyed.
+U6D-N21	en	t	Count nodes (v) and links (e) carefully before you use any formula.
+U6D-N21	hi	w	आरेख प्रश्न; चित्र 'मूल देखें' में। 6 शीर्ष, 6 कड़ियाँ (एक परिपथ), व्यास 3 वाला जाल; कुंजी A।
+U6D-N21	hi	o	सही: विकल्प (1), कुंजी अनुसार। ¦ कुंजी नहीं। ¦ कुंजी नहीं। ¦ कुंजी नहीं।
+U6D-N21	hi	t	सूत्र से पहले नोड (v) और कड़ियाँ (e) ध्यान से गिनें।
+U6D-N22	en	w	This is a diagram question, and the picture is in the 'see original' view. The keyed counts are 10 vertices, 10 edges and diameter 7. Diameter is the longest shortest path, counted in links.
+U6D-N22	en	o	Not keyed. ¦ Right: option (2), as keyed. ¦ Not keyed. ¦ Not keyed.
+U6D-N22	en	t	Count nodes (v) and links (e) carefully before you use any formula.
+U6D-N22	hi	w	आरेख प्रश्न; चित्र 'मूल देखें' में। कुंजी: 10 शीर्ष, 10 कड़ियाँ, व्यास 7 (सबसे लंबा न्यूनतम पथ)।
+U6D-N22	hi	o	कुंजी नहीं। ¦ सही: विकल्प (2), कुंजी अनुसार। ¦ कुंजी नहीं। ¦ कुंजी नहीं।
+U6D-N22	hi	t	सूत्र से पहले नोड (v) और कड़ियाँ (e) ध्यान से गिनें।
+U6D-N23	en	w	This is a diagram question, and the picture is in the 'see original' view. Diameter is the number of links in the longest shortest path between any two nodes. The keyed value is 4.
+U6D-N23	en	o	Not keyed. ¦ Right: option (2), as keyed. ¦ Not keyed. ¦ Not keyed.
+U6D-N23	en	t	Count nodes (v) and links (e) carefully before you use any formula.
+U6D-N23	hi	w	आरेख प्रश्न; चित्र 'मूल देखें' में। व्यास = किन्हीं दो नोडों के बीच सबसे लंबे न्यूनतम पथ की कड़ियाँ; कुंजी 4।
+U6D-N23	hi	o	कुंजी नहीं। ¦ सही: विकल्प (2), कुंजी अनुसार। ¦ कुंजी नहीं। ¦ कुंजी नहीं।
+U6D-N23	hi	t	सूत्र से पहले नोड (v) और कड़ियाँ (e) ध्यान से गिनें।
+U6D-N25	en	w	Ullman (1956) named three bases of spatial interaction: complementarity, intervening opportunity and transferability.
+U6D-N25	en	o	Not Ullman's set. ¦ Not Ullman's set. ¦ Right: Complementarity, intervening opportunity, transferability. ¦ Not Ullman's set.
+U6D-N25	en	t	C, IO, T.
+U6D-N25	hi	w	उलमैन (1956) के स्थानिक अंतःक्रिया के तीन आधार: पूरकता, अंतर्वर्ती अवसर, स्थानांतरणीयता।
+U6D-N25	hi	o	उलमैन का समूह नहीं। ¦ उलमैन का समूह नहीं। ¦ सही: पूरकता, अंतर्वर्ती अवसर, स्थानांतरणीयता। ¦ उलमैन का समूह नहीं।
+U6D-N25	hi	t	पूरकता, अंतर्वर्ती अवसर, स्थानांतरणीयता।
+U6D-N37	en	w	Ullman (1956) named three bases of spatial interaction: complementarity, intervening opportunity and transferability.
+U6D-N37	en	o	Right: Complementarity, intervening opportunity, transferability. ¦ Not Ullman's set. ¦ Not Ullman's set. ¦ Not Ullman's set.
+U6D-N37	en	t	C, IO, T.
+U6D-N37	hi	w	उलमैन (1956) के स्थानिक अंतःक्रिया के तीन आधार: पूरकता, अंतर्वर्ती अवसर, स्थानांतरणीयता।
+U6D-N37	hi	o	सही: पूरकता, अंतर्वर्ती अवसर, स्थानांतरणीयता। ¦ उलमैन का समूह नहीं। ¦ उलमैन का समूह नहीं। ¦ उलमैन का समूह नहीं।
+U6D-N37	hi	t	पूरकता, अंतर्वर्ती अवसर, स्थानांतरणीयता।
+U6D-N26	en	w	Ullman's 'American Commodity Flow' (1957) mapped rail freight between US states.
+U6D-N26	en	o	Europe is not a country. ¦ Right: USA. ¦ No. ¦ No.
+U6D-N26	en	t	Ullman, 1957.
+U6D-N26	hi	w	उलमैन की 'American Commodity Flow' (1957) ने अमेरिकी राज्यों के बीच रेल माल प्रवाह मापा।
+U6D-N26	hi	o	यूरोप देश नहीं। ¦ सही: अमेरिका। ¦ नहीं। ¦ नहीं।
+U6D-N26	hi	t	उलमैन 1957।
+U6D-N27	en	w	Governments shape transport policy for social (access), economic (growth) and political (integration, defence) reasons. Culture is the weakest reason.
+U6D-N27	en	o	Social is a reason. ¦ Economic is a reason. ¦ Right: Cultural. ¦ Political is a reason.
+U6D-N27	en	t	Think of rail building for national unity, as in India and Russia.
+U6D-N27	hi	w	सरकार परिवहन नीति सामाजिक, आर्थिक, राजनीतिक कारणों से बनाती है; सांस्कृतिक सबसे कमज़ोर।
+U6D-N27	hi	o	सामाजिक कारण। ¦ आर्थिक कारण। ¦ सही: सांस्कृतिक। ¦ राजनीतिक कारण।
+U6D-N27	hi	t	राष्ट्रीय एकता हेतु रेल।
+U6D-N28	en	w	Ullman (1956) named three bases of spatial interaction: complementarity, intervening opportunity and transferability. The options are printed as letters, and the keyed option (4) is E.L. Ullman.
+U6D-N28	en	o	White wrote on transport. ¦ Gauthier wrote on networks. ¦ Taaffe gave the network expansion model. ¦ Right: Ullman.
+U6D-N28	en	t	Ullman 1956.
+U6D-N28	hi	w	उलमैन (1956) के स्थानिक अंतःक्रिया के तीन आधार: पूरकता, अंतर्वर्ती अवसर, स्थानांतरणीयता। कुंजी (4) उलमैन।
+U6D-N28	hi	o	व्हाइट। ¦ गौथियर। ¦ टैफ़े = जाल विस्तार। ¦ सही: उलमैन।
+U6D-N28	hi	t	उलमैन 1956।
+U6D-N29	en	w	This is a diagram question, and the picture is in the 'see original' view. The best location is where revenue exceeds cost by the most. The keyed one is C.
+U6D-N29	en	o	Not keyed. ¦ Not keyed. ¦ Right: option (3), as keyed. ¦ Not keyed.
+U6D-N29	en	t	Count nodes (v) and links (e) carefully before you use any formula.
+U6D-N29	hi	w	आरेख प्रश्न; चित्र 'मूल देखें' में। जहाँ आय लागत से सर्वाधिक ऊपर; कुंजी C।
+U6D-N29	hi	o	कुंजी नहीं। ¦ कुंजी नहीं। ¦ सही: विकल्प (3), कुंजी अनुसार। ¦ कुंजी नहीं।
+U6D-N29	hi	t	सूत्र से पहले नोड (v) और कड़ियाँ (e) ध्यान से गिनें।
+U6D-N30	en	w	This is a diagram question, and the picture is in the 'see original' view. Count every link. The keyed total is 12.
+U6D-N30	en	o	Not keyed. ¦ Not keyed. ¦ Not keyed. ¦ Right: option (4), as keyed.
+U6D-N30	en	t	Count nodes (v) and links (e) carefully before you use any formula.
+U6D-N30	hi	w	आरेख प्रश्न; चित्र 'मूल देखें' में। हर कड़ी गिनें; कुंजी 12।
+U6D-N30	hi	o	कुंजी नहीं। ¦ कुंजी नहीं। ¦ कुंजी नहीं। ¦ सही: विकल्प (4), कुंजी अनुसार।
+U6D-N30	hi	t	सूत्र से पहले नोड (v) और कड़ियाँ (e) ध्यान से गिनें।
+U6D-N31	en	w	This is a diagram question, and the picture is in the 'see original' view. The keyed pair with the lesser significance is (b) and (c).
+U6D-N31	en	o	Not keyed. ¦ Not keyed. ¦ Not keyed. ¦ Right: option (4), as keyed.
+U6D-N31	en	t	Count nodes (v) and links (e) carefully before you use any formula.
+U6D-N31	hi	w	आरेख प्रश्न; चित्र 'मूल देखें' में। कुंजी: (b) और (c)।
+U6D-N31	hi	o	कुंजी नहीं। ¦ कुंजी नहीं। ¦ कुंजी नहीं। ¦ सही: विकल्प (4), कुंजी अनुसार।
+U6D-N31	hi	t	सूत्र से पहले नोड (v) और कड़ियाँ (e) ध्यान से गिनें।
+U6D-N32	en	w	This is a diagram question, and the picture is in the 'see original' view. A connectivity matrix puts 1 where two nodes are directly linked and 0 elsewhere. It is symmetric, and its row totals give each node's degree.
+U6D-N32	en	o	Right: option (1), as keyed. ¦ Not keyed. ¦ Not keyed. ¦ Not keyed.
+U6D-N32	en	t	Count nodes (v) and links (e) carefully before you use any formula.
+U6D-N32	hi	w	आरेख प्रश्न; चित्र 'मूल देखें' में। संयोजकता मैट्रिक्स: दो नोड सीधे जुड़े हों तो 1, अन्यथा 0; सममित, पंक्ति योग = नोड की कोटि।
+U6D-N32	hi	o	सही: विकल्प (1), कुंजी अनुसार। ¦ कुंजी नहीं। ¦ कुंजी नहीं। ¦ कुंजी नहीं।
+U6D-N32	hi	t	सूत्र से पहले नोड (v) और कड़ियाँ (e) ध्यान से गिनें।
+U6D-N33	en	w	This is a diagram question, and the picture is in the 'see original' view. Maquiladoras are US-owned assembly plants just south of the US–Mexico border (Tijuana, Ciudad Juárez). Point A is on the border.
+U6D-N33	en	o	Right: option (1), as keyed. ¦ Not keyed. ¦ Not keyed. ¦ Not keyed.
+U6D-N33	en	t	Count nodes (v) and links (e) carefully before you use any formula.
+U6D-N33	hi	w	आरेख प्रश्न; चित्र 'मूल देखें' में। माकिलाडोरा = अमेरिका-मेक्सिको सीमा के ठीक दक्षिण अमेरिकी स्वामित्व वाले असेंबली संयंत्र (तिजुआना, सियुदाद हुआरेज़); बिंदु A सीमा पर।
+U6D-N33	hi	o	सही: विकल्प (1), कुंजी अनुसार। ¦ कुंजी नहीं। ¦ कुंजी नहीं। ¦ कुंजी नहीं।
+U6D-N33	hi	t	सूत्र से पहले नोड (v) और कड़ियाँ (e) ध्यान से गिनें।
+U6D-N35	en	w	On snow and ice, sledges pulled by reindeer or dogs (and now snowmobiles) are the chief transport.
+U6D-N35	en	o	Camels are for deserts. ¦ Donkeys are for hills. ¦ Right: Sledge. ¦ Horses are for steppes.
+U6D-N35	en	t	Sami use reindeer; the Inuit use dogs.
+U6D-N35	hi	w	बर्फ़ पर रेनडियर/कुत्तों से खिंचने वाली स्लेज (अब स्नोमोबाइल) मुख्य साधन।
+U6D-N35	hi	o	ऊँट = मरुस्थल। ¦ गधा = पहाड़ी। ¦ सही: स्लेज। ¦ घोड़ा = स्टेपी।
+U6D-N35	hi	t	सामी = रेनडियर; इनुइट = कुत्ते।
+U6D-N36	en	w	This is a diagram question, and the picture is in the 'see original' view. A connectivity matrix puts 1 where two nodes are directly linked and 0 elsewhere. It is symmetric, and its row totals give each node's degree.
+U6D-N36	en	o	Right: option (1), as keyed. ¦ Not keyed. ¦ Not keyed. ¦ Not keyed.
+U6D-N36	en	t	Count nodes (v) and links (e) carefully before you use any formula.
+U6D-N36	hi	w	आरेख प्रश्न; चित्र 'मूल देखें' में। संयोजकता मैट्रिक्स: दो नोड सीधे जुड़े हों तो 1, अन्यथा 0; सममित, पंक्ति योग = नोड की कोटि।
+U6D-N36	hi	o	सही: विकल्प (1), कुंजी अनुसार। ¦ कुंजी नहीं। ¦ कुंजी नहीं। ¦ कुंजी नहीं।
+U6D-N36	hi	t	सूत्र से पहले नोड (v) और कड़ियाँ (e) ध्यान से गिनें।
+U6D-N38	en	w	Spatial interaction rests on accessibility (how reachable a place is) and connectivity (how well it is linked).
+U6D-N38	en	o	Right: Accessibility and connectivity. ¦ These are about distribution. ¦ These are about diffusion. ¦ No.
+U6D-N38	en	t	Network indices measure both.
+U6D-N38	hi	w	स्थानिक अंतःक्रिया अभिगम्यता (कितना पहुँच योग्य) और संयोजकता (कितना जुड़ा) पर टिकी है।
+U6D-N38	hi	o	सही: अभिगम्यता और संयोजकता। ¦ वितरण। ¦ विसरण। ¦ नहीं।
+U6D-N38	hi	t	जाल सूचकांक दोनों मापते हैं।
+U6D-N39	en	w	This is a diagram question, and the picture is in the 'see original' view. A connectivity matrix puts 1 where two nodes are directly linked and 0 elsewhere. It is symmetric, and its row totals give each node's degree.
+U6D-N39	en	o	Not keyed. ¦ Right: option (2), as keyed. ¦ Not keyed. ¦ Not keyed.
+U6D-N39	en	t	Count nodes (v) and links (e) carefully before you use any formula.
+U6D-N39	hi	w	आरेख प्रश्न; चित्र 'मूल देखें' में। संयोजकता मैट्रिक्स: दो नोड सीधे जुड़े हों तो 1, अन्यथा 0; सममित, पंक्ति योग = नोड की कोटि।
+U6D-N39	hi	o	कुंजी नहीं। ¦ सही: विकल्प (2), कुंजी अनुसार। ¦ कुंजी नहीं। ¦ कुंजी नहीं।
+U6D-N39	hi	t	सूत्र से पहले नोड (v) और कड़ियाँ (e) ध्यान से गिनें।
+U6D-N42	en	w	Taaffe, Morrill and Gould (1963) gave the sequential (ideal-typical) expansion model of transport networks, based on Ghana and Nigeria.
+U6D-N42	en	o	De Souza and Porter wrote on the Third World. ¦ Brown worked on diffusion. ¦ Development economists. ¦ Right: Taaffe, Morrill and Gould.
+U6D-N42	en	t	Ports, then penetration lines, then feeders, then main streets.
+U6D-N42	hi	w	टैफ़े, मॉरिल, गूल्ड (1963) ने घाना-नाइजीरिया पर आधारित परिवहन जाल का क्रमिक विस्तार मॉडल दिया।
+U6D-N42	hi	o	डिसूज़ा-पोर्टर = तीसरी दुनिया। ¦ ब्राउन = विसरण। ¦ विकास अर्थशास्त्री। ¦ सही: टैफ़े, मॉरिल, गूल्ड।
+U6D-N42	hi	t	बंदरगाह, भीतरी लाइनें, फ़ीडर, मुख्य मार्ग।
+U6D-N43	en	w	Taaffe, Morrill and Gould (1963) gave the sequential (ideal-typical) expansion model of transport networks, based on Ghana and Nigeria.
+U6D-N43	en	o	Gilbert wrote on Latin American cities. ¦ Right: Taaffe, Morrill and Gould. ¦ De Souza and Porter wrote on the Third World. ¦ Soja wrote on Kenya modernisation and postmodern space.
+U6D-N43	en	t	Ports, then penetration lines, then feeders, then main streets.
+U6D-N43	hi	w	टैफ़े, मॉरिल, गूल्ड (1963) ने घाना-नाइजीरिया पर आधारित परिवहन जाल का क्रमिक विस्तार मॉडल दिया।
+U6D-N43	hi	o	गिल्बर्ट = लैटिन अमेरिकी नगर। ¦ सही: टैफ़े, मॉरिल, गूल्ड। ¦ डिसूज़ा-पोर्टर। ¦ सोजा = केन्या आधुनिकीकरण।
+U6D-N43	hi	t	बंदरगाह, भीतरी लाइनें, फ़ीडर, मुख्य मार्ग।
+U6D-N44	en	w	Taaffe, Morrill and Gould's 1963 model was in fact built on Ghana and Nigeria. No option says this. The printed key gives 'Ethiopia and Egypt', so treat the key with care and remember Ghana and Nigeria.
+U6D-N44	en	o	Right: As keyed, but the real study was Ghana and Nigeria. ¦ Has Nigeria, but not Ghana. ¦ Has Nigeria, but not Ghana. ¦ Has Nigeria, but not Ghana.
+U6D-N44	en	t	Taaffe = Ghana + Nigeria (1963).
+U6D-N44	hi	w	टैफ़े-मॉरिल-गूल्ड (1963) वास्तव में घाना और नाइजीरिया पर आधारित; कोई विकल्प यह नहीं कहता। छपी कुंजी 'इथियोपिया और मिस्र', सावधान रहें।
+U6D-N44	hi	o	सही: कुंजी अनुसार, पर वास्तविक अध्ययन घाना-नाइजीरिया। ¦ नाइजीरिया है, घाना नहीं। ¦ नाइजीरिया है, घाना नहीं। ¦ नाइजीरिया है, घाना नहीं।
+U6D-N44	hi	t	टैफ़े = घाना + नाइजीरिया (1963)।

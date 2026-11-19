@@ -1,0 +1,150 @@
+U6E-A46	en	w	This match question has no printed code table here, so check the 'see original' view. Agricultural land planning is spatial, power planning is sectoral, rural development planning is comprehensive, and economic planning is utilitarian. The keyed code is option (2).
+U6E-A46	en	o	Not keyed. ¦ Right: option (2), as keyed. ¦ Not keyed. ¦ Not keyed.
+U6E-A46	en	t	Sectoral = one sector; spatial = one area; comprehensive = all sectors.
+U6E-A46	hi	w	मिलान प्रश्न, कोड तालिका यहाँ नहीं; 'मूल देखें'। कृषि भूमि = स्थानिक, विद्युत = क्षेत्रीय, ग्रामीण विकास = व्यापक, आर्थिक = उपयोगितावादी। कुंजी (2)।
+U6E-A46	hi	o	कुंजी नहीं। ¦ सही: विकल्प (2), कुंजी अनुसार। ¦ कुंजी नहीं। ¦ कुंजी नहीं।
+U6E-A46	hi	t	क्षेत्रीय = एक क्षेत्र; स्थानिक = एक इलाका; व्यापक = सब।
+U6E-A47	en	w	PCA condenses many indicators into a few components, which is widely used for regional disparity (A true). Hotelling did formalise PCA in 1933 (R true; Pearson had given an early form in 1901). But who invented it does not explain why it is useful, so R does not explain A.
+U6E-A47	en	o	Both true and R explains A. ¦ Right: Both true, but R does not explain A. ¦ A true, R false. ¦ A false, R true.
+U6E-A47	en	t	Check A and R separately first, then ask: does R answer 'why A?'
+U6E-A47	hi	w	PCA अनेक संकेतकों को कुछ घटकों में समेटता है, असमानता हेतु प्रचलित (A सत्य); हॉटेलिंग ने 1933 में औपचारिक रूप दिया (R सत्य); पर आविष्कारक उपयोगिता की व्याख्या नहीं।
+U6E-A47	hi	o	दोनों सत्य, R, A की व्याख्या। ¦ सही: दोनों सत्य, पर R व्याख्या नहीं। ¦ A सत्य, R असत्य। ¦ A असत्य, R सत्य।
+U6E-A47	hi	t	पहले A और R अलग-अलग जाँचें, फिर पूछें: क्या R, 'A क्यों?' का उत्तर है?
+U6E-A48	en	w	Stuart C. Dodd (1950) gave the interactance hypothesis: interaction is proportional to the product of populations, activity and time, divided by distance.
+U6E-A48	en	o	Perroux gave growth poles. ¦ Newton gave physical gravity. ¦ Right: S.C. Dodd. ¦ Haggett gave locational analysis.
+U6E-A48	en	t	Dodd adapted the gravity model to social science.
+U6E-A48	hi	w	स्टुअर्ट सी. डॉड (1950) = अंतःक्रिया परिकल्पना: अंतःक्रिया ∝ जनसंख्या × सक्रियता × समय ÷ दूरी।
+U6E-A48	hi	o	पेरू। ¦ न्यूटन = भौतिक। ¦ सही: एस.सी. डॉड। ¦ हैगेट।
+U6E-A48	hi	t	डॉड ने गुरुत्व मॉडल समाज विज्ञान में लगाया।
+U6E-A49	en	w	W.W. Rostow, 'The Stages of Economic Growth: A Non-Communist Manifesto' (1960).
+U6E-A49	en	o	Myrdal gave cumulative causation. ¦ Hirschman gave linkages. ¦ Perroux gave growth poles. ¦ Right: Rostow.
+U6E-A49	en	t	5 stages.
+U6E-A49	hi	w	डब्ल्यू.डब्ल्यू. रोस्टो, 'The Stages of Economic Growth' (1960)।
+U6E-A49	hi	o	मिर्डल। ¦ हिर्शमैन। ¦ पेरू। ¦ सही: रोस्टो।
+U6E-A49	hi	t	5 अवस्थाएँ।
+U6E-A50	en	w	Gunnar Myrdal (1957) gave circular cumulative causation: backwash effects outweigh spread effects, so rich regions get richer.
+U6E-A50	en	o	Dicken wrote 'Global Shift'. ¦ Waters wrote on globalisation. ¦ Harvey gave Marxist uneven development. ¦ Right: Myrdal.
+U6E-A50	en	t	Myrdal won the Nobel Prize in 1974.
+U6E-A50	hi	w	गुनार मिर्डल (1957) = चक्रीय संचयी कारणता: प्रतिक्षेप प्रभाव प्रसार से अधिक, धनी प्रदेश और धनी।
+U6E-A50	hi	o	डिकेन = 'Global Shift'। ¦ वॉटर्स। ¦ हार्वे। ¦ सही: मिर्डल।
+U6E-A50	hi	t	मिर्डल नोबेल 1974।
+U6E-A51	en	w	At root, imbalances come from uneven resource endowment. Education and demand follow from that.
+U6E-A51	en	o	A consequence. ¦ Partly. ¦ No. ¦ Right: Regional disparity in resources.
+U6E-A51	en	t	Uneven endowment, then uneven growth.
+U6E-A51	hi	w	असंतुलन मूलतः संसाधनों के असमान वितरण से; शिक्षा, माँग उसके परिणाम।
+U6E-A51	hi	o	परिणाम। ¦ आंशिक। ¦ नहीं। ¦ सही: संसाधनों में क्षेत्रीय असमानता।
+U6E-A51	hi	t	असमान संसाधन, असमान विकास।
+U6E-A52	en	w	Hoover and Fisher (1949) set out the stages of regional economic growth tied to resources: subsistence, then specialisation, then industrialisation.
+U6E-A52	en	o	No. ¦ No. ¦ Right: Hoover and Fisher. ¦ No.
+U6E-A52	en	t	Hoover–Fisher is the sector theory of regional growth.
+U6E-A52	hi	w	हूवर और फ़िशर (1949) ने संसाधनों से जुड़ी प्रादेशिक आर्थिक विकास अवस्थाएँ दीं।
+U6E-A52	hi	o	नहीं। ¦ नहीं। ¦ सही: हूवर और फ़िशर। ¦ नहीं।
+U6E-A52	hi	t	हूवर-फ़िशर = क्षेत्र सिद्धांत।
+U6E-A53	en	w	This key credits Peter Hall with the definition of regional planning in supra-urban space. Its twin question (U6E-A24) credits John Friedmann, the usual source.
+U6E-A53	en	o	Right: As keyed. ¦ The usual answer (see U6E-A24). ¦ No. ¦ No.
+U6E-A53	en	t	Learn both: most books say Friedmann.
+U6E-A53	hi	w	यह कुंजी पीटर हॉल को श्रेय देती है; जुड़वाँ प्रश्न (U6E-A24) जॉन फ़्रीडमैन को, जो सामान्य स्रोत है।
+U6E-A53	hi	o	सही: कुंजी अनुसार। ¦ सामान्य उत्तर (U6E-A24)। ¦ नहीं। ¦ नहीं।
+U6E-A53	hi	t	अधिकांश पुस्तकें फ़्रीडमैन कहती हैं।
+U6E-A54	en	w	Benton MacKaye wrote 'The New Exploration: A Philosophy of Regional Planning' (1928), which laid the philosophical foundation of regional planning.
+U6E-A54	en	o	Right: Benton MacKaye. ¦ Boudeville gave growth centres. ¦ Elson wrote on green belts. ¦ Friedmann gave core-periphery.
+U6E-A54	en	t	MacKaye, 1928.
+U6E-A54	hi	w	बेंटन मैकके ने 'The New Exploration: A Philosophy of Regional Planning' (1928) लिखी: प्रादेशिक नियोजन की दार्शनिक नींव।
+U6E-A54	hi	o	सही: बेंटन मैकके। ¦ बूदविल। ¦ एल्सन। ¦ फ़्रीडमैन।
+U6E-A54	hi	t	मैकके 1928।
+U6E-A55	en	w	Benton MacKaye wrote 'The New Exploration: A Philosophy of Regional Planning' (1928), which laid the philosophical foundation of regional planning.
+U6E-A55	en	o	Right: Benton MacKaye. ¦ Perroux gave growth poles. ¦ Cherry wrote on British planning history. ¦ Elson wrote on green belts.
+U6E-A55	en	t	MacKaye, 1928.
+U6E-A55	hi	w	बेंटन मैकके ने 'The New Exploration: A Philosophy of Regional Planning' (1928) लिखी: प्रादेशिक नियोजन की दार्शनिक नींव।
+U6E-A55	hi	o	सही: बेंटन मैकके। ¦ पेरू। ¦ चेरी। ¦ एल्सन।
+U6E-A55	hi	t	मैकके 1928।
+U6E-N1	en	w	John Friedmann (1966) gave four stages of the space economy: pre-industrial, transitional (one core), industrial (multiple cores), and spatial integration.
+U6E-N1	en	o	Right: John Friedmann. ¦ Marx gave modes of production. ¦ Abler wrote 'Spatial Organization'. ¦ Lösch gave market areas.
+U6E-N1	en	t	Friedmann's stages: 1 to 4.
+U6E-N1	hi	w	जॉन फ़्रीडमैन (1966) ने अंतरिक्ष अर्थव्यवस्था की चार अवस्थाएँ दीं: पूर्व-औद्योगिक, संक्रमण (एक कोर), औद्योगिक (बहु कोर), स्थानिक एकीकरण।
+U6E-N1	hi	o	सही: जॉन फ़्रीडमैन। ¦ मार्क्स। ¦ एबलर। ¦ लॉश।
+U6E-N1	hi	t	फ़्रीडमैन: 1 से 4।
+U6E-N2	en	w	'Spatial Organization' (Abler, Adams and Gould, 1971) and the functional organisation of space came from the American spatial-science school.
+U6E-N2	en	o	No. ¦ No. ¦ No. ¦ Right: American school.
+U6E-N2	en	t	Abler, Adams and Gould, 1971.
+U6E-N2	hi	w	'Spatial Organization' (एबलर, एडम्स, गूल्ड, 1971) और स्थान का कार्यात्मक संगठन अमेरिकी स्थानिक विज्ञान स्कूल से।
+U6E-N2	hi	o	नहीं। ¦ नहीं। ¦ नहीं। ¦ सही: अमेरिकी स्कूल।
+U6E-N2	hi	t	एबलर-एडम्स-गूल्ड 1971।
+U6E-N3	en	w	Under horizontal spatial unity, each region is a sub-system of the wider regional system, linked side by side.
+U6E-N3	en	o	Vertical unity is about layers of phenomena in one place. ¦ Right: Horizontal spatial unity. ¦ No. ¦ No.
+U6E-N3	en	t	Vertical = within a place; horizontal = between places.
+U6E-N3	hi	w	क्षैतिज स्थानिक एकता में हर प्रदेश व्यापक प्रादेशिक तंत्र का उप-तंत्र, अगल-बगल जुड़ा।
+U6E-N3	hi	o	ऊर्ध्वाधर = एक स्थान की परतें। ¦ सही: क्षैतिज स्थानिक एकता। ¦ नहीं। ¦ नहीं।
+U6E-N3	hi	t	ऊर्ध्वाधर = भीतर; क्षैतिज = बीच।
+U6E-N4	en	w	'A region is poor because it is poor' sums up Myrdal's vicious circle, his cumulative causation.
+U6E-N4	en	o	Right: Myrdal. ¦ Perroux. ¦ Meadows. ¦ Rostow.
+U6E-N4	en	t	Nurkse said the same of nations' vicious circle.
+U6E-N4	hi	w	'प्रदेश गरीब है क्योंकि गरीब है' = मिर्डल का दुष्चक्र, संचयी कारणता।
+U6E-N4	hi	o	सही: मिर्डल। ¦ पेरू। ¦ मीडोज़। ¦ रोस्टो।
+U6E-N4	hi	t	नर्क्से ने भी राष्ट्रों का दुष्चक्र कहा।
+U6E-N5	en	w	B is false (Boudeville added the geographic dimension). D is false (trickle-down is central to planners). E is false (interactions also include people, capital and ideas). A and C are true.
+U6E-N5	en	o	A and C are true. ¦ A and C are true. ¦ C is true. ¦ Right: B, D, E.
+U6E-N5	en	t	Polarisation = agglomeration plus linkages.
+U6E-N5	hi	w	B असत्य (बूदविल ने भौगोलिक आयाम जोड़ा), D असत्य (रिसाव प्रभाव नियोजकों हेतु केंद्रीय), E असत्य (लोग, पूँजी, विचार भी); A, C सत्य।
+U6E-N5	hi	o	A, C सत्य। ¦ A, C सत्य। ¦ C सत्य। ¦ सही: B, D, E।
+U6E-N5	hi	t	ध्रुवीकरण = समूहन + कड़ियाँ।
+U6E-N6	en	w	Kimble said boundaries that do not exist around areas that do not matter. Norton said diffusion is the best incorporation of time. Stoddart said 'to identify geographical problems'. Ley wrote on historical process and the structuring of landscape.
+U6E-N6	en	o	Right: III, I, IV, II. ¦ No. ¦ No. ¦ No.
+U6E-N6	en	t	Kimble (1951), 'The Inadequate Concept of the Region'.
+U6E-N6	hi	w	किंबल = 'अस्तित्वहीन सीमाएँ, महत्वहीन क्षेत्र'; नॉर्टन = विसरण में समय; स्टॉडार्ट = भौगोलिक समस्याएँ पहचानना; ले = ऐतिहासिक प्रक्रिया व भूदृश्य।
+U6E-N6	hi	o	सही: III, I, IV, II। ¦ नहीं। ¦ नहीं। ¦ नहीं।
+U6E-N6	hi	t	किंबल (1951)।
+U6E-N7	en	w	Friedmann's model has a core (A true), upward-transitional areas around it (so B, which says downward, is wrong), resource frontiers at the edge (C, 'around the core', is doubtful), and downward-transitional areas that are stagnant or declining (D true). Keyed: A and D.
+U6E-N7	en	o	Not keyed. ¦ Not keyed. ¦ Right: A and D. ¦ Not keyed.
+U6E-N7	en	t	Core, upward transition, resource frontier, downward transition.
+U6E-N7	hi	w	फ़्रीडमैन: कोर (A सत्य), उसके चारों ओर ऊर्ध्वगामी संक्रमण (B गलत), किनारे पर संसाधन सीमांत, अधोगामी संक्रमण = ठहरे/गिरते क्षेत्र (D सत्य)। कुंजी: A, D।
+U6E-N7	hi	o	कुंजी नहीं। ¦ कुंजी नहीं। ¦ सही: A और D। ¦ कुंजी नहीं।
+U6E-N7	hi	t	कोर, ऊर्ध्व संक्रमण, संसाधन सीमांत, अधो संक्रमण।
+U6E-N8	en	w	Myrdal held that markets naturally widen gaps (A) and produce expanding regions against stagnating ones (D). The four stages (B) belong to Friedmann, and take-off (C) belongs to Rostow.
+U6E-N8	en	o	B is Friedmann's. ¦ B and C belong to others. ¦ Right: A and D. ¦ B is Friedmann's.
+U6E-N8	en	t	Myrdal: markets widen gaps.
+U6E-N8	hi	w	मिर्डल: बाज़ार स्वाभाविक रूप से अंतर बढ़ाते हैं (A), बढ़ते बनाम ठहरे प्रदेश (D); चार अवस्थाएँ (B) फ़्रीडमैन, उड़ान (C) रोस्टो।
+U6E-N8	hi	o	B फ़्रीडमैन। ¦ B, C अन्य। ¦ सही: A और D। ¦ B फ़्रीडमैन।
+U6E-N8	hi	t	मिर्डल: बाज़ार अंतर बढ़ाते।
+U6E-N9	en	w	Myrdal named backwash effects (the core drains labour and capital) and spread effects (growth trickles out).
+U6E-N9	en	o	Hirschman's terms. ¦ Migration terms. ¦ Right: Backwash and spread. ¦ Nurkse versus Hirschman.
+U6E-N9	en	t	Hirschman's twin terms: polarisation and trickle-down.
+U6E-N9	hi	w	मिर्डल: प्रतिक्षेप प्रभाव (कोर श्रम-पूँजी खींचता) और प्रसार प्रभाव (विकास बाहर रिसता)।
+U6E-N9	hi	o	हिर्शमैन। ¦ प्रवास। ¦ सही: प्रतिक्षेप और प्रसार। ¦ नर्क्से बनाम हिर्शमैन।
+U6E-N9	hi	t	हिर्शमैन: ध्रुवीकरण और रिसाव।
+U6E-N10	en	w	The 1989 'Rally for the Valley' at Harsud (Narmada Bachao Andolan) highlighted the resettlement of people displaced by the dams.
+U6E-N10	en	o	Related, but not the focus. ¦ No. ¦ Right: Resettlement of displaced people. ¦ Related.
+U6E-N10	en	t	Harsud (MP), 1989: Medha Patkar and Baba Amte.
+U6E-N10	hi	w	1989 'Rally for the Valley' (हरसूद, नर्मदा बचाओ आंदोलन) ने बाँध विस्थापितों के पुनर्वास पर ध्यान खींचा।
+U6E-N10	hi	o	संबंधित, केंद्र नहीं। ¦ नहीं। ¦ सही: विस्थापितों का पुनर्वास। ¦ संबंधित।
+U6E-N10	hi	t	हरसूद 1989: मेधा पाटकर, बाबा आमटे।
+U6E-N11	en	w	J.R. Boudeville gave growth pole theory its regional and geographic form.
+U6E-N11	en	o	Myrdal. ¦ Friedmann. ¦ Hirschman. ¦ Right: Boudeville.
+U6E-N11	en	t	Boudeville 1966.
+U6E-N11	hi	w	जे.आर. बूदविल ने विकास ध्रुव सिद्धांत को प्रादेशिक/भौगोलिक रूप दिया।
+U6E-N11	hi	o	मिर्डल। ¦ फ़्रीडमैन। ¦ हिर्शमैन। ¦ सही: बूदविल।
+U6E-N11	hi	t	बूदविल 1966।
+U6E-N12	en	w	Friedmann ('Regional Development Policy: A Case Study of Venezuela', 1966) linked spatial organisation to national development.
+U6E-N12	en	o	Right: Friedmann. ¦ No. ¦ Kuklinski wrote on growth poles. ¦ No.
+U6E-N12	en	t	Venezuela was his case study.
+U6E-N12	hi	w	फ़्रीडमैन ('Regional Development Policy', वेनेज़ुएला, 1966) ने स्थानिक संगठन को राष्ट्रीय विकास से जोड़ा।
+U6E-N12	hi	o	सही: फ़्रीडमैन। ¦ नहीं। ¦ कुक्लिंस्की। ¦ नहीं।
+U6E-N12	hi	t	वेनेज़ुएला अध्ययन।
+U6E-N14	en	w	Silent Valley (Palakkad, Kerala) was saved from a hydro project in the 1970s–80s and became a national park in 1984.
+U6E-N14	en	o	No. ¦ No. ¦ Right: Kerala. ¦ No.
+U6E-N14	en	t	The lion-tailed macaque was the flagship species.
+U6E-N14	hi	w	साइलेंट वैली (पालक्काड, केरल) 1970–80 के दशक में जलविद्युत परियोजना से बची, 1984 में राष्ट्रीय उद्यान।
+U6E-N14	hi	o	नहीं। ¦ नहीं। ¦ सही: केरल। ¦ नहीं।
+U6E-N14	hi	t	शेर-पूँछ वाला मकाक प्रतीक प्रजाति।
+U6E-N15	en	w	Silent Valley = Kerala (IV). Chipko = Uttarakhand (III). Narmada Bachao = Gujarat and MP (II). Jungle Bachao = Jharkhand (I).
+U6E-N15	en	o	Wrong. ¦ Wrong. ¦ Wrong. ¦ Right: IV, III, II, I.
+U6E-N15	en	t	Chipko 1973, Reni village, Gaura Devi.
+U6E-N15	hi	w	साइलेंट वैली = केरल (IV), चिपको = उत्तराखंड (III), नर्मदा बचाओ = गुजरात/मप्र (II), जंगल बचाओ = झारखंड (I)।
+U6E-N15	hi	o	गलत। ¦ गलत। ¦ गलत। ¦ सही: IV, III, II, I।
+U6E-N15	hi	t	चिपको 1973, रेणी गाँव, गौरा देवी।
+U6E-N16	en	w	In this question the options are mixed up with the statements. The Middle Ganga Plain and the Malwa Plateau are formal (uniform) regions. NCR and the Kolkata–Howrah conurbation are functional. Keyed: (2), 'A and C only'.
+U6E-N16	en	o	This one (Middle Ganga Plain) is formal. ¦ Right: as keyed, A and C are not functional. ¦ This one (Malwa Plateau) is formal. ¦ This one (Kolkata–Howrah) is functional.
+U6E-N16	en	t	Plains and plateaus are formal; city regions are functional.
+U6E-N16	hi	w	विकल्प-कथन मिले। मध्य गंगा मैदान, मालवा पठार औपचारिक; NCR, कोलकाता-हावड़ा कार्यात्मक। कुंजी (2): A, C।
+U6E-N16	hi	o	यह औपचारिक। ¦ सही: कुंजी अनुसार A, C कार्यात्मक नहीं। ¦ यह औपचारिक। ¦ यह कार्यात्मक।
+U6E-N16	hi	t	मैदान/पठार = औपचारिक; नगर प्रदेश = कार्यात्मक।

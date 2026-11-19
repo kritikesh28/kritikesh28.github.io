@@ -1,0 +1,150 @@
+U5A-N120	en	w	Fast-growing cities draw young working men first, because city-ward migration is selective by age and sex. So the reason explains the assertion.
+U5A-N120	en	o	Right: both true, R explains A ¦ R does explain A ¦ R is also true ¦ A is also true
+U5A-N120	en	t	Boom towns: young men arrive first.
+U5A-N120	hi	w	तेज़ी से बढ़ते शहर पहले युवा कामकाजी पुरुषों को खींचते हैं, क्योंकि शहर की ओर प्रवास आयु और लिंग के आधार पर चयनात्मक है। इसलिए कारण कथन को समझाता है।
+U5A-N120	hi	o	सही: दोनों सत्य, R, A को समझाता है ¦ R, A को समझाता है ¦ R भी सत्य है ¦ A भी सत्य है
+U5A-N120	hi	t	तेज़ बढ़ते शहर: पहले युवा पुरुष आते हैं।
+U5A-N121	en	w	At world scale, relief, climate, soil and water (physiography) set the broad pattern of where people live. Minerals, farming and culture add local detail.
+U5A-N121	en	o	Local pull, not the main pattern ¦ Follows physiography ¦ Modifies, does not set the pattern ¦ Right: physiographic characteristics
+U5A-N121	en	t	Plains fill, mountains and deserts empty.
+U5A-N121	hi	w	विश्व स्तर पर उच्चावच, जलवायु, मिट्टी और पानी (भू-आकृति) लोगों के बसने का व्यापक प्रतिरूप तय करते हैं। खनिज, खेती और संस्कृति स्थानीय विवरण जोड़ते हैं।
+U5A-N121	hi	o	स्थानीय आकर्षण, मुख्य प्रतिरूप नहीं ¦ भू-आकृति के पीछे चलती है ¦ बदलती है, तय नहीं करती ¦ सही: भू-आकृतिक विशेषताएँ
+U5A-N121	hi	t	मैदान भरे, पहाड़ और मरुस्थल खाली।
+U5A-N122	en	w	Migration streams form where push factors at origin meet pull factors at destination. Politics, history and religion act through those pushes and pulls.
+U5A-N122	en	o	One kind of push or pull ¦ Right: push and pull factors ¦ One kind of push or pull ¦ One kind of push or pull
+U5A-N122	en	t	Push out, pull in: the stream flows between.
+U5A-N122	hi	w	प्रवास धाराएँ वहाँ बनती हैं जहाँ उद्गम के धक्का कारक गंतव्य के खिंचाव कारकों से मिलते हैं। राजनीति, इतिहास और धर्म इन्हीं धक्कों और खिंचावों के ज़रिए काम करते हैं।
+U5A-N122	hi	o	धक्का या खिंचाव का एक प्रकार ¦ सही: धक्का और खिंचाव कारक ¦ धक्का या खिंचाव का एक प्रकार ¦ धक्का या खिंचाव का एक प्रकार
+U5A-N122	hi	t	बाहर धक्का, भीतर खिंचाव: बीच में धारा।
+U5A-N123	en	w	The transition model was built from the history of north-western Europe (England, France, Scandinavia) from the 18th to the 20th century.
+U5A-N123	en	o	Right: north-western Europe ¦ Shaped by immigration, not the base ¦ Later applied there, not the base ¦ Later applied there, not the base
+U5A-N123	en	t	Built on Europe's past, used for the world's future.
+U5A-N123	hi	w	संक्रमण मॉडल उत्तर-पश्चिमी यूरोप (इंग्लैंड, फ़्रांस, स्कैंडिनेविया) के 18वीं से 20वीं सदी के इतिहास से बना।
+U5A-N123	hi	o	सही: उत्तर-पश्चिमी यूरोप ¦ प्रवास से बना, आधार नहीं ¦ बाद में लागू, आधार नहीं ¦ बाद में लागू, आधार नहीं
+U5A-N123	hi	t	यूरोप के अतीत पर बना, दुनिया के भविष्य के लिए।
+U5A-N124	en	w	New industrial towns fill up with young men looking for work, because migration selects by age and sex. R explains A.
+U5A-N124	en	o	Right: both true, R explains A ¦ R does explain A ¦ R is also true ¦ A is also true
+U5A-N124	en	t	Factory town = young men's town.
+U5A-N124	hi	w	नए औद्योगिक नगर काम खोजते युवा पुरुषों से भरते हैं, क्योंकि प्रवास आयु और लिंग के आधार पर चयनात्मक है। R, A को समझाता है।
+U5A-N124	hi	o	सही: दोनों सत्य, R, A को समझाता है ¦ R, A को समझाता है ¦ R भी सत्य है ¦ A भी सत्य है
+U5A-N124	hi	t	फ़ैक्टरी नगर = युवा पुरुषों का नगर।
+U5A-N125	en	w	Urban population grows faster than rural mainly because many people migrate into cities. Jobs are why they come, but the direct cause of the faster growth is the migration itself.
+U5A-N125	en	o	Urban birth rates are usually lower ¦ Rural death rates are not the cause ¦ Right: large migration to cities ¦ The reason they move, not the growth itself
+U5A-N125	en	t	Cities grow by arrivals.
+U5A-N125	hi	w	नगरीय जनसंख्या ग्रामीण से तेज़ मुख्यतः इसलिए बढ़ती है क्योंकि बहुत लोग शहरों में आते हैं। रोज़गार आने का कारण है, पर तेज़ वृद्धि का सीधा कारण स्वयं प्रवास है।
+U5A-N125	hi	o	नगरीय जन्म दर आमतौर पर कम ¦ ग्रामीण मृत्यु दर कारण नहीं ¦ सही: शहरों की ओर भारी प्रवास ¦ जाने का कारण, स्वयं वृद्धि नहीं
+U5A-N125	hi	t	शहर आगमन से बढ़ते हैं।
+U5A-N126	en	w	Births still above 30 per thousand but falling, with deaths already cut sharply: that is the third (late expanding) stage, where growth starts to slow.
+U5A-N126	en	o	Both rates are high and steady ¦ Births are high and not yet falling ¦ Right: third stage ¦ Both rates are low
+U5A-N126	en	t	Stage 3 = births begin to follow deaths down.
+U5A-N126	hi	w	जन्म अब भी 30 प्रति हज़ार से ऊपर पर घट रहे, और मृत्यु पहले ही तेज़ी से घट चुकी: यह तीसरी (उत्तर विस्तारी) अवस्था है, जहाँ वृद्धि धीमी होने लगती है।
+U5A-N126	hi	o	दोनों दरें ऊँची और स्थिर ¦ जन्म ऊँचे और अभी नहीं घटे ¦ सही: तीसरी अवस्था ¦ दोनों दरें कम
+U5A-N126	hi	t	अवस्था 3 = जन्म मृत्यु के पीछे नीचे आने लगते हैं।
+U5A-N127	en	w	Total population divided by agricultural (cultivated) area is physiological density. Agricultural density divides only the farming population by that area.
+U5A-N127	en	o	People ÷ total area ¦ Farm population ÷ farm area ¦ Not a standard ratio here ¦ Right: physiological density
+U5A-N127	en	t	Physiological = everyone; agricultural = farmers only.
+U5A-N127	hi	w	कुल जनसंख्या को कृषि (जोत) क्षेत्र से भाग देना कायिक घनत्व है। कृषि घनत्व केवल कृषक जनसंख्या को उस क्षेत्र से भाग देता है।
+U5A-N127	hi	o	लोग ÷ कुल क्षेत्र ¦ कृषक जनसंख्या ÷ कृषि क्षेत्र ¦ यहाँ मानक अनुपात नहीं ¦ सही: कायिक घनत्व
+U5A-N127	hi	t	कायिक = सब लोग; कृषि = केवल किसान।
+U5A-N130	en	w	Erich Zimmermann (1933) wrote that resources are not, they become: a thing becomes a resource only when people have the need, knowledge and technology to use it.
+U5A-N130	en	o	Von Thünen gave the agricultural location model ¦ Right: Zimmermann ¦ Hartshorne wrote on areal differentiation ¦ Semple was an environmental determinist
+U5A-N130	en	t	Oil was black sludge until engines made it a resource.
+U5A-N130	hi	w	एरिक ज़िमरमैन (1933) ने लिखा कि संसाधन होते नहीं, बनते हैं: कोई वस्तु तभी संसाधन बनती है जब लोगों के पास उसे इस्तेमाल करने की ज़रूरत, ज्ञान और तकनीक हो।
+U5A-N130	hi	o	वॉन थ्यूनन ने कृषि अवस्थिति मॉडल दिया ¦ सही: ज़िमरमैन ¦ हार्टशोर्न ने क्षेत्रीय विभेदन पर लिखा ¦ सेम्पल पर्यावरण निश्चयवादी थीं
+U5A-N130	hi	t	इंजन आने तक तेल काला कीचड़ था।
+U5A-N131	en	w	A push factor drives people out of their home country; internal conflict is the clear example. Higher wages abroad, freedom and security pull people towards a destination. The key gives (3), which is a pull factor, so it looks wrong.
+U5A-N131	en	o	The textbook push factor; the key differs ¦ A pull factor ¦ Right: as keyed, though it is really a pull factor ¦ A pull factor
+U5A-N131	en	t	Push = trouble at home; pull = promise abroad.
+U5A-N131	hi	w	धक्का कारक लोगों को अपने देश से बाहर निकालता है; आंतरिक संघर्ष इसका स्पष्ट उदाहरण है। विदेश में ऊँची मज़दूरी, स्वतंत्रता और सुरक्षा गंतव्य की ओर खींचते हैं। कुंजी (3) देती है, जो खिंचाव कारक है, इसलिए यह गलत लगती है।
+U5A-N131	hi	o	पाठ्यपुस्तक का धक्का कारक; कुंजी भिन्न ¦ खिंचाव कारक ¦ सही: कुंजी अनुसार, यद्यपि यह वास्तव में खिंचाव कारक है ¦ खिंचाव कारक
+U5A-N131	hi	t	धक्का = घर में परेशानी; खिंचाव = बाहर वादा।
+U5A-N132	en	w	The options of this question were printed out of order in the source. The key gives option (1). Resource development depends on people: how many there are, their skills, capital and needs, acting on the physical environment.
+U5A-N132	en	o	Right: option (1), as keyed ¦ Provides the base, not the driver ¦ Drives demand ¦ Needed, but not keyed
+U5A-N132	en	t	Nature offers, people develop.
+U5A-N132	hi	w	इस प्रश्न के विकल्प स्रोत में क्रम से बाहर छपे थे। कुंजी विकल्प (1) देती है। संसाधन विकास लोगों पर निर्भर करता है: उनकी संख्या, कौशल, पूँजी और ज़रूरतें, जो भौतिक पर्यावरण पर काम करती हैं।
+U5A-N132	hi	o	सही: विकल्प (1), कुंजी अनुसार ¦ आधार देता है, चालक नहीं ¦ माँग चलाती हैं ¦ ज़रूरी, पर कुंजी में नहीं
+U5A-N132	hi	t	प्रकृति देती है, लोग विकसित करते हैं।
+U5A-N133	en	w	By the rule of 70, doubling time = 70 ÷ 2.1 ≈ 33 years. The key gives 28 years, which does not fit the arithmetic; 33 years (option 3) is the correct value.
+U5A-N133	en	o	Too long ¦ Too short ¦ The correct value by the rule of 70 ¦ Right: as keyed, though 70 ÷ 2.1 gives about 33
+U5A-N133	en	t	Doubling time ≈ 70 ÷ growth rate.
+U5A-N133	hi	w	70 के नियम से दुगुना होने का समय = 70 ÷ 2.1 ≈ 33 वर्ष। कुंजी 28 वर्ष देती है, जो गणित से मेल नहीं खाता; 33 वर्ष (विकल्प 3) सही मान है।
+U5A-N133	hi	o	बहुत लंबा ¦ बहुत छोटा ¦ 70 के नियम से सही मान ¦ सही: कुंजी अनुसार, यद्यपि 70 ÷ 2.1 लगभग 33 देता है
+U5A-N133	hi	t	दुगुना समय ≈ 70 ÷ वृद्धि दर।
+U5A-N134	en	w	In the Census of India, a main worker works 6 months (183 days) or more in the year; a marginal worker works for less than that.
+U5A-N134	en	o	That is a main worker ¦ Right: less than 180 days ¦ That is a non-worker ¦ Too narrow; the limit is six months
+U5A-N134	en	t	Main = half a year or more; marginal = less.
+U5A-N134	hi	w	भारत की जनगणना में मुख्य कामगार वर्ष में 6 महीने (183 दिन) या अधिक काम करता है; सीमांत कामगार उससे कम।
+U5A-N134	hi	o	यह मुख्य कामगार है ¦ सही: 180 दिन से कम ¦ यह गैर-कामगार है ¦ बहुत संकीर्ण; सीमा छह महीने है
+U5A-N134	hi	t	मुख्य = आधा साल या अधिक; सीमांत = कम।
+U5B-A1	en	w	Bangkok stands on the Chao Phraya, not the Irrawaddy, which flows through Myanmar past Mandalay and near Yangon. The other three are correct.
+U5B-A1	en	o	Correct: London on the Thames ¦ Correct: Nashik on the Godavari ¦ Right: wrong pair, Bangkok is on the Chao Phraya ¦ Correct: Rome on the Tiber
+U5B-A1	en	t	Irrawaddy = Myanmar; Chao Phraya = Thailand.
+U5B-A1	hi	w	बैंकॉक चाओ फ्राया पर है, इरावदी पर नहीं, जो म्यांमार में मांडले से होकर यांगून के पास बहती है। बाकी तीनों सही हैं।
+U5B-A1	hi	o	सही जोड़ी: टेम्स पर लंदन ¦ सही जोड़ी: गोदावरी पर नासिक ¦ सही: गलत जोड़ी, बैंकॉक चाओ फ्राया पर ¦ सही जोड़ी: टाइबर पर रोम
+U5B-A1	hi	t	इरावदी = म्यांमार; चाओ फ्राया = थाईलैंड।
+U5B-A2	en	w	Settlement sites are named for landforms and positions: foothill, gap, coastal, river, spring-line, hilltop. Rock structure is geology, not a site type.
+U5B-A2	en	o	A site type ¦ A site type (gap town) ¦ A site type ¦ Right: not a site type
+U5B-A2	en	t	Site = where it sits, not what rock is under it.
+U5B-A2	hi	w	बस्ती स्थल भू-आकृतियों और स्थितियों के नाम पर होते हैं: गिरिपद, दर्रा, तटीय, नदी, झरना-रेखा, पहाड़ी-शीर्ष। शैल संरचना भूविज्ञान है, स्थल प्रकार नहीं।
+U5B-A2	hi	o	एक स्थल प्रकार ¦ एक स्थल प्रकार (दर्रा नगर) ¦ एक स्थल प्रकार ¦ सही: स्थल प्रकार नहीं
+U5B-A2	hi	t	स्थल = कहाँ बसा, नीचे कौन सी चट्टान नहीं।
+U5B-A3	en	w	Rural settlement types are hamlets, nucleated villages and compact villages (plus dispersed and linear). Multistoried house clusters are urban.
+U5B-A3	en	o	C is urban ¦ Right: A, B and D ¦ C is urban ¦ C is urban
+U5B-A3	en	t	Many floors = city.
+U5B-A3	hi	w	ग्रामीण बस्तियों के प्रकार पुरवा, केंद्रित गाँव और सघन गाँव हैं (साथ में प्रकीर्ण और रेखीय)। बहुमंज़िला मकान समूह नगरीय हैं।
+U5B-A3	hi	o	C नगरीय है ¦ सही: A, B और D ¦ C नगरीय है ¦ C नगरीय है
+U5B-A3	hi	t	बहुत मंज़िलें = शहर।
+U5B-A4	en	w	The true pairs are Burgess (concentric), Hoyt (sector), Peter Mann (his alternate model) and Harris and Ullman (multiple nuclei), which is code (2). The key gives code (1), which pairs sector theory with Mann; it looks wrong.
+U5B-A4	en	o	Right: as keyed, though Hoyt made the sector theory ¦ The textbook pairing: iv, iii, ii, i ¦ Wrong order ¦ Wrong order
+U5B-A4	en	t	Burgess rings, Hoyt wedges, Harris-Ullman many hearts.
+U5B-A4	hi	w	सही जोड़ियाँ हैं बर्गेस (संकेंद्रीय), हॉयट (त्रिज्यखंड), पीटर मान (उनका वैकल्पिक मॉडल) और हैरिस व उलमैन (बहु-केंद्रक), जो कोड (2) है। कुंजी कोड (1) देती है, जो त्रिज्यखंड सिद्धांत को मान से जोड़ती है; यह गलत लगती है।
+U5B-A4	hi	o	सही: कुंजी अनुसार, यद्यपि त्रिज्यखंड सिद्धांत हॉयट का है ¦ पाठ्यपुस्तक जोड़ी: iv, iii, ii, i ¦ गलत क्रम ¦ गलत क्रम
+U5B-A4	hi	t	बर्गेस वलय, हॉयट फाँकें, हैरिस-उलमैन कई केंद्र।
+U5B-A6	en	w	Both Burgess and Hoyt deal mainly with where residential areas of different classes sit around the CBD. Both place the CBD at the centre, but the arrangement of housing is what they share and compare.
+U5B-A6	en	o	They place industry differently ¦ Right: location of residential areas ¦ Retail is in the CBD in both, not the theme ¦ Both have a central CBD, but the key stresses housing
+U5B-A6	en	t	Rings or wedges, both are about where people live.
+U5B-A6	hi	w	बर्गेस और हॉयट दोनों मुख्यतः यह बताते हैं कि अलग-अलग वर्गों के आवासीय क्षेत्र CBD के चारों ओर कहाँ हैं। दोनों CBD को केंद्र में रखते हैं, पर आवास की व्यवस्था ही वह है जो वे साझा करते और तुलना करते हैं।
+U5B-A6	hi	o	वे उद्योग को अलग जगह रखते हैं ¦ सही: आवासीय क्षेत्रों की अवस्थिति ¦ खुदरा दोनों में CBD में, मुख्य विषय नहीं ¦ दोनों में केंद्रीय CBD, पर कुंजी आवास पर ज़ोर देती है
+U5B-A6	hi	t	वलय हों या फाँकें, दोनों लोगों के रहने की जगह पर हैं।
+U5B-A7	en	w	In nearest neighbour analysis, Rn = 0 is fully clustered, about 1.0 is random, and 2.15 is the maximum, a perfectly uniform (hexagonal) pattern. The key gives random, which does not fit; Rn = 2.15 means uniform.
+U5B-A7	en	o	Clustered is near 0 ¦ The correct reading of 2.15 ¦ Right: as keyed, though 2.15 is perfectly uniform ¦ Every Rn value has a pattern
+U5B-A7	en	t	0 clustered, 1 random, 2.15 perfectly even.
+U5B-A7	hi	w	निकटतम पड़ोसी विश्लेषण में Rn = 0 पूर्णतः गुच्छित, लगभग 1.0 यादृच्छिक, और 2.15 अधिकतम, पूर्णतः समान (षट्कोणीय) प्रतिरूप है। कुंजी यादृच्छिक देती है, जो मेल नहीं खाती; Rn = 2.15 का अर्थ समान है।
+U5B-A7	hi	o	गुच्छित 0 के पास ¦ 2.15 का सही अर्थ ¦ सही: कुंजी अनुसार, यद्यपि 2.15 पूर्णतः समान है ¦ हर Rn मान का एक प्रतिरूप है
+U5B-A7	hi	t	0 गुच्छित, 1 यादृच्छिक, 2.15 पूर्णतः समान।
+U5B-A8	en	w	In dry regions water sources are few, so people cluster around each well or tank. That is why settlements there are nucleated.
+U5B-A8	en	o	Right: both true, R explains A ¦ R does explain A ¦ R is also true ¦ A is also true
+U5B-A8	en	t	One well, one village.
+U5B-A8	hi	w	शुष्क प्रदेशों में जल स्रोत कम होते हैं, इसलिए लोग हर कुएँ या तालाब के चारों ओर इकट्ठा होते हैं। इसीलिए वहाँ बस्तियाँ केंद्रित होती हैं।
+U5B-A8	hi	o	सही: दोनों सत्य, R, A को समझाता है ¦ R, A को समझाता है ¦ R भी सत्य है ¦ A भी सत्य है
+U5B-A8	hi	t	एक कुआँ, एक गाँव।
+U5B-A9	en	w	The rural-urban fringe has all four traits: mixed and segregated land uses and people, selective in-migration, loss of farmland, and unplanned growth.
+U5B-A9	en	o	Right: A, B, C and D ¦ Leaves out A ¦ Leaves out B ¦ Leaves out D
+U5B-A9	en	t	The fringe: half city, half farm, all unplanned.
+U5B-A9	hi	w	ग्रामीण-नगरीय उपांत में चारों गुण हैं: मिश्रित और पृथक भूमि उपयोग और लोग, चयनात्मक आगमन, कृषि भूमि की हानि, और अनियोजित वृद्धि।
+U5B-A9	hi	o	सही: A, B, C और D ¦ A छूटा ¦ B छूटा ¦ D छूटा
+U5B-A9	hi	t	उपांत: आधा शहर, आधा खेत, सब अनियोजित।
+U5B-A10	en	w	All four are used to draw a city's sphere of influence: Carey's gravity idea, Converse's breaking point, Reilly's law of retail gravitation, and Thiessen polygons.
+U5B-A10	en	o	Leaves out D ¦ Leaves out A ¦ Leaves out B ¦ Right: A, B, C and D
+U5B-A10	en	t	Gravity and polygons draw the city's reach.
+U5B-A10	hi	w	चारों से नगर का प्रभाव क्षेत्र खींचा जाता है: कैरी का गुरुत्व विचार, कन्वर्स का विभाजन बिंदु, रीली का खुदरा गुरुत्वाकर्षण नियम, और थीसेन बहुभुज।
+U5B-A10	hi	o	D छूटा ¦ A छूटा ¦ B छूटा ¦ सही: A, B, C और D
+U5B-A10	hi	t	गुरुत्व और बहुभुज नगर की पहुँच खींचते हैं।
+U5B-A11	en	w	Mark Jefferson introduced the law of the primate city in 1939: a country's leading city is often far larger than the next.
+U5B-A11	en	o	Berry worked on city systems ¦ Right: Mark Jefferson ¦ Smailes worked on urban hierarchy ¦ Harris worked on functional classification
+U5B-A11	en	t	Jefferson 1939: primate = first and far ahead.
+U5B-A11	hi	w	मार्क जेफ़रसन ने 1939 में प्रमुख नगर का नियम दिया: देश का प्रमुख नगर अक्सर अगले से बहुत बड़ा होता है।
+U5B-A11	hi	o	बेरी ने नगर तंत्र पर काम किया ¦ सही: मार्क जेफ़रसन ¦ स्मेल्स ने नगरीय पदानुक्रम पर काम किया ¦ हैरिस ने कार्यात्मक वर्गीकरण पर काम किया
+U5B-A11	hi	t	जेफ़रसन 1939: प्रमुख = पहला और बहुत आगे।
+U5B-A12	en	w	G. K. Zipf gave the rank-size rule in its general form (1949), linking city size to rank.
+U5B-A12	en	o	Right: Zipf ¦ Not the author ¦ Northam wrote on urban stages ¦ Not the author
+U5B-A12	en	t	Zipf: rank × size = constant.
+U5B-A12	hi	w	जी. के. ज़िप्फ़ ने कोटि-आकार नियम को सामान्य रूप में (1949) दिया, जो नगर के आकार को कोटि से जोड़ता है।
+U5B-A12	hi	o	सही: ज़िप्फ़ ¦ लेखक नहीं ¦ नॉर्थम ने नगरीय अवस्थाओं पर लिखा ¦ लेखक नहीं
+U5B-A12	hi	t	ज़िप्फ़: कोटि × आकार = स्थिरांक।
+U5B-A13	en	w	Urban hierarchy is measured by centrality, by the number and level of functions, and by occupational structure. The transport network alone is not a method of ranking.
+U5B-A13	en	o	A method ¦ A method ¦ Right: not a method ¦ A method
+U5B-A13	en	t	Hierarchy = what a town does, not just its roads.
+U5B-A13	hi	w	नगरीय पदानुक्रम केंद्रीयता, कार्यों की संख्या और स्तर, और व्यावसायिक संरचना से मापा जाता है। केवल परिवहन जाल श्रेणी तय करने की विधि नहीं।
+U5B-A13	hi	o	एक विधि ¦ एक विधि ¦ सही: विधि नहीं ¦ एक विधि
+U5B-A13	hi	t	पदानुक्रम = नगर क्या करता है, केवल सड़कें नहीं।

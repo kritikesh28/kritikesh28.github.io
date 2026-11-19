@@ -1,0 +1,150 @@
+U6A-N6	en	w	This question is read from a chart printed in the original paper (see the "see original" view). The keyed answer is option (1).
+U6A-N6	en	o	Right: option (1), read from the chart ¦ Does not fit the chart ¦ Does not fit the chart ¦ Does not fit the chart
+U6A-N6	en	t	Read the bars for each region one by one before comparing.
+U6A-N6	hi	w	यह प्रश्न मूल पेपर में छपे आलेख से पढ़ा जाता है ("मूल देखें")। कुंजी का उत्तर विकल्प (1) है।
+U6A-N6	hi	o	सही: विकल्प (1), आलेख से पढ़ा ¦ आलेख से मेल नहीं ¦ आलेख से मेल नहीं ¦ आलेख से मेल नहीं
+U6A-N6	hi	t	तुलना से पहले हर प्रदेश के स्तंभ एक-एक करके पढ़ें।
+U6A-N7	en	w	This question is read from a chart printed in the original paper (see the "see original" view). The keyed answer is option (4). Europe leads in renewables plus hydro in that chart.
+U6A-N7	en	o	Does not fit the chart ¦ Does not fit the chart ¦ Does not fit the chart ¦ Right: option (4), read from the chart
+U6A-N7	en	t	Read the bars for each region one by one before comparing.
+U6A-N7	hi	w	यह प्रश्न मूल पेपर में छपे आलेख से पढ़ा जाता है ("मूल देखें")। कुंजी का उत्तर विकल्प (4) है। उस आलेख में नवीकरणीय और जलविद्युत मिलाकर यूरोप आगे है।
+U6A-N7	hi	o	आलेख से मेल नहीं ¦ आलेख से मेल नहीं ¦ आलेख से मेल नहीं ¦ सही: विकल्प (4), आलेख से पढ़ा
+U6A-N7	hi	t	तुलना से पहले हर प्रदेश के स्तंभ एक-एक करके पढ़ें।
+U6A-N8	en	w	FAO's Forest Resources Assessment 2015 showed Brazil and Indonesia losing the most forest between 1990 and 2015, from cattle ranching, soy and oil palm.
+U6A-N8	en	o	Congo lost less ¦ Both gained or held forest ¦ Right: Brazil and Indonesia ¦ Both are stable
+U6A-N8	en	t	Amazon cattle and Indonesian palm oil.
+U6A-N8	hi	w	FAO के Forest Resources Assessment 2015 ने दिखाया कि 1990 से 2015 के बीच ब्राज़ील और इंडोनेशिया ने सबसे अधिक वन खोए, पशुपालन, सोया और ताड़ तेल के कारण।
+U6A-N8	hi	o	कांगो ने कम खोया ¦ दोनों ने वन बढ़ाए या बनाए रखे ¦ सही: ब्राज़ील और इंडोनेशिया ¦ दोनों स्थिर
+U6A-N8	hi	t	अमेज़न के मवेशी और इंडोनेशिया का ताड़ तेल।
+U6A-N9	en	w	Thanks to shale gas, the USA is the largest natural gas producer, followed by Russia.
+U6A-N9	en	o	Right: USA and Russia ¦ Reversed ¦ Saudi Arabia is lower ¦ Wrong pair
+U6A-N9	en	t	Shale made the USA the gas leader too.
+U6A-N9	hi	w	शेल गैस के कारण अमेरिका सबसे बड़ा प्राकृतिक गैस उत्पादक है, उसके बाद रूस।
+U6A-N9	hi	o	सही: अमेरिका और रूस ¦ उल्टा ¦ सऊदी अरब नीचे ¦ गलत जोड़ी
+U6A-N9	hi	t	शेल ने अमेरिका को गैस में भी आगे किया।
+U6A-N10	en	w	The Po basin of northern Italy (Milan, Turin, Genoa triangle) is the country's main industrial region.
+U6A-N10	en	o	Not here ¦ Not here ¦ Right: Italy ¦ Not here
+U6A-N10	en	t	Italy's industry flows along the Po.
+U6A-N10	hi	w	उत्तरी इटली का पो बेसिन (मिलान, ट्यूरिन, जेनोआ त्रिकोण) देश का मुख्य औद्योगिक प्रदेश है।
+U6A-N10	hi	o	यहाँ नहीं ¦ यहाँ नहीं ¦ सही: इटली ¦ यहाँ नहीं
+U6A-N10	hi	t	इटली का उद्योग पो के साथ बहता है।
+U6A-N11	en	w	The Netherlands is famous for tulip bulbs and cut flowers, with the Keukenhof gardens and the Aalsmeer auction.
+U6A-N11	en	o	Right: Netherlands ¦ Dairy, not tulips ¦ Dairy and sheep ¦ Cedars and fruit
+U6A-N11	en	t	Holland: tulips and windmills.
+U6A-N11	hi	w	नीदरलैंड ट्यूलिप कंदों और कटे फूलों के लिए प्रसिद्ध है, क्यूकेनहॉफ़ उद्यान और आल्समीर नीलामी के साथ।
+U6A-N11	hi	o	सही: नीदरलैंड ¦ डेयरी, ट्यूलिप नहीं ¦ डेयरी और भेड़ ¦ देवदार और फल
+U6A-N11	hi	t	हॉलैंड: ट्यूलिप और पवनचक्कियाँ।
+U6A-N12	en	w	The statements were printed as options and E in the stem. Coffee is native to the Ethiopian highlands (A), merino sheep do best in drier warm temperate lands (B), and silk depends on cheap, skilled (often female) labour (C). D is wrong: arabica, not robusta, leads world trade. Code (2) = A, B, C.
+U6A-N12	en	o	True: Ethiopia is coffee's home ¦ Right: true, and code (2) = A, B, C ¦ True: silk is labour-intensive ¦ False: arabica leads world trade
+U6A-N12	en	t	Kaffa, Ethiopia: where coffee began.
+U6A-N12	hi	w	कथन विकल्पों की जगह छपे हैं, E प्रश्न में है। कॉफ़ी इथियोपिया के उच्च प्रदेश की मूल है (A), मेरिनो भेड़ें शुष्क गर्म शीतोष्ण भूमि में अच्छी रहती हैं (B), और रेशम सस्ते, कुशल (अक्सर महिला) श्रम पर निर्भर है (C)। D गलत: विश्व व्यापार में अरेबिका आगे है, रोबस्टा नहीं। कोड (2) = A, B, C।
+U6A-N12	hi	o	सत्य: इथियोपिया कॉफ़ी का घर ¦ सही: सत्य, और कोड (2) = A, B, C ¦ सत्य: रेशम श्रम-प्रधान है ¦ असत्य: विश्व व्यापार में अरेबिका आगे
+U6A-N12	hi	t	काफ़ा, इथियोपिया: जहाँ कॉफ़ी शुरू हुई।
+U6A-N13	en	w	The statements were printed as options. KPO is counted under quinary services (A), and outsourcing comes to India for cheap, skilled workers (D). B is wrong (R&D and e-learning are KPO), and C is wrong (KPO, not BPO, needs highly skilled workers). Code (2) = A and D.
+U6A-N13	en	o	Right: true, and code (2) = A and D ¦ False: those are KPO ¦ False: KPO needs the higher skills ¦ True: cheap, skilled labour
+U6A-N13	en	t	BPO = process; KPO = knowledge.
+U6A-N13	hi	w	कथन विकल्पों की जगह छपे हैं। KPO पंचम सेवाओं में गिना जाता है (A), और आउटसोर्सिंग सस्ते, कुशल कामगारों के लिए भारत आती है (D)। B गलत (R&D और ई-लर्निंग KPO हैं), और C गलत (अत्यधिक कुशल कामगार KPO में चाहिए, BPO में नहीं)। कोड (2) = A और D।
+U6A-N13	hi	o	सही: सत्य, और कोड (2) = A और D ¦ असत्य: वे KPO हैं ¦ असत्य: अधिक कौशल KPO में ¦ सत्य: सस्ता, कुशल श्रम
+U6A-N13	hi	t	BPO = प्रक्रिया; KPO = ज्ञान।
+U6A-N14	en	w	The countries were printed as options and the codes in the stem. In 2021 wind capacity ran China, USA, Germany, India: C, A, B, D, code (3).
+U6A-N14	en	o	Second (A) ¦ Third (B) ¦ Right: first, and code (3) = C, A, B, D ¦ Fourth (D)
+U6A-N14	en	t	China builds the most turbines.
+U6A-N14	hi	w	देश विकल्पों की जगह और कोड प्रश्न में छपे हैं। 2021 में पवन क्षमता का क्रम चीन, अमेरिका, जर्मनी, भारत था: C, A, B, D, कोड (3)।
+U6A-N14	hi	o	दूसरा (A) ¦ तीसरा (B) ¦ सही: पहला, और कोड (3) = C, A, B, D ¦ चौथा (D)
+U6A-N14	hi	t	चीन सबसे अधिक टर्बाइन लगाता है।
+U6A-N15	en	w	The key gives option (3). Strictly, the well-known problem of horticultural products is a glut at harvest time (option 4): everything ripens at once and prices crash. Bunt and smut are fungal diseases of cereals, so the key looks off.
+U6A-N15	en	o	Glut comes at harvest, not growing ¦ Bunt is a wheat disease ¦ Right: as keyed ¦ The usual textbook statement
+U6A-N15	en	t	Harvest glut: too many tomatoes, too few buyers.
+U6A-N15	hi	w	कुंजी विकल्प (3) देती है। सख़्ती से, बागवानी उत्पादों की प्रसिद्ध समस्या कटाई के समय अधिकता (glut) है (विकल्प 4): सब एक साथ पकता है और दाम गिर जाते हैं। बंट और स्मट अनाजों के फफूँद रोग हैं, इसलिए कुंजी गलत लगती है।
+U6A-N15	hi	o	अधिकता कटाई पर, उगने पर नहीं ¦ बंट गेहूँ का रोग ¦ सही: कुंजी अनुसार ¦ सामान्य पाठ्यपुस्तक कथन
+U6A-N15	hi	t	कटाई पर अधिकता: टमाटर बहुत, खरीदार कम।
+U6A-N16	en	w	The options were printed as A to D and the codes in the stem. A chitinase gene helps the plant fight fungi, which keeps produce fresh longer and saves money on preservation. Code 1 = A and B.
+U6A-N16	en	o	Right: freshness, and code 1 = A and B ¦ True: less spoilage saves money ¦ Not the aim ¦ Not the aim
+U6A-N16	en	t	Chitinase breaks fungal walls.
+U6A-N16	hi	w	विकल्प A से D के रूप में और कोड प्रश्न में छपे हैं। काइटिनेज़ जीन पौधे को फफूँद से लड़ने में मदद करता है, जिससे उपज अधिक समय ताज़ा रहती है और संरक्षण का खर्च बचता है। कोड 1 = A और B।
+U6A-N16	hi	o	सही: ताज़गी, और कोड 1 = A और B ¦ सत्य: कम सड़न से पैसा बचता है ¦ उद्देश्य नहीं ¦ उद्देश्य नहीं
+U6A-N16	hi	t	काइटिनेज़ फफूँद की दीवार तोड़ता है।
+U6A-N17	en	w	Perishable produce needs access to markets, a preservation system and fast transport. A big market size helps sales but is not a step in preserving the produce.
+U6A-N17	en	o	Needed ¦ Needed ¦ Needed ¦ Right: not a preservation step
+U6A-N17	en	t	Keep it cold, move it fast, sell it near.
+U6A-N17	hi	w	जल्दी खराब होने वाली उपज को बाज़ार तक पहुँच, संरक्षण तंत्र और तेज़ परिवहन चाहिए। बड़ा बाज़ार बिक्री में मदद करता है पर संरक्षण का कदम नहीं।
+U6A-N17	hi	o	ज़रूरी ¦ ज़रूरी ¦ ज़रूरी ¦ सही: संरक्षण का कदम नहीं
+U6A-N17	hi	t	ठंडा रखो, तेज़ पहुँचाओ, पास बेचो।
+U6A-N18	en	w	The key says genetic engineering would give produce a natural defence against glut losses, by letting it keep longer so a harvest glut does not rot.
+U6A-N18	en	o	Not the keyed aim ¦ Right: natural defence against glut loss ¦ Rust is a cereal disease ¦ Close, but not keyed
+U6A-N18	en	t	Longer shelf life beats the glut.
+U6A-N18	hi	w	कुंजी कहती है कि जेनेटिक इंजीनियरिंग उपज को अधिकता से होने वाले नुकसान से प्राकृतिक बचाव देगी, उसे अधिक समय टिकाऊ बनाकर ताकि कटाई की अधिकता सड़े नहीं।
+U6A-N18	hi	o	कुंजी का उद्देश्य नहीं ¦ सही: अधिकता हानि से प्राकृतिक बचाव ¦ रस्ट अनाज का रोग ¦ निकट, पर कुंजी में नहीं
+U6A-N18	hi	t	लंबी शेल्फ़ लाइफ़ अधिकता को हराती है।
+U6A-N19	en	w	The key links a big rise in fruit and vegetable output mainly to more jobs: horticulture is labour-intensive in growing, picking, packing and processing.
+U6A-N19	en	o	A benefit, but not keyed ¦ A side effect ¦ Right: more employment ¦ A result of more jobs
+U6A-N19	en	t	Fruit and vegetables need many hands.
+U6A-N19	hi	w	कुंजी फल और सब्ज़ी उत्पादन में बड़ी वृद्धि को मुख्यतः अधिक रोज़गार से जोड़ती है: बागवानी उगाने, तोड़ने, पैक करने और प्रसंस्करण में श्रम-प्रधान है।
+U6A-N19	hi	o	एक लाभ, पर कुंजी में नहीं ¦ सहायक प्रभाव ¦ सही: अधिक रोज़गार ¦ अधिक रोज़गार का परिणाम
+U6A-N19	hi	t	फल-सब्ज़ी को कई हाथ चाहिए।
+U6A-N20	en	w	Kiruna and Gällivare in Swedish Lapland mine rich magnetite iron ore, shipped through Narvik and Luleå.
+U6A-N20	en	o	Right: Sweden ¦ Hematite in the Pilbara ¦ Hematite at Carajás ¦ Labrador trough
+U6A-N20	en	t	Kiruna: iron under the Arctic Circle.
+U6A-N20	hi	w	स्वीडिश लैपलैंड के किरुना और गैलिवारे समृद्ध मैग्नेटाइट लौह अयस्क निकालते हैं, जो नार्विक और लूलिया से भेजा जाता है।
+U6A-N20	hi	o	सही: स्वीडन ¦ पिलबारा में हेमेटाइट ¦ कराजास में हेमेटाइट ¦ लैब्राडोर ट्रफ़
+U6A-N20	hi	t	किरुना: आर्कटिक वृत्त के नीचे लोहा।
+U6A-N21	en	w	C, D and E are not correct. The axe-breaker of the Chaco is quebracho, not chestnut; cinchona bark gives quinine, while chewing gum comes from chicle (sapodilla); and teak is not a tannin source like hemlock and mangrove. A and B are correct.
+U6A-N21	en	o	B is correct ¦ A is correct ¦ A and B are correct ¦ Right: C, D and E
+U6A-N21	en	t	Quebracho breaks axes; cinchona cures malaria.
+U6A-N21	hi	w	C, D और E सही नहीं हैं। चाको का कुल्हाड़ी-तोड़ क्वेब्राचो है, चेस्टनट नहीं; सिनकोना की छाल से कुनैन बनती है, जबकि च्युइंग गम चिकल (चीकू) से; और सागौन हेमलॉक और मैंग्रोव की तरह टैनिन का स्रोत नहीं। A और B सही हैं।
+U6A-N21	hi	o	B सही है ¦ A सही है ¦ A और B सही हैं ¦ सही: C, D और E
+U6A-N21	hi	t	क्वेब्राचो कुल्हाड़ी तोड़ता है; सिनकोना मलेरिया ठीक करता है।
+U6A-N22	en	w	In the 2021–22 HDI, Switzerland ranked 1st, Norway 2nd, Iceland 3rd and Australia 5th: C, B, D, A.
+U6A-N22	en	o	Norway was second ¦ Wrong order ¦ Iceland was ahead of Australia ¦ Right: C, B, D, A
+U6A-N22	en	t	2021: Switzerland overtook Norway.
+U6A-N22	hi	w	2021–22 के HDI में स्विट्ज़रलैंड पहला, नॉर्वे दूसरा, आइसलैंड तीसरा और ऑस्ट्रेलिया पाँचवाँ था: C, B, D, A।
+U6A-N22	hi	o	नॉर्वे दूसरा था ¦ गलत क्रम ¦ आइसलैंड ऑस्ट्रेलिया से आगे ¦ सही: C, B, D, A
+U6A-N22	hi	t	2021: स्विट्ज़रलैंड नॉर्वे से आगे।
+U6A-N23	en	w	The share of non-religious people is highest in East Asia (China), then Eastern Europe (ex-communist), then the South Pacific (Australia, New Zealand), Anglo-America and Latin America: C, D, B, A, E.
+U6A-N23	en	o	East Asia leads ¦ Right: C, D, B, A, E ¦ East Asia leads ¦ Wrong order
+U6A-N23	en	t	China first; Latin America the most religious.
+U6A-N23	hi	w	गैर-धार्मिक लोगों का हिस्सा पूर्वी एशिया (चीन) में सबसे अधिक है, फिर पूर्वी यूरोप (पूर्व-साम्यवादी), फिर दक्षिण प्रशांत (ऑस्ट्रेलिया, न्यूज़ीलैंड), एंग्लो-अमेरिका और लैटिन अमेरिका: C, D, B, A, E।
+U6A-N23	hi	o	पूर्वी एशिया आगे ¦ सही: C, D, B, A, E ¦ पूर्वी एशिया आगे ¦ गलत क्रम
+U6A-N23	hi	t	पहले चीन; लैटिन अमेरिका सबसे धार्मिक।
+U6A-N24	en	w	Nuclear output has been rising in many countries, and it is costly to build. Both are true, but high cost does not explain the rise, so R is not the explanation.
+U6A-N24	en	o	R does not explain A ¦ Right: both true, R not the explanation ¦ R is also true ¦ A is accepted as true
+U6A-N24	en	t	Costly, yet growing: for clean, steady power.
+U6A-N24	hi	w	कई देशों में परमाणु उत्पादन बढ़ रहा है, और इसे बनाना महँगा है। दोनों सत्य हैं, पर ऊँची लागत वृद्धि को नहीं समझाती, इसलिए R व्याख्या नहीं।
+U6A-N24	hi	o	R, A को नहीं समझाता ¦ सही: दोनों सत्य, R व्याख्या नहीं ¦ R भी सत्य है ¦ A सत्य माना गया
+U6A-N24	hi	t	महँगा, फिर भी बढ़ता: स्वच्छ, स्थिर बिजली के लिए।
+U6A-N25	en	w	The debt service ratio is the share of a country's export earnings needed to pay interest and principal on its foreign debt.
+U6A-N25	en	o	Right: share of export earnings ¦ Uses exports, not national income ¦ Uses all exports ¦ Uses all exports
+U6A-N25	en	t	Debt service ratio: how much of exports goes to lenders.
+U6A-N25	hi	w	ऋण सेवा अनुपात किसी देश की निर्यात आय का वह हिस्सा है जो विदेशी ऋण का ब्याज और मूलधन चुकाने में लगता है।
+U6A-N25	hi	o	सही: निर्यात आय का हिस्सा ¦ राष्ट्रीय आय नहीं, निर्यात ¦ पूरे निर्यात ¦ पूरे निर्यात
+U6A-N25	hi	t	ऋण सेवा अनुपात: निर्यात का कितना हिस्सा कर्ज़दाताओं को।
+U6A-N26	en	w	In 2020–21 India's poultry exports went mainly to Oman, the Maldives and Indonesia, among others. The key leaves out Pakistan and Thailand.
+U6A-N26	en	o	Too few ¦ Too few ¦ Not keyed ¦ Right: Oman, Maldives and Indonesia
+U6A-N26	en	t	Eggs and chicken to the Gulf and island neighbours.
+U6A-N26	hi	w	2020–21 में भारत का कुक्कुट निर्यात मुख्यतः ओमान, मालदीव और इंडोनेशिया आदि को गया। कुंजी पाकिस्तान और थाईलैंड को छोड़ती है।
+U6A-N26	hi	o	बहुत कम ¦ बहुत कम ¦ कुंजी में नहीं ¦ सही: ओमान, मालदीव और इंडोनेशिया
+U6A-N26	hi	t	अंडे और चिकन खाड़ी और द्वीपीय पड़ोसियों को।
+U6A-N27	en	w	Silicon Valley grew through agglomeration economies: universities (Stanford), venture capital, skilled workers and suppliers clustered together, each attracting more.
+U6A-N27	en	o	Labour there is expensive ¦ Helps, but not the main factor ¦ Right: agglomeration economy ¦ Not the main factor
+U6A-N27	en	t	Firms cluster where other firms are.
+U6A-N27	hi	w	सिलिकॉन वैली समूहन अर्थव्यवस्थाओं से बढ़ी: विश्वविद्यालय (स्टैनफ़र्ड), उद्यम पूँजी, कुशल कामगार और आपूर्तिकर्ता एक साथ जमा हुए, हर एक ने और को खींचा।
+U6A-N27	hi	o	वहाँ श्रम महँगा है ¦ सहायक, पर मुख्य कारक नहीं ¦ सही: समूहन अर्थव्यवस्था ¦ मुख्य कारक नहीं
+U6A-N27	hi	t	फ़र्में वहाँ जमा होती हैं जहाँ दूसरी फ़र्में हैं।
+U6A-N28	en	w	Fish breed and restock if not overfished, so they are renewable. Ores and natural gas are finite, and fuel cells are a technology, not a resource.
+U6A-N28	en	o	Non-renewable ¦ Non-renewable ¦ A device, not a resource ¦ Right: fishes
+U6A-N28	en	t	Living resources renew.
+U6A-N28	hi	w	मछलियाँ अति-मत्स्यन न हो तो प्रजनन कर फिर भर जाती हैं, इसलिए नवीकरणीय हैं। अयस्क और प्राकृतिक गैस सीमित हैं, और ईंधन सेल तकनीक है, संसाधन नहीं।
+U6A-N28	hi	o	अनवीकरणीय ¦ अनवीकरणीय ¦ उपकरण, संसाधन नहीं ¦ सही: मछलियाँ
+U6A-N28	hi	t	जीवित संसाधन नवीकृत होते हैं।
+U6A-N29	en	w	Statement I is false: most marine pollution (about 80%) comes from land-based sources such as runoff and sewage, not shipping. Statement II is true: South-East Asia has the most threatened coral reefs.
+U6A-N29	en	o	I is false ¦ II is true ¦ I is false ¦ Right: I false, II true
+U6A-N29	en	t	The sea is polluted from the land.
+U6A-N29	hi	w	कथन I असत्य है: अधिकांश समुद्री प्रदूषण (लगभग 80%) अपवाह और सीवेज जैसे भूमि-आधारित स्रोतों से आता है, जहाज़रानी से नहीं। कथन II सत्य है: दक्षिण-पूर्व एशिया की प्रवाल भित्तियाँ सबसे अधिक संकट में हैं।
+U6A-N29	hi	o	I असत्य ¦ II सत्य ¦ I असत्य ¦ सही: I असत्य, II सत्य
+U6A-N29	hi	t	समुद्र ज़मीन से प्रदूषित होता है।
+U6A-N30	en	w	The statements were printed as options and E in the stem. Trade widens the range of resources traded (A), spreads manufactured goods worldwide (B) and lowers overall production costs (C). The key does not accept D or E. Code (3) = A, B, C.
+U6A-N30	en	o	True: more resources traded ¦ True: goods reach world markets ¦ Right: true, and code (3) = A, B, C ¦ Not accepted: gains are uneven
+U6A-N30	en	t	Trade: more variety, wider markets, lower costs.
+U6A-N30	hi	w	कथन विकल्पों की जगह छपे हैं, E प्रश्न में है। व्यापार व्यापारित संसाधनों का दायरा बढ़ाता है (A), निर्मित वस्तुएँ विश्वभर पहुँचाता है (B) और कुल उत्पादन लागत घटाता है (C)। कुंजी D या E नहीं मानती। कोड (3) = A, B, C।
+U6A-N30	hi	o	सत्य: अधिक संसाधन व्यापार में ¦ सत्य: वस्तुएँ विश्व बाज़ार तक ¦ सही: सत्य, और कोड (3) = A, B, C ¦ स्वीकार नहीं: लाभ असमान हैं
+U6A-N30	hi	t	व्यापार: अधिक विविधता, बड़े बाज़ार, कम लागत।

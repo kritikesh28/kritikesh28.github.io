@@ -1,0 +1,150 @@
+U5A-N35	en	w	The statements were printed as options and the codes in the stem. A is true: pull factors are jobs and chances at the destination. C is true in spirit: push factors are the lack of livelihood at the place of origin. B is wrong (step migration is moving in stages, village to town to city), and D is wrong (a migration field is the area that sends migrants to a place). Code (4) = A and C.
+U5A-N35	en	o	True: pull = opportunity at destination ¦ False: step migration means moving in stages ¦ True: push = lack of livelihood at origin ¦ Right: code (4) = A and C (statement D itself is false)
+U5A-N35	en	t	Push from home, pull to the city; step = village, town, city.
+U5A-N35	hi	w	कथन विकल्पों की जगह और कोड प्रश्न में छपे हैं। A सत्य: खिंचाव कारक गंतव्य पर रोज़गार और अवसर हैं। C भी भावार्थ में सत्य: धक्का कारक मूल स्थान पर आजीविका की कमी है। B गलत (क्रमिक प्रवास = चरणों में जाना, गाँव से कस्बा से शहर), और D गलत (प्रवास क्षेत्र वह इलाका है जो किसी स्थान को प्रवासी भेजता है)। कोड (4) = A और C।
+U5A-N35	hi	o	सत्य: खिंचाव = गंतव्य पर अवसर ¦ असत्य: क्रमिक प्रवास = चरणों में जाना ¦ सत्य: धक्का = मूल स्थान पर आजीविका की कमी ¦ सही: कोड (4) = A और C (कथन D स्वयं गलत है)
+U5A-N35	hi	t	घर से धक्का, शहर का खिंचाव; क्रमिक = गाँव, कस्बा, शहर।
+U5A-N36	en	w	The statements were printed as options and E sits in the stem. A, B and C are accepted as correct: neo-Malthusians tie fertility to technology and contraception, Malthus was an English economist, and a cohort shares a common trait such as birth year. D is wrong (CBR is births per 1000; births minus deaths is natural increase) and E is wrong (pyramids show age-sex structure). Code (3) = A, B, C.
+U5A-N36	en	o	True as keyed: neo-Malthusians stress birth control and technology ¦ True: Malthus was an English economist ¦ Right: true, and code (3) = A, B, C ¦ False: that is natural increase, not CBR
+U5A-N36	en	t	Cohort = people born together, ageing together.
+U5A-N36	hi	w	कथन विकल्पों की जगह छपे हैं और E प्रश्न में है। A, B और C सही माने गए: नव-माल्थसवादी प्रजनन को तकनीक और गर्भनिरोध से जोड़ते हैं, माल्थस अंग्रेज़ अर्थशास्त्री थे, और कोहोर्ट किसी साझा गुण (जैसे जन्म वर्ष) वाला समूह है। D गलत (CBR प्रति 1000 जन्म है; जन्म घटा मृत्यु प्राकृतिक वृद्धि है) और E गलत (पिरामिड आयु-लिंग संरचना दिखाते हैं)। कोड (3) = A, B, C।
+U5A-N36	hi	o	कुंजी अनुसार सत्य: नव-माल्थसवादी गर्भनिरोध और तकनीक पर ज़ोर देते हैं ¦ सत्य: माल्थस अंग्रेज़ अर्थशास्त्री थे ¦ सही: सत्य, और कोड (3) = A, B, C ¦ असत्य: वह प्राकृतिक वृद्धि है, CBR नहीं
+U5A-N36	hi	t	कोहोर्ट = साथ जन्मे, साथ बूढ़े होते लोग।
+U5A-N37	en	w	In stage 2 (early expanding), medicine and food supply cut the death rate quickly while the birth rate stays high, so population shoots up.
+U5A-N37	en	o	Both rates are low in stage 4 ¦ Both rates are high in stage 1 ¦ Right: stage 2 ¦ Birth rate falls in stage 3
+U5A-N37	en	t	Stage 2 = deaths drop, births don't: the population boom.
+U5A-N37	hi	w	अवस्था 2 (आरंभिक विस्तारी) में दवा और खाद्य आपूर्ति से मृत्यु दर तेज़ी से गिरती है जबकि जन्म दर ऊँची रहती है, इसलिए जनसंख्या तेज़ी से बढ़ती है।
+U5A-N37	hi	o	अवस्था 4 में दोनों दरें कम ¦ अवस्था 1 में दोनों दरें अधिक ¦ सही: अवस्था 2 ¦ अवस्था 3 में जन्म दर गिरती है
+U5A-N37	hi	t	अवस्था 2 = मृत्यु घटी, जन्म नहीं: जनसंख्या विस्फोट।
+U5A-N38	en	w	Population change = natural increase (births minus deaths) + net migration (in minus out). That is the basic demographic equation.
+U5A-N38	en	o	Dependency ratio is a structure measure, not growth ¦ Right: natural increase and net migration ¦ Only one part of each side ¦ Only one part of each side
+U5A-N38	en	t	P2 = P1 + B − D + I − E.
+U5A-N38	hi	w	जनसंख्या परिवर्तन = प्राकृतिक वृद्धि (जन्म घटा मृत्यु) + शुद्ध प्रवास (आगमन घटा निर्गमन)। यही मूल जनांकिकीय समीकरण है।
+U5A-N38	hi	o	निर्भरता अनुपात संरचना मापता है, वृद्धि नहीं ¦ सही: प्राकृतिक वृद्धि और शुद्ध प्रवास ¦ हर पक्ष का केवल एक भाग ¦ हर पक्ष का केवल एक भाग
+U5A-N38	hi	t	P2 = P1 + जन्म − मृत्यु + आगमन − निर्गमन।
+U5A-N39	en	w	Today Buddhism is concentrated in South-East Asia (Thailand, Myanmar, Cambodia), Tibet, Mongolia and Japan. It began in India but has few followers there now.
+U5A-N39	en	o	Siberia is not a Buddhist heartland ¦ Right: South-East Asia, Tibet, Mongolia, Japan ¦ India now has few Buddhists ¦ The Middle East is not Buddhist
+U5A-N39	en	t	Born in India, lives in East and South-East Asia.
+U5A-N39	hi	w	आज बौद्ध धर्म दक्षिण-पूर्व एशिया (थाईलैंड, म्यांमार, कंबोडिया), तिब्बत, मंगोलिया और जापान में केंद्रित है। यह भारत में जन्मा पर अब वहाँ इसके अनुयायी कम हैं।
+U5A-N39	hi	o	साइबेरिया बौद्ध केंद्र नहीं ¦ सही: दक्षिण-पूर्व एशिया, तिब्बत, मंगोलिया, जापान ¦ भारत में अब कम बौद्ध ¦ मध्य पूर्व बौद्ध नहीं
+U5A-N39	hi	t	भारत में जन्मा, पूर्व और दक्षिण-पूर्व एशिया में बसा।
+U5A-N40	en	w	A wide base that narrows quickly means many births (high fertility) and many deaths at each age (high mortality): the classic triangle of a pre-transition society.
+U5A-N40	en	o	Low mortality would keep the sides straighter ¦ That gives a narrow base ¦ Right: high fertility and high mortality ¦ Repeats fertility and ignores deaths
+U5A-N40	en	t	Steep triangle = many born, many die.
+U5A-N40	hi	w	चौड़ा आधार जो जल्दी संकरा होता है, यानी अधिक जन्म (उच्च प्रजनन) और हर आयु पर अधिक मृत्यु (उच्च मृत्यु दर): संक्रमण-पूर्व समाज का शास्त्रीय त्रिभुज।
+U5A-N40	hi	o	कम मृत्यु दर से किनारे सीधे रहते ¦ इससे संकरा आधार बनता है ¦ सही: उच्च प्रजनन और उच्च मृत्यु दर ¦ प्रजनन दोहराता है, मृत्यु भूलता है
+U5A-N40	hi	t	नुकीला त्रिभुज = बहुत जन्म, बहुत मृत्यु।
+U5A-N41	en	w	Vital statistics record life events: births, deaths, marriages and migration. Age and sex are composition (structure), not events.
+U5A-N41	en	o	A vital event ¦ A vital event ¦ Right: age and sex are composition ¦ Vital events
+U5A-N41	en	t	Vital = events that happen; composition = what people are.
+U5A-N41	hi	w	जीवन-सांख्यिकी जीवन की घटनाएँ दर्ज करती है: जन्म, मृत्यु, विवाह और प्रवास। आयु और लिंग संरचना हैं, घटनाएँ नहीं।
+U5A-N41	hi	o	एक जीवन घटना ¦ एक जीवन घटना ¦ सही: आयु और लिंग संरचना हैं ¦ जीवन घटनाएँ
+U5A-N41	hi	t	जीवन-सांख्यिकी = होने वाली घटनाएँ; संरचना = लोग क्या हैं।
+U5A-N42	en	w	Population geography borrows most from sociology, demography and economics: how people behave, how they are counted, and how they earn.
+U5A-N42	en	o	Psychology and history contribute less ¦ Statistics is a tool; demography is the closer discipline ¦ Right: sociology, demography, economics ¦ History contributes less than demography
+U5A-N42	en	t	Count (demography), live (sociology), earn (economics).
+U5A-N42	hi	w	जनसंख्या भूगोल सबसे अधिक समाजशास्त्र, जनांकिकी और अर्थशास्त्र से लेता है: लोग कैसे व्यवहार करते हैं, कैसे गिने जाते हैं, और कैसे कमाते हैं।
+U5A-N42	hi	o	मनोविज्ञान और इतिहास का योगदान कम ¦ सांख्यिकी साधन है; जनांकिकी निकट विषय ¦ सही: समाजशास्त्र, जनांकिकी, अर्थशास्त्र ¦ इतिहास का योगदान जनांकिकी से कम
+U5A-N42	hi	t	गिनना (जनांकिकी), जीना (समाजशास्त्र), कमाना (अर्थशास्त्र)।
+U5A-N43	en	w	Vital statistics are the record of births, deaths, marriages and migration. Age, sex, religion, literacy and work are composition traits.
+U5A-N43	en	o	Composition, not vital events ¦ Composition, not vital events ¦ Right: births, deaths, marriage/migration ¦ Composition, not vital events
+U5A-N43	en	t	Vital = life's big events.
+U5A-N43	hi	w	जीवन-सांख्यिकी जन्म, मृत्यु, विवाह और प्रवास का अभिलेख है। आयु, लिंग, धर्म, साक्षरता और काम संरचना के गुण हैं।
+U5A-N43	hi	o	संरचना, जीवन घटना नहीं ¦ संरचना, जीवन घटना नहीं ¦ सही: जन्म, मृत्यु, विवाह/प्रवास ¦ संरचना, जीवन घटना नहीं
+U5A-N43	hi	t	जीवन-सांख्यिकी = जीवन की बड़ी घटनाएँ।
+U5A-N44	en	w	Pierre George was a French geographer who wrote on population from a human-economic view. Trewartha, Zelinsky and W. A. V. Clark are American.
+U5A-N44	en	o	American ¦ Right: Pierre George is French ¦ American ¦ American
+U5A-N44	en	t	Pierre George: French name, French geographer.
+U5A-N44	hi	w	पियरे जॉर्ज फ़्रांसीसी भूगोलवेत्ता थे जिन्होंने मानव-आर्थिक दृष्टि से जनसंख्या पर लिखा। ट्रिवार्था, ज़ेलिंस्की और डब्ल्यू. ए. वी. क्लार्क अमेरिकी हैं।
+U5A-N44	hi	o	अमेरिकी ¦ सही: पियरे जॉर्ज फ़्रांसीसी हैं ¦ अमेरिकी ¦ अमेरिकी
+U5A-N44	hi	t	पियरे जॉर्ज: फ़्रांसीसी नाम, फ़्रांसीसी भूगोलवेत्ता।
+U5A-N45	en	w	After Trewartha's 1953 call, the 1950s saw population geography focus on mapping distributions and spatial differences in population traits.
+U5A-N45	en	o	Right: 1950s ¦ Quantitative modelling grew then ¦ Behavioural and welfare themes then ¦ Post-modern and policy themes then
+U5A-N45	en	t	Trewartha 1953 started the decade of distribution maps.
+U5A-N45	hi	w	1953 में ट्रिवार्था के आह्वान के बाद 1950 के दशक में जनसंख्या भूगोल ने वितरण और जनसंख्या गुणों में स्थानिक अंतर के मानचित्रण पर ध्यान दिया।
+U5A-N45	hi	o	सही: 1950 का दशक ¦ तब मात्रात्मक मॉडलिंग बढ़ी ¦ तब व्यवहारवादी और कल्याण विषय ¦ तब उत्तर-आधुनिक और नीति विषय
+U5A-N45	hi	t	ट्रिवार्था 1953 से वितरण मानचित्रों का दशक।
+U5A-N46	en	w	The four great clusters of people are East Asia, South Asia, Europe and north-eastern North America.
+U5A-N46	en	o	Africa is not one of the four ¦ Central Africa is thinly peopled ¦ North Africa is mostly desert ¦ Right: East Asia, South Asia, Europe, North America
+U5A-N46	en	t	Two Asian giants plus the two shores of the North Atlantic.
+U5A-N46	hi	w	जनसंख्या के चार बड़े संकेंद्रण पूर्वी एशिया, दक्षिण एशिया, यूरोप और उत्तर-पूर्वी उत्तरी अमेरिका हैं।
+U5A-N46	hi	o	अफ़्रीका चार में नहीं ¦ मध्य अफ़्रीका विरल बसा है ¦ उत्तरी अफ़्रीका अधिकतर मरुस्थल ¦ सही: पूर्वी एशिया, दक्षिण एशिया, यूरोप, उत्तरी अमेरिका
+U5A-N46	hi	t	दो एशियाई दिग्गज और उत्तरी अटलांटिक के दो किनारे।
+U5A-N47	en	w	Projections start from the current rate of increase and assume future birth and death rates based on past trends (plus migration).
+U5A-N47	en	o	Only deaths, not births ¦ Right: growth rate plus assumed birth and death rates ¦ Only fertility ¦ Composition, not the rates that drive change
+U5A-N47	en	t	Projection = today's trend + assumptions about tomorrow.
+U5A-N47	hi	w	प्रक्षेपण वर्तमान वृद्धि दर से शुरू होते हैं और पिछले रुझानों के आधार पर भविष्य की जन्म और मृत्यु दरें (और प्रवास) मानते हैं।
+U5A-N47	hi	o	केवल मृत्यु, जन्म नहीं ¦ सही: वृद्धि दर और अनुमानित जन्म-मृत्यु दरें ¦ केवल प्रजनन ¦ संरचना, बदलाव चलाने वाली दरें नहीं
+U5A-N47	hi	t	प्रक्षेपण = आज का रुझान + कल की धारणाएँ।
+U5A-N48	en	w	Demographic momentum: a young population keeps growing for decades after fertility falls to replacement, because many people are still entering childbearing ages.
+U5A-N48	en	o	Right: demographic momentum ¦ The whole long-run shift, not this effect ¦ A rate, not this effect ¦ Not a technical term for this
+U5A-N48	en	t	Like a train after the brakes: it keeps rolling.
+U5A-N48	hi	w	जनांकिकीय संवेग: प्रजनन प्रतिस्थापन स्तर पर आने के दशकों बाद तक युवा जनसंख्या बढ़ती रहती है, क्योंकि बहुत लोग अभी भी प्रजनन आयु में आ रहे होते हैं।
+U5A-N48	hi	o	सही: जनांकिकीय संवेग ¦ पूरा दीर्घकालिक बदलाव, यह प्रभाव नहीं ¦ एक दर, यह प्रभाव नहीं ¦ इसका तकनीकी शब्द नहीं
+U5A-N48	hi	t	ब्रेक के बाद रेल जैसा: चलती रहती है।
+U5A-N49	en	w	Japan's family register system is called koseki. It records births, marriages and deaths for each household.
+U5A-N49	en	o	A personal name, not a register ¦ Not a Japanese term for this ¦ Right: koseki ¦ Not a Japanese term for this
+U5A-N49	en	t	Koseki = Japan's family book.
+U5A-N49	hi	w	जापान की पारिवारिक पंजीकरण प्रणाली कोसेकी कहलाती है। इसमें हर परिवार के जन्म, विवाह और मृत्यु दर्ज होते हैं।
+U5A-N49	hi	o	व्यक्ति का नाम, रजिस्टर नहीं ¦ इसका जापानी शब्द नहीं ¦ सही: कोसेकी ¦ इसका जापानी शब्द नहीं
+U5A-N49	hi	t	कोसेकी = जापान की पारिवारिक पुस्तिका।
+U5A-N50	en	w	Most developing countries do have progressive (wide-base) pyramids. But the reason has it backwards: they have high fertility and falling mortality, not falling fertility and high mortality.
+U5A-N50	en	o	R is wrong ¦ R is wrong ¦ Right: A correct, R wrong ¦ A is correct
+U5A-N50	en	t	Progressive = many births, fewer deaths.
+U5A-N50	hi	w	अधिकांश विकासशील देशों के पिरामिड प्रगतिशील (चौड़े आधार वाले) हैं। पर कारण उल्टा है: उनमें प्रजनन ऊँचा और मृत्यु दर गिरती है, न कि प्रजनन गिरता और मृत्यु दर ऊँची।
+U5A-N50	hi	o	R गलत है ¦ R गलत है ¦ सही: A सही, R गलत ¦ A सही है
+U5A-N50	hi	t	प्रगतिशील = बहुत जन्म, कम मृत्यु।
+U5A-N51	en	w	Michael Sadler (1830) argued that human fertility falls as population density rises: crowded places have fewer births per person. It is a natural (biological) theory.
+U5A-N51	en	o	Not his claim ¦ That is Malthus ¦ Sadler is grouped with natural theories ¦ Right: fertility varies inversely with density
+U5A-N51	en	t	Sadler: crowding curbs births.
+U5A-N51	hi	w	माइकल सैडलर (1830) ने कहा कि जनसंख्या घनत्व बढ़ने पर मानव प्रजनन घटता है: भीड़ वाली जगहों में प्रति व्यक्ति कम जन्म। यह प्राकृतिक (जैविक) सिद्धांत है।
+U5A-N51	hi	o	उनका दावा नहीं ¦ यह माल्थस है ¦ सैडलर प्राकृतिक सिद्धांतों में आते हैं ¦ सही: प्रजनन घनत्व के व्युत्क्रम में
+U5A-N51	hi	t	सैडलर: भीड़ जन्म घटाती है।
+U5A-N52	en	w	Sadler's theory is a natural (biological) theory, not an economic one. Plowden ran the 1881 Census of India, Notestein shaped transition theory, and Ravenstein gave the laws of migration.
+U5A-N52	en	o	Right: mismatched, Sadler is a natural theory ¦ Correct: Plowden, 1881 Census ¦ Correct: Notestein, 1945 ¦ Correct: Ravenstein, 1885
+U5A-N52	en	t	Sadler, Doubleday, Gini, Pearl = natural theories.
+U5A-N52	hi	w	सैडलर का सिद्धांत प्राकृतिक (जैविक) है, आर्थिक नहीं। प्लाउडेन ने 1881 की भारत जनगणना चलाई, नोटस्टीन ने संक्रमण सिद्धांत गढ़ा, और रेवेन्स्टीन ने प्रवास के नियम दिए।
+U5A-N52	hi	o	सही: बेमेल, सैडलर प्राकृतिक सिद्धांत ¦ सही जोड़ी: प्लाउडेन, 1881 जनगणना ¦ सही जोड़ी: नोटस्टीन, 1945 ¦ सही जोड़ी: रेवेन्स्टीन, 1885
+U5A-N52	hi	t	सैडलर, डबलडे, गिनी, पर्ल = प्राकृतिक सिद्धांत।
+U5A-N54	en	w	Growth rate = natural change (births minus deaths) plus net migration.
+U5A-N54	en	o	CBR is already inside natural change ¦ Right: natural change and net migration ¦ Leaves out deaths ¦ Leaves out deaths
+U5A-N54	en	t	Growth = natural + migration.
+U5A-N54	hi	w	वृद्धि दर = प्राकृतिक परिवर्तन (जन्म घटा मृत्यु) और शुद्ध प्रवास।
+U5A-N54	hi	o	CBR पहले से प्राकृतिक परिवर्तन में है ¦ सही: प्राकृतिक परिवर्तन और शुद्ध प्रवास ¦ मृत्यु छूट गई ¦ मृत्यु छूट गई
+U5A-N54	hi	t	वृद्धि = प्राकृतिक + प्रवास।
+U5A-N55	en	w	Among large countries, Bangladesh is by far the most densely populated, at over 1,000 people per sq km. India is around 400–450.
+U5A-N55	en	o	About 400 per sq km ¦ About 340 per sq km ¦ Right: Bangladesh ¦ About 250–300 per sq km
+U5A-N55	en	t	Bangladesh: India's crowd in a quarter of the space... and more.
+U5A-N55	hi	w	बड़े देशों में बांग्लादेश सबसे सघन है, 1,000 से अधिक व्यक्ति प्रति वर्ग किमी। भारत लगभग 400–450 है।
+U5A-N55	hi	o	लगभग 400 प्रति वर्ग किमी ¦ लगभग 340 प्रति वर्ग किमी ¦ सही: बांग्लादेश ¦ लगभग 250–300 प्रति वर्ग किमी
+U5A-N55	hi	t	बांग्लादेश: छोटा देश, भारी भीड़।
+U5A-N57	en	w	A TFR of 2.1 is replacement level: two children replace the parents, and the extra 0.1 covers child deaths.
+U5A-N57	en	o	Above replacement: grows ¦ Right: 2.1 ¦ Far below replacement: shrinks ¦ Far above replacement
+U5A-N57	en	t	Two to replace two, plus a little for loss.
+U5A-N57	hi	w	2.1 का TFR प्रतिस्थापन स्तर है: दो बच्चे माता-पिता की जगह लेते हैं, और 0.1 बच्चों की मृत्यु की भरपाई करता है।
+U5A-N57	hi	o	प्रतिस्थापन से ऊपर: बढ़त ¦ सही: 2.1 ¦ प्रतिस्थापन से बहुत नीचे: घटत ¦ प्रतिस्थापन से बहुत ऊपर
+U5A-N57	hi	t	दो की जगह दो, थोड़ा नुकसान के लिए।
+U5A-N58	en	w	A place is urban in the Census of India if it is a statutory town (municipality, corporation, cantonment, notified area) or a census town meeting all of: 5,000 people, 75% of male workers outside agriculture, and 400 persons per sq km. The 70% and 100 figures in (b) and (d) are wrong, so (a) and (c) are the right pair.
+U5A-N58	en	o	(b) gives 70%; the rule is 75% ¦ (b) gives 70%; the rule is 75% ¦ Right: (a) and (c) ¦ (b) and (d) have wrong figures (75%, 400)
+U5A-N58	en	t	Census town: 5,000 people, 75% men off the farm, 400 per sq km.
+U5A-N58	hi	w	भारत की जनगणना में कोई स्थान नगरीय है यदि वह वैधानिक नगर (नगरपालिका, निगम, छावनी, अधिसूचित क्षेत्र) हो या जनगणना नगर जो तीनों शर्तें पूरी करे: 5,000 जनसंख्या, 75% पुरुष कामगार कृषि से बाहर, और 400 व्यक्ति प्रति वर्ग किमी। (b) और (d) के 70% और 100 गलत हैं, इसलिए (a) और (c) सही जोड़ी है।
+U5A-N58	hi	o	(b) में 70% है; नियम 75% है ¦ (b) में 70% है; नियम 75% है ¦ सही: (a) और (c) ¦ (b) और (d) के आँकड़े गलत (75%, 400)
+U5A-N58	hi	t	जनगणना नगर: 5,000 लोग, 75% पुरुष खेती से बाहर, 400 प्रति वर्ग किमी।
+U5A-N59	en	w	Ravenstein (1885) said most migrants move short distances, in steps, and mostly from rural to urban areas, and that most are adults. Urban to rural is the opposite of his law.
+U5A-N59	en	o	One of his laws ¦ One of his laws ¦ Right: not his law; migrants move rural to urban ¦ One of his laws
+U5A-N59	en	t	Ravenstein: short, stepwise, village to town.
+U5A-N59	hi	w	रेवेन्स्टीन (1885) ने कहा कि अधिकांश प्रवासी कम दूरी तक, चरणों में और मुख्यतः ग्रामीण से नगरीय क्षेत्रों में जाते हैं, और अधिकांश वयस्क होते हैं। नगरीय से ग्रामीण उनके नियम का उल्टा है।
+U5A-N59	hi	o	उनका एक नियम ¦ उनका एक नियम ¦ सही: उनका नियम नहीं; प्रवासी गाँव से शहर जाते हैं ¦ उनका एक नियम
+U5A-N59	hi	t	रेवेन्स्टीन: छोटी दूरी, चरणबद्ध, गाँव से शहर।
+U5A-N60	en	w	Asia is the most densely populated continent, around 150 people per sq km, far ahead of Europe (about 30).
+U5A-N60	en	o	About 30–35 per sq km ¦ Right: Asia ¦ About 20 per sq km ¦ About 3–5 per sq km
+U5A-N60	en	t	Asia: 60% of people on 30% of land.
+U5A-N60	hi	w	एशिया सबसे सघन महाद्वीप है, लगभग 150 व्यक्ति प्रति वर्ग किमी, यूरोप (लगभग 30) से बहुत आगे।
+U5A-N60	hi	o	लगभग 30–35 प्रति वर्ग किमी ¦ सही: एशिया ¦ लगभग 20 प्रति वर्ग किमी ¦ लगभग 3–5 प्रति वर्ग किमी
+U5A-N60	hi	t	एशिया: 30% भूमि पर 60% लोग।
+U5A-N61	en	w	Japan's pyramid is constrictive: few births and many old people. Among the options, Denmark has the closest shape, an ageing European pyramid.
+U5A-N61	en	o	The USA is younger, with more births and migrants ¦ Brazil is still fairly young ¦ Right: Denmark ¦ India has a wide young base
+U5A-N61	en	t	Old Japan looks like old Europe.
+U5A-N61	hi	w	जापान का पिरामिड संकुचित है: कम जन्म और बहुत वृद्ध। विकल्पों में डेनमार्क का आकार सबसे निकट है, बूढ़ा होता यूरोपीय पिरामिड।
+U5A-N61	hi	o	अमेरिका अधिक जन्म और प्रवासियों से युवा ¦ ब्राज़ील अब भी काफ़ी युवा ¦ सही: डेनमार्क ¦ भारत का आधार चौड़ा और युवा
+U5A-N61	hi	t	बूढ़ा जापान बूढ़े यूरोप जैसा।

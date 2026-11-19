@@ -1,0 +1,150 @@
+U5B-A90	en	w	Megalopolis is Jean Gottmann's concept, not Burgess's. Zipf, Reilly and Geddes are correctly matched.
+U5B-A90	en	o	Correct ¦ Correct ¦ Correct ¦ Right: wrong pair, megalopolis is Gottmann
+U5B-A90	en	t	Burgess = rings; Gottmann = megalopolis.
+U5B-A90	hi	w	मेगालोपोलिस ज़्यां गॉटमैन की अवधारणा है, बर्गेस की नहीं। ज़िप्फ़, रीली और गेडिस सही जोड़े गए हैं।
+U5B-A90	hi	o	सही ¦ सही ¦ सही ¦ सही: गलत जोड़ी, मेगालोपोलिस गॉटमैन का
+U5B-A90	hi	t	बर्गेस = वलय; गॉटमैन = मेगालोपोलिस।
+U5B-A91	en	w	Harris and Ullman gave multiple nuclei, Burgess concentric zones, William Bunge the exploitive (Marxist) model of the city, and Hoyt the sector theory. Code B: iii, iv, ii, i.
+U5B-A91	en	o	Wrong order ¦ Right: iii, iv, ii, i ¦ Wrong order ¦ Wrong order
+U5B-A91	en	t	Bunge: the city as rich centre exploiting poor rings.
+U5B-A91	hi	w	हैरिस और उलमैन ने बहु-केंद्रक, बर्गेस ने संकेंद्रीय कटिबंध, विलियम बंज ने नगर का शोषक (मार्क्सवादी) मॉडल, और हॉयट ने त्रिज्यखंड सिद्धांत दिया। कोड B: iii, iv, ii, i।
+U5B-A91	hi	o	गलत क्रम ¦ सही: iii, iv, ii, i ¦ गलत क्रम ¦ गलत क्रम
+U5B-A91	hi	t	बंज: अमीर केंद्र गरीब वलयों का शोषण करता है।
+U5B-A92	en	w	Mumford's sequence starts with eopolis (village), then polis, metropolis, megalopolis, tyrannopolis and necropolis.
+U5B-A92	en	o	Eopolis comes first ¦ Wrong order ¦ Right: eopolis, polis, metropolis, megalopolis ¦ Reversed
+U5B-A92	en	t	Eo = dawn: the city's first stage.
+U5B-A92	hi	w	ममफ़र्ड का क्रम इओपोलिस (गाँव) से शुरू होता है, फिर पोलिस, मेट्रोपोलिस, मेगालोपोलिस, टिरैनोपोलिस और नेक्रोपोलिस।
+U5B-A92	hi	o	इओपोलिस पहले आता है ¦ गलत क्रम ¦ सही: इओपोलिस, पोलिस, मेट्रोपोलिस, मेगालोपोलिस ¦ उल्टा
+U5B-A92	hi	t	इओ = भोर: नगर की पहली अवस्था।
+U5B-A93	en	w	From smallest to largest: village, town, conurbation, megalopolis.
+U5B-A93	en	o	Village is smallest ¦ Right: village, town, conurbation, megalopolis ¦ Wrong order ¦ Descending, not ascending
+U5B-A93	en	t	Village < town < merged cities < chain of merged cities.
+U5B-A93	hi	w	सबसे छोटे से सबसे बड़े: गाँव, कस्बा, सन्नगर, मेगालोपोलिस।
+U5B-A93	hi	o	गाँव सबसे छोटा ¦ सही: गाँव, कस्बा, सन्नगर, मेगालोपोलिस ¦ गलत क्रम ¦ अवरोही, आरोही नहीं
+U5B-A93	hi	t	गाँव < कस्बा < मिले नगर < मिले नगरों की शृंखला।
+U5B-A94	en	w	The key credits Mark Jefferson, whose 1939 study compared the sizes of a country's leading cities by rank. Auerbach (1913) noticed the regularity even earlier, and Zipf (1949) gave the rule its final form.
+U5B-A94	en	o	Right: Jefferson, as keyed ¦ Not linked to the rule ¦ Zipf formalised it later ¦ Not linked to the rule
+U5B-A94	en	t	Auerbach saw it, Jefferson compared ranks, Zipf named it.
+U5B-A94	hi	w	कुंजी मार्क जेफ़रसन को श्रेय देती है, जिनके 1939 के अध्ययन ने देश के प्रमुख नगरों के आकार कोटि से तुलना की। ऑरबाख (1913) ने यह नियमितता और पहले देखी, और ज़िप्फ़ (1949) ने नियम को अंतिम रूप दिया।
+U5B-A94	hi	o	सही: जेफ़रसन, कुंजी अनुसार ¦ नियम से नहीं जुड़े ¦ ज़िप्फ़ ने बाद में औपचारिक किया ¦ नियम से नहीं जुड़े
+U5B-A94	hi	t	ऑरबाख ने देखा, जेफ़रसन ने तुलना की, ज़िप्फ़ ने नाम दिया।
+U5B-A95	en	w	The multiple nuclei model is by Harris and Ullman, not B. J. L. Berry. The other three pairs are correct.
+U5B-A95	en	o	Correct ¦ Correct ¦ Right: wrong pair, multiple nuclei is Harris and Ullman ¦ Correct
+U5B-A95	en	t	Berry = city systems; Harris-Ullman = nuclei.
+U5B-A95	hi	w	बहु-केंद्रक मॉडल हैरिस और उलमैन का है, बी. जे. एल. बेरी का नहीं। बाकी तीन जोड़ियाँ सही हैं।
+U5B-A95	hi	o	सही ¦ सही ¦ सही: गलत जोड़ी, बहु-केंद्रक हैरिस और उलमैन का ¦ सही
+U5B-A95	hi	t	बेरी = नगर तंत्र; हैरिस-उलमैन = केंद्रक।
+U5B-A96	en	w	The key credits Garrison with the fused growth theory, in which separate settlements grow until they merge into one urban area.
+U5B-A96	en	o	Multiple nuclei ¦ Sector theory ¦ Right: Garrison, as keyed ¦ Not linked to this theory
+U5B-A96	en	t	Fused = towns grow into each other.
+U5B-A96	hi	w	कुंजी संलयित वृद्धि सिद्धांत गैरिसन को देती है, जिसमें अलग-अलग बस्तियाँ बढ़कर एक नगरीय क्षेत्र में मिल जाती हैं।
+U5B-A96	hi	o	बहु-केंद्रक ¦ त्रिज्यखंड सिद्धांत ¦ सही: गैरिसन, कुंजी अनुसार ¦ इस सिद्धांत से नहीं जुड़े
+U5B-A96	hi	t	संलयित = नगर एक-दूसरे में बढ़ते हैं।
+U5B-A97	en	w	The transport principle is K = 4: centres sit on straight routes between higher centres.
+U5B-A97	en	o	Not one of his values ¦ Administrative ¦ Right: K = 4 ¦ Market
+U5B-A97	en	t	3 market, 4 transport, 7 administration.
+U5B-A97	hi	w	परिवहन सिद्धांत K = 4 है: केंद्र उच्च केंद्रों के बीच सीधे मार्गों पर होते हैं।
+U5B-A97	hi	o	उनका मान नहीं ¦ प्रशासनिक ¦ सही: K = 4 ¦ बाज़ार
+U5B-A97	hi	t	3 बाज़ार, 4 परिवहन, 7 प्रशासन।
+U5B-A98	en	w	In nearest neighbour analysis, Rn = 1.0 means a random pattern; 0 is clustered and 2.15 is perfectly uniform.
+U5B-A98	en	o	Fully clustered ¦ Right: 1.0 ¦ Perfectly uniform ¦ One option is correct
+U5B-A98	en	t	0 clustered, 1 random, 2.15 even.
+U5B-A98	hi	w	निकटतम पड़ोसी विश्लेषण में Rn = 1.0 का अर्थ यादृच्छिक प्रतिरूप है; 0 गुच्छित और 2.15 पूर्णतः समान।
+U5B-A98	hi	o	पूर्णतः गुच्छित ¦ सही: 1.0 ¦ पूर्णतः समान ¦ एक विकल्प सही है
+U5B-A98	hi	t	0 गुच्छित, 1 यादृच्छिक, 2.15 समान।
+U5B-A99	en	w	Allen K. Philbrick (1957) described areal functional organisation as a nested hierarchy: small units fit inside larger ones, level by level.
+U5B-A99	en	o	Right: Philbrick ¦ Pownall worked on New Zealand towns ¦ Simmons worked on Canadian urban systems ¦ Taylor worked on races and towns
+U5B-A99	en	t	Philbrick: boxes inside boxes.
+U5B-A99	hi	w	ऐलन के. फ़िलब्रिक (1957) ने क्षेत्रीय कार्यात्मक संगठन को नीड़ित पदानुक्रम बताया: छोटी इकाइयाँ बड़ी इकाइयों के भीतर, स्तर दर स्तर।
+U5B-A99	hi	o	सही: फ़िलब्रिक ¦ पाउनॉल ने न्यूज़ीलैंड के नगरों पर काम किया ¦ सिमन्स ने कनाडा के नगरीय तंत्र पर काम किया ¦ टेलर ने प्रजातियों और नगरों पर काम किया
+U5B-A99	hi	t	फ़िलब्रिक: डिब्बों के भीतर डिब्बे।
+U5B-A100	en	w	Concentric zones, sectors and multiple nuclei describe the internal structure of a city. Nested hierarchy describes how regions and centres are organised, not a city's shape.
+U5B-A100	en	o	A city structure model ¦ A city structure model ¦ A city structure model ¦ Right: not a city structure model
+U5B-A100	en	t	Inside the city: rings, wedges, nuclei.
+U5B-A100	hi	w	संकेंद्रीय कटिबंध, त्रिज्यखंड और बहु-केंद्रक नगर की आंतरिक संरचना बताते हैं। नीड़ित पदानुक्रम प्रदेशों और केंद्रों का संगठन बताता है, नगर का आकार नहीं।
+U5B-A100	hi	o	नगर संरचना मॉडल ¦ नगर संरचना मॉडल ¦ नगर संरचना मॉडल ¦ सही: नगर संरचना मॉडल नहीं
+U5B-A100	hi	t	नगर के भीतर: वलय, फाँकें, केंद्रक।
+U5B-A101	en	w	The options of this question are misprinted in the source (distances instead of patterns). Rn = 0 means a fully clustered pattern, with all points at one spot. The key gives option (1).
+U5B-A101	en	o	Right: option (1), as keyed (Rn = 0 means clustered) ¦ Misprinted option ¦ Misprinted option ¦ Misprinted option
+U5B-A101	en	t	Zero distance between neighbours = all in one cluster.
+U5B-A101	hi	w	इस प्रश्न के विकल्प स्रोत में गलत छपे हैं (प्रतिरूपों की जगह दूरियाँ)। Rn = 0 का अर्थ पूर्णतः गुच्छित प्रतिरूप है, सारे बिंदु एक जगह। कुंजी विकल्प (1) देती है।
+U5B-A101	hi	o	सही: विकल्प (1), कुंजी अनुसार (Rn = 0 = गुच्छित) ¦ गलत छपा विकल्प ¦ गलत छपा विकल्प ¦ गलत छपा विकल्प
+U5B-A101	hi	t	पड़ोसियों के बीच शून्य दूरी = सब एक गुच्छे में।
+U5B-A102	en	w	The administrative principle is K = 7.
+U5B-A102	en	o	Market ¦ Transport ¦ Right: K = 7 ¦ Not one of his values
+U5B-A102	en	t	Seven for the state.
+U5B-A102	hi	w	प्रशासनिक सिद्धांत K = 7 है।
+U5B-A102	hi	o	बाज़ार ¦ परिवहन ¦ सही: K = 7 ¦ उनका मान नहीं
+U5B-A102	hi	t	राज्य के लिए सात।
+U5B-A103	en	w	Christaller's K = 7 network follows the administrative principle.
+U5B-A103	en	o	Not one of his principles ¦ K = 4 ¦ K = 3 ¦ Right: administration
+U5B-A103	en	t	K = 7: each ruler keeps whole villages.
+U5B-A103	hi	w	क्रिस्टालर का K = 7 जाल प्रशासनिक सिद्धांत पर है।
+U5B-A103	hi	o	उनका सिद्धांत नहीं ¦ K = 4 ¦ K = 3 ¦ सही: प्रशासन
+U5B-A103	hi	t	K = 7: हर शासक पूरे गाँव रखता है।
+U5B-N1	en	w	W. Arnold studied German settlements through their place names, using name endings to date when villages were founded.
+U5B-N1	en	o	Not his contribution ¦ Monte Carlo came from Hägerstrand and others ¦ Not his contribution ¦ Right: place-name analysis
+U5B-N1	en	t	Names tell a village's age.
+U5B-N1	hi	w	डब्ल्यू. आर्नोल्ड ने जर्मन बस्तियों का अध्ययन उनके स्थान-नामों से किया, नाम के अंत से गाँवों की स्थापना का समय बताते हुए।
+U5B-N1	hi	o	उनका योगदान नहीं ¦ मोंटे कार्लो हैगरस्ट्रैंड आदि से आया ¦ उनका योगदान नहीं ¦ सही: स्थान-नाम विश्लेषण
+U5B-N1	hi	t	नाम गाँव की उम्र बताते हैं।
+U5B-N2	en	w	Circles around central places would either leave gaps or overlap. Hexagons fill the plane with neither, while staying close to a circle. So R explains A.
+U5B-N2	en	o	Right: both true, R explains A ¦ R does explain A ¦ R is also true ¦ A is also true
+U5B-N2	en	t	Hexagons: the bee's solution, no gaps and no overlaps.
+U5B-N2	hi	w	केंद्रीय स्थलों के चारों ओर वृत्त या तो खाली जगह छोड़ते या एक-दूसरे पर चढ़ते। षट्भुज बिना दोनों के तल भरते हैं, और वृत्त के निकट भी रहते हैं। इसलिए R, A को समझाता है।
+U5B-N2	hi	o	सही: दोनों सत्य, R, A को समझाता है ¦ R, A को समझाता है ¦ R भी सत्य है ¦ A भी सत्य है
+U5B-N2	hi	t	षट्भुज: मधुमक्खी का हल, न खाली जगह न ओवरलैप।
+U5B-N3	en	w	In high latitudes the sun is low, so tall buildings cast long shadows and must stand far apart. In the tropics the sun is high and shadows are short, so buildings can be closer. A and B are correct.
+U5B-N3	en	o	D is wrong: tropics allow closer spacing ¦ C is wrong: high latitudes need wider spacing ¦ Both are wrong ¦ Right: A and B
+U5B-N3	en	t	Low sun, long shadow, wide gaps.
+U5B-N3	hi	w	उच्च अक्षांशों में सूर्य नीचा रहता है, इसलिए ऊँची इमारतें लंबी छाया डालती हैं और दूर-दूर बननी चाहिए। उष्ण कटिबंध में सूर्य ऊँचा और छाया छोटी, इसलिए इमारतें पास बन सकती हैं। A और B सही हैं।
+U5B-N3	hi	o	D गलत: उष्ण कटिबंध में पास बन सकती हैं ¦ C गलत: उच्च अक्षांशों में दूर चाहिए ¦ दोनों गलत ¦ सही: A और B
+U5B-N3	hi	t	नीचा सूर्य, लंबी छाया, चौड़े अंतर।
+U5B-N4	en	w	Taylor classed towns by age (infantile to senile), Hoyt built his sector model from rent maps of US cities, and Le Corbusier planned Chandigarh while Walter Burley Griffin designed Canberra. B is wrong: Nelson used the standard deviation method; Harris used fixed thresholds.
+U5B-N4	en	o	B is wrong ¦ Right: A, C and D ¦ B is wrong ¦ B is wrong and A is left out
+U5B-N4	en	t	Harris thresholds, Nelson standard deviations.
+U5B-N4	hi	w	टेलर ने नगरों को आयु (शैशव से जीर्ण) से वर्गीकृत किया, हॉयट ने अमेरिकी नगरों के किराए के मानचित्रों से त्रिज्यखंड मॉडल बनाया, और ले कॉर्बूज़िए ने चंडीगढ़ तथा वॉल्टर बर्ली ग्रिफ़िन ने कैनबरा की योजना बनाई। B गलत: मानक विचलन विधि नेल्सन ने प्रयोग की; हैरिस ने निश्चित सीमाएँ लीं।
+U5B-N4	hi	o	B गलत ¦ सही: A, C और D ¦ B गलत ¦ B गलत और A छूटा
+U5B-N4	hi	t	हैरिस सीमाएँ, नेल्सन मानक विचलन।
+U5B-N5	en	w	The key links Louis Wirth with the rural-urban continuum: his view of urbanism as a way of life implies a gradual scale from rural to urban.
+U5B-N5	en	o	Jefferson ¦ Right: rural-urban continuum, as keyed ¦ Christaller ¦ Geddes
+U5B-N5	en	t	Wirth: urbanism is a matter of degree.
+U5B-N5	hi	w	कुंजी लुई वर्थ को ग्रामीण-नगरीय सातत्य से जोड़ती है: नगरवाद को जीवन-शैली मानने का उनका विचार ग्रामीण से नगरीय तक क्रमिक पैमाना बताता है।
+U5B-N5	hi	o	जेफ़रसन ¦ सही: ग्रामीण-नगरीय सातत्य, कुंजी अनुसार ¦ क्रिस्टालर ¦ गेडिस
+U5B-N5	hi	t	वर्थ: नगरवाद मात्रा का विषय है।
+U5B-N6	en	w	The statements were printed as options, with E in the stem. Urban morphology covers a town's internal structure (A), its layout of roads and buildings (B), and its land use (E). Functional zones of a region (C) and a country's history (D) are wider topics. Code (3) = A, B and E.
+U5B-N6	en	o	True: internal structure ¦ True: roads and buildings ¦ Right: code (3) = A, B, E (statement C itself is not part) ¦ Not morphology of a town
+U5B-N6	en	t	Morphology = the town's shape and inner plan.
+U5B-N6	hi	w	कथन विकल्पों की जगह छपे हैं, E प्रश्न में है। नगरीय आकारिकी में नगर की आंतरिक संरचना (A), सड़कों और इमारतों का विन्यास (B), और भूमि उपयोग (E) आते हैं। प्रदेश के कार्यात्मक क्षेत्र (C) और देश का इतिहास (D) व्यापक विषय हैं। कोड (3) = A, B और E।
+U5B-N6	hi	o	सत्य: आंतरिक संरचना ¦ सत्य: सड़कें और इमारतें ¦ सही: कोड (3) = A, B, E (कथन C स्वयं इसमें नहीं) ¦ नगर की आकारिकी नहीं
+U5B-N6	hi	t	आकारिकी = नगर का आकार और भीतरी नक्शा।
+U5B-N7	en	w	Fishing and farming are primary, rural functions. Culture, recreation, transport and resource-based towns (mining towns) are urban functions.
+U5B-N7	en	o	An urban function ¦ An urban function ¦ Right: rural, not urban ¦ Mining towns are urban
+U5B-N7	en	t	Towns serve, villages grow.
+U5B-N7	hi	w	मछली पकड़ना और खेती प्राथमिक, ग्रामीण कार्य हैं। संस्कृति, मनोरंजन, परिवहन और संसाधन-आधारित नगर (खनन नगर) नगरीय कार्य हैं।
+U5B-N7	hi	o	नगरीय कार्य ¦ नगरीय कार्य ¦ सही: ग्रामीण, नगरीय नहीं ¦ खनन नगर नगरीय हैं
+U5B-N7	hi	t	नगर सेवा देते हैं, गाँव उगाते हैं।
+U5B-N8	en	w	Towns decline when transport changes bypass them, when their mines run out, or when nearby towns take their trade. The key does not count climate change or governance among the classic causes.
+U5B-N8	en	o	C is not keyed ¦ Right: A, B and E ¦ D is not keyed ¦ C and D are not keyed
+U5B-N8	en	t	Bypassed, mined out, or out-competed.
+U5B-N8	hi	w	नगर तब घटते हैं जब परिवहन बदलाव उन्हें छोड़ देते हैं, खदानें खत्म हो जाती हैं, या पास के नगर उनका व्यापार ले लेते हैं। कुंजी जलवायु परिवर्तन या शासन को शास्त्रीय कारणों में नहीं गिनती।
+U5B-N8	hi	o	C कुंजी में नहीं ¦ सही: A, B और E ¦ D कुंजी में नहीं ¦ C और D कुंजी में नहीं
+U5B-N8	hi	t	किनारे छूटे, खदान खत्म, या मुकाबले में हारे।
+U5B-N9	en	w	A city is warmer than the countryside around it because people, vehicles, buildings and machines release heat, and concrete stores it. R explains A.
+U5B-N9	en	o	Right: both true, R explains A ¦ R does explain A ¦ R is also true ¦ A is also true
+U5B-N9	en	t	Concrete and engines make the city a heat island.
+U5B-N9	hi	w	नगर अपने आसपास के ग्रामीण क्षेत्र से गर्म होता है क्योंकि लोग, वाहन, इमारतें और मशीनें ऊष्मा छोड़ते हैं, और कंक्रीट उसे जमा करता है। R, A को समझाता है।
+U5B-N9	hi	o	सही: दोनों सत्य, R, A को समझाता है ¦ R, A को समझाता है ¦ R भी सत्य है ¦ A भी सत्य है
+U5B-N9	hi	t	कंक्रीट और इंजन नगर को ऊष्मा द्वीप बनाते हैं।
+U5B-N10	en	w	Joel Garreau coined edge city (1991): a multifunctional job centre at a city's edge with more jobs than homes, built mostly by private developers. So A and C are correct.
+U5B-N10	en	o	B is wrong: edge cities have more jobs than homes ¦ Both are wrong ¦ D is wrong: private developers build them ¦ Right: A and C
+U5B-N10	en	t	Edge city: offices first, built by developers.
+U5B-N10	hi	w	जोएल गैरो ने एज सिटी शब्द दिया (1991): नगर के किनारे एक बहु-कार्यात्मक रोज़गार केंद्र, घरों से अधिक नौकरियों वाला, अधिकतर निजी डेवलपरों द्वारा बना। इसलिए A और C सही हैं।
+U5B-N10	hi	o	B गलत: एज सिटी में घरों से अधिक नौकरियाँ ¦ दोनों गलत ¦ D गलत: निजी डेवलपर बनाते हैं ¦ सही: A और C
+U5B-N10	hi	t	एज सिटी: पहले दफ़्तर, डेवलपर बनाते हैं।
+U5B-N11	en	w	In Harris and Ullman's model, residential suburbs grow at the outer edge, separate from the main built-up area.
+U5B-N11	en	o	Near the CBD ¦ A nucleus, but linked to the city ¦ Near industry, not isolated ¦ Right: residential suburbs
+U5B-N11	en	t	Suburbs float at the edge.
+U5B-N11	hi	w	हैरिस और उलमैन के मॉडल में आवासीय उपनगर बाहरी किनारे पर, मुख्य निर्मित क्षेत्र से अलग बढ़ते हैं।
+U5B-N11	hi	o	CBD के पास ¦ एक केंद्रक, पर नगर से जुड़ा ¦ उद्योग के पास, अलग नहीं ¦ सही: आवासीय उपनगर
+U5B-N11	hi	t	उपनगर किनारे पर अलग।

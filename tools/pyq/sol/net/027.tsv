@@ -1,0 +1,150 @@
+U6B-A48	en	w	Cropping intensity = (gross cropped area ÷ net sown area) × 100. It shows how many times the same land is cropped in a year.
+U6B-A48	en	o	Crop combination is the group of crops that dominate a region (Weaver). ¦ Crop concentration is one crop's share of a region compared with the nation. ¦ Cropping diversity counts how many crops compete for the area. ¦ Right: GCA ÷ NSA is cropping intensity.
+U6B-A48	en	t	Above 100 means multiple cropping. Punjab is about 190.
+U6B-A48	hi	w	शस्य गहनता = (सकल फसल क्षेत्र ÷ शुद्ध बोया क्षेत्र) × 100; यह बताती है कि एक ही खेत वर्ष में कितनी बार बोया गया।
+U6B-A48	hi	o	शस्य संयोजन = क्षेत्र की प्रमुख फसलों का समूह (वीवर)। ¦ शस्य संकेंद्रण = एक फसल का क्षेत्रीय हिस्सा, राष्ट्र की तुलना में। ¦ शस्य विविधता = कितनी फसलें क्षेत्र के लिए होड़ करती हैं। ¦ सही: GCA ÷ NSA ही शस्य गहनता है।
+U6B-A48	hi	t	100 से ऊपर = बहु-फसली; पंजाब लगभग 190।
+U6B-A49	en	w	The Green Revolution (from 1966) rested on HYV seeds with irrigation and fertiliser, cheap credit, soil testing and support prices with assured markets. All four helped.
+U6B-A49	en	o	Leaves out soil testing. ¦ Leaves out credit. ¦ Leaves out soil testing and marketing. ¦ Right: all four factors.
+U6B-A49	en	t	HYV + irrigation + fertiliser + credit + MSP is the full package.
+U6B-A49	hi	w	हरित क्रांति (1966 से) HYV बीज, सिंचाई-उर्वरक, सस्ता ऋण, मृदा परीक्षण और समर्थन मूल्य/बाज़ार पर टिकी थी; चारों कारक सहायक।
+U6B-A49	hi	o	मृदा परीक्षण छूटा। ¦ ऋण छूटा। ¦ मृदा परीक्षण और विपणन छूटे। ¦ सही: चारों कारक।
+U6B-A49	hi	t	HYV + सिंचाई + उर्वरक + ऋण + MSP = पूरा पैकेज।
+U6B-A50	en	w	Von Thünen's rings come from economic rent = yield × (market price − production cost) − yield × distance × freight rate. Crop specialisation is a result of the model, not one of its factors.
+U6B-A50	en	o	Market price is in the rent formula. ¦ Transport cost is the key variable. ¦ Right: specialisation is an outcome, not a factor. ¦ Per-unit production (yield or cost) is in the formula.
+U6B-A50	en	t	Location rent: R = E(p − a) − Efk.
+U6B-A50	hi	w	थूनेन के वलय आर्थिक लगान से बनते हैं: उपज × (बाज़ार मूल्य − लागत) − उपज × दूरी × भाड़ा। फसल विशिष्टीकरण परिणाम है, कारक नहीं।
+U6B-A50	hi	o	बाज़ार मूल्य सूत्र में है। ¦ परिवहन लागत मुख्य चर है। ¦ सही: विशिष्टीकरण परिणाम है। ¦ प्रति इकाई उत्पादन सूत्र में है।
+U6B-A50	hi	t	स्थानीय लगान R = E(p − a) − Efk।
+U6B-A51	en	w	In the USA, vegetables grown intensively for distant city markets and shipped by truck or rail are called truck farming. 'Truck' here comes from an old word meaning barter.
+U6B-A51	en	o	Right: truck farming. ¦ Factory farming is industrial livestock rearing. ¦ Market gardening is close kin, but the US term the key wants is truck farming. ¦ Not a standard term.
+U6B-A51	en	t	Market gardening sits near the city; truck farming can be far from it, linked by transport.
+U6B-A51	hi	w	अमेरिका में दूर के नगर बाज़ारों के लिए गहन सब्ज़ी-फल खेती, जो ट्रक/रेल से भेजी जाए, ट्रक फ़ार्मिंग कहलाती है।
+U6B-A51	hi	o	सही: ट्रक फ़ार्मिंग। ¦ फ़ैक्टरी फ़ार्मिंग = औद्योगिक पशुपालन। ¦ मार्केट गार्डनिंग निकट संबंधी है, पर कुंजी अमेरिकी शब्द ट्रक फ़ार्मिंग चाहती है। ¦ मानक शब्द नहीं।
+U6B-A51	hi	t	मार्केट गार्डनिंग नगर के पास; ट्रक फ़ार्मिंग दूर भी, परिवहन से जुड़ी।
+U6B-A52	en	w	Bantu belong to Central and Southern Africa, the Inca to Peru, the Jarawa to the Andaman Islands, and the Lapps (Sami) to Scandinavia. That gives i, ii, iii, iv.
+U6B-A52	en	o	Right: i, ii, iii, iv. ¦ Reversed order. ¦ Swaps the Inca and the Jarawa. ¦ Wrong pairs.
+U6B-A52	en	t	Sami (Lapps) are reindeer herders of northern Scandinavia.
+U6B-A52	hi	w	बांटू = मध्य अफ्रीका, इंका = पेरू, जारवा = अंडमान, लैप (सामी) = स्कैंडिनेविया → i, ii, iii, iv।
+U6B-A52	hi	o	सही: i, ii, iii, iv। ¦ उल्टा क्रम। ¦ इंका-जारवा अदला-बदली। ¦ गलत जोड़े।
+U6B-A52	hi	t	सामी (लैप) उत्तरी स्कैंडिनेविया के रेनडियर पालक।
+U6B-A53	en	w	Shifting cultivation has local names: Jhum (NE India), Roça (Brazil), Milpa (Mexico and Central America), Ladang (Malaysia and Indonesia). That is iii, i, ii, iv. The code table in the original is garbled, so check the 'see original' view.
+U6B-A53	en	o	Not the keyed code. ¦ Not the keyed code. ¦ Right: as keyed (iii, i, ii, iv). ¦ Not the keyed code.
+U6B-A53	en	t	Also: Chena (Sri Lanka), Taungya (Myanmar), Masole (Congo), Conuco (Venezuela).
+U6B-A53	hi	w	स्थानांतरी कृषि के स्थानीय नाम: झूम (पूर्वोत्तर भारत), रोका (ब्राज़ील), मिल्पा (मेक्सिको), लदांग (मलेशिया) → iii, i, ii, iv। मूल तालिका बिगड़ी है, 'मूल देखें' से जाँचें।
+U6B-A53	hi	o	कुंजी का कोड नहीं। ¦ कुंजी का कोड नहीं। ¦ सही: कुंजी अनुसार (iii, i, ii, iv)। ¦ कुंजी का कोड नहीं।
+U6B-A53	hi	t	और: चेना (श्रीलंका), तौंग्या (म्यांमार), मसोले (कांगो), कोनुको (वेनेज़ुएला)।
+U6B-A54	en	w	Market gardening in south-east Australia (Victoria and Tasmania) supplies Melbourne and the island trade across the Bass Strait. That is why the key picks the Bass Strait.
+U6B-A54	en	o	The Bosphorus links the Black Sea and the Sea of Marmara. ¦ Gibraltar links the Mediterranean and the Atlantic. ¦ The Torres Strait separates Australia and New Guinea. ¦ Right: Bass Strait (Victoria and Tasmania).
+U6B-A54	en	t	Bass Strait separates mainland Australia from Tasmania.
+U6B-A54	hi	w	दक्षिण-पूर्व ऑस्ट्रेलिया (विक्टोरिया-तस्मानिया) की बाज़ार बागवानी बास जलसंधि के आर-पार मेलबर्न व द्वीप व्यापार से जुड़ी है।
+U6B-A54	hi	o	बॉस्फ़ोरस = काला सागर-मरमरा। ¦ जिब्राल्टर = भूमध्य-अटलांटिक। ¦ टोरेस = ऑस्ट्रेलिया-न्यू गिनी। ¦ सही: बास जलसंधि।
+U6B-A54	hi	t	बास जलसंधि मुख्य ऑस्ट्रेलिया को तस्मानिया से अलग करती है।
+U6B-A55	en	w	J.C. Weaver (1954, US Middle West) first formulated crop combination. He used the least standard deviation between actual crop shares and theoretical ones.
+U6B-A55	en	o	Nelson worked on functional town classification. ¦ Doi (1959) simplified Weaver's method. ¦ Rafiullah modified Weaver's method (maximum positive deviation). ¦ Right: Weaver was first.
+U6B-A55	en	t	Order: Weaver 1954, then Doi 1959, then Thomas, then Rafiullah.
+U6B-A55	hi	w	जे.सी. वीवर (1954, अमेरिकी मध्य-पश्चिम) ने सबसे पहले शस्य संयोजन विधि दी: वास्तविक और सैद्धांतिक हिस्सों में न्यूनतम मानक विचलन।
+U6B-A55	hi	o	नेल्सन = नगरों का प्रकार्यात्मक वर्गीकरण। ¦ दोई (1959) ने वीवर विधि सरल की। ¦ रफ़ीउल्लाह ने वीवर विधि सुधारी (अधिकतम धनात्मक विचलन)। ¦ सही: वीवर पहले।
+U6B-A55	hi	t	क्रम: वीवर 1954, दोई 1959, थॉमस, रफ़ीउल्लाह।
+U6B-A71	en	w	J.C. Weaver (1954, US Middle West) first formulated crop combination. He used the least standard deviation between actual crop shares and theoretical ones.
+U6B-A71	en	o	Nelson worked on functional town classification. ¦ Doi (1959) simplified Weaver's method. ¦ Whittlesey classified world agricultural regions (1936). ¦ Right: Weaver was first.
+U6B-A71	en	t	Order: Weaver 1954, then Doi 1959, then Thomas, then Rafiullah.
+U6B-A71	hi	w	जे.सी. वीवर (1954, अमेरिकी मध्य-पश्चिम) ने सबसे पहले शस्य संयोजन विधि दी: वास्तविक और सैद्धांतिक हिस्सों में न्यूनतम मानक विचलन।
+U6B-A71	hi	o	नेल्सन = नगरों का प्रकार्यात्मक वर्गीकरण। ¦ दोई (1959) ने वीवर विधि सरल की। ¦ व्हिटलसी ने विश्व कृषि प्रदेश (1936) बनाए। ¦ सही: वीवर पहले।
+U6B-A71	hi	t	क्रम: वीवर 1954, दोई 1959, थॉमस, रफ़ीउल्लाह।
+U6B-A56	en	w	Mohammad Shafi (Aligarh) and Jasbir Singh (Kurukshetra and JNU, 'Agricultural Geography' with S.S. Dhillon) are the best-known Indian agricultural geographers.
+U6B-A56	en	o	R.L. Singh is known for regional and urban geography, Gosal for population. ¦ Dixit is known for regional geography, Moonis Raza for regional and economic. ¦ Right: Shafi and Jasbir Singh. ¦ Dayal and Dube are not the main names.
+U6B-A56	en	t	Jasbir Singh also wrote on agricultural efficiency in Haryana.
+U6B-A56	hi	w	मोहम्मद शफ़ी (अलीगढ़) और जसबीर सिंह (ढिल्लों के साथ 'Agricultural Geography') प्रमुख भारतीय कृषि भूगोलवेत्ता।
+U6B-A56	hi	o	आर.एल. सिंह प्रादेशिक/नगरीय, गोसल जनसंख्या। ¦ दीक्षित प्रादेशिक, मूनिस रज़ा प्रादेशिक/आर्थिक। ¦ सही: शफ़ी-जसबीर सिंह। ¦ मुख्य नाम नहीं।
+U6B-A56	hi	t	जसबीर सिंह ने हरियाणा की कृषि दक्षता पर भी लिखा।
+U6B-A57	en	w	Intensive farming (high input and output per hectare) belongs where many people share little land, as in Monsoon Asia, Japan and the Netherlands. Option (3) fits the theory. The printed key says (4), which describes extensive farming, so treat the key with care.
+U6B-A57	en	o	Little pressure, so no need for intensity. ¦ Plenty of land allows extensive farming. ¦ This is the textbook answer: many people, little land. ¦ Right: as keyed, but 'few people and much land' is extensive farming.
+U6B-A57	en	t	Intensity grows as land per person falls (Boserup).
+U6B-A57	hi	w	गहन कृषि वहाँ जहाँ जनसंख्या अधिक और भूमि सीमित (मानसून एशिया, जापान)। सिद्धांततः (3) सही; छपी कुंजी (4) विस्तृत कृषि बताती है, सावधान रहें।
+U6B-A57	hi	o	दबाव कम। ¦ भूमि अधिक, तो विस्तृत कृषि। ¦ पाठ्यपुस्तक उत्तर: अधिक जनसंख्या, सीमित भूमि। ¦ सही: कुंजी अनुसार, पर यह विस्तृत कृषि है।
+U6B-A57	hi	t	प्रति व्यक्ति भूमि घटे तो गहनता बढ़ती है (बोसरप)।
+U6B-A58	en	w	Von Thünen's 'Isolated State' (1826) shows six rings round the town: (1) market gardening and dairy, (2) firewood forest, (3) intensive crop rotation, (4) grain with grass rotation, (5) three-field system, (6) ranching. Wilderness lies beyond.
+U6B-A58	en	o	Too few. ¦ Too few. ¦ Right: six rings. ¦ Too many.
+U6B-A58	en	t	The forest sits in ring 2 because wood was heavy and costly to haul.
+U6B-A58	hi	w	थूनेन का 'पृथक राज्य' (1826): नगर के चारों ओर छह वलय: (1) बागवानी-डेयरी, (2) ईंधन वन, (3) गहन फसल चक्र, (4) अनाज-घास चक्र, (5) त्रिक्षेत्र प्रणाली, (6) पशुचारण; उसके बाद वन्य भूमि।
+U6B-A58	hi	o	कम। ¦ कम। ¦ सही: छह वलय। ¦ अधिक।
+U6B-A58	hi	t	वन दूसरे वलय में, क्योंकि लकड़ी भारी और ढुलाई महँगी।
+U6B-A66	en	w	Von Thünen's 'Isolated State' (1826) shows six rings round the town: (1) market gardening and dairy, (2) firewood forest, (3) intensive crop rotation, (4) grain with grass rotation, (5) three-field system, (6) ranching. Wilderness lies beyond.
+U6B-A66	en	o	Too many. ¦ Too few. ¦ Too few. ¦ Right: six rings.
+U6B-A66	en	t	The forest sits in ring 2 because wood was heavy and costly to haul.
+U6B-A66	hi	w	थूनेन का 'पृथक राज्य' (1826): नगर के चारों ओर छह वलय: (1) बागवानी-डेयरी, (2) ईंधन वन, (3) गहन फसल चक्र, (4) अनाज-घास चक्र, (5) त्रिक्षेत्र प्रणाली, (6) पशुचारण; उसके बाद वन्य भूमि।
+U6B-A66	hi	o	अधिक। ¦ कम। ¦ कम। ¦ सही: छह वलय।
+U6B-A66	hi	t	वन दूसरे वलय में, क्योंकि लकड़ी भारी और ढुलाई महँगी।
+U6B-A59	en	w	Weaver compared real crop shares with a theoretical curve where the crops in a combination share the area evenly (a 2-crop combination is 50 and 50, a 3-crop one is 33.3 each). The key's 'area distributed' means distributed evenly.
+U6B-A59	en	o	Not his assumption. ¦ Right: an even, theoretical spread. ¦ Uneven is the reality he measured against. ¦ Carrying capacity is not part of it.
+U6B-A59	en	t	Least variance = Σd² ÷ n.
+U6B-A59	hi	w	वीवर ने वास्तविक हिस्सों की तुलना सैद्धांतिक समान बँटवारे से की (2 फसल = 50-50, 3 = 33.3)। 'क्षेत्र वितरित' = समान वितरित।
+U6B-A59	hi	o	उसकी मान्यता नहीं। ¦ सही: समान सैद्धांतिक वितरण। ¦ असमान तो वास्तविकता है। ¦ धारण क्षमता नहीं।
+U6B-A59	hi	t	न्यूनतम प्रसरण = Σd² ÷ n।
+U6B-A60	en	w	Agricultural efficiency indices (Kendall's ranking coefficient, Enyedi, Bhatia) are built from crop yields per hectare.
+U6B-A60	en	o	Right: crop yield. ¦ Fertiliser is an input, not the measure. ¦ Labour is an input. ¦ Seed is an input.
+U6B-A60	en	t	Kendall 1939 ranked yields; Bhatia 1967 weighted yields by area.
+U6B-A60	hi	w	कृषि दक्षता सूचकांक (केंडल रैंकिंग गुणांक, एनयेडी, भाटिया) प्रति हेक्टेयर फसल उपज से बनते हैं।
+U6B-A60	hi	o	सही: फसल उपज। ¦ उर्वरक निवेश है। ¦ श्रम निवेश है। ¦ बीज निवेश है।
+U6B-A60	hi	t	केंडल 1939 उपज रैंक; भाटिया 1967 क्षेत्र-भारित उपज।
+U6B-A61	en	w	Weaver gave crop combination, not crop productivity. The other three pairs are correct.
+U6B-A61	en	o	Correct pair: Bhatia gave crop diversification and efficiency. ¦ Right: this is the wrong pair. ¦ Correct pair: Kendall gave the ranking coefficient. ¦ Correct pair: Rafiullah gave maximum positive deviation.
+U6B-A61	en	t	Quick map: Weaver = combination, Bhatia = diversification, Kendall = efficiency.
+U6B-A61	hi	w	वीवर ने शस्य संयोजन दिया, उत्पादकता नहीं; बाकी तीन जोड़े सही।
+U6B-A61	hi	o	सही जोड़ा: भाटिया = विविधीकरण। ¦ सही: यही गलत जोड़ा है। ¦ सही जोड़ा: केंडल = रैंकिंग गुणांक। ¦ सही जोड़ा: रफ़ीउल्लाह = अधिकतम धनात्मक विचलन।
+U6B-A61	hi	t	वीवर = संयोजन, भाटिया = विविधता, केंडल = दक्षता।
+U6B-A62	en	w	Julian Wolpert (1964, Swedish farmers) showed that farmers are 'satisficers', not optimisers. That is the behavioural decision-making model. 'Volport' is a misprint of Wolpert.
+U6B-A62	en	o	Right: Wolpert. ¦ Hägerstrand gave innovation diffusion. ¦ Leontief gave input-output analysis. ¦ Kantorovich gave linear programming.
+U6B-A62	en	t	Satisficer (Simon's term) means bounded rationality.
+U6B-A62	hi	w	जूलियन वोल्पर्ट (1964, स्वीडिश किसान) ने दिखाया कि किसान 'संतोषी' हैं, अनुकूलक नहीं: व्यवहारवादी निर्णय मॉडल। 'Volport' = वोल्पर्ट।
+U6B-A62	hi	o	सही: वोल्पर्ट। ¦ हैगरस्ट्रैंड = नवाचार विसरण। ¦ लियोन्टीफ़ = आगत-निर्गत। ¦ कांतोरोविच = रैखिक प्रोग्रामिंग।
+U6B-A62	hi	t	संतोषी (साइमन का शब्द) = सीमित तार्किकता।
+U6B-A63	en	w	Von Thünen assumed an isotropic plain (ii). Rostow gave the stages of economic growth (i). Douglass North gave the export base model (iv). Bhatia gave crop diversification (iii). So the answer is ii, i, iv, iii.
+U6B-A63	en	o	Right: ii, i, iv, iii. ¦ Wrong order. ¦ Wrong order. ¦ Wrong order.
+U6B-A63	en	t	Rostow's 5 stages run from traditional society to high mass consumption.
+U6B-A63	hi	w	थूनेन = समदैशिक मैदान (ii), रोस्टो = आर्थिक विकास अवस्थाएँ (i), डगलस नॉर्थ = निर्यात आधार (iv), भाटिया = शस्य विविधीकरण (iii)।
+U6B-A63	hi	o	सही: ii, i, iv, iii। ¦ गलत क्रम। ¦ गलत क्रम। ¦ गलत क्रम।
+U6B-A63	hi	t	रोस्टो की 5 अवस्थाएँ: पारंपरिक समाज से उच्च जन-उपभोग तक।
+U6B-A64	en	w	Whittlesey (1936) used five criteria: (1) crop and livestock combination, (2) intensity of land use (labour and capital), (3) how produce is disposed of (subsistence or commercial), (4) methods of production (tools and techniques), (5) dwellings and farm buildings. These gave 13 regions.
+U6B-A64	en	o	Used: the crop and livestock link. ¦ Used: the methods of production. ¦ Used: labour and capital intensity. ¦ Right: land ownership was not one of the five.
+U6B-A64	en	t	Remember 5 criteria, 13 regions, 1936.
+U6B-A64	hi	w	व्हिटलसी (1936) के पाँच आधार: (1) फसल-पशु संयोजन, (2) भूमि उपयोग की गहनता, (3) उपज का निपटान, (4) उत्पादन विधि, (5) आवास और भवन। इनसे 13 प्रदेश बने।
+U6B-A64	hi	o	प्रयुक्त: फसल-पशु संबंध। ¦ प्रयुक्त: उत्पादन विधि। ¦ प्रयुक्त: श्रम-पूँजी गहनता। ¦ सही: भूमि स्वामित्व पाँच में नहीं।
+U6B-A64	hi	t	5 आधार, 13 प्रदेश, 1936।
+U6B-A72	en	w	Whittlesey (1936) used five criteria: (1) crop and livestock combination, (2) intensity of land use (labour and capital), (3) how produce is disposed of (subsistence or commercial), (4) methods of production (tools and techniques), (5) dwellings and farm buildings. These gave 13 regions.
+U6B-A72	en	o	Used: the methods of production. ¦ Used: how the produce is disposed of (subsistence or market). ¦ Right: per-hectare yield was not used. ¦ Used: housing and farm buildings.
+U6B-A72	en	t	Remember 5 criteria, 13 regions, 1936.
+U6B-A72	hi	w	व्हिटलसी (1936) के पाँच आधार: (1) फसल-पशु संयोजन, (2) भूमि उपयोग की गहनता, (3) उपज का निपटान, (4) उत्पादन विधि, (5) आवास और भवन। इनसे 13 प्रदेश बने।
+U6B-A72	hi	o	प्रयुक्त: उत्पादन विधि। ¦ प्रयुक्त: उपज का निपटान (निर्वाह/बाज़ार)। ¦ सही: प्रति हेक्टेयर उपज प्रयुक्त नहीं। ¦ प्रयुक्त: आवास, भवन।
+U6B-A72	hi	t	5 आधार, 13 प्रदेश, 1936।
+U6B-A65	en	w	Olof Jonasson (1925) applied von Thünen's rings to the world around the North Atlantic market. He also wrote of 'life' (productive) and 'death' (empty) zones. The key credits Jonasson.
+U6B-A65	en	o	Spencer and Horvath wrote on the origin of agricultural regions. ¦ Right: Jonasson. ¦ Helburn worked on range ecology. ¦ Baker mapped the US agricultural regions.
+U6B-A65	en	t	Jonasson took Thünen's model to the world scale.
+U6B-A65	hi	w	ओलोफ़ योनासन (1925) ने थूनेन वलयों को उत्तर अटलांटिक बाज़ार के चारों ओर विश्व स्तर पर लगाया और 'जीवन' व 'मृत्यु' प्रदेश बताए।
+U6B-A65	hi	o	स्पेंसर-होर्वाथ = कृषि प्रदेश उत्पत्ति। ¦ सही: योनासन। ¦ हेलबर्न = चरागाह पारिस्थितिकी। ¦ बेकर = अमेरिकी कृषि प्रदेश।
+U6B-A65	hi	t	योनासन ने थूनेन मॉडल विश्व स्तर पर लगाया।
+U6B-A67	en	w	In Bangladesh's crowded deltas, farms are stacked in tiers: tall trees, then a middle layer (banana, betel), with ground crops below. The key calls this three-storey agriculture.
+U6B-A67	en	o	India has homestead gardens, but the key points to Bangladesh. ¦ Not typical there. ¦ Right: Bangladesh. ¦ Kandyan gardens are similar, but the key says Bangladesh.
+U6B-A67	en	t	Multi-tier cropping makes the most of scarce land.
+U6B-A67	hi	w	बांग्लादेश के घने डेल्टा में बहुस्तरीय खेती: ऊँचे वृक्ष, फिर केला-पान, फिर ज़मीनी फसलें। यही त्रिमंज़िला कृषि।
+U6B-A67	hi	o	भारत में गृहवाटिका हैं, पर कुंजी बांग्लादेश। ¦ विशेष नहीं। ¦ सही: बांग्लादेश। ¦ कैंडी उद्यान मिलते-जुलते, पर कुंजी बांग्लादेश।
+U6B-A67	hi	t	बहुस्तरीय खेती दुर्लभ भूमि का पूरा उपयोग करती है।
+U6B-A68	en	w	Intensive subsistence farming, dominated by wet rice, is the system of Monsoon Asia. Its dense populations mean heavy labour on small plots.
+U6B-A68	en	o	Pampas has extensive commercial grain and cattle. ¦ Murray-Darling has commercial wheat, sheep and irrigation. ¦ California has commercial fruit and the Mediterranean type. ¦ Right: Monsoon Asia.
+U6B-A68	en	t	Whittlesey splits it into rice-dominant and non-rice types.
+U6B-A68	hi	w	चावल-प्रधान गहन निर्वाह कृषि मानसून एशिया की पहचान; घनी जनसंख्या, छोटे खेत, भारी श्रम।
+U6B-A68	hi	o	पम्पास = विस्तृत व्यापारिक अनाज-पशु। ¦ मरे-डार्लिंग = व्यापारिक गेहूँ-भेड़। ¦ कैलिफ़ोर्निया = व्यापारिक फल/भूमध्यसागरीय। ¦ सही: मानसून एशिया।
+U6B-A68	hi	t	व्हिटलसी: चावल-प्रधान और चावल-रहित दो प्रकार।
+U6B-A69	en	w	Whittlesey classified agriculture by how it actually works: its functioning forms (crops, intensity, methods, disposal of produce, buildings). It was not based on climate.
+U6B-A69	en	o	Right: the functioning forms of agriculture. ¦ Climate was not his base. ¦ Grazing is only one part. ¦ Crop distribution alone is not enough.
+U6B-A69	en	t	Remember: Whittlesey = function, Baker = climate and crops.
+U6B-A69	hi	w	व्हिटलसी ने कृषि को उसके कार्यात्मक रूपों (फसल, गहनता, विधि, निपटान, भवन) से बाँटा, जलवायु से नहीं।
+U6B-A69	hi	o	सही: कृषि के कार्यात्मक रूप। ¦ जलवायु आधार नहीं। ¦ चराई केवल एक अंश। ¦ केवल फसल वितरण नहीं।
+U6B-A69	hi	t	व्हिटलसी = कार्य; बेकर = जलवायु-फसल।
+U6B-A70	en	w	J.H. von Thünen's 'Der isolierte Staat' (1826) is the classic theory of agricultural location.
+U6B-A70	en	o	Harris gave urban models. ¦ Gottmann coined 'megalopolis'. ¦ Right: von Thünen. ¦ Geddes coined 'conurbation'.
+U6B-A70	en	t	Weber did the same for industry (1909), Christaller for settlements (1933).
+U6B-A70	hi	w	जे.एच. फ़ॉन थूनेन की 'Der isolierte Staat' (1826) कृषि अवस्थिति का क्लासिक सिद्धांत है।
+U6B-A70	hi	o	हैरिस = नगरीय मॉडल। ¦ गॉटमैन = 'मेगालोपोलिस'। ¦ सही: थूनेन। ¦ गेडिस = 'कोनर्बेशन'।
+U6B-A70	hi	t	उद्योग = वेबर (1909), बस्ती = क्रिस्टालर (1933)।
