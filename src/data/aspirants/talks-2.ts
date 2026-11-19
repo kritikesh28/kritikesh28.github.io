@@ -1,4 +1,4 @@
-// Between the Chapters (पन्नों के बीच), part 2 of 2: before the exam, after the exam, money and age, the big doubts. Format: see talks.ts.
+// Mere Man Ki Baat…, part 2 of 2: before the exam, after the exam, money and age, the big doubts. Format: see talks.ts.
 import type { Topic } from './talks';
 
 export const TALKS_2: Topic[] = [

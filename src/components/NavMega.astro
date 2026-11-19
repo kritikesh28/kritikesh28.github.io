@@ -38,7 +38,7 @@ if (kind === 'exam') {
       { href: L('/exam-prep/exam-guide/how-it-works/'), label: hi ? 'यह कैसे काम करता है' : 'How it works' },
       { href: L('/exam-prep/curriculum-index/'), label: hi ? 'पूरी पाठ्यक्रम सूची' : 'The whole Curriculum Index', note: `${SUBJECTS.length} ${hi ? 'विषय' : 'subjects'}` },
       ...BANKS.map((b) => ({ href: L(`/exam-prep/pyq/${b.slug}/`), label: b.name[lang], icon: b.icon, note: hi ? 'फ़्लिप कार्ड, क्विज़, असली सवाल' : 'Flip cards, quiz, real questions' })),
-      { href: L('/aspirants/'), label: hi ? 'पन्नों के बीच' : 'Between the Chapters', icon: '📖', note: hi ? 'जो हर अभ्यर्थी महसूस करता है' : 'What every aspirant feels' },
+      { href: L('/aspirants/'), label: 'Mere Man Ki Baat…', icon: '📖', note: hi ? 'जो हर अभ्यर्थी महसूस करता है' : 'What every aspirant feels' },
     ] },
   ];
 } else if (kind === 'portfolio') {
