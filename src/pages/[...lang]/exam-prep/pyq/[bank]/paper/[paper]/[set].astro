@@ -75,7 +75,8 @@ const schema = [{
         const f = facts(m);
         const keys = f.map(({ row, sub }) => `${sub.slug}:${row.n}`).join(' ');
         const firstFact = f[0] && setOfRow(b, f[0].sub, f[0].row.n);
-        const sol = solution(b, idOf(m), lang);
+        // two source MCQs can share an id (a parsing slip in the book); only the first one gets the solution
+        const sol = P.m.find((x) => idOf(x) === idOf(m)) === m ? solution(b, idOf(m), lang) : undefined;
         return (
           <article class="pq-mcq" data-mcq data-a={m.a} data-keys={keys} data-screen={i} id={`m${m.n}`}>
             <p class="tag">#{m.n}{m.p && ` · ${m.p === 'A' ? T.partA : T.partN}`}{m.x && <> · <span lang={cl} data-orig={orig(m.x, m.o0?.x)}>{m.x}</span></>}</p>
