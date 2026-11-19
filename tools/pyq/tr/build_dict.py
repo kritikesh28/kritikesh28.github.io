@@ -25,6 +25,12 @@ for name, parts in JOBS.items():
         o = strings[int(i)]
         if o in d and d[o] != t: pass  # first wins (flip-card wording is the reviewed one)
         d.setdefault(o, t)
+  # strings added later (reworded cards, topic names made in src/pyq.ts): <name-without-lang>-extra-<lang>.tsv, original<TAB>translation
+  ex = os.path.join(HERE, name.replace('-', '-extra-', 1) + '.tsv')
+  if os.path.exists(ex):
+    for line in open(ex, encoding='utf-8'):
+      line = line.rstrip('\n')
+      if line: o, t = line.split('\t', 1); d[o] = t
   if not d: continue
   os.makedirs(OUT, exist_ok=True)
   json.dump(d, open(os.path.join(OUT, name + '.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'), sort_keys=True)

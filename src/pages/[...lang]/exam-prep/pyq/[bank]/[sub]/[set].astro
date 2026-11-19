@@ -48,7 +48,8 @@ const pageLabel = T.page(S.set, S.sets);
 const ciIds = [...new Set([...ciTopicsFor(b, S.sub, S.rows), ...Object.entries(CI_LINKS).filter(([, refs]) => refs.some(([k, kind, id]) => k === b.key && kind === 'qa' && (id === S.sub.id || id === S.group.id))).map(([id]) => id)])].filter((id) => ciTopic(id, lang));
 const tTitle = (id: string) => ciTopic(id, lang)!.t;
 const tLang = (id: string) => (ciTopic(id, lang)!.en ? 'en' : undefined);
-const firstPaper = b.papers.find((p) => S.rows.some((r) => r.i?.some((i) => i.startsWith(b.key === 'raj' ? `RB${p.no}-` : `${p.code}-`))));
+const askedIds = new Set(S.rows.flatMap((r) => r.i ?? []));
+const firstPaper = b.papers.find((p) => p.id === S.sub.slug) ?? b.papers.find((p) => p.m.some((m) => askedIds.has(b.idPrefix(p, m))));
 const desc = `${b.short[lang]} · ${title}: ${T.descMid}. ${S.rows.slice(0, 3).map((r) => `${r.q} ${r.a}.`).join(' ')}`.slice(0, 160);
 const schema = [{
   '@type': 'Quiz', name: `${title} ${pageLabel}`, inLanguage: cl, about: b.short[lang], educationalUse: 'Practice',
@@ -86,6 +87,7 @@ const schema = [{
       {prev ? <a href={pyqPath(lang, b.slug, prev.sub.slug, prev.set)} rel="prev"><small>{T.pPrev}</small><span lang={cl}>{splitTitle(prev.sub.t)[0]}{prev.sets > 1 ? ` · ${prev.set}` : ''}</span></a> : <a href={pyqPath(lang, b.slug)}><small>←</small><span>{T.back}</span></a>}
       {next ? <a class="nx" href={pyqPath(lang, b.slug, next.sub.slug, next.set)} rel="next"><small>{T.pNext}</small><span lang={cl}>{splitTitle(next.sub.t)[0]}{next.sets > 1 ? ` · ${next.set}` : ''}</span></a> : <a class="nx" href={pyqPath(lang, b.slug)}><small>{T.done}</small><span>{T.back}</span></a>}
     </nav>
+    <p class="pq-note small">{b.qsrc[lang]}</p>
     {ciIds.length > 0 && (
       <aside class="pq-syl">
         <h2>{T.ci}</h2>

@@ -1,0 +1,94 @@
+---
+// The small flash card for "Mere Man Ki Baat…" on the home page, inside the Exam Prep band (his wish, 19 Nov 2026:
+// a short card that blends in). Front: one question every aspirant knows. Tap: it turns over to the first lines of
+// Kritikesh's answer and a link to read it. "Another one" shows the next question. Without JavaScript the front and back both show.
+// The questions come from src/data/aspirants/talks*.ts (PICK below). Guide: docs/20-aspirants-and-credits.md
+import { TALKS } from '../../data/aspirants/talks';
+import { langFromUrl, localizePath } from '../../i18n/config';
+
+const lang = langFromUrl(Astro.url);
+const hi = lang === 'hi';
+const L = (p: string) => localizePath(p, lang);
+const PICK = ['counting-days', 'room-needs-cleaning', 'relatives', 'night-before', 'missed-by-few', 'friends-settled', 'phone-reels', 'age-running-out'];
+const all = TALKS.flatMap((t) => t.qs);
+const cards = PICK.map((id) => all.find((q) => q.id === id)).filter((q) => q !== undefined).map((q) => {
+  const first = (hi ? q.a.hi : q.a.en)[0];
+  const lines = first.split(/(?<=[.?!।])\s+/).slice(0, 2).join(' ');
+  return { id: q.id, q: hi ? q.q.hi : q.q.en, a: lines };
+});
+const W = hi
+  ? { kick: 'Mere Man Ki Baat…', tap: 'पलटिए, मेरा जवाब पढ़िए', more: 'पूरी बात पढ़िए →', next: 'एक और', all: 'सारी बातें', tag: 'जो हर अभ्यर्थी महसूस करता है' }
+  : { kick: 'Mere Man Ki Baat…', tap: 'Turn over for my answer', more: 'Read the whole talk →', next: 'Another one', all: 'All the talks', tag: 'What every aspirant feels' };
+---
+
+<div class="cc" data-cc>
+  <div class="cc-side">
+    <p class="cc-kick" lang="hi-Latn">{W.kick}</p>
+    <p class="cc-tag">{W.tag}</p>
+    <p class="cc-btns">
+      <button type="button" class="cc-next" data-cc-next>{W.next} ↻</button>
+      <a href={L('/aspirants/')}>{W.all}</a>
+    </p>
+  </div>
+  <ul class="cc-deck">
+    {cards.map((c, i) => (
+      <li class="cc-card" data-cc-card hidden={i > 0}>
+        <button type="button" class="cc-flip" aria-pressed="false" data-cc-flip>
+          <span class="cc-face cc-front"><span class="cc-q">“{c.q}”</span><span class="cc-hint">{W.tap}</span></span>
+          <span class="cc-face cc-back"><span class="cc-a">{c.a}</span></span>
+        </button>
+        <a class="cc-more" href={L(`/aspirants/#${c.id}`)}>{W.more}</a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<script>
+  import { onPage } from '../../scripts/page';
+  onPage(() => {
+    const root = document.querySelector<HTMLElement>('[data-cc]');
+    if (!root) return;
+    root.classList.add('js');
+    const cards = [...root.querySelectorAll<HTMLElement>('[data-cc-card]')];
+    let at = 0;
+    const show = (i: number) => {
+      at = (i + cards.length) % cards.length;
+      cards.forEach((c, k) => { c.hidden = k !== at; c.querySelector('[data-cc-flip]')?.setAttribute('aria-pressed', 'false'); });
+    };
+    root.querySelectorAll<HTMLButtonElement>('[data-cc-flip]').forEach((b) =>
+      b.addEventListener('click', () => b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true'))));
+    root.querySelector('[data-cc-next]')?.addEventListener('click', () => show(at + 1));
+    show(Math.floor(Math.random() * cards.length));
+  });
+</script>
+
+<style>
+  .cc { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); gap: 1.6rem; align-items: center; margin-top: 2.4rem; padding: 1.3rem 1.4rem;
+    border-radius: 20px; border: 1px solid color-mix(in srgb, #c98a2b 28%, var(--line)); background: color-mix(in srgb, var(--surface) 80%, transparent); }
+  .cc-kick { margin: 0; font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 1.7rem; line-height: 1.1; color: var(--ink); }
+  .cc-tag { margin: 0.3rem 0 0.9rem; font-size: 0.9rem; color: var(--ink-soft); }
+  .cc-btns { display: flex; gap: 1rem; align-items: center; margin: 0; font-size: 0.9rem; }
+  .cc-next { display: none; font: inherit; font-weight: 600; color: #a8701f; background: none; border: 0; padding: 0; cursor: pointer; }
+  .cc.js .cc-next { display: inline; }
+  .cc-btns a { color: var(--ink-soft); }
+  .cc-deck { list-style: none; margin: 0; padding: 0; }
+  .cc:not(.js) .cc-card[hidden] { display: none; }
+  .cc-flip { display: grid; width: 100%; min-height: 9.5rem; padding: 0; border: 0; background: none; cursor: pointer; perspective: 1200px; text-align: left; font: inherit; color: inherit; }
+  .cc-face { grid-area: 1 / 1; display: flex; flex-direction: column; justify-content: center; gap: 0.6rem; padding: 1.2rem 1.4rem; border-radius: 16px;
+    backface-visibility: hidden; transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); box-shadow: 0 10px 28px rgb(60 40 10 / 0.08); }
+  .cc-front { background: linear-gradient(135deg, #fffaf0, #f7ead2); border: 1px solid #ead7b3; }
+  .cc-back { background: linear-gradient(135deg, #2a1f4d, #1d1636); color: #f3eefc; transform: rotateY(180deg); }
+  .cc-flip[aria-pressed='true'] .cc-front { transform: rotateY(-180deg); }
+  .cc-flip[aria-pressed='true'] .cc-back { transform: rotateY(0); }
+  .cc-q { font-family: var(--font-serif); font-size: clamp(1.1rem, 2.2vw, 1.35rem); line-height: 1.4; color: #2b2140; }
+  .cc-hint { font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: #a8701f; }
+  .cc-a { font-family: var(--font-serif); font-size: 1rem; line-height: 1.6; }
+  .cc-more { display: inline-block; margin-top: 0.6rem; font-size: 0.9rem; font-weight: 600; color: var(--accent); text-decoration: none; }
+  .cc-more:hover { text-decoration: underline; }
+  /* without JavaScript: no flipping, the answer simply shows under the question */
+  .cc:not(.js) .cc-back { transform: none; }
+  .cc:not(.js) .cc-flip { gap: 0.6rem; }
+  .cc:not(.js) .cc-face { grid-area: auto; }
+  @media (prefers-reduced-motion: reduce) { .cc-face { transition: none; } }
+  @media (max-width: 700px) { .cc { grid-template-columns: 1fr; gap: 1rem; } }
+</style>

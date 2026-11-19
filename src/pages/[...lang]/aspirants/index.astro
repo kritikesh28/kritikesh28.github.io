@@ -1,0 +1,163 @@
+---
+// "Mere Man Ki Baat…" (Hinglish, the same on English and Hindi pages; his choice on 19 Nov 2026, after "मन की सच्ची बातें" and "Between the Chapters"): the aspirants' library. Kritikesh talks with aspirants about the problems everyone has and few share,
+// as friends do at a chai tapri. Questions and answers: src/data/aspirants/talks*.ts; the layout: src/components/aspirants/TalkBook.astro.
+// The form at the bottom sends a problem to his inbox (Formspree, like the Contact page); a name and email are optional.
+// Guide: docs/20-aspirants-and-credits.md
+import Base from '../../../layouts/Base.astro';
+import TalkBook from '../../../components/aspirants/TalkBook.astro';
+import { TALKS, allTalks } from '../../../data/aspirants/talks';
+import { SITE } from '../../../site.config';
+import { langFromUrl, langParams, localizePath, pick } from '../../../i18n/config';
+
+export const getStaticPaths = () => langParams().map((params) => ({ params }));
+const lang = langFromUrl(Astro.url);
+const L = (p: string) => localizePath(p, lang);
+const hi = lang === 'hi';
+const flat = allTalks(TALKS);
+
+const T = pick({
+  en: {
+    title: 'Mere Man Ki Baat… what every aspirant feels and almost no one says',
+    description: 'Kritikesh Rajpurohit talks with exam aspirants about the small and big problems everyone faces and few share: counting months, procrastination, the phone, comparison, loneliness, exam fear, results, money, age and doubt.',
+    eyebrow: 'The aspirants’ library',
+    brand: 'Mere Man Ki Baat…', h1sub: 'What every aspirant feels, and almost no one says.',
+    lede: [
+      'Come, sit. Two cups of chai, a bench outside a coaching street, and no hurry. This is not an advice page. I am not your teacher here; I’m one of you. I have been preparing since 2018, and I have felt every one of these things, many of them more than once. Some I still feel.',
+      'Here I share what went on in my head, how long it lasted, who helped me (seniors, my parents, teachers) and what the books I leaned on had to say. Start from the smallest problem. None of them is silly.',
+    ],
+    meta: (n: number, t: number) => `${n} talks in ${t} topics · each about a 3-minute read`,
+    whyLink: 'Why is this site made this way?', creditsLink: 'Credits and sources',
+    shareE: 'Your turn', shareH: 'Tell me what you are going through',
+    shareP: 'Any problem, however small or silly it feels. Send it with your name, or completely anonymously. I read every message myself. With your permission, I will talk about it here in a new answer, without your name unless you ask for it, so that others who feel the same know they are not alone.',
+    how: 'How may I share it?', howA: 'Anonymously (no name, ever)', howB: 'With my first name', howC: 'Please don’t share it, just read it',
+    name: 'Your name', email: 'Email, if you would like a reply', opt: '(optional)', msg: 'What’s on your mind?', send: 'Send', sending: 'Sending…', failed: 'That didn’t go through. Please try again, or write to me at',
+    doneH: 'Thank you for trusting me with this.', doneP: 'I have it, and I will read it carefully. You are not alone in this, I promise.',
+    help: 'If you ever feel like you might hurt yourself, or life feels too heavy, please call Tele-MANAS on 14416 (free, every day, all day and night) or talk to someone you trust right now. You matter more than any exam.',
+    trap: 'Leave this empty',
+  },
+  hi: {
+    title: 'Mere Man Ki Baat… जो हर अभ्यर्थी महसूस करता है, पर कहता कोई नहीं',
+    description: 'कृतिकेश राजपुरोहित परीक्षा की तैयारी कर रहे साथियों से उन छोटी-बड़ी परेशानियों पर बात करते हैं जो सबको होती हैं पर कम लोग बताते हैं: महीने गिनना, टालमटोल, फ़ोन, तुलना, अकेलापन, परीक्षा का डर, रिज़ल्ट, पैसा, उम्र और शक।',
+    eyebrow: 'अभ्यर्थियों की लाइब्रेरी',
+    brand: 'Mere Man Ki Baat…', h1sub: 'जो हर अभ्यर्थी महसूस करता है, पर कहता कोई नहीं।',
+    lede: [
+      'आइए, बैठिए। दो कप चाय, कोचिंग वाली गली के बाहर एक बेंच, और कोई जल्दी नहीं। यह सलाह वाला पन्ना नहीं है। यहाँ मैं आपका शिक्षक नहीं; आप में से ही एक हूँ। मैं 2018 से तैयारी कर रहा हूँ, और इनमें से हर बात मैंने महसूस की है, कई तो एक से ज़्यादा बार। कुछ अब भी करता हूँ।',
+      'यहाँ मैं बताता हूँ कि मेरे मन में क्या चलता था, कितने समय तक चला, किसने मदद की (सीनियर्स, माँ-पापा, शिक्षक), और जिन किताबों का मैंने सहारा लिया, उन्होंने क्या कहा। सबसे छोटी परेशानी से शुरू कीजिए। इनमें से कोई भी बेवक़ूफ़ी वाली नहीं।',
+    ],
+    meta: (n: number, t: number) => `${t} विषयों में ${n} बातें · हर एक लगभग 3 मिनट की`,
+    whyLink: 'यह साइट इस तरह क्यों बनी है?', creditsLink: 'आभार और स्रोत',
+    shareE: 'अब आपकी बारी', shareH: 'मुझे बताइए, आप किस दौर से गुज़र रहे हैं',
+    shareP: 'कोई भी परेशानी, चाहे कितनी भी छोटी या बेवक़ूफ़ी भरी लगे। अपने नाम के साथ भेजिए, या पूरी तरह बिना नाम के। हर संदेश मैं ख़ुद पढ़ता हूँ। आपकी इजाज़त से, मैं इस पर यहाँ एक नए जवाब में बात करूँगा, आपके नाम के बिना जब तक आप ख़ुद न कहें, ताकि ऐसा ही महसूस करने वाले दूसरे लोग जानें कि वे अकेले नहीं हैं।',
+    how: 'मैं इसे कैसे साझा करूँ?', howA: 'बिना नाम के (कभी कोई नाम नहीं)', howB: 'मेरे पहले नाम के साथ', howC: 'कृपया साझा मत कीजिए, बस पढ़ लीजिए',
+    name: 'आपका नाम', email: 'ईमेल, अगर जवाब चाहिए', opt: '(ज़रूरी नहीं)', msg: 'मन में क्या है?', send: 'भेजिए', sending: 'भेजा जा रहा है…', failed: 'संदेश नहीं गया। कृपया फिर कोशिश कीजिए, या मुझे यहाँ लिखिए:',
+    doneH: 'मुझ पर भरोसा करने के लिए शुक्रिया।', doneP: 'आपकी बात मुझ तक पहुँच गई है, और मैं इसे ध्यान से पढ़ूँगा। आप इसमें अकेले नहीं हैं, मेरा वादा है।',
+    help: 'अगर कभी लगे कि आप ख़ुद को नुक़सान पहुँचा सकते हैं, या ज़िंदगी बहुत भारी लगे, तो कृपया टेली-मानस को 14416 पर फ़ोन कीजिए (मुफ़्त, हर दिन, दिन-रात) या अभी किसी भरोसेमंद से बात कीजिए। आप किसी भी परीक्षा से ज़्यादा मायने रखते हैं।',
+    trap: 'इसे ख़ाली छोड़िए',
+  },
+}, lang);
+
+const schema = [{
+  '@type': 'FAQPage',
+  url: new URL(L('/aspirants/'), Astro.site).href,
+  mainEntity: flat.map((q) => ({ '@type': 'Question', name: hi ? q.q.hi : q.q.en, acceptedAnswer: { '@type': 'Answer', text: (hi ? q.a.hi : q.a.en).join(' ') } })),
+}];
+---
+
+<Base title={T.title} description={T.description} {schema}>
+  <article class="wrap asp">
+    <header class="asp-head">
+      <p class="eyebrow">{T.eyebrow}</p>
+      <h1 class="title"><span class="name" lang="hi-Latn">{T.brand}</span></h1>
+      <p class="sub">{T.h1sub}</p>
+      {T.lede.map((p) => <p class="lede">{p}</p>)}
+      <p class="meta">{T.meta(flat.length, TALKS.length)} · <a href={L('/aspirants/why-this-format/')}>{T.whyLink}</a> · <a href={L('/credits/')}>{T.creditsLink}</a></p>
+    </header>
+
+    <TalkBook topics={TALKS} share="#share" />
+
+    <section class="share" id="share" aria-labelledby="share-h">
+      <p class="share-e">{T.shareE}</p>
+      <h2 id="share-h">{T.shareH}</h2>
+      <p>{T.shareP}</p>
+      <form class="sform" id="asp-share" action={SITE.formspreeUrl || undefined} method="POST" data-endpoint={SITE.formspreeUrl} data-email={SITE.email} data-words={JSON.stringify({ sending: T.sending, failed: `${T.failed} ${SITE.email}` })}>
+        <fieldset>
+          <legend>{T.how}</legend>
+          <label class="opt"><input type="radio" name="share_as" value="anonymous" checked /> {T.howA}</label>
+          <label class="opt"><input type="radio" name="share_as" value="first name" /> {T.howB}</label>
+          <label class="opt"><input type="radio" name="share_as" value="do not share" /> {T.howC}</label>
+        </fieldset>
+        <div class="two">
+          <label><span>{T.name} <small>{T.opt}</small></span><input name="name" maxlength="120" autocomplete="off" /></label>
+          <label><span>{T.email} <small>{T.opt}</small></span><input type="email" name="email" maxlength="200" autocomplete="email" /></label>
+        </div>
+        <label>{T.msg}<textarea name="message" rows="6" required maxlength="5000"></textarea></label>
+        <input type="hidden" name="_subject" value="Mere Man Ki Baat: an aspirant's message" />
+        <input type="hidden" name="language" value={lang} />
+        <label class="trap" aria-hidden="true">{T.trap} <input name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+        <p class="row"><button class="btn" type="submit">{T.send}</button> <span class="status" role="status" aria-live="polite"></span></p>
+      </form>
+      <div class="done" hidden><h3>{T.doneH}</h3><p>{T.doneP}</p></div>
+      <p class="help" role="note">{T.help}</p>
+    </section>
+  </article>
+</Base>
+
+<script>
+  import { onPage } from '../../../scripts/page';
+  onPage(() => {
+    const form = document.querySelector<HTMLFormElement>('#asp-share');
+    if (!form) return;
+    const status = form.querySelector<HTMLElement>('.status')!;
+    const words = JSON.parse(form.dataset.words ?? '{}');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if ((form.elements.namedItem('_gotcha') as HTMLInputElement).value) return;
+      const data = new FormData(form);
+      const endpoint = form.dataset.endpoint;
+      if (!endpoint) {
+        location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(String(data.get('_subject')))}&body=${encodeURIComponent(`${data.get('message')}\n\n(share as: ${data.get('share_as')}) ${data.get('name') || ''}`)}`;
+        return;
+      }
+      status.textContent = words.sending;
+      try {
+        const res = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+        if (!res.ok) throw new Error(String(res.status));
+        form.hidden = true;
+        form.parentElement!.querySelector<HTMLElement>('.done')!.hidden = false;
+      } catch {
+        status.textContent = words.failed;
+      }
+    });
+  });
+</script>
+
+<style>
+  .asp { max-width: 1240px; margin-top: 1.5rem; }
+  .asp-head { max-width: 46rem; margin: 0 auto 1.2rem; text-align: center; }
+  .title { margin: 0.3rem 0 0.4rem; }
+  .name { display: block; font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: clamp(2.6rem, 6.5vw, 4.4rem); line-height: 1.05; letter-spacing: -0.01em; color: var(--ink); }
+  .sub { margin: 0 0 1rem; font-family: var(--font-serif); font-size: clamp(1.1rem, 2.2vw, 1.35rem); color: var(--ink); }
+  .lede { font-family: var(--font-serif); font-size: 1.1rem; line-height: 1.7; color: var(--ink-soft); margin: 0 0 0.7rem; }
+  .meta { font-size: 0.9rem; color: var(--ink-soft); margin: 0.8rem 0 0; }
+  .meta a { color: var(--accent); }
+
+  .share { max-width: 46rem; margin: 3rem auto 1rem; padding: clamp(1.2rem, 3vw, 2rem); border-radius: 22px; border: 1px solid var(--line);
+    background: color-mix(in srgb, var(--gold) 8%, var(--surface)); }
+  .share-e { margin: 0; font: 600 0.78rem/1.4 var(--font-sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--coral); }
+  .share h2 { margin: 0.3rem 0 0.6rem; }
+  .share > p { line-height: 1.65; }
+  .sform { display: grid; gap: 0.9rem; margin-top: 1rem; }
+  .sform fieldset { border: 1px solid var(--line); border-radius: 14px; padding: 0.6rem 1rem 0.8rem; margin: 0; }
+  .sform legend { font-weight: 600; padding: 0 0.3rem; }
+  .sform .opt { display: flex; gap: 0.5rem; align-items: center; font-weight: 500; margin-top: 0.35rem; }
+  .sform label { display: grid; gap: 0.3rem; font-weight: 600; font-size: 0.95rem; }
+  .sform label small { font-weight: 400; color: var(--ink-soft); }
+  .sform input:not([type='radio']), .sform textarea { font: inherit; padding: 0.65rem 0.8rem; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
+  .sform .two { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+  @media (max-width: 600px) { .sform .two { grid-template-columns: 1fr; } }
+  .sform .trap { position: absolute; left: -9999px; }
+  .sform .row { display: flex; gap: 0.8rem; align-items: center; margin: 0; }
+  .status { font-size: 0.9rem; color: var(--ink-soft); }
+  .done h3 { margin: 1rem 0 0.3rem; }
+  .help { margin: 1.4rem 0 0; padding: 0.8rem 1rem; border-radius: 12px; background: var(--accent-soft); font-size: 0.92rem; line-height: 1.55; }
+</style>

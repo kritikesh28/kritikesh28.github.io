@@ -26,7 +26,7 @@ const T = pick({
     home: 'Exam Prep', pyq: 'PYQ', facts: [`${fmt(rows)} flip cards`, `${fmt(mcqs)} real exam questions`, `${fmt(asked)} facts asked in 2+ exams 🔥`, `about ${fmt(minutes)} minutes in all, 5 at a time`],
     meter: '{n} of {t} cards mastered on this device', got: '{n} mastered', mapH: 'Pick a topic', mapP: 'Each topic opens as small pages of about 40 cards (five minutes). Start anywhere.',
     cards: 'cards', set: (n: number) => (n > 1 ? ` · ${n} pages` : ''), hot: (n: number) => `🔥 ${n}`, hotT: 'facts asked in two or more exams',
-    realH: 'Real exam questions, chapter by chapter', realP: 'Every MCQ exactly as the exam asked it, ten to a page, one at a time. Pick an option and see the facts behind it.', qs: 'questions',
+    realH: 'Real exam questions, topic by topic', realP: 'Every MCQ exactly as the exam asked it, ten to a page, one at a time. Pick an option and see the facts behind it.', qs: 'questions',
     ci: 'In the Curriculum Index:', for: 'For', lang: b.orig === 'hi' ? 'The questions were asked in Hindi; here they are translated into English by hand. Every page has a “See original” button for the Hindi wording.' : b.content === 'hi' ? 'The questions are in Hindi, as they were asked.' : 'The questions are in English, as they were asked.',
     partA: 'Assistant Professor papers', partN: 'NTA UGC-NET/JRF',
   },
@@ -36,7 +36,7 @@ const T = pick({
     home: 'परीक्षा तैयारी', pyq: 'PYQ', facts: [`${fmt(rows)} फ़्लिप कार्ड`, `${fmt(mcqs)} असली परीक्षा सवाल`, `${fmt(asked)} तथ्य 2+ परीक्षाओं में पूछे गए 🔥`, `कुल लगभग ${fmt(minutes)} मिनट, एक बार में 5`],
     meter: 'इस डिवाइस पर {t} में से {n} कार्ड याद हो गए', got: '{n} याद', mapH: 'कोई टॉपिक चुनिए', mapP: 'हर टॉपिक लगभग 40 कार्ड (पाँच मिनट) के छोटे पेजों में खुलता है। कहीं से भी शुरू कीजिए।',
     cards: 'कार्ड', set: (n: number) => (n > 1 ? ` · ${n} पेज` : ''), hot: (n: number) => `🔥 ${n}`, hotT: 'तथ्य जो दो या ज़्यादा परीक्षाओं में पूछे गए',
-    realH: 'असली परीक्षा के सवाल, अध्याय-दर-अध्याय', realP: 'हर MCQ ठीक वैसा जैसा परीक्षा में आया, एक पेज पर दस, एक-एक करके। विकल्प चुनिए और उसके पीछे के तथ्य देखिए।', qs: 'सवाल',
+    realH: 'असली परीक्षा के सवाल, टॉपिक-दर-टॉपिक', realP: 'हर MCQ ठीक वैसा जैसा परीक्षा में आया, एक पेज पर दस, एक-एक करके। विकल्प चुनिए और उसके पीछे के तथ्य देखिए।', qs: 'सवाल',
     ci: 'पाठ्यक्रम सूचकांक में:', for: 'किसके लिए:', lang: b.orig === 'en' ? 'सवाल अंग्रेज़ी में पूछे गए थे; यहाँ उनका हाथ से किया हिंदी अनुवाद है। हर पेज पर “मूल देखें” बटन से अंग्रेज़ी शब्द पढ़िए।' : b.content === 'hi' ? 'सवाल हिंदी में हैं, जैसे पूछे गए थे।' : 'सवाल अंग्रेज़ी में हैं, जैसे पूछे गए थे।',
     partA: 'असिस्टेंट प्रोफ़ेसर पेपर', partN: 'NTA UGC-NET/JRF',
   },
@@ -102,7 +102,7 @@ const nParts = (p: (typeof b.papers)[number]) => mcqSets(b).filter((s) => s.pape
         return (
           <li class="pq-tile">
             <a href={pyqPath(lang, b.slug, 'paper', p.id, 1)}>
-              <strong lang={cl}>{p.code ?? (lang === 'hi' ? `अध्याय ${p.no}` : `Chapter ${p.no}`)} · {p.t}</strong>
+              <strong lang={cl}>{p.code ?? p.g ?? (lang === 'hi' ? `अध्याय ${p.no}` : `Chapter ${p.no}`)} · {p.t}</strong>
               {p.code && <small>{T.partA}: {a} · {T.partN}: {nn}</small>}
               <span class="meta"><span class="pq-chip">{p.m.length} {T.qs}</span><span class="pq-chip">{nParts(p)} × 10</span></span>
             </a>

@@ -1,0 +1,245 @@
+---
+// A book of questions and answers, in the style of "My story": the questions are listed down the left and right side bars,
+// grouped by topic, so a reader can jump to any of them; the middle shows one answer at a time (Previous / Next, the ← → keys,
+// or a swipe on phones). "Read it all at once" shows every answer as one long page. Without JavaScript every answer simply shows.
+// Used by /aspirants/ (Mere Man Ki Baat…) and /aspirants/why-this-format/. Data: src/data/aspirants/. Guide: docs/20-aspirants-and-credits.md
+import type { Topic } from '../../data/aspirants/talks';
+import { BOOKS } from '../../data/aspirants/books';
+import { langFromUrl } from '../../i18n/config';
+
+interface Props { topics: Topic[]; share?: string }
+const { topics, share } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const hi = lang === 'hi';
+const tr = (x: { en: string; hi: string }) => (hi ? x.hi : x.en);
+const tra = (x: { en: string[]; hi: string[] }) => (hi && x.hi.length ? x.hi : x.en);
+
+const flat = topics.flatMap((t) => t.qs.map((q) => ({ ...q, t })));
+const N = flat.length;
+const num = (id: string) => flat.findIndex((q) => q.id === id) + 1;
+const mins = (q: (typeof flat)[number]) => Math.max(1, Math.ceil(tra(q.a).join(' ').split(/\s+/).length / 200));
+// the topics are shared between the two side lists, about half the questions on each side
+const leftT: Topic[] = [];
+const rightT: Topic[] = [];
+let count = 0;
+for (const t of topics) { (count < N / 2 ? leftT : rightT).push(t); count += t.qs.length; }
+
+const W = hi
+  ? { all: 'सब एक साथ पढ़िए', slides: 'एक-एक सवाल करके', nextQ: 'अगला:', end: 'और बातें जल्द… आपकी बात भी।', jump: `सारे ${N} सवाल`, of: 'में से', q: 'सवाल', prev: '← पिछला', next: 'अगला →', rail1: 'विषय, भाग 1', rail2: 'विषय, भाग 2', min: 'मिनट', shelf: 'जिन किताबों से मदद मिली:', share: 'आपके साथ भी ऐसा होता है? मुझे बताइए →' }
+  : { all: 'Read it all at once', slides: 'One question at a time', nextQ: 'Next:', end: 'More talks soon… including yours.', jump: `All ${N} questions`, of: 'of', q: 'Question', prev: '← Previous', next: 'Next →', rail1: 'Topics, part 1', rail2: 'Topics, part 2', min: 'min', shelf: 'Books that helped me:', share: 'Does this happen to you too? Tell me →' };
+---
+
+<div class="talkbook" data-talk data-words={JSON.stringify({ all: W.all, slides: W.slides, nextQ: W.nextQ, end: W.end })}>
+  <p class="modes">
+    <a class="btn" href={`#${flat[0].id}`} data-go={flat[0].id}>{hi ? 'पहले सवाल से शुरू करें' : 'Start with the first question'}</a>
+    <button class="btn ghost" type="button" data-mode aria-pressed="false">{W.all}</button>
+  </p>
+  <div class="tb-grid">
+    {[{ ts: leftT, label: W.rail1, side: 'left' }, { ts: rightT, label: W.rail2, side: 'right' }].map((r) => (
+      <nav class:list={['rail', r.side]} aria-label={r.label}>
+        <ol>
+          {r.ts.map((t) => (
+            <li class="topic">
+              <span class="tt"><span class="ic" aria-hidden="true">{t.icon}</span>{tr(t.title)}</span>
+              <ol>{t.qs.map((q) => <li><a href={`#${q.id}`} data-go={q.id}><span class="n">{num(q.id)}</span>{tr(q.q)}</a></li>)}</ol>
+            </li>
+          ))}
+        </ol>
+      </nav>
+    ))}
+
+    <div class="stage">
+      <details class="jump">
+        <summary>{W.jump}</summary>
+        <ol>
+          {topics.map((t) => (
+            <li class="topic">
+              <span class="tt"><span class="ic" aria-hidden="true">{t.icon}</span>{tr(t.title)}</span>
+              <ol>{t.qs.map((q) => <li><a href={`#${q.id}`} data-go={q.id}><span class="n">{num(q.id)}</span>{tr(q.q)}</a></li>)}</ol>
+            </li>
+          ))}
+        </ol>
+      </details>
+
+      <div class="slides" data-slides>
+        {flat.map((q, i) => (
+          <section class="slide" id={q.id} data-slide={i} aria-labelledby={`${q.id}-h`}>
+            <p class="chip"><span aria-hidden="true">{q.t.icon}</span> {tr(q.t.title)}</p>
+            <p class="count">{W.q} {i + 1} {W.of} {N} · {mins(q)} {W.min}</p>
+            <h2 id={`${q.id}-h`} tabindex="-1">{tr(q.q)}</h2>
+            {tra(q.a).map((p) => <p>{p}</p>)}
+            {q.books?.length ? (
+              <div class="shelf">
+                <p class="shelf-h">{W.shelf}</p>
+                <ul>{q.books.filter((k) => BOOKS[k]).map((k) => <li><b>{BOOKS[k].title}</b> · {BOOKS[k].by}<span>{tr(BOOKS[k].idea)}</span></li>)}</ul>
+              </div>
+            ) : null}
+            {share && <p class="tellme"><a href={share}>{W.share}</a></p>}
+          </section>
+        ))}
+      </div>
+
+      <div class="controls" data-controls hidden>
+        <button class="btn ghost" type="button" data-step="-1">{W.prev}</button>
+        <div class="where">
+          <span class="track" aria-hidden="true"><span class="fill" data-fill></span></span>
+          <span class="pos" data-pos aria-live="polite"></span>
+        </div>
+        <button class="btn" type="button" data-step="1">{W.next}</button>
+      </div>
+      <p class="upnext" data-upnext></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { onPage } from '../../scripts/page';
+  // runs on every page (pages change without reloading: see src/scripts/page.ts)
+  onPage((signal) => {
+    const root = document.querySelector<HTMLElement>('[data-talk]');
+    if (!root) return;
+    const slides = [...root.querySelectorAll<HTMLElement>('[data-slide]')];
+    const links = [...root.querySelectorAll<HTMLAnchorElement>('[data-go]')];
+    const controls = root.querySelector<HTMLElement>('[data-controls]')!;
+    const pos = root.querySelector<HTMLElement>('[data-pos]')!;
+    const fill = root.querySelector<HTMLElement>('[data-fill]')!;
+    const upnext = root.querySelector<HTMLElement>('[data-upnext]')!;
+    const mode = root.querySelector<HTMLButtonElement>('[data-mode]')!;
+    const jump = root.querySelector<HTMLDetailsElement>('details.jump');
+    const prevBtn = root.querySelector<HTMLButtonElement>('[data-step="-1"]')!;
+    const nextBtn = root.querySelector<HTMLButtonElement>('[data-step="1"]')!;
+    const w = JSON.parse(root.dataset.words ?? '{}');
+    let at = 0;
+    let allMode = false;
+
+    const show = (i: number, focus = false, mark = true) => {
+      at = Math.max(0, Math.min(slides.length - 1, i));
+      slides.forEach((s, k) => s.classList.toggle('on', k === at));
+      const id = slides[at].id;
+      links.forEach((a) => { if (a.dataset.go === id) a.setAttribute('aria-current', 'step'); else a.removeAttribute('aria-current'); });
+      pos.textContent = `${at + 1} / ${slides.length}`;
+      fill.style.transform = `scaleX(${(at + 1) / slides.length})`;
+      prevBtn.disabled = at === 0;
+      nextBtn.disabled = at === slides.length - 1;
+      const nxt = slides[at + 1]?.querySelector('h2')?.textContent;
+      upnext.textContent = nxt ? `${w.nextQ} ${nxt}` : w.end;
+      if (mark) history.replaceState(history.state, '', `#${id}`);
+      if (focus) {
+        slides[at].querySelector<HTMLElement>('h2')?.focus({ preventScroll: true });
+        const top = slides[at].getBoundingClientRect().top;
+        if (top < 70 || top > innerHeight * 0.6) slides[at].scrollIntoView({ block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      }
+    };
+
+    const setMode = (all: boolean) => {
+      allMode = all;
+      root.classList.toggle('slider', !all);
+      controls.hidden = all;
+      upnext.hidden = all;
+      mode.setAttribute('aria-pressed', String(all));
+      mode.textContent = all ? w.slides : w.all;
+      if (!all) show(at, false, !!location.hash);
+    };
+
+    links.forEach((a) => a.addEventListener('click', (e) => {
+      const i = slides.findIndex((s) => s.id === a.dataset.go);
+      if (i < 0) return;
+      if (jump) jump.open = false;
+      if (allMode) { history.replaceState(history.state, '', `#${slides[i].id}`); return; }
+      e.preventDefault();
+      show(i, true);
+    }));
+    prevBtn.addEventListener('click', () => show(at - 1, true));
+    nextBtn.addEventListener('click', () => show(at + 1, true));
+    mode.addEventListener('click', () => setMode(!allMode));
+
+    addEventListener('keydown', (e) => {
+      if (allMode || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      if ((e.target as HTMLElement)?.closest?.('input, textarea, select, [contenteditable]')) return;
+      if (e.key === 'ArrowRight') { e.preventDefault(); show(at + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); show(at - 1); }
+    }, { signal });
+
+    const box = root.querySelector<HTMLElement>('[data-slides]')!;
+    let x0 = 0, y0 = 0;
+    box.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+    box.addEventListener('touchend', (e) => {
+      if (allMode) return;
+      const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) show(at + (dx < 0 ? 1 : -1), true);
+    });
+
+    addEventListener('hashchange', () => {
+      const i = slides.findIndex((s) => `#${s.id}` === location.hash);
+      if (i >= 0 && !allMode && i !== at) show(i, true);
+    }, { signal });
+
+    const start = slides.findIndex((s) => `#${s.id}` === location.hash);
+    at = start >= 0 ? start : 0;
+    setMode(false);
+  });
+</script>
+
+<style>
+  .talkbook { margin-top: 0.5rem; }
+  .modes { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin: 0 0 1.6rem; }
+  .talkbook:not(.slider) .modes [data-mode][aria-pressed='false'] { display: none; }
+
+  .tb-grid { display: grid; grid-template-columns: 1fr; gap: 1.2rem; align-items: start; }
+  .rail { display: none; }
+  @media (min-width: 1100px) {
+    .tb-grid { grid-template-columns: 250px minmax(0, 1fr) 250px; gap: 1.6rem; }
+    .rail { display: block; position: sticky; top: 84px; max-height: calc(100vh - 100px); overflow: auto; }
+    .rail.left { grid-column: 1; grid-row: 1; }
+    .stage { grid-column: 2; grid-row: 1; }
+    .rail.right { grid-column: 3; grid-row: 1; }
+    .jump { display: none; }
+  }
+  .rail ol, .jump ol { list-style: none; margin: 0; padding: 0; }
+  .topic { padding: 0 0 1rem; }
+  .tt { display: flex; align-items: center; gap: 0.4rem; font-family: var(--font-serif); font-weight: 600; font-size: 0.95rem; color: var(--ink); margin: 0 0 0.35rem; }
+  .ic { font-size: 1.05rem; }
+  .topic ol li a { display: flex; gap: 0.5rem; padding: 0.32rem 0.5rem; border-radius: 10px; color: var(--ink-soft); text-decoration: none; font-size: 0.88rem; line-height: 1.35; transition: background 0.2s, color 0.2s; }
+  .topic ol li a:hover, .topic ol li a[aria-current] { background: var(--accent-soft); color: var(--ink); }
+  .topic ol li a[aria-current] { font-weight: 600; }
+  .n { flex: none; min-width: 1.4rem; font: 600 0.75rem/1.6 var(--font-sans); color: var(--accent); }
+
+  .jump { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 0.2rem 1rem; margin-bottom: 1rem; }
+  .jump summary { cursor: pointer; padding: 0.6rem 0; font-weight: 600; }
+  .jump > ol { padding-bottom: 0.6rem; }
+
+  .slide { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 1.6rem 1.6rem 1.3rem; margin-bottom: 1.2rem; scroll-margin-top: 90px; box-shadow: 0 10px 30px rgb(42 35 80 / 0.06); }
+  .slide::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 4px; border-radius: 20px 20px 0 0; background: linear-gradient(90deg, #e0b45e, var(--coral), #8f7be8); }
+  .chip { display: inline-flex; gap: 0.4rem; align-items: baseline; margin: 0 0 0.6rem; padding: 0.25rem 0.75rem; border-radius: 999px; background: var(--accent-soft); font-size: 0.85rem; color: var(--ink); }
+  .count { margin: 0 0 0.3rem; font-size: 0.8rem; color: var(--ink-soft); }
+  .slide h2 { margin: 0 0 0.9rem; font-size: clamp(1.35rem, 2.6vw, 1.8rem); line-height: 1.3; outline: none; }
+  .slide > p:not(.chip):not(.count):not(.tellme) { font-family: var(--font-serif); font-size: 1.08rem; line-height: 1.8; margin: 0 0 0.9rem; }
+  .shelf { margin: 1.2rem 0 0; padding: 0.9rem 1rem; border-radius: 14px; background: color-mix(in srgb, var(--gold) 9%, var(--bg)); border: 1px solid color-mix(in srgb, var(--gold) 30%, transparent); }
+  .shelf-h { margin: 0 0 0.4rem; font: 600 0.78rem/1.4 var(--font-sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+  .shelf ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.45rem; }
+  .shelf li { font-size: 0.9rem; line-height: 1.45; }
+  .shelf li span { display: block; color: var(--ink-soft); font-size: 0.86rem; }
+  .tellme { margin: 1rem 0 0; text-align: right; }
+  .tellme a { font-weight: 600; color: var(--coral); text-decoration: none; }
+  .tellme a:hover { text-decoration: underline; }
+
+  .talkbook.slider .slide { display: none; margin-bottom: 0; }
+  .talkbook.slider .slide.on { display: block; animation: tb-in 0.35s ease; }
+  @keyframes tb-in { from { opacity: 0; transform: translateY(8px); } }
+  @media (prefers-reduced-motion: reduce) { .talkbook.slider .slide.on { animation: none; } }
+
+  .controls { display: flex; align-items: center; gap: 0.8rem; margin-top: 1rem; }
+  .controls[hidden] { display: none; }
+  .controls .btn:disabled { opacity: 0.4; pointer-events: none; }
+  .where { flex: 1; display: flex; align-items: center; gap: 0.6rem; min-width: 0; }
+  .track { flex: 1; height: 6px; border-radius: 999px; background: var(--line); overflow: hidden; }
+  .fill { display: block; height: 100%; background: linear-gradient(90deg, #e0b45e, var(--coral), #8f7be8); transform-origin: 0 50%; transform: scaleX(0); transition: transform 0.35s ease; }
+  .pos { font-size: 0.85rem; color: var(--ink-soft); white-space: nowrap; }
+  .upnext { margin: 0.7rem 0 0; font-size: 0.9rem; color: var(--ink-soft); text-align: center; }
+  .upnext:empty { display: none; }
+  @media (max-width: 720px) { .slide { scroll-margin-top: 125px; } }
+  @media (max-width: 520px) {
+    .slide { padding: 1.3rem 1.1rem 1.1rem; }
+    .controls .btn { padding-inline: 0.9rem; }
+  }
+</style>

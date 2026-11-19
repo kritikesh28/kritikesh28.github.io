@@ -7,6 +7,8 @@ import ciMatch from './data/pyq/ci-match.json';
 import quizRaj from './data/pyq/quiz/raj.json';
 import quizNet from './data/pyq/quiz/net.json';
 import rajEn from './data/pyq/tr/raj-en.json';
+import rajTopics from './data/pyq/raj-topics.json';
+import reword from './data/pyq/reword.json';
 import type { Lang } from './i18n/config';
 import { localizePath } from './i18n/config';
 
@@ -15,8 +17,8 @@ export type Row = { n: number; q: string; a: string; k: string; x?: string[]; i?
 export type Sub = { id: string; slug: string; t: string; other: boolean; rows: Row[]; t0?: string };
 export type Group = { id: string; t: string; subs: Sub[]; t0?: string };
 export type Block = { p?: string; tb?: string[][]; img?: string };
-export type Mcq = { n: number; p?: string; a: number; x?: string; o?: string[]; s: Block[]; star?: number; o0?: { x?: string; o?: string[]; s: Block[] } };
-export type Paper = { id: string; t: string; no?: number; code?: string; m: Mcq[]; t0?: string };
+export type Mcq = { n: number; p?: string; a: number; x?: string; o?: string[]; s: Block[]; star?: number; r?: string; o0?: { x?: string; o?: string[]; s: Block[] } }; // r: the id the Q&A rows use, when n was renumbered
+export type Paper = { id: string; t: string; no?: number; code?: string; g?: string; m: Mcq[]; t0?: string }; // g: the syllabus unit a topic paper sits in
 type Raw = { bank: string; groups: Group[]; papers: Paper[] };
 
 export const SET_SIZE = 40; // flip cards on one set page (about 5 minutes); shown 8 to a screen
@@ -34,14 +36,64 @@ export type Bank = {
   blurb: Record<Lang, string>;
   exams: Record<Lang, string>; // who it is for
   source: Record<Lang, string>;
+  qsrc: Record<Lang, string>; // one line under every question page: who set the questions
   idPrefix: (p: Paper, m: Mcq) => string; // the id the Q&A rows use for an MCQ ("RB2-5", "U7B-A26")
   qaReady: Record<Lang, string>; // what the Q&A covers so far
   groups: Group[];
   papers: Paper[];
 };
 
-const R = raj as unknown as Raw;
-const N = net as unknown as Raw;
+// A few cards whose wording stayed too close to a book's explanation sentence (audit of 18 Nov 2026) are reworded
+// here, keyed by bank and row number, until the Word file itself is changed. Guide: docs/19-pyq-practice.md part 6.
+type Reword = Record<string, Partial<Pick<Row, 'q' | 'a' | 'f'>>>;
+function applyReword(raw: Raw, key: 'raj' | 'net'): Raw {
+  const W = (reword as Record<string, Reword>)[key] ?? {};
+  return { ...raw, groups: raw.groups.map((g) => ({ ...g, subs: g.subs.map((s) => ({ ...s, rows: s.rows.map((r) => (W[r.n] ? { ...r, ...W[r.n] } : r)) })) })) };
+}
+const R = applyReword(raj as unknown as Raw, 'raj');
+const N = applyReword(net as unknown as Raw, 'net');
+
+// The source Word file still carries a few answer lines and printed-book explanation notes inside the stems
+// ("उत्तर: (*) व्याख्या : …"). The answer is shown on its own and the publisher's notes are not ours to show, so drop them.
+const NOTE = /^\s*(उत्तर\s*[:：]|व्याख्या(?!त)|Explanation\b)/;
+function cleanMcq(m: Mcq): Mcq {
+  const s: Block[] = [];
+  for (const x of m.s) {
+    if (x.p && NOTE.test(x.p)) continue;
+    if (x.tb) {
+      const tb = x.tb.filter((row) => !row.some((c) => NOTE.test(c)));
+      if (tb.length) s.push({ tb });
+      continue;
+    }
+    s.push(x);
+  }
+  return { ...m, s };
+}
+
+// Rajasthan: the real exam questions are sorted into the official RPSC/RSSB syllabus topics (made by
+// tools/pyq/regroup_raj.py), not the source book's chapters. Each MCQ keeps its old id in r for the Q&A links.
+const EXTRA_TOPIC: Record<string, string> = { 'G2.2': 'तापमान', 'G2.4': 'पवनें, आँधियाँ, लू एवं चक्रवात' };
+const UNIT_SHORT: Record<string, string> = { G1: 'भौतिक स्वरूप', G2: 'जलवायु' };
+function syllabusPapers(raw: Raw): Paper[] {
+  const T = rajTopics as Record<string, string>;
+  const by = new Map<string, Mcq[]>();
+  for (const p of raw.papers) for (const m of p.m) {
+    const r = `RB${p.no}-${m.n}`;
+    const t = T[r] ?? 'G1.4';
+    if (!by.has(t)) by.set(t, []);
+    by.get(t)!.push(cleanMcq({ ...m, r }));
+  }
+  return [...by.keys()].sort((a, z) => a.localeCompare(z, 'en', { numeric: true })).map((id) => {
+    const g = raw.groups.find((x) => id === x.id || id.startsWith(`${x.id}.`));
+    const sub = g?.subs.find((x) => x.id === id);
+    return {
+      id: id.toLowerCase().replace('.', '-'),
+      t: sub ? splitTitle(sub.t)[0] : EXTRA_TOPIC[id] ?? id,
+      g: g ? UNIT_SHORT[g.id] ?? splitTitle(g.t)[0] : undefined,
+      m: by.get(id)!.map((m, i) => ({ ...m, n: i + 1 })),
+    };
+  });
+}
 
 export const BANKS: Bank[] = [
   {
@@ -53,10 +105,14 @@ export const BANKS: Bank[] = [
       hi: 'RPSC और RSSB की परीक्षाओं में राजस्थान के भूगोल पर पूछा गया हर सवाल, छोटे-छोटे एक-लाइन तथ्यों में: पलटिए, क्विज़ खेलिए, याद कीजिए।',
     },
     exams: { en: 'RAS, Patwari, VDO, LDC, Teacher, Police and every RPSC/RSSB exam', hi: 'RAS, पटवारी, VDO, LDC, शिक्षक, पुलिस और RPSC/RSSB की हर परीक्षा' },
-    source: { en: 'Questions from RPSC/RSSB papers (2000s–2024) as collected in exam-prep books; facts checked and reworded by Kritikesh.', hi: 'RPSC/RSSB के पेपरों (2000 के दशक से 2024 तक) के सवाल, जैसे परीक्षा-तैयारी की किताबों में छपे; तथ्य कृतिकेश ने जाँचे और अपने शब्दों में लिखे।' },
-    idPrefix: (p, m) => `RB${p.no}-${m.n}`,
-    qaReady: { en: 'Q&A ready for book chapters 1–4; chapter 5 (Climate) has its real questions now and its Q&A soon.', hi: 'किताब के अध्याय 1–4 के Q&A तैयार; अध्याय 5 (जलवायु) के असली सवाल अभी हैं, उसके Q&A जल्द।' },
-    groups: R.groups, papers: R.papers,
+    source: {
+      en: 'Questions: RPSC and RSSB exam papers (2000s–2024), whose question setters own them. Collected with the help of the Disha Publication book by Dr. Rajeev. The flip cards are rewritten in Kritikesh’s own words and the sorting follows the official syllabus.',
+      hi: 'सवाल: RPSC और RSSB के परीक्षा पेपर (2000 के दशक से 2024 तक), जिन पर उनके प्रश्न-निर्माताओं का अधिकार है। इन्हें जुटाने में दिशा पब्लिकेशन (डॉ. राजीव) की किताब से मदद ली। फ़्लिप कार्ड कृतिकेश ने अपने शब्दों में लिखे हैं और क्रम आधिकारिक पाठ्यक्रम का है।',
+    },
+    qsrc: { en: 'Question source: RPSC and RSSB exam papers. The flip cards and notes here are written afresh.', hi: 'सवालों का स्रोत: RPSC और RSSB के परीक्षा पेपर। यहाँ के फ़्लिप कार्ड और नोट्स नए सिरे से लिखे गए हैं।' },
+    idPrefix: (p, m) => m.r ?? `RB${p.no}-${m.n}`,
+    qaReady: { en: 'Flip cards ready for physical features, location, borders, districts, the Aravalli, plateaus, desert and plains; Climate has its real questions now and its flip cards soon.', hi: 'भौतिक स्वरूप, स्थिति, सीमाएँ, ज़िले, अरावली, पठार, मरुस्थल और मैदान के फ़्लिप कार्ड तैयार; जलवायु के असली सवाल अभी हैं, उसके फ़्लिप कार्ड जल्द।' },
+    groups: R.groups, papers: syllabusPapers(R),
   },
   {
     key: 'net', slug: 'ugc-net-geography', content: 'en', icon: '🌐',
@@ -67,10 +123,14 @@ export const BANKS: Bank[] = [
       hi: 'UGC-NET/JRF और असिस्टेंट प्रोफ़ेसर परीक्षाओं के भूगोल के सवाल, यूनिट-दर-यूनिट: छोटे तथ्य, क्विज़ और असली MCQ।',
     },
     exams: { en: 'UGC-NET/JRF Geography (code 80), state SET and Assistant Professor exams', hi: 'UGC-NET/JRF भूगोल (कोड 80), राज्य SET और असिस्टेंट प्रोफ़ेसर परीक्षाएँ' },
-    source: { en: 'NTA UGC-NET papers and state Assistant Professor papers as collected in an exam-prep book; facts checked and reworded by Kritikesh.', hi: 'NTA UGC-NET और राज्यों की असिस्टेंट प्रोफ़ेसर परीक्षाओं के सवाल, जैसे एक तैयारी-किताब में छपे; तथ्य कृतिकेश ने जाँचे और अपने शब्दों में लिखे।' },
+    source: {
+      en: 'Questions: NTA UGC-NET/JRF papers and state Assistant Professor exam papers, whose question setters own them. Collected with the help of the Shree Education & Publication book by Dimpesh Saini and Swati Verma. The flip cards are rewritten in Kritikesh’s own words and the units follow the official UGC-NET syllabus.',
+      hi: 'सवाल: NTA UGC-NET/JRF और राज्यों की असिस्टेंट प्रोफ़ेसर परीक्षाओं के पेपर, जिन पर उनके प्रश्न-निर्माताओं का अधिकार है। इन्हें जुटाने में श्री एजुकेशन एंड पब्लिकेशन (दिम्पेश सैनी, स्वाति वर्मा) की किताब से मदद ली। फ़्लिप कार्ड कृतिकेश ने अपने शब्दों में लिखे हैं और यूनिटें आधिकारिक UGC-NET पाठ्यक्रम की हैं।',
+    },
+    qsrc: { en: 'Question source: NTA UGC-NET/JRF and state Assistant Professor exam papers. The flip cards and notes here are written afresh.', hi: 'सवालों का स्रोत: NTA UGC-NET/JRF और राज्यों की असिस्टेंट प्रोफ़ेसर परीक्षाओं के पेपर। यहाँ के फ़्लिप कार्ड और नोट्स नए सिरे से लिखे गए हैं।' },
     idPrefix: (p, m) => `${p.code}-${m.p}${m.n}`,
     qaReady: { en: 'Q&A ready for the Political Geography chapter (spread over the official units); the other chapters have their real questions now and their Q&A soon.', hi: 'राजनीतिक भूगोल अध्याय के Q&A तैयार (आधिकारिक यूनिटों में बँटे हुए); बाक़ी अध्यायों के असली सवाल अभी हैं, उनके Q&A जल्द।' },
-    groups: N.groups, papers: N.papers,
+    groups: N.groups, papers: N.papers.map((p) => ({ ...p, m: p.m.map(cleanMcq) })),
   },
 ];
 
@@ -107,7 +167,7 @@ export function inLang(b: Bank, lang: Lang): Bank {
         subs: g.subs.map((s) => ({ ...s, t: t(s.t), t0: s.t, rows: s.rows.map((r) => ({ ...r, q: t(r.q), a: t(r.a), f: r.f && t(r.f), o0: { q: r.q, a: r.a, f: r.f } })) })),
       })),
       papers: b.papers.map((p) => ({
-        ...p, t: t(p.t), t0: p.t,
+        ...p, t: t(p.t), t0: p.t, g: p.g && t(p.g),
         m: p.m.map((m) => ({ ...m, x: m.x && t(m.x), o: m.o?.map(t), s: m.s.map(tb), o0: { x: m.x, o: m.o, s: m.s } })),
       })),
     });
@@ -201,10 +261,10 @@ export const KIND: Record<string, Record<Lang, string>> = {
 // Which PYQ pages belong to which Curriculum Index major topic. Each entry is [bank key, 'qa' sub-topic id | 'paper' paper id].
 type Ref = [Bank['key'], 'qa' | 'paper', string];
 export const CI_LINKS: Record<string, Ref[]> = {
-  'RAJ-31': [['raj', 'qa', 'G1.1'], ['raj', 'qa', 'G1.2'], ['raj', 'qa', 'G1.3'], ['raj', 'paper', 'ch1'], ['raj', 'paper', 'ch2']],
-  'RAJ-32': [['raj', 'qa', 'G1.4'], ['raj', 'qa', 'G1.5'], ['raj', 'qa', 'G1.6'], ['raj', 'qa', 'G1.7'], ['raj', 'qa', 'G1.8'], ['raj', 'qa', 'G1.0'], ['raj', 'paper', 'ch3'], ['raj', 'paper', 'ch4']],
-  'RAJ-33': [['raj', 'qa', 'G2.1'], ['raj', 'qa', 'G2.3'], ['raj', 'qa', 'G2.5'], ['raj', 'qa', 'G2.6'], ['raj', 'paper', 'ch5']],
-  'RAJ-34': [['raj', 'qa', 'G1.9']],
+  'RAJ-31': [['raj', 'qa', 'G1.1'], ['raj', 'qa', 'G1.2'], ['raj', 'qa', 'G1.3'], ['raj', 'paper', 'g1-1'], ['raj', 'paper', 'g1-2'], ['raj', 'paper', 'g1-3']],
+  'RAJ-32': [['raj', 'qa', 'G1.4'], ['raj', 'qa', 'G1.5'], ['raj', 'qa', 'G1.6'], ['raj', 'qa', 'G1.7'], ['raj', 'qa', 'G1.8'], ['raj', 'qa', 'G1.0'], ['raj', 'paper', 'g1-4'], ['raj', 'paper', 'g1-5'], ['raj', 'paper', 'g1-6'], ['raj', 'paper', 'g1-7'], ['raj', 'paper', 'g1-8']],
+  'RAJ-33': [['raj', 'qa', 'G2.1'], ['raj', 'qa', 'G2.3'], ['raj', 'qa', 'G2.5'], ['raj', 'qa', 'G2.6'], ['raj', 'paper', 'g2-1'], ['raj', 'paper', 'g2-2'], ['raj', 'paper', 'g2-3'], ['raj', 'paper', 'g2-4'], ['raj', 'paper', 'g2-5'], ['raj', 'paper', 'g2-6']],
+  'RAJ-34': [['raj', 'qa', 'G1.9'], ['raj', 'paper', 'g1-9']],
   'RAJ-35': [['raj', 'qa', 'G3'], ['raj', 'qa', 'G4']],
   'RAJ-36': [['raj', 'qa', 'G3']],
   'RAJ-37': [['raj', 'qa', 'G5']],
