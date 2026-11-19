@@ -1,5 +1,6 @@
 ---
-// One MCQ's solution as short questions and answers, read top to bottom: why the key is right, what each option is,
+// One MCQ's explanation as short questions and answers, read top to bottom: the background for a first-time reader,
+// why the key is right, what each option is,
 // and how to remember it. Used under a real exam question and on the back of a flip card ("compact": a flip card
 // has no options, so the option notes and any sentence about options or the key are left out). Solutions: tools/pyq/sol/. Guide: docs/19-pyq-practice.md
 import type { Sol } from '../../pyq';
@@ -17,10 +18,12 @@ const opts = !compact && sol.o && sol.o.length > 0 ? sol.o : undefined;
 const OPT = /\b(option|options|keyed|code|codes|statement|assertion)\b|\(\d\)|विकल्प|कुंजी|कूट|कथन|अभिकथन|कारण \(R\)/i;
 const plain = (t: string) => (compact ? t.split(/(?<=[.।?!])\s+/).filter((x) => !OPT.test(x)).join(' ') : t);
 const why = plain(sol.w);
+const bg = (sol.b ?? []).map(([q, a]) => [q, plain(a)] as const).filter(([, a]) => a);
 const tip = sol.t ? plain(sol.t) : '';
 ---
 
 <dl class:list={['pq-qa', { compact }]} lang={lang}>
+  {bg.map(([q, a]) => <><dt>{q}</dt><dd>{a}</dd></>)}
   {why && <dt>{T.why}</dt>}
   {why && <dd>{why}</dd>}
   {opts && <><dt>{T.each}</dt><dd><ol class="pq-sol-opts">{opts.map((x, k) => <li class={k + 1 === a ? 'ok' : undefined}>{x}</li>)}</ol></dd></>}

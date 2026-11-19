@@ -125,12 +125,23 @@ Every quiz has two modes, from `src/components/exam/QuizModes.astro` and `src/sc
 - **"Why a timer, and why two?"** card above the modes: his reasons (the steeplechase, tough questions as hurdles that test temperament, how one question eats a whole paper, get up at once after a fall, why 30 seconds, why two timers, calm as a skill, why only 10 questions). Text in both languages in `QuizModes.astro`; keep it in his voice.
 - To change the time per question, change `PER` in `QuizModes.astro`.
 
-## 8. Solutions to every real MCQ (19 November 2026)
+## 8. Explanations to every real MCQ (19 November 2026)
 
-Every real MCQ has an original solution in English and Hindi (Rajasthan 544, NET 1,404), written fresh (never the books' text). The same solution shows under the real question and on the back of every flip card made from it, always as short questions and answers read top to bottom (`src/components/exam/SolQA.astro`): **Q. Why is this the answer?** (the background and the reason), **Q. What about each option?** (one note per option, the keyed one starts "Right:"; on cards this folds into "🔍 Every option explained"), **Q. How do I remember it?** (a tip).
+Every real MCQ has an original explanation (shown as **Explanation / व्याख्या**; called "solution" in the code) in English and Hindi (Rajasthan 544, NET 1,404), written fresh (never the books' text). The same solution shows under the real question and on the back of every flip card made from it, always as short questions and answers read top to bottom (`src/components/exam/SolQA.astro`): first the **background** for a first-time reader (two or three short questions such as "What is the Radcliffe Line?"), then **Q. Why is this the answer?** (the background and the reason), **Q. What about each option?** (one note per option, the keyed one starts "Right:"; real questions only, because flip cards and quiz cards have no options of their own, so on cards any sentence about options or the key is left out too), **Q. How do I remember it?** (a tip).
 
-- Sources: `tools/pyq/sol/raj/NNN.tsv` and `tools/pyq/sol/net/NNN.tsv`, one line per field: `id<TAB>lang<TAB>field<TAB>text`, where field is `w` (why), `o` (option notes joined by ` ¦ `) or `t` (tip).
+- Sources: `tools/pyq/sol/raj/NNN.tsv` and `tools/pyq/sol/net/NNN.tsv`, one line per field: `id<TAB>lang<TAB>field<TAB>text`, where field is `w` (why), `o` (option notes joined by ` ¦ `), `t` (tip) or `b` (background: `question ‖ answer ¦ question ‖ answer`). The backgrounds sit in `tools/pyq/sol/bg/<bank>/NNN.tsv`, chunk for chunk with the explanations; they are being written in batches (started 19 November 2026, Rajasthan first).
+- The quick quiz copies the explanation from the card's back after every answer, and the exam-mode review shows it under each answer (`explainCard` in `src/scripts/pyq.ts`).
 - `python3 tools/pyq/sol/build_sol.py` builds `src/data/pyq/sol/raj.json` and `net.json`. Never edit those by hand.
 - `solution(bank, id, lang)` in `src/pyq.ts` reads them. Where the official key differs from the usual textbook answer, the solution says so and teaches both.
 - When two printed MCQs share an id (a slip in the book), only the first gets the solution.
 - Exam mode hides solutions and facts because they sit inside `.behind`; any new answer panel on the real-question page must also sit under `.behind` or `.ans`.
+
+## 9. No book references (19 November 2026, his rule)
+
+Students should read every question as if it is the only source. So nothing a student reads says "as per the book", "book's table", "book: X", "not in the book" or similar; the credits stay only in the page footer and on /credits/.
+
+- `src/data/pyq/clean.json` holds the rules (`rules`: regex → replacement, case-insensitive; `dropFlag`: book-correction flags to hide; `dropRow`: cards that only ask about the book itself; `dropAnswer`). `noBook()` in `src/pyq.ts` applies them to cards, answers, flags, quiz options, deck titles and the translations when the banks load, so a rebuild from the Word files stays clean.
+- Card tags show only "Asked" (or "Asked, the other way round"); where other facts came from is not shown.
+- Explanations never mention books or "the source"; where the official key differs from the usual answer they say "standard answer" or "most geographers".
+- Questions about an author's book (Mackinder's 1919 book, Spykman's 1944 book) are real exam facts and stay.
+- After a rebuild, sweep the built pages: `grep -rhoE ".{0,60}(पुस्तक|\bbook\b|textbook).{0,30}" dist/exam-prep/pyq dist/hi/exam-prep/pyq` and add a rule for anything new.
