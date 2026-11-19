@@ -1,0 +1,150 @@
+U5B-N133	en	w	Rank-size rule: 4th city = 8 lakh ÷ 4 = 2 lakh.
+U5B-N133	en	o	Wrong arithmetic ¦ That is the 2nd city ¦ Right: 2 lakh ¦ That divides by 16
+U5B-N133	en	t	Biggest ÷ rank.
+U5B-N133	hi	w	कोटि-आकार नियम: चौथा नगर = 8 लाख ÷ 4 = 2 लाख।
+U5B-N133	hi	o	गलत गणित ¦ यह दूसरा नगर है ¦ सही: 2 लाख ¦ यह 16 से भाग है
+U5B-N133	hi	t	सबसे बड़ा ÷ कोटि।
+U5B-N134	en	w	A city region is the area around a city tied to it by jobs, trade and services, so it shows concentrated development.
+U5B-N134	en	o	The opposite ¦ The opposite ¦ Not the defining trait ¦ Right: concentrated development
+U5B-N134	en	t	City region = a city and the area it powers.
+U5B-N134	hi	w	नगर प्रदेश किसी नगर के चारों ओर का क्षेत्र है जो रोज़गार, व्यापार और सेवाओं से उससे जुड़ा है, इसलिए वह संकेंद्रित विकास दिखाता है।
+U5B-N134	hi	o	उल्टा ¦ उल्टा ¦ परिभाषित गुण नहीं ¦ सही: संकेंद्रित विकास
+U5B-N134	hi	t	नगर प्रदेश = नगर और वह क्षेत्र जिसे वह चलाता है।
+U5B-N135	en	w	Centrality is measured by functional strength: how many and how high-order services a place offers to its surroundings.
+U5B-N135	en	o	Only one part of it ¦ Only one part of it ¦ Right: functional strength ¦ Only one part of it
+U5B-N135	en	t	More functions = more central.
+U5B-N135	hi	w	केंद्रीयता कार्यात्मक शक्ति से मापी जाती है: कोई स्थान अपने आसपास को कितनी और कितने उच्च क्रम की सेवाएँ देता है।
+U5B-N135	hi	o	इसका केवल एक भाग ¦ इसका केवल एक भाग ¦ सही: कार्यात्मक शक्ति ¦ इसका केवल एक भाग
+U5B-N135	hi	t	अधिक कार्य = अधिक केंद्रीय।
+U5B-N136	en	w	Homer Hoyt proposed the sector model (1939) from rent patterns in American cities.
+U5B-N136	en	o	Right: sector model ¦ Zipf ¦ Jefferson ¦ Harris and Ullman
+U5B-N136	en	t	Hoyt = wedges.
+U5B-N136	hi	w	होमर हॉयट ने अमेरिकी नगरों के किराया प्रतिरूप से त्रिज्यखंड मॉडल (1939) दिया।
+U5B-N136	hi	o	सही: त्रिज्यखंड मॉडल ¦ ज़िप्फ़ ¦ जेफ़रसन ¦ हैरिस और उलमैन
+U5B-N136	hi	t	हॉयट = फाँकें।
+U5B-N137	en	w	The key takes population size as the main criterion for classifying towns, as in the Census classes I to VI. Functional classification is another common basis.
+U5B-N137	en	o	Right: population, as keyed ¦ Describes a town, does not class it ¦ Describes a town, does not class it ¦ Another common basis, not keyed
+U5B-N137	en	t	Census classes: Class I is 1 lakh and above.
+U5B-N137	hi	w	कुंजी नगरों के वर्गीकरण का मुख्य मानदंड जनसंख्या आकार मानती है, जैसे जनगणना की वर्ग I से VI श्रेणियाँ। कार्यात्मक वर्गीकरण भी एक सामान्य आधार है।
+U5B-N137	hi	o	सही: जनसंख्या, कुंजी अनुसार ¦ नगर का वर्णन, वर्गीकरण नहीं ¦ नगर का वर्णन, वर्गीकरण नहीं ¦ एक अन्य सामान्य आधार, कुंजी में नहीं
+U5B-N137	hi	t	जनगणना वर्ग: वर्ग I 1 लाख और ऊपर।
+U5B-N141	en	w	The key picks administrative facilities: tehsil and block headquarters often grow into the small towns of rural areas. Markets are a close second reason.
+U5B-N141	en	o	A big reason, but not keyed ¦ Follows administration ¦ Follows administration ¦ Right: administrative facilities
+U5B-N141	en	t	Tehsil office first, town around it.
+U5B-N141	hi	w	कुंजी प्रशासनिक सुविधाएँ चुनती है: तहसील और खंड मुख्यालय अक्सर ग्रामीण क्षेत्रों के छोटे नगर बन जाते हैं। बाज़ार दूसरा बड़ा कारण है।
+U5B-N141	hi	o	बड़ा कारण, पर कुंजी में नहीं ¦ प्रशासन के पीछे ¦ प्रशासन के पीछे ¦ सही: प्रशासनिक सुविधाएँ
+U5B-N141	hi	t	पहले तहसील दफ़्तर, फिर उसके चारों ओर नगर।
+U5B-N143	en	w	Village house types depend most on climate: thick mud walls and flat roofs in dry heat, sloping roofs in rain and snow, raised floors in wet lands.
+U5B-N143	en	o	Matters less ¦ Right: climate ¦ Important, but chosen to suit the climate ¦ Limited in villages
+U5B-N143	en	t	The weather designs the village house.
+U5B-N143	hi	w	गाँव के घरों के प्रकार सबसे अधिक जलवायु पर निर्भर करते हैं: सूखी गर्मी में मोटी मिट्टी की दीवारें और सपाट छत, वर्षा और हिम में ढलवाँ छत, गीली भूमि में ऊँचे फ़र्श।
+U5B-N143	hi	o	कम मायने ¦ सही: जलवायु ¦ महत्वपूर्ण, पर जलवायु के अनुसार चुनी ¦ गाँवों में सीमित
+U5B-N143	hi	t	मौसम गाँव का घर बनाता है।
+U5B-N144	en	w	Large rural-to-urban migration is typical of developing countries, which are still urbanising. Developed countries finished this shift long ago.
+U5B-N144	en	o	Mostly urban already ¦ Right: developing countries ¦ Not the defining feature ¦ Not the defining feature
+U5B-N144	en	t	Still urbanising = still moving to cities.
+U5B-N144	hi	w	बड़ा ग्रामीण-नगरीय प्रवास विकासशील देशों की विशेषता है, जहाँ नगरीकरण अभी चल रहा है। विकसित देशों में यह बदलाव बहुत पहले पूरा हो गया।
+U5B-N144	hi	o	पहले से अधिकतर नगरीय ¦ सही: विकासशील देश ¦ परिभाषित गुण नहीं ¦ परिभाषित गुण नहीं
+U5B-N144	hi	t	अभी नगरीकरण = अभी शहरों की ओर।
+U5B-N145	en	w	Jean Gottmann coined megalopolis (1961).
+U5B-N145	en	o	Primate city ¦ Right: Gottmann ¦ Not the author ¦ Regional geographer
+U5B-N145	en	t	Gottmann = megalopolis.
+U5B-N145	hi	w	ज़्यां गॉटमैन ने मेगालोपोलिस शब्द दिया (1961)।
+U5B-N145	hi	o	प्रमुख नगर ¦ सही: गॉटमैन ¦ लेखक नहीं ¦ प्रादेशिक भूगोलवेत्ता
+U5B-N145	hi	t	गॉटमैन = मेगालोपोलिस।
+U5B-N147	en	w	The Census uses population size, density and the share of male workers outside agriculture. The key marks option (3) as the missing one, reading dominance of male work participation as different from the rule, which is about men working outside farming.
+U5B-N147	en	o	A criterion (5,000) ¦ A criterion (400 per sq km) ¦ Right: as keyed, not a criterion as worded ¦ The non-farm work rule is about functions
+U5B-N147	en	t	The rule counts non-farm male workers, not male dominance.
+U5B-N147	hi	w	जनगणना जनसंख्या आकार, घनत्व और कृषि से बाहर पुरुष कामगारों का हिस्सा लेती है। कुंजी विकल्प (3) को अनुपस्थित मानती है, क्योंकि पुरुष कार्य सहभागिता का प्रभुत्व उस नियम से अलग है, जो खेती से बाहर काम करने वाले पुरुषों पर है।
+U5B-N147	hi	o	एक मानदंड (5,000) ¦ एक मानदंड (400 प्रति वर्ग किमी) ¦ सही: कुंजी अनुसार, इन शब्दों में मानदंड नहीं ¦ गैर-कृषि काम का नियम कार्यों से जुड़ा है
+U5B-N147	hi	t	नियम गैर-कृषि पुरुष कामगार गिनता है, पुरुष प्रभुत्व नहीं।
+U5B-N148	en	w	The rank-size rule describes the size distribution of urban settlements (cities and towns) in a region.
+U5B-N148	en	o	Not about the fringe ¦ Right: urban settlements ¦ Not about villages ¦ Too narrow; it covers all urban places
+U5B-N148	en	t	Rank-size = the city size ladder.
+U5B-N148	hi	w	कोटि-आकार नियम किसी प्रदेश में नगरीय बस्तियों (नगरों और कस्बों) के आकार वितरण को बताता है।
+U5B-N148	hi	o	उपांत के बारे में नहीं ¦ सही: नगरीय बस्तियाँ ¦ गाँवों के बारे में नहीं ¦ बहुत संकीर्ण; यह सभी नगरीय स्थान लेता है
+U5B-N148	hi	t	कोटि-आकार = नगर आकार की सीढ़ी।
+U6A-A1	en	w	The key takes the controlled (command) economy as the one not organised spatially: its locations are fixed by the state's plan rather than by space, distance and market forces.
+U6A-A1	en	o	Closed economies are spatially bounded ¦ Right: controlled economy, as keyed ¦ Shaped by flows across space ¦ Linked across sectors and places
+U6A-A1	en	t	Market economies follow distance; command economies follow the plan.
+U6A-A1	hi	w	कुंजी नियंत्रित (आदेश) अर्थव्यवस्था को स्थानिक रूप से संगठित न होने वाली मानती है: इसकी अवस्थितियाँ स्थान, दूरी और बाज़ार बलों से नहीं, राज्य की योजना से तय होती हैं।
+U6A-A1	hi	o	बंद अर्थव्यवस्था स्थानिक रूप से सीमित ¦ सही: नियंत्रित अर्थव्यवस्था, कुंजी अनुसार ¦ स्थान के आर-पार प्रवाहों से बनी ¦ क्षेत्रों और स्थानों में जुड़ी
+U6A-A1	hi	t	बाज़ार अर्थव्यवस्था दूरी से; आदेश अर्थव्यवस्था योजना से।
+U6A-A2	en	w	Subsistence agriculture is a primary activity, not secondary. Business is tertiary, hunting and gathering primary, and research quaternary.
+U6A-A2	en	o	Correct ¦ Right: wrong, farming is primary ¦ Correct ¦ Correct
+U6A-A2	en	t	Primary takes from nature; secondary makes things.
+U6A-A2	hi	w	निर्वाह कृषि प्राथमिक गतिविधि है, द्वितीयक नहीं। व्यापार तृतीयक, आखेट और संग्रहण प्राथमिक, और अनुसंधान चतुर्थक है।
+U6A-A2	hi	o	सही ¦ सही: गलत, खेती प्राथमिक है ¦ सही ¦ सही
+U6A-A2	hi	t	प्राथमिक प्रकृति से लेता है; द्वितीयक बनाता है।
+U6A-A3	en	w	Iron ore comes from the Lake Superior region (Mesabi), nickel from Sudbury in Canada, copper from Chuquicamata in Chile, and manganese from Chiatura in Georgia. Code (3): iii, i, iv, ii.
+U6A-A3	en	o	Wrong order ¦ Wrong order ¦ Right: iii, i, iv, ii ¦ Wrong order
+U6A-A3	en	t	Mesabi iron, Sudbury nickel, Chuquicamata copper, Chiatura manganese.
+U6A-A3	hi	w	लौह अयस्क लेक सुपीरियर क्षेत्र (मेसाबी) से, निकल कनाडा के सडबरी से, ताँबा चिली के चुकीकामाटा से, और मैंगनीज़ जॉर्जिया के चियातुरा से आता है। कोड (3): iii, i, iv, ii।
+U6A-A3	hi	o	गलत क्रम ¦ गलत क्रम ¦ सही: iii, i, iv, ii ¦ गलत क्रम
+U6A-A3	hi	t	मेसाबी लोहा, सडबरी निकल, चुकीकामाटा ताँबा, चियातुरा मैंगनीज़।
+U6A-A4	en	w	A spatially closed economy is isolated from other regions, meets its own needs, and gets all its services inside the unit. Being linked by transport networks belongs to an open economy, so C is wrong.
+U6A-A4	en	o	Too few ¦ C is wrong ¦ C is wrong ¦ Right: A, B and D
+U6A-A4	en	t	Closed = self-contained, no links out.
+U6A-A4	hi	w	स्थानिक रूप से बंद अर्थव्यवस्था दूसरे प्रदेशों से अलग रहती है, अपनी ज़रूरतें पूरी करती है, और सभी सेवाएँ इकाई के भीतर पाती है। परिवहन जाल से जुड़ना खुली अर्थव्यवस्था का गुण है, इसलिए C गलत है।
+U6A-A4	hi	o	बहुत कम ¦ C गलत ¦ C गलत ¦ सही: A, B और D
+U6A-A4	hi	t	बंद = आत्मनिर्भर, बाहर कोई कड़ी नहीं।
+U6A-A5	en	w	By utility, resources are potential, unused or unusable. Ubiquitous refers to distribution (found everywhere), not utility.
+U6A-A5	en	o	A utility category ¦ A utility category ¦ Right: a distribution category ¦ A utility category
+U6A-A5	en	t	Ubiquitous = everywhere, like air.
+U6A-A5	hi	w	उपयोगिता के आधार पर संसाधन संभावित, अप्रयुक्त या अनुपयोगी होते हैं। सर्वसुलभ वितरण (हर जगह मिलना) का वर्ग है, उपयोगिता का नहीं।
+U6A-A5	hi	o	उपयोगिता वर्ग ¦ उपयोगिता वर्ग ¦ सही: वितरण वर्ग ¦ उपयोगिता वर्ग
+U6A-A5	hi	t	सर्वसुलभ = हर जगह, हवा जैसा।
+U6A-A6	en	w	A forest is maintainable if managed, coal is a fund (stock) resource that runs out, water is treated as immutable, and soil fertility is renewable. Code (1): iv, i, ii, iii.
+U6A-A6	en	o	Right: iv, i, ii, iii ¦ Wrong order ¦ Wrong order ¦ Wrong order
+U6A-A6	en	t	Coal is a fund: once spent, gone.
+U6A-A6	hi	w	वन प्रबंधन से अनुरक्षणीय है, कोयला निधि (भंडार) संसाधन है जो खत्म होता है, जल को अपरिवर्तनीय माना गया है, और मृदा उर्वरता नवीकरणीय है। कोड (1): iv, i, ii, iii।
+U6A-A6	hi	o	सही: iv, i, ii, iii ¦ गलत क्रम ¦ गलत क्रम ¦ गलत क्रम
+U6A-A6	hi	t	कोयला निधि है: एक बार खर्च, खत्म।
+U6A-A7	en	w	FAO's Global Forest Resources Assessment 2020 put the world's forest area at 4.06 billion hectares, about 31% of the land.
+U6A-A7	en	o	Too high ¦ Too high ¦ Right: 4.06 billion hectares ¦ Too high
+U6A-A7	en	t	4.06 billion ha = about a third of the land.
+U6A-A7	hi	w	FAO के Global Forest Resources Assessment 2020 ने विश्व का वन क्षेत्र 4.06 अरब हेक्टेयर बताया, भूमि का लगभग 31%।
+U6A-A7	hi	o	बहुत अधिक ¦ बहुत अधिक ¦ सही: 4.06 अरब हेक्टेयर ¦ बहुत अधिक
+U6A-A7	hi	t	4.06 अरब हेक्टेयर = भूमि का लगभग एक-तिहाई।
+U6A-A8	en	w	Russia has the largest forest area, about 815 million hectares, ahead of Brazil, Canada and the USA.
+U6A-A8	en	o	Second ¦ Third ¦ Fourth ¦ Right: Russia
+U6A-A8	en	t	Russia's taiga: a fifth of the world's forest.
+U6A-A8	hi	w	रूस के पास सबसे बड़ा वन क्षेत्र है, लगभग 81.5 करोड़ हेक्टेयर, ब्राज़ील, कनाडा और अमेरिका से आगे।
+U6A-A8	hi	o	दूसरा ¦ तीसरा ¦ चौथा ¦ सही: रूस
+U6A-A8	hi	t	रूस का टैगा: विश्व वनों का पाँचवाँ भाग।
+U6A-A9	en	w	In 2019 the top crude oil producers were the USA (shale boom), Saudi Arabia and Russia.
+U6A-A9	en	o	China is lower ¦ Right: USA, Saudi Arabia, Russia ¦ Canada and China are lower ¦ The USA led
+U6A-A9	en	t	Shale put the USA on top.
+U6A-A9	hi	w	2019 में सबसे बड़े कच्चे तेल उत्पादक अमेरिका (शेल उछाल), सऊदी अरब और रूस थे।
+U6A-A9	hi	o	चीन नीचे ¦ सही: अमेरिका, सऊदी अरब, रूस ¦ कनाडा और चीन नीचे ¦ अमेरिका आगे था
+U6A-A9	hi	t	शेल ने अमेरिका को शीर्ष पर रखा।
+U6A-A10	en	w	Afforestation, terracing and gully control protect soil directly. Controlling urbanisation is a land-use policy, not a soil conservation technique.
+U6A-A10	en	o	A technique ¦ A technique ¦ A technique ¦ Right: not a technique
+U6A-A10	en	t	Soil conservation works on the slope, not in the city.
+U6A-A10	hi	w	वनीकरण, सीढ़ीदार खेत और नाली नियंत्रण सीधे मिट्टी बचाते हैं। नगरीकरण पर नियंत्रण भूमि उपयोग नीति है, मृदा संरक्षण तकनीक नहीं।
+U6A-A10	hi	o	तकनीक ¦ तकनीक ¦ तकनीक ¦ सही: तकनीक नहीं
+U6A-A10	hi	t	मृदा संरक्षण ढलान पर होता है, शहर में नहीं।
+U6A-A11	en	w	UNCTAD is a UN body for trade and development, not a regional trade bloc. ASEAN, NAFTA and the EU are regional blocs.
+U6A-A11	en	o	A regional bloc ¦ Right: a UN body, not a bloc ¦ A regional bloc ¦ A regional bloc
+U6A-A11	en	t	UNCTAD serves the whole world.
+U6A-A11	hi	w	UNCTAD व्यापार और विकास के लिए संयुक्त राष्ट्र निकाय है, क्षेत्रीय व्यापार गुट नहीं। ASEAN, NAFTA और EU क्षेत्रीय गुट हैं।
+U6A-A11	hi	o	क्षेत्रीय गुट ¦ सही: UN निकाय, गुट नहीं ¦ क्षेत्रीय गुट ¦ क्षेत्रीय गुट
+U6A-A11	hi	t	UNCTAD पूरी दुनिया के लिए।
+U6A-A12	en	w	Banking is tertiary and management (high-level decision-making) is quaternary, so 4 is correct. All fishing is primary, and lumbering is primary while furniture making is secondary. The key accepts only 4.
+U6A-A12	en	o	1 and 2 are wrong ¦ 2 is wrong, so not accepted ¦ 1 is wrong ¦ Right: only 4
+U6A-A12	en	t	Cut the tree = primary; make the chair = secondary.
+U6A-A12	hi	w	बैंकिंग तृतीयक और प्रबंधन (उच्च स्तर का निर्णय) चतुर्थक है, इसलिए 4 सही है। हर प्रकार की मछली पकड़ना प्राथमिक है, और लकड़ी काटना प्राथमिक जबकि फ़र्नीचर बनाना द्वितीयक है। कुंजी केवल 4 मानती है।
+U6A-A12	hi	o	1 और 2 गलत ¦ 2 गलत, इसलिए स्वीकार नहीं ¦ 1 गलत ¦ सही: केवल 4
+U6A-A12	hi	t	पेड़ काटो = प्राथमिक; कुर्सी बनाओ = द्वितीयक।
+U6A-A14	en	w	LAFTA had Brazil and Argentina, NAFTA Canada and the USA, SAFTA Bangladesh and India, and EFTA Sweden and Switzerland. Code 4: 2, 3, 4, 1.
+U6A-A14	en	o	Wrong order ¦ Wrong order ¦ Wrong order ¦ Right: 2, 3, 4, 1
+U6A-A14	en	t	Latin, North, South Asian, European.
+U6A-A14	hi	w	LAFTA में ब्राज़ील और अर्जेंटीना, NAFTA में कनाडा और अमेरिका, SAFTA में बांग्लादेश और भारत, और EFTA में स्वीडन और स्विट्ज़रलैंड थे। कोड 4: 2, 3, 4, 1।
+U6A-A14	hi	o	गलत क्रम ¦ गलत क्रम ¦ गलत क्रम ¦ सही: 2, 3, 4, 1
+U6A-A14	hi	t	लैटिन, उत्तरी, दक्षिण एशियाई, यूरोपीय।
+U6A-A15	en	w	Exchange activities move goods, information or money between people: freight transport, telecommunication and retail trade. Management is a decision-making (quaternary/quinary) activity.
+U6A-A15	en	o	An exchange activity ¦ An exchange activity ¦ An exchange activity ¦ Right: not an exchange activity
+U6A-A15	en	t	Exchange = moving things between people.
+U6A-A15	hi	w	विनिमय गतिविधियाँ लोगों के बीच वस्तुएँ, सूचना या धन ले जाती हैं: माल परिवहन, दूरसंचार और खुदरा व्यापार। प्रबंधन निर्णय लेने की (चतुर्थक/पंचम) गतिविधि है।
+U6A-A15	hi	o	विनिमय गतिविधि ¦ विनिमय गतिविधि ¦ विनिमय गतिविधि ¦ सही: विनिमय गतिविधि नहीं
+U6A-A15	hi	t	विनिमय = लोगों के बीच चीज़ें पहुँचाना।

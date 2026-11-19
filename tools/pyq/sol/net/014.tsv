@@ -1,0 +1,150 @@
+U5B-N45	en	w	A rural house is built from local materials and shaped by local climate, so it is an index of its environment: mud and flat roofs in dry lands, sloping roofs where rain or snow is heavy.
+U5B-N45	en	o	Right: environment ¦ A minor influence ¦ Urban, not rural ¦ Rural houses are traditional
+U5B-N45	en	t	Read the roof, know the climate.
+U5B-N45	hi	w	ग्रामीण घर स्थानीय सामग्री से बनता है और स्थानीय जलवायु से आकार लेता है, इसलिए वह अपने पर्यावरण का सूचक है: शुष्क भूमि में मिट्टी और सपाट छत, भारी वर्षा या हिम वाले क्षेत्र में ढलवाँ छत।
+U5B-N45	hi	o	सही: पर्यावरण ¦ गौण प्रभाव ¦ नगरीय, ग्रामीण नहीं ¦ ग्रामीण घर पारंपरिक होते हैं
+U5B-N45	hi	t	छत पढ़ो, जलवायु जानो।
+U5B-N46	en	w	K = 4 is Christaller's transport (traffic) principle.
+U5B-N46	en	o	K = 3 ¦ K = 7 ¦ Right: transport ¦ Not one of his principles
+U5B-N46	en	t	Four for the road.
+U5B-N46	hi	w	K = 4 क्रिस्टालर का परिवहन (यातायात) सिद्धांत है।
+U5B-N46	hi	o	K = 3 ¦ K = 7 ¦ सही: परिवहन ¦ उनका सिद्धांत नहीं
+U5B-N46	hi	t	सड़क के लिए चार।
+U5B-N47	en	w	In bid-rent graphs (the graph is in the original), commercial users pay most near the centre and their rent falls most steeply with distance, so commerce has the steepest gradient near the core.
+U5B-N47	en	o	Lowest and flattest ¦ Gentler slope ¦ Right: commercial ¦ Gentler slope
+U5B-N47	en	t	Shops pay most and drop fastest.
+U5B-N47	hi	w	बोली-किराया आलेखों में (आलेख मूल में) वाणिज्यिक उपयोगकर्ता केंद्र के पास सबसे अधिक देते हैं और उनका किराया दूरी के साथ सबसे तेज़ी से गिरता है, इसलिए केंद्र के पास वाणिज्य का ढाल सबसे तीखा है।
+U5B-N47	hi	o	सबसे कम और सपाट ¦ हल्का ढाल ¦ सही: वाणिज्यिक ¦ हल्का ढाल
+U5B-N47	hi	t	दुकानें सबसे अधिक देती और सबसे तेज़ गिरती हैं।
+U5B-N48	en	w	The threshold is the minimum number of people needed to keep a service in business.
+U5B-N48	en	o	Not a definition ¦ That is the range ¦ Right: minimum population for a service ¦ Not the threshold
+U5B-N48	en	t	Threshold = enough customers to survive.
+U5B-N48	hi	w	देहली वह न्यूनतम जनसंख्या है जो किसी सेवा को चलाए रखने के लिए चाहिए।
+U5B-N48	hi	o	परिभाषा नहीं ¦ यह परास है ¦ सही: सेवा के लिए न्यूनतम जनसंख्या ¦ देहली नहीं
+U5B-N48	hi	t	देहली = टिके रहने लायक ग्राहक।
+U5B-N49	en	w	The graph is in the original. Curve d shows two cities of similar large size at the top, then a drop: a binary pattern, as in countries with twin leading cities.
+U5B-N49	en	o	One city far ahead ¦ A stepped curve ¦ Right: binary ¦ A smooth straight line on log scales
+U5B-N49	en	t	Binary = two leaders, like Sydney and Melbourne.
+U5B-N49	hi	w	आलेख मूल में है। वक्र d शीर्ष पर लगभग समान आकार के दो बड़े नगर और फिर गिरावट दिखाता है: द्वि-प्रमुख (binary) प्रतिरूप, जैसे दो प्रमुख नगरों वाले देश।
+U5B-N49	hi	o	एक नगर बहुत आगे ¦ सीढ़ीनुमा वक्र ¦ सही: द्वि-प्रमुख ¦ लघुगणकीय पैमाने पर सीधी रेखा
+U5B-N49	hi	t	द्वि-प्रमुख = दो अगुआ, जैसे सिडनी और मेलबर्न।
+U5B-N50	en	w	The lists and codes of this match question were printed as a table in the original paper. The keyed answer is option (2). The settlement shapes are drawn in the original; the code reads linear, cluster, star-shaped, uniform.
+U5B-N50	en	o	Not the keyed code ¦ Right: option (2) ¦ Not the keyed code ¦ Not the keyed code
+U5B-N50	en	t	Fix the pair you are surest of, then strike out the codes that disagree.
+U5B-N50	hi	w	इस मिलान प्रश्न की सूचियाँ और कोड मूल पेपर में तालिका में छपे थे। कुंजी का उत्तर विकल्प (2) है। बस्तियों की आकृतियाँ मूल में बनी हैं; कोड रेखीय, गुच्छित, तारा, समान पढ़ता है।
+U5B-N50	hi	o	कुंजी का कोड नहीं ¦ सही: विकल्प (2) ¦ कुंजी का कोड नहीं ¦ कुंजी का कोड नहीं
+U5B-N50	hi	t	सबसे पक्की जोड़ी तय करें, फिर उससे असहमत कोड काटें।
+U5B-N51	en	w	In the gravity model, interaction rises with population size and falls with distance (usually its square).
+U5B-N51	en	o	Distance reduces use ¦ Population raises use ¦ Right: direct to size, inverse to distance ¦ Reversed
+U5B-N51	en	t	Bigger pulls more, farther pulls less.
+U5B-N51	hi	w	गुरुत्व मॉडल में अंतःक्रिया जनसंख्या आकार के साथ बढ़ती है और दूरी (आमतौर पर उसके वर्ग) के साथ घटती है।
+U5B-N51	hi	o	दूरी उपयोग घटाती है ¦ जनसंख्या उपयोग बढ़ाती है ¦ सही: आकार के अनुक्रमानुपाती, दूरी के व्युत्क्रमानुपाती ¦ उल्टा
+U5B-N51	hi	t	बड़ा अधिक खींचे, दूर कम।
+U5B-N52	en	w	Patna in Bihar and Kolkata in West Bengal are each far larger than the next city of their state, so each is a primate city.
+U5B-N52	en	o	Edge cities are new suburban job hubs ¦ Kolkata is regional, not a world city in this sense ¦ Not the shared feature ¦ Right: primate city
+U5B-N52	en	t	State capital far ahead of number two.
+U5B-N52	hi	w	बिहार में पटना और पश्चिम बंगाल में कोलकाता अपने राज्य के अगले नगर से बहुत बड़े हैं, इसलिए दोनों प्रमुख नगर हैं।
+U5B-N52	hi	o	एज सिटी नए उपनगरीय रोज़गार केंद्र हैं ¦ कोलकाता क्षेत्रीय है, इस अर्थ में विश्व नगर नहीं ¦ साझा गुण नहीं ¦ सही: प्रमुख नगर
+U5B-N52	hi	t	राज्य राजधानी नंबर दो से बहुत आगे।
+U5B-N53	en	w	William Bunge's exploitive model divides the city into the city of death (poor core), the city of need, and the city of superfluity (rich suburbs). The CBD is not one of his three.
+U5B-N53	en	o	Part of his model ¦ Part of his model ¦ Right: not part of his model ¦ Part of his model
+U5B-N53	en	t	Death, need, superfluity: Bunge's three cities.
+U5B-N53	hi	w	विलियम बंज का शोषक मॉडल नगर को मृत्यु का नगर (गरीब केंद्र), आवश्यकता का नगर, और अतिरेक का नगर (अमीर उपनगर) में बाँटता है। CBD उनके तीन में नहीं।
+U5B-N53	hi	o	उनके मॉडल का भाग ¦ उनके मॉडल का भाग ¦ सही: उनके मॉडल का भाग नहीं ¦ उनके मॉडल का भाग
+U5B-N53	hi	t	मृत्यु, आवश्यकता, अतिरेक: बंज के तीन नगर।
+U5B-N54	en	w	Site is a place's own physical and cultural traits (B, 2); situation is its relative location (C, 3); a pull factor is movement towards jobs (A, 1); a migration field is the area that dominates a place's in and out flows (D, 4). Code B: 2, 3, 1, 4.
+U5B-N54	en	o	Wrong order ¦ Right: 2, 3, 1, 4 ¦ Wrong order ¦ Wrong order
+U5B-N54	en	t	Site = the spot; situation = its neighbourhood.
+U5B-N54	hi	w	स्थल किसी स्थान के अपने भौतिक और सांस्कृतिक गुण हैं (B, 2); स्थिति उसकी सापेक्ष अवस्थिति (C, 3); खिंचाव कारक रोज़गार की ओर गमन (A, 1); प्रवास क्षेत्र वह इलाका है जो किसी स्थान के आने-जाने पर हावी है (D, 4)। कोड B: 2, 3, 1, 4।
+U5B-N54	hi	o	गलत क्रम ¦ सही: 2, 3, 1, 4 ¦ गलत क्रम ¦ गलत क्रम
+U5B-N54	hi	t	स्थल = जगह; स्थिति = उसका आसपास।
+U5B-N55	en	w	The central city is the area inside the official limits (C, 3); a network city is two or more complementary cities linked by fast corridors (D, 4); the urban influence zone is the urban-like area outside the city (B, 2); the urbanised area is the continuous built-up landscape regardless of boundaries (A, 1). Code B: 3, 4, 2, 1.
+U5B-N55	en	o	Wrong order ¦ Right: 3, 4, 2, 1 ¦ Wrong order ¦ Wrong order
+U5B-N55	en	t	Central = inside the line; urbanised = wherever buildings run.
+U5B-N55	hi	w	केंद्रीय नगर आधिकारिक सीमा के भीतर का क्षेत्र है (C, 3); नेटवर्क नगर तेज़ गलियारों से जुड़े दो या अधिक पूरक नगर (D, 4); नगरीय प्रभाव क्षेत्र नगर के बाहर नगर-जैसा क्षेत्र (B, 2); नगरीकृत क्षेत्र सीमाओं से परे निरंतर निर्मित भूदृश्य (A, 1)। कोड B: 3, 4, 2, 1।
+U5B-N55	hi	o	गलत क्रम ¦ सही: 3, 4, 2, 1 ¦ गलत क्रम ¦ गलत क्रम
+U5B-N55	hi	t	केंद्रीय = रेखा के भीतर; नगरीकृत = जहाँ तक इमारतें।
+U5B-N56	en	w	The lists and codes of this match question were printed as a table in the original paper. The keyed answer is option (3). The labelled nuclei are in the figure in the original.
+U5B-N56	en	o	Not the keyed code ¦ Not the keyed code ¦ Right: option (3) ¦ Not the keyed code
+U5B-N56	en	t	Fix the pair you are surest of, then strike out the codes that disagree.
+U5B-N56	hi	w	इस मिलान प्रश्न की सूचियाँ और कोड मूल पेपर में तालिका में छपे थे। कुंजी का उत्तर विकल्प (3) है। अंकित केंद्रक मूल चित्र में हैं।
+U5B-N56	hi	o	कुंजी का कोड नहीं ¦ कुंजी का कोड नहीं ¦ सही: विकल्प (3) ¦ कुंजी का कोड नहीं
+U5B-N56	hi	t	सबसे पक्की जोड़ी तय करें, फिर उससे असहमत कोड काटें।
+U5B-N58	en	w	Indian cities and agglomerations are growing fast, and one reason is that satellite towns have not developed enough to take the overflow. The key accepts R as the explanation.
+U5B-N58	en	o	Right: both true, R explains A ¦ The key accepts R as the explanation ¦ R is also true ¦ A is also true
+U5B-N58	en	t	No strong satellites, so the core keeps swelling.
+U5B-N58	hi	w	भारतीय नगर और नगरीय समूह तेज़ी से बढ़ रहे हैं, और एक कारण यह है कि उपग्रह नगर अतिरिक्त भार लेने लायक विकसित नहीं हुए। कुंजी R को व्याख्या मानती है।
+U5B-N58	hi	o	सही: दोनों सत्य, R, A को समझाता है ¦ कुंजी R को व्याख्या मानती है ¦ R भी सत्य है ¦ A भी सत्य है
+U5B-N58	hi	t	मज़बूत उपग्रह नहीं, इसलिए केंद्र फूलता रहता है।
+U5B-N59	en	w	Like central places, higher-order growth poles are few and far apart, while lower-order growth centres are many and closer together.
+U5B-N59	en	o	Spacing differs by order ¦ Reversed ¦ Right: higher far apart, lower closer ¦ A hierarchy of spacing exists
+U5B-N59	en	t	Big centres are rare; small ones are everywhere.
+U5B-N59	hi	w	केंद्रीय स्थलों की तरह उच्च क्रम के विकास ध्रुव कम और दूर-दूर होते हैं, जबकि निम्न क्रम के विकास केंद्र अधिक और पास-पास।
+U5B-N59	hi	o	क्रम के अनुसार अंतराल बदलता है ¦ उल्टा ¦ सही: उच्च दूर, निम्न पास ¦ अंतराल का पदानुक्रम है
+U5B-N59	hi	t	बड़े केंद्र दुर्लभ, छोटे हर जगह।
+U5B-N60	en	w	Christaller's K is the number of lower-order settlements served by one centre of the next higher order (counting itself).
+U5B-N60	en	o	Right: K ¦ Not his symbol ¦ Not his symbol ¦ Not his symbol
+U5B-N60	en	t	K = how many a centre serves.
+U5B-N60	hi	w	क्रिस्टालर का K अगले उच्च क्रम के एक केंद्र द्वारा सेवित निम्न क्रम बस्तियों की संख्या है (स्वयं सहित)।
+U5B-N60	hi	o	सही: K ¦ उनका प्रतीक नहीं ¦ उनका प्रतीक नहीं ¦ उनका प्रतीक नहीं
+U5B-N60	hi	t	K = केंद्र कितनों की सेवा करता है।
+U5B-N61	en	w	Burgess and Park's concentric zone model came from the Chicago School of human ecology, which saw city zones as the result of competition and succession.
+U5B-N61	en	o	Right: Burgess and Park ¦ Industrial location ¦ Spread of innovations ¦ Migration stages
+U5B-N61	en	t	Chicago: the city as an ecological community.
+U5B-N61	hi	w	बर्गेस और पार्क का संकेंद्रीय कटिबंध मॉडल मानव पारिस्थितिकी के शिकागो स्कूल से आया, जो नगर कटिबंधों को प्रतिस्पर्धा और अनुक्रमण का परिणाम मानता था।
+U5B-N61	hi	o	सही: बर्गेस और पार्क ¦ औद्योगिक अवस्थिति ¦ नवाचार का प्रसार ¦ प्रवास की अवस्थाएँ
+U5B-N61	hi	t	शिकागो: नगर एक पारिस्थितिक समुदाय।
+U5B-N62	en	w	The lists and codes of this match question were printed as a table in the original paper. The keyed answer is option (2). The four point patterns are drawn in the original; the code reads cluster, random, uniform, perfect.
+U5B-N62	en	o	Not the keyed code ¦ Right: option (2) ¦ Not the keyed code ¦ Not the keyed code
+U5B-N62	en	t	Fix the pair you are surest of, then strike out the codes that disagree.
+U5B-N62	hi	w	इस मिलान प्रश्न की सूचियाँ और कोड मूल पेपर में तालिका में छपे थे। कुंजी का उत्तर विकल्प (2) है। चारों बिंदु प्रतिरूप मूल में बने हैं; कोड गुच्छित, यादृच्छिक, समान, पूर्ण पढ़ता है।
+U5B-N62	hi	o	कुंजी का कोड नहीं ¦ सही: विकल्प (2) ¦ कुंजी का कोड नहीं ¦ कुंजी का कोड नहीं
+U5B-N62	hi	t	सबसे पक्की जोड़ी तय करें, फिर उससे असहमत कोड काटें।
+U5B-N63	en	w	Urbanisation does define this century, and developing countries are at its centre. The key marks R false: most urban growth in developing countries happens in small and medium towns, not mainly in megacities.
+U5B-N63	en	o	R is false ¦ R is false ¦ Right: A correct, R false ¦ A is correct
+U5B-N63	en	t	Most new city dwellers live in small and medium towns.
+U5B-N63	hi	w	नगरीकरण सचमुच इस सदी की पहचान है, और विकासशील देश इसके केंद्र में हैं। कुंजी R को असत्य मानती है: विकासशील देशों में अधिकांश नगरीय वृद्धि छोटे और मध्यम नगरों में होती है, मुख्यतः महानगरों में नहीं।
+U5B-N63	hi	o	R असत्य है ¦ R असत्य है ¦ सही: A सही, R असत्य ¦ A सही है
+U5B-N63	hi	t	अधिकांश नए नगरवासी छोटे-मध्यम नगरों में।
+U5B-N65	en	w	Ubiquitous and localised raw materials are Weber's industrial location terms. Central place theory is about services, hinterlands, hierarchy and hexagons.
+U5B-N65	en	o	Fits the theory ¦ Fits the theory ¦ Right: Weber's idea, not central place theory ¦ Fits the theory
+U5B-N65	en	t	Weber = raw materials; Christaller = services.
+U5B-N65	hi	w	सर्वसुलभ और स्थानीकृत कच्चे माल वेबर के औद्योगिक अवस्थिति शब्द हैं। केंद्रीय स्थल सिद्धांत सेवाओं, पृष्ठप्रदेश, पदानुक्रम और षट्भुजों पर है।
+U5B-N65	hi	o	सिद्धांत से मेल ¦ सिद्धांत से मेल ¦ सही: वेबर का विचार, केंद्रीय स्थल नहीं ¦ सिद्धांत से मेल
+U5B-N65	hi	t	वेबर = कच्चा माल; क्रिस्टालर = सेवाएँ।
+U5B-N67	en	w	Urban growth is the net increase in the number of people in towns and cities. Urbanisation is the rise in the urban share of the total.
+U5B-N67	en	o	Right: urban growth ¦ All people, not just urban ¦ The share, not the net number ¦ A place, not a process
+U5B-N67	en	t	Growth = more city people; urbanisation = bigger city share.
+U5B-N67	hi	w	नगरीय वृद्धि नगरों में लोगों की संख्या में शुद्ध वृद्धि है। नगरीकरण कुल में नगरीय हिस्से की बढ़त है।
+U5B-N67	hi	o	सही: नगरीय वृद्धि ¦ सभी लोग, केवल नगरीय नहीं ¦ हिस्सा, शुद्ध संख्या नहीं ¦ स्थान, प्रक्रिया नहीं
+U5B-N67	hi	t	वृद्धि = अधिक नगरवासी; नगरीकरण = बड़ा नगरीय हिस्सा।
+U5B-N68	en	w	The key credits Benton MacKaye, the American regional planner (founder of the Appalachian Trail idea), with this view that every action must first be planned in the mind.
+U5B-N68	en	o	A city historian, not keyed ¦ A planner, not keyed ¦ A sanitary reformer, not keyed ¦ Right: Benton MacKaye
+U5B-N68	en	t	Plan in thought before building on the ground.
+U5B-N68	hi	w	कुंजी यह विचार, कि हर कार्य पहले मन में योजना बनता है, अमेरिकी प्रादेशिक नियोजक बेंटन मैकके (एपलाचियन ट्रेल के विचारक) को देती है।
+U5B-N68	hi	o	नगर इतिहासकार, कुंजी में नहीं ¦ नियोजक, कुंजी में नहीं ¦ स्वच्छता सुधारक, कुंजी में नहीं ¦ सही: बेंटन मैकके
+U5B-N68	hi	t	ज़मीन पर बनाने से पहले विचार में योजना।
+U5B-N69	en	w	A green village clusters around a village green (B, 2); a cruciform village grows at a road crossing (A, 1); a dispersed village is scattered farms (D, 4); a street village runs along a route (C, 3). Code D: 2, 1, 4, 3.
+U5B-N69	en	o	Wrong order ¦ Wrong order ¦ Wrong order ¦ Right: 2, 1, 4, 3
+U5B-N69	en	t	Green = around a lawn; cruciform = cross-roads.
+U5B-N69	hi	w	हरित ग्राम एक ग्राम-मैदान के चारों ओर गुच्छित होता है (B, 2); क्रॉस आकार ग्राम सड़कों के चौराहे पर बढ़ता है (A, 1); प्रकीर्ण ग्राम बिखरे फ़ार्म हैं (D, 4); गली ग्राम मार्ग के साथ चलता है (C, 3)। कोड D: 2, 1, 4, 3।
+U5B-N69	hi	o	गलत क्रम ¦ गलत क्रम ¦ गलत क्रम ¦ सही: 2, 1, 4, 3
+U5B-N69	hi	t	हरित = मैदान के चारों ओर; क्रॉस = चौराहा।
+U5B-N71	en	w	For census towns, the 2011 Census used population (5,000), density (400 per sq km) and male non-farm work (75%). Of these options, only density is a criterion.
+U5B-N71	en	o	Not a criterion ¦ Right: population density ¦ Not a criterion ¦ Not a criterion
+U5B-N71	en	t	Size, density, work: the three tests.
+U5B-N71	hi	w	जनगणना नगरों के लिए 2011 की जनगणना ने जनसंख्या (5,000), घनत्व (400 प्रति वर्ग किमी) और पुरुष गैर-कृषि काम (75%) लिए। इन विकल्पों में केवल घनत्व मानदंड है।
+U5B-N71	hi	o	मानदंड नहीं ¦ सही: जनसंख्या घनत्व ¦ मानदंड नहीं ¦ मानदंड नहीं
+U5B-N71	hi	t	आकार, घनत्व, काम: तीन परीक्षण।
+U5B-N72	en	w	Jefferson's The Law of the Primate City was published in 1939.
+U5B-N72	en	o	Too early ¦ Too early ¦ Too early ¦ Right: 1939
+U5B-N72	en	t	1939: primate city.
+U5B-N72	hi	w	जेफ़रसन का The Law of the Primate City 1939 में प्रकाशित हुआ।
+U5B-N72	hi	o	बहुत पहले ¦ बहुत पहले ¦ बहुत पहले ¦ सही: 1939
+U5B-N72	hi	t	1939: प्रमुख नगर।
+U5B-N73	en	w	August Lösch refined Christaller by rotating the hexagonal nets so that centres line up into city-rich and city-poor sectors around a metropolis.
+U5B-N73	en	o	Indian regional planner ¦ Worked on city systems ¦ Regional science ¦ Right: August Lösch
+U5B-N73	en	t	Lösch's wheel: rich spokes and poor gaps.
+U5B-N73	hi	w	ऑगस्ट लॉश ने षट्कोणीय जालों को घुमाकर क्रिस्टालर को परिष्कृत किया, ताकि महानगर के चारों ओर केंद्र नगर-समृद्ध और नगर-विरल त्रिज्यखंडों में पंक्तिबद्ध हों।
+U5B-N73	hi	o	भारतीय प्रादेशिक नियोजक ¦ नगर तंत्र पर काम ¦ प्रादेशिक विज्ञान ¦ सही: ऑगस्ट लॉश
+U5B-N73	hi	t	लॉश का पहिया: समृद्ध तीलियाँ, विरल अंतर।
