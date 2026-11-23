@@ -9,7 +9,7 @@
 // (sessionStorage, this tab only), and it carries on from there without fading in again.
 //
 // It is on by default. Browsers only allow sound after a tap or key press, so it starts at once where the browser allows it,
-// and otherwise on the visitor's first tap, click or key press. The file is only fetched when it starts playing.
+// and otherwise on the visitor's first tap, click or key press. Until then the speaker button glows and shows a small hint. The file is only fetched when it starts playing.
 // The speaker button in the top bar switches it off; that choice is remembered in this browser only (see /privacy/).
 // Guide: docs/17-library-map.md, "The background sound".
 
@@ -30,8 +30,15 @@ const remember = (v: 'on' | 'off') => { try { localStorage.setItem(KEY, v); } ca
 const readLive = (): { t: number; at: number } | null => { try { return JSON.parse(sessionStorage.getItem(LIVE) || 'null'); } catch { return null; } };
 const writeLive = () => { try { if (playing && audio) sessionStorage.setItem(LIVE, JSON.stringify({ t: audio.currentTime, at: Date.now() })); else sessionStorage.removeItem(LIVE); } catch {} };
 
+let waiting = false; // on by default, but the browser is still waiting for the visitor's first tap
+
 function paint() {
-  document.querySelectorAll<HTMLButtonElement>('[data-ambient]').forEach((b) => b.setAttribute('aria-pressed', String(playing)));
+  document.querySelectorAll<HTMLButtonElement>('[data-ambient]').forEach((b) => {
+    b.setAttribute('aria-pressed', String(playing));
+    // While the browser holds the sound back, the speaker button glows softly and shows a small hint
+    // ("Tap anywhere for music"), so visitors know the music is there (Kritikesh's wish, 23 Nov 2026).
+    if (waiting && !playing) b.dataset.waiting = ''; else delete b.dataset.waiting;
+  });
 }
 
 /** Moves the volume smoothly to `to` over `ms` milliseconds, then runs `done`. */
@@ -76,13 +83,16 @@ async function play(): Promise<boolean> {
     writeLive();
   } catch {
     playing = false; // the browser wants a tap first
+    waiting = pref() !== 'off';
   }
+  if (playing) waiting = false;
   paint();
   return playing;
 }
 
 function pause() {
   playing = false;
+  waiting = false;
   writeLive();
   paint();
   if (audio) fade(0, 800, () => { if (!playing) audio?.pause(); });
