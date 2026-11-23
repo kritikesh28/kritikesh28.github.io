@@ -128,7 +128,7 @@ const MENUS: Record<string, string> = { '/library/': 'lib-mega', '/exam-prep/': 
         <a class="theme" href={L('/search/')} aria-label={t('header.search')} title={t('header.searchTitle')}>
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2" /><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
         </a>
-        <button class="theme sound" type="button" aria-pressed="false" aria-label={t('header.sound')} title={t('header.soundTitle')} data-ambient>
+        <button class="theme sound" type="button" aria-pressed="false" aria-label={t('header.sound')} title={t('header.soundTitle')} data-hint={t('header.soundHint')} data-ambient>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor" /><path class="w1" d="M15.5 9a4 4 0 0 1 0 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /><path class="w2" d="M18 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /><path class="x" d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
         </button>
         <button class="theme mode" type="button" aria-label={t('header.theme')} title={t('header.themeTitle')}>
@@ -377,6 +377,17 @@ const MENUS: Record<string, string> = { '/library/': 'lib-mega', '/exam-prep/': 
   .sound[aria-pressed='true'] .w2 { animation: sound-breathe 3.2s ease-in-out infinite; }
   @keyframes sound-breathe { 50% { opacity: 0.35; } }
   @media (prefers-reduced-motion: reduce) { .sound[aria-pressed='true'] .w2 { animation: none; } }
+  /* music is on by default, but the browser waits for a first tap: a soft gold glow and a small hint under the button */
+  .sound { position: relative; }
+  .sound[data-waiting] { border-color: color-mix(in srgb, var(--gold) 70%, var(--line)); animation: sound-call 2.4s ease-in-out infinite; }
+  .sound[data-waiting]::after {
+    content: attr(data-hint); position: absolute; top: calc(100% + 8px); right: 0; white-space: nowrap; pointer-events: none;
+    font-size: 0.75rem; line-height: 1.2; padding: 0.35em 0.7em; border-radius: 999px;
+    background: var(--bg, #fff); color: var(--ink, currentColor); border: 1px solid color-mix(in srgb, var(--gold) 60%, var(--line));
+    box-shadow: 0 4px 14px rgb(0 0 0 / 0.12);
+  }
+  @keyframes sound-call { 0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--gold) 45%, transparent); } 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--gold) 0%, transparent); } }
+  @media (prefers-reduced-motion: reduce) { .sound[data-waiting] { animation: none; } }
   .site-header nav a[aria-current='page'] { color: var(--ink); background: var(--accent-soft); font-weight: 600; }
   /* the EN / हिंदी switch */
   .site-header .langs { margin-left: 0; display: flex; flex: none; border: 1px solid var(--line); border-radius: 999px; padding: 2px; gap: 2px; }

@@ -6,7 +6,7 @@ Built on 18 November 2026 from Kritikesh's brief. Three things work together:
 
 | What | Address | Files |
 | --- | --- | --- |
-| **Mere Man Ki Baat…** (Hinglish, the same on English and Hindi pages), the aspirants' library: Kritikesh talking with aspirants, as at a chai tapri, about the problems everyone has and few say out loud | /aspirants/ (and /hi/aspirants/) | `src/pages/[...lang]/aspirants/index.astro`, text in `src/data/aspirants/talks-1.ts` and `talks-2.ts` |
+| **Mere Man Ki Baat…** (Hinglish, the same on English and Hindi pages), the aspirants' diary (renamed from "aspirants' library" on 23 Nov 2026): Kritikesh talking with aspirants, as at a chai tapri, about the problems everyone has and few say out loud | /aspirants/ (and /hi/aspirants/) | `src/pages/[...lang]/aspirants/index.astro`, text in `src/data/aspirants/talks-1.ts` and `talks-2.ts` |
 | **Why this format?**: why the same book content is shown as flip cards, quizzes and short talks | /aspirants/why-this-format/ | `src/pages/[...lang]/aspirants/why-this-format.astro`, text in `WHY` in `src/data/aspirants/talks.ts` |
 | **Credits and sources**: the bibliography of the whole site, what is and is not his own, copyright rules, his promise to authors and publishers | /credits/ | `src/pages/[...lang]/credits.astro` |
 | **The grateful note** at the end of every page, linking to both pages above | every page | `src/components/CreditNote.astro`, placed in `src/layouts/Base.astro` |
