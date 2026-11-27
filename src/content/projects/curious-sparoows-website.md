@@ -16,7 +16,7 @@ aiAssisted: designed
 
 ## In one minute
 
-Curious Sparoows is the website you are on. It started on 23 October 2026 and has grown through about 100 small, reviewed changes (pull requests). My degrees are in Geology and Geography, not computer science, so this site is also my classroom for software.
+Curious Sparoows is the website you are on. It started on 23 October 2026 and has grown through about 100 small, reviewed changes (pull requests). My degrees are in Geology and Geography, not computer science. I am heading towards AI/ML for cybersecurity, one step at a time: first software basics, then AI/ML, then security. This site is my first step: a real system to learn from, because you can only find the weak spots of a system once you understand how it is built.
 
 **Honest note:** the site was designed and coded with Claude, an AI assistant. My part is deciding what it should do, checking every change before it goes live, finding problems, and learning how each part works, line by line, so I can explain it. This page only describes what is really in the code.
 
@@ -81,6 +81,12 @@ Every item below is in the project's history on GitHub.
 **9. An old icon would not go away.** Browsers kept showing the cached favicon. *Fix:* add a version to its address (`favicon.svg?v=2`), so browsers fetch it again.
 
 **10. Content can be a bug too.** 39 flip cards stayed too close to a book's sentence. *Fix:* they were reworded, and book references were removed from the PYQ pages. (Pull requests #71 and #86)
+
+## Why this matters for AI/ML and security
+
+- **Data quality is an ML skill.** Bugs 1 and 2 were data problems, not code problems. A model trained on junk rows or easy-to-guess options learns the wrong thing, and no error message tells you.
+- **The site already uses basic security ideas:** a Content Security Policy (bug 4), automatic dependency updates against known weaknesses (bug 3), a `security.txt` file for reporting problems, HTTPS, and no accounts or tracking cookies, so there is no personal data to leak.
+- **Next steps on the same path:** my predictive-maintenance MLOps project (on this portfolio) is the AI/ML step. Security-focused ML projects come after it.
 
 ## What this taught me
 
