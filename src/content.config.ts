@@ -39,6 +39,10 @@ const projects = defineCollection({
     order: z.number().default(100),
     // Embeds a live demo from public/demos/ on the project page: true = the NYC taxi demo, or a demo folder name
     demo: z.union([z.boolean(), z.enum(['nyc-taxi', 'predictive-maintenance'])]).default(false),
+    // true shows the "All at once / One question at a time" reading switch (each ### heading is a question)
+    qa: z.boolean().default(false),
+    // A card linking to the tracker or planner behind the work
+    tracker: z.object({ href: z.string(), title: z.string(), text: z.string(), points: z.array(z.string()).default([]), cta: z.string() }).optional(),
     aiAssisted: z.boolean().default(false),
     draft: z.boolean().default(false),
   }),

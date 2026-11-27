@@ -1,0 +1,111 @@
+---
+// Two ways to read a question-and-answer page: everything at once, or one question at a time with Next / Previous.
+// Wraps a project's Markdown (each ### heading is a question, each ## heading a section). Turned on by `qa: true`
+// in a project's front matter. The reader's choice is remembered on their device. Guide: docs/18-portfolio-and-menus.md
+import { langFromUrl, pick } from '../../i18n/config';
+const lang = langFromUrl(Astro.url);
+const T = pick({
+  en: { how: 'How would you like to read?', all: 'All at once', one: 'One question at a time', prev: '← Previous', next: 'Next question →', of: 'of', done: 'That was the last question.', again: 'Start again' },
+  hi: { how: 'आप कैसे पढ़ना चाहेंगे?', all: 'सब एक साथ', one: 'एक बार में एक सवाल', prev: '← पिछला', next: 'अगला सवाल →', of: 'में से', done: 'यह आख़िरी सवाल था।', again: 'फिर से शुरू करें' },
+}, lang);
+---
+
+<div class="qa-reader" data-qa-reader>
+  <div class="qa-mode" role="group" aria-label={T.how} hidden>
+    <span class="small muted">{T.how}</span>
+    <button type="button" class="qa-btn" data-mode="all" aria-pressed="true">{T.all}</button>
+    <button type="button" class="qa-btn" data-mode="one" aria-pressed="false">{T.one}</button>
+  </div>
+  <div class="qa-body"><slot /></div>
+  <div class="qa-nav" hidden>
+    <div class="qa-bar" aria-hidden="true"><i></i></div>
+    <div class="qa-row">
+      <button type="button" class="btn ghost" data-step="-1">{T.prev}</button>
+      <span class="qa-count small muted" aria-live="polite"></span>
+      <button type="button" class="btn" data-step="1">{T.next}</button>
+    </div>
+    <p class="qa-end small muted" hidden>{T.done} <button type="button" class="qa-link" data-restart>{T.again}</button></p>
+  </div>
+</div>
+
+<style>
+  .qa-mode { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin: 1.2rem 0 1.6rem; padding: 0.7rem 0.9rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+  .qa-mode .muted { margin-right: 0.3rem; }
+  .qa-btn { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.85rem; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; }
+  .qa-btn[aria-pressed='true'] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .qa-nav { margin-top: 1.4rem; }
+  .qa-bar { height: 6px; border-radius: 99px; background: var(--accent-soft); overflow: hidden; margin-bottom: 0.9rem; }
+  .qa-bar i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 99px; transition: width 0.3s ease; }
+  .qa-row { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; }
+  .qa-row .btn[disabled] { opacity: 0.4; pointer-events: none; }
+  .qa-link { font: inherit; background: none; border: 0; padding: 0; color: var(--accent); text-decoration: underline; cursor: pointer; }
+  :global(.qa-one .qa-body > *) { display: none; }
+  :global(.qa-one .qa-body > .qa-show) { display: block; }
+  :global(.qa-one .qa-body > ul.qa-show), :global(.qa-one .qa-body > ol.qa-show) { display: block; }
+  :global(.qa-one .qa-body > h2.qa-show) { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); margin-bottom: 0.2rem; }
+  :global(.qa-one .qa-body > h3.qa-show) { margin-top: 0.3rem; }
+</style>
+
+<script>
+  import { onPage } from '../../scripts/page';
+  const KEY = 'qa-read-mode';
+  onPage(() => {
+    const root = document.querySelector<HTMLElement>('[data-qa-reader]');
+    if (!root) return;
+    const body = root.querySelector<HTMLElement>('.qa-body')!;
+    const nav = root.querySelector<HTMLElement>('.qa-nav')!;
+    const count = root.querySelector<HTMLElement>('.qa-count')!;
+    const bar = root.querySelector<HTMLElement>('.qa-bar i')!;
+    const end = root.querySelector<HTMLElement>('.qa-end')!;
+    const prev = root.querySelector<HTMLButtonElement>('[data-step="-1"]')!;
+    const next = root.querySelector<HTMLButtonElement>('[data-step="1"]')!;
+    const ofWord = document.documentElement.lang === 'hi' ? 'में से' : 'of';
+
+    // Group the page: each question (h3) with the answer under it, remembering which section (h2) it sits in
+    const kids = [...body.children] as HTMLElement[];
+    const items: { section?: HTMLElement; els: HTMLElement[] }[] = [];
+    let section: HTMLElement | undefined;
+    let cur: { section?: HTMLElement; els: HTMLElement[] } | undefined;
+    const intro: HTMLElement[] = [];
+    for (const el of kids) {
+      if (el.tagName === 'H2') { section = el; cur = undefined; continue; }
+      if (el.tagName === 'H3') { cur = { section, els: [el] }; items.push(cur); continue; }
+      if (cur) cur.els.push(el); else if (!section) intro.push(el);
+    }
+    if (items.length < 2) return;
+    root.querySelector<HTMLElement>('.qa-mode')!.hidden = false;
+
+    let i = 0;
+    const show = () => {
+      kids.forEach((k) => k.classList.remove('qa-show'));
+      const it = items[i];
+      intro.forEach((e) => e.classList.add('qa-show'));
+      it.section?.classList.add('qa-show');
+      it.els.forEach((e) => e.classList.add('qa-show'));
+      count.textContent = `${i + 1} ${ofWord} ${items.length}`;
+      bar.style.width = `${((i + 1) / items.length) * 100}%`;
+      prev.disabled = i === 0;
+      next.disabled = i === items.length - 1;
+      end.hidden = i !== items.length - 1;
+    };
+    const setMode = (mode: string, scroll = false) => {
+      const one = mode === 'one';
+      root.classList.toggle('qa-one', one);
+      nav.hidden = !one;
+      root.querySelectorAll<HTMLButtonElement>('.qa-btn').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mode === mode)));
+      if (one) show(); else kids.forEach((k) => k.classList.remove('qa-show'));
+      try { localStorage.setItem(KEY, mode); } catch {}
+      if (scroll) root.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    const go = (d: number) => { i = Math.min(items.length - 1, Math.max(0, i + d)); show(); root.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+
+    root.querySelectorAll<HTMLButtonElement>('.qa-btn').forEach((b) => b.addEventListener('click', () => setMode(b.dataset.mode!)));
+    prev.addEventListener('click', () => go(-1));
+    next.addEventListener('click', () => go(1));
+    root.querySelector('[data-restart]')!.addEventListener('click', () => { i = 0; show(); root.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+
+    let saved = 'all';
+    try { saved = localStorage.getItem(KEY) ?? 'all'; } catch {}
+    setMode(saved === 'one' ? 'one' : 'all');
+  });
+</script>

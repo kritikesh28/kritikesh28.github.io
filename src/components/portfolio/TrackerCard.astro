@@ -1,0 +1,20 @@
+---
+// A card that links to the tracker behind a project (set `tracker:` in the project's front matter: href, title, text, points).
+// Guide: docs/18-portfolio-and-menus.md
+interface Props { href: string; title: string; text: string; points: string[]; cta: string }
+const { href, title, text, points, cta } = Astro.props;
+---
+
+<aside class="card tracker-card reveal">
+  <p class="tc-eyebrow">▦ {title}</p>
+  <p>{text}</p>
+  {points.length > 0 && <ul class="tc-points">{points.map((p) => <li>{p}</li>)}</ul>}
+  <p><a class="btn" href={href} target="_blank" rel="noopener noreferrer">{cta} ↗</a></p>
+</aside>
+
+<style>
+  .tracker-card { max-width: 720px; margin: 1.6rem 0; border-left: 4px solid var(--teal); background: color-mix(in srgb, var(--teal) 6%, var(--surface)); }
+  .tc-eyebrow { font-weight: 700; color: var(--ink); letter-spacing: 0.02em; }
+  .tc-points { margin: 0.2rem 0 0.4rem; padding-left: 1.2rem; display: grid; gap: 0.2rem; }
+  .tc-points li { color: var(--ink-soft); }
+</style>
