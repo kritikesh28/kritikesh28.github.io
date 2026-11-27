@@ -39,7 +39,8 @@ const projects = defineCollection({
     order: z.number().default(100),
     // Embeds a live demo from public/demos/ on the project page: true = the NYC taxi demo, or a demo folder name
     demo: z.union([z.boolean(), z.enum(['nyc-taxi', 'predictive-maintenance'])]).default(false),
-    aiAssisted: z.boolean().default(false),
+    // true = the standard AI note; 'designed' = the work itself was designed and coded with Claude (this website)
+    aiAssisted: z.union([z.boolean(), z.literal('designed')]).default(false),
     draft: z.boolean().default(false),
   }),
 });
