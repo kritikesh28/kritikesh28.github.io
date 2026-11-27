@@ -121,6 +121,7 @@ If a column or a sheet tab is renamed in a sheet, rename it in `tools/exam-prep/
 - **No promises:** past papers describe the past. The intro, the guide and every exam page say so, and "How it works" lists every paper used and its limits.
 - **No private links:** papers are listed by name only. No Drive file IDs or links ever go on the site (the script leaves them out on purpose).
 - **Honest pages only in Google:** exams whose only analysed paper is a language paper (AEN, APO) are marked `noindex` and kept out of the sitemap.
+- **No `noindex` page in the sitemap (whole site):** `src/integrations/sitemap-noindex.mjs` runs after the sitemap is built, opens each listed page and removes any page whose robots tag says `noindex` (moved pages that forward, Hindi addresses of English-only pages). This keeps the Google Search Console error "Excluded by 'noindex' tag" away. Never remove it.
 - **Security setting:** the site forbids inline `style="..."` written by scripts. Set `element.style.width = ...` in code instead.
 
 ## 7. How search and ranking work
